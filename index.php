@@ -110,5 +110,3 @@ echo getTable($dimensions);
             $(this).popover('toggle');
         });
     })</script>
-
-<?php
