@@ -38,7 +38,8 @@ function getTable($dimensions)
                 foreach ($element as $elementName => $content) {
                     $content = getContentForLevelFromSubdimensions($i, $content, $elementName);
                     if ($content != "") {
-                        $tableContent .= "<li>" . $content . "</li>";
+                        $elementLink = "detail.php?dimension=".urlencode($dimension)."&subdimension=".urlencode($subdimension)."&element=".urlencode($elementName);
+                        $tableContent .= "<a href='$elementLink'><li>" . $content . "</li></a>";
                     }
                 }
                 $tableContent .= "</ul></td>";
@@ -55,20 +56,7 @@ function getTable($dimensions)
 }
 
 
-function build_table_tooltip($array)
-{
-    $mapKnowLedge = array("Sehr wenig (eine Disziplin)", "wenig (eine Disziplin)", "mittel (zwei Disziplinen)", "viel (zwei Disziplinen)", "sehr viel (drei oder mehr Disziplinen)");
-    $mapTime = array("Sehr wenig (1-2 Tage)", "wenig (eine Woche)", "mittel (zwei Wochen)", "viel (drei Wochen)", "sehr viel (drei oder mehr Wochen)");
-    $mapResources = array("Sehr wenig", "wenig", "mittel", "viel", "sehr viel");
 
-    $html = "<div><b>Risiko:</b> " . $array['risk'] . "</div>";
-    $html .= "<div><b>Maßnahme:</b> " . $array['measure'] . "</div>";
-    $html .= "<hr />";
-    $html .= "<div><b>Benötigtes Wissen:</b> " . $mapKnowLedge[$array['easeOfImplementation']['knowledge']] . "</div>";
-    $html .= "<div><b>Benötigte Zeit:</b> " . $mapTime[$array['easeOfImplementation']['knowledge']] . "</div>";
-    $html .= "<div><b>Benötigte Resourcen (Systeme):</b> " . $mapResources[$array['easeOfImplementation']['knowledge']] . "</div>";
-    return $html;
-}
 
 
 function getContentForLevelFromSubdimensions($level, $subdimension, $elementName)
