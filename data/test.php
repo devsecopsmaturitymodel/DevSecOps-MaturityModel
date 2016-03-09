@@ -241,18 +241,6 @@ $dimensions["Test und Verifizierung"] = array(
             "level" => 1,
             "implementation" => ""
         ),
-        "Behandlung von mittelschwerern Meldungen" => array(
-            "risk" => "Mittelschwere Meldungen werden nicht beachtet.",
-            "measure" => "Akzeptanzkretieren für gefundene Schwachstellen sind definiert. Empfehlung ist mittelschwer Meldungen ebenfalls zu behandeln.",
-            "easeOfImplementation" => array(
-                "knowledge" => 2,
-                "time" => 2,
-                "resources" => 1
-            ),
-            "usefulness" => 3,
-            "level" => 2,
-            "comment" => "Falsch Positiv-Sortierung ist Zeitaufwendig."
-        ),
         "Aggregation von Meldungen" => array(
             "risk" => "",
             "measure" => ".",

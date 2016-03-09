@@ -90,7 +90,7 @@ $dimensions["Infrastruktur"] = array(
             "dependsOn" => array("Definierter Deployment-Prozess"),
             "securityProperties" => array(
                 "availability" => "Firewalls verhindern die Beeinträchtigung der Verfügbarkeit von Diensten.",
-                "confidentiality" => "Firewalls zwischen virtuellen Umgebungen verhinden nach einemn erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen.")
+                "confidentiality" => "Firewalls zwischen virtuellen Umgebungen verhindern nach einem erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen.")
         ),
         "Produktions-Artifakte sind versioniert" => array(
             "risk" => "",
