@@ -8,30 +8,51 @@ foreach ($files as $file) {
 ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
-   foreach($subDimension as $subDimensionName => $elements) {
-       $newElements = $elements;
-       ksort($newElements);
-       $dimensions[$dimensionName][$subDimensionName] = $newElements;
-   }
+    foreach ($subDimension as $subDimensionName => $elements) {
+        $newElements = $elements;
+        ksort($newElements);
+        $dimensions[$dimensionName][$subDimensionName] = $newElements;
+    }
 }
 
-function getEaseOfImplementation($elementImplementation)
+function getEaseOfImplementation($dimensions, $elementImplementation)
 {
-    $knowledge = $elementImplementation["knowledge"];
-    if(is_array($elementImplementation["knowledge"])) {
+    $knowledge = $elementImplementation['easeOfImplementation']["knowledge"];
+    $knowledge = getKnowledge($dimensions, $elementImplementation);
+
+
+    $value = $knowledge + $elementImplementation['easeOfImplementation']["time"] * 2 + $elementImplementation['easeOfImplementation']["resources"];
+    $value = $value / 4;
+
+    if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
+        foreach ($elementImplementation['dependsOn'] as $dependency) {
+            $dependencyElement = getElementByName($dimensions, $dependency);
+            $value += getEaseOfImplementation($dimensions, $dependencyElement);
+        }
+    }
+    if($value > 5) {
+        $value = 5;
+    }
+
+    return number_format((float)$value, 2, '.', '');
+}
+
+function getKnowledge($dimensions, $elementImplementation){
+    $knowledge = $elementImplementation['easeOfImplementation']["knowledge"];
+    if (is_array($knowledge)) {
         $sum = 0;
         // areas = operation, development, expertise, security
         $areaCount = 4;
-        foreach($knowledge = $elementImplementation["knowledge"] as $knowledgeElement)  {
-            $sum += $knowledgeElement;
+        foreach ($knowledge as $knowledgeAttribute) {
+            $sum += $knowledgeAttribute;
         }
         $knowledge = $sum / $areaCount;
     }
 
-    $value =  $knowledge + $elementImplementation["time"] * 2 + $elementImplementation["resources"];
-    $value = $value / 4;
-    return number_format((float)$value, 2, '.', '');
+    return $knowledge;
 }
+
+
 
 function build_table_tooltip($array)
 {
@@ -49,4 +70,17 @@ function build_table_tooltip($array)
     $html .= "<div><b>Benötigte Zeit:</b> " . $mapTime[$array['easeOfImplementation']['knowledge']] . "</div>";
     $html .= "<div><b>Benötigte Resourcen (Systeme):</b> " . $mapResources[$array['easeOfImplementation']['knowledge']] . "</div>";
     return $html;
+}
+
+function getElementByName($dimensions, $name)
+{
+    foreach ($dimensions as $dimensionName => $subDimension) {
+        foreach ($subDimension as $subDimensionName => $elements) {
+            foreach ($elements as $elementName => $element) {
+                if ($elementName == $name) {
+                    return $element;
+                }
+            }
+        }
+    }
 }

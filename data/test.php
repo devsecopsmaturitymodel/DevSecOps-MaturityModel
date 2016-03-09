@@ -100,9 +100,9 @@ $dimensions["Test und Verifizierung"] = array(
         ),
     ),
     "Statische Tiefe" => array(
-        "Abhängigkeitsprüfungen für Frontend und Backend" => array(
+        "Patchprüfungen für Anwendungen" => array(
             "risk" => "Eingesetzte Bibliotheken können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Die können auch erst nach Deployment der Software bekannt werden [#bsiPatches].",
-            "measure" => "Abhängigkeitsprüfungen für Frontend- und Backendkomponenten werden, wie vom BSI unter „Zeitnahes Einspielen von sicherheitsrelevanter Patches und Update“ [#bsiPatches] empfohlen, regelmäßig durchgeführt. Sofern die Prüfung in angemessener Zeit erfolgt, während jedem Deployment.",
+            "measure" => "Patchprüfungen für Frontend- und Backendkomponenten werden, wie vom BSI unter „Zeitnahes Einspielen von sicherheitsrelevanter Patches und Update“ [#bsiPatches] empfohlen, regelmäßig durchgeführt. Sofern die Prüfung in angemessener Zeit erfolgt, während jedem Deployment.",
             "easeOfImplementation" => array(
                 "knowledge" => 1,
                 "time" => 1,
@@ -110,7 +110,12 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 5,
             "level" => 1,
-            "dependsOn" => array("Definierter Erzeugungs-Prozess")
+            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
+            "securityProperties" => array(
+                "integrity" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte daten zugreifen.",
+                "availability" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nicht die Verfügbarkeit beeinträchtigen.",
+                "confidentiality" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte Daten zugreifen.",
+            ),
         ),
         "Quellcode-Analyse für wichtige Teile der Anwendung" => array(
             "risk" => "Wichtige Teile der Software enthalten Schwachstellen in der Implementierung.",
@@ -347,7 +352,7 @@ $dimensions["Test und Verifizierung"] = array(
     "Integrations- und Aktzeptanztests" => array(
         "Unit-Testing mit Sicherheitsprüfungen" => array(
             "risk" => "Schwachstellen sind in der Anwendung vorhanden.",
-            "measure" => "Integration von manuellen sicherheitsrelevantem Unit-Testing für geschäftskritische Bereiche. Dadurch können Schwachstellen wie SQL-Injection, Buffer Overflows oder fehlende Authentifizierung erkannt werden.",
+            "measure" => "Integration von sicherheitsrelevantem Unit-Testing für geschäftskritische Bereiche. Dadurch können Schwachstellen wie fehlende Authentifizierung erkannt werden.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 2,
@@ -360,7 +365,7 @@ $dimensions["Test und Verifizierung"] = array(
         ),
         "Integrations-Tests Sicherheitsprüfungen" => array(
             "risk" => "In der Anwendung sind grundlegende Fehler bei der Benutzung eines Frameworks möglich, ohne das diese erkannt werden.",
-            "measure" => "Implementierung grundlegender Sicherheitstests als Integrations-Tests, welche manuell ausgeführt werden. Beispielsweise kann die Authentifizierung und Authorisierung (Zugriffskontrolle) geprüft werden.  [#bidgoli2006handbook, S. 894]",
+            "measure" => "Implementierung grundlegender Sicherheitstests als Integrations-Tests. Beispielsweise kann die Authentifizierung und Authorisierung (Zugriffskontrolle) geprüft werden.  [#bidgoli2006handbook, S. 894]",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 2,
@@ -370,19 +375,6 @@ $dimensions["Test und Verifizierung"] = array(
             "level" => 1,
             "implementation" => "",
         ),
-        "Automation von Integrations- und Akzeptanztests mit Sicherheitsprüfungen" => array(
-            "risk" => "Manuelle Ausführung von Sicherheitstest wird nicht häufig genug durchgeführt.",
-            "measure" => "Integrations- und Akzeptanztests mit Sicherheitsprüfungen werden bei jedem Deployment ausgeführt.[#bidgoli2006handbook, S. 894]",
-            "easeOfImplementation" => array(
-                "knowledge" => 3,
-                "time" => 3,
-                "resources" => 3
-            ),
-            "usefulness" => 3,
-            "level" => 2,
-            "implementation" => ""
-        ),
-
         "Sehr hoch abdeckende Integrations- und Akzeptanztests mit Sicherheitsprüfungen" => array(
             "risk" => "Es sind nicht alle Teile der Anwendung mit Sicherheitsprüfungen versehen.",
             "measure" => "Implementierung grundlegender Sicherheitstests als Integrations- und/oder Akzeptanztests für alle Teile (auch Bibliotheken), welche manuell ausgeführt werden.",
@@ -420,7 +412,12 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 5,
             "level" => 1,
-            "implementation" => ""
+            "implementation" => "",
+            "securityProperties" => array(
+                "integrity" => "Durch Prüfung von System-Updates ist sichergestellt, dass System-Komponenten nur auf autorisierte daten zugreifen.",
+                "availability" => "Durch Prüfung von System-Updates ist sichergestellt, dass System-Komponenten nicht die Verfügbarkeit beeinträchtigen.",
+                "confidentiality" => "Durch Prüfung von System-Updates ist sichergestellt, dass System-Komponenten nur auf autorisierte Daten zugreifen.",
+            ),
         ),
         "Prüfung der Konfiguration von virtuellen Umgebungen" => array(
             "risk" => "Virtuellen Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
@@ -481,7 +478,18 @@ $dimensions["Test und Verifizierung"] = array(
             "usefulness" => 2,
             "level" => 5,
             "implementation" => ""
-        )
+        ),
+        "Prüfung auf schwache Passwörter" => array(
+            "risk" => "Mitarbeiter oder Zugänge sind mit schwachen Passwörtern geschützt.",
+            "measure" => "Automatische BruteForce-Angriffe auf Benutzer-Konten von Mitarbeitern sowie Standard-Konten wie 'administrator' [Automated Tools for Testing Computer System Vulnerability, Timothy Polk].",
+            "easeOfImplementation" => array(
+                "knowledge" => 2,
+                "time" => 1,
+                "resources" => 1
+            ),
+            "usefulness" => 1,
+            "level" => 2,
+        ),
     ),
 );
 

@@ -20,7 +20,7 @@ function getJson($dimensions)
                     "series" => 0,
                     "shape" => $shapes[$shape],
                     "size" => 3000,
-                    "x" => getEaseOfImplementation($content["easeOfImplementation"]),
+                    "x" => getEaseOfImplementation($dimensions, $content),
                     "y" => $content["usefulness"],
                     "key" => $elementName
                 );
@@ -155,6 +155,28 @@ function getJson($dimensions)
 
 </script>
 <button id="toggleChartLabel">Toggle Label</button>
+
+<form action="?" method="get">
+<input name="aggregated" type="hidden"
+<?php
+if($_GET['aggregated'] == "true") {
+    echo "value='false'";
+}else {
+    echo "value='true'";
+}
+?>">
+
+</input>
+    <button id="">
+        <?php
+        if($_GET['aggregated'] == "true") {
+            echo "Einzelne Werte für Implementierung anzeigen";
+        }else {
+            echo "Totale Werte für Implementierung anzeigen";
+        }
+        ?>
+    </button>
+</form>
 <div id='chart'>
     <svg style='height:500px'></svg>
 </div>

@@ -2,19 +2,33 @@
 $dimensions["Infrastruktur"] = array(
     "Infrastruktur" => array(
         "Anwendungen laufen in virtuellen Umgebungen" => array(
-            "risk" => "",
-            "measure" => "",
+            "risk" => "Durch einen Einbruch erlangt ein Angreifer Zugriff auf alle auf einem Server laufenden Anwendungen.",
+            "measure" => "Anwendungen laufen in virtuellen Umgebungen.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
-                "resources" => 3
+                "resources" => 5
             ),
             "usefulness" => 3,
             "level" => 1,
+            "securityProperties" => array("availability"),
         ),
-        "Es existiert eine Produktiv-Umgebung und mindestens eine Test-Umgebung" => array(
-            "risk" => "",
-            "measure" => "",
+        "Produktiv-Umgebung und Test-Umgebung" => array(
+            "risk" => "Sicherheits-Tests werden aufgrund mangelnder Test-Umgebungen nicht durchgeführt.",
+            "measure" => "Es existiert eine Produktiv-Umgebung und mindestens eine Test-Umgebung",
+            "easeOfImplementation" => array(
+                "knowledge" => 3,
+                "time" => 3,
+                "resources" => 5
+            ),
+            "usefulness" => 4,
+            "level" => 1,
+            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "securityProperties" => array("availability" => "Durch ausreichende Tests ist das System stabil", "integrity" => "Durch ausreichende Tests ist sichergestellt, dass Daten nicht versehentlich bei einem Deployment gelöscht werden."),
+        ),
+        "Interne Systeme sind einfach geschützt" => array(
+            "risk" => "Angreifer erhalten Zugriff auf interne Systeme ohne Authentifizierung und können Daten mitschneiden.",
+            "measure" => "Alle internen Systeme sind mit einfacher Authentifizierung und Verschlüsselung geschützt.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -22,58 +36,36 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 1,
-            "dependsOn" => array("Definierter Deployment-Prozess")
+            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "securityProperties" => array("authentication" => "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.", "confidentiality" => "Durch eine verschlüsstelte Verbindung ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.")
         ),
-        "Systeme sind einfach geschützt" => array(
-            "risk" => "",
-            "measure" => "",
+        "Virtuellen Umgebungen sind limitiert" => array(
+            "risk" => "Wird eine Anwendung in einer virtuellen Umgebung angegriffen oder hat einen Defekt, kann dies zu erhöhter Resourcen-Nutzung führen, wodurch auch andere Anwendung auf dem gleichem Server stark beeinträchtigt werden können.",
+            "measure" => "Alle virtuellen Umgebungen besitzen Limitierungen für Arbeitsspeicher, Festplattendurchsatz, Festplattenplatz und Prozessoren.",
             "easeOfImplementation" => array(
-                "knowledge" => 3,
-                "time" => 3,
+                "knowledge" => 2,
+                "time" => 2,
                 "resources" => 3
             ),
-            "usefulness" => 5,
-            "level" => 1,
-            "dependsOn" => array("Definierter Deployment-Prozess")
+            "usefulness" => 3,
+            "level" => 2,
+            "dependsOn" => array("Anwendungen laufen in virtuellen Umgebungen"),
+            "securityProperties" => array("availability" => "Da alle Anwendungen/Prozesse limitiert sind, können sich diese nicht beziehungsweise nur gering gegenseitig beeinflussen.")
         ),
-        "Alle virtuellen Umgebungen besitzen Limitierungen" => array(
-            "risk" => "",
-            "measure" => "",
+        "Automatisierte Provisionierung" => array(
+            "risk" => "Manuelles Aufsetzen von System-Umgebungen kann zu fehlerhaften Konfigurationen sowie zu diskrepanzen bei redundanten Systemen führen.",
+            "measure" => "Mittels automatisierter Provisionierung werden System-Umgebungen aufgesetzt (Stichwort: Infrastructure as Code).",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
-                "time" => 3,
-                "resources" => 3
+                "time" => 5,
+                "resources" => 5
             ),
-            "usefulness" => 5,
+            "usefulness" => 4,
             "level" => 2,
-            "dependsOn" => array("Anwendungen laufen in virtuellen Umgebungen")
-        ),
-        "Provisionierung" => array(
-            "risk" => "",
-            "measure" => "Infrastructure as Code",
-            "easeOfImplementation" => array(
-                "knowledge" => 3,
-                "time" => 4,
-                "resources" => 4
-            ),
-            "usefulness" => 5,
-            "level" => 2,
-            "dependsOn" => array("Definierter Deployment-Prozess")
-        ),
-        "Entwickler sind in der Lage die Live-Umgebung zu erweitern" => array(
-            "risk" => "",
-            "measure" => "",
-            "easeOfImplementation" => array(
-                "knowledge" => 3,
-                "time" => 3,
-                "resources" => 3
-            ),
-            "usefulness" => 5,
-            "level" => 2,
-            "dependsOn" => array("Definierter Deployment-Prozess")
+            "securityProperties" => array("integrity" => "Da ein System 'versioniert' ist, können ungewollte Änderungen identifiziert werden.", "availability" => "Durch automatische Provisionierung kann ein System jeder Zeit in der selben Konfiguration auf einer Hardware erzeug werden."),
         ),
         "Produktionsnahe Umgebung steht Entwicklern zur Verfügung" => array(
-            "risk" => "",
+            "risk" => "Erstellung produktionsnaher Umgebungen ist schwer. Tritt eine Schwachstelle nur in der Produktionsumgebung auf, ist es schwierig diese auf einer lokalen Entwicklungsumgebung nachzuvollziehen.",
             "measure" => "",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
@@ -82,11 +74,12 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 2,
-            "dependsOn" => array("Definierter Deployment-Prozess")
+            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "securityProperties" => array("availability" => "Durch eine produktionsnahen Umgebung können Entwickler bereits während der Entwicklung Fehler erkennen und diese korrigieren, so reduziert das Risko durch ein Deployment die Verfügbarkeit des System zu gefährden."),
         ),
-        "Firewall für virtuelle Maschinen" => array(
-            "risk" => "",
-            "measure" => "Eine erweiterte Firewall zur Begrenzung der Kommunikation zwischen den virtuellen Umgebungen ist installiert",
+        "Firewalls für virtuelle Umgebungen" => array(
+            "risk" => "Virtuelle Umgebungen können auf Sockets anderer virtueller Umgebungen zugreifen, auch wenn dies nicht notwendig ist.",
+            "measure" => "Eine Firewall zur Begrenzung der Kommunikation zwischen den virtuellen Umgebungen ist installiert.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -94,11 +87,14 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 3,
-            "dependsOn" => array("Definierter Deployment-Prozess")
+            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "securityProperties" => array(
+                "availability" => "Firewalls verhindern die Beeinträchtigung der Verfügbarkeit von Diensten.",
+                "confidentiality" => "Firewalls zwischen virtuellen Umgebungen verhinden nach einemn erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen.")
         ),
-        "Alle Produktions-Artifakte sind Versioniert" => array(
+        "Produktions-Artifakte sind versioniert" => array(
             "risk" => "",
-            "measure" => "",
+            "measure" => "Alle Produktions-Artifakte sind versioniert.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -106,9 +102,10 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 3,
-            "dependsOn" => array("Definierter Deployment-Prozess")
+            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "securityProperties" => array("integrity" => "Da ein System 'versioniert' ist, können ungewollte Änderungen identifiziert werden.", "availability" => "Durch Versionierung können alle Artifakte jeder Zeit in der selben Konfiguration auf einer Hardware erzeug werden."),
         ),
-        "Betriebssystem-Aufrufe von Anwendungen sind limitiert" => array(
+        "Betriebssystem-Aufrufe von virtuellen Umgebungen sind limitiert" => array(
             "risk" => "",
             "measure" => "Betriebssystem-Aufrufe von Anwendungen in virtuellen Umgebungen sind limitiert und auf einer Positivliste eingetragen",
             "easeOfImplementation" => array(
@@ -118,7 +115,12 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 4,
-            "dependsOn" => array("Anwendungen laufen in virtuellen Umgebungen")
+            "dependsOn" => array("Anwendungen laufen in virtuellen Umgebungen"),
+            "securityProperties" => array(
+                "integrity" => "Durch eine Positiv-Liste kann die Modifizierung von Daten nach einem erfolgreichem Angriff eingeschränkt werden.",
+                "authorization" => "Prozesse können nur definierte System-Aufrufe benutzen.",
+                "confidentiality" => "Prozesse können nur definierte System-Aufrufe benutzen und entsprechend nur auf autorisierte Daten zugreifen."
+            ),
         ),
         "Erweiterte Prüfung von Paket-Quellen" => array(
             "risk" => "",
@@ -129,9 +131,15 @@ $dimensions["Infrastruktur"] = array(
                 "resources" => 1
             ),
             "usefulness" => 3,
-            "level" => 4
-        ), "Mikroservice-Architektur" => array(
-            "risk" => "",
+            "level" => 4,
+            "securityProperties" => array(
+                "integrity" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nur auf autorisierte daten zugreifen.",
+                "availability" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nicht die Verfügbarkeit beeinträchtigen.",
+                "confidentiality" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nur auf autorisierte Daten zugreifen.",
+            ),
+        ),
+        "Mikroservice-Architektur" => array(
+            "risk" => "Komponenten sind komplex und schwer prüfbar.",
             "measure" => "Es ist eine Mikroservice-Architektur genutzt",
             "easeOfImplementation" => array(
                 "knowledge" => 4,
@@ -139,17 +147,28 @@ $dimensions["Infrastruktur"] = array(
                 "resources" => 5
             ),
             "usefulness" => 3,
-            "level" => 4
-        ), "Retrospective Security" => array(
-            "risk" => "",
-            "measure" => "Infizierte Systeme werden automatisch erkannt und herunter gefahren",
+            "level" => 4,
+            "securityProperties" => array(
+                "integrity" => "Durch Reduktion der Komplexität und Erhöhung der Prüfbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
+                "availability" => "Durch Reduktion der Komplexität und Erhöhung der Prüfbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
+                "confidentiality" => "Durch Reduktion der Komplexität und Erhöhung der Prüfbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
+            ),
+        ),
+        "Retrospective Security" => array(
+            "risk" => "Manuelles herunter fahren von Systemen nach einer Infizierung dauert zu lange.",
+            "measure" => "Infizierte Systeme werden automatisch erkannt und herunter gefahren.",
             "easeOfImplementation" => array(
                 "knowledge" => 4,
                 "time" => 5,
                 "resources" => 5
             ),
             "usefulness" => 3,
-            "level" => 4
+            "level" => 4,
+            "securityProperties" => array(
+                "integrity" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und Daten manipulieren.",
+                "availability" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und deren Verfügbarkeit beeinträchtigen.",
+                "confidentiality" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und Informationen abgreifen.",
+            ),
         )
     )
 );
