@@ -324,7 +324,7 @@ $dimensions["Test und Verifizierung"] = array(
             "level" => 4,
             "implementation" => "ZEST"
         ),
-        "Einstufung in Falsch-Positiv-Markierungen" => array(
+        "Kritikalität in Falsch-Positiv-Markierungen" => array(
             "risk" => "Nach Markierung einer Schwachstelle mit Schwere 'niedrig' in der Ignoranz-Liste beziehungsweise Falsch Positiv-Liste wird die Kritikalität, z.B. in der Common Vulnerabilities and Exposures List, auf 'hoch' gesetzt.",
             "measure" => "Die Schwere geht mit in die falsch positiv-Markierung mit ein. Insbesondere bei statischen Abhängigkeitstests.",
             "easeOfImplementation" => array(

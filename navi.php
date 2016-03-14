@@ -3,7 +3,8 @@
 $nav = array(
     "index.php" => "Tabelle",
     "scutter.php" => "Nutzen und Implementierung-Diagramm",
-    "graph.php" => "Abhängigkeiten"
+    "graph.php" => "Abhängigkeiten",
+    "report.php" => "Kompletter Bericht"
 );
 
 echo "<ul class=\"nav nav-tabs\">";

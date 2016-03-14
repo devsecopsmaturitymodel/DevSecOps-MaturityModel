@@ -1,0 +1,49 @@
+@media print {
+    h1, h2, h3, h4, h5 {
+        font-family: times new roman, times, serif;
+        text-align: justify;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    div,
+    ul li {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    a[href]:after {
+        content: none !important;
+    }
+
+    @page {
+        size: auto;   /* auto is the initial value */
+        /* this affects the margin in the printer settings */
+        margin: 5mm 5mm 5mm 5mm;
+    }
+
+    body {
+        /* this affects the margin on the content before sending to printer */
+        margin: 0px;
+    }
+}

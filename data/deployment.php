@@ -86,11 +86,11 @@ $deployment = array(
 ksort($deployment);
 $build = array(
     "Definierter Erzeugungs-Prozess" => array(
-        "risk" => "Die Erzeugung kann bei jedem mal unterschiedlich durchgeführt werden. Wird ein Fehler dabei gemacht können Sicherheitsrelevante Konfigurationen falsch gesetzt werden.",
+        "risk" => "Die Erzeugung kann bei jedem mal unterschiedlich durchgeführt werden. Wird ein Fehler dabei gemacht können sicherheitsrelevante Konfigurationen falsch gesetzt werden.",
         "measure" => "Es existiert ein definierter automatisierter Prozess für die Erzeugung, welcher manuell angestoßen werden kann.",
         "easeOfImplementation" => array(
             "knowledge" => 2,
-            "time" => 4,
+            "time" => 3,
             "resources" => 2
         ),
         "usefulness" => 4,
@@ -148,21 +148,23 @@ $build = array(
             "integrity" => "Es ist sicher gestellt, dass das selbe Artefakt der Testumgebung auf die Produktionsumgebung deployed wird.",
             "availability" => "Es ist sicher gestellt, dass nur geprüfte Artefakte auf der Produktionsumgebung verwendet werden, so dass keine ungeprüften ggf. fehlerhaften Artefakte deployed werden.",
         ),
+        "dependsOn" => array("Definierter Erzeugungs-Prozess"),
     ),
-    "Ein Artefakt - Konfiguration" => array(
+    "Konfiguration für ein Artefakt" => array(
         "risk" => "Es werden unterschiedliche Aktionen in der Testumgebung und der Produktionsumgebung ausgeführt. Beispielsweise folgender Quellcode: if (host == 'production') {} else {}",
         "measure" => "Es werden Umgebungsvariablen oder Parameter beim Starten des Artefakts verwendet. Verhalten wird nur über Konfiguration gesteuert und nicht über Hostnamen o.ä..",
         "easeOfImplementation" => array(
             "knowledge" => 2,
-            "time" => 2,
+            "time" => 1,
             "resources" => 1
         ),
-        "usefulness" => 4,
+        "usefulness" => 2,
         "level" => 3,
         "implementation" => "Docker",
         "securityProperties" => array(
             "availability" => "Durch vermeidung unterschiedlicher Aktionen in Test- und Produktionsumgebung ist gleiches Verhalten sicher gestellt und damit die Verfügbarkeit erhöht.",
         ),
+        "dependsOn" => array("Ein Artefakt"),
     ),
     "Versionierte Artefakte" => array(
         "risk" => "Ein Artefakt enthält eine Schwachstelle oder verursacht unerwartete Effekte, nachdem es auf Produktion ausgerollt wurde.",
@@ -179,6 +181,7 @@ $build = array(
             "availability" => "Durch versionierte Artefakte kann bei Fehlern beim Deployment schnell auf eine vorherige Version umgeschaltet werden.",
             "integrity" => "Durch versionierte Artefakte ist die Integrität von Software-Artefakten sicher gestellt.",
         ),
+        "dependsOn" => array("Ein Artefakt"),
     )
 );
 ksort($build);

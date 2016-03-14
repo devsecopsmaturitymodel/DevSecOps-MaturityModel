@@ -216,6 +216,20 @@ $culture = array("Sicherheitsziele sind kommuniziert" => array(
         "usefulness" => 2,
         "level" => 4
     ),
+    "Security War Game" => array(
+        "risk" => "TODO (auch implementation/time/resources/usefullness",
+        "measure" => "https://soundcloud.com/owasp-podcast/security-war-games-with-sam-guckenheimer-at-rugged-devops-rsac-2016",
+        "easeOfImplementation" => array(
+            "knowledge" => array(
+                "operation" => 3,
+                "security" => 3
+            ),
+            "time" => 2,
+            "resources" => 3
+        ),
+        "usefulness" => 2,
+        "level" => 4
+    ),
 );
 
 ksort($culture);
