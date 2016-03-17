@@ -15,6 +15,7 @@ $elementName = $_GET['element'];
 function printDetail($dimension, $subdimension, $elementName, $dimensions, $report = false)
 {
     $element = $dimensions[$dimension][$subdimension][$elementName];
+
     if ($element == null) { //Whitelist approach for security reasons (deny XSS)
         //echo "Sorry, we could not found the element";
         return;
@@ -40,7 +41,6 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
 
     echo "<h$headerWeight>$pageH1</h$headerWeight>";
     echo build_table_tooltip($element, $headerWeight+1);
-
     echo "<hr/>";
     echo "<h" . ($headerWeight + 1). ">Gewährleistete Sicherheitseigenschaften</h" . ($headerWeight + 1). ">";
     foreach ($element["securityProperties"] as $securityPropertyName => $securityPropertyDescription) {
@@ -60,22 +60,22 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
 
         echo "<div><b>" . ucfirst($securityPropertyName) . ":</b> $securityPropertyDescription</div>";
     }
-
     echo "<h" . ($headerWeight + 1). ">Sonstiges</h" . ($headerWeight + 1). ">";
     if (array_key_exists("dependsOn", $element)) {
         $dependsOn = $element['dependsOn'];
         $dependencies = "";
         $first = true;
-        foreach ($dependsOn as $element) {
+        foreach ($dependsOn as $delement) {
             if (!$first) {
                 $dependencies = ", ";
             }
-            $dependencies .= $element;
+            $dependencies .= $delement;
             $first = false;
         }
 
         echo "<div><b>Abhänigkeiten:</b> $dependencies</div>";
     }
+
     if (array_key_exists("implementation", $element)) {
         $implementation = $element['implementation'];
         echo "<div><b>Implementierung:</b> $implementation</div>";

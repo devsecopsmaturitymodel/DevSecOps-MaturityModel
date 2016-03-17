@@ -203,7 +203,7 @@ $culture = array("Sicherheitsziele sind kommuniziert" => array(
         "level" => 4
     ),
     "Kunden-Rückmeldungs-Umgebung" => array(
-        "risk" => "Es sind schwer durch Automatisierung zu findenen Schwachstellen in der Anwendung vorhanden.",
+        "risk" => "Es sind schwer durch Automatisierung zu findene Schwachstellen in der Anwendung vorhanden.",
         "measure" => "Kunden haben Zugriff auf eine Vor-Produktions-Version und können das System prüfen.",
         "easeOfImplementation" => array(
             "knowledge" => array(
@@ -216,19 +216,19 @@ $culture = array("Sicherheitsziele sind kommuniziert" => array(
         "usefulness" => 2,
         "level" => 4
     ),
-    "Security War Game" => array(
-        "risk" => "TODO (auch implementation/time/resources/usefullness",
-        "measure" => "https://soundcloud.com/owasp-podcast/security-war-games-with-sam-guckenheimer-at-rugged-devops-rsac-2016",
+    "Team-Sicherheitsprüfungen" => array(
+        "risk" => "Teams achten bei der Entwicklung nicht genügend auf Sicherheit.",
+        "measure" => "Teams prüfen die Webanwendung eines anderen Teams. Dadurch wird die Sicherheit der Webanwendung, das Sicherheits-Bewustsein und das Wissen im Bereich Sicherheit erhöht. Zusätzlich können neue soziale Kontakte in einer Organisation entstehen.",
         "easeOfImplementation" => array(
             "knowledge" => array(
-                "operation" => 3,
-                "security" => 3
+                "security" => 1,
+                "development" => 1
             ),
-            "time" => 2,
-            "resources" => 3
+            "time" => 4, // Da Teams integriert
+            "resources" => 1
         ),
         "usefulness" => 2,
-        "level" => 4
+        "level" => 3
     ),
 );
 
