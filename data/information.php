@@ -54,6 +54,25 @@ $monitoring = array(
             "Anwendungs- und System-Metriken"
         )
     ),
+    "Metriken für Angriffserkennungssyseme" => array(
+        "risk" => "Angriffserkennungssysteme wie eine Paketfilter-Firewalls oder Web-Application-Firewall erkennen und blockieren Angriffe, jedoch ist unbekannt wie viele Angriffe abgewehrt werden und es wird ggf. nicht erkannt, wenn ein Angriff stattfindet.",
+        "measure" => "Erfassung und Visualisierung von Metriken aus Angriffserkennungssystemen.",
+        "easeOfImplementation" => array(
+            "knowledge" => 3,
+            "time" => 3,
+            "resources" => 2
+        ),
+        "usefulness" => 4,
+        "level" => 2,
+        "securityProperties" => array(
+            "integrity" => "Während eines Angriffs können Informationen gewonnen werden, durch welche ein Angriff auf die Integrität von Daten abgewehrt werden kann.",
+            "availability" => "Es können ungewollte Systemausfälle verhindert werden.",
+            "confidentiality" => "Während eines Angriffs können Informationen gewonnen werden, durch welche ein Angriff abgewehrt werden kann.",
+        ),
+        "dependsOn" => array(
+            "Visualisierte Metriken"
+        )
+    ),
     "Alarmierung" => array(
         "risk" => "Es wird zu spät gemerkt, wenn Systeme ungewöhnliches verhalten aufweisen.",
         "measure" => "Grenzen für Metriken sind definiert und das System alarmiert.",
@@ -162,7 +181,7 @@ $monitoring = array(
     ),
 );
 ksort($monitoring);
-$protocol = array(
+$logging = array(
     "Zentrale Protokollierung" => array(
         "risk" => "Protokolle sind nicht sichtbar und können bei Einbruch in ein System manipuliert werden.",
         "measure" => "Protokolle werden zentral erfasst.",
@@ -227,8 +246,8 @@ $protocol = array(
         ),
     ),
 );
-ksort($protocol);
+ksort($logging);
 $dimensions["Information"] = array(
     "Überwachung" =>$monitoring,
-    "Protokollierung" =>$protocol
+    "Protokollierung" =>$logging
 );

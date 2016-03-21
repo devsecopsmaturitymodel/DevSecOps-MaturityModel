@@ -217,7 +217,7 @@ $culture = array("Sicherheitsziele sind kommuniziert" => array(
         "level" => 4
     ),
     "Team-Sicherheitsprüfungen" => array(
-        "risk" => "Teams achten bei der Entwicklung nicht genügend auf Sicherheit.",
+        "risk" => "Teams achten bei der Entwicklung ungenügend auf Sicherheit.",
         "measure" => "Teams prüfen die Webanwendung eines anderen Teams. Dadurch wird die Sicherheit der Webanwendung, das Sicherheits-Bewustsein und das Wissen im Bereich Sicherheit erhöht. Zusätzlich können neue soziale Kontakte in einer Organisation entstehen.",
         "easeOfImplementation" => array(
             "knowledge" => array(
