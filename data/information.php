@@ -35,9 +35,9 @@ $monitoring = array(
             "Anwendungs- und System-Metriken"
         )
     ),
-    "Erweiterte Anwendungs- und System-Metriken" => array(
-        "risk" => "Es sind nicht ausreichend Metriken erfasst um alle Trends zu erfassen oder bei einem Angriff ausreichend Informationen zu erhalten.",
-        "measure" => "Erweiterte Anwendungs- und System-Metriken sind erfasst. Beispielsweise wird eine Weltkarte mit der Anzahl der Zugriffen pro Land pro Zeiteinheit angezeigt.",
+    "Erweiterte Webanwendungsmetriken" => array(
+        "risk" => "Das Sicherheitsniveau der Webanwendung ist unbekant.",
+        "measure" => "Alle Ergebnisse aus der Dimension Test- und Verifizierung werden instrumentiert.",
         "easeOfImplementation" => array(
             "knowledge" => 3,
             "time" => 3,
@@ -46,15 +46,54 @@ $monitoring = array(
         "usefulness" => 4,
         "level" => 3,
         "securityProperties" => array(
-            "integrity" => "Durch erweiterte Metriken während eines Angriffs können Informationen gewonnen werden, durch welche ein Angriff auf die Integrität von Daten abgewehrt werden kann.",
-            "availability" => "Durch Trendanalysen aufgrund erweiterter Metriken können ungewollte Systemausfälle verhindert werden.",
-            "confidentiality" => "Durch erweiterte Metriken während eines Angriffs können Informationen gewonnen werden, durch welche ein Angriff abgewehrt werden kann.",
+            "integrity" => "Durch Instrumentierung der durchgeführten Metriken wird das Sicherheitsniveau kommuniziert und die Sicherheit der Webanwendung langfristig erhöht.",
+            "availability" => "Durch Instrumentierung der durchgeführten Metriken wird das Sicherheitsniveau kommuniziert und die Sicherheit der Webanwendung langfristig erhöht.",
+            "confidentiality" => "Durch Instrumentierung der durchgeführten Metriken wird das Sicherheitsniveau kommuniziert und die Sicherheit der Webanwendung langfristig erhöht.",
         ),
         "dependsOn" => array(
-            "Anwendungs- und System-Metriken"
+            "Anwendungs- und System-Metriken",
+            "Visualisierte Metriken"
         )
     ),
-    "Metriken für Angriffserkennungssyseme" => array(
+    "Verfügbarkeits- und Stabilitätsmetriken" => array(
+        "risk" => "Es sind nicht ausreichend Metriken erfasst um alle Trends zu erfassen oder bei einem Angriff ausreichend Informationen zu erhalten.",
+        "measure" => "Erweiterte Metriken um die Verfügbarkeit und Stabilität zu erfassen.",
+        "easeOfImplementation" => array(
+            "knowledge" => 3,
+            "time" => 3,
+            "resources" => 2
+        ),
+        "usefulness" => 4,
+        "level" => 3,
+        "securityProperties" => array(
+            "availability" => "Durch Trendanalysen aufgrund erweiterter Metriken können ungewollte Systemausfälle verhindert werden.",
+        ),
+        "dependsOn" => array(
+            "Anwendungs- und System-Metriken",
+            "Visualisierte Metriken"
+        )
+    ),
+    "Abdeckungs- und Kontrollemetriken" => array(
+        "risk" => "Die Effektivität von Kontrollmanahmen wie Konfiguration, Patch und Schwachstellen Management ist unbekannt.",
+        "measure" => "Erweiterte Metriken um Kontrollmaßnahmen zu erfassen.",
+        "easeOfImplementation" => array(
+            "knowledge" => 3,
+            "time" => 3,
+            "resources" => 2
+        ),
+        "usefulness" => 4,
+        "level" => 3,
+        "securityProperties" => array(
+            "integrity" => "Durch Kenntnis der Effektivität von Kontrollmanahmen können Bedrohungen, welche die Integrität gefährden abgewehrt werden.",
+            "availability" => "Durch Kenntnis der Effektivität von Kontrollmanahmen können Bedrohungen, welche die Verfügbarkeit gefährden abgewehrt werden.",
+            "confidentiality" => "Durch Kenntnis der Effektivität von Kontrollmanahmen können Bedrohungen, welche die Vertraulichkeit gefährden abgewehrt werden.",
+        ),
+        "dependsOn" => array(
+            "Anwendungs- und System-Metriken",
+            "Visualisierte Metriken"
+        )
+    ),
+    "Verteidungsmetriken" => array(
         "risk" => "Angriffserkennungssysteme wie eine Paketfilter-Firewalls oder Web-Application-Firewall erkennen und blockieren Angriffe, jedoch ist unbekannt wie viele Angriffe abgewehrt werden und es wird ggf. nicht erkannt, wenn ein Angriff stattfindet.",
         "measure" => "Erfassung und Visualisierung von Metriken aus Angriffserkennungssystemen.",
         "easeOfImplementation" => array(
@@ -70,9 +109,11 @@ $monitoring = array(
             "confidentiality" => "Während eines Angriffs können Informationen gewonnen werden, durch welche ein Angriff abgewehrt werden kann.",
         ),
         "dependsOn" => array(
-            "Visualisierte Metriken"
+            "Anwendungs- und System-Metriken",
+            "Visualisierte Metriken",
         )
     ),
+
     "Alarmierung" => array(
         "risk" => "Es wird zu spät gemerkt, wenn Systeme ungewöhnliches verhalten aufweisen.",
         "measure" => "Grenzen für Metriken sind definiert und das System alarmiert.",

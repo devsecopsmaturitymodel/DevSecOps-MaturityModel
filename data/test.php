@@ -128,43 +128,6 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-    ),
-    "Statische Tiefe" => array(
-        "Patchprüfungen für Anwendungen" => array(
-            "risk" => "Eingesetzte Bibliotheken können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Die können auch erst nach Deployment der Software bekannt werden [#bsiPatches].",
-            "measure" => "Patchprüfungen für Frontend- und Backendkomponenten werden, wie vom BSI unter „Zeitnahes Einspielen von sicherheitsrelevanter Patches und Update“ [#bsiPatches] empfohlen, regelmäßig durchgeführt. Sofern die Prüfung in angemessener Zeit erfolgt, während jedem Deployment.",
-            "easeOfImplementation" => array(
-                "knowledge" => 1,
-                "time" => 1,
-                "resources" => 1
-            ),
-            "usefulness" => 5,
-            "level" => 1,
-            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
-            "securityProperties" => array(
-                "integrity" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte Daten zugreifen.",
-                "availability" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nicht die Verfügbarkeit beeinträchtigen.",
-                "confidentiality" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte Daten zugreifen.",
-            ),
-        ),
-        "Quellcode-Analyse für wichtige Teile der Anwendung" => array(
-            "risk" => "Wichtige Teile der Software enthalten Schwachstellen in der Implementierung.",
-            "measure" => "Es wird eine Quellcode-Analyse für wichtige Teile der Anwendung durchgeführt.",
-            "easeOfImplementation" => array(
-                "knowledge" => 2,
-                "time" => 1,
-                "resources" => 1
-            ),
-            "usefulness" => 3,
-            "level" => 2,
-            "implementation" => "scan.js, FindSecurityBugs",
-            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
-            "securityProperties" => array(
-                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
-                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
-                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
-            ),
-        ),
         "Datenbank-Hashprüfung" => array(
             "risk" => "Schwache Hashalgorithmen werden für Passwörter verwendet.",
             "measure" => "Schwache Hashalgorithmen für Spalten mit Namen wie 'passwort' in Datenbank-Feldern werden erkannt und gemeldet.",
@@ -181,6 +144,79 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung von schwachen Hashalgorithmen bevor diese in Produktion gehen ist die Vertraulichkeit des gesamten Systems erhöht.",
             ),
         ),
+    ),
+    "Statische Tiefe" => array(
+        "Patchprüfungen für Quellcode" => array(
+            "risk" => "Eingesetzte Bibliotheken können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Die können auch erst nach Deployment der Software bekannt werden [#bsiPatches].",
+            "measure" => "Patchprüfungen für Frontend- und Backendkomponenten werden, wie vom BSI unter „Zeitnahes Einspielen von sicherheitsrelevanter Patches und Update“ [#bsiPatches] empfohlen, regelmäßig durchgeführt. Sofern die Prüfung in angemessener Zeit erfolgt, während jedem Deployment.",
+            "easeOfImplementation" => array(
+                "knowledge" => 1,
+                "time" => 1,
+                "resources" => 1
+            ),
+            "usefulness" => 5,
+            "level" => 1,
+            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
+            "securityProperties" => array(
+                "integrity" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte Daten zugreifen.",
+                "availability" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nicht die Verfügbarkeit beeinträchtigen.",
+                "confidentiality" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte Daten zugreifen.",
+            ),
+        ),
+        "Ausschluss von Quellcode-Dupliakten" => array(
+            "risk" => "Quellcode-Dupliakte können die Stabilität beeinträchtigen.",
+            "measure" => "Erkennung und Meldung von Duplikaten in Quellcode.",
+            "easeOfImplementation" => array(
+                "knowledge" => 1,
+                "time" => 1,
+                "resources" => 1
+            ),
+            "usefulness" => 2,
+            "level" => 2,
+            "implementation" => "scan.js, FindSecurityBugs",
+            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
+            "securityProperties" => array(
+                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
+                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
+                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
+            ),
+        ),
+        "Quellcode-Analyse mit einfachen String Matching Algorithmen" => array(
+            "risk" => "Quellcode enthält Schwachstellen.",
+            "measure" => "Es wird eine Analse mit String Matching Algorithmen durchgeführt.",
+            "easeOfImplementation" => array(
+                "knowledge" => 1,
+                "time" => 1,
+                "resources" => 1
+            ),
+            "usefulness" => 2,
+            "level" => 3,
+            "implementation" => "PMD",
+            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
+            "securityProperties" => array(
+                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
+                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
+                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
+            ),
+        ),
+        "Quellcode-Analyse für wichtige Teile der Anwendung" => array(
+            "risk" => "Wichtige Teile der Software enthalten Schwachstellen in der Implementierung.",
+            "measure" => "Es wird eine Quellcode-Analyse für wichtige Teile der Anwendung durchgeführt.",
+            "easeOfImplementation" => array(
+                "knowledge" => 2,
+                "time" => 1,
+                "resources" => 1
+            ),
+            "usefulness" => 3,
+            "level" => 3,
+            "implementation" => "scan.js, FindSecurityBugs",
+            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
+            "securityProperties" => array(
+                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
+                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
+                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
+            ),
+        ),
         "Quellcode-Analyse für alle Teile" => array(
             "risk" => "Teile der Software enthalten Schwachstellen in der Implementierung.",
             "measure" => "Es wird eine Quellcode-Analyse für alle Teile der Anwendung inklusive Bibliotheken durchgeführt.",
@@ -190,7 +226,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "resources" => 2
             ),
             "usefulness" => 4,
-            "level" => 3,
+            "level" => 4,
             "dependsOn" => array("Quellcode-Analyse für wichtige Teile der Anwendung"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
@@ -347,7 +383,7 @@ $dimensions["Test und Verifizierung"] = array(
         ),
         "Behandlung von mittelschweren Alarmen" => array(
             "risk" => "Mittelschwere Alarme werden nicht beachtet.",
-            "measure" => "Akzeptanzkretieren für gefundene Schwachstellen sind definiert. Empfehlung ist mittelschwer Meldungen ebenfalls zu behandeln.",
+            "measure" => "Akzeptanzkretieren für gefundene Schwachstellen sind definiert. Empfehlung ist mittelschwere Meldungen ebenfalls zu behandeln.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 2,
@@ -512,12 +548,12 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 5,
             "level" => 1,
-            "implementation" => "",
             "securityProperties" => array(
                 "integrity" => "Durch Prüfung und Einspielen von System-Updates ist die Wahrscheinlichkeit, dass System-Komponenten die Integrität von Informationen beeinträchtigen verringert.",
                 "availability" => "Durch Prüfung und Einspielen von System-Updates ist die Wahrscheinlichkeit, dass System-Komponenten die Verfügbarkeit beeinträchtigen verringert.",
                 "confidentiality" => "Durch Prüfung und Einspielen von System-Updates ist die Wahrscheinlichkeit, dass System-Komponenten vertrauliche Informationen preisgeben verringert.",
             ),
+            "implementation" => "Nessus"
         ),
         "Prüfung der Konfiguration von virtuellen Umgebungen" => array(
             "risk" => "Virtuellen Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
@@ -534,6 +570,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
+            "implementation" => "Docker Security Scan"
         ),
         "Erweiterte System-Prüfung" => array(
             "risk" => "Systeme wie Firewalls können nach einer Anpassung sicherheitskritisch konfiguriert sein.",
@@ -549,8 +586,10 @@ $dimensions["Test und Verifizierung"] = array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
-            ),            
+            ),
+            "implementation" => "Nessus"
         ),
+
         "Infrastruktur-Last-Tests" => array(
             "risk" => "Es ist unbekannt wie viele Anfragen das System bedienen kann und wie sich das System bei vielen Anfragen verhält.",
             "measure" => "Last-Tests werden periodisch ausgeführt.",
@@ -613,5 +652,3 @@ $dimensions["Test und Verifizierung"] = array(
         ),
     ),
 );
-
-

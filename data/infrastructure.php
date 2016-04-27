@@ -39,7 +39,7 @@ $dimensions["Infrastruktur"] = array(
             "dependsOn" => array("Definierter Deployment-Prozess"),
             "securityProperties" => array("authentication" => "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.", "confidentiality" => "Durch eine verschlüsstelte Verbindung ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.")
         ),
-        "Virtuellen Umgebungen sind limitiert" => array(
+        "Virtuelle Umgebungen sind limitiert" => array(
             "risk" => "Wird eine Anwendung in einer virtuellen Umgebung angegriffen oder hat einen Defekt, kann dies zu erhöhter Resourcen-Nutzung führen, wodurch auch andere Anwendung auf dem gleichem Server stark beeinträchtigt werden können.",
             "measure" => "Alle virtuellen Umgebungen besitzen Limitierungen für Arbeitsspeicher, Festplattendurchsatz, Festplattenplatz und Prozessoren.",
             "easeOfImplementation" => array(
@@ -61,7 +61,7 @@ $dimensions["Infrastruktur"] = array(
                 "resources" => 5
             ),
             "usefulness" => 4,
-            "level" => 2,
+            "level" => 3,
             "securityProperties" => array("integrity" => "Da ein System 'versioniert' ist, können ungewollte Änderungen identifiziert werden.", "availability" => "Durch automatische Provisionierung kann ein System jeder Zeit in der selben Konfiguration auf einer Hardware erzeug werden."),
         ),
         "Produktionsnahe Umgebung steht Entwicklern zur Verfügung" => array(
@@ -77,9 +77,9 @@ $dimensions["Infrastruktur"] = array(
             "dependsOn" => array("Definierter Deployment-Prozess"),
             "securityProperties" => array("availability" => "Durch eine produktionsnahen Umgebung können Entwickler bereits während der Entwicklung Fehler erkennen und diese korrigieren, so reduziert das Risko durch ein Deployment die Verfügbarkeit des System zu gefährden."),
         ),
-        "Firewalls für virtuelle Umgebungen" => array(
+        "Kontrollierte Netzwerke für virtuelle Umgebungen" => array(
             "risk" => "Virtuelle Umgebungen können auf Sockets anderer virtueller Umgebungen zugreifen, auch wenn dies nicht notwendig ist.",
-            "measure" => "Eine Firewall zur Begrenzung der Kommunikation zwischen den virtuellen Umgebungen ist installiert.",
+            "measure" => "Eine Firewall zur Begrenzung der Kommunikation zwischen den virtuellen Umgebungen ist installiert. TODO eigenes Netzwerk",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -90,7 +90,8 @@ $dimensions["Infrastruktur"] = array(
             "dependsOn" => array("Definierter Deployment-Prozess"),
             "securityProperties" => array(
                 "availability" => "Firewalls verhindern die Beeinträchtigung der Verfügbarkeit von Diensten.",
-                "confidentiality" => "Firewalls zwischen virtuellen Umgebungen verhindern nach einem erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen.")
+                "confidentiality" => "Firewalls zwischen virtuellen Umgebungen verhindern nach einem erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen."
+            ),
         ),
         "Produktions-Artifakte sind versioniert" => array(
             "risk" => "",
@@ -122,18 +123,18 @@ $dimensions["Infrastruktur"] = array(
                 "confidentiality" => "Prozesse können nur definierte System-Aufrufe benutzen und entsprechend nur auf autorisierte Daten zugreifen."
             ),
         ),
-        "Erweiterte Prüfung von Paket-Quellen" => array(
+        "Prüfung von Paket-Quellen" => array(
             "risk" => "",
-            "measure" => "Jede Paket-Quelle, beispielsweise für Abbilder für virtuelle Maschinen, ist manuell geprüft.",
+            "measure" => "Jede Paket-Quelle, beispielsweise für Abbilder für virtuelle Maschinen, ist manuell auf Vertraulichkeit geprüft.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
-                "time" => 2,
+                "time" => 3,
                 "resources" => 1
             ),
             "usefulness" => 3,
-            "level" => 4,
+            "level" => 2,
             "securityProperties" => array(
-                "integrity" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nur auf autorisierte daten zugreifen.",
+                "integrity" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nur auf autorisierte Daten zugreifen.",
                 "availability" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nicht die Verfügbarkeit beeinträchtigen.",
                 "confidentiality" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nur auf autorisierte Daten zugreifen.",
             ),
