@@ -232,14 +232,15 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 4,
             "level" => 4,
-            "dependsOn" => array("Quellcode-Analyse für wichtige Teile der Anwendung"),
+            "implementation" => "eslint, FindSecurityBugs, jsprime",
+            "dependsOn" => array("Statische Analyse für wichtige klientenseitige Bereiche", "Statische Analyse für wichtige serverseitige Bereiche"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        "Statische Analyse für alle Bereiche" => array(
+        "Statische Analyse für Bibliotheken" => array(
             "risk" => "Von der Webanwendung genutzt Bibliotheken enthalten unbekannte Schwachstellen in der Implementierung.",
             "measure" => "Es wird eine statische Analyse, in Form von String Matching Algorithmen und/oder Datenflussanalysen, für serverseitige und klientenseitige Bibliotheken durchgeführt.",
             "easeOfImplementation" => array(
@@ -249,7 +250,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 3,
             "level" => 4,
-            "dependsOn" => array("Quellcode-Analyse für wichtige Teile der Anwendung"),
+            "dependsOn" => array("Statische Analyse für wichtige klientenseitige Bereiche", "Statische Analyse für wichtige serverseitige Bereiche"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
@@ -266,7 +267,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 1,
             "level" => 4,
-            "dependsOn" => array("Quellcode-Analyse für wichtige Teile der Anwendung"),
+            "implementation" => "PMD",
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
