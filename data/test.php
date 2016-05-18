@@ -256,6 +256,23 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
+        "Stilanalyse" => array(
+            "risk" => "Durch falsche Einrückung werden Schwachstellen eingeführt.",
+            "measure" => "Durch Überprüfung von Programmkonventionen (Style Guides) ist sichergestellt, dass diese eingehalten werden",
+            "easeOfImplementation" => array(
+                "knowledge" => 1,
+                "time" => 1,
+                "resources" => 1
+            ),
+            "usefulness" => 1,
+            "level" => 4,
+            "dependsOn" => array("Quellcode-Analyse für wichtige Teile der Anwendung"),
+            "securityProperties" => array(
+                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
+                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
+                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
+            ),
+        ),
     ),
     "Prüf-Intensität" => array(
         "Standardeinstellugen für Intensität" => array(
