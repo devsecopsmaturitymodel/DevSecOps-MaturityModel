@@ -23,8 +23,8 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 4,
             "level" => 1,
-            "dependsOn" => array("Definierter Deployment-Prozess"),
-            "securityProperties" => array("availability" => "Durch ausreichende Tests ist das System stabil", "integrity" => "Durch ausreichende Tests ist sichergestellt, dass Daten nicht versehentlich bei einem Deployment gelöscht werden."),
+            "dependsOn" => array("Definierter Verteilungs-Prozess"),
+            "securityProperties" => array("availability" => "Durch ausreichende Tests ist das System stabil", "integrity" => "Durch ausreichende Tests ist sichergestellt, dass Daten nicht versehentlich bei einer Verteilung gelöscht werden."),
         ),
         "Interne Systeme sind einfach geschützt" => array(
             "risk" => "Angreifer erhalten Zugriff auf interne Systeme ohne Authentifizierung und können Daten mitschneiden.",
@@ -36,7 +36,7 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 1,
-            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "dependsOn" => array("Definierter Verteilungs-Prozess"),
             "securityProperties" => array("authentication" => "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.", "confidentiality" => "Durch eine verschlüsstelte Verbindung ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.")
         ),
         "Virtuelle Umgebungen sind limitiert" => array(
@@ -74,8 +74,8 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 2,
-            "dependsOn" => array("Definierter Deployment-Prozess"),
-            "securityProperties" => array("availability" => "Durch eine produktionsnahen Umgebung können Entwickler bereits während der Entwicklung Fehler erkennen und diese korrigieren, so reduziert das Risko durch ein Deployment die Verfügbarkeit des System zu gefährden."),
+            "dependsOn" => array("Definierter Verteilungs-Prozess"),
+            "securityProperties" => array("availability" => "Durch eine produktionsnahen Umgebung können Entwickler bereits während der Entwicklung Fehler erkennen und diese korrigieren, so reduziert das Risko durch eine Verteilung die Verfügbarkeit des System zu gefährden."),
         ),
         "Kontrollierte Netzwerke für virtuelle Umgebungen" => array(
             "risk" => "Virtuelle Umgebungen können auf Sockets anderer virtueller Umgebungen zugreifen, auch wenn dies nicht notwendig ist.",
@@ -87,7 +87,7 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 3,
-            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "dependsOn" => array("Definierter Verteilungs-Prozess"),
             "securityProperties" => array(
                 "availability" => "Firewalls verhindern die Beeinträchtigung der Verfügbarkeit von Diensten.",
                 "confidentiality" => "Firewalls zwischen virtuellen Umgebungen verhindern nach einem erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen."
@@ -103,7 +103,7 @@ $dimensions["Infrastruktur"] = array(
             ),
             "usefulness" => 5,
             "level" => 3,
-            "dependsOn" => array("Definierter Deployment-Prozess"),
+            "dependsOn" => array("Definierter Verteilungs-Prozess"),
             "securityProperties" => array("integrity" => "Da ein System 'versioniert' ist, können ungewollte Änderungen identifiziert werden.", "availability" => "Durch Versionierung können alle Artifakte jeder Zeit in der selben Konfiguration auf einer Hardware erzeug werden."),
         ),
         "Betriebssystem-Aufrufe von virtuellen Umgebungen sind limitiert" => array(
@@ -170,6 +170,24 @@ $dimensions["Infrastruktur"] = array(
                 "availability" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und deren Verfügbarkeit beeinträchtigen.",
                 "confidentiality" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und Informationen abgreifen.",
             ),
-        )
+        ),
+        "Rollen basierte Authentifizierung und Autorisierung" => array(
+            "risk"                 => "Da jeder auf einem System jede Aktion ausführen darf, ist nicht prüfbar wer eine Aktion, wie die Änderung einer Konfiguration auf dem Erzeugungs- und Verteilungsserver, ausgeführt hat.",
+            "measure"              => "Nutzung von Rollen basierter Authentifizierung und Authorisierung, ggf. verbunden mit einem zentralem Authentifizierungs-Server für jeden Dienst.",
+            "easeOfImplementation" => array(
+                "knowledge" => 2,
+                "time"      => 3,
+                "resources" => 1
+            ),
+            "usefulness"           => 3,
+            "level"                => 3,
+            "implementation"       => "Verzeichnisdienst, Plugins",
+            "securityProperties"   => array(
+                "confidentiality" => "Vertrauliche Informationen über interne Systeme sind geschützt.",
+                "integrity"       => "Nur autorisierte Personen/Systeme können z.B. eine Verteilung anstoßen. Dadurch wird eine versehentliche Verteilung eines Software-Artefakts mit Fehlern vermieden.",
+            ),
+            "dependsOn"            => array("Definierter Verteilungs-Prozess", "Definierter Erzeugungs-Prozess")
+        ),
+
     )
 );

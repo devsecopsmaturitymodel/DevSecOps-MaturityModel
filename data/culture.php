@@ -78,17 +78,6 @@ $culture = array("Sicherheitsziele sind kommuniziert" => array(
         "usefulness" => 3,
         "level" => 2
     ),
-    "Secure Timeline game" => array(
-        "risk" => "",
-        "measure" => "Secure Timeline game",
-        "easeOfImplementation" => array(
-            "knowledge" => 3,
-            "time" => 2,
-            "resources" => 1
-        ),
-        "usefulness" => 3,
-        "level" => 2
-    ),
     "Validierung von Risiken bei jedem Check-In" => array(
         "risk" => "",
         "measure" => "",
@@ -100,9 +89,9 @@ $culture = array("Sicherheitsziele sind kommuniziert" => array(
         "usefulness" => 3,
         "level" => 3
     ),
-    "Security Code Reviews" => array(
-        "risk" => "",
-        "measure" => "Periodische Security Code Reviews, bei welchem ein Sicherheitsexperte zusammen mit Entwicklern und System-Adminstratoren Quellcode prüft, erhöhen die Sicherheit und verbreiten Wissen.",
+    "Sicherheitsprüfungen des Quellcodes" => array(
+        "risk" => "Sicherheitsprüfungen des Quellcodes durch Externe schaffen kein Verständnis für Sicherheit bei Entwicklern und Systemadministratoren.",
+        "measure" => "Periodische Sicherheitsprüfungen des Quellcodes, bei welchem ein Sicherheitsexperte zusammen mit Entwicklern und System-Adminstratoren Quellcode prüft, erhöhen die Sicherheit und verbreiten Wissen.",
         "easeOfImplementation" => array(
             "knowledge" => 3,
             "time" => 2,
@@ -173,20 +162,6 @@ $culture = array("Sicherheitsziele sind kommuniziert" => array(
         "usefulness" => 3,
         "level" => 4,
         "comment" => "Da Teams unterschiedliche Technologien nutzen können, kann es sinnvoll sein eine generelle unternehmensweite Sicherheits-Richtlinie festzulegen und eine weitere pro Team für die genutzten Technologien."
-    ),
-    "Secure „Pair Programming/Analyses“" => array(
-        "risk" => "",
-        "measure" => "",
-        "easeOfImplementation" => array(
-            "knowledge" => array(
-                "security" => 5,
-                "development" => 5
-            ),
-            "time" => 4,
-            "resources" => 1
-        ),
-        "usefulness" => 3,
-        "level" => 4
     ),
     "Sicherheitsexperte pro Team" => array(
         "risk" => "Security-Champions habe kein Experten-Wissen und können Sicherheit, z.B. via Stories, nicht auf hohem Niveau integrieren.",
