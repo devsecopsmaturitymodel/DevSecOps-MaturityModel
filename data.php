@@ -56,9 +56,9 @@ function getKnowledge($dimensions, $elementImplementation)
 
 function build_table_tooltip($array, $headerWeight = 2)
 {
-    $mapKnowLedge = array("Sehr wenig (eine Disziplin)", "wenig (eine Disziplin)", "mittel (zwei Disziplinen)", "viel (zwei Disziplinen)", "sehr viel (drei oder mehr Disziplinen)");
-    $mapTime = array("Sehr wenig (1-2 Tage)", "wenig (eine Woche)", "mittel (zwei Wochen)", "viel (drei Wochen)", "sehr viel (drei oder mehr Wochen)");
-    $mapResources = array("Sehr wenig", "wenig", "mittel", "viel", "sehr viel");
+    $mapKnowLedge = array("Sehr wenig (eine Disziplin)", "Wenig (eine Disziplin)", "Mittel (zwei Disziplinen)", "Viel (zwei Disziplinen)", "Sehr viel (drei oder mehr Disziplinen)");
+    $mapTime = array("Sehr wenig (1-2 Tage)", "Wenig (eine Woche)", "Mittel (zwei Wochen)", "Viel (drei Wochen)", "Sehr viel (drei oder mehr Wochen)");
+    $mapResources = array("Sehr wenig", "Wenig", "Mittel", "Viel", "Sehr viel");
     $mapUsefulness = array("Sehr wenig", "wenig", "mittel", "hoch", "sehr hoch");
 
     $html = "";
@@ -70,7 +70,7 @@ function build_table_tooltip($array, $headerWeight = 2)
     $html .= "<div><b>Nutzen:</b> " . ucfirst($mapUsefulness[$array['usefulness']]) . "</div>";
     $html .= "<div><b>Benötigtes Wissen:</b> " . ucfirst($mapKnowLedge[$array['easeOfImplementation']['knowledge']]) . "</div>";
     $html .= "<div><b>Benötigte Zeit:</b> " . ucfirst($mapTime[$array['easeOfImplementation']['time']]) . "</div>";
-    $html .= "<div><b>Benötigte Resourcen (Systeme):</b> " . ucfirst($mapResources[$array['easeOfImplementation']['knowledge']]) . "</div>";
+    $html .= "<div><b>Benötigte Resourcen (Systeme):</b> " . ucfirst($mapResources[$array['easeOfImplementation']['resources']]) . "</div>";
     return $html;
 }
 
