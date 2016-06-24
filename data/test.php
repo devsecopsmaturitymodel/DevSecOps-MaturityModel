@@ -10,7 +10,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "resources" => 1
             ),
             "usefulness" => 4,
-            "level" => 1,
+            "level" => 2,
             "dependsOn" => array("Erweiterter Scan"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
@@ -133,6 +133,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
+        /*
         "Datenbank-Hashprüfung" => array(
             "risk" => "Schwache Hashalgorithmen werden für Passwörter verwendet.",
             "measure" => "Schwache Hashalgorithmen für Spalten mit Namen wie 'passwort' in Datenbank-Feldern werden erkannt und gemeldet.",
@@ -149,23 +150,25 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung von schwachen Hashalgorithmen bevor diese in Produktion gehen ist die Vertraulichkeit des gesamten Systems erhöht.",
             ),
         ),
+        */
     ),
     "Statische Tiefe" => array(
         "Auffinden von Komp. mit bekannten Schwachstellen" => array(
-            "risk" => "Eingesetzte Bibliotheken können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Die können auch erst nach Verteilung der Software bekannt werden [#bsiPatches].",
-            "measure" => "Patchprüfungen für Frontend- und Backendkomponenten werden, wie vom BSI unter „Zeitnahes Einspielen von sicherheitsrelevanter Patches und Update“ [#bsiPatches] empfohlen, regelmäßig durchgeführt. Sofern die Prüfung in angemessener Zeit erfolgt, während jeder Verteilung.",
+            "risk" => "Eingesetzte Komponten können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Diese können u.a. nach Verteilung der Webanwendung bekannt werden.",
+            "measure" => "Tests auf Komponenten mit bekannten Schwachstellen werden für klienten- und serverseitige Komponten regelmäßig durchgeführt. Beispielsweise jede Nacht.",
             "easeOfImplementation" => array(
                 "knowledge" => 1,
-                "time" => 1,
+                "time" => 2,
                 "resources" => 1
             ),
             "usefulness" => 5,
             "level" => 1,
             "dependsOn" => array("Definierter Erzeugungs-Prozess"),
+            "implementation" => "OWASP Dependency Check, retirejs",
             "securityProperties" => array(
-                "integrity" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte Daten zugreifen.",
-                "availability" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nicht die Verfügbarkeit beeinträchtigen.",
-                "confidentiality" => "Durch Prüfung von Patches ist sichergestellt, dass Bibliotheken nur auf autorisierte Daten zugreifen.",
+                "integrity" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten durch nicht autorisiert Personen oder Systeme verändert werden können.",
+                "availability" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass Schwachstellen in Komponten ausgenutzt werden um die Verfügbarkeit des Systems zu beeinträchtigen.",
+                "confidentiality" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten von nicht autorisierten Personen oder Systemen eingesehen werden können.",
             ),
         ),
         "Ausschluss von Quellcode-Dupliakten" => array(
@@ -275,7 +278,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
         ),
     ),
-    "Prüf-Intensität" => array(
+    "Test-Intensität" => array(
         "Standardeinstellugen für Intensität" => array(
             "risk" => "Durch Zeitdruck und Wissensdefizite werden falsche Annahmen für die Intensität getroffen",
             "measure" => "Es ist die Standardeinstellugen für die Intensität von Werkzeugen genutzt.",
@@ -288,7 +291,7 @@ $dimensions["Test und Verifizierung"] = array(
             "level" => 1,
         ),
         "Deaktivierung unnötiger Prüfungen" => array(
-            "risk" => "Prüfungen nehmen stark Resourcen in Anspruch.",
+            "risk" => "Prüfungen nehmen stark Ressourcen in Anspruch.",
             "measure" => "Unnötige Prüfungen sind deaktiviert. Benutzt eine Webanwendung die Mongo-Datenbank, kann ggf. auf eine SQL-Injection-Prüfung verzichtet werden.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
@@ -546,7 +549,7 @@ $dimensions["Test und Verifizierung"] = array(
             "implementation" => "Nessus"
         ),
         "Prüfung der Konfiguration von virtuellen Umgebungen" => array(
-            "risk" => "Virtuellen Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
+            "risk" => "Virtuelle Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
             "measure" => "Mit Hilfe von Werkzeugen wird die Konfiguration von virtuellen Umgebungen geprüft.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,

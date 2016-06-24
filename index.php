@@ -17,6 +17,23 @@ function getTableHeader()
     }
     return $headerContent . "</tr></thead>";
 }
+function getInfos($dimensions)
+{
+    $text = "Anzahl der Elemente: " . getElementCount($dimensions);
+    return $text;
+}
+function getElementCount($dimensions)
+{
+    $count = 0;
+    foreach ($dimensions as $dimension => $subdimensions) {
+        foreach ($subdimensions as $subdimension => $element) {
+            for ($i = 0; $i <= 4; $i++) {
+                $count++;
+            }
+        }
+    }
+    return $count;
+}
 
 function getTable($dimensions)
 {
@@ -38,7 +55,7 @@ function getTable($dimensions)
                 foreach ($element as $elementName => $content) {
                     $content = getContentForLevelFromSubdimensions($i, $content, $elementName);
                     if ($content != "") {
-                        $elementLink = "detail.php?dimension=".urlencode($dimension)."&subdimension=".urlencode($subdimension)."&element=".urlencode($elementName);
+                        $elementLink = "detail.php?dimension=" . urlencode($dimension) . "&subdimension=" . urlencode($subdimension) . "&element=" . urlencode($elementName);
                         $tableContent .= "<a href='$elementLink'><li>" . $content . "</li></a>";
                     }
                 }
@@ -55,10 +72,6 @@ function getTable($dimensions)
     return $table;
 }
 
-
-
-
-
 function getContentForLevelFromSubdimensions($level, $subdimension, $elementName)
 {
     $levelContent = "";
@@ -70,6 +83,7 @@ function getContentForLevelFromSubdimensions($level, $subdimension, $elementName
 }
 
 echo getTable($dimensions);
+echo getInfos($dimensions);
 ?>
 <script>
     $(function () {

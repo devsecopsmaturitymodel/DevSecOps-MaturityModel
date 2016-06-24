@@ -73,7 +73,7 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
             $first = false;
         }
 
-        echo "<div><b>Abhänigkeiten:</b> $dependencies</div>";
+        echo "<div><b>Abhängigkeiten:</b> $dependencies</div>";
     }
 
     if (array_key_exists("implementation", $element)) {

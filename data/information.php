@@ -132,8 +132,8 @@ $monitoring = array(
         )
     ),
     "Deaktivierung ungenutzter Metriken" => array(
-        "risk" => "Durch sammeln ungenutzter Metriken werden Resourcen verschwendet, welche für sicherheitsrelevante Dienste genutzt werden könnten.",
-        "measure" => "Durch Deaktivierung ungenutzter Metriken stehen mehr Resourcen zur Verfügung.",
+        "risk" => "Durch sammeln ungenutzter Metriken werden Ressourcen verschwendet, welche für sicherheitsrelevante Dienste genutzt werden könnten.",
+        "measure" => "Durch Deaktivierung ungenutzter Metriken stehen mehr Ressourcen zur Verfügung.",
         "easeOfImplementation" => array(
             "knowledge" => 2,
             "time" => 5,
@@ -269,26 +269,10 @@ $logging = array(
         "securityProperties" => array(
             "availability" => "Durch erhöhte Sichtbarkeit von Ausnahmen die Verfügbarkeit erhöht.",
         ),
-    ),
-    "Rollen basierte Authentifizierung und Autorisierung" => array(
-        "risk" => "Jeder kann für jedes System sicherheitsrelevante Informationen einsehen.",
-        "measure" => "Nutzung von Rollen basierter Authentifizierung und Autorisierung, ggf. verbunden mit einem zentralem Authentifizierungs-Server.",
-        "easeOfImplementation" => array(
-            "knowledge" => 2,
-            "time" => 1,
-            "resources" => 1
-        ),
-        "usefulness" => 2,
-        "level" => 4,
-        "implementation" => "Verzeichnisdienst",
-        "dependsOn" => array("Grafische Auswertung"),
-        "securityProperties" => array(
-            "confidentiality" => "Vertrauliche Informationen über interne Systeme sind geschützt.",
-        ),
-    ),
+    )
 );
 ksort($logging);
-$dimensions["Information"] = array(
-    "Überwachung" =>$monitoring,
+$dimensions["Informationsgewinnung"] = array(
+    "Überwachung und Metriken" =>$monitoring,
     "Protokollierung" =>$logging
 );

@@ -3,6 +3,7 @@ $dimensions = array();
 
 $files = scandir("data");
 foreach ($files as $file) {
+    if(strlen($file) > 2)
     include_once "data/$file";
 }
 ksort($dimensions);
@@ -17,6 +18,9 @@ foreach ($dimensions as $dimensionName => $subDimension) {
 
 function getEaseOfImplementation($dimensions, $elementImplementation)
 {
+    if($elementImplementation == null) {
+        return ;
+    }
     $knowledge = $elementImplementation['easeOfImplementation']["knowledge"];
     $knowledge = getKnowledge($dimensions, $elementImplementation);
 
@@ -67,10 +71,10 @@ function build_table_tooltip($array, $headerWeight = 2)
     $html .= "<div><b>Maßnahme:</b> " . $array['measure'] . "</div>";
     $html .= "<hr />";
     $html .= "<h$headerWeight>Nutzen und Schwere der Implementierung</h$headerWeight>";
-    $html .= "<div><b>Nutzen:</b> " . ucfirst($mapUsefulness[$array['usefulness']]) . "</div>";
-    $html .= "<div><b>Benötigtes Wissen:</b> " . ucfirst($mapKnowLedge[$array['easeOfImplementation']['knowledge']]) . "</div>";
-    $html .= "<div><b>Benötigte Zeit:</b> " . ucfirst($mapTime[$array['easeOfImplementation']['time']]) . "</div>";
-    $html .= "<div><b>Benötigte Resourcen (Systeme):</b> " . ucfirst($mapResources[$array['easeOfImplementation']['resources']]) . "</div>";
+    $html .= "<div><b>Nutzen:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";
+    $html .= "<div><b>Benötigtes Wissen:</b> " . ucfirst($mapKnowLedge[$array['easeOfImplementation']['knowledge']-1]) . "</div>";
+    $html .= "<div><b>Benötigte Zeit:</b> " . ucfirst($mapTime[$array['easeOfImplementation']['time']-1]) . "</div>";
+    $html .= "<div><b>Benötigte Ressourcen (Systeme):</b> " . ucfirst($mapResources[$array['easeOfImplementation']['resources']-1]) . "</div>";
     return $html;
 }
 

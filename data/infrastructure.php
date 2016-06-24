@@ -10,7 +10,7 @@ $dimensions["Infrastruktur"] = array(
                 "resources" => 5
             ),
             "usefulness" => 3,
-            "level" => 1,
+            "level" => 2,
             "securityProperties" => array("availability"),
         ),
         "Produktiv-Umgebung und Test-Umgebung" => array(
@@ -40,7 +40,7 @@ $dimensions["Infrastruktur"] = array(
             "securityProperties" => array("authentication" => "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.", "confidentiality" => "Durch eine verschlüsstelte Verbindung ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.")
         ),
         "Virtuelle Umgebungen sind limitiert" => array(
-            "risk" => "Wird eine Anwendung in einer virtuellen Umgebung angegriffen oder hat einen Defekt, kann dies zu erhöhter Resourcen-Nutzung führen, wodurch auch andere Anwendung auf dem gleichem Server stark beeinträchtigt werden können.",
+            "risk" => "Wird eine Anwendung in einer virtuellen Umgebung angegriffen oder hat einen Defekt, kann dies zu erhöhter Ressourcen-Nutzung führen, wodurch auch andere Anwendung auf dem gleichem Server stark beeinträchtigt werden können.",
             "measure" => "Alle virtuellen Umgebungen besitzen Limitierungen für Arbeitsspeicher, Festplattendurchsatz, Festplattenplatz und Prozessoren.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
@@ -48,7 +48,7 @@ $dimensions["Infrastruktur"] = array(
                 "resources" => 3
             ),
             "usefulness" => 3,
-            "level" => 2,
+            "level" => 3,
             "dependsOn" => array("Anwendungen laufen in virtuellen Umgebungen"),
             "securityProperties" => array("availability" => "Da alle Anwendungen/Prozesse limitiert sind, können sich diese nicht beziehungsweise nur gering gegenseitig beeinflussen.")
         ),
@@ -79,7 +79,7 @@ $dimensions["Infrastruktur"] = array(
         ),
         "Kontrollierte Netzwerke für virtuelle Umgebungen" => array(
             "risk" => "Virtuelle Umgebungen können auf Sockets anderer virtueller Umgebungen zugreifen, auch wenn dies nicht notwendig ist.",
-            "measure" => "Eine Firewall zur Begrenzung der Kommunikation zwischen den virtuellen Umgebungen ist installiert. TODO eigenes Netzwerk",
+            "measure" => "Die Kommunikation zwischen virtuellen Umgebungen ist reguliert",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -89,9 +89,10 @@ $dimensions["Infrastruktur"] = array(
             "level" => 3,
             "dependsOn" => array("Definierter Verteilungs-Prozess"),
             "securityProperties" => array(
-                "availability" => "Firewalls verhindern die Beeinträchtigung der Verfügbarkeit von Diensten.",
-                "confidentiality" => "Firewalls zwischen virtuellen Umgebungen verhindern nach einem erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen."
+                "availability" => "Regulierung verhindert die Beeinträchtigung der Verfügbarkeit von Diensten.",
+                "confidentiality" => "Regulierung zwischen virtuellen Umgebungen verhindert nach einem erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen."
             ),
+            "implementation" => "Eigene Netzwerke, Firewalls"
         ),
         "Produktions-Artifakte sind versioniert" => array(
             "risk" => "",
@@ -173,7 +174,7 @@ $dimensions["Infrastruktur"] = array(
         ),
         "Rollen basierte Authentifizierung und Autorisierung" => array(
             "risk"                 => "Da jeder auf einem System jede Aktion ausführen darf, ist nicht prüfbar wer eine Aktion, wie die Änderung einer Konfiguration auf dem Erzeugungs- und Verteilungsserver, ausgeführt hat.",
-            "measure"              => "Nutzung von Rollen basierter Authentifizierung und Authorisierung, ggf. verbunden mit einem zentralem Authentifizierungs-Server für jeden Dienst.",
+            "measure"              => "Nutzung von Rollen-basierter Authentifizierung und Autorisierung, ggf. verbunden mit einem zentralem Authentifizierungs-Server.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
                 "time"      => 3,
