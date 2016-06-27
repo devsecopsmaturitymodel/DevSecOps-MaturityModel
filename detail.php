@@ -65,11 +65,11 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
         $dependsOn = $element['dependsOn'];
         $dependencies = "";
         $first = true;
-        foreach ($dependsOn as $delement) {
+        foreach ($dependsOn as $dimensionElement) {
             if (!$first) {
-                $dependencies = ", ";
+                $dependencies .= ", ";
             }
-            $dependencies .= $delement;
+            $dependencies .= $dimensionElement;
             $first = false;
         }
 
