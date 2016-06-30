@@ -62,10 +62,10 @@ $culture = array(
         "easeOfImplementation" => array(
             "knowledge" => 4,
             "time" => 3,
-            "resources" => 1
+            "resources" => 2
         ),
         "usefulness" => 3,
-        "level" => 3
+        "level" => 4
     ),
     /*
     "" => array(

@@ -11,7 +11,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 4,
             "level" => 2,
-            "dependsOn" => array("Erweiterter Scan"),
+            "dependsOn" => array("Berücksichtigung von Rollen"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
@@ -35,7 +35,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        "Erweiterter Scan" => array(
+        "Berücksichtigung von Rollen" => array(
             "risk" => "Teile der Anwendung, insbesondere welche mit Authentifizierung, sind beim Spidern mit einem Web-Security-Scanner nicht abgedeckt.",
             "measure" => "Integration von Authentifizierung mit verschiedenen Rollen und Session Management",
             "easeOfImplementation" => array(
@@ -79,7 +79,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 5,
             "level" => 3,
-            "dependsOn" => array("Erweiterter Scan")
+            "dependsOn" => array("Berücksichtigung von Rollen")
         ),
         "Nutzung zusätzlicher Web-Security-Scanner" => array(
             "risk" => "Ein Web-Security-Scanner ist ggf. nicht optimiert für alle genutzten Technologien. Entsprechend können Schwachstellen unerkannt bleiben.",
@@ -91,7 +91,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 1,
             "level" => 4,
-            "dependsOn" => array("Erweiterter Scan"),
+            "dependsOn" => array("Berücksichtigung von Rollen"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
@@ -113,7 +113,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
-            "dependsOn" => array("Erweiterter Scan"),
+            "dependsOn" => array("Berücksichtigung von Rollen"),
         ),
         "Abdeckungsanalyse" => array(
             "risk" => "Teile der Anwendung sind beim Spidern mit einem Web-Security-Scanner nicht abgedeckt.",
@@ -126,34 +126,16 @@ $dimensions["Test und Verifizierung"] = array(
             "usefulness" => 4,
             "level" => 5,
             "implementation" => "OWASP Code Pulse",
-            "dependsOn" => array("Erweiterter Scan"),
+            "dependsOn" => array("Berücksichtigung von Rollen"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        /*
-        "Datenbank-Hashprüfung" => array(
-            "risk" => "Schwache Hashalgorithmen werden für Passwörter verwendet.",
-            "measure" => "Schwache Hashalgorithmen für Spalten mit Namen wie 'passwort' in Datenbank-Feldern werden erkannt und gemeldet.",
-            "easeOfImplementation" => array(
-                "knowledge" => 1,
-                "time" => 1,
-                "resources" => 1
-            ),
-            "usefulness" => 1,
-            "level" => 4,
-            "implementation" => "",
-            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
-            "securityProperties" => array(
-                "confidentiality" => "Durch Erkennung von schwachen Hashalgorithmen bevor diese in Produktion gehen ist die Vertraulichkeit des gesamten Systems erhöht.",
-            ),
-        ),
-        */
     ),
     "Statische Tiefe" => array(
-        "Auffinden von Komp. mit bekannten Schwachstellen" => array(
+        "Test auf Komp. mit bekannten Schwachstellen" => array(
             "risk" => "Eingesetzte Komponten können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Diese können u.a. nach Verteilung der Webanwendung bekannt werden.",
             "measure" => "Tests auf Komponenten mit bekannten Schwachstellen werden für klienten- und serverseitige Komponten regelmäßig durchgeführt. Beispielsweise jede Nacht.",
             "easeOfImplementation" => array(
@@ -191,7 +173,7 @@ $dimensions["Test und Verifizierung"] = array(
         ),
         "Statische Analyse für wichtige serverseitige Bereiche" => array(
             "risk" => "Wichtige Teile der serverseitigen Webanwendung enthalten Schwachstellen in der Implementierung.",
-            "measure" => "Es wird eine statische Analyse, in Form von String Matching Algorithmen und/oder Datenflussanalysen, für wichtige Teile der serverseitigen Webanwendung durchgeführt.",
+            "measure" => "Es wird eine statische Analyse, in Form von String Matching Algorithmen und/oder Datenflussanalysen, für wichtige Teile der serverseitigen Webanwendung durchgeführt. Die statische(n) Analyse(n) wird automatisiert durchgeführt und nach Möglichkeit in die Entwicklungsumgebung integriert.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 3,
@@ -279,9 +261,9 @@ $dimensions["Test und Verifizierung"] = array(
         ),
     ),
     "Test-Intensität" => array(
-        "Standardeinstellugen für Intensität" => array(
-            "risk" => "Durch Zeitdruck und Wissensdefizite werden falsche Annahmen für die Intensität getroffen",
-            "measure" => "Es ist die Standardeinstellugen für die Intensität von Werkzeugen genutzt.",
+        "Standardeinstellungen für Intensität" => array(
+            "risk" => "Durch Zeitdruck und Unwissenheit werden falsche Annahmen für die Intensität getroffen.",
+            "measure" => "Es ist die Standardeinstellungen für die Intensität von Werkzeugen genutzt.",
             "easeOfImplementation" => array(
                 "knowledge" => 1,
                 "time" => 1,
@@ -337,7 +319,7 @@ $dimensions["Test und Verifizierung"] = array(
     "Konsolidierung" => array(
         "Behandlung kritischer Alarme" => array(
             "risk" => "Mangelhafte Auswertung der erfolgten Sicherheitsprüfungen.",
-            "measure" => "Akzeptanzkretieren für gefundene Schwachstellen sind definiert. Empfehlung ist hier nur als kritisch eingestufte Schwachstellen/Alarme zu behandeln. Entsprechend wird ein Build markiert oder gestoppt, wenn Schwachstellen mit einer Sicherheitseinstufung über der definierten Akzeptanz gefunden werden.",
+            "measure" => "Akzeptanzkretieren für gefundene Schwachstellen sind definiert. Empfehlung ist hier nur als kritisch eingestufte Schwachstellen/Alarme zu behandeln. Sofern die genutzten Werkzeuge es anbieten, kann auch das Vertrauen (Englisch Confidence) mit zur Einstufung herangezogen werden. Entsprechend wird die Erzeugung markiert oder gestoppt, wenn Schwachstellen mit einer Sicherheitseinstufung über der definierten Akzeptanz gefunden werden.",
             "easeOfImplementation" => array(
                 "knowledge" => 1,
                 "time" => 1,
@@ -364,7 +346,7 @@ $dimensions["Test und Verifizierung"] = array(
             "implementation" => "",
         ),
         "Aggregation von Alarmen" => array(
-            "risk" => "",
+            "risk" => "Die Wartung von Alarmen und falsch Positiven in unterschiedlichen Werkzeugen und Definitionen erhöht den Aufwand stark.",
             "measure" => "Aggregation von Alarmen, dabei werden auch doppelte Alarme nach Möglichkeit zusammengeführt.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
@@ -419,22 +401,6 @@ $dimensions["Test und Verifizierung"] = array(
             "level" => 4,
             "implementation" => "ZEST"
         ),
-        "Kritikalität in Falsch-Positiv-Markierungen" => array(
-            "risk" => "Nach Markierung einer Schwachstelle mit Schwere 'niedrig' in der Ignoranz-Liste beziehungsweise Falsch Positiv-Liste wird die Kritikalität, z.B. in der Common Vulnerabilities and Exposures List, auf 'hoch' gesetzt.",
-            "measure" => "Die Schwere geht mit in die falsch positiv-Markierung mit ein. Insbesondere bei statischen Abhängigkeitstests.",
-            "easeOfImplementation" => array(
-                "knowledge" => 3,
-                "time" => 2,
-                "resources" => 2
-            ),
-            "usefulness" => 2,
-            "level" => 4,
-            "securityProperties" => array(
-                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
-                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
-                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
-            ),
-        ),
         "Alarme adressieren Teams" => array(
             "risk" => "Jedes Team muss jeden Alarm prüfen, so kann Frust entstehen.",
             "measure" => "Alarme werden Teams zugewiesen.",
@@ -447,12 +413,24 @@ $dimensions["Test und Verifizierung"] = array(
             "level" => 3,
             "implementation" => "Bei SAST: Frontend/Backend Teams können einfach erfasst werden. Bei Mikroservice-Architektur können einzelne Mikroservices i.d.R. Teams zugewiesen werden. Bei DAST: Schwahstellen sind klassifiziert und können Frontend/Backend/Server-Administration zugewiesen werden."
         ),
-        "Alarme sind visualisiert" => array(
+        "Alarme sind einfach visualisiert" => array(
             "risk" => "Es ist unklar, wie viele Alarme im Monat entstehen.",
-            "measure" => "Alarme werden als Metrik erfasst visualisiert.",
+            "measure" => "Alarme werden einach visualisiert um einfache Trendanalyse durchführen zu können.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 2,
+                "resources" => 1
+            ),
+            "usefulness" => 3,
+            "level" => 2,
+            "dependsOn" => array("Visualisierte Metriken")
+        ),
+        "Alarme sind erweitert visualisiert" => array(
+            "risk" => "Aufgrund der einfachen Visualisierung von Alarmen sind zusammenhänge nicht auf den ersten Blick erkennbar.",
+            "measure" => "Alarme werden als Metrik erfasst visualisiert.",
+            "easeOfImplementation" => array(
+                "knowledge" => 2,
+                "time" => 4,
                 "resources" => 1
             ),
             "usefulness" => 2,
@@ -460,31 +438,32 @@ $dimensions["Test und Verifizierung"] = array(
             "dependsOn" => array("Visualisierte Metriken")
         ),
     ),
-    "Integrations- und Aktzeptanztests" => array(
-        "Komponenten-Tests mit Sicherheitsprüfungen" => array(
-            "risk" => "Schwachstellen sind in der Anwendung vorhanden.",
-            "measure" => "Integration von sicherheitsrelevanten Komponenten-Tests für geschäftskritische Bereiche. Dadurch können Schwachstellen wie fehlende Authentifizierung erkannt werden.",
+    "Anwendungstest" => array(
+        "Modultests mit Sicherheitsbezug" => array(
+            "risk" => "Schwachstellen sind unbeachbsichtigt Implementiert.",
+            "measure" => "Integration von sicherheitsrelevanten Modultests für geschäftskritische Bereiche. Dadurch können Schwachstellen wie fehlende Authentifizierung erkannt werden.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
-                "time" => 2,
+                "time" => 4,
                 "resources" => 2
             ),
-            "usefulness" => 2,
+            "usefulness" => 3,
             "level" => 1,
-            "comment" => "Die Integration von Unit-Tests findet schon während der Entwicklung statt, es wird auf Schwachstellen in Sub-Routinen, Funktionen, Module, Bibliotheken usw. geprüft. Hier werden unterschiedliche Schwachstellen gefunden. Dabei muss beachtet werden, dass Negativ-Testen nicht trivial ist. Beispielsweise kann vergessen werden auf Schwachstellen, welche durch Metazeichen entstehen, zu prüfen. Es ist unwahrscheinlich dass der Tester hier zufällige Eingaben zum Prüfen erzeugt. [#bidgoli2006handbook, S. 894]",
+            "comment" => "Die Integration von Modultests findet schon während der Entwicklung statt, es wird auf Schwachstellen in Sub-Routinen, Funktionen, Module, Bibliotheken usw. geprüft.",
             "implementation" => "Unit-Tests",
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
+            "implementation" => "JUnit"
         ),
-        "Akzeptanz- und Integrations-Tests mit Sicherheitsprüfungen" => array(
+        "Integrationstests mit Sicherheitsbezug" => array(
             "risk" => "In der Anwendung sind grundlegende Fehler bei der Benutzung eines Frameworks möglich, ohne das diese erkannt werden.",
-            "measure" => "Implementierung grundlegender Sicherheitstests als Akzeptanz- und Integrations-Tests. Beispielsweise kann die Authentifizierung und Authorisierung (Zugriffskontrolle) geprüft werden.  [#bidgoli2006handbook, S. 894]",
+            "measure" => "Implementierung grundlegender Sicherheitstests als und Integrationstests. Beispielsweise kann die Authentifizierung und Autorisierung (Zugriffskontrolle) geprüft werden.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
-                "time" => 2,
+                "time" => 4,
                 "resources" => 2
             ),
             "usefulness" => 2,
@@ -494,8 +473,26 @@ $dimensions["Test und Verifizierung"] = array(
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
+            "implementation" => "HttpUnit"
         ),
-        "Sehr hoch abdeckende Komponenten-, Integrations- und Akzeptanztests mit Sicherheitsprüfungen" => array(
+        "Akzeptanztests mit Sicherheitsbezug" => array(
+            "risk" => "In der Anwendung sind grundlegende Fehler bei der Benutzung eines Frameworks möglich, ohne das diese erkannt werden.",
+            "measure" => "Implementierung grundlegender Sicherheitstests als Akzeptanztests. Beispielsweise können sicherheitsrelevante Funktionen in JavaScript geprüft werden.",
+            "easeOfImplementation" => array(
+                "knowledge" => 3,
+                "time" => 4,
+                "resources" => 2
+            ),
+            "usefulness" => 1,
+            "level" => 3,
+            "securityProperties" => array(
+                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
+                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
+                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
+            ),
+            "implementation" => "HttpUnit, Selenium"
+        ),
+        "Sehr hoch abdeckende Komponenten-, Integrations- und Akzeptanztests mit Sicherheitsbezug" => array(
             "risk" => "Es sind nicht alle Teile der Anwendung mit Sicherheitsprüfungen versehen.",
             "measure" => "Implementierung grundlegender Sicherheitstests als Integrations- und/oder Akzeptanztests für alle Teile (auch Bibliotheken) der Anwendung.",
             "easeOfImplementation" => array(
@@ -503,26 +500,8 @@ $dimensions["Test und Verifizierung"] = array(
                 "time" => 5,
                 "resources" => 3
             ),
-            "usefulness" => 5,
-            "level" => 3,
-            "securityProperties" => array(
-                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
-                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
-                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
-            ),
-        ),
-        "Post-Verteilungs-Prüfung" => array(
-            "risk" => "Durch eine Verteilung auf die Produktionsumgebung können Mikroservices gestört sein, z.B. wenn die Datenbank nicht erreicht werden kann.",
-            "measure" => "Integrationstests prüfen die Produktionsumgebung um sicher zu stellen, dass Funktionen, z.B. bereitgestellt durch Mikroservices oder externe Dienste, erreichbar sind.",
-            "easeOfImplementation" => array(
-                "knowledge" => 2,
-                "time" => 2,
-                "resources" => 2
-            ),
-            "usefulness" => 2,
+            "usefulness" => 3,
             "level" => 4,
-            "implementation" => "",
-            "dependsOn" => array("Definierter Verteilungs-Prozess"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
@@ -530,10 +509,10 @@ $dimensions["Test und Verifizierung"] = array(
             ),
         ),
     ),
-    "Infrastruktur" => array(
-        "Prüfung von System-Updates" => array(
+    "Infrastrukturtest" => array(
+        "Test auf System-Aktualisierungen" => array(
             "risk" => "Das Betriebssystem oder seine Dienste enthalten bekannte Schwachstellen.",
-            "measure" => "Prüfung von Updates und bei veralteter Software Meldung an einen Verantwortlichen, welcher die Patches einspielt.",
+            "measure" => "Prüfung auf Aktualisierungen und bei veralteter Software Meldung an einen Verantwortlichen, welcher die Patches einspielt.",
             "easeOfImplementation" => array(
                 "knowledge" => 1,
                 "time" => 1,
@@ -542,11 +521,10 @@ $dimensions["Test und Verifizierung"] = array(
             "usefulness" => 5,
             "level" => 1,
             "securityProperties" => array(
-                "integrity" => "Durch Prüfung und Einspielen von System-Updates ist die Wahrscheinlichkeit, dass System-Komponenten die Integrität von Informationen beeinträchtigen verringert.",
-                "availability" => "Durch Prüfung und Einspielen von System-Updates ist die Wahrscheinlichkeit, dass System-Komponenten die Verfügbarkeit beeinträchtigen verringert.",
-                "confidentiality" => "Durch Prüfung und Einspielen von System-Updates ist die Wahrscheinlichkeit, dass System-Komponenten vertrauliche Informationen preisgeben verringert.",
+                "integrity" => "Durch Prüfung und Einspielen von System-Aktualisierungen ist die Wahrscheinlichkeit, dass System-Komponenten die Integrität von Informationen beeinträchtigen verringert.",
+                "availability" => "Durch Prüfung und Einspielen von System-Aktualisierungen ist die Wahrscheinlichkeit, dass System-Komponenten die Verfügbarkeit beeinträchtigen verringert.",
+                "confidentiality" => "Durch Prüfung und Einspielen von System-Aktualisierungen ist die Wahrscheinlichkeit, dass System-Komponenten vertrauliche Informationen preisgeben verringert.",
             ),
-            "implementation" => "Nessus"
         ),
         "Prüfung der Konfiguration von virtuellen Umgebungen" => array(
             "risk" => "Virtuelle Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
@@ -641,6 +619,24 @@ $dimensions["Test und Verifizierung"] = array(
                 "availability" => "Durch Erkennung und Ändern von schwachen Passwörtern kann die Verfügbarkeit von Informationen im gesamten Systems erhöht werden.",
                 "integrity" => "Durch Erkennung und Ändern von schwachen Passwörtern kann die Integrität von Informationen im gesamten Systems erhöht werden.",
                 "confidentiality" => "Durch Erkennung und Ändern von schwachen Passwörtern kann die Vertraulichkeit von Informationen im gesamten Systems erhöht werden.",
+            ),
+        ),
+        "Post-Verteilungs-Prüfung" => array(
+            "risk" => "Durch eine Verteilung auf die Produktionsumgebung können Mikroservices gestört sein, z.B. wenn die Datenbank nicht erreicht werden kann.",
+            "measure" => "Integrationstests prüfen die Produktionsumgebung um sicher zu stellen, dass Funktionen, z.B. bereitgestellt durch Mikroservices oder externe Dienste, erreichbar sind.",
+            "easeOfImplementation" => array(
+                "knowledge" => 2,
+                "time" => 2,
+                "resources" => 2
+            ),
+            "usefulness" => 2,
+            "level" => 4,
+            "implementation" => "",
+            "dependsOn" => array("Definierter Verteilungs-Prozess"),
+            "securityProperties" => array(
+                "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
+                "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
+                "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
     ),

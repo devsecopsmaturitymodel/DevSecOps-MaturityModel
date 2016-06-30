@@ -1,6 +1,6 @@
 <?php
 $monitoring = array(
-    "Anwendungs- und System-Metriken" => array(
+    "Einfache Anwendungs- und System-Metriken" => array(
         "risk" => "Systemadministratoren und Entwickler müssen, um einen Überblick über verschiedene virtuelle Systeme zu erlangen, sich auf diesen einloggen. Insbesondere Entwicklern ohne Linux-Kentnisse fällt die Auswertung von Protokollen auf Grundlage der Linux-Befehle cat, grep und awk schwer.",
         "measure" => "Einfache Anwendungs- und System-Metriken sind erfasst.",
         "easeOfImplementation" => array(
@@ -235,7 +235,7 @@ $logging = array(
         "level" => 1,
         "securityProperties" => array(
             "availability" => "Durch erhöhte Sichtbarkeit von Protokollen auf einem zentralen System wird die Verfügbarkeit erhöht.",
-            "integrity" => "Durch sammeln von Protokollen auf einem zentralen Protokoll-System können Protokolle schwerer manipuliert werden.",
+            "integrity" => "Durch sammeln von Protokollen auf einem zentralen Protokoll-System können Protokolle schwerer manipuliert werden. Durch erhöhte Sichtbarkeit können Angriffe erkannt und Maßnahmen ergriffen werden.",
         ),
         "implementation" => "rsyslog"
     ),
@@ -267,12 +267,28 @@ $logging = array(
         "level" => 3,
         "dependsOn" => array("Grafische Auswertung", "Alarmierung"),
         "securityProperties" => array(
-            "availability" => "Durch erhöhte Sichtbarkeit von Ausnahmen die Verfügbarkeit erhöht.",
+            "availability" => "Durch erhöhte Sichtbarkeit von Ausnahmen wird die Verfügbarkeit erhöht.",
         ),
-    )
+    ),
+    "Korrelation von Sicherheits-Ereignissen" => array(
+    "risk" => "Sicherheits-Ereignisse werden nicht korreliert, so dass Zusammennhänge zwischen Ereignissen nicht erkannt werden.",
+    "measure" => "Sicherheits-Ereignisse werden korreliert. Beispielsweise erhöhte Anmeldeverusuche mit erfolgreichen Anmeldungen.",
+    "easeOfImplementation" => array(
+        "knowledge" => 4,
+        "time" => 4,
+        "resources" => 4
+    ),
+    "usefulness" => 3,
+    "level" => 4,
+    "dependsOn" => array("Grafische Auswertung", "Alarmierung"),
+    "securityProperties" => array(
+        "availability" => "Durch erhöhte Sichtbarkeit von Ausnahmen die Verfügbarkeit erhöht.",
+        "integrity" => "Durch Korrelation von Ereignissen können Angriffe schneller erkannt und Maßnahmen ergriffen werden.",
+    ),
+)
 );
 ksort($logging);
 $dimensions["Informationsgewinnung"] = array(
-    "Überwachung und Metriken" =>$monitoring,
+    "Überwachung und Metrik" =>$monitoring,
     "Protokollierung" =>$logging
 );

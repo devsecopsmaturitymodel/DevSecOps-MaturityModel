@@ -37,7 +37,8 @@ $dimensions["Infrastruktur"] = array(
             "usefulness" => 5,
             "level" => 1,
             "dependsOn" => array("Definierter Verteilungs-Prozess"),
-            "securityProperties" => array("authentication" => "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.", "confidentiality" => "Durch eine verschlüsstelte Verbindung ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.")
+            "securityProperties" => array("authentication" => "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.", "confidentiality" => "Durch eine verschlüsstelte Verbindung ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können."),
+            "implementation" => "HTTP-Authentifizierung, TLS, VPN"
         ),
         "Virtuelle Umgebungen sind limitiert" => array(
             "risk" => "Wird eine Anwendung in einer virtuellen Umgebung angegriffen oder hat einen Defekt, kann dies zu erhöhter Ressourcen-Nutzung führen, wodurch auch andere Anwendung auf dem gleichem Server stark beeinträchtigt werden können.",
@@ -79,7 +80,7 @@ $dimensions["Infrastruktur"] = array(
         ),
         "Kontrollierte Netzwerke für virtuelle Umgebungen" => array(
             "risk" => "Virtuelle Umgebungen können auf Sockets anderer virtueller Umgebungen zugreifen, auch wenn dies nicht notwendig ist.",
-            "measure" => "Die Kommunikation zwischen virtuellen Umgebungen ist reguliert",
+            "measure" => "Die Kommunikation zwischen virtuellen Umgebungen ist reguliert.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,

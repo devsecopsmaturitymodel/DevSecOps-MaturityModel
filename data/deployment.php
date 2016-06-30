@@ -129,9 +129,9 @@ $build = array(
             "integrity" => "Es wird die Wahrscheinlichkeit reduziert versehentlich Daten zu verändern.",
         )
     ),
-    "Erzeugung und Test bei Push" => array(
-        "risk" => "Vom pushen von Quellcode in die Versionskontrolle bis zum Feedback, dass dieser Quellcode eine Schwachstelle enthält, kann Zeit vergehen. Dadurch ist es für den Entwickler schwieriger, seinen gepushten Quellcode nachzuvollziehen und die Schwachstelle zu beseitigen. ",
-        "measure" => "Bei jedem Push wird automatisch eine Verteilung auf eine Testumgebung durchgeführt und automatisch Tests- und Verifikationen durchgeführt, mindestens für die geänderten Quellcode-Bereiche.",
+    "Regelmäßiger Test" => array(
+        "risk" => "Vom pushen von Quellcode in die Versionskontrolle bis zur Rückmeldung, dass dieser Quellcode eine Schwachstelle enthält, kann Zeit vergehen. Dadurch ist es für den Entwickler schwieriger, gepushten Quellcode nachzuvollziehen und die Schwachstelle nachhaltig zu beseitigen. ",
+        "measure" => "Bei jedem Push oder periodisch wird eine Verteilung auf eine Testumgebung durchgeführt und automatisch Tests- und Verifikationen durchgeführt, mindestens für die geänderten Quellcode-Bereiche.",
         "easeOfImplementation" => array(
             "knowledge" => 1,
             "time" => 1,
@@ -179,7 +179,7 @@ $build = array(
     ),
     "Gleiches Artefakt für Umgebungen" => array(
         "risk" => "Es wird ein unterschiedliches Artefakt beziehugnsweise Abbildung der Anwendung für die Testumgebung und die Produktionsumgebung verwendet. Entsprechend können auf der Produktionsumgebung unerwartete Effekte auftreten.",
-        "measure" => "Das gleiche Artefakt der Anwendung von der Testumgebung wird auf der Produktionsumgebung verwendet. [#swartout2012continuous, INTERNAL 39]",
+        "measure" => "Das gleiche Artefakt der Anwendung von der Testumgebung wird auf der Produktionsumgebung verwendet.",
         "easeOfImplementation" => array(
             "knowledge" => 2,
             "time" => 2,

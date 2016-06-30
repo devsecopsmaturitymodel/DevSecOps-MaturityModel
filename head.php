@@ -22,11 +22,100 @@
     <script src="http://nvd3.org/assets/js/lib/bootstrap.min.js"></script>
     <script src="http://nvd3.org/assets/lib/d3.v3.js"></script>
     <script src="http://nvd3.org/assets/js/nv.d3.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+    <link rel="stylesheet" href="spiderweb.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title ?></title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
 
-    <link href="print.css" rel="stylesheet" />
+
+    <link href="print.css" rel="spiderweb.css"/>
+    <link href="print.css" rel="stylesheet"/>
 </head>
+
+<?php
+include_once "bib.php";
+
+function getTableHeader()
+{
+    $headers = array("Dimension", "Unter-Dimension", "Ebene 1: Grundverständnis von Sicherheitspraktiken", "Ebene 2: Erweitertes Verständnis von Sicherheitspraktiken", "Ebene 3: Hohes Verständnis von Sicherheitspraktiken", "Ebene 4: Sehr hohes Verständnis von Sicherheitspraktiken bei Skalierung");
+    $headerContent = "<thead  class=\"thead-default\"><tr>";
+    foreach ($headers as $header) {
+        $headerContent .= "<th>$header</th>";
+    }
+    return $headerContent . "</tr></thead>";
+}
+
+function getInfos($dimensions)
+{
+    $text = "Anzahl der Elemente: " . getElementCount($dimensions);
+    return $text;
+}
+
+function getElementCount($dimensions)
+{
+    $count = 0;
+    foreach ($dimensions as $dimension => $subdimensions) {
+        foreach ($subdimensions as $subdimension => $element) {
+                $count = $count + count($element);
+        }
+    }
+    return $count;
+}
+
+function getTable($dimensions)
+{
+    $tableContent = "";
+    $tableContent .= getTableHeader();
+    foreach ($dimensions as $dimension => $subdimensions) {
+        foreach ($subdimensions as $subdimension => $element) {
+            $tableContent .= "<tr>";
+            $tableContent .= "<td>";
+            $tableContent .= "$dimension";
+            $tableContent .= "</td>";
+
+            $tableContent .= "<td>";
+            $tableContent .= "$subdimension";
+            $tableContent .= "</td>";
+
+            for ($i = 1; $i <= 4; $i++) {
+                $tableContent .= "<td><ul>";
+                foreach ($element as $elementName => $content) {
+                    $content = getContentForLevelFromSubdimensions($i, $content, $elementName);
+                    if ($content != "") {
+                        $elementLink = "detail.php?dimension=" . urlencode($dimension) . "&subdimension=" . urlencode($subdimension) . "&element=" . urlencode($elementName);
+                        $tableContent .= "<a href='$elementLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$elementName'";
+                            if(elementIsSelected($elementName)) {
+                                $tableContent .= "class='selected'";
+                            }
+                        $tableContent .= "><li>" . $content . "</li></a>";
+                    }
+                }
+                $tableContent .= "</ul></td>";
+            }
+
+            $tableContent .= "</tr>";
+        }
+
+    }
+    $table = '<table class="table table-striped"><caption>Generic DevOps-Security Maturity Model</caption>';
+    $table .= $tableContent;
+    $table .= "</table>";
+    return $table;
+}
+
+function getContentForLevelFromSubdimensions($level, $subdimension, $elementName)
+{
+    $levelContent = "";
+    if ($level != $subdimension["level"]) {
+        return "";
+    }
+    $tooltip = "<div class='popoverdetails'>" . build_table_tooltip($subdimension) . "</div>";
+    return "<div data-toggle=\"popover\" data-title=\"$elementName\" data-content=\"$tooltip\" type=\"button\" >" . $elementName . "</div>";
+}
+

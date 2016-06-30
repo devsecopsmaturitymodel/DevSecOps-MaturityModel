@@ -1,0 +1,30 @@
+/* SVG styling */
+.spiderweb svg {
+    width: 960px;
+    height: 300px;
+}
+.spiderwebsvg text {
+    font-size:1.5em;
+}
+
+#energychart svg {
+    height: 600px;
+}
+
+.spiderweb path {
+    stroke: #777;
+    stroke-width: 0.2px;
+}
+
+.spiderweb .labels {
+    fill: black;
+    font-weight: 100;
+    letter-spacing: -1px;
+}
+.spiderweb .labels.segment {
+    font-size: 10px;
+}
+
+table  a.selected{
+    color: green;
+}
