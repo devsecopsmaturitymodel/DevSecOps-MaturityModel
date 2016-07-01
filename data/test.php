@@ -11,7 +11,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 4,
             "level" => 2,
-            "dependsOn" => array("Berücksichtigung von Rollen"),
+            "dependsOn" => array("Abdeckung von Rollen"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
@@ -35,7 +35,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        "Berücksichtigung von Rollen" => array(
+        "Abdeckung von Rollen" => array(
             "risk" => "Teile der Anwendung, insbesondere welche mit Authentifizierung, sind beim Spidern mit einem Web-Security-Scanner nicht abgedeckt.",
             "measure" => "Integration von Authentifizierung mit verschiedenen Rollen und Session Management",
             "easeOfImplementation" => array(
@@ -52,7 +52,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        "Backend-Komponenten via Proxy" => array(
+        "Abdeckung von Backend-Komponenten" => array(
             "risk" => "Backend-Kommunikation, wie bei der Nutzung von Mikroservices, ist ungeprüft.",
             "measure" => "Backend-Kommunikation ist aufgezeichnet und ist geprüft.",
             "easeOfImplementation" => array(
@@ -69,9 +69,9 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        "Sequenzieller Spiderdurchlauf" => array(
-            "risk" => "Teile der Anwendung, insbesondere welche mit sequenzieller Aktionen wie Workflows, sind beim Spidern mit einem Web-Security-Scanner nicht abgedeckt.",
-            "measure" => "Seqenzielle Aktionen werden durchgeführt, so dass der Scanner diese in der korrekten Reihenfolge prüft.",
+        "Abdeckung sequentieller Aktionen" => array(
+            "risk" => "Sequenziellen Aktionen wie Workflows sind beim Spidern mit einem Web-Security-Scanner nicht abgedeckt.",
+            "measure" => "Seqenzielle Aktionen werden definiert, so dass der Scanner diese in der korrekten Reihenfolge prüft.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -79,7 +79,21 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 5,
             "level" => 3,
-            "dependsOn" => array("Berücksichtigung von Rollen")
+            "implementation" => "cURL",
+            "dependsOn" => array("Abdeckung von Rollen")
+        ),
+        "Abdeckung versteckter Pfade" => array(
+            "risk" => "Versteckte Pfade, wie beispielsweise APIs werden nicht abgedeckt.",
+            "measure" => "Versteckte Pfade werden abgedeckt.",
+            "easeOfImplementation" => array(
+                "knowledge" => 3,
+                "time" => 2,
+                "resources" => 1
+            ),
+            "usefulness" => 5,
+            "level" => 3,
+            "implementation" => "cURL",
+            "dependsOn" => array("Abdeckung von Rollen")
         ),
         "Nutzung zusätzlicher Web-Security-Scanner" => array(
             "risk" => "Ein Web-Security-Scanner ist ggf. nicht optimiert für alle genutzten Technologien. Entsprechend können Schwachstellen unerkannt bleiben.",
@@ -91,15 +105,15 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 1,
             "level" => 4,
-            "dependsOn" => array("Berücksichtigung von Rollen"),
+            "dependsOn" => array("Abdeckung von Rollen"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        "Definierte Eingabe-Vektoren" => array(
-            "risk" => "Teile der Anwendung, insbesondere welche mit speziell formatierten oder kodierten Parametern (z.B. Suchmaschinenoptimierte Parameter in der URL oder Base64-Kodierte Parameter), werden beim Esrfassen bestehender Pfade mit einem Web-Security-Scanner nicht abgedeckt.",
+        "Abdeckung von nicht erkannten Eingabe-Vektoren" => array(
+            "risk" => "Teile der Anwendung, insbesondere welche mit speziell formatierten oder kodierten Parametern (z.B. Suchmaschinenoptimierte Parameter in der URL oder Base64-Kodierte Parameter), werden beim Erfassen bestehender Pfade mit einem Web-Security-Scanner nicht abgedeckt.",
             "measure" => "Spezielle Parameter und Kodierungen sind in eingesetzten Web-Security-Scannern definiert.",
             "easeOfImplementation" => array(
                 "knowledge" => 5,
@@ -107,13 +121,13 @@ $dimensions["Test und Verifizierung"] = array(
                 "resources" => 1
             ),
             "usefulness" => 4,
-            "level" => 3,
+            "level" => 4,
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
-            "dependsOn" => array("Berücksichtigung von Rollen"),
+            "dependsOn" => array("Abdeckung von Rollen"),
         ),
         "Abdeckungsanalyse" => array(
             "risk" => "Teile der Anwendung sind beim Spidern mit einem Web-Security-Scanner nicht abgedeckt.",
@@ -126,7 +140,6 @@ $dimensions["Test und Verifizierung"] = array(
             "usefulness" => 4,
             "level" => 5,
             "implementation" => "OWASP Code Pulse",
-            "dependsOn" => array("Berücksichtigung von Rollen"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
