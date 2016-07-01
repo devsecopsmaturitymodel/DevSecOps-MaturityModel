@@ -2,7 +2,7 @@
 
 $nav = array(
     "index.php" => "Tabelle",
-    "spiderweb.php" => "Festellung des Implementierungs-Grades",
+    "spiderweb.php" => "Identifizierung des Implementierungs-Grades",
     "scutter.php" => "Nutzen und Implementierung-Diagramm",
     "graph.php" => "Abhängigkeiten",
     "report.php" => "Kompletter Bericht"
