@@ -148,7 +148,7 @@ $dimensions["Test und Verifizierung"] = array(
         ),
     ),
     "Statische Tiefe" => array(
-        "Test auf serverseitige Komp. mit bekannten Schwachstellen" => array(
+        "Test auf serverseitige Komponenten" => array(
             "risk" => "Eingesetzte serverseitige Komponten können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Diese können u.a. erst nach Verteilung der Webanwendung bekannt werden.",
             "measure" => "Tests auf serverseitige Komponenten mit bekannten Schwachstellen werden regelmäßig durchgeführt, beispielsweise jede Nacht.",
             "easeOfImplementation" => array(
@@ -166,7 +166,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten von nicht autorisierten Personen oder Systemen eingesehen werden können.",
             ),
         ),
-        "Test auf klientenseitige Komp. mit bekannten Schwachstellen" => array(
+        "Test auf klientenseitige Komponenten" => array(
             "risk" => "Eingesetzte klientenseitige Komponten können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Diese können u.a. erst nach Verteilung der Webanwendung bekannt werden.",
             "measure" => "Tests auf klientenseitige  Komponenten mit bekannten Schwachstellen werden regelmäßig durchgeführt, beispielsweise jede Nacht.",
             "easeOfImplementation" => array(
