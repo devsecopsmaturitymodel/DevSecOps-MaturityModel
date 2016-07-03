@@ -275,7 +275,7 @@ $dimensions["Test und Verifizierung"] = array(
         ),
         "Stilanalyse" => array(
             "risk" => "Durch falsche Einrückung werden Schwachstellen eingeführt.",
-            "measure" => "Durch Überprüfung von Programmkonventionen (Style Guides) ist sichergestellt, dass diese eingehalten werden",
+            "measure" => "Durch Überprüfung von Programmkonventionen (Style Guides) ist sichergestellt, dass diese eingehalten werden.",
             "easeOfImplementation" => array(
                 "knowledge" => 1,
                 "time" => 1,

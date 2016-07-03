@@ -4,7 +4,7 @@ var w = 500,
 var colorscale = d3.scale.category10();
 
 //Legend titles
-var LegendOptions = ['Umsetzungspunkte'];
+var LegendOptions = ['Implementierungspunkte'];
 
 //Data
 var d = [
