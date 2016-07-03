@@ -161,9 +161,9 @@ $dimensions["Test und Verifizierung"] = array(
             "dependsOn" => array("Definierter Erzeugungs-Prozess"),
             "implementation" => "OWASP Dependency Check",
             "securityProperties" => array(
-                "integrity" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Bibliotheken Daten von nicht autorisierten Personen oder Systemen verändert werden können.",
-                "availability" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass Schwachstellen in Komponten ausgenutzt werden, um die Verfügbarkeit des Systems zu beeinträchtigen.",
-                "confidentiality" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten von nicht autorisierten Personen oder Systemen eingesehen werden können.",
+                "integrity" => "Durch Tests auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Bibliotheken Daten von nicht autorisierten Personen oder Systemen verändert werden können.",
+                "availability" => "Durch Tests auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass Schwachstellen in Komponten ausgenutzt werden, um die Verfügbarkeit des Systems zu beeinträchtigen.",
+                "confidentiality" => "Durch Tests auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten von nicht autorisierten Personen oder Systemen eingesehen werden können.",
             ),
         ),
         "Test auf klientenseitige Komponenten" => array(
@@ -179,9 +179,9 @@ $dimensions["Test und Verifizierung"] = array(
             "dependsOn" => array("Definierter Erzeugungs-Prozess"),
             "implementation" => "retirejs",
             "securityProperties" => array(
-                "integrity" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Bibliotheken Daten von nicht autorisierten Personen oder Systemen verändert werden können.",
-                "availability" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass Schwachstellen in Komponten ausgenutzt werden, um die Verfügbarkeit des Systems zu beeinträchtigen.",
-                "confidentiality" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten von nicht autorisierten Personen oder Systemen eingesehen werden können.",
+                "integrity" => "Durch Tests auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Bibliotheken Daten von nicht autorisierten Personen oder Systemen verändert werden können.",
+                "availability" => "Durch Tests auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass Schwachstellen in Komponten ausgenutzt werden, um die Verfügbarkeit des Systems zu beeinträchtigen.",
+                "confidentiality" => "Durch Tests auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten von nicht autorisierten Personen oder Systemen eingesehen werden können.",
             ),
         ),
         "Ausschluss von Quellcode-Dupliakten" => array(
