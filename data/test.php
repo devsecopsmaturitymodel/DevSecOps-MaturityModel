@@ -148,9 +148,9 @@ $dimensions["Test und Verifizierung"] = array(
         ),
     ),
     "Statische Tiefe" => array(
-        "Test auf Komp. mit bekannten Schwachstellen" => array(
-            "risk" => "Eingesetzte Komponten können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Diese können u.a. nach Verteilung der Webanwendung bekannt werden.",
-            "measure" => "Tests auf Komponenten mit bekannten Schwachstellen werden für klienten- und serverseitige Komponten regelmäßig durchgeführt. Beispielsweise jede Nacht.",
+        "Test auf serverseitige Komp. mit bekannten Schwachstellen" => array(
+            "risk" => "Eingesetzte serverseitige Komponten können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Diese können u.a. erst nach Verteilung der Webanwendung bekannt werden.",
+            "measure" => "Tests auf serverseitige Komponenten mit bekannten Schwachstellen werden regelmäßig durchgeführt, beispielsweise jede Nacht.",
             "easeOfImplementation" => array(
                 "knowledge" => 1,
                 "time" => 2,
@@ -159,7 +159,25 @@ $dimensions["Test und Verifizierung"] = array(
             "usefulness" => 5,
             "level" => 1,
             "dependsOn" => array("Definierter Erzeugungs-Prozess"),
-            "implementation" => "OWASP Dependency Check, retirejs",
+            "implementation" => "OWASP Dependency Check",
+            "securityProperties" => array(
+                "integrity" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten durch nicht autorisiert Personen oder Systeme verändert werden können.",
+                "availability" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass Schwachstellen in Komponten ausgenutzt werden um die Verfügbarkeit des Systems zu beeinträchtigen.",
+                "confidentiality" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten von nicht autorisierten Personen oder Systemen eingesehen werden können.",
+            ),
+        ),
+        "Test auf klientenseitige Komp. mit bekannten Schwachstellen" => array(
+            "risk" => "Eingesetzte klientenseitige Komponten können Fehler enthalten, so dass die Informationssicherheit beeinträchtigt wird. Diese können u.a. erst nach Verteilung der Webanwendung bekannt werden.",
+            "measure" => "Tests auf klientenseitige  Komponenten mit bekannten Schwachstellen werden regelmäßig durchgeführt, beispielsweise jede Nacht.",
+            "easeOfImplementation" => array(
+                "knowledge" => 1,
+                "time" => 2,
+                "resources" => 1
+            ),
+            "usefulness" => 3,
+            "level" => 2,
+            "dependsOn" => array("Definierter Erzeugungs-Prozess"),
+            "implementation" => "retirejs",
             "securityProperties" => array(
                 "integrity" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass durch Schwachstellen in Komponten Daten durch nicht autorisiert Personen oder Systeme verändert werden können.",
                 "availability" => "Durch Test auf Komponenten mit bekannten Schwachstellen ist die Wahrscheinlichkeit geringer, dass Schwachstellen in Komponten ausgenutzt werden um die Verfügbarkeit des Systems zu beeinträchtigen.",
