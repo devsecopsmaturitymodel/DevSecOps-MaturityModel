@@ -174,8 +174,8 @@ $dimensions["Test und Verifizierung"] = array(
                 "time" => 2,
                 "resources" => 1
             ),
-            "usefulness" => 3,
-            "level" => 2,
+            "usefulness" => 2,
+            "level" => 3,
             "dependsOn" => array("Definierter Erzeugungs-Prozess"),
             "implementation" => "retirejs",
             "securityProperties" => array(
