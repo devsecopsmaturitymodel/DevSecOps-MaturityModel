@@ -638,7 +638,7 @@ $dimensions["Test und Verifizierung"] = array(
         ),
         "Prüfung auf schwache Passwörter" => array(
             "risk" => "Mitarbeiter oder Zugänge sind mit schwachen Passwörtern geschützt.",
-            "measure" => "Automatische BruteForce-Angriffe auf Benutzer-Konten von Mitarbeitern sowie Standard-Konten wie 'administrator' [Automated Tools for Testing Computer System Vulnerability, Timothy Polk].",
+            "measure" => "Automatische BruteForce-Angriffe auf Benutzer-Konten von Mitarbeitern sowie Standard-Konten wie 'administrator'.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 1,
