@@ -3,14 +3,14 @@
 $culture = array(
     "Review bei jeder neuen Version" => array(
         "risk" => "Eine Person hat wenig Wissen im Bereich Sicherheit und implementiert Schwachstelle oder vergisst Gegenmaßnahmen zu ergreifen.",
-        "measure" => "Bei jeder neuen Version eines Systems oder einer Anwendung (in der Entwicklung via Pull-Anfrage, in der System-Administration via Konfigurations-Änderung) wird ein Review aller Änderungen durch eine zweite Person durchgeführt.",
+        "measure" => "Bei jeder neuen Version eines Systems oder einer Anwendung (in der Entwicklung bei der Überführung einer Branch in den Master, in der System-Administration via Konfigurations-Änderung) wird ein Review aller Änderungen durch eine zweite Person durchgeführt.",
         "easeOfImplementation" => array(
             "knowledge" => 2,
             "time" => 2,
             "resources" => 1
         ),
         "usefulness" => 3,
-        "level" => 2
+        "level" => 3
     ),
     "Informations-Sicherheits-Ziele sind kommuniziert" => array(
         "risk" => "Mitarbeiter kennen die Sicherheits-Ziele der Organisation nicht.",
@@ -126,7 +126,7 @@ $culture = array(
     ),
     "Ein Sicherheitsexperte pro Team" => array(
         "risk" => "Security-Champions habe kein Experten-Wissen und können Sicherheit, z.B. via Stories, nicht auf hohem Niveau integrieren.",
-        "measure" => "Durch einen Web-Sicherheitsexperten kann Sicherheit hinreichend, z.B. via Stories oder durch einen Penetrations-Tests, in Sprints integriert werden [#DevOpsInPractice2014, S. 20]",
+        "measure" => "Durch einen Web-Sicherheitsexperten kann Sicherheit hinreichend, z.B. via Stories oder durch einen Penetrations-Tests, in Sprints integriert werden",
         "easeOfImplementation" => array(
             "knowledge" => 4,
             "time" => 5,
@@ -135,13 +135,24 @@ $culture = array(
         "usefulness" => 5,
         "level" => 4
     ),
-    "Team-Sicherheitsprüfungen" => array(
+    "Durchführung von Team-Sicherheitsprüfungen" => array(
         "risk" => "Teams sind ungenügend auf für das Thema Sicherheit sensibilisiert.",
         "measure" => "Teams prüfen die Webanwendung eines anderen Teams. Dadurch wird die Sicherheit der Webanwendung, das Sicherheits-Bewustsein und das Wissen im Bereich Sicherheit erhöht. Zusätzlich können neue soziale Kontakte in einer Organisation entstehen.",
         "easeOfImplementation" => array(
             "resources" => 2,
             "knowledge" => 4,
             "time" => 4, // Da Teams integriert
+        ),
+        "usefulness" => 2,
+        "level" => 4
+    ),
+    "Durchführung von War Games" => array(
+        "risk" => "Notfallpläne sind nicht eingeübt und Personen können im Fall einer Bedrohung überfordert mit der Situation sein.",
+        "measure" => "War Games sind ein Ansatz der Gamifizierung, bei denen ein Sicherheitsexperte ein Angriffsszenario entwickelt und vorbereitet. Beispielsweise den Ausfall einer Netzwerkschnittstelle eines Datenbankservers oder ein Bruteforce-Angriff auf Benutzerkonten. Anschließend wird das Angriffsszenario auf einer produktionsnahen Umgebung ausgeführt. Das zugehörige Team, welches für die Betreuung des Systems und der Anwendung zuständig ist, hat die Aufgabe das System wieder zu reaktivieren oder den Angriff zu analysieren und Gegenmaßnahmen einzuleiten.",
+        "easeOfImplementation" => array(
+            "knowledge" => 4,
+            "time" => 5,
+            "resources" => 5
         ),
         "usefulness" => 2,
         "level" => 4

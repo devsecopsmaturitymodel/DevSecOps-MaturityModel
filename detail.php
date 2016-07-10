@@ -12,6 +12,26 @@ $dimension = $_GET['dimension'];
 $subdimension = $_GET['subdimension'];
 $elementName = $_GET['element'];
 
+function hasSecurityProperties($element)
+{
+    foreach ($element as $securityPropertyName => $securityPropertyDescription) {
+        if ($securityPropertyName == "availability") {
+            return true;
+        } else if ($securityPropertyName == "integrity") {
+            return true;
+        } else if ($securityPropertyName == "confidentiality") {
+            return true;
+        } else if ($securityPropertyName == "authorization") {
+            return true;
+        } else if ($securityPropertyName == "authentication") {
+            return true;
+        } else if ($securityPropertyName == "non-repudiation") {
+            return true;
+        }
+    }
+    return false;
+}
+
 function printDetail($dimension, $subdimension, $elementName, $dimensions, $report = false)
 {
     $element = $dimensions[$dimension][$subdimension][$elementName];
@@ -40,48 +60,53 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
     }
 
     echo "<h$headerWeight>$pageH1</h$headerWeight>";
-    echo build_table_tooltip($element, $headerWeight+1);
+    echo build_table_tooltip($element, $headerWeight + 1);
     echo "<hr/>";
-    echo "<h" . ($headerWeight + 1). ">Gewährleistete Sicherheitseigenschaften</h" . ($headerWeight + 1). ">";
-    foreach ($element["securityProperties"] as $securityPropertyName => $securityPropertyDescription) {
-        if ($securityPropertyName == "availability") {
-            $securityPropertyName = "Verfügbarkeit";
-        } else if ($securityPropertyName == "integrity") {
-            $securityPropertyName = "Integrität";
-        } else if ($securityPropertyName == "confidentiality") {
-            $securityPropertyName = "Vertraulichkeit";
-        } else if ($securityPropertyName == "authorization") {
-            $securityPropertyName = "Autorisierung";
-        } else if ($securityPropertyName == "authentication") {
-            $securityPropertyName = "Authentifizierung";
-        } else if ($securityPropertyName == "non-repudiation") {
-            $securityPropertyName = "Nicht Abstreitbarkeit";
-        }
-
-        echo "<div><b>" . ucfirst($securityPropertyName) . ":</b> $securityPropertyDescription</div>";
-    }
-    echo "<h" . ($headerWeight + 1). ">Sonstiges</h" . ($headerWeight + 1). ">";
-    if (array_key_exists("dependsOn", $element)) {
-        $dependsOn = $element['dependsOn'];
-        $dependencies = "";
-        $first = true;
-        foreach ($dependsOn as $dimensionElement) {
-            if (!$first) {
-                $dependencies .= ", ";
+    if (hasSecurityProperties($element["securityProperties"])) {
+        echo "<h" . ($headerWeight + 1) . ">Gewährleistete Sicherheitseigenschaften</h" . ($headerWeight + 1) . ">";
+        foreach ($element["securityProperties"] as $securityPropertyName => $securityPropertyDescription) {
+            if ($securityPropertyName == "availability") {
+                $securityPropertyName = "Verfügbarkeit";
+            } else if ($securityPropertyName == "integrity") {
+                $securityPropertyName = "Integrität";
+            } else if ($securityPropertyName == "confidentiality") {
+                $securityPropertyName = "Vertraulichkeit";
+            } else if ($securityPropertyName == "authorization") {
+                $securityPropertyName = "Autorisierung";
+            } else if ($securityPropertyName == "authentication") {
+                $securityPropertyName = "Authentifizierung";
+            } else if ($securityPropertyName == "non-repudiation") {
+                $securityPropertyName = "Nicht Abstreitbarkeit";
             }
-            $dependencies .= $dimensionElement;
-            $first = false;
-        }
 
-        echo "<div><b>Abhängigkeiten:</b> $dependencies</div>";
+            echo "<div><b>" . ucfirst($securityPropertyName) . ":</b> $securityPropertyDescription</div>";
+        }
     }
 
-    if (array_key_exists("implementation", $element)) {
+    if (array_key_exists("dependsOn", $element) || array_key_exists("implementation", $element) || array_key_exists("comment", $element)) {
+        echo "<h" . ($headerWeight + 1) . ">Sonstiges</h" . ($headerWeight + 1) . ">";
+        if (array_key_exists("dependsOn", $element)) {
+            $dependsOn = $element['dependsOn'];
+            $dependencies = "";
+            $first = true;
+            foreach ($dependsOn as $dimensionElement) {
+                if (!$first) {
+                    $dependencies .= ", ";
+                }
+                $dependencies .= $dimensionElement;
+                $first = false;
+            }
+
+            echo "<div><b>Abhängigkeiten:</b> $dependencies</div>";
+        }
+    }
+
+    if (array_key_exists("implementation", $element) && !empty($element['implementation'])) {
         $implementation = $element['implementation'];
         echo "<div><b>Implementierung:</b> $implementation</div>";
     }
 
-    if (array_key_exists("comment", $element)) {
+    if (array_key_exists("comment", $element) && !empty($element['comment'])) {
         $comment = $element['comment'];
         echo "<div><b>Kommentar:</b> $comment</div>";
     }

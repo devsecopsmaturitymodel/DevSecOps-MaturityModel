@@ -43,7 +43,11 @@
         font-size: 12px;
     }
 
-    a {
+    b, a {
+        font-size: 10px;
+    }
+
+    div {
         font-size: 10px;
     }
 
@@ -90,5 +94,9 @@
     table {
         page-break-inside: avoid;
     }
-
+    hr {
+        display:none;
+        margin-top:6px;
+        margin-bottom:6px;
+    }
 }

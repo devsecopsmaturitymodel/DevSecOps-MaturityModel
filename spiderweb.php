@@ -1,5 +1,5 @@
 <?php
-$title = "Prüfliste";
+$title = "Identifizierung des Implementierungs-Grades";
 include_once "head.php";
 ?>
 <body>
@@ -23,7 +23,7 @@ include_once "navi.php";
     $("table a").click(function (e) {
         e.preventDefault();
         $(this).toggleClass("selected")
-        var url = "spiderwebData.php?dimension=" + $(this).attr("data-dimension") + "&subdimension=" + $(this).attr("data-subdimension") + "&element=" + $(this).attr("data-element");
+        var url = "spiderwebData.php?element=" + $(this).attr("data-element");
         $.ajax({
             url: url,
         }).done(function () {

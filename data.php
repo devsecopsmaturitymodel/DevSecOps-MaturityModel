@@ -21,7 +21,6 @@ function getEaseOfImplementation($dimensions, $elementImplementation)
     if($elementImplementation == null) {
         return ;
     }
-    $knowledge = $elementImplementation['easeOfImplementation']["knowledge"];
     $knowledge = getKnowledge($dimensions, $elementImplementation);
 
 
@@ -62,8 +61,8 @@ function build_table_tooltip($array, $headerWeight = 2)
 {
     $mapKnowLedge = array("Sehr wenig (eine Disziplin)", "Wenig (eine Disziplin)", "Mittel (zwei Disziplinen)", "Viel (zwei Disziplinen)", "Sehr viel (drei oder mehr Disziplinen)");
     $mapTime = array("Sehr wenig (1-2 Tage)", "Wenig (eine Woche)", "Mittel (zwei Wochen)", "Viel (drei Wochen)", "Sehr viel (drei oder mehr Wochen)");
-    $mapResources = array("Sehr wenig", "Wenig", "Mittel", "Viel", "Sehr viel");
-    $mapUsefulness = array("Sehr wenig", "wenig", "mittel", "hoch", "sehr hoch");
+    $mapResources = array("Sehr wenig", "Wenig", "Mittel", "Viel", "Sehr viele");
+    $mapUsefulness = array("Sehr wenig", "Wenig", "Mittel", "Hoch", "Sehr hoch");
 
     $html = "";
     $html .= "<h" . $headerWeight . ">Risiken und Maßnahmen</h$headerWeight>";

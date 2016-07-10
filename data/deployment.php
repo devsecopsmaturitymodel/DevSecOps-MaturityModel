@@ -1,7 +1,7 @@
 <?php
 $deployment = array(
     "Definierter Verteilungs-Prozess" => array(
-        "risk" => "Verteilungen können unterschiedlich durchgeführt werden. Wird ein Fehler bei der Verteilung gemacht, welcher manuell korrigiert werden muss, kann die Verfügbarkeit beeinträchtigt werden. Mögliche Scenarien sind entsprechend: Es können Sicherheits-Tests, welche das Abbild validieren vergessen werden [#bass2015securing, S. 1]. Es wird ein Abbild erzeugt, allerdings ein anderes Abbild deployed [#bass2015securing, S. 1].",
+        "risk" => "Verteilungen können unterschiedlich durchgeführt werden. Wird ein Fehler bei der Verteilung gemacht, welcher manuell korrigiert werden muss, kann die Verfügbarkeit beeinträchtigt werden. Mögliche Scenarien sind entsprechend: Es können Sicherheits-Tests, welche das Abbild validieren vergessen werden. Es wird ein Abbild erzeugt, allerdings ein anderes Abbild deployed.",
         "measure" => "Durch einen definierten Verteilungs-Prozess wird die Verfügbarkeit erhöht, da Fehler reduziert werden.",
         "easeOfImplementation" => array(
             "knowledge" => 2,
@@ -66,7 +66,7 @@ $deployment = array(
             "availability" => "Es besteht weniger Beeinträchtigung der Verfügbarkeit bei Verteilungen.",
         ),
     ),
-    "Austausch von Konfigurationsparmetern" => array(
+    "Austausch von Konfigurationsparametern" => array(
         "risk" => "Angreifer, welche Zugang zum Quellcode und damit zur Konfiguration erhalten, können schutzwürdige Informationen wie Datenbank-Zugänge einsehen.",
         "measure" => "Bei Verteilungen werden schutzbedürftige Konfigurationsparameter je nach Umgebung gesetzt. So kann beispielsweise der Datenbank-Zugang über Umgebungsvariablen gesetzt werden.",
         "easeOfImplementation" => array(
@@ -103,12 +103,28 @@ $deployment = array(
         "risk" => "Es sind schwer durch Automatisierung zu findene Schwachstellen in der Anwendung vorhanden.",
         "measure" => "Kunden haben Zugriff auf eine Vor-Produktions-Version und können das System prüfen.",
         "easeOfImplementation" => array(
-            "knowledge" =>3,
-            "time" => 2,
-            "resources" => 3
+            "knowledge" =>1,
+            "time" => 1,
+            "resources" => 1
         ),
         "usefulness" => 2,
-        "level" => 4
+        "level" => 4,
+    ),
+    "Umgebungsunabhängige Konfigurationsparameter" => array(
+        "risk" => "Es werden unterschiedliche Aktionen in der Testumgebung und der Produktionsumgebung ausgeführt. Beispielsweise folgender Quellcode: if (host == 'production') {} else {}",
+        "measure" => "Es werden Umgebungsvariablen oder Parameter beim Starten des Artefakts verwendet. Verhalten wird nur über Konfiguration gesteuert und nicht über Hostnamen o.ä..",
+        "easeOfImplementation" => array(
+            "knowledge" => 2,
+            "time" => 1,
+            "resources" => 1
+        ),
+        "usefulness" => 2,
+        "level" => 3,
+        "implementation" => "Docker",
+        "securityProperties" => array(
+            "availability" => "Durch vermeidung unterschiedlicher Aktionen in Test- und Produktionsumgebung ist gleiches Verhalten sicher gestellt und damit die Verfügbarkeit erhöht.",
+        ),
+        "dependsOn" => array("Gleiches Artefakt"),
     ),
 );
 ksort($deployment);
@@ -178,7 +194,7 @@ $build = array(
         ),
     ),
     "Gleiches Artefakt für Umgebungen" => array(
-        "risk" => "Es wird ein unterschiedliches Artefakt beziehugnsweise Abbildung der Anwendung für die Testumgebung und die Produktionsumgebung verwendet. Entsprechend können auf der Produktionsumgebung unerwartete Effekte auftreten.",
+        "risk" => "Es wird ein unterschiedliches Artefakt beziehugnsweise eine unterschiedliche Abbildung der Anwendung für die Testumgebung und die Produktionsumgebung verwendet. Entsprechend können auf der Produktionsumgebung unerwartete Effekte auftreten.",
         "measure" => "Das gleiche Artefakt der Anwendung von der Testumgebung wird auf der Produktionsumgebung verwendet.",
         "easeOfImplementation" => array(
             "knowledge" => 2,
@@ -194,33 +210,17 @@ $build = array(
         ),
         "dependsOn" => array("Definierter Erzeugungs-Prozess"),
     ),
-    "Umgebungsunabhängige Konfigurationsparameter" => array(
-        "risk" => "Es werden unterschiedliche Aktionen in der Testumgebung und der Produktionsumgebung ausgeführt. Beispielsweise folgender Quellcode: if (host == 'production') {} else {}",
-        "measure" => "Es werden Umgebungsvariablen oder Parameter beim Starten des Artefakts verwendet. Verhalten wird nur über Konfiguration gesteuert und nicht über Hostnamen o.ä..",
-        "easeOfImplementation" => array(
-            "knowledge" => 2,
-            "time" => 1,
-            "resources" => 1
-        ),
-        "usefulness" => 2,
-        "level" => 3,
-        "implementation" => "Docker",
-        "securityProperties" => array(
-            "availability" => "Durch vermeidung unterschiedlicher Aktionen in Test- und Produktionsumgebung ist gleiches Verhalten sicher gestellt und damit die Verfügbarkeit erhöht.",
-        ),
-        "dependsOn" => array("Gleiches Artefakt"),
-    ),
     "Versionierung der Konfiguration" => array(
         "risk" => "Es ist nicht nachvollziehbar, wie die Konfiguration der Erzeugungsumgebung verändert wurde.",
-        "measure" => "Durch Versionierung der Konfiguration können Änderungen nachvollzogen werden.",
+        "measure" => "Durch Versionierung der Konfiguration von Aufträgen im Continuous Integration Server können Änderungen nachvollzogen werden.",
         "easeOfImplementation" => array(
             "knowledge" => 2,
             "time" => 2,
             "resources" => 1
         ),
-        "usefulness" => 4,
-        "level" => 4,
-        "implementation" => "Plugins in Jenkins",
+        "usefulness" => 2,
+        "level" => 3,
+        "implementation" => "JobConfigHistory Plugin in Jenkins",
         "securityProperties" => array(
             "integrity" => "Durch versionierte Konfiguration ist die Integrität der Konfiguration der Erzeugungsumgebung sichergestellt.",
         ),
@@ -235,7 +235,7 @@ $build = array(
             "resources" => 3
         ),
         "usefulness" => 3,
-        "level" => 4,
+        "level" => 3,
         "implementation" => "Docker",
         "securityProperties" => array(
             "availability" => "Durch versionierte Artefakte kann bei Fehlern bei Verteilungen schnell auf eine vorherige Version umgeschaltet werden.",

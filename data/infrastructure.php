@@ -53,7 +53,7 @@ $dimensions["Infrastruktur"] = array(
             "dependsOn" => array("Anwendungen laufen in virtuellen Umgebungen"),
             "securityProperties" => array("availability" => "Da alle Anwendungen/Prozesse limitiert sind, können sich diese nicht beziehungsweise nur gering gegenseitig beeinflussen.")
         ),
-        "Automatisierte Provisionierung" => array(
+        "Provisionierung von Systemen" => array(
             "risk" => "Manuelles Aufsetzen von System-Umgebungen kann zu fehlerhaften Konfigurationen sowie zu diskrepanzen bei redundanten Systemen führen.",
             "measure" => "Mittels automatisierter Provisionierung werden System-Umgebungen aufgesetzt (Stichwort: Infrastructure as Code).",
             "easeOfImplementation" => array(
@@ -67,7 +67,7 @@ $dimensions["Infrastruktur"] = array(
         ),
         "Produktionsnahe Umgebung steht Entwicklern zur Verfügung" => array(
             "risk" => "Erstellung produktionsnaher Umgebungen ist schwer. Tritt eine Schwachstelle nur in der Produktionsumgebung auf, ist es schwierig diese auf einer lokalen Entwicklungsumgebung nachzuvollziehen.",
-            "measure" => "",
+            "measure" => "Durch Nutzung von einer virtuellen Umgebung und Ablage der Konfiguration im Quellcode, lässt sich eine Produktionsumgebung nachstellen.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -96,7 +96,7 @@ $dimensions["Infrastruktur"] = array(
             "implementation" => "Eigene Netzwerke, Firewalls"
         ),
         "Produktions-Artifakte sind versioniert" => array(
-            "risk" => "",
+            "risk" => "Ein vorheriges Produktionsartefakt lässt sich nicht wieder starten, wenn die Verteilung einer neuen Version nicht klappt.",
             "measure" => "Alle Produktions-Artifakte sind versioniert.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
@@ -108,8 +108,8 @@ $dimensions["Infrastruktur"] = array(
             "dependsOn" => array("Definierter Verteilungs-Prozess"),
             "securityProperties" => array("integrity" => "Da ein System 'versioniert' ist, können ungewollte Änderungen identifiziert werden.", "availability" => "Durch Versionierung können alle Artifakte jeder Zeit in der selben Konfiguration auf einer Hardware erzeug werden."),
         ),
-        "Betriebssystem-Aufrufe von virtuellen Umgebungen sind limitiert" => array(
-            "risk" => "",
+        "Betriebssystem-Aufrufe von Containern sind limitiert" => array(
+            "risk" => "Eine Schwachstelle von Containern sind System-Aufrufe, welche nicht den Namespace beachten",
             "measure" => "Betriebssystem-Aufrufe von Anwendungen in virtuellen Umgebungen sind limitiert und auf einer Positivliste eingetragen",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
@@ -124,10 +124,11 @@ $dimensions["Infrastruktur"] = array(
                 "authorization" => "Prozesse können nur definierte System-Aufrufe benutzen.",
                 "confidentiality" => "Prozesse können nur definierte System-Aufrufe benutzen und entsprechend nur auf autorisierte Daten zugreifen."
             ),
+            "implementation" => "seccomp, strace"
         ),
-        "Prüfung von Paket-Quellen" => array(
-            "risk" => "",
-            "measure" => "Jede Paket-Quelle, beispielsweise für Abbilder für virtuelle Maschinen, ist manuell auf Vertraulichkeit geprüft.",
+        "Prüfung von Quellen eingesetzter Software" => array(
+            "risk" => "Genutzte Software wird ohne Prüfung der Quelle geladen und verwendet. Software kann dabei ein Paket des Betriebssystems, ein Abbild eines Betriebssystems, ein geladenes Plugin für einen Continuous Integration-Server oder eine Bibliothek in einer Anwendung sein.",
+            "measure" => "Jede Software-Quelle ist manuell auf Vertraulichkeit geprüft.",
             "easeOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -141,9 +142,9 @@ $dimensions["Infrastruktur"] = array(
                 "confidentiality" => "Durch Prüfung von Paket-Quellen ist sichergestellt, dass System-Pakete nur auf autorisierte Daten zugreifen.",
             ),
         ),
-        "Mikroservice-Architektur" => array(
-            "risk" => "Komponenten sind komplex und schwer prüfbar.",
-            "measure" => "Es ist eine Mikroservice-Architektur genutzt",
+        "Microservice-Architektur" => array(
+            "risk" => "Komponenten sind komplex und schwer testbar.",
+            "measure" => "Es ist eine Mikroservice-Architektur genutzt.",
             "easeOfImplementation" => array(
                 "knowledge" => 4,
                 "time" => 5,
@@ -152,25 +153,23 @@ $dimensions["Infrastruktur"] = array(
             "usefulness" => 3,
             "level" => 4,
             "securityProperties" => array(
-                "integrity" => "Durch Reduktion der Komplexität und Erhöhung der Prüfbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
-                "availability" => "Durch Reduktion der Komplexität und Erhöhung der Prüfbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
-                "confidentiality" => "Durch Reduktion der Komplexität und Erhöhung der Prüfbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
+                "integrity" => "Durch Reduktion der Komplexität und Erhöhung der Testbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
+                "availability" => "Durch Reduktion der Komplexität und Erhöhung der Testbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
+                "confidentiality" => "Durch Reduktion der Komplexität und Erhöhung der Testbarkeit wird die Wahrscheinlichkeit von Schwachstellen reduziert.",
             ),
         ),
-        "Retrospective Security" => array(
-            "risk" => "Manuelles herunter fahren von Systemen nach einer Infizierung dauert zu lange.",
-            "measure" => "Infizierte Systeme werden automatisch erkannt und herunter gefahren.",
+        "Zufälliges herunterfahren von Systemen" => array(
+            "risk" => "Durch manuelle Änderungen an Systemen sind diese nicht auswechselbar. Die Verfügbarkeit eines redundanten Systems kann beeinträchtigt werden.",
+            "measure" => "Durch zufälliges Runterfahren von redundandten Systemen wird sichergestellt, dass alle Änderungen versioniert sind und die Systeme tatsächlich hochverfügbar sind.",
             "easeOfImplementation" => array(
-                "knowledge" => 4,
+                "knowledge" => 3,
                 "time" => 5,
                 "resources" => 5
             ),
             "usefulness" => 3,
             "level" => 4,
             "securityProperties" => array(
-                "integrity" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und Daten manipulieren.",
-                "availability" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und deren Verfügbarkeit beeinträchtigen.",
-                "confidentiality" => "Durch automatisches herunterfahren von infizierten System können Angreifer nicht weitere Systeme angreifen und Informationen abgreifen.",
+                "availability" => "Durch zufälliges Runterfahren von redundandten Systemen wird sichergestellt, dass alle Änderungen versioniert sind und die Systeme tatsächlich hochverfügbar sind.",
             ),
         ),
         "Rollen basierte Authentifizierung und Autorisierung" => array(
@@ -190,6 +189,5 @@ $dimensions["Infrastruktur"] = array(
             ),
             "dependsOn"            => array("Definierter Verteilungs-Prozess", "Definierter Erzeugungs-Prozess")
         ),
-
     )
 );

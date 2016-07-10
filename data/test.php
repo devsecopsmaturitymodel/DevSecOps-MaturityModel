@@ -194,7 +194,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 1,
             "level" => 4,
-            "implementation" => "scan.js, FindSecurityBugs",
+            "implementation" => "PMD",
             "dependsOn" => array("Definierter Erzeugungs-Prozess"),
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
@@ -430,11 +430,16 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 2,
             "level" => 4,
+            "securityProperties" => array(
+                "availability" => "Durch nachhaltige Behebung von Schwachstellen kann die Verfügbarkeit von Informationen im gesamten Systems erhöht werden.",
+                "integrity" => "Durch nachhaltige Behebung von Schwachstellen kann die Integrität von Informationen im gesamten Systems erhöht werden.",
+                "confidentiality" => "Durch nachhaltige Behebung von Schwachstellen kann die Vertraulichkeit von Informationen im gesamten Systems erhöht werden.",
+            ),
             "implementation" => "ZEST"
         ),
         "Alarme adressieren Teams" => array(
             "risk" => "Jedes Team muss jeden Alarm prüfen, so kann Frust entstehen.",
-            "measure" => "Alarme werden Teams zugewiesen.",
+            "measure" => "Alarme werden Teams zugewiesen, so dass keine Ressourcen verschwendet werden.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 2,
@@ -442,7 +447,12 @@ $dimensions["Test und Verifizierung"] = array(
             ),
             "usefulness" => 2,
             "level" => 3,
-            "implementation" => "Bei SAST: Frontend/Backend Teams können einfach erfasst werden. Bei Mikroservice-Architektur können einzelne Mikroservices i.d.R. Teams zugewiesen werden. Bei DAST: Schwahstellen sind klassifiziert und können Frontend/Backend/Server-Administration zugewiesen werden."
+            "securityProperties" => array(
+                "availability" => "Durch freie Ressourcen kann die Verfügbarkeit von Informationen im gesamten Systems erhöht werden.",
+                "integrity" => "Durch freie Ressourcen kann die Integrität von Informationen im gesamten Systems erhöht werden.",
+                "confidentiality" => "Durch freie Ressourcen kann die Vertraulichkeit von Informationen im gesamten Systems erhöht werden.",
+            ),
+            "implementation" => "Bei SAST: Serverseitige/klientenseitige Teams können einfach erfasst werden. Bei Mikroservice-Architektur können einzelne Mikroservices i.d.R. Teams zugewiesen werden. Bei DAST: Schwachstellen sind klassifiziert und können serverseitigen und klientenseitigen Teams zugewiesen werden."
         ),
         "Alarme sind einfach visualisiert" => array(
             "risk" => "Es ist unklar, wie viele Alarme im Monat entstehen.",
@@ -572,7 +582,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
-            "implementation" => "Docker Security Scan"
+            "implementation" => "Docker Security Scan, openVAS"
         ),
         "Erweiterte System-Prüfung" => array(
             "risk" => "Systeme wie Firewalls können nach einer Anpassung sicherheitskritisch konfiguriert sein.",
@@ -582,17 +592,16 @@ $dimensions["Test und Verifizierung"] = array(
                 "time" => 2,
                 "resources" => 1
             ),
-            "usefulness" => 5,
-            "level" => 2,
+            "usefulness" => 3,
+            "level" => 3,
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
-            "implementation" => "Nessus"
         ),
 
-        "Infrastruktur-Last-Tests" => array(
+        "Last-Tests" => array(
             "risk" => "Es ist unbekannt wie viele Anfragen das System bedienen kann und wie sich das System bei vielen Anfragen verhält.",
             "measure" => "Last-Tests werden periodisch ausgeführt.",
             "easeOfImplementation" => array(
@@ -636,8 +645,8 @@ $dimensions["Test und Verifizierung"] = array(
                 "confidentiality" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht.",
             ),
         ),
-        "Prüfung auf schwache Passwörter" => array(
-            "risk" => "Mitarbeiter oder Zugänge sind mit schwachen Passwörtern geschützt.",
+        "Test auf schwache Passwörter" => array(
+            "risk" => "Mitarbeiterkonten und priviligierte Benutzerkonten sind mit schwachen Passwörtern geschützt.",
             "measure" => "Automatische BruteForce-Angriffe auf Benutzer-Konten von Mitarbeitern sowie Standard-Konten wie 'administrator'.",
             "easeOfImplementation" => array(
                 "knowledge" => 2,
@@ -651,6 +660,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "integrity" => "Durch Erkennung und Ändern von schwachen Passwörtern kann die Integrität von Informationen im gesamten Systems erhöht werden.",
                 "confidentiality" => "Durch Erkennung und Ändern von schwachen Passwörtern kann die Vertraulichkeit von Informationen im gesamten Systems erhöht werden.",
             ),
+            "implementation" => "HTC Hydra"
         ),
         "Post-Verteilungs-Prüfung" => array(
             "risk" => "Durch eine Verteilung auf die Produktionsumgebung können Mikroservices gestört sein, z.B. wenn die Datenbank nicht erreicht werden kann.",

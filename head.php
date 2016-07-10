@@ -103,7 +103,7 @@ function getTable($dimensions)
         }
 
     }
-    $table = '<table class="table table-striped"><caption>Generic DevOps-Security Maturity Model</caption>';
+    $table = '<table class="table table-striped"><caption>Generisches DevOps-Sicherheits-Reifegradmodell</caption>';
     $table .= $tableContent;
     $table .= "</table>";
     return $table;

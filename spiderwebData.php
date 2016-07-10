@@ -6,8 +6,6 @@ function getSpiderWebData($dimensions)
     $data = array();
     foreach ($dimensions as $dimension => $subdimensions) {
         foreach ($subdimensions as $subdimension => $element) {
-            $dimensionName = "$dimension-$subdimension";
-
             for ($level = 1; $level <= 4; $level++) {
                 if (!array_key_exists($data[$level][$dimension], $subdimension)) {
                     $data[$level][$dimension][$subdimension]['count'] = 0;
@@ -16,7 +14,7 @@ function getSpiderWebData($dimensions)
                 foreach ($element as $elementName => $content) {
                     if ($level == $content["level"]) {
                         $data[$level][$dimension][$subdimension]['count']++;
-                        if(elementIsSelected($elementName)) {
+                        if (elementIsSelected($elementName)) {
                             $data[$level][$dimension][$subdimension]['selected']++;
                         }
                     }
@@ -27,8 +25,6 @@ function getSpiderWebData($dimensions)
     }
     return $data;
 }
-
-
 
 
 function fwritecsv2($filePointer, $dataArray, $delimiter = ",", $enclosure = "\"")
@@ -82,20 +78,34 @@ function deleteElement(&$data, $elementName)
     return false;
 }
 
-if ($_REQUEST['dimension'] == null) {
+function isElementExisting($dimensions, $givenElementName)
+{
+    foreach ($dimensions as $dimension => $subdimensions) {
+        foreach ($subdimensions as $subdimension => $element) {
+            foreach ($element as $elementName => $content) {
+                if ($elementName == $givenElementName) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+if ($_REQUEST['element'] == null) {
     echo json_encode(getSpiderWebData($dimensions));
 } else {
     $csvFile = 'selectedData.csv';
     $csv = getCsv();
-    $dimension = $_REQUEST['dimension'];
-    $subdimension = $_REQUEST['subdimension'];
     $element = $_REQUEST['element'];
 
     if (elementIsSelected($element)) {
         deleteElement($csv, $element);
     } else {
-        $newEntry['dimension'] = $dimension;
-        $newEntry['subdimension'] = $subdimension;
+        if (!isElementExisting($dimensions, $element)) {
+            echo "Could not find element";
+            exit;
+        }
         $newEntry['element'] = $element;
         $csv[] = $newEntry;
     }

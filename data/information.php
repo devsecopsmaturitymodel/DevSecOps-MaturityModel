@@ -98,11 +98,11 @@ $monitoring = array(
         "measure" => "Erfassung und Visualisierung von Metriken aus Angriffserkennungssystemen.",
         "easeOfImplementation" => array(
             "knowledge" => 3,
-            "time" => 3,
+            "time" => 4,
             "resources" => 2
         ),
         "usefulness" => 4,
-        "level" => 2,
+        "level" => 3,
         "securityProperties" => array(
             "integrity" => "Während eines Angriffs können Informationen gewonnen werden, durch welche ein Angriff auf die Integrität von Daten abgewehrt werden kann.",
             "availability" => "Es können ungewollte Systemausfälle verhindert werden.",
@@ -204,22 +204,6 @@ $monitoring = array(
         ),
         "dependsOn" => array("Sinnvolle Metriken-Gruppierung")
     ),
-    "Rollen basierte Authentifizierung und Autorisierung" => array(
-        "risk" => "Jeder kann für jedes System sicherheitsrelevante Informationen einsehen.",
-        "measure" => "Nutzung von Rollen basierter Authentifizierung und Autorisierung, ggf. verbunden mit einem zentralem Authentifizierungs-Server.",
-        "easeOfImplementation" => array(
-            "knowledge" => 2,
-            "time" => 1,
-            "resources" => 1
-        ),
-        "usefulness" => 2,
-        "level" => 4,
-        "implementation" => "",
-        "securityProperties" => array(
-            "confidentiality" => "Vertrauliche Informationen über interne Systeme sind geschützt.",
-        ),
-        "dependsOn" => array("Visualisierte Metriken")
-    ),
 );
 ksort($monitoring);
 $logging = array(
@@ -239,9 +223,9 @@ $logging = array(
         ),
         "implementation" => "rsyslog"
     ),
-    "Grafische Auswertung" => array(
-        "risk" => "",
-        "measure" => "",
+    "Visualisierte Protokollierung" => array(
+        "risk" => "Protokolle werden mangelhaft dargestellt und können deshalb nur begrenzt ausgewertet werden. Insbesondere Entwickler können die in Dateien erfassten Protokolle mittels ungewohnten Werkzeugen wie 'cat', 'grep' und 'less' schwer auswerten.",
+        "measure" => "Protokolle sind in einer Oberfläche in Echtzeit dargestellt. Dabei unterstützt eine benutzerfreundliche Bedienoberfläche inklusive Visualisierung von einfachen Protokoll-Metriken.",
         "easeOfImplementation" => array(
             "knowledge" => 1,
             "time" => 3,
@@ -253,7 +237,10 @@ $logging = array(
         "implementation" => "logstash",
         "securityProperties" => array(
             "availability" => "Durch erhöhte Sichtbarkeit von Protokollen auf einem zentralen System wird die Verfügbarkeit erhöht.",
+            "integrity" => "Durch erhöhte Sichtbarkeit von Protokollen während eines Angriffs können erweiterte Informationen gewonnen werden, durch welche ein Angriff auf die Integrität von Daten abgewehrt werden kann.",
+            "confidentiality" => "Durch erhöhte Sichtbarkeit von Protokollen während eines Angriffs können erweiterte Informationen gewonnen werden, durch welche ein Angriff abgewehrt werden kann.",
         ),
+        "implementation" => "ELK-Stack"
     ),
     "Ausnahmen von Anwendungen werden erfasst" => array(
         "risk" => "Treten Ausnahmen in Anwendungen auf, werden diese verzögert oder gar nicht manuell geprüft.",
