@@ -30,4 +30,5 @@ function loadDiagramm() {
             .append('svg')
             .call(chart);
     });
+    $('html,body').scrollTop(0);
 }
