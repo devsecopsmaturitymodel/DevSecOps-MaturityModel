@@ -13,7 +13,7 @@
 
 .spiderweb path {
     stroke: #777;
-    stroke-width: 0.2px;
+    stroke-width: 0.5px;
 }
 
 .spiderweb .labels {
@@ -27,4 +27,17 @@
 
 table  a.selected{
     color: green;
+}
+
+.spiderweb svg text {
+    font: normal 14px Arial;
+}
+
+
+.table-nonfluid {
+    width: auto !important;
+}
+
+tr [colspan="2"], th {
+    text-align: center !important;
 }

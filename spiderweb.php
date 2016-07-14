@@ -31,6 +31,5 @@ include_once "navi.php";
         });
     });
 </script>
-
 </body>
 </html>

@@ -62,12 +62,12 @@ function getElementCount($dimensions)
     $count = 0;
     foreach ($dimensions as $dimension => $subdimensions) {
         foreach ($subdimensions as $subdimension => $element) {
-                $count = $count + count($element);
+            $count = $count + count($element);
+            echo "$subdimension" . count($element) . "<br>";
         }
     }
     return $count;
 }
-
 function getTable($dimensions)
 {
     $tableContent = "";
@@ -90,9 +90,9 @@ function getTable($dimensions)
                     if ($content != "") {
                         $elementLink = "detail.php?dimension=" . urlencode($dimension) . "&subdimension=" . urlencode($subdimension) . "&element=" . urlencode($elementName);
                         $tableContent .= "<a href='$elementLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$elementName'";
-                            if(elementIsSelected($elementName)) {
-                                $tableContent .= "class='selected'";
-                            }
+                        if (elementIsSelected($elementName)) {
+                            $tableContent .= "class='selected'";
+                        }
                         $tableContent .= "><li>" . $content . "</li></a>";
                     }
                 }

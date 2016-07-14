@@ -5,6 +5,7 @@ include_once "head.php";
 <?php
 include_once "navi.php";
 ?>
+
 <?php
 include_once "data.php";
 function getJson($dimensions)
@@ -20,7 +21,7 @@ function getJson($dimensions)
                     "series" => 0,
                     "shape" => $shapes[$shape],
                     "size" => 3000,
-                    "x" => getEaseOfImplementation($dimensions, $content),
+                    "x" => gethardnessOfImplementation($dimensions, $content),
                     "y" => $content["usefulness"],
                     "key" => $elementName
                 );
