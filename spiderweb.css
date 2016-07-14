@@ -38,6 +38,14 @@ table  a.selected{
     width: auto !important;
 }
 
-tr [colspan="2"], th {
+tr [colspan="2"], th, td {
     text-align: center !important;
+}
+
+th:nth-child(1), td:nth-child(1) {
+    text-align: right  !important;
+}
+
+td {
+    vertical-align: middle !important;
 }

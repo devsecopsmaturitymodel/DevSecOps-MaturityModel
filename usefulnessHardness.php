@@ -78,7 +78,7 @@ function printDimensionUsefull($dimensions)
             $avgImp = $avgImp / count($elements['hardnessOfImplementation']);
 
             $colors = array("#81F781", "#BEF781", "#F3F781", "#F7BE81", "#FA5858");
-            echo "<td style='background-color: ".getColor($avg, $colors)."'>" . number_format((float)$avg, 2, '.', '') . " &sigma;=" . number_format((float)$std, 2, '.', '') . "</td><td style='background-color: ".getColorForHardnessOfImplementation($avgImp, $colors)."'>" . number_format((float)$avgImp, 2, '.', '') . " &sigma;=" . number_format((float)$stdImp, 2, '.', '') . "</td>";
+            echo "<td style='background-color: ".getColor($avg, $colors)."'>" . number_format((float)$avg, 2, '.', '') . "<br />&sigma;=" . number_format((float)$std, 2, '.', '') . "</td><td style='background-color: ".getColorForHardnessOfImplementation($avgImp, $colors)."'>" . number_format((float)$avgImp, 2, '.', '') . "<br />&sigma;=" . number_format((float)$stdImp, 2, '.', '') . "</td>";
         }
         echo "</tr>";
     }
