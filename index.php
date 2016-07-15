@@ -8,10 +8,8 @@ include_once "data.php";
 include_once "navi.php";
 
 
-
-
 echo getTable($dimensions);
-echo '<div class="extra">'.getInfos($dimensions) . '</div>';
+//echo '<div class="extra">'.getInfos($dimensions) . '</div>';
 ?>
 <script>
     $(function () {

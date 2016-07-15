@@ -111,7 +111,6 @@ function getTable($dimensions)
 
 function getContentForLevelFromSubdimensions($level, $subdimension, $elementName)
 {
-    $levelContent = "";
     if ($level != $subdimension["level"]) {
         return "";
     }

@@ -34,18 +34,18 @@ table  a.selected{
 }
 
 
-.table-nonfluid {
+.usefullness .table-nonfluid {
     width: auto !important;
 }
 
-tr [colspan="2"], th, td {
+.usefullness tr [colspan="2"], .usefullness th, .usefullness td {
     text-align: center !important;
 }
 
-th:nth-child(1), td:nth-child(1) {
+.usefullness th:nth-child(1):not("legend"), .usefullness td:nth-child(1):not("legend") {
     text-align: right  !important;
 }
 
-td {
+.usefullness td {
     vertical-align: middle !important;
 }
