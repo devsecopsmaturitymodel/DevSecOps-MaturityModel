@@ -7,7 +7,7 @@ function getSpiderWebData($dimensions)
     foreach ($dimensions as $dimension => $subdimensions) {
         foreach ($subdimensions as $subdimension => $element) {
             for ($level = 1; $level <= 4; $level++) {
-                if (!array_key_exists($data[$level][$dimension], $subdimension)) {
+                if (!array_key_exists($subdimension, $data[$level][$dimension])) {
                     $data[$level][$dimension][$subdimension]['count'] = 0;
                     $data[$level][$dimension][$subdimension]['selected'] = 0;
                 }
@@ -26,7 +26,10 @@ function getSpiderWebData($dimensions)
     return $data;
 }
 
-
+function startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+}
 function fwritecsv2($filePointer, $dataArray, $delimiter = ",", $enclosure = "\"")
 {
     // Write a line to a file
@@ -61,10 +64,10 @@ function fwritecsv2($filePointer, $dataArray, $delimiter = ",", $enclosure = "\"
 
     } // end foreach($dataArray as $line)
 
-    if(empty($dataArray)) {
-        $string = "element";
+    $string = str_replace('""', '"element"', $string);
+    if (!startsWith($string, "element") && !startsWith($string, '"element"')) {
+        $string = "element" . $string;
     }
-
     // Write the string to the file
     fwrite($filePointer, $string);
 }
@@ -80,7 +83,6 @@ function deleteElement(&$data, $elementName)
         }
         $count++;
     }
-    return false;
 }
 
 function isElementExisting($dimensions, $givenElementName)
@@ -114,7 +116,6 @@ if ($_REQUEST['element'] == null) {
         $newEntry['element'] = $element;
         $csv[] = $newEntry;
     }
-
 
     $keys = array_keys($csv[0]);
     $csv = array_merge(array($keys), $csv);
