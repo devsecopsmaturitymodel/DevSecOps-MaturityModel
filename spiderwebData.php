@@ -60,6 +60,11 @@ function fwritecsv2($filePointer, $dataArray, $delimiter = ",", $enclosure = "\"
         $string .= "\n";
 
     } // end foreach($dataArray as $line)
+
+    if(empty($dataArray)) {
+        $string = "element";
+    }
+
     // Write the string to the file
     fwrite($filePointer, $string);
 }
