@@ -114,7 +114,7 @@ $dimensions["Test und Verifizierung"] = array(
             ),
         ),
         "Abdeckung von nicht erkannten Eingabe-Vektoren" => array(
-            "risk" => "Teile der Anwendung, insbesondere welche mit speziell formatierten oder kodierten Parametern (z.B. Suchmaschinenoptimierte Parameter in der URL oder Base64-Kodierte Parameter), werden beim Erfassen bestehender Pfade mit einem Web-Security-Scanner nicht abgedeckt.",
+            "risk" => "Teile der Anwendung, insbesondere welche mit speziell formatierten oder kodierten Parametern (z.B. Suchmaschinenoptimierte Parameter in der URL, Parameter in JSON oder Base64-Kodierte Parameter), werden beim Erfassen bestehender Pfade mit einem Web-Security-Scanner nicht abgedeckt.",
             "measure" => "Spezielle Parameter und Kodierungen sind in eingesetzten Web-Security-Scannern definiert.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 5,
@@ -122,7 +122,7 @@ $dimensions["Test und Verifizierung"] = array(
                 "resources" => 1
             ),
             "usefulness" => 4,
-            "level" => 4,
+            "level" => 3,
             "securityProperties" => array(
                 "availability" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
                 "integrity" => "Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
