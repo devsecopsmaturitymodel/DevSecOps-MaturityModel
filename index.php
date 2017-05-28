@@ -1,5 +1,5 @@
 <?php
-$itle = "Tabellenübersicht";
+$title = gettext("Implementation Point Overview");
 include_once "head.php";
 ?>
 <body>

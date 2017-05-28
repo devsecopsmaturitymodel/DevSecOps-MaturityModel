@@ -80,7 +80,6 @@ function getKnowledge($elementImplementation)
         }
         $knowledge = $sum / $areaCount;
     }
-
     return $knowledge;
 }
 
@@ -94,7 +93,7 @@ function build_table_tooltip($array, $headerWeight = 2)
 
     $html = "";
     $html .= "<h" . $headerWeight . ">Risiken und Maßnahmen</h$headerWeight>";
-    $html .= "<div><b>Risiko:</b> " . $array['risk'] . "</div>";
+    $html .= "<div><b>" . gettext("Risiko") . ":</b> " . $array['risk'] . "</div>";
     $html .= "<div><b>Gegenmaßnahme:</b> " . $array['measure'] . "</div>";
     $html .= "<hr />";
     $html .= "<h$headerWeight>Nutzen und Schwere der Implementierung</h$headerWeight>";
