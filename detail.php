@@ -101,6 +101,8 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
         }
     }
 
+    
+    
     if (array_key_exists("implementation", $element) && !empty($element['implementation'])) {
         $implementation = $element['implementation'];
         echo "<div><b>Implementierung:</b> $implementation</div>";
@@ -109,6 +111,10 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
     if (array_key_exists("comment", $element) && !empty($element['comment'])) {
         $comment = $element['comment'];
         echo "<div><b>Kommentar:</b> $comment</div>";
+    }
+    if (array_key_exists("samm", $element) && !empty($element['samm'])) {
+    	$samm = $element['samm'];
+    	echo "<div><b>OWASP SAMM Mapping:</b> $samm</div>";
     }
 }
 
