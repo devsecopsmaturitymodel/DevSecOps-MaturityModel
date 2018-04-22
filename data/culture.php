@@ -135,7 +135,7 @@ $culture = array(
         ),
         "usefulness" => 3,
         "level" => 2,
-        "implementation" => "One example is the distributon of buttons as a reward, see <a href='https://www.owasp.org/index.php/OWASP_Security_Buttons_Project'>Don't Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>OWASP Security Buttons Project</a>"
+        "implementation" => "One example is the distributon of buttons as a reward, see <a href='https://www.owasp.org/index.php/OWASP_Security_Buttons_Project'>OWASP Security Buttons Project</a>"
     ),
     gettext("Aligning security in teams") => array(
         "risk" => gettext("Everyone in a project team should feel responsible for security. The concept of Security Champions might suggest that only the security champion is repsonsible for security."), //"Security-Champions habe kein Experten-Wissen und können Sicherheit, z.B. via Stories, nicht auf hohem Niveau integrieren.",
