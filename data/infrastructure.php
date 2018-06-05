@@ -2,8 +2,8 @@
 $dimensions [gettext("Infrastructure")] = array(
     gettext("Infrastructure") => array(
         gettext("Applications are running in virtualized environments") => array(
-            "risk" => gettext(""), //" Durch einen Einbruch erlangt ein Angreifer Zugriff auf alle auf einem Server laufenden Anwendungen.",
-            "measure" => gettext(""), //" Anwendungen laufen in virtuellen Umgebungen.",
+            "risk" => gettext("Through a vulnerability in one service on a server, the attacker gains access to other services."), //" Durch einen Einbruch erlangt ein Angreifer Zugriff auf alle auf einem Server laufenden Anwendungen.",
+            "measure" => gettext("Application are running in virtualized envirnoments"), //" Anwendungen laufen in virtuellen Umgebungen.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -16,8 +16,8 @@ $dimensions [gettext("Infrastructure")] = array(
             )
         ),
         gettext("Usage of test and production environments") => array(
-            "risk" => gettext(""), //" Sicherheits-Tests werden aufgrund mangelnder Test-Umgebungen nicht durchgeführt.",
-            "measure" => gettext(""), //" Es existiert eine Produktiv-Umgebung und mindestens eine Test-Umgebung",
+            "risk" => gettext("Security tests are not running reculary because test environments are missing"), //" Sicherheits-Tests werden aufgrund mangelnder Test-Umgebungen nicht durchgeführt.",
+            "measure" => gettext("A production and a production like envirnoment is used"), //" Es existiert eine Produktiv-Umgebung und mindestens eine Test-Umgebung",
             "hardnessOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -34,8 +34,8 @@ $dimensions [gettext("Infrastructure")] = array(
             )
         ),
         gettext("Simple access control for systems") => array(
-            "risk" => gettext(""), //" Angreifer erhalten Zugriff auf interne Systeme ohne Authentifizierung und können Daten mitschneiden.",
-            "measure" => gettext(""), //" Alle internen Systeme sind mit einfacher Authentifizierung und Verschlüsselung geschützt.",
+            "risk" => gettext("Attackers a gaining access to interal systems and application interfaces"), //" Angreifer erhalten Zugriff auf interne Systeme ohne Authentifizierung und können Daten mitschneiden.",
+            "measure" => gettext("All internal systems are using simple authentication"), //" Alle internen Systeme sind mit einfacher Authentifizierung und Verschlüsselung geschützt.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 3,
@@ -50,12 +50,12 @@ $dimensions [gettext("Infrastructure")] = array(
                 "authentication" => "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können.",
                 "confidentiality" => gettext(""), //" Durch eine verschlüsstelte Verbindung ist sichergestellt, dass nur Autorisierte schutzwerte Informationen einsehen können."
             ),
-            "implementation" => "HTTP-Authentifizierung, TLS, VPN",
+            "implementation" => "HTTP-Basic Authentication, TLS, VPN",
             "samm" => "EH1-B"
         ),
-        gettext("Virtuell environments are limited") => array(
-            "risk" => gettext(""), //" Wird eine Anwendung in einer virtuellen Umgebung angegriffen oder hat einen Defekt, kann dies zu erhöhter Ressourcen-Nutzung führen, wodurch auch andere Anwendung auf dem gleichem Server stark beeinträchtigt werden können.",
-            "measure" => gettext(""), //" Alle virtuellen Umgebungen besitzen Limitierungen für Arbeitsspeicher, Festplattendurchsatz, Festplattenplatz und Prozessoren.",
+        gettext("Virtual environments are limited") => array(
+            "risk" => gettext("Denail of service (intenenally by an attacker or uninteninally by a bug) on one service effects other services"), //" Wird eine Anwendung in einer virtuellen Umgebung angegriffen oder hat einen Defekt, kann dies zu erhöhter Ressourcen-Nutzung führen, wodurch auch andere Anwendung auf dem gleichem Server stark beeinträchtigt werden können.",
+            "measure" => gettext("All virtual envirnoments are using resource limits on hard disks, memory and CPU"), //" Alle virtuellen Umgebungen besitzen Limitierungen für Arbeitsspeicher, Festplattendurchsatz, Festplattenplatz und Prozessoren.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 2,
