@@ -46,7 +46,7 @@ include_once "head.php";
             <th></th>
             <?php
             foreach (reset($all) as $level => $levelElements) {
-                echo "<th colspan='2'>Ebene $level</th>";
+                echo "<th colspan='2'>Level $level</th>";
             }
             echo "</tr><tr><th>Dimension</th>";
 

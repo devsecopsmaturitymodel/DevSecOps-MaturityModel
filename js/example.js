@@ -19,7 +19,7 @@ function loadDiagramm() {
             .segmentHeight(60)
             .innerRadius(40)
             .numSegments(12)
-            .radialLabels(["Ebene 1", "Ebene 2", "Ebene 3", "Ebene 4"])
+            .radialLabels(["Level 1", "Level 2", "Level 3", "Level 4"])
             .segmentLabels(labels)
             .range(["white", "green"])
 

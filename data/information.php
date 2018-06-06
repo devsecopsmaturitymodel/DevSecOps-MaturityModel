@@ -100,7 +100,7 @@ $monitoring = array(
         // Durch Abdeckungs- und Kontroll-Metriken wird aufgezeigt wie effektiv das Sicherheits-Programm einer Organisation ist.
         //Sicherheits-Programme sind u.a. durch unternehmensweite Richtlinien gestützt, allerdings werden diese nicht immer eingehalten.
         //Abdeckung ist der Grad zu welcher eine bestimmte Sicherheitskontrolle für eine bestimmte Zielgruppe mit allen Ressourcen angewendet wird.
-        // Der Kontroll-Grad zeigt die tatsächliche Anwendung von vorgegebenen Sicherheits-Standards und -Richtlinien.
+        // Der Kontroll-Grad zeigt die tatsächliche Anwendung von vorgegLeveln Sicherheits-Standards und -Richtlinien.
         // Entsprechend werden durch Abdeckungs- und Kontroll-Metriken Lücken bei der Umsetzung von Richtlinien und Standards aufgezeigt.
         // Umfassende Abdeckungs- und Kontroll-Metriken beinhalten das Sammeln von Informationen zu Anti-Virus Software sowie Anti-Rootkits, Patch Management, Server-Konfiguration und Schwachstellen-Management.",
         "hardnessOfImplementation" => array(

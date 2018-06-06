@@ -55,7 +55,7 @@ $culture = array(
     ),
     gettext("Conduction of simple threat modelling on business level") => array(
         "risk" => gettext("Business related threats are discovered too late in the development and deployment process."),
-        "measure" => gettext("Threat modelling on business level is performed during the product backlog creation"), // "Bedrohungen werden anhand einer einfachen Risikomatrix mit Schadenpotential und Wahrscheinlichkeit des Eintritts geplegt. Im Product Backlog wird eine Bedrohungsanalyse auf Geschäftsprozess-Ebene gepflegt. Beim Sprint Planning erfolgt eine technische Bedrohungsanalyse."
+        "measure" => gettext("Threat modelling on business level is performed during the product backlog creation"), // "Bedrohungen werden anhand einer einfachen Risikomatrix mit Schadenpotential und Wahrscheinlichkeit des Eintritts geplegt. Im Product Backlog wird eine Bedrohungsanalyse auf Geschäftsprozess-Level gepflegt. Beim Sprint Planning erfolgt eine technische Bedrohungsanalyse."
         "hardnessOfImplementation" => array(
             "knowledge" => 2,
             "time" => 3,
@@ -67,7 +67,7 @@ $culture = array(
     ),
     gettext("Conduction of simple threat modelling on technical level") => array(
         "risk" => gettext("Technical related threats are discovered too late in the development and deployment process."),
-        "measure" => gettext("Threat modelling on technical level is performed during the product sprint planning"), // "Bedrohungen werden anhand einer einfachen Risikomatrix mit Schadenpotential und Wahrscheinlichkeit des Eintritts geplegt. Im Product Backlog wird eine Bedrohungsanalyse auf Geschäftsprozess-Ebene gepflegt. Beim Sprint Planning erfolgt eine technische Bedrohungsanalyse."
+        "measure" => gettext("Threat modelling on technical level is performed during the product sprint planning"), // "Bedrohungen werden anhand einer einfachen Risikomatrix mit Schadenpotential und Wahrscheinlichkeit des Eintritts geplegt. Im Product Backlog wird eine Bedrohungsanalyse auf Geschäftsprozess-Level gepflegt. Beim Sprint Planning erfolgt eine technische Bedrohungsanalyse."
         "hardnessOfImplementation" => array(
             "knowledge" => 2,
             "time" => 3,
