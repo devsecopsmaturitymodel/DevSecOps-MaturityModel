@@ -1,12 +1,12 @@
 <?php
 
 $nav = array(
-    "index.php" => "Tabelle",
-    "spiderweb.php" => "Identifizierung des Implementierungs-Grades",
-    "scutter.php" => "Nutzen und Implementierungs-Diagramm",
-    "graph.php" => "Abhängigkeiten",
-    "report.php" => "Kompletter Bericht",
-    "usefulnessHardness.php" => "Übersicht über die Schwere der Implementierung pro Ebene und Dimension"
+    "index.php" => "Table",
+    "spiderweb.php" => "Identification the degree of implementation",
+    "scutter.php" => "Usefullnes and Hardness of the Implementation",
+    "graph.php" => "Dependencies",
+    "report.php" => "Full Report",
+    "usefulnessHardness.php" => "Heatmap"
 );
 
 echo "<ul class=\"nav nav-tabs\">";

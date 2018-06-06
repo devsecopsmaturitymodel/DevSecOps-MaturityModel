@@ -32,7 +32,7 @@ $monitoring = array(
             "availability" => gettext(""), //" Durch Trendanalysen können ungewollte Systemausfälle verhindert werden.",
             "confidentiality" => gettext(""), //" Durch Metriken während eines Angriffs können Informationen gewonnen werden, durch welche ein Angriff abgewehrt werden kann."
         ),
-        "implementation" => ""
+        "implementation" => "Prometheus"
     ),
     gettext("Visualized metrics") => array(
         "risk" => gettext("Not vizualized metrics lead to restricted usage of metrics."), //" Metriken werden mangelhaft dargestellt und können deshalb nur begrenzt ausgewertet werden.",
@@ -55,8 +55,8 @@ $monitoring = array(
         )
     ),
     gettext("Advanced webapplication metrics") => array(
-        "risk" => gettext(""), //" Das Sicherheitsniveau der Webanwendung ist unbekant.",
-        "measure" => gettext(""), //" Alle Ergebnisse aus der Dimension Test- und Verifizierung werden instrumentiert.",
+        "risk" => gettext("People are not looking into tests results. Vulnerabilities not recolonized, even they are detected by tools."), //" Das Sicherheitsniveau der Webanwendung ist unbekant.",
+        "measure" => gettext("All defects from the dimension Test- and Verification are instrumented."), //" Alle Ergebnisse aus der Dimension Test- und Verifizierung werden instrumentiert.",
         "hardnessOfImplementation" => array(
             "knowledge" => 3,
             "time" => 3,
@@ -75,8 +75,8 @@ $monitoring = array(
         )
     ),
     gettext("Advanced availablity and stability metrics") => array(
-        "risk" => gettext(""), //" Es sind nicht ausreichend Metriken erfasst um alle Trends zu erfassen oder bei einem Angriff ausreichend Informationen zu erhalten.",
-        "measure" => gettext(""), //" Erweiterte Metriken um die Verfügbarkeit und Stabilität zu erfassen. Insbesondere ungeplante Ausfallzeiten sollten erfasst werden, da diese zu Vertragsstrafen führen können. Typischerweise werden diese über eine Periode, beispielsweise ein Jahr, erfasst.",
+        "risk" => gettext("Trends and advanced attacks are not detected."), //" Es sind nicht ausreichend Metriken erfasst um alle Trends zu erfassen oder bei einem Angriff ausreichend Informationen zu erhalten.",
+        "measure" => gettext("Advanced metrics are gathered in relation to availability and stability. For example unplanned downtimes per year."), //" Erweiterte Metriken um die Verfügbarkeit und Stabilität zu erfassen. Insbesondere ungeplante Ausfallzeiten sollten erfasst werden, da diese zu Vertragsstrafen führen können. Typischerweise werden diese über eine Periode, beispielsweise ein Jahr, erfasst.",
         "hardnessOfImplementation" => array(
             "knowledge" => 3,
             "time" => 3,
@@ -93,8 +93,16 @@ $monitoring = array(
         )
     ),
     gettext("Coverage and control metrics") => array(
-        "risk" => gettext(""), //" Die Effektivität von Kontrollmanahmen wie Konfiguration, Patch und Schwachstellen Management ist unbekannt.",
-        "measure" => gettext(""), //" Einführung von Abdeckungs- und Kontroll-Metriken. Durch Abdeckungs- und Kontroll-Metriken wird aufgezeigt wie effektiv das Sicherheits-Programm einer Organisation ist. Sicherheits-Programme sind u.a. durch unternehmensweite Richtlinien gestützt, allerdings werden diese nicht immer eingehalten. Abdeckung ist der Grad zu welcher eine bestimmte Sicherheitskontrolle für eine bestimmte Zielgruppe mit allen Ressourcen angewendet wird. Der Kontroll-Grad zeigt die tatsächliche Anwendung von vorgegebenen Sicherheits-Standards und -Richtlinien. Entsprechend werden durch Abdeckungs- und Kontroll-Metriken Lücken bei der Umsetzung von Richtlinien und Standards aufgezeigt. Umfassende Abdeckungs- und Kontroll-Metriken beinhalten das Sammeln von Informationen zu Anti-Virus Software sowie Anti-Rootkits, Patch Management, Server-Konfiguration und Schwachstellen-Management.",
+        "risk" => gettext("The effectiveness of configuration, patch and vulnerablity management is unknown."),
+        "measure" => gettext("Usage of Coverage- and control-metrics to show the effectivness of the security programm. Coverage is the degree in 
+        which a specific security control for a specifc target group is applied with all resoucres.
+        The control degree shows the actual application of security standards and security-guidelines. Examples are gathering information on anti-virus, anti-rootkits, patch management, server configuration and vulnerability management."), //" Einführung von Abdeckungs- und Kontroll-Metriken.
+        // Durch Abdeckungs- und Kontroll-Metriken wird aufgezeigt wie effektiv das Sicherheits-Programm einer Organisation ist.
+        //Sicherheits-Programme sind u.a. durch unternehmensweite Richtlinien gestützt, allerdings werden diese nicht immer eingehalten.
+        //Abdeckung ist der Grad zu welcher eine bestimmte Sicherheitskontrolle für eine bestimmte Zielgruppe mit allen Ressourcen angewendet wird.
+        // Der Kontroll-Grad zeigt die tatsächliche Anwendung von vorgegebenen Sicherheits-Standards und -Richtlinien.
+        // Entsprechend werden durch Abdeckungs- und Kontroll-Metriken Lücken bei der Umsetzung von Richtlinien und Standards aufgezeigt.
+        // Umfassende Abdeckungs- und Kontroll-Metriken beinhalten das Sammeln von Informationen zu Anti-Virus Software sowie Anti-Rootkits, Patch Management, Server-Konfiguration und Schwachstellen-Management.",
         "hardnessOfImplementation" => array(
             "knowledge" => 3,
             "time" => 5,
@@ -109,11 +117,15 @@ $monitoring = array(
         ),
         "dependsOn" => array(
             gettext("Visualized metrics")
-        )
+        ),
+        "implementation" => "https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf"
     ),
     gettext("Defence metrics") => array(
-        "risk" => gettext(""), //" Angriffserkennungssysteme wie eine Paketfilter-Firewalls oder Web-Application-Firewall erkennen und blockieren Angriffe, jedoch ist unbekannt wie viele Angriffe abgewehrt werden und es wird ggf. nicht erkannt, wenn ein Angriff stattfindet.",
-        "measure" => gettext(""), //" Einführung von Verteidigungs-Metriken. Verteidigungs-Metriken beinhalten das Sammeln von Informationen zu Anti-Virus- und Anti-Rootkit-Lösungen, Firewalls, Netzwerken und Angriffen. Beispielsweise kann die Anzahl der eingehenden Verbindung nach TCP/UDP-Port gemessen werden und beinhaltet implizit die Anzahl der eingehenden Verbindung nach TCP/UDP-Protokoll. Durch Sammeln der Internetprotokoll-Adressen von eingehenden Verbindungen kann der geografische Quell-Standort ermittelt werden.",
+        "risk" => gettext("IDS/IPS systems like packet- or application-firewalls detect and prevent attacks. It is not known how many attacks has been detected and blocked."), //" Angriffserkennungssysteme wie eine Paketfilter-Firewalls oder Web-Application-Firewall erkennen und blockieren Angriffe, jedoch ist unbekannt wie viele Angriffe abgewehrt werden und es wird ggf. nicht erkannt, wenn ein Angriff stattfindet.",
+        "measure" => gettext("Gathering of defence metrics like TCP/UDP sources enables to assume the geographic location of the requeist."), //" Einführung von Verteidigungs-Metriken. Verteidigungs-Metriken beinhalten das Sammeln von Informationen
+        //zu Anti-Virus- und Anti-Rootkit-Lösungen, Firewalls, Netzwerken und Angriffen.
+        // Beispielsweise kann die Anzahl der eingehenden Verbindung nach TCP/UDP-Port gemessen werden und beinhaltet implizit die Anzahl der eingehenden Verbindung nach TCP/UDP-Protokoll.
+        // Durch Sammeln der Internetprotokoll-Adressen von eingehenden Verbindungen kann der geografische Quell-Standort ermittelt werden.",
         "hardnessOfImplementation" => array(
             "knowledge" => 3,
             "time" => 5,
@@ -281,7 +293,7 @@ $logging = array(
         "level" => 3,
         "dependsOn" => array(
             gettext("Visualized logging"),
-            "Alarmierung"
+            gettext("Alerting")
         ),
         "securityProperties" => array(
             "availability" => gettext(""), //" Durch erhöhte Sichtbarkeit von Ausnahmen wird die Verfügbarkeit erhöht."
@@ -289,8 +301,8 @@ $logging = array(
         "samm" => "SA2-B"
     ),
     gettext("Correlation of security events") => array(
-        "risk" => gettext(""), //" Sicherheits-Ereignisse werden nicht korreliert, so dass Zusammennhänge zwischen Ereignissen nicht erkannt werden.",
-        "measure" => gettext(""), //" Sicherheits-Ereignisse werden korreliert. Beispielsweise erhöhte Anmeldeverusuche mit erfolgreichen Anmeldungen.",
+        "risk" => gettext("Detection of security related events with hints on different systems/tools/metrics is not possible."), //" Sicherheits-Ereignisse werden nicht korreliert, so dass Zusammennhänge zwischen Ereignissen nicht erkannt werden.",
+        "measure" => gettext("Events are correlated on one system. For example the correlation and visualisationof enhance login tries combined with successfull logins."), //" Sicherheits-Ereignisse werden korreliert. Beispielsweise erhöhte Anmeldeverusuche mit erfolgreichen Anmeldungen.",
         "hardnessOfImplementation" => array(
             "knowledge" => 4,
             "time" => 4,
@@ -299,8 +311,8 @@ $logging = array(
         "usefulness" => 3,
         "level" => 4,
         "dependsOn" => array(
-            "Grafische Auswertung",
-            "Alarmierung"
+            gettext("Visualized logging"),
+            gettext("Alerting")
         ),
         "securityProperties" => array(
             "availability" => gettext(""), //" Durch erhöhte Sichtbarkeit von Ausnahmen die Verfügbarkeit erhöht.",

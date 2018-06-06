@@ -152,7 +152,7 @@ $deployment = array(
 ksort($deployment);
 $build = array(
     gettext("Defined build process") => array(
-        gettext("Conduction of builds without a defined process are highly prone to errors. For example wrong setting of security related configuration."), //"Die Erzeugung kann bei jedem mal unterschiedlich durchgeführt werden. Wird ein Fehler dabei gemacht können sicherheitsrelevante Konfigurationen falsch gesetzt werden.",
+        "risk" => gettext("Conduction of builds without a defined process are highly prone to errors. For example wrong setting of security related configuration."), //"Die Erzeugung kann bei jedem mal unterschiedlich durchgeführt werden. Wird ein Fehler dabei gemacht können sicherheitsrelevante Konfigurationen falsch gesetzt werden.",
         "measure" => gettext("A defined build process lowers the possibility of errors during the build a lot."), //"Es existiert ein definierter automatisierter Prozess für die Erzeugung, welcher manuell angestoßen werden kann.",
         "hardnessOfImplementation" => array(
             "knowledge" => 2,
@@ -168,7 +168,7 @@ $build = array(
         )
     ),
     gettext("Regular tests") => array(
-        "risk" => gettext("A time cap between pushing source code to the version control system and feedback regarding defects makes it harder to correct the found defects. A developer or system administrator has to dick into the complex change again."), //"Vom pushen von Quellcode in die Versionskontrolle bis zur Rückmeldung, dass dieser Quellcode eine Schwachstelle enthält, kann Zeit vergehen. Dadurch ist es für den Entwickler schwieriger, gepushten Quellcode nachzuvollziehen und die Schwachstelle nachhaltig zu beseitigen. ",
+        "risk" => gettext("A time cap between pushing source code to the version control system and feedback regarding defects makes it harder to correct the found defects. A developer or system administrator has to dig into the complex change again."), //"Vom pushen von Quellcode in die Versionskontrolle bis zur Rückmeldung, dass dieser Quellcode eine Schwachstelle enthält, kann Zeit vergehen. Dadurch ist es für den Entwickler schwieriger, gepushten Quellcode nachzuvollziehen und die Schwachstelle nachhaltig zu beseitigen. ",
         "measure" => gettext("On each push and/or periodically automatic tests are conducted."), //"Bei jedem Push oder periodisch wird eine Verteilung auf eine Testumgebung durchgeführt und automatisch Tests- und Verifikationen durchgeführt, mindestens für die geänderten Quellcode-Bereiche.",
         "hardnessOfImplementation" => array(
             "knowledge" => 1,

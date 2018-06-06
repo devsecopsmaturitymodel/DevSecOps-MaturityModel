@@ -74,7 +74,7 @@ function getTableHeader() {
 	return $headerContent . "</tr></thead>";
 }
 function getInfos($dimensions) {
-	$text = "Anzahl der Elemente: " . getElementCount ( $dimensions );
+	$text = "Activity Count: " . getElementCount ( $dimensions );
 	return $text;
 }
 function getElementCount($dimensions) {
@@ -82,7 +82,7 @@ function getElementCount($dimensions) {
 	foreach ( $dimensions as $dimension => $subdimensions ) {
 		foreach ( $subdimensions as $subdimension => $element ) {
 			$count = $count + count ( $element );
-			echo "$subdimension" . count ( $element ) . "<br>";
+			echo "$subdimension: " . count ( $element ) . "<br>";
 		}
 	}
 	return $count;

@@ -86,21 +86,21 @@ function getKnowledge($elementImplementation)
 
 function build_table_tooltip($array, $headerWeight = 2)
 {
-    $mapKnowLedge = array("Sehr wenig (eine Disziplin)", "Wenig (eine Disziplin)", "Mittel (zwei Disziplinen)", "Viel (zwei Disziplinen)", "Sehr viel (drei oder mehr Disziplinen)");
-    $mapTime = array("Sehr wenig", "Wenig", "Mittel", "Viel", "Sehr viel");
-    $mapResources = array("Sehr wenig", "Wenig", "Mittel", "Viel", "Sehr viele");
-    $mapUsefulness = array("Sehr wenig", "Wenig", "Mittel", "Hoch", "Sehr hoch");
+        $mapKnowLedge = array("Very little (one discipline)", "little (one discipline)", "Medium (two disciplines)", "Much (two disciplines)", "Very much (three or more disciplines)");
+    $mapTime = array("Very little", "Little", "Medium", "Much", "Very much");
+    $mapResources = $mapTime;
+    $mapUsefulness = $mapTime;
 
     $html = "";
-    $html .= "<h" . $headerWeight . ">Risiken und Maßnahmen</h$headerWeight>";
-    $html .= "<div><b>" . gettext("Risiko") . ":</b> " . $array['risk'] . "</div>";
-    $html .= "<div><b>Gegenmaßnahme:</b> " . $array['measure'] . "</div>";
+    $html .= "<h" . $headerWeight . ">Risk and Opertunity</h$headerWeight>";
+    $html .= "<div><b>" . gettext("Risk") . ":</b> " . $array['risk'] . "</div>";
+    $html .= "<div><b>" . gettext("Opertunity") . ":</b> " . $array['measure'] . "</div>";
     $html .= "<hr />";
-    $html .= "<h$headerWeight>Nutzen und Schwere der Implementierung</h$headerWeight>";
-    $html .= "<div><b>Nutzen:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";
-    $html .= "<div><b>Benötigtes Wissen:</b> " . ucfirst($mapKnowLedge[$array['hardnessOfImplementation']['knowledge']-1]) . "</div>";
-    $html .= "<div><b>Benötigte Zeit:</b> " . ucfirst($mapTime[$array['hardnessOfImplementation']['time']-1]) . "</div>";
-    $html .= "<div><b>Benötigte Ressourcen (Systeme):</b> " . ucfirst($mapResources[$array['hardnessOfImplementation']['resources']-1]) . "</div>";
+    $html .= "<h$headerWeight>Usefullness and Hardness of the implementation</h$headerWeight>";
+    $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";
+    $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['hardnessOfImplementation']['knowledge']-1]) . "</div>";
+    $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['hardnessOfImplementation']['time']-1]) . "</div>";
+    $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$array['hardnessOfImplementation']['resources']-1]) . "</div>";
     return $html;
 }
 
