@@ -107,7 +107,17 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
     
     if (array_key_exists("implementation", $element) && !empty($element['implementation'])) {
         $implementation = $element['implementation'];
-        echo "<div><b>Implementation hints:</b> $implementation</div>";
+        echo "<div><b>Implementation hints:</b> ";
+        if(is_array($implementation)){
+            echo "<ul>";
+            foreach($implementation as $implementationElement) {
+                echo "<li>$implementationElement</li>";
+            }
+            echo "</ul>";
+        }else {
+            echo $implementation;
+        }
+        echo "</div>";
     }
 
     if (array_key_exists("comment", $element) && !empty($element['comment'])) {

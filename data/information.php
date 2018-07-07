@@ -44,11 +44,6 @@ $monitoring = array(
         ),
         "usefulness" => 3,
         "level" => 2,
-        "securityProperties" => array(
-            "integrity" => gettext(""), //" Durch visualisierte Metriken während eines Angriffs können erweiterte Informationen gewonnen werden, durch welche ein Angriff auf die Integrität von Daten abgewehrt werden kann.",
-            "availability" => gettext(""), //" Durch visualisierte Trendanalysen können ungewollte Systemausfälle verhindert werden.",
-            "confidentiality" => gettext(""), //" Durch visualisierte Metriken während eines Angriffs können erweiterte Informationen gewonnen werden, durch welche ein Angriff abgewehrt werden kann."
-        ),
         "dependsOn" => array(
             gettext("Simple application metrics"),
             gettext("Simple system metrics"),
@@ -261,8 +256,8 @@ $logging = array(
         "implementation" => "rsyslog, Logstash"
     ),
     gettext("Visualized logging") => array(
-        "risk" => gettext(""), //" Protokolle werden mangelhaft dargestellt und können deshalb nur begrenzt ausgewertet werden. Insbesondere Entwickler können die in Dateien erfassten Protokolle mittels ungewohnten Werkzeugen wie 'cat', 'grep' und 'less' schwer auswerten.",
-        "measure" => gettext(""), //" Protokolle sind in einer Oberfläche in Echtzeit dargestellt. Dabei unterstützt eine benutzerfreundliche Bedienoberfläche inklusive Visualisierung von einfachen Protokoll-Metriken.",
+        "risk" => gettext("System and application protocols are not visualized properly which leads to no or very limited logging assessment. Specally developers might have difficulty to read applications logs with unusually tools like the Linux tool 'cat'"), //" Protokolle werden mangelhaft dargestellt und können deshalb nur begrenzt ausgewertet werden. Insbesondere Entwickler können die in Dateien erfassten Protokolle mittels ungewohnten Werkzeugen wie 'cat', 'grep' und 'less' schwer auswerten.",
+        "measure" => gettext("Protocols are visualized in a simple to use real time monitoring system. The GUI gives the ability to search for specal attributes in the protocol."), //" Protokolle sind in einer Oberfläche in Echtzeit dargestellt. Dabei unterstützt eine benutzerfreundliche Bedienoberfläche inklusive Visualisierung von einfachen Protokoll-Metriken.",
         "hardnessOfImplementation" => array(
             "knowledge" => 1,
             "time" => 3,
@@ -271,19 +266,14 @@ $logging = array(
         "usefulness" => 4,
         "level" => 2,
         "dependsOn" => array(
-            "Zentrale Protokollierung"
-        ),
-        "implementation" => "logstash",
-        "securityProperties" => array(
-            "availability" => gettext(""), //" Durch erhöhte Sichtbarkeit von Protokollen auf einem zentralen System wird die Verfügbarkeit erhöht.",
-            "integrity" => gettext(""), //" Durch erhöhte Sichtbarkeit von Protokollen während eines Angriffs können erweiterte Informationen gewonnen werden, durch welche ein Angriff auf die Integrität von Daten abgewehrt werden kann.",
-            "confidentiality" => gettext(""), //" Durch erhöhte Sichtbarkeit von Protokollen während eines Angriffs können erweiterte Informationen gewonnen werden, durch welche ein Angriff abgewehrt werden kann."
+            "Centralized system logging",
+            "Centralized application logging"
         ),
         "implementation" => "ELK-Stack"
     ),
     gettext("Centralized application logging") => array(
-        "risk" => gettext("Local stored system logs can be unauthorized manipulated by attackers or might be corrupt after an incident. In addition, it is hard to perform a aggregation of logs."), //" Treten Ausnahmen in Anwendungen auf, werden diese verzögert oder gar nicht manuell geprüft.",
-        "measure" => gettext(""), //" Ausnahmen werden Instrumentiert und zentral Protokolliert. Zusätzlich wird ein Alarm gemeldet.",
+        "risk" => gettext("Local stored logs can be unauthorized manipulated by attackers with system access or might be corrupt after an incident. In addition, it is hard to perform an correlation of logs. This leads attacks, which can be performed silently."), //" Treten Ausnahmen in Anwendungen auf, werden diese verzögert oder gar nicht manuell geprüft.",
+        "measure" => gettext("A centralized logging system is used and applications logs (including application exceptions) are shipped to it."),
         "hardnessOfImplementation" => array(
             "knowledge" => 1,
             "time" => 1,
@@ -319,17 +309,7 @@ $logging = array(
             "integrity" => gettext(""), //" Durch Korrelation von Ereignissen können Angriffe schneller erkannt und Maßnahmen ergriffen werden."
         )
     ),
-    gettext("Simple logging concept") => array(
-        "risk" => gettext(""), //" ",
-        "measure" => gettext(""), //" ",
-        "hardnessOfImplementation" => array(
-            "knowledge" => 2,
-            "time" => 2,
-            "resources" => 1
-        ),
-        "usefulness" => 4,
-        "level" => 1
-    )
+
 
 );
 ksort($logging);

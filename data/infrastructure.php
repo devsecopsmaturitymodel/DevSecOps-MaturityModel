@@ -115,8 +115,7 @@ $dimensions [gettext("Infrastructure")] = array(
             ),
             "usefulness" => 5,
             "level" => 3,
-            "dependsOn" => array(
-            ),
+            "dependsOn" => array(),
             "securityProperties" => array(
                 "availability" => gettext(""), //" Regulierung verhindert die Beeinträchtigung der Verfügbarkeit von Diensten.",
                 "confidentiality" => gettext(""), //" Regulierung zwischen virtuellen Umgebungen verhindert nach einem erfolgreichen Angriff auf eine virtuelle Umgebung den Zugriff auf weitere nicht autorisierte Dienste in anderen virtuellen Umgebungen."
@@ -162,7 +161,7 @@ $dimensions [gettext("Infrastructure")] = array(
             ),
             "implementation" => "seccomp, strace"
         ),
-            gettext("Checking the sources of used libraries") => array(
+        gettext("Checking the sources of used libraries") => array(
             "risk" => gettext("Application and system libraries can have implementation flaws or deployment flaws."), //" Genutzte Software wird ohne Prüfung der Quelle geladen und verwendet. Software kann dabei ein Paket des Betriebssystems, ein Abbild eines Betriebssystems, ein geladenes Plugin für einen Continuous Integration-Server oder eine Bibliothek in einer Anwendung sein.",
             "measure" => gettext("Each libraries source is checked to have a trusted source."), //" Jede Software-Quelle ist manuell auf Vertraulichkeit geprüft.",
             "hardnessOfImplementation" => array(
@@ -229,6 +228,22 @@ $dimensions [gettext("Infrastructure")] = array(
                 gettext("Defined deployment process"),
                 gettext("Defined build process")
             )
-        )
+        ),
+        gettext("Usage of security by default for components") => array(
+            "risk" => gettext("Components (images, libraries, applications) are not hardened."), //" Da jeder auf einem System jede Aktion ausführen darf, ist nicht prüfbar wer eine Aktion, wie die Änderung einer Konfiguration auf dem Erzeugungs- und Verteilungsserver, ausgeführt hat.",
+            "measure" => gettext("Hardening of components is important, specially for image on which other teams base on. Hardening should be performed on the operation system and on the services inside (e.g. Nginx or a Java-Application)."),
+            "hardnessOfImplementation" => array(
+                "knowledge" => 4,
+                "time" => 2,
+                "resources" => 1
+            ),
+            "usefulness" => 3,
+            "level" => 2,
+            "implementation" => "For applications: Check default encoding, managing secrets, crypto, authentication",
+            "dependsOn" => array(
+                gettext("Defined build process")
+            )
+        ),
+
     )
 );

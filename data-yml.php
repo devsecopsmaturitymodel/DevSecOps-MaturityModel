@@ -2,10 +2,21 @@
 $dimensions = array();
 
 $files = scandir("data");
-foreach ($files as $file) {
-    if(strlen($file) > 2)
-        include_once "data/$file";
+
+function readYaml($file) {
+    return yaml_parse(
+        file_get_contents($file)
+    );
 }
+
+$dimensions = array(
+    "Culture and Org." => readYaml("data/CultureAndOrg.yml"),
+    "Build and Deployment" => readYaml("data/BuildAndDeployment.yml"),
+    "Information Gathering" => readYaml("data/InformationGathering.yml"),
+    "Infrastructure" => readYaml("data/Infrastructure.yml"),
+    "Test and Verification" => readYaml("data/TestAndVerification.yml"),
+);
+
 ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);

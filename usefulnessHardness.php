@@ -16,10 +16,10 @@ include_once "head.php";
         foreach ($subdimensions as $subdimension => $element) {
 
             for ($i = 1; $i < 5; $i++) {
-                if (array_key_exists($all, $i)) {
+                if (!array_key_exists($i, $all)) {
                     $all[$i] = array();
                 }
-                if (array_key_exists($all[$i], $subdimension)) {
+                if (array_key_exists($subdimension, $all[$i])) {
                     $all[$subdimension][$i] = array();
                     $all[$subdimension][$i]['usefulness'] = array();
                     $all[$subdimension][$i]['hardnessOfImplementation'] = array();
