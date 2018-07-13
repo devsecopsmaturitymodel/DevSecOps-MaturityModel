@@ -261,7 +261,21 @@ $dimensions [gettext("Test and Verification")] = array(
             "usefulness" => 1,
             "level" => 4,
             "implementation" => "PMD",
-        )
+        ),
+        gettext("Usage of multiple scanners") => array(
+            "risk" => gettext("Each vulnerability scanner has different opportunities. By using just one scanner, some vulnerabilities might not be found."), //" Ein Web-Security-Scanner ist ggf. nicht optimiert für alle genutzten Technologien. Entsprechend können Schwachstellen unerkannt bleiben.",
+            "measure" => gettext("Usage of multiple static tools to find more vulnerabilities."), //" Es sind weitere spezielle Scanner eingesetzt.",
+            "hardnessOfImplementation" => array(
+                "knowledge" => 3,
+                "time" => 3,
+                "resources" => 5
+            ),
+            "usefulness" => 1,
+            "level" => 3,
+            "dependsOn" => array(
+                "Usage of different roles"
+            ),
+        ),
     ),
     gettext("Test-Intensity") => array(
         gettext("Default settings for intensity") => array(
@@ -445,9 +459,9 @@ $dimensions [gettext("Test and Verification")] = array(
         )
     ),
     gettext("Application tests") => array(
-        gettext("Small coverage Security related unit tests") => array(
-            "risk" => gettext(""), //" Schwachstellen sind unbeachbsichtigt Implementiert.",
-            "measure" => gettext(""), //" Integration von sicherheitsrelevanten Modultests für geschäftskritische Bereiche. Dadurch können Schwachstellen wie fehlende Authentifizierung erkannt werden.",
+        gettext("Security unit tests for important components") => array(
+            "risk" => gettext("Vulnerabilities are rising due to code changes."), //" Schwachstellen sind unbeachbsichtigt Implementiert.",
+            "measure" => gettext("Usage of unit tests to test important security related features like authentication and authorization."), //" Integration von sicherheitsrelevanten Modultests für geschäftskritische Bereiche. Dadurch können Schwachstellen wie fehlende Authentifizierung erkannt werden.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 4,
@@ -457,17 +471,12 @@ $dimensions [gettext("Test and Verification")] = array(
             "level" => 1,
             "comment" => "Die Integration von Modultests findet schon während der Entwicklung statt, es wird auf Schwachstellen in Sub-Routinen, Funktionen, Module, Bibliotheken usw. geprüft.",
             "implementation" => "Unit-Tests",
-            "securityProperties" => array(
-                "availability" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
-                "integrity" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
-                "confidentiality" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht."
-            ),
-            "implementation" => "JUnit",
+            "implementation" => array("JUnit", "<a href='https://karma-runner.github.io'>Karma</a>"),
             "samm" => "ST2-B"
         ),
-        gettext("Security related integration tests") => array(
-            "risk" => gettext(""), //" In der Anwendung sind grundlegende Fehler bei der Benutzung eines Frameworks möglich, ohne das diese erkannt werden.",
-            "measure" => gettext(""), //" Implementierung grundlegender Sicherheitstests als und Integrationstests. Beispielsweise kann die Authentifizierung und Autorisierung (Zugriffskontrolle) geprüft werden.",
+        gettext("Security integration tests for important components") => array(
+            "risk" => gettext("Vulnerabilities are rising due to code changes in a complex microservice environment."), //" In der Anwendung sind grundlegende Fehler bei der Benutzung eines Frameworks möglich, ohne das diese erkannt werden.",
+            "measure" => gettext("Implementation of essential security related integration tests. For example for authentication and authorization."), //" Implementierung grundlegender Sicherheitstests als und Integrationstests. Beispielsweise kann die Authentifizierung und Autorisierung (Zugriffskontrolle) geprüft werden.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 4,
@@ -475,17 +484,12 @@ $dimensions [gettext("Test and Verification")] = array(
             ),
             "usefulness" => 2,
             "level" => 2,
-            "securityProperties" => array(
-                "availability" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
-                "integrity" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
-                "confidentiality" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht."
-            ),
             "implementation" => "HttpUnit",
             "samm" => "ST2-B"
         ),
         gettext("High coverage of security related module and integration tests") => array(
-            "risk" => gettext(""), //" Es sind nicht alle Teile der Anwendung mit Sicherheitsprüfungen versehen.",
-            "measure" => gettext(""), //" Implementierung grundlegender Sicherheitstests als Integrations- und/oder Akzeptanztests für alle Teile (auch Bibliotheken) der Anwendung.",
+            "risk" => gettext("Vulnerabilities are rising due to code changes in a complex microservice environment in not important components."), //" Es sind nicht alle Teile der Anwendung mit Sicherheitsprüfungen versehen.",
+            "measure" => gettext("Implementation of security related tests via unit tests and integration tests. Including the test of libraries, in case the are not tested already."), //" Implementierung grundlegender Sicherheitstests als Integrations- und/oder Akzeptanztests für alle Teile (auch Bibliotheken) der Anwendung.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 5,
                 "time" => 5,
@@ -493,16 +497,11 @@ $dimensions [gettext("Test and Verification")] = array(
             ),
             "usefulness" => 3,
             "level" => 4,
-            "securityProperties" => array(
-                "availability" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
-                "integrity" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
-                "confidentiality" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht."
-            ),
             "samm" => "ST2-B"
         ),
         gettext("Smoke Test") => array(
-            "risk" => gettext(""), //" Durch eine Verteilung auf die Produktionsumgebung können Mikroservices gestört sein, z.B. wenn die Datenbank nicht erreicht werden kann.",
-            "measure" => gettext(""), //" Integrationstests prüfen die Produktionsumgebung um sicher zu stellen, dass Funktionen, z.B. bereitgestellt durch Mikroservices oder externe Dienste, erreichbar sind.",
+            "risk" => gettext("During a deployment an error might happen which leads to non-availablity of the system, a part of the system or a feature."), //" Durch eine Verteilung auf die Produktionsumgebung können Mikroservices gestört sein, z.B. wenn die Datenbank nicht erreicht werden kann.",
+            "measure" => gettext("Integration tests are performed against the production environment after each deployment."), //" Integrationstests prüfen die Produktionsumgebung um sicher zu stellen, dass Funktionen, z.B. bereitgestellt durch Mikroservices oder externe Dienste, erreichbar sind.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 2,
@@ -533,16 +532,11 @@ $dimensions [gettext("Test and Verification")] = array(
             ),
             "usefulness" => 5,
             "level" => 1,
-            "securityProperties" => array(
-                "integrity" => gettext(""), //" Durch Prüfung und Einspielen von System-Aktualisierungen ist die Wahrscheinlichkeit, dass System-Komponenten die Integrität von Informationen beeinträchtigen verringert.",
-                "availability" => gettext(""), //" Durch Prüfung und Einspielen von System-Aktualisierungen ist die Wahrscheinlichkeit, dass System-Komponenten die Verfügbarkeit beeinträchtigen verringert.",
-                "confidentiality" => gettext(""), //" Durch Prüfung und Einspielen von System-Aktualisierungen ist die Wahrscheinlichkeit, dass System-Komponenten vertrauliche Informationen preisgeben verringert."
-            ),
-            "implementation" => "Anchore, Clair, OpenSCAP, Vuls"
+            "implementation" => array("Anchore", "Clair", "OpenSCAP", "<a href='https://github.com/future-architect/vuls'>Vuls</a>")
         ),
-        gettext("Test of the configuration of virtual envirnoments") => array(
-            "risk" => gettext(""), //" Virtuelle Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
-            "measure" => gettext(""), //" Mit Hilfe von Werkzeugen wird die Konfiguration von virtuellen Umgebungen geprüft.",
+        gettext("Test of the configuration of virtual environments") => array(
+            "risk" => gettext("Standard hardening practices for virtual environments are not performed leading to vulnerabilties."), //" Virtuelle Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
+            "measure" => gettext("With the help of tools the configuration of virtual environments are tested."), //" Mit Hilfe von Werkzeugen wird die Konfiguration von virtuellen Umgebungen geprüft.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 2,
@@ -555,12 +549,30 @@ $dimensions [gettext("Test and Verification")] = array(
                 "integrity" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
                 "confidentiality" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht."
             ),
-            "implementation" => "Docker Bench for Security, Docker Security Scan, openVAS",
+            "implementation" => array("<a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>", "Docker Security Scan", "openVAS"),
+            "samm" => "EH2-B"
+        ),
+        gettext("Test of the configuration of cloud environments") => array(
+            "risk" => gettext("Standard hardening practices for cloud environments are not performed leading to vulnerabilities."), //" Virtuelle Umgebungen birgen die Gefahr sicherheitskritisch Konfiguriert zu sein.",
+            "measure" => gettext("With the help of tools the configuration of virtual environments are tested."), //" Mit Hilfe von Werkzeugen wird die Konfiguration von virtuellen Umgebungen geprüft.",
+            "hardnessOfImplementation" => array(
+                "knowledge" => 2,
+                "time" => 2,
+                "resources" => 1
+            ),
+            "usefulness" => 4,
+            "level" => 2,
+            "securityProperties" => array(
+                "availability" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Verfügbarkeit von Informationen im gesamten Systems erhöht.",
+                "integrity" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Integrität von Informationen im gesamten Systems erhöht.",
+                "confidentiality" => gettext(""), //" Durch Erkennung und Behebung von Schwachstellen bevor diese in Produktion gehen ist die Vertraulichkeit von Informationen im gesamten Systems erhöht."
+            ),
+            "implementation" => "<a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes Bench for Security</a>",
             "samm" => "EH2-B"
         ),
         gettext("Advanced infrastructure tests") => array(
-            "risk" => gettext(""), //" Systeme wie Firewalls können nach einer Anpassung sicherheitskritisch konfiguriert sein.",
-            "measure" => gettext(""), //" Automatische Prüfung von Infrastruktur-Systemen wie Firewalls.",
+            "risk" => gettext("Critical infrastructure components like firewalls might be configured wrong in the first place or after a change."), //" Systeme wie Firewalls können nach einer Anpassung sicherheitskritisch konfiguriert sein.",
+            "measure" => gettext("Tests of the security of critical infrastructure components are performed."), //" Automatische Prüfung von Infrastruktur-Systemen wie Firewalls.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 2,
@@ -575,8 +587,8 @@ $dimensions [gettext("Test and Verification")] = array(
             )
         ),
         gettext("Load tests") => array(
-            "risk" => gettext(""), //" Es ist unbekannt wie viele Anfragen das System bedienen kann und wie sich das System bei vielen Anfragen verhält.",
-            "measure" => gettext(""), //" Last-Tests werden periodisch ausgeführt.",
+            "risk" => gettext("As it is unknown how many requests the systems and applications can serve, due to an unexpected load the availability is disturbed."), //" Es ist unbekannt wie viele Anfragen das System bedienen kann und wie sich das System bei vielen Anfragen verhält.",
+            "measure" => gettext("Load test against the production system or a production near system is performed."), //" Last-Tests werden periodisch ausgeführt.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 3,
                 "time" => 2,
@@ -589,8 +601,8 @@ $dimensions [gettext("Test and Verification")] = array(
             )
         ),
         gettext("Weak password test") => array(
-            "risk" => gettext(""), //" Mitarbeiterkonten und priviligierte Benutzerkonten sind mit schwachen Passwörtern geschützt.",
-            "measure" => gettext(""), //" Automatische BruteForce-Angriffe auf Benutzer-Konten von Mitarbeitern sowie Standard-Konten wie 'administrator'.",
+            "risk" => gettext("Weak passwords in components like applications or systems, specially for privileged accounts, lead to take over of that account."), //" Mitarbeiterkonten und priviligierte Benutzerkonten sind mit schwachen Passwörtern geschützt.",
+            "measure" => gettext("Automatic brute force attacks are performed. Specially the usage of standard accounts like 'admin' and employee user-ids is recommended."), //" Automatische BruteForce-Angriffe auf Benutzer-Konten von Mitarbeitern sowie Standard-Konten wie 'administrator'.",
             "hardnessOfImplementation" => array(
                 "knowledge" => 2,
                 "time" => 1,
@@ -607,6 +619,3 @@ $dimensions [gettext("Test and Verification")] = array(
         )
     )
 );
-
-
-// TODO Copy multiple scanner to static

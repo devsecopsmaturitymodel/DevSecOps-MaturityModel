@@ -120,7 +120,7 @@ function getTable($dimensions) {
 			$tableContent .= "</tr>";
 		}
 	}
-	$table = '<table class="table table-striped"><caption>' . gettext ( "Generic DevOps Security Maturity Model" ) . '</caption>';
+	$table = '<table class="table table-striped"><caption>' . gettext ( "DevSecOps Maturity Model" ) . '</caption>';
 	$table .= $tableContent;
 	$table .= "</table>";
 	return $table;

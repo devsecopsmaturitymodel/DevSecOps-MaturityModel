@@ -48,8 +48,8 @@ include_once "head.php";
             foreach (reset($all) as $level => $levelElements) {
                 echo "<th colspan='2'>Level $level</th>";
             }
+            exit;
             echo "</tr><tr><th>Dimension</th>";
-
 
             foreach (reset($all) as $level => $levelElements) {
                 echo "<th>Nutzen</th>";

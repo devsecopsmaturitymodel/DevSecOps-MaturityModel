@@ -3,10 +3,11 @@
 $nav = array(
     "index.php" => "Table",
     "spiderweb.php" => "Identification the degree of implementation",
-    "scutter.php" => "Usefullnes and Hardness of the Implementation",
+    "scutter.php" => "Usefulness and Hardness of the Implementation",
     "graph.php" => "Dependencies",
     "report.php" => "Full Report",
-    "usefulnessHardness.php" => "Heatmap"
+    "usefulnessHardness.php" => "Heatmap",
+    "information.php" => "Information"
 );
 
 echo "<ul class=\"nav nav-tabs\">";

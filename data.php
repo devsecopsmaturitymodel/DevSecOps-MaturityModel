@@ -1,11 +1,23 @@
+<a href="https://github.com/wurstbrot/generic-DevOps-Security-MaturityModel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <?php
 $dimensions = array();
 
 $files = scandir("data");
-foreach ($files as $file) {
-    if(strlen($file) > 2)
-        include_once "data/$file";
+
+function readYaml($file) {
+    return yaml_parse(
+        file_get_contents($file)
+    );
 }
+
+$dimensions = array(
+    "Culture and Org." => readYaml("data/CultureandOrg.yml"),
+    "Build and Deployment" => readYaml("data/BuildandDeployment.yml"),
+    "Information Gathering" => readYaml("data/Informationgathering.yml"),
+    "Infrastructure" => readYaml("data/Infrastructure.yml"),
+    "Test and Verification" => readYaml("data/TestandVerification.yml"),
+);
+
 ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);

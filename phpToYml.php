@@ -16,7 +16,7 @@ foreach ($dimensions as $dimensionName => $subDimension) {
         $dimensions[$dimensionName][$subDimensionName] = $newElements;
         foreach($newElements as $element) {
             if(array_key_exists("securityProperties", $element)){
-                unset($element[securityProperties]);// might work
+                unset($element['securityProperties']);// might work
             }
         }
     }
