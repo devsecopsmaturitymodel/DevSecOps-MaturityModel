@@ -1,4 +1,5 @@
 #!/bin/bash
-docker build -t gdsomm:latest .
-docker run -it --rm -p 80:80 -v "$PWD":/var/www/html --name gdsom gdsomm
+docker build -t dsomm:latest .
+docker rm -f dsomm || true
+docker run -it --rm -p 80:80 -v "$PWD":/var/www/html --name dsomm dsomm
 
