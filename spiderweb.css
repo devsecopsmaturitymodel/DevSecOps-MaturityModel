@@ -8,7 +8,7 @@
 }
 
 #energychart svg {
-    height: 600px;
+    height: 730px;
 }
 
 .spiderweb path {
@@ -30,7 +30,7 @@ table  a.selected{
 }
 
 .spiderweb svg text {
-    font: normal 14px Arial;
+    font: normal 19px Arial;
 }
 
 

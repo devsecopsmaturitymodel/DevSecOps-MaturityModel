@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ERROR);
+
 function readCSV($filename, $delimiter)
 {
     if (!file_exists($filename) || !is_readable($filename))

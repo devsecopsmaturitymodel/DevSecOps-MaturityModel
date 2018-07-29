@@ -1,11 +1,12 @@
 <?php
-$title = "Identifizierung des Implementierungs-Grades";
+$title = "Identification of the degree of the implementation";
 include_once "head.php";
 ?>
 <body>
 <?php
 include_once "data.php";
 include_once "navi.php";
+echo "<h1>$title</h1>"
 ?>
 <div class="spiderweb">
     <div class="chart" id="energychart"></div>

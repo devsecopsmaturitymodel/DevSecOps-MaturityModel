@@ -10,11 +10,11 @@ function readYaml($file) {
 }
 
 $dimensions = array(
-    "Culture and Org." => readYaml("data/CultureandOrg.yml"),
-    "Build and Deployment" => readYaml("data/BuildandDeployment.yml"),
-    "Information Gathering" => readYaml("data/Informationgathering.yml"),
+    "Culture and Org." => readYaml("data/CultureAndOrg.yml"),
+    "Build and Deployment" => readYaml("data/BuildAndDeployment.yml"),
+    "Information Gathering" => readYaml("data/InformationGathering.yml"),
     "Infrastructure" => readYaml("data/Infrastructure.yml"),
-    "Test and Verification" => readYaml("data/TestandVerification.yml"),
+    "Test and Verification" => readYaml("data/TestAndVerification.yml"),
 );
 
 ksort($dimensions);

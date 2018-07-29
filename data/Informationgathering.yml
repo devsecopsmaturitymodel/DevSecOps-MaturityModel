@@ -1,0 +1,266 @@
+---
+Monitoring:
+  Advanced availablity and stability metrics:
+    risk: Trends and advanced attacks are not detected.
+    measure: Advanced metrics are gathered in relation to availability and stability.
+      For example unplanned downtimes per year.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 2
+    usefulness: 4
+    level: 3
+    securityProperties:
+      availability: ""
+    dependsOn:
+    - Simple application metrics
+    - Visualized metrics
+  Advanced webapplication metrics:
+    risk: People are not looking into tests results. Vulnerabilities not recolonized,
+      even they are detected by tools.
+    measure: All defects from the dimension Test- and Verification are instrumented.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 2
+    usefulness: 4
+    level: 3
+    securityProperties:
+      integrity: ""
+      availability: ""
+      confidentiality: ""
+    dependsOn:
+    - Simple application metrics
+    - Visualized metrics
+  Alerting:
+    risk: Incidents are discovered after they happend.
+    measure: Thresholds for metrics are set. In case the thresholds are reached, alarms
+      are send out. Which should get attention due to the critically.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 5
+      resources: 5
+    usefulness: 5
+    level: 2
+    securityProperties:
+      availability: ""
+    dependsOn:
+    - Visualized metrics
+    samm: OE1-B
+  Coverage and control metrics:
+    risk: The effectiveness of configuration, patch and vulnerablity management is
+      unknown.
+    measure: "Usage of Coverage- and control-metrics to show the effectivness of the
+      security programm. Coverage is the degree in \n        which a specific security
+      control for a specifc target group is applied with all resoucres.\n        The
+      control degree shows the actual application of security standards and security-guidelines.
+      Examples are gathering information on anti-virus, anti-rootkits, patch management,
+      server configuration and vulnerability management."
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 5
+      resources: 2
+    usefulness: 4
+    level: 4
+    securityProperties:
+      integrity: ""
+      availability: ""
+      confidentiality: ""
+    dependsOn:
+    - Visualized metrics
+    implementation: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+  Deactivation of unused metrics:
+    risk: High resources are used while gathering unused metrics.
+    measure: Deactivation of unused metrics helps to free resources.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 5
+      resources: 5
+    usefulness: 5
+    level: 3
+    dependsOn:
+    - Visualized metrics
+  Defence metrics:
+    risk: IDS/IPS systems like packet- or application-firewalls detect and prevent
+      attacks. It is not known how many attacks has been detected and blocked.
+    measure: Gathering of defence metrics like TCP/UDP sources enables to assume the
+      geographic location of the requeist.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 5
+      resources: 2
+    usefulness: 4
+    level: 4
+    securityProperties:
+      integrity: ""
+      availability: ""
+      confidentiality: ""
+    dependsOn:
+    - Visualized metrics
+  Grouping of metrics:
+    risk: The analysis of metrics takes long.
+    measure: Meaningful grouping of metrics helps to speed up analysis.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 4
+      resources: 2
+    usefulness: 2
+    level: 3
+    securityProperties:
+      availability: ""
+  Metrics are combined with tests:
+    risk: Changes might cause high load due to programming errors.
+    measure: Metrics during tests helps to identify programming errors.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 3
+      resources: 2
+    usefulness: 5
+    level: 4
+    securityProperties:
+      availability: ""
+    dependsOn:
+    - Grouping of metrics
+  Screens with metric visualization:
+    risk: Security related information is discovered too late during an incident.
+    measure: By having an internal accessable screen with a security related dashboards
+      helps to visualize incidents.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 1
+      resources: 1
+    usefulness: 5
+    level: 4
+    dependsOn:
+    - Grouping of metrics
+    securityProperties:
+      availability: ""
+  Simple application metrics:
+    risk: Attacks on an application are not recognized.
+    measure: Gathering of application metrics helps to identify incidents like brute
+      force attacks.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 2
+    usefulness: 5
+    level: 1
+    securityProperties:
+      integrity: ""
+      availability: ""
+      confidentiality: ""
+    implementation: Prometheus
+  Simple system metrics:
+    risk: Without simple metrics analysis of incidents are hard. In case an application
+      uses a lot of CPU from time to time, it is hard for a developer to find out
+      the source with linux commands.
+    measure: Gathering of system metrics helps to identify incidents and specially
+      bottlenecks.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 2
+    usefulness: 5
+    level: 1
+    securityProperties:
+      integrity: ""
+      availability: ""
+      confidentiality: ""
+    implementation: collectd
+  Targeted alerting:
+    risk: People are bored (irodiert) of incident alarm messages, as they are not
+      responsbile to react.
+    measure: By the defintion of target groups for incidents people are only getting
+      alarms for incidents they are in charge for.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 5
+      resources: 5
+    usefulness: 5
+    level: 3
+    securityProperties:
+      availability: ""
+    dependsOn:
+    - Alerting
+    samm: OE1-B
+  Visualized metrics:
+    risk: Not vizualized metrics lead to restricted usage of metrics.
+    measure: Metrics are vizualized in real time in a user friendly way.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    dependsOn:
+    - Simple application metrics
+    - Simple system metrics
+Logging:
+  Centralized application logging:
+    risk: Local stored logs can be unauthorized manipulated by attackers with system
+      access or might be corrupt after an incident. In addition, it is hard to perform
+      an correlation of logs. This leads attacks, which can be performed silently.
+    measure: A centralized logging system is used and applications logs (including
+      application exceptions) are shipped to it.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 5
+    level: 3
+    dependsOn:
+    - Visualized logging
+    - Alerting
+    securityProperties:
+      availability: ""
+    samm: SA2-B
+  Centralized system logging:
+    risk: Local stored system logs can be unauthorized manipulated by attackers or
+      might be corrupt after an incident. In addition, it is hard to perform a aggregation
+      of logs.
+    measure: By using centralized logging logs are protected against unauthorized
+      modification.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 2
+    level: 1
+    securityProperties:
+      availability: ""
+      integrity: ""
+    implementation: rsyslog, Logstash
+  Correlation of security events:
+    risk: Detection of security related events with hints on different systems/tools/metrics
+      is not possible.
+    measure: Events are correlated on one system. For example the correlation and
+      visualisationof enhance login tries combined with successfull logins.
+    hardnessOfImplementation:
+      knowledge: 4
+      time: 4
+      resources: 4
+    usefulness: 3
+    level: 4
+    dependsOn:
+    - Visualized logging
+    - Alerting
+    securityProperties:
+      availability: ""
+      integrity: ""
+  Visualized logging:
+    risk: System and application protocols are not visualized properly which leads
+      to no or very limited logging assessment. Specally developers might have difficulty
+      to read applications logs with unusually tools like the Linux tool 'cat'
+    measure: Protocols are visualized in a simple to use real time monitoring system.
+      The GUI gives the ability to search for specal attributes in the protocol.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 3
+      resources: 3
+    usefulness: 4
+    level: 2
+    dependsOn:
+    - Centralized system logging
+    - Centralized application logging
+    implementation: ELK-Stack
+...

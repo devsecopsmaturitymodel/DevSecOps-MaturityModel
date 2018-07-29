@@ -1,12 +1,12 @@
 <?php
-$title = "Abhängigkeiten";
+$title = "Dependencies";
 include_once "head.php";
 ?>
     <body>
 <?php
 include_once "navi.php"
 ?>
-    <h1>Abhängigkeiten</h1>
+    <h1>Dependencies</h1>
     <h2>Navigation</h2>
 <?php
 include_once "data.php";

@@ -1,0 +1,584 @@
+---
+Dynamic depth:
+  Coverage analysis:
+    risk: Parts of the service are not still covered.
+    measure: Check that there are no missing paths in the application with coverage-tools.
+    hardnessOfImplementation:
+      knowledge: 4
+      time: 5
+      resources: 3
+    usefulness: 4
+    level: 4
+    implementation: OWASP Code Pulse
+  Coverage of client side dynamic components:
+    risk: Parts of the service are not covered during the scan, because JavaScript
+      is not getting executed. Therefore, the co
+    measure: Usage of a spider which executes dynamic content like JavaScript, e.g.
+      via Selenium.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 4
+    level: 2
+    dependsOn:
+    - Usage of different roles
+    samm: ST-2
+    implementation: Ajax Spider
+  Coverage of hidden endpoints:
+    risk: Hidden endpoints of the service are not getting tracked.
+    measure: Hidden endpoints are getting detected and included in the vulnerability
+      scan.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 1
+    usefulness: 5
+    level: 3
+    implementation: cURL, OpenAPI
+    dependsOn:
+    - Usage of different roles
+  Coverage of more input vectors:
+    risk: Parts of the service are not covered. For example specially formatted or
+      coded parameters are not getting detected as parameter (e.g. parameters in REST-like
+      URLs, parameters in JSON-Format or base64-coded parameters).
+    measure: Special parameter and special encodings are defined, so that they get
+      fuzzed by the used vulnerability scanners.
+    hardnessOfImplementation:
+      knowledge: 5
+      time: 5
+      resources: 1
+    usefulness: 4
+    level: 3
+    dependsOn:
+    - Usage of different roles
+  Coverage of sequential operations:
+    risk: Sequential operations like workflows (e.g. login -> put products in the
+      basked
+    measure: Sequential operations are defined and checked by the vulnerability scanner
+      in the defined order.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 5
+    level: 3
+    implementation: cURL
+    dependsOn:
+    - Usage of different roles
+  Coverage of service to service communication:
+    risk: Service to service communication is not covered.
+    measure: Service to service communication is dumped and checked.
+    hardnessOfImplementation:
+      knowledge: 4
+      time: 5
+      resources: 2
+    usefulness: 3
+    level: 4
+    dependsOn:
+    - Simple Scan
+  Simple Scan:
+    risk: Deficient security tests are performed. Simple vulnerabilities are not detected
+      and missing security configurations (e.g. headers) are not set. Fast feedback
+      is not given.
+    measure: A simple scan is performed to get a security baseline. In case the test
+      is done in under 10 minutes, it should be part of the build and deployment process.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 3
+      resources: 1
+    usefulness: 2
+    level: 1
+    dependsOn:
+    - Defined build process
+    samm: ST2
+    implementation:
+    - OWASP Zap
+    - Arachni
+  Usage of different roles:
+    risk: Parts of the service are not covered during the scan, because a login is
+      not performed.
+    measure: Integration of authentication with all roles used in the service.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 2
+    level: 2
+    dependsOn:
+    - Simple Scan
+  Usage of multiple scanners:
+    risk: Each vulnerability scanner has different opportunities. By using just one
+      scanner, some vulnerabilities might not be found.
+    measure: Usage of multiple spiders and scanner enhance the coverage and the vulnerabilities.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 5
+    usefulness: 1
+    level: 3
+    dependsOn:
+    - Usage of different roles
+    implementation: SecureCodeBox
+Static depth:
+  Exclusion of source code duplicates:
+    risk: Duplicates in source code might influence the stability of the application.
+    measure: Automatic Detection and manual removal of duplicates in source code.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 1
+    level: 4
+    implementation: PMD
+    dependsOn:
+    - Defined build process
+  Static analysis for all components/libraries:
+    risk: Used components like libraries and legacy applications might have vulnerabilities
+    measure: Usage of a static analysis for all used components.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 4
+    dependsOn:
+    - "Statische Analyse f\xFCr wichtige klientenseitige Bereiche"
+    - "Statische Analyse f\xFCr wichtige serverseitige Bereiche"
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+  Static analysis for all self written components:
+    risk: Parts in the source code of the frontend or middleware have vulnerabilities.
+    measure: Usage of static analysis tools for all parts of the middleware and frontend.
+      Static analysis uses for example string matching algorithms and/or dataflowanalysis.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 4
+    level: 4
+    implementation: eslint, FindSecurityBugs, jsprime
+    dependsOn:
+    - "Statische Analyse f\xFCr wichtige klientenseitige Bereiche"
+    - "Statische Analyse f\xFCr wichtige serverseitige Bereiche"
+  Static analysis for important client side components:
+    risk: Important parts in the source code of the frontend have vulnerabilities.
+    measure: Usage of static analysis tools for important parts of the frontend are
+      used. Static analysis uses for example string matching algorithms and/or dataflowanalysis.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 3
+    implementation:
+    - eslint
+    - FindSecurityBugs
+    - jsprime
+    - <a href='https://github.com/ing-bank/bdd-mobile-security-automation-framework'>bdd-mobile-security-automation-framework</a>
+    dependsOn:
+    - Defined build process
+  Static analysis for important server side components:
+    risk: Important parts in the source code of the middleware have vulnerabilities.
+    measure: Usage of static analysis tools for important parts of the middleware
+      are used. Static analysis uses for example string matching algorithms and/or
+      dataflowanalysis.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 4
+    level: 2
+    implementation: eslint, FindSecurityBugs, jsprime
+    dependsOn:
+    - Defined build process
+  Stylistic analysis:
+    risk: False source code indenting might lead to vulnerabilites.
+    measure: Analysis of compliance to style guides of the source code ensures that
+      source code indenting rules are met.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 1
+    level: 4
+    implementation: PMD
+  Test of client side components with known vulnerabilities:
+    risk: Client side components might have vulnerabilities.
+    measure: Tests for known vulnerabilities in components of the frontend are performed.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 2
+      resources: 1
+    usefulness: 2
+    level: 3
+    dependsOn:
+    - Defined build process
+    implementation: retirejs
+  Test of middleware components with known vulnerabilities:
+    risk: Components of the middleware might have vulnerabilities.
+    measure: Tests for known vulnerabilities in components of the middleware are performed.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 2
+      resources: 1
+    usefulness: 5
+    level: 1
+    dependsOn:
+    - Defined build process
+    implementation: OWASP Dependency Check
+    samm: SA
+  Usage of multiple scanners:
+    risk: Each vulnerability scanner has different opportunities. By using just one
+      scanner, some vulnerabilities might not be found.
+    measure: Usage of multiple static tools to find more vulnerabilities.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 5
+    usefulness: 1
+    level: 3
+    dependsOn:
+    - Usage of different roles
+Test-Intensity:
+  Creation and application of a testing concept:
+    risk: Scans might use a too small or too high test intensity.
+    measure: A testing concept considering the amount of time per scan/intensity is
+      created and applied. A dynamic analysis needs more time than a static analysis.
+      The dynamic scan, depending on the test intensity might be performed on every
+      commit, every night, every week or once in a month.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 3
+    usefulness: 2
+    level: 3
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+  Deactivating of unneeded tests:
+    risk: As tools cover a wide range of different vulnerability tests, they might
+      not match the used compoents. Therefore, they need more time and resources as
+      they need and the feedback loops takes too much time.
+    measure: Unneeded tests are deactivated. For example in case the service is using
+      a mongo database and no mysql database, the dynamic scan doesn't need to test
+      for sql injections.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 3
+      resources: 1
+    usefulness: 1
+    level: 2
+  Default settings for intensity:
+    risk: Time pressure and ignorance might lead to false predictions for the test
+      intensity.
+    measure: The intensitiy of the used tools are not modified to safe time.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 1
+    level: 1
+  High test intensity:
+    risk: A too small intensity or a too high confidence might lead to not visible
+      vulnerabilities.
+    measure: A deep scan with high test intensity and a low confidence threshold is
+      performed.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 5
+    usefulness: 3
+    level: 4
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+Consolidation:
+  Advanced visualization of defects:
+    risk: Correlation of the vulnerabilities of different tools to have an overview
+      of the the overall security level per component/project/team is not given.
+    measure: Findings are visualized per component/project/team.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 4
+      resources: 1
+    usefulness: 2
+    level: 4
+    implementation:
+    - OWASP Defect Dojo
+    - SecureCodeBox
+  Definition of quality gates:
+    risk: Improper examination of vulnerabilities leads to no visibility at all.
+    measure: Quality gates for found vulnerabilities are defined. In the start it
+      is important to not overload the security analyst, therefore the recommendation
+      is to start with alerting of high cirital vulnerabilities.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 4
+    level: 1
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+    samm: IR2-A
+  Integration of vulnerability issues into the development process:
+    risk: To read console output of the build server to search for vulnerabilities
+      might be difficult. Also, to check a vulnerability management system might not
+      be a daily task for a developer.
+    measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 2
+    level: 3
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+    implementation: "Bei SAST: Serverseitige/klientenseitige Teams k\xF6nnen einfach
+      erfasst werden. Bei Mikroservice-Architektur k\xF6nnen einzelne Mikroservices
+      i.d.R. Teams zugewiesen werden. Bei DAST: Schwachstellen sind klassifiziert
+      und k\xF6nnen serverseitigen und klientenseitigen Teams zugewiesen werden."
+  Reproducible defects tickets:
+    risk: Vulnerability descriptions are hard to understand by staff from operations
+      and development.
+    measure: Vulnerabilities include the test procedure to give the staff from operations
+      and development the ability to reproduce vulnerabilities. This enhances the
+      understanding of vulnerabilities and therefore the fix have a higher quality.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 2
+    level: 4
+    implementation: <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
+  Simple false positive treatment:
+    risk: As false positive occure during each test, all vulnerabilities might be
+      ignored.
+    measure: False positives are suppressed so they will not show up on the next tests
+      again.
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 4
+    level: 1
+    implementation: Most security tools have the possibility to suppress false positives.
+    samm: IR2-A
+  Simple visualization of defects:
+    risk: The security level of a component is not visible. Therefore, the motivation
+      to enhance the security is not give.
+    measure: Vulnerabilties are simple visualized.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 2
+    implementation:
+    - OWASP Dependency Check Jenkins Plugin
+    - LogParser Jenkins Plugins
+    - SecureCodeBox
+  Treatment of all defects:
+    risk: Vulnerabilities with criminality low are not visible.
+    measure: All vulnerabilities are added to the quality gate.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 1
+    usefulness: 2
+    level: 4
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+  Treatment of defects with criticality middle:
+    risk: Vulnerabilities with criticality middle are not visible.
+    measure: Vulnerabilities with criticality middle are added to the quality gate.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 3
+    comment: False positive analysis, specially for static analysis, is time consuming.
+  Usage of a vulnerability management system:
+    risk: Maintenance of false positives in each tool enforces a high workload. In
+      addition a correlation of the same finding from different tools is not possible.
+    measure: Aggregation of vulnerabilities in one tool reduce the workload to mark
+      false positives.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 2
+    usefulness: 2
+    level: 4
+    implementation:
+    - OWASP Defect Dojo
+    - SecureCodeBox
+Application tests:
+  High coverage of security related module and integration tests:
+    risk: Vulnerabilities are rising due to code changes in a complex microservice
+      environment in not important components.
+    measure: Implementation of security related tests via unit tests and integration
+      tests. Including the test of libraries, in case the are not tested already.
+    hardnessOfImplementation:
+      knowledge: 5
+      time: 5
+      resources: 3
+    usefulness: 3
+    level: 4
+    samm: ST2-B
+  Security integration tests for important components:
+    risk: Vulnerabilities are rising due to code changes in a complex microservice
+      environment.
+    measure: Implementation of essential security related integration tests. For example
+      for authentication and authorization.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 2
+    level: 2
+    implementation: HttpUnit
+    samm: ST2-B
+  Security unit tests for important components:
+    risk: Vulnerabilities are rising due to code changes.
+    measure: Usage of unit tests to test important security related features like
+      authentication and authorization.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 1
+    comment: "Die Integration von Modultests findet schon w\xE4hrend der Entwicklung
+      statt, es wird auf Schwachstellen in Sub-Routinen, Funktionen, Module, Bibliotheken
+      usw. gepr\xFCft."
+    implementation:
+    - JUnit
+    - <a href='https://karma-runner.github.io'>Karma</a>
+    samm: ST2-B
+  Smoke Test:
+    risk: During a deployment an error might happen which leads to non-availablity
+      of the system, a part of the system or a feature.
+    measure: Integration tests are performed against the production environment after
+      each deployment.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 2
+    usefulness: 2
+    level: 4
+    implementation: ""
+    dependsOn:
+    - Defined deployment process
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+    samm: ST2-B
+Infrastructure tests:
+  Advanced infrastructure tests:
+    risk: Critical infrastructure components like firewalls might be configured wrong
+      in the first place or after a change.
+    measure: Tests of the security of critical infrastructure components are performed.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 4
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+  Load tests:
+    risk: As it is unknown how many requests the systems and applications can serve,
+      due to an unexpected load the availability is disturbed.
+    measure: Load test against the production system or a production near system is
+      performed.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 5
+    usefulness: 3
+    level: 4
+    securityProperties:
+      availability: ""
+  Test of infrastructure components with known vulnerabilities:
+    risk: ""
+    measure: ""
+    hardnessOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 5
+    level: 1
+    implementation:
+    - Anchore
+    - Clair
+    - OpenSCAP
+    - <a href='https://github.com/future-architect/vuls'>Vuls</a>
+  Test of the configuration of cloud environments:
+    risk: Standard hardening practices for cloud environments are not performed leading
+      to vulnerabilities.
+    measure: With the help of tools the configuration of virtual environments are
+      tested.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 4
+    level: 2
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+    implementation: <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes
+      Bench for Security</a>
+    samm: EH2-B
+  Test of the configuration of virtual environments:
+    risk: Standard hardening practices for virtual environments are not performed
+      leading to vulnerabilties.
+    measure: With the help of tools the configuration of virtual environments are
+      tested.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 4
+    level: 2
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+    implementation:
+    - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
+    - Docker Security Scan
+    - openVAS
+    samm: EH2-B
+  Weak password test:
+    risk: Weak passwords in components like applications or systems, specially for
+      privileged accounts, lead to take over of that account.
+    measure: Automatic brute force attacks are performed. Specially the usage of standard
+      accounts like 'admin' and employee user-ids is recommended.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 1
+      resources: 1
+    usefulness: 1
+    level: 3
+    securityProperties:
+      availability: ""
+      integrity: ""
+      confidentiality: ""
+    implementation: HTC Hydra
+...

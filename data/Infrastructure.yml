@@ -1,0 +1,222 @@
+---
+Infrastructure:
+  Applications are running in virtualized environments:
+    risk: Through a vulnerability in one service on a server, the attacker gains access
+      to other services.
+    measure: Application are running in virtualized envirnoments
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 5
+    usefulness: 3
+    level: 2
+    securityProperties:
+    - availability
+  Checking the sources of used libraries:
+    risk: Application and system libraries can have implementation flaws or deployment
+      flaws.
+    measure: Each libraries source is checked to have a trusted source.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 3
+    level: 2
+    securityProperties:
+      integrity: ""
+      availability: ""
+      confidentiality: ""
+    samm: SA1-A
+  Controlled networks for virtual environments:
+    risk: Virtual environments in default settings are able to access other virtual
+      environments on the network stack. By using virtual machines, it is often possible
+      to connect to other virtual machines. By using docker, one bridge is used by
+      default so that all containers on one host can communicate with each other.
+    measure: The communication between virtual environments is regulated.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 3
+    usefulness: 5
+    level: 3
+    dependsOn: []
+    securityProperties:
+      availability: ""
+      confidentiality: ""
+    implementation: Separation of networks, e.g. bridges or firewalls)
+  Infrastructure as Code:
+    risk: No tracking of changes in systems might lead to errors in the configuration.
+      In additions, it might lead to unauthorized changes. An examples is jenkins.
+    measure: Systems are setup by code. A full enviorement can be provisioned. In
+      addition, software like Jenkins 2 can be setup and configured in in code too.
+      The code should be stored in a version control system.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 5
+      resources: 4
+    usefulness: 4
+    level: 3
+    implementation: Ansible, Chef, Puppet, Jenkinsfile
+    securityProperties:
+      integrity: ""
+      availability: ""
+  Limitation of system calls in virtual environments:
+    risk: System calls in virtual environments like docker can lead to privilege escalation.
+    measure: System calls in virtual environments like docker are audited and limited.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 3
+    usefulness: 5
+    level: 4
+    dependsOn:
+    - Anwendungen laufen in virtuellen Umgebungen
+    securityProperties:
+      integrity: ""
+      authorization: "Prozesse k\xF6nnen nur definierte System-Aufrufe benutzen."
+      confidentiality: ""
+    implementation: seccomp, strace
+  Microservice-Architecture:
+    risk: Monolithic applications are hard to test.
+    measure: A microservice-architecture helps to have small components, which are
+      easy to test.
+    hardnessOfImplementation:
+      knowledge: 4
+      time: 5
+      resources: 5
+    usefulness: 3
+    level: 4
+    securityProperties:
+      integrity: ""
+      availability: ""
+      confidentiality: ""
+    samm: SA2
+  Production near environments are used by developers:
+    risk: In case an errors occurs in production, the developer need to be able to
+      create a production near environment on a local development environment.
+    measure: Usage of infrastructure as code helps to create a production near environment.
+      The developer needs to be trained in order to setup a local develipment environment.
+      In addition, it should be possible to create production like test data. Often
+      peronal identifiable information is anonymised in order to comply with data
+      protection laws.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 3
+    usefulness: 4
+    level: 4
+    dependsOn:
+    - Defined deployment process
+    - Infrastructure as Code
+    securityProperties:
+      availability: ""
+    samm: SA1
+  Role based authentication and authorization:
+    risk: Everyone is able to get unauthorized access to information on systems or
+      to modify information unauthorized on systems.
+    measure: The usage of a (role based) access control helps to restrict system access
+      to authorized users.
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 3
+      resources: 1
+    usefulness: 3
+    level: 3
+    implementation: Verzeichnisdienst, Plugins
+    securityProperties:
+      confidentiality: ""
+      integrity: ""
+    dependsOn:
+    - Defined deployment process
+    - Defined build process
+  Simple access control for systems:
+    risk: Attackers a gaining access to interal systems and application interfaces
+    measure: All internal systems are using simple authentication
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 3
+    usefulness: 5
+    level: 1
+    dependsOn:
+    - Defined deployment process
+    securityProperties:
+      authentication: "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte
+        schutzwerte Informationen einsehen k\xF6nnen."
+      confidentiality: ""
+    implementation: HTTP-Basic Authentication, TLS, VPN
+    samm: EH1-B
+  Usage of a chaos monkey:
+    risk: Due to manuel changes on a system, they are not replaceable anymore. In
+      case of a crash it might happen that a planned redudant system is unavailable.
+      In addation, it is hard to replay manual changes.
+    measure: A randomized peridically shutdown of systems makes sure, that nobody
+      will perform manuall changes to a system.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 5
+      resources: 5
+    usefulness: 3
+    level: 4
+    securityProperties:
+      availability: ""
+  Usage of security by default for components:
+    risk: Components (images, libraries, applications) are not hardened.
+    measure: Hardening of components is important, specially for image on which other
+      teams base on. Hardening should be performed on the operation system and on
+      the services inside (e.g. Nginx or a Java-Application).
+    hardnessOfImplementation:
+      knowledge: 4
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 2
+    implementation: 'For applications: Check default encoding, managing secrets, crypto,
+      authentication'
+    dependsOn:
+    - Defined build process
+  Usage of test and production environments:
+    risk: Security tests are not running reculary because test environments are missing
+    measure: A production and a production like envirnoment is used
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 5
+    usefulness: 4
+    level: 1
+    dependsOn:
+    - Defined deployment process
+    securityProperties:
+      availability: ""
+      integrity: ""
+  Versioning:
+    risk: Changes to production systems can not be undone.
+    measure: Versioning of artifacts related to production environments. For example
+      Jenkins configuration, docker images, system provisioning code.
+    hardnessOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 3
+    usefulness: 5
+    level: 3
+    dependsOn:
+    - Defined deployment process
+    securityProperties:
+      integrity: ""
+      availability: ""
+  Virtual environments are limited:
+    risk: Denail of service (intenenally by an attacker or uninteninally by a bug)
+      on one service effects other services
+    measure: All virtual envirnoments are using resource limits on hard disks, memory
+      and CPU
+    hardnessOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 3
+    usefulness: 3
+    level: 3
+    dependsOn:
+    - Anwendungen laufen in virtuellen Umgebungen
+    securityProperties:
+      availability: ""
+...
