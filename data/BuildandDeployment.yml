@@ -1,10 +1,10 @@
 ---
 Build:
   Building and testing of artifacts in virtual environments:
-    risk: While building artifacts and testing artifacts, third party systems,applications,frameworks
-      and libaries are used. These might be malisouse because they include mailouse
-      libaries or because they are changed during the delivery.
-    measure: Each step during the build and testing is done in a separate virtual
+    risk: While building and testing artifacts, third party systems, application frameworks
+      and 3rd party libaries are used. These might be malicious because as a result of vulnerable
+      libaries or because they are altered during the delivery phase.
+    measure: Each step during the build and testing phase done in a separate virtual
       environments, which gets destroyed afterwards.
     hardnessOfImplementation:
       knowledge: 2
@@ -21,7 +21,7 @@ Build:
     risk: Conduction of builds without a defined process are highly prone to errors.
       For example wrong setting of security related configuration.
     measure: A defined build process lowers the possibility of errors during the build
-      a lot.
+      process.
     hardnessOfImplementation:
       knowledge: 2
       time: 3
@@ -31,7 +31,7 @@ Build:
     implementation: Jenkins, Docker
     securityProperties:
       availability: Due to a less error prone build the availability is increased.
-      integrity: The possibility of unintentionally data loss is decreased.
+      integrity: The possibility of unintended data loss is decreased.
   Regular tests:
     risk: A time cap between pushing source code to the version control system and
       feedback regarding defects makes it harder to correct the found defects. A developer
