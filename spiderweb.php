@@ -14,10 +14,10 @@ echo "<h1>$title</h1>"
     echo getTable($dimensions);
     ?>
 </div>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="js/circularHeatChart.js"></script>
 <script src="js/example.js"></script>
-<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script src="https://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script>
     loadDiagramm();
