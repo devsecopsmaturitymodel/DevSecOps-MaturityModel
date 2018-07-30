@@ -130,6 +130,6 @@ function getContentForLevelFromSubdimensions($level, $subdimension, $elementName
 		return "";
 	}
 	$tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $subdimension ) . "</div>";
-	return "<div data-toggle=\"popover\" data-title=\"$elementName\" data-content=\"$tooltip\" type=\"button\" >" . $elementName . "</div>";
+	return "<div data-toggle=\"popover\" data-title=\"$elementName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $elementName . "</div>";
 }
 
