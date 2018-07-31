@@ -22,7 +22,7 @@ include_once "head.php";
                 if (array_key_exists($subdimension, $all[$i])) {
                     $all[$subdimension][$i] = array();
                     $all[$subdimension][$i]['usefulness'] = array();
-                    $all[$subdimension][$i]['hardnessOfImplementation'] = array();
+                    $all[$subdimension][$i]['difficultyOfImplementation'] = array();
                 }
                 foreach ($element as $elementName => $elementImplementation) {
                     if ($elementImplementation['level'] != $i) continue;
@@ -30,10 +30,10 @@ include_once "head.php";
 
                     $knowledge = getKnowledge($elementImplementation);
 
-                    $all[$subdimension][$i]['hardnessOfImplementation'][] = $knowledge;
-                    $all[$subdimension][$i]['hardnessOfImplementation'][] = $elementImplementation['hardnessOfImplementation']["time"];
-                    $all[$subdimension][$i]['hardnessOfImplementation'][] = $elementImplementation['hardnessOfImplementation']["time"];
-                    $all[$subdimension][$i]['hardnessOfImplementation'][] = $elementImplementation['hardnessOfImplementation']["resources"];
+                    $all[$subdimension][$i]['difficultyOfImplementation'][] = $knowledge;
+                    $all[$subdimension][$i]['difficultyOfImplementation'][] = $elementImplementation['difficultyOfImplementation']["time"];
+                    $all[$subdimension][$i]['difficultyOfImplementation'][] = $elementImplementation['difficultyOfImplementation']["time"];
+                    $all[$subdimension][$i]['difficultyOfImplementation'][] = $elementImplementation['difficultyOfImplementation']["resources"];
                 }
 
             }
@@ -68,17 +68,17 @@ include_once "head.php";
                     }
                     $avg = $avg / count($elements['usefulness']);
 
-                    $stdImp = stats_standard_deviation($elements['hardnessOfImplementation']);
+                    $stdImp = stats_standard_deviation($elements['difficultyOfImplementation']);
 
                     $avgImp = 0;
-                    foreach ($elements['hardnessOfImplementation'] as $element) {
+                    foreach ($elements['difficultyOfImplementation'] as $element) {
                         $avgImp += $element;
                     }
 
-                    $avgImp = $avgImp / count($elements['hardnessOfImplementation']);
+                    $avgImp = $avgImp / count($elements['difficultyOfImplementation']);
 
 
-                    echo "<td style='background-color: " . getColor($avg, $colors) . "'>" . number_format((float)$avg, 2, '.', '') . "<br />&sigma;=" . number_format((float)$std, 2, '.', '') . "</td><td style='background-color: " . getColorForHardnessOfImplementation($avgImp, $colors) . "'>" . number_format((float)$avgImp, 2, '.', '') . "<br />&sigma;=" . number_format((float)$stdImp, 2, '.', '') . "</td>";
+                    echo "<td style='background-color: " . getColor($avg, $colors) . "'>" . number_format((float)$avg, 2, '.', '') . "<br />&sigma;=" . number_format((float)$std, 2, '.', '') . "</td><td style='background-color: " . getColorFordifficultyOfImplementation($avgImp, $colors) . "'>" . number_format((float)$avgImp, 2, '.', '') . "<br />&sigma;=" . number_format((float)$stdImp, 2, '.', '') . "</td>";
                 }
                 echo "</tr>";
             }
@@ -88,10 +88,10 @@ include_once "head.php";
             function getColor($val, $colors)
             {
 
-                return getColorForHardnessOfImplementation($val, array_reverse($colors));
+                return getColorFordifficultyOfImplementation($val, array_reverse($colors));
             }
 
-            function getColorForHardnessOfImplementation($val, $colors)
+            function getColorFordifficultyOfImplementation($val, $colors)
             {
                 if ($val < 1.49) {
                     return $colors[0];

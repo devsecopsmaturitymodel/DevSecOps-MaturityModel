@@ -103,11 +103,11 @@ function build_table_tooltip($array, $headerWeight = 2)
     $mapUsefulness = $mapTime;
 
     $html = "";
-    $html .= "<h" . $headerWeight . ">Risk and Opertunity</h$headerWeight>";
+    $html .= "<h" . $headerWeight . ">Risk and Opportunity</h$headerWeight>";
     $html .= "<div><b>" . gettext("Risk") . ":</b> " . $array['risk'] . "</div>";
-    $html .= "<div><b>" . gettext("Opertunity") . ":</b> " . $array['measure'] . "</div>";
+    $html .= "<div><b>" . gettext("Opportunity") . ":</b> " . $array['measure'] . "</div>";
     $html .= "<hr />";
-    $html .= "<h$headerWeight>Usefullness and Hardness of the implementation</h$headerWeight>";
+    $html .= "<h$headerWeight>Exploit details</h$headerWeight>";
     $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";
     $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['hardnessOfImplementation']['knowledge']-1]) . "</div>";
     $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['hardnessOfImplementation']['time']-1]) . "</div>";
