@@ -21,12 +21,12 @@
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
 
-<link href="https://nvd3.org/assets/css/common.css" rel="stylesheet">
-<link href="https://nvd3.org/assets/css/nv.d3.css" rel="stylesheet">
+<link href="assets/css/common.css" rel="stylesheet">
+<link href="assets/css/nv.d3.css" rel="stylesheet">
 
-<script src="https://nvd3.org/assets/js/lib/bootstrap.min.js"></script>
-<script src="https://nvd3.org/assets/lib/d3.v3.js"></script>
-<script src="https://nvd3.org/assets/js/nv.d3.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/d3.v3.js"></script>
+<script src="assets/js/nv.d3.js"></script>
 
 <link rel="stylesheet"
 	href="https://yandex.st/highlightjs/7.3/styles/default.min.css">
