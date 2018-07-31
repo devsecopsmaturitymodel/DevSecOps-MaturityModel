@@ -2,9 +2,9 @@
 <?php
 
 $nav = array(
-    "index.php" => "Table",
-    "spiderweb.php" => "Identification the degree of implementation",
-    "scutter.php" => "Usefulness and Hardness of the Implementation",
+    "index.php" => "Matrix",
+    "spiderweb.php" => "Implementation Levels",
+    "scutter.php" => "Ease and Value of Implementation",
     "graph.php" => "Dependencies",
     "report.php" => "Full Report",
     "usefulnessHardness.php" => "Heatmap",

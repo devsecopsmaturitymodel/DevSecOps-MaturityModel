@@ -97,8 +97,8 @@ function getKnowledge($elementImplementation)
 
 function build_table_tooltip($array, $headerWeight = 2)
 {
-    $mapKnowLedge = array("Very little (one discipline)", "little (one discipline)", "Medium (two disciplines)", "Much (two disciplines)", "Very much (three or more disciplines)");
-    $mapTime = array("Very little", "Little", "Medium", "Much", "Very much");
+    $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
+    $mapTime = array("Very Low", "Low", "Medium", "High", "Very High");
     $mapResources = $mapTime;
     $mapUsefulness = $mapTime;
 
