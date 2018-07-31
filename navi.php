@@ -7,7 +7,7 @@ $nav = array(
     "scutter.php" => "Ease and Value of Implementation",
     "graph.php" => "Dependencies",
     "report.php" => "Full Report",
-    "usefulnessHardness.php" => "Heatmap",
+    //"usefulnessHardness.php" => "Heatmap",
     "information.php" => "Information"
 );
 
