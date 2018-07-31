@@ -33,4 +33,5 @@ One of the biggest insurances in europe based his own maturity model on DSOMM. A
 <ul>
     <li>The dimension <i>Test and Verifiacation</i> is based on Christian Schneiders <a href="https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html"><i>Security DevOps Maturity Model (SDOMM)</i></a>. <i>Application tests</i> and <i>Infrastructure tests</i> are added by Timo Pagel. Also, the sub-dimension <i>Static depth</i> has been evaluated by security experts at <a href="https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg">OWASP Stammtisch Hamburg</a>.</li>
     <li>The sub-dimension <i>Process</i> has been added after a discussion with <a href="https://www.linkedin.com/in/francoisraynaud/">Francois Raynaud</a> at <a href="https://opensecsummit.org">OpenSecuritySummit 2018</a> that reactive activities are missing.</li>
+    <li>Enhancement of my basic translation is performed by <a href="https://github.com/clazba">Claud Camerino</a></li>
 </ul>
