@@ -27,7 +27,7 @@ foreach ($dimensions as $dimensionName => $subDimension) {
     }
 }
 
-function gethardnessOfImplementationWithDependencies($dimensions, $elementImplementation, &$allElements)
+function getdifficultyOfImplementationWithDependencies($dimensions, $elementImplementation, &$allElements)
 {
     if($elementImplementation == null) {
         return ;
@@ -35,27 +35,27 @@ function gethardnessOfImplementationWithDependencies($dimensions, $elementImplem
     $knowledge = getKnowledge($elementImplementation);
 
     $allElements[] = $knowledge;
-    $allElements[] = $elementImplementation['hardnessOfImplementation']["time"];
-    $allElements[] = $elementImplementation['hardnessOfImplementation']["time"];
-    $allElements[] = $elementImplementation['hardnessOfImplementation']["resources"];
+    $allElements[] = $elementImplementation['difficultyOfImplementation']["time"];
+    $allElements[] = $elementImplementation['difficultyOfImplementation']["time"];
+    $allElements[] = $elementImplementation['difficultyOfImplementation']["resources"];
 
     if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
             $dependencyElement = getElementByName($dimensions, $dependency);
-            gethardnessOfImplementationWithDependencies($dimensions, $dependencyElement, $allElements);
+            getdifficultyOfImplementationWithDependencies($dimensions, $dependencyElement, $allElements);
 
 
             $knowledge = getKnowledge($elementImplementation);
 
             $allElements[] = $knowledge;
-            $allElements[] = $elementImplementation['hardnessOfImplementation']["time"];
-            $allElements[] = $elementImplementation['hardnessOfImplementation']["time"];
-            $allElements[] = $elementImplementation['hardnessOfImplementation']["resources"];
+            $allElements[] = $elementImplementation['difficultyOfImplementation']["time"];
+            $allElements[] = $elementImplementation['difficultyOfImplementation']["time"];
+            $allElements[] = $elementImplementation['difficultyOfImplementation']["resources"];
         }
     }
 }
 
-function gethardnessOfImplementation($dimensions, $elementImplementation)
+function getdifficultyOfImplementation($dimensions, $elementImplementation)
 {
     if($elementImplementation == null) {
         return ;
@@ -63,13 +63,13 @@ function gethardnessOfImplementation($dimensions, $elementImplementation)
     $knowledge = getKnowledge($elementImplementation);
 
 
-    $value = $knowledge + $elementImplementation['hardnessOfImplementation']["time"] * 2 + $elementImplementation['hardnessOfImplementation']["resources"];
+    $value = $knowledge + $elementImplementation['difficultyOfImplementation']["time"] * 2 + $elementImplementation['difficultyOfImplementation']["resources"];
     $value = $value / 4;
 
     if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
             $dependencyElement = getElementByName($dimensions, $dependency);
-            $value += gethardnessOfImplementation($dimensions, $dependencyElement);
+            $value += getdifficultyOfImplementation($dimensions, $dependencyElement);
         }
     }
     if ($value > 5) {
@@ -81,7 +81,7 @@ function gethardnessOfImplementation($dimensions, $elementImplementation)
 
 function getKnowledge($elementImplementation)
 {
-    $knowledge = $elementImplementation['hardnessOfImplementation']["knowledge"];
+    $knowledge = $elementImplementation['difficultyOfImplementation']["knowledge"];
     if (is_array($knowledge)) {
         $sum = 0;
         // areas = operation, development, expertise, security
@@ -97,8 +97,8 @@ function getKnowledge($elementImplementation)
 
 function build_table_tooltip($array, $headerWeight = 2)
 {
-    $mapKnowLedge = array("Very little (one discipline)", "little (one discipline)", "Medium (two disciplines)", "Much (two disciplines)", "Very much (three or more disciplines)");
-    $mapTime = array("Very little", "Little", "Medium", "Much", "Very much");
+    $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
+    $mapTime = array("Very Low", "Low", "Medium", "High", "Very High");
     $mapResources = $mapTime;
     $mapUsefulness = $mapTime;
 
@@ -109,9 +109,9 @@ function build_table_tooltip($array, $headerWeight = 2)
     $html .= "<hr />";
     $html .= "<h$headerWeight>Exploit details</h$headerWeight>";
     $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";
-    $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['hardnessOfImplementation']['knowledge']-1]) . "</div>";
-    $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['hardnessOfImplementation']['time']-1]) . "</div>";
-    $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$array['hardnessOfImplementation']['resources']-1]) . "</div>";
+    $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['difficultyOfImplementation']['knowledge']-1]) . "</div>";
+    $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['difficultyOfImplementation']['time']-1]) . "</div>";
+    $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$array['difficultyOfImplementation']['resources']-1]) . "</div>";
     return $html;
 }
 

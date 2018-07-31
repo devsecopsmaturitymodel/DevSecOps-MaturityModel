@@ -1,24 +1,22 @@
 ---
 Culture and Org.:
   Aligning security in teams:
-    risk: Everyone in a project team should feel responsible for security. The concept
-      of Security Champions might suggest that only the security champion is repsonsible
-      for security.
-    measure: By aligning security professionals with project teams, a higher security
-      standard can be reached.
-    hardnessOfImplementation:
+    risk: The concept of Security Champions might suggest that only he/she is repsonsible
+      for security. However, everyone in the project team should be responsible for security.
+    measure: By aligning security SME with project teams, a higher security
+      standard can be achieved.
+    difficultyOfImplementation:
       knowledge: 4
       time: 5
       resources: 1
-    implementation: In meetings for software design, sprint planning, etc. security
-      professionals take part in order to give suggestions.
+    implementation: Security SME are involved in discussion for requirements analysis, software design and sprint planning to provide guidance and suggestions.
     usefulness: 5
     level: 4
     samm: EG2-B
   Conduction of advanced threat modelling:
-    risk: Inadequately identification of business and technical risks.
-    measure: Deep threat modelling, for example by using data flow diagramms, is performed.
-    hardnessOfImplementation:
+    risk: Inadequate identification of business and technical risks.
+    measure: Threat modelling is performed by using reviewing user stories and producing security driven data flow diagramms.
+    difficultyOfImplementation:
       knowledge: 4
       time: 3
       resources: 2
@@ -26,12 +24,12 @@ Culture and Org.:
     level: 4
     samm: TA2-B
   Conduction of collaborative security checks with develoeprs and system administrators:
-    risk: Security checks by external companies do not increase the understand of
+    risk: Security checks by external companies do not increase the understanding of
       an application/system for internal employees.
-    measure: Periodically security reviews of the source code, in which the security
-      experts and developers and system administrators are envolved, are increasing
-      the security and the security knowledge in teams.
-    hardnessOfImplementation:
+    measure: Periodically security reviews of source code (SCA), in which security
+      SME, developers and operatins are envolved, are effectve at increasing
+      the robusteness of software and the security knowledge of the teams involved.
+    difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 1
@@ -39,10 +37,10 @@ Culture and Org.:
     level: 3
     samm: IR1-B
   Conduction of collaborative team security checks:
-    risk: Teams are not having enough inside in security.
-    measure: Team testing the security of projects of other teams. This enhances the
+    risk: Developement teams hlimited insight over security practices.
+    measure: Mutual security testing the security of other teams's project enhances
       security awareness and knowledge.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       resources: 2
       knowledge: 4
       time: 4
@@ -52,9 +50,9 @@ Culture and Org.:
   Conduction of simple threat modelling on business level:
     risk: Business related threats are discovered too late in the development and
       deployment process.
-    measure: Threat modelling on business level is performed during the product backlog
-      creation
-    hardnessOfImplementation:
+    measure: Threat modelling of business functionality is performed during the product backlog
+      creation to facilitate early detection of security defects.
+    difficultyOfImplementation:
       knowledge: 2
       time: 3
       resources: 1
@@ -64,9 +62,9 @@ Culture and Org.:
   Conduction of simple threat modelling on technical level:
     risk: Technical related threats are discovered too late in the development and
       deployment process.
-    measure: Threat modelling on technical level is performed during the product sprint
-      planning
-    hardnessOfImplementation:
+    measure: Threat modelling of technical features is performed during the product sprint
+      planning.
+    difficultyOfImplementation:
       knowledge: 2
       time: 3
       resources: 1
@@ -74,22 +72,21 @@ Culture and Org.:
     level: 3
     samm: TA1-A
   Conduction of war games:
-    risk: To understand incident response plans during an incident is hard.
-    measure: War Games train incidents. A security professional creates attack scenarios
-      in a testing environment. The teams are going thorough the training and learn
-      how to react in case of an incident.
-    hardnessOfImplementation:
+    risk: Understanding incident response plans during an incident is hard and ineffective.
+    measure: War Games like activities help train for incidents. Security SMEs create attack scenarios
+      in a testing environment enabling the rainees to learn how to react in case of an incident.
+    difficultyOfImplementation:
       knowledge: 4
       time: 5
       resources: 5
     usefulness: 2
     level: 4
   Creation of advanced abuse stories:
-    risk: Simple user stories are not going deep enough. Relevant security conciderations
+    risk: Simple user stories are not going deep enough. Relevant security considerations
       are performed. Security flaws are discovered too late in the development and
       deployment process
-    measure: 'Advanced abuse stories are created with '
-    hardnessOfImplementation:
+    measure: Advanced abuse stories are created as part of threat modelling activities.
+    difficultyOfImplementation:
       knowledge: 4
       time: 2
       resources: 1
@@ -102,11 +99,10 @@ Culture and Org.:
       Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
       Security Stories and Security Tasks for Agile Development Environments</a>
   Creation of simple abuse stories:
-    risk: User stories mostly don't consider security considerations. Security flaws
+    risk: User stories mostly don't consider security implications. Security flaws
       are discovered too late in the development and deployment process.
-    measure: During the creation of user stories abuse stories are created for a user
-      story.
-    hardnessOfImplementation:
+    measure: Abuse stories are created during the creation of user stories.
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -117,11 +113,11 @@ Culture and Org.:
       Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
       Security Stories and Security Tasks for Agile Development Environments</a>
   Each team has a security champion:
-    risk: No one feels responsible for security and the 'security guy' has not enough
-      time for each team.
-    measure: Each team defines an individual to be responsible for security. Often
-      they are referred as 'security champions'
-    hardnessOfImplementation:
+    risk: No one feels directly responsible for security and the securiy champion does not have enough
+      time to allocate to each team.
+    measure: Each team defines an individual to be responsible for security. These individuals are often
+      referred to as 'security champions'
+    difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 1
@@ -129,12 +125,12 @@ Culture and Org.:
     level: 2
     samm: EG2-B
   Information security tragets are communicated:
-    risk: Employees don't known the security targets of the organication. Therefore
-      security is not as much considered during development and administration as
+    risk: Employees don't known their organication security targets. Therefore
+      security is not considered during development and administration as much as
       it should be.
-    measure: With transparent communication of the security targets through the top
-      management security is enforced in teams.
-    hardnessOfImplementation:
+    measure: Transparent and timely communication of the security targets by senior
+      management is essential to ensure teams' buy-in and support.
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -143,9 +139,8 @@ Culture and Org.:
     samm: SM1-B
   Reward of good communication:
     risk: Employees are not getting excited about security.
-    measure: Rewarding good communication helps to encourage people in the area of
-      security. Examples are T-Shirts, giftcards and 'High-Fives' on the floor.
-    hardnessOfImplementation:
+    measure: Good communication and transparency encourages cross-organisational support. Gamification of security is also known to help, examples include T-Shirts, giftcards and 'High-Fives'.
+    difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 1
@@ -155,10 +150,10 @@ Culture and Org.:
       href='https://www.owasp.org/index.php/OWASP_Security_Buttons_Project'>OWASP
       Security Buttons Project</a>
   Security-Lessoned-Learned:
-    risk: After an incident, a simular incident might happen in the future.
-    measure: A lessons learned after an incident helps in continuous improvement.
-      Meetings with Security Champions are a good place for lessons learned.
-    hardnessOfImplementation:
+    risk: After an incident, a simular incident might reoccur.
+    measure: Running a 'lessons learned' ession after an incident helps drive continuous improvement.
+      Regular meetings with security shampions are a good place to share and discuss lessons learned.
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 1
@@ -169,9 +164,9 @@ Culture and Org.:
 Process:
 #  Data classification:
   Definition of simple BCDR practices for citical components:
-    risk: In case of an emergency, like a power outage, the actions to perform are not clear. This leads to a high time to repair.
-    measure: By understanding and documenting a business continuity and disaster recovery (BCDR), the overall availabilitiy of systems and applications is increased. Success factors like responsibilties, Service Level Agreemenmts, Recovery Point Objectives, Recovery Time Objectives or Failover needs to be understood.
-    hardnessOfImplementation:
+    risk: In case of an emergency, like a power outage, DR actions to perform are not clear. This leads to reaction and remediation delays.
+    measure: By understanding and documenting a business continuity and disaster recovery (BCDR) plan, the overall availabilitiy of systems and applications is increased. Success factors like responsibilties, Service Level Agreemenmts, Recovery Point Objectives, Recovery Time Objectives or Failover must be fully documentate and understood.
+    difficultyOfImplementation:
       knowledge: 4
       time: 3
       resources: 2
@@ -179,9 +174,9 @@ Process:
     level: 1
 
   Definition of a change mangement process:
-    risk: The impact of a change is not controlled. Specially because they are not recorded.
-    measure: Each change of a system is automatically recorded.
-    hardnessOfImplementation:
+    risk: The impact of a change is not controlled because these are not recorded or documented.
+    measure: Each change of a system is automatically recorded and adequately logged.
+    difficultyOfImplementation:
       knowledge: 4
       time: 3
       resources: 1
@@ -189,13 +184,11 @@ Process:
     level: 3
 
   Approval by reviewing any new version:
-    risk: An individual might forget to add security measures to source code or infrastructure
+    risk: An individual might forget to implement security measures to protect source code or infrastructure
       components.
     measure: On each new version (e.g. Pull Request) of source code or infrastructure
-      components a review of the changes are performed by at least one additional
-      person (two eyes principal). The focus of the review a security. After review,
-      approval is given by the reviewer.
-    hardnessOfImplementation:
+      components a security peer review of the changes is performed (two eyes principle) and approval given by the reviewer.
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -206,15 +199,15 @@ Process:
 #  Used licenses of components are known:
 
   Prevention of unauthorized installation:
-    risk: Unaproved components are used.
-    measure: "Components needs to be whitelisted. Regular scans on the docker infrastructure (e.g. cluster) need to be performed, to verify that only standardized base images are used."
-    hardnessOfImplementation:
+    risk: Unapproved components are used.
+    measure: "Components must be whitelisted. Regular scans on the docker infrastructure (e.g. cluster) need to be performed, to verify that only standardized base images are used."
+    difficultyOfImplementation:
       knowledge: 2
       time: 1
       resources: 1
     usefulness: 3
     level: 3
     implementation: "Example: All docker images used by teams need to be based on standard images."
-    comment: "By preventing teams from trying out new components, innovation might be slowed down."
+    comment: "By preventing teams from trying out new components, innovation might be hampered"
 
 ...
