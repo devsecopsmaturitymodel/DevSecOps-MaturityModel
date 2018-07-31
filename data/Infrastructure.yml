@@ -10,8 +10,6 @@ Infrastructure:
       resources: 5
     usefulness: 3
     level: 2
-    securityProperties:
-    - availability
   Checking the sources of used libraries:
     risk: Application and system libraries can have implementation flaws or deployment
       flaws.
@@ -22,10 +20,6 @@ Infrastructure:
       resources: 1
     usefulness: 3
     level: 2
-    securityProperties:
-      integrity: ""
-      availability: ""
-      confidentiality: ""
     samm: SA1-A
   Controlled networks for virtual environments:
     risk: Virtual environments in default settings are able to access other virtual
@@ -40,9 +34,6 @@ Infrastructure:
     usefulness: 5
     level: 3
     dependsOn: []
-    securityProperties:
-      availability: ""
-      confidentiality: ""
     implementation: Separation of networks, e.g. bridges or firewalls)
   Infrastructure as Code:
     risk: No tracking of changes in systems might lead to errors in the configuration.
@@ -57,9 +48,6 @@ Infrastructure:
     usefulness: 4
     level: 3
     implementation: Ansible, Chef, Puppet, Jenkinsfile
-    securityProperties:
-      integrity: ""
-      availability: ""
   Limitation of system calls in virtual environments:
     risk: System calls in virtual environments like docker can lead to privilege escalation.
     measure: System calls in virtual environments like docker are audited and limited.
@@ -70,11 +58,7 @@ Infrastructure:
     usefulness: 5
     level: 4
     dependsOn:
-    - Anwendungen laufen in virtuellen Umgebungen
-    securityProperties:
-      integrity: ""
-      authorization: "Prozesse k\xF6nnen nur definierte System-Aufrufe benutzen."
-      confidentiality: ""
+    - Applications are running in virtualized environments
     implementation: seccomp, strace
   Microservice-Architecture:
     risk: Monolithic applications are hard to test.
@@ -86,10 +70,6 @@ Infrastructure:
       resources: 5
     usefulness: 3
     level: 4
-    securityProperties:
-      integrity: ""
-      availability: ""
-      confidentiality: ""
     samm: SA2
   Production near environments are used by developers:
     risk: In case an errors occurs in production, the developer need to be able to
@@ -108,8 +88,6 @@ Infrastructure:
     dependsOn:
     - Defined deployment process
     - Infrastructure as Code
-    securityProperties:
-      availability: ""
     samm: SA1
   Role based authentication and authorization:
     risk: Everyone is able to get unauthorized access to information on systems or
@@ -123,9 +101,6 @@ Infrastructure:
     usefulness: 3
     level: 3
     implementation: Verzeichnisdienst, Plugins
-    securityProperties:
-      confidentiality: ""
-      integrity: ""
     dependsOn:
     - Defined deployment process
     - Defined build process
@@ -140,10 +115,6 @@ Infrastructure:
     level: 1
     dependsOn:
     - Defined deployment process
-    securityProperties:
-      authentication: "Durch Zugriffsschutz ist sichergestellt, dass nur Autorisierte
-        schutzwerte Informationen einsehen k\xF6nnen."
-      confidentiality: ""
     implementation: HTTP-Basic Authentication, TLS, VPN
     samm: EH1-B
   Usage of a chaos monkey:
@@ -158,8 +129,6 @@ Infrastructure:
       resources: 5
     usefulness: 3
     level: 4
-    securityProperties:
-      availability: ""
   Usage of security by default for components:
     risk: Components (images, libraries, applications) are not hardened.
     measure: Hardening of components is important, specially for image on which other
@@ -186,9 +155,6 @@ Infrastructure:
     level: 1
     dependsOn:
     - Defined deployment process
-    securityProperties:
-      availability: ""
-      integrity: ""
   Versioning:
     risk: Changes to production systems can not be undone.
     measure: Versioning of artifacts related to production environments. For example
@@ -201,9 +167,6 @@ Infrastructure:
     level: 3
     dependsOn:
     - Defined deployment process
-    securityProperties:
-      integrity: ""
-      availability: ""
   Virtual environments are limited:
     risk: Denail of service (intenenally by an attacker or uninteninally by a bug)
       on one service effects other services
@@ -216,7 +179,5 @@ Infrastructure:
     usefulness: 3
     level: 3
     dependsOn:
-    - Anwendungen laufen in virtuellen Umgebungen
-    securityProperties:
-      availability: ""
+    - Applications are running in virtualized environments
 ...

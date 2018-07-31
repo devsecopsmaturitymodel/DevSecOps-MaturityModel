@@ -15,9 +15,6 @@ Build:
     implementation: Docker
     dependsOn:
     - Defined build process
-    securityProperties:
-      integrity: ""
-  Defined build process:
     risk: Performing builds without a defined process* is error prone.
       For example, as a result of incorect security related configuration.
     measure: A well defined build process lowers the possibility of errors during the build
@@ -29,10 +26,7 @@ Build:
     usefulness: 4
     level: 1
     implementation: Jenkins, Docker
-    securityProperties:
-      availability:  Build availability is increased as a result of a more robust build process.
-      integrity: The likelihood of unintended data loss is decreased.
-  Regular tests:
+   Regular tests:
     risk: After pushing source code to the version control system, any elay in receiving feedback on defects makes them harder for the developer to remediate. 
     measure: On each push and/or at given intervals automatic security tests are performed.
     difficultyOfImplementation:
@@ -44,8 +38,6 @@ Build:
     implementation: ""
     dependsOn:
     - Defined build process
-    securityProperties:
-      integrity: Prompt feedback means security defects can be addressed fast, resulting in more secure software deployed to production.
   Signing of artefacts:
     risk: Unauthorized manipulation of artefacts might be difficult to spot. For example, this may result in
       images with malicious code in the Docker registry.
@@ -59,8 +51,6 @@ Build:
     implementation: ""
     dependsOn:
     - Defined build process
-    securityProperties:
-      integrity: The integrity of artefacts is ensured through signing.
     samm: OA3-B
 Deployment:
   Backup before deployment:
@@ -77,10 +67,6 @@ Deployment:
       environments, a Point in Time Recovery for databases should be implemented.
     dependsOn:
     - Defined deployment process
-    securityProperties:
-      availability: Availability* is increased thanks to a fast restore processes.
-      integrity: A backup can be compared with the actual data to identify unintended
-        changes after an incident.
     samm: OE2-A
   Blue/Green Deployment:
     risk: A new artefact version can have unknown defects.
@@ -96,8 +82,6 @@ Deployment:
       Deployments</a>
     dependsOn:
     - Smoke Test
-    securityProperties:
-      availability: Less downtime caused by defects.
   Defined deployment process:
     risk: Deployments without a defined process are error prone thus allowing old or untested artefact to be deployed.
     measure: A defined deployment process significantly lowers the likelihood of errors during the deployment phase.
@@ -108,10 +92,6 @@ Deployment:
     usefulness: 4
     level: 1
     implementation: Jenkins, Docker
-    securityProperties:
-      availability: Due to a less error prone deployment the availability* is increased.
-      integrity: The likelihood of unintended data loss during deployment is
-        decreased.
   Environment depending configuration parameters:
     risk: Attackers who compromise source code can see confidential access information
       like database credentials.
@@ -124,10 +104,6 @@ Deployment:
     usefulness: 4
     level: 2
     implementation: ""
-    securityProperties:
-      confidentiality: Only authorized staff should be allowed access to secrets
-        and therefore, confidential information.
-      integrity: Only authorized staff should be allowed access to confidential information, unauthorized access should be monitored and prevented.
     samm: SA2-A
   Handover of confidential parameters:
     risk: Attackers who compromise a system can see confidential access information
@@ -146,10 +122,6 @@ Deployment:
     implementation: ""
     dependsOn:
     - Environment depending configuration parameters
-    securityProperties:
-      confidentiality: Only authorized staff should get access to confidential credentials
-        and therefore, to confidential information.
-      integrity: Only authorized staff should be allowed access to confidential information, unauthorized access should be monitored and prevented.    
       samm: SA2-A
   Rolling update on deployment:
     risk: While a deployment is performed, the application can not be reached.
@@ -163,8 +135,6 @@ Deployment:
     implementation: Docker, Webserver, rolling update
     dependsOn:
     - Defined deployment process
-    securityProperties:
-      availability: No downtime during deployment
   Same artefact for environments:
     risk: Building of an artefact for different environments means that an untested
       artefact might reach the production environment.
@@ -177,12 +147,6 @@ Deployment:
     usefulness: 4
     level: 3
     implementation: Docker
-    securityProperties:
-      integrity: Only security tested artefacts can reach the production
-        environment. The likelihood of security defects affecting the
-        integrity* is lowered.
-      availability: Only security tested artefacts can reach the production environment.
-        The likelihood of defects affecting avilailbity* is lowered.
     dependsOn:
     - Defined build process
     samm:
@@ -200,9 +164,6 @@ Deployment:
     usefulness: 2
     level: 3
     implementation: Docker
-    securityProperties:
-      availability: By repeating the same actions in different enviroments the likelihood
-        of unpredictable behaviour is reduced.
     dependsOn:
     - Same artefact for environments
     samm: EG1-B

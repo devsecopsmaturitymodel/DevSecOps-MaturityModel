@@ -10,8 +10,6 @@ Monitoring:
       resources: 2
     usefulness: 4
     level: 3
-    securityProperties:
-      availability: ""
     dependsOn:
     - Simple application metrics
     - Visualized metrics
@@ -25,10 +23,6 @@ Monitoring:
       resources: 2
     usefulness: 4
     level: 3
-    securityProperties:
-      integrity: ""
-      availability: ""
-      confidentiality: ""
     dependsOn:
     - Simple application metrics
     - Visualized metrics
@@ -42,8 +36,6 @@ Monitoring:
       resources: 5
     usefulness: 5
     level: 2
-    securityProperties:
-      availability: ""
     dependsOn:
     - Visualized metrics
     samm: OE1-B
@@ -62,10 +54,6 @@ Monitoring:
       resources: 2
     usefulness: 4
     level: 4
-    securityProperties:
-      integrity: ""
-      availability: ""
-      confidentiality: ""
     dependsOn:
     - Visualized metrics
     implementation: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
@@ -91,10 +79,6 @@ Monitoring:
       resources: 2
     usefulness: 4
     level: 4
-    securityProperties:
-      integrity: ""
-      availability: ""
-      confidentiality: ""
     dependsOn:
     - Visualized metrics
   Grouping of metrics:
@@ -106,8 +90,6 @@ Monitoring:
       resources: 2
     usefulness: 2
     level: 3
-    securityProperties:
-      availability: ""
   Metrics are combined with tests:
     risk: Changes might cause high load due to programming errors.
     measure: Metrics during tests helps to identify programming errors.
@@ -117,8 +99,6 @@ Monitoring:
       resources: 2
     usefulness: 5
     level: 4
-    securityProperties:
-      availability: ""
     dependsOn:
     - Grouping of metrics
   Screens with metric visualization:
@@ -133,8 +113,6 @@ Monitoring:
     level: 4
     dependsOn:
     - Grouping of metrics
-    securityProperties:
-      availability: ""
   Simple application metrics:
     risk: Attacks on an application are not recognized.
     measure: Gathering of application metrics helps to identify incidents like brute
@@ -145,10 +123,6 @@ Monitoring:
       resources: 2
     usefulness: 5
     level: 1
-    securityProperties:
-      integrity: ""
-      availability: ""
-      confidentiality: ""
     implementation: Prometheus
   Simple system metrics:
     risk: Without simple metrics analysis of incidents are hard. In case an application
@@ -162,10 +136,6 @@ Monitoring:
       resources: 2
     usefulness: 5
     level: 1
-    securityProperties:
-      integrity: ""
-      availability: ""
-      confidentiality: ""
     implementation: collectd
   Targeted alerting:
     risk: People are bored (irodiert) of incident alarm messages, as they are not
@@ -178,8 +148,6 @@ Monitoring:
       resources: 5
     usefulness: 5
     level: 3
-    securityProperties:
-      availability: ""
     dependsOn:
     - Alerting
     samm: OE1-B
@@ -211,8 +179,6 @@ Logging:
     dependsOn:
     - Visualized logging
     - Alerting
-    securityProperties:
-      availability: ""
     samm: SA2-B
   Centralized system logging:
     risk: Local stored system logs can be unauthorized manipulated by attackers or
@@ -226,9 +192,6 @@ Logging:
       resources: 1
     usefulness: 2
     level: 1
-    securityProperties:
-      availability: ""
-      integrity: ""
     implementation: rsyslog, Logstash
   Correlation of security events:
     risk: Detection of security related events with hints on different systems/tools/metrics
@@ -244,9 +207,6 @@ Logging:
     dependsOn:
     - Visualized logging
     - Alerting
-    securityProperties:
-      availability: ""
-      integrity: ""
   Visualized logging:
     risk: System and application protocols are not visualized properly which leads
       to no or very limited logging assessment. Specally developers might have difficulty

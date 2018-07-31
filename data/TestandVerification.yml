@@ -145,10 +145,6 @@ Static depth:
     dependsOn:
     - "Statische Analyse f\xFCr wichtige klientenseitige Bereiche"
     - "Statische Analyse f\xFCr wichtige serverseitige Bereiche"
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
   Static analysis for all self written components:
     risk: Parts in the source code of the frontend or middleware have vulnerabilities.
     measure: Usage of static analysis tools for all parts of the middleware and frontend.
@@ -255,10 +251,6 @@ Test-Intensity:
       resources: 3
     usefulness: 2
     level: 3
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
   Deactivating of unneeded tests:
     risk: As tools cover a wide range of different vulnerability tests, they might
       not match the used compoents. Therefore, they need more time and resources as
@@ -293,10 +285,6 @@ Test-Intensity:
       resources: 5
     usefulness: 3
     level: 4
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
 Consolidation:
   Advanced visualization of defects:
     risk: Correlation of the vulnerabilities of different tools to have an overview
@@ -322,10 +310,6 @@ Consolidation:
       resources: 1
     usefulness: 4
     level: 1
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
     samm: IR2-A
   Integration of vulnerability issues into the development process:
     risk: To read console output of the build server to search for vulnerabilities
@@ -338,10 +322,6 @@ Consolidation:
       resources: 1
     usefulness: 2
     level: 3
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
     implementation: "Bei SAST: Serverseitige/klientenseitige Teams k\xF6nnen einfach
       erfasst werden. Bei Mikroservice-Architektur k\xF6nnen einzelne Mikroservices
       i.d.R. Teams zugewiesen werden. Bei DAST: Schwachstellen sind klassifiziert
@@ -395,10 +375,6 @@ Consolidation:
       resources: 1
     usefulness: 2
     level: 4
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
   Treatment of defects with criticality middle:
     risk: Vulnerabilities with criticality middle are not visible.
     measure: Vulnerabilities with criticality middle are added to the quality gate.
@@ -480,10 +456,6 @@ Application tests:
     implementation: ""
     dependsOn:
     - Defined deployment process
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
     samm: ST2-B
 Infrastructure tests:
   Advanced infrastructure tests:
@@ -496,10 +468,6 @@ Infrastructure tests:
       resources: 1
     usefulness: 3
     level: 4
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
   Load tests:
     risk: As it is unknown how many requests the systems and applications can serve,
       due to an unexpected load the availability is disturbed.
@@ -511,8 +479,6 @@ Infrastructure tests:
       resources: 5
     usefulness: 3
     level: 4
-    securityProperties:
-      availability: ""
   Test of infrastructure components with known vulnerabilities:
     risk: ""
     measure: ""
@@ -538,10 +504,6 @@ Infrastructure tests:
       resources: 1
     usefulness: 4
     level: 2
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
     implementation: <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes
       Bench for Security</a>
     samm: EH2-B
@@ -556,10 +518,6 @@ Infrastructure tests:
       resources: 1
     usefulness: 4
     level: 2
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
     implementation:
     - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
     - Docker Security Scan
@@ -576,9 +534,5 @@ Infrastructure tests:
       resources: 1
     usefulness: 1
     level: 3
-    securityProperties:
-      availability: ""
-      integrity: ""
-      confidentiality: ""
     implementation: HTC Hydra
 ...
