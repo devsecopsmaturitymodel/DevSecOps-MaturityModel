@@ -97,17 +97,17 @@ function getKnowledge($elementImplementation)
 
 function build_table_tooltip($array, $headerWeight = 2)
 {
-    $mapKnowLedge = array("Very little (one discipline)", "little (one discipline)", "Medium (two disciplines)", "Much (two disciplines)", "Very much (three or more disciplines)");
-    $mapTime = array("Very little", "Little", "Medium", "Much", "Very much");
+    $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
+    $mapTime = array("Very Low", "Low", "Medium", "High", "Very High");
     $mapResources = $mapTime;
     $mapUsefulness = $mapTime;
 
     $html = "";
-    $html .= "<h" . $headerWeight . ">Risk and Opertunity</h$headerWeight>";
+    $html .= "<h" . $headerWeight . ">Risk and Opportunity</h$headerWeight>";
     $html .= "<div><b>" . gettext("Risk") . ":</b> " . $array['risk'] . "</div>";
-    $html .= "<div><b>" . gettext("Opertunity") . ":</b> " . $array['measure'] . "</div>";
+    $html .= "<div><b>" . gettext("Opportunity") . ":</b> " . $array['measure'] . "</div>";
     $html .= "<hr />";
-    $html .= "<h$headerWeight>Usefullness and Hardness of the implementation</h$headerWeight>";
+    $html .= "<h$headerWeight>Exploit details</h$headerWeight>";
     $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";
     $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['hardnessOfImplementation']['knowledge']-1]) . "</div>";
     $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['hardnessOfImplementation']['time']-1]) . "</div>";

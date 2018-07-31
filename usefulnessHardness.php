@@ -78,7 +78,7 @@ include_once "head.php";
                     $avgImp = $avgImp / count($elements['hardnessOfImplementation']);
 
 
-                    echo "<td style='background-color: " . getColor($avg, $colors) . "'>" . number_format((float)$avg, 2, '.', '') . "<br />&sigma;=" . number_format((float)$std, 2, '.', '') . "</td><td style='background-color: " . getColorForHardnessOfImplementation($avgImp, $colors) . "'>" . number_format((float)$avgImp, 2, '.', '') . "<br />&sigma;=" . number_format((float)$stdImp, 2, '.', '') . "</td>";
+                    echo "<td style='background-color: " . getColor($avg, $colors) . "'>" . number_format((float)$avg, 2, '.', '') . "<br />&sigma;=" . number_format((float)$std, 2, '.', '') . "</td><td style='background-color: " . getColorForhardnessOfImplementation($avgImp, $colors) . "'>" . number_format((float)$avgImp, 2, '.', '') . "<br />&sigma;=" . number_format((float)$stdImp, 2, '.', '') . "</td>";
                 }
                 echo "</tr>";
             }
@@ -88,10 +88,10 @@ include_once "head.php";
             function getColor($val, $colors)
             {
 
-                return getColorForHardnessOfImplementation($val, array_reverse($colors));
+                return getColorForhardnessOfImplementation($val, array_reverse($colors));
             }
 
-            function getColorForHardnessOfImplementation($val, $colors)
+            function getColorForhardnessOfImplementation($val, $colors)
             {
                 if ($val < 1.49) {
                     return $colors[0];

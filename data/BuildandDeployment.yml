@@ -1,12 +1,12 @@
 ---
 Build:
-  Building and testing of artifacts in virtual environments:
-    risk: While building artifacts and testing artifacts, third party systems,applications,frameworks
-      and libaries are used. These might be malisouse because they include mailouse
-      libaries or because they are changed during the delivery.
-    measure: Each step during the build and testing is done in a separate virtual
-      environments, which gets destroyed afterwards.
-    hardnessOfImplementation:
+  Building and testing of artefacts in virtual environments:
+    risk: While building and testing artefacts, third party systems, application frameworks
+      and 3rd party libaries are used. These might be malicious as a result of vulnerable
+      libaries or because they are altered during the delivery phase.
+    measure: Each step during within the build and testing phase is performed in a separate virtual
+      environments, which is destroyed afterward.
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
@@ -18,11 +18,11 @@ Build:
     securityProperties:
       integrity: ""
   Defined build process:
-    risk: Conduction of builds without a defined process are highly prone to errors.
-      For example wrong setting of security related configuration.
-    measure: A defined build process lowers the possibility of errors during the build
-      a lot.
-    hardnessOfImplementation:
+    risk: Performing builds without a defined process* is error prone.
+      For example, as a result of incorect security related configuration.
+    measure: A well defined build process lowers the possibility of errors during the build
+      process.
+    difficultyOfImplementation:
       knowledge: 2
       time: 3
       resources: 2
@@ -30,14 +30,12 @@ Build:
     level: 1
     implementation: Jenkins, Docker
     securityProperties:
-      availability: Due to a less error prone build the availability is increased.
-      integrity: The possibility of unintentionally data loss is decreased.
+      availability:  Build availability is increased as a result of a more robust build process.
+      integrity: The likelihood of unintended data loss is decreased.
   Regular tests:
-    risk: A time cap between pushing source code to the version control system and
-      feedback regarding defects makes it harder to correct the found defects. A developer
-      or system administrator has to dig into the complex change again.
-    measure: On each push and/or periodically automatic tests are conducted.
-    hardnessOfImplementation:
+    risk: After pushing source code to the version control system, any elay in receiving feedback on defects makes them harder for the developer to remediate. 
+    measure: On each push and/or at given intervals automatic security tests are performed.
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -47,14 +45,12 @@ Build:
     dependsOn:
     - Defined build process
     securityProperties:
-      integrity: As feedback comes fast, defects can be addressed fast. Less defects
-        will be deployed to production.
-  Signing of artifacts:
-    risk: Unauthorized manipulation of artifacts might not be recognized. For example
-      pushing of an image with malicious code in the Docker registry.
-    measure: Signing of artifacts helps to ensure that artifacts are not unauthorized
-      manipulated.
-    hardnessOfImplementation:
+      integrity: Prompt feedback means security defects can be addressed fast, resulting in more secure software deployed to production.
+  Signing of artefacts:
+    risk: Unauthorized manipulation of artefacts might be difficult to spot. For example, this may result in
+      images with malicious code in the Docker registry.
+    measure: Digitally signing artefacts helps to ensure their integrity. 
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
@@ -64,35 +60,33 @@ Build:
     dependsOn:
     - Defined build process
     securityProperties:
-      integrity: Through signing the integrity of artifacts is ensured.
+      integrity: The integrity of artefacts is ensured through signing.
     samm: OA3-B
 Deployment:
   Backup before deployment:
-    risk: During a deployment process there might be errors, so that you want to deploy
-      an old release. Due to changes in the database, this is often not possible.
-    measure: Automatic backups before deployment helps to reduce the fear to perform
-      deployments. The restore processes is tested also.
-    hardnessOfImplementation:
+    risk: If errors are experienced during the deployment process you want to deploy
+      an old release. However, due to changes in the database this is often unfeasible.
+    measure: Performing automated backups before deployment can help facilitate deployments whilst testing the backup restore processes.
+    difficultyOfImplementation:
       knowledge: 1
       time: 2
       resources: 1
     usefulness: 4
     level: 2
-    implementation: A complete backup of the database might be performed. For bigger
+    implementation: A complete database dabackup might be performed*. For large and complex
       environments, a Point in Time Recovery for databases should be implemented.
     dependsOn:
     - Defined deployment process
     securityProperties:
-      availability: Due to a fast restore processes, the availability is increased.
+      availability: Availability* is increased thanks to a fast restore processes.
       integrity: A backup can be compared with the actual data to identify unintended
         changes after an incident.
     samm: OE2-A
   Blue/Green Deployment:
-    risk: A new version of an artifact can have unknown defects.
-    measure: By having two or more production environments, a deployment can be performent
-      on one first to see possible defects before it is deployment on the other production
-      environment(s)
-    hardnessOfImplementation:
+    risk: A new artefact version can have unknown defects.
+    measure: By having multiple production environments, a deployment can be performent
+      on the first environment to spot possible defects before it is deployment in the production environment(s)
+    difficultyOfImplementation:
       knowledge: 1
       time: 2
       resources: 1
@@ -103,13 +97,11 @@ Deployment:
     dependsOn:
     - Smoke Test
     securityProperties:
-      availability: Less downtime due to defects.
+      availability: Less downtime caused by defects.
   Defined deployment process:
-    risk: Deployments without a defined process are highly prone to errors. For example
-      an old artifact is getting deployed or an untested artifact is getting deployed.
-    measure: A defined deployment process lowers the possibility of errors during
-      the deployment a lot.
-    hardnessOfImplementation:
+    risk: Deployments without a defined process are error prone thus allowing old or untested artefact to be deployed.
+    measure: A defined deployment process significantly lowers the likelihood of errors during the deployment phase.
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -117,15 +109,15 @@ Deployment:
     level: 1
     implementation: Jenkins, Docker
     securityProperties:
-      availability: Due to a less error prone deployment the availability is increased.
-      integrity: The possibility of unintentionally data loss during deployment is
+      availability: Due to a less error prone deployment the availability* is increased.
+      integrity: The likelihood of unintended data loss during deployment is
         decreased.
   Environment depending configuration parameters:
     risk: Attackers who compromise source code can see confidential access information
       like database credentials.
     measure: Configuration parameters are set for each environment not in the source
       code.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -133,20 +125,19 @@ Deployment:
     level: 2
     implementation: ""
     securityProperties:
-      confidentiality: Only authorized persons get access to confidential credentials
-        and therefore to confidential information.
-      integrity: Only authorized persons get access to confidential credentials and
-        therefore not the ability to modify information unauthorized.
+      confidentiality: Only authorized staff should be allowed access to secrets
+        and therefore, confidential information.
+      integrity: Only authorized staff should be allowed access to confidential information, unauthorized access should be monitored and prevented.
     samm: SA2-A
   Handover of confidential parameters:
     risk: Attackers who compromise a system can see confidential access information
       like database credentials. Parameters are often used to set credentials, for
       example by starting containers or applications. These parameters can often be
-      seen by any one looking at the running processes on that system.
-    measure: By using encryption, it is not possible to read credentials easily, e.g.
-      from the file system. Also the usage of a credential management system can help
-      to protect credentials.
-    hardnessOfImplementation:
+      seen by any one listing running processes on the target system.
+    measure: By using encryption, it is harder to read credentials , e.g.
+      from the file system. Also, the usage of a credential management system can help
+      protect credentials.
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -156,15 +147,14 @@ Deployment:
     dependsOn:
     - Environment depending configuration parameters
     securityProperties:
-      confidentiality: Only authorized persons get access to confidential credentials
-        and therefore to confidential information.
-      integrity: Only authorized persons get access to confidential credentials and
-        therefore not the ability to modify information unauthorized.
-    samm: SA2-A
+      confidentiality: Only authorized staff should get access to confidential credentials
+        and therefore, to confidential information.
+      integrity: Only authorized staff should be allowed access to confidential information, unauthorized access should be monitored and prevented.    
+      samm: SA2-A
   Rolling update on deployment:
     risk: While a deployment is performed, the application can not be reached.
-    measure: A deployment without downtime is performed.
-    hardnessOfImplementation:
+    measure: A deployment without downtime is performed*.
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
@@ -175,12 +165,12 @@ Deployment:
     - Defined deployment process
     securityProperties:
       availability: No downtime during deployment
-  Same artifact for environments:
-    risk: Building of an artifact for different environments means that a not tested
-      artifact might reach the production environment
-    measure: Building an artifact once and deploy it to different environments means
-      that only tested artifacts reach the production environment
-    hardnessOfImplementation:
+  Same artefact for environments:
+    risk: Building of an artefact for different environments means that an untested
+      artefact might reach the production environment.
+    measure: Building an artefact once and deploying it to different environments means
+      that only tested artefacts are allowed to reach the production environment
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -188,22 +178,22 @@ Deployment:
     level: 3
     implementation: Docker
     securityProperties:
-      integrity: Only for vulnerability automated tested artifacts can reach the production
-        environment. The possibility of security related defects which affect the
-        intigrity is lowered.
-      availability: Only automated tested artifacts can reach the production environment.
-        The possibility of defects which affect the avilailbity is lowered.
+      integrity: Only security tested artefacts can reach the production
+        environment. The likelihood of security defects affecting the
+        integrity* is lowered.
+      availability: Only security tested artefacts can reach the production environment.
+        The likelihood of defects affecting avilailbity* is lowered.
     dependsOn:
     - Defined build process
     samm:
     - OE2-A
   Usage of feature toggles:
     risk: By using environment dependent configuration, some parameters will not be
-      tested correctly. An example for environment dependend configuration is <pre>if
+      tested correctly. i.e. <pre>if
       (host == 'production') {} else {}</pre>
-    measure: Usage of enviornment independend configration parameter, called feature
+    measure: Usage of environment independend configration parameter, called feature
       toggles, helps to enhance the test coverage.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 1
       resources: 1
@@ -211,9 +201,9 @@ Deployment:
     level: 3
     implementation: Docker
     securityProperties:
-      availability: Through the same actions in different enviroments the likelihood
-        of unpredictable behaivor is reduced.
+      availability: By repeating the same actions in different enviroments the likelihood
+        of unpredictable behaviour is reduced.
     dependsOn:
-    - Same artifact for environments
+    - Same artefact for environments
     samm: EG1-B
 ...
