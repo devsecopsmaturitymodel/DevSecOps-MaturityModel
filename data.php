@@ -4,7 +4,6 @@ $dimensions = array();
 $files = scandir("data");
 
 function readYaml($file) {
-    echo $file;
     return yaml_parse(
         file_get_contents($file)
     );
