@@ -2,8 +2,8 @@
 Build:
   Building and testing of artefacts in virtual environments:
     risk: While building and testing artefacts, third party systems, application frameworks
-      and 3rd party libaries are used. These might be malicious as a result of vulnerable
-      libaries or because they are altered during the delivery phase.
+      and 3rd party libraries are used. These might be malicious as a result of vulnerable
+      libraries or because they are altered during the delivery phase.
     measure: Each step during within the build and testing phase is performed in a separate virtual
       environments, which is destroyed afterward.
     difficultyOfImplementation:
@@ -25,8 +25,8 @@ Build:
       resources: 2
     usefulness: 4
     level: 1
-    implementation: Jenkins, Docker
-   Regular tests:
+    implementation: "Jenkins, Docker"
+  Regular tests:
     risk: After pushing source code to the version control system, any elay in receiving feedback on defects makes them harder for the developer to remediate. 
     measure: On each push and/or at given intervals automatic security tests are performed.
     difficultyOfImplementation:
@@ -122,7 +122,7 @@ Deployment:
     implementation: ""
     dependsOn:
     - Environment depending configuration parameters
-      samm: SA2-A
+    samm: "SA2-A"
   Rolling update on deployment:
     risk: While a deployment is performed, the application can not be reached.
     measure: A deployment without downtime is performed*.
