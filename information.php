@@ -13,11 +13,11 @@ echo "<h1>Information</h1>";
 <h2>Description</h2>
 From a startup to a multinational corporation the software development industry is currently dominated by agile frameworks and product teams and as part of it DevOps strategies. It has been observed that during the implementation, security aspects are usually neglected or are at least not sufficient taken account of. It is often the case that standard safety requirements of the production environment are not utilized or applied to the build pipeline in the continuous integration environment with containerization or concrete docker. Therefore, the docker registry is often not secured which might result in the theft of the entire company’s source code.
 <br />
-The Generic DevOps-Securitiy Maturity Model, which is presented in the talk, shows security measures which are applied when using DevOps strategies and how these can be prioritized.
+The  DevSecOps Maturity Model, which is presented in the talk, shows security measures which are applied when using DevOps strategies and how these can be prioritized.
 <br />
 With the help of DevOps strategies security can also be enhanced. For example, each component such as application libraries and operating system libraries in docker images can be tested for known vulnerabilities.
 <br />
-Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking Generic DevOps-Security Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
+Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking DevSecOps Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
 
 <h2>Who is using the DevSecOps Maturity Model (DSOMM)</h2>
 One of the biggest insurances in europe based his own maturity model on DSOMM. An other big german insurance is using the "Test and Verification" part to enhance the security in that area. There are other anonymous companies using the DevSecOps Maturity Model.
