@@ -4,7 +4,7 @@ Monitoring:
     risk: Trends and advanced attacks are not detected.
     measure: Advanced metrics are gathered in relation to availability and stability.
       For example unplanned downtimes per year.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 2
@@ -17,7 +17,7 @@ Monitoring:
     risk: People are not looking into tests results. Vulnerabilities not recolonized,
       even they are detected by tools.
     measure: All defects from the dimension Test- and Verification are instrumented.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 2
@@ -30,7 +30,7 @@ Monitoring:
     risk: Incidents are discovered after they happend.
     measure: Thresholds for metrics are set. In case the thresholds are reached, alarms
       are send out. Which should get attention due to the critically.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 5
       resources: 5
@@ -48,7 +48,7 @@ Monitoring:
       control degree shows the actual application of security standards and security-guidelines.
       Examples are gathering information on anti-virus, anti-rootkits, patch management,
       server configuration and vulnerability management."
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 5
       resources: 2
@@ -60,7 +60,7 @@ Monitoring:
   Deactivation of unused metrics:
     risk: High resources are used while gathering unused metrics.
     measure: Deactivation of unused metrics helps to free resources.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 5
       resources: 5
@@ -73,7 +73,7 @@ Monitoring:
       attacks. It is not known how many attacks has been detected and blocked.
     measure: Gathering of defence metrics like TCP/UDP sources enables to assume the
       geographic location of the requeist.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 5
       resources: 2
@@ -84,7 +84,7 @@ Monitoring:
   Grouping of metrics:
     risk: The analysis of metrics takes long.
     measure: Meaningful grouping of metrics helps to speed up analysis.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 4
       resources: 2
@@ -93,7 +93,7 @@ Monitoring:
   Metrics are combined with tests:
     risk: Changes might cause high load due to programming errors.
     measure: Metrics during tests helps to identify programming errors.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 3
       resources: 2
@@ -105,7 +105,7 @@ Monitoring:
     risk: Security related information is discovered too late during an incident.
     measure: By having an internal accessable screen with a security related dashboards
       helps to visualize incidents.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 1
       resources: 1
@@ -117,7 +117,7 @@ Monitoring:
     risk: Attacks on an application are not recognized.
     measure: Gathering of application metrics helps to identify incidents like brute
       force attacks.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
@@ -130,7 +130,7 @@ Monitoring:
       the source with linux commands.
     measure: Gathering of system metrics helps to identify incidents and specially
       bottlenecks.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
@@ -142,7 +142,7 @@ Monitoring:
       responsbile to react.
     measure: By the defintion of target groups for incidents people are only getting
       alarms for incidents they are in charge for.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 5
       resources: 5
@@ -154,7 +154,7 @@ Monitoring:
   Visualized metrics:
     risk: Not vizualized metrics lead to restricted usage of metrics.
     measure: Metrics are vizualized in real time in a user friendly way.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 2
       resources: 2
@@ -170,7 +170,7 @@ Logging:
       an correlation of logs. This leads attacks, which can be performed silently.
     measure: A centralized logging system is used and applications logs (including
       application exceptions) are shipped to it.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -186,7 +186,7 @@ Logging:
       of logs.
     measure: By using centralized logging logs are protected against unauthorized
       modification.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -198,7 +198,7 @@ Logging:
       is not possible.
     measure: Events are correlated on one system. For example the correlation and
       visualisationof enhance login tries combined with successfull logins.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 4
       time: 4
       resources: 4
@@ -213,7 +213,7 @@ Logging:
       to read applications logs with unusually tools like the Linux tool 'cat'
     measure: Protocols are visualized in a simple to use real time monitoring system.
       The GUI gives the ability to search for specal attributes in the protocol.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 3
       resources: 3

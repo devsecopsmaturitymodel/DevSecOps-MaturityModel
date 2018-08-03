@@ -4,7 +4,7 @@ Infrastructure:
     risk: Through a vulnerability in one service on a server, the attacker gains access
       to other services.
     measure: Application are running in virtualized envirnoments
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 5
@@ -14,7 +14,7 @@ Infrastructure:
     risk: Application and system libraries can have implementation flaws or deployment
       flaws.
     measure: Each libraries source is checked to have a trusted source.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 1
@@ -27,7 +27,7 @@ Infrastructure:
       to connect to other virtual machines. By using docker, one bridge is used by
       default so that all containers on one host can communicate with each other.
     measure: The communication between virtual environments is regulated.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 3
@@ -41,7 +41,7 @@ Infrastructure:
     measure: Systems are setup by code. A full enviorement can be provisioned. In
       addition, software like Jenkins 2 can be setup and configured in in code too.
       The code should be stored in a version control system.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 5
       resources: 4
@@ -51,7 +51,7 @@ Infrastructure:
   Limitation of system calls in virtual environments:
     risk: System calls in virtual environments like docker can lead to privilege escalation.
     measure: System calls in virtual environments like docker are audited and limited.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 3
@@ -64,7 +64,7 @@ Infrastructure:
     risk: Monolithic applications are hard to test.
     measure: A microservice-architecture helps to have small components, which are
       easy to test.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 4
       time: 5
       resources: 5
@@ -79,7 +79,7 @@ Infrastructure:
       In addition, it should be possible to create production like test data. Often
       peronal identifiable information is anonymised in order to comply with data
       protection laws.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 3
@@ -94,7 +94,7 @@ Infrastructure:
       to modify information unauthorized on systems.
     measure: The usage of a (role based) access control helps to restrict system access
       to authorized users.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 3
       resources: 1
@@ -107,7 +107,7 @@ Infrastructure:
   Simple access control for systems:
     risk: Attackers a gaining access to interal systems and application interfaces
     measure: All internal systems are using simple authentication
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 3
@@ -123,7 +123,7 @@ Infrastructure:
       In addation, it is hard to replay manual changes.
     measure: A randomized peridically shutdown of systems makes sure, that nobody
       will perform manuall changes to a system.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 5
       resources: 5
@@ -134,7 +134,7 @@ Infrastructure:
     measure: Hardening of components is important, specially for image on which other
       teams base on. Hardening should be performed on the operation system and on
       the services inside (e.g. Nginx or a Java-Application).
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 4
       time: 2
       resources: 1
@@ -147,7 +147,7 @@ Infrastructure:
   Usage of test and production environments:
     risk: Security tests are not running reculary because test environments are missing
     measure: A production and a production like envirnoment is used
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 5
@@ -159,7 +159,7 @@ Infrastructure:
     risk: Changes to production systems can not be undone.
     measure: Versioning of artifacts related to production environments. For example
       Jenkins configuration, docker images, system provisioning code.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 3
@@ -172,7 +172,7 @@ Infrastructure:
       on one service effects other services
     measure: All virtual envirnoments are using resource limits on hard disks, memory
       and CPU
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 3

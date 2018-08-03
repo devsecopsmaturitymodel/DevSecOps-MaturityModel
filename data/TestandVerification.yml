@@ -3,7 +3,7 @@ Dynamic depth:
   Coverage analysis:
     risk: Parts of the service are not still covered.
     measure: Check that there are no missing paths in the application with coverage-tools.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 4
       time: 5
       resources: 3
@@ -15,7 +15,7 @@ Dynamic depth:
       is not getting executed. Therefore, the co
     measure: Usage of a spider which executes dynamic content like JavaScript, e.g.
       via Selenium.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 1
@@ -29,7 +29,7 @@ Dynamic depth:
     risk: Hidden endpoints of the service are not getting tracked.
     measure: Hidden endpoints are getting detected and included in the vulnerability
       scan.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 1
@@ -44,7 +44,7 @@ Dynamic depth:
       URLs, parameters in JSON-Format or base64-coded parameters).
     measure: Special parameter and special encodings are defined, so that they get
       fuzzed by the used vulnerability scanners.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 5
       time: 5
       resources: 1
@@ -57,7 +57,7 @@ Dynamic depth:
       basked
     measure: Sequential operations are defined and checked by the vulnerability scanner
       in the defined order.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 1
@@ -69,7 +69,7 @@ Dynamic depth:
   Coverage of service to service communication:
     risk: Service to service communication is not covered.
     measure: Service to service communication is dumped and checked.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 4
       time: 5
       resources: 2
@@ -83,7 +83,7 @@ Dynamic depth:
       is not given.
     measure: A simple scan is performed to get a security baseline. In case the test
       is done in under 10 minutes, it should be part of the build and deployment process.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 3
       resources: 1
@@ -99,7 +99,7 @@ Dynamic depth:
     risk: Parts of the service are not covered during the scan, because a login is
       not performed.
     measure: Integration of authentication with all roles used in the service.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 1
@@ -111,7 +111,7 @@ Dynamic depth:
     risk: Each vulnerability scanner has different opportunities. By using just one
       scanner, some vulnerabilities might not be found.
     measure: Usage of multiple spiders and scanner enhance the coverage and the vulnerabilities.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 5
@@ -124,7 +124,7 @@ Static depth:
   Exclusion of source code duplicates:
     risk: Duplicates in source code might influence the stability of the application.
     measure: Automatic Detection and manual removal of duplicates in source code.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -136,7 +136,7 @@ Static depth:
   Static analysis for all components/libraries:
     risk: Used components like libraries and legacy applications might have vulnerabilities
     measure: Usage of a static analysis for all used components.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 4
       resources: 2
@@ -149,7 +149,7 @@ Static depth:
     risk: Parts in the source code of the frontend or middleware have vulnerabilities.
     measure: Usage of static analysis tools for all parts of the middleware and frontend.
       Static analysis uses for example string matching algorithms and/or dataflowanalysis.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -163,7 +163,7 @@ Static depth:
     risk: Important parts in the source code of the frontend have vulnerabilities.
     measure: Usage of static analysis tools for important parts of the frontend are
       used. Static analysis uses for example string matching algorithms and/or dataflowanalysis.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -181,7 +181,7 @@ Static depth:
     measure: Usage of static analysis tools for important parts of the middleware
       are used. Static analysis uses for example string matching algorithms and/or
       dataflowanalysis.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -194,7 +194,7 @@ Static depth:
     risk: False source code indenting might lead to vulnerabilites.
     measure: Analysis of compliance to style guides of the source code ensures that
       source code indenting rules are met.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -204,7 +204,7 @@ Static depth:
   Test of client side components with known vulnerabilities:
     risk: Client side components might have vulnerabilities.
     measure: Tests for known vulnerabilities in components of the frontend are performed.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 2
       resources: 1
@@ -216,7 +216,7 @@ Static depth:
   Test of middleware components with known vulnerabilities:
     risk: Components of the middleware might have vulnerabilities.
     measure: Tests for known vulnerabilities in components of the middleware are performed.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 2
       resources: 1
@@ -230,7 +230,7 @@ Static depth:
     risk: Each vulnerability scanner has different opportunities. By using just one
       scanner, some vulnerabilities might not be found.
     measure: Usage of multiple static tools to find more vulnerabilities.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 5
@@ -245,7 +245,7 @@ Test-Intensity:
       created and applied. A dynamic analysis needs more time than a static analysis.
       The dynamic scan, depending on the test intensity might be performed on every
       commit, every night, every week or once in a month.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 3
@@ -258,7 +258,7 @@ Test-Intensity:
     measure: Unneeded tests are deactivated. For example in case the service is using
       a mongo database and no mysql database, the dynamic scan doesn't need to test
       for sql injections.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 3
       resources: 1
@@ -268,7 +268,7 @@ Test-Intensity:
     risk: Time pressure and ignorance might lead to false predictions for the test
       intensity.
     measure: The intensitiy of the used tools are not modified to safe time.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -279,7 +279,7 @@ Test-Intensity:
       vulnerabilities.
     measure: A deep scan with high test intensity and a low confidence threshold is
       performed.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 5
@@ -290,7 +290,7 @@ Consolidation:
     risk: Correlation of the vulnerabilities of different tools to have an overview
       of the the overall security level per component/project/team is not given.
     measure: Findings are visualized per component/project/team.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 4
       resources: 1
@@ -304,7 +304,7 @@ Consolidation:
     measure: Quality gates for found vulnerabilities are defined. In the start it
       is important to not overload the security analyst, therefore the recommendation
       is to start with alerting of high cirital vulnerabilities.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -316,7 +316,7 @@ Consolidation:
       might be difficult. Also, to check a vulnerability management system might not
       be a daily task for a developer.
     measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -332,7 +332,7 @@ Consolidation:
     measure: Vulnerabilities include the test procedure to give the staff from operations
       and development the ability to reproduce vulnerabilities. This enhances the
       understanding of vulnerabilities and therefore the fix have a higher quality.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 2
@@ -344,7 +344,7 @@ Consolidation:
       ignored.
     measure: False positives are suppressed so they will not show up on the next tests
       again.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -356,7 +356,7 @@ Consolidation:
     risk: The security level of a component is not visible. Therefore, the motivation
       to enhance the security is not give.
     measure: Vulnerabilties are simple visualized.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -369,7 +369,7 @@ Consolidation:
   Treatment of all defects:
     risk: Vulnerabilities with criminality low are not visible.
     measure: All vulnerabilities are added to the quality gate.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 1
@@ -378,7 +378,7 @@ Consolidation:
   Treatment of defects with criticality middle:
     risk: Vulnerabilities with criticality middle are not visible.
     measure: Vulnerabilities with criticality middle are added to the quality gate.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -390,7 +390,7 @@ Consolidation:
       addition a correlation of the same finding from different tools is not possible.
     measure: Aggregation of vulnerabilities in one tool reduce the workload to mark
       false positives.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 2
@@ -405,7 +405,7 @@ Application tests:
       environment in not important components.
     measure: Implementation of security related tests via unit tests and integration
       tests. Including the test of libraries, in case the are not tested already.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 5
       time: 5
       resources: 3
@@ -417,7 +417,7 @@ Application tests:
       environment.
     measure: Implementation of essential security related integration tests. For example
       for authentication and authorization.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 4
       resources: 2
@@ -429,7 +429,7 @@ Application tests:
     risk: Vulnerabilities are rising due to code changes.
     measure: Usage of unit tests to test important security related features like
       authentication and authorization.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 4
       resources: 2
@@ -447,7 +447,7 @@ Application tests:
       of the system, a part of the system or a feature.
     measure: Integration tests are performed against the production environment after
       each deployment.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
@@ -462,7 +462,7 @@ Infrastructure tests:
     risk: Critical infrastructure components like firewalls might be configured wrong
       in the first place or after a change.
     measure: Tests of the security of critical infrastructure components are performed.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -473,7 +473,7 @@ Infrastructure tests:
       due to an unexpected load the availability is disturbed.
     measure: Load test against the production system or a production near system is
       performed.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 5
@@ -482,7 +482,7 @@ Infrastructure tests:
   Test of infrastructure components with known vulnerabilities:
     risk: ""
     measure: ""
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
@@ -498,7 +498,7 @@ Infrastructure tests:
       to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
       tested.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -512,7 +512,7 @@ Infrastructure tests:
       leading to vulnerabilties.
     measure: With the help of tools the configuration of virtual environments are
       tested.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
@@ -528,7 +528,7 @@ Infrastructure tests:
       privileged accounts, lead to take over of that account.
     measure: Automatic brute force attacks are performed. Specially the usage of standard
       accounts like 'admin' and employee user-ids is recommended.
-    hardnessOfImplementation:
+    difficultyOfImplementation:
       knowledge: 2
       time: 1
       resources: 1

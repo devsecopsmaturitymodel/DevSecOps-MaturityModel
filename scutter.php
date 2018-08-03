@@ -21,7 +21,7 @@ function getJson($dimensions)
                     "series" => 0,
                     "shape" => $shapes[$shape],
                     "size" => 3000,
-                    "x" => gethardnessOfImplementation($dimensions, $content),
+                    "x" => getDifficultyOfImplementation($dimensions, $content),
                     "y" => $content["usefulness"],
                     "key" => $elementName
                 );
