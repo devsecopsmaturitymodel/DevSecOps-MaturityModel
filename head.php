@@ -28,8 +28,9 @@
 <script src="assets/js/d3.v3.js"></script>
 <script src="assets/js/nv.d3.js"></script>
 
+    <!--https://yandex.st/highlightjs/7.3/styles/default.min.css-->
 <link rel="stylesheet"
-	href="https://yandex.st/highlightjs/7.3/styles/default.min.css">
+	href="assets/css/default.min.css">
 <link rel="stylesheet" href="spiderweb.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
