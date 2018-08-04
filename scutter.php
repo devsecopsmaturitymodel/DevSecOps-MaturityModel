@@ -97,12 +97,12 @@ function getJson($dimensions)
             .tickFormat(function (d) {
                 return getLabelForAxis(d);
             })
-            .axisLabel("Schwere der Implementierung");
+            .axisLabel("Ease of Implementation");
         chart.yAxis
             .tickFormat(function (d) {
                 return getLabelForAxis(d);
             })
-            .axisLabel("Nutzen");
+            .axisLabel("Value");
 
         chart.scatter.forceX([1, 6]);
         chart.scatter.forceY([1, 6]);
@@ -171,9 +171,9 @@ if($_GET['aggregated'] == "true") {
     <button id="">
         <?php
         if($_GET['aggregated'] == "true") {
-            echo "Einzelne Werte für Implementierung anzeigen";
+            echo "Show specific values";
         }else {
-            echo "Totale Werte für Implementierung anzeigen";
+            echo "Show total values";
         }
         ?>
     </button>
