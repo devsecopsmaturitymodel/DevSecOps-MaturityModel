@@ -1,5 +1,5 @@
 <?php
-$title = gettext("Implementation Point Overview");
+$title = gettext("Activities Overview");
 include_once "head.php";
 ?>
 <body>
