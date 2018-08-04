@@ -16,7 +16,7 @@ function loadDiagramm() {
         });
         var countSubdimensions = 13;
         var chart = circularHeatChart()
-            .segmentHeight(60)
+            .segmentHeight(70)
             .innerRadius(40)
             .numSegments(countSubdimensions)
             .radialLabels(["Level 1", "Level 2", "Level 3", "Level 4"])
