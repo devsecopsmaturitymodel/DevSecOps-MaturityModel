@@ -71,6 +71,16 @@ Culture and Org.:
     usefulness: 3
     level: 3
     samm: TA1-A
+  Conduction of Build it :
+    risk: Understanding security is hard and the conduction of security training often focuses on breaking a component instead of building a component secure.
+    measure: The build-it, break-it, fix-it contest allows to train students the build, break and fix part of a secure application. This increases the learning of building secure components.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 3
+    level: 3
+    implementation: https://builditbreakit.org/
   Conduction of war games:
     risk: Understanding incident response plans during an incident is hard and ineffective.
     measure: War Games like activities help train for incidents. Security SMEs create attack scenarios
