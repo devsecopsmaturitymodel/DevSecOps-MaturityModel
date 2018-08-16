@@ -14,8 +14,8 @@ Build:
     level: 4
     implementation: Docker
     dependsOn:
-    - Defined build process
-    risk: Performing builds without a defined process* is error prone.
+  Defined build process:
+    risk: Performing builds without a defined process is error prone.
       For example, as a result of incorect security related configuration.
     measure: A well defined build process lowers the possibility of errors during the build
       process.
@@ -36,17 +36,6 @@ Build:
     usefulness: 2
     level: 2
     implementation: ""
-    dependsOn:
-  Defined build process
-    risk: "Conduction of builds without a defined process are highly prone to errors. For example wrong setting of security related configuration."
-    measure: "A defined build process lowers the possibility of errors during the build a lot."
-    difficultyOfImplementation:
-      knowledge: 2,
-      time: 3,
-      resources: 2
-      usefulness: 4
-    level: 1
-    implementation: "Jenkins, Docker"
   Signing of artefacts:
     risk: Unauthorized manipulation of artefacts might be difficult to spot. For example, this may result in
       images with malicious code in the Docker registry.
