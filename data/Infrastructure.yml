@@ -60,6 +60,18 @@ Infrastructure:
     dependsOn:
     - Applications are running in virtualized environments
     implementation: seccomp, strace
+  Immutable Infrastructure:
+    risk: Configuration drift happens when changes are made
+    measure: Immutable infrastrcuture makes sure that configuration drifts are not happening
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 3
+    dependsOn:
+    - Infrastructure as Code
+    implementation: Remove direct access to infrastructure
   Microservice-Architecture:
     risk: Monolithic applications are hard to test.
     measure: A microservice-architecture helps to have small components, which are
