@@ -1,28 +1,38 @@
 ---
-Culture and Org.:
-  Aligning security in teams:
-    risk: The concept of Security Champions might suggest that only he/she is repsonsible
-      for security. However, everyone in the project team should be responsible for security.
-    measure: By aligning security SME with project teams, a higher security
-      standard can be achieved.
+Education and Guidance:
+  Security consulting on request:
+    risk: TODO
+    measure: Security consulting to teams is given on request. The security consultants can be internal or external.
     difficultyOfImplementation:
-      knowledge: 4
-      time: 5
+      knowledge: 2
+      time: 1
       resources: 1
-    implementation: Security SME are involved in discussion for requirements analysis, software design and sprint planning to provide guidance and suggestions.
-    usefulness: 5
-    level: 4
-    samm: EG2-B
-  Conduction of advanced threat modelling:
-    risk: Inadequate identification of business and technical risks.
-    measure: Threat modelling is performed by using reviewing user stories and producing security driven data flow diagramms.
-    difficultyOfImplementation:
-      knowledge: 4
-      time: 3
-      resources: 2
     usefulness: 3
-    level: 4
-    samm: TA2-B
+    level: 1
+    samm: EG2-B
+  Each team has a security champion:
+    risk: No one feels directly responsible for security and the securiy champion does not have enough
+      time to allocate to each team.
+    measure: Each team defines an individual to be responsible for security. These individuals are often
+      referred to as 'security champions'
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 2
+    samm: EG2-B
+  Security-Lessoned-Learned:
+    risk: After an incident, a simular incident might reoccur.
+    measure: Running a 'lessons learned' ession after an incident helps drive continuous improvement.
+      Regular meetings with security shampions are a good place to share and discuss lessons learned.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 3
+    level: 3
+    samm: IM-3, ST-3, SR2-B
   Conduction of collaborative security checks with develoeprs and system administrators:
     risk: Security checks by external companies do not increase the understanding of
       an application/system for internal employees.
@@ -47,6 +57,62 @@ Culture and Org.:
     usefulness: 2
     level: 4
     samm: EG2-A
+  Conduction of build-it, break-it, fix-it contests:
+    risk: Understanding security is hard, even for security champions and the conduction of security training often focuses on breaking a component instead of building a component secure.
+    measure: The build-it, break-it, fix-it contest allows to train people with security related roles like security champions the build, break and fix part of a secure application. This increases the learning of building secure components.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 3
+    level: 3
+    implementation: https://builditbreakit.org/
+  Conduction of war games:
+    risk: Understanding incident response plans during an incident is hard and ineffective.
+    measure: War Games like activities help train for incidents. Security SMEs create attack scenarios
+      in a testing environment enabling the rainees to learn how to react in case of an incident.
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 5
+      resources: 5
+    usefulness: 2
+    level: 4
+  Reward of good communication:
+    risk: Employees are not getting excited about security.
+    measure: Good communication and transparency encourages cross-organisational support. Gamification of security is also known to help, examples include T-Shirts, giftcards and 'High-Fives'.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 2
+    implementation: One example is the distributon of buttons as a reward, see <a
+      href='https://www.owasp.org/index.php/OWASP_Security_Buttons_Project'>OWASP
+      Security Buttons Project</a>
+  Aligning security in teams:
+    risk: The concept of Security Champions might suggest that only he/she is repsonsible
+      for security. However, everyone in the project team should be responsible for security.
+    measure: By aligning security SME with project teams, a higher security
+      standard can be achieved.
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 5
+      resources: 1
+    implementation: Security SME are involved in discussion for requirements analysis, software design and sprint planning to provide guidance and suggestions.
+    usefulness: 5
+    level: 4
+    samm: EG2-B
+Culture and Org.:
+  Conduction of advanced threat modelling:
+    risk: Inadequate identification of business and technical risks.
+    measure: Threat modelling is performed by using reviewing user stories and producing security driven data flow diagramms.
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 3
+      resources: 2
+    usefulness: 3
+    level: 4
+    samm: TA2-B
   Conduction of simple threat modelling on business level:
     risk: Business related threats are discovered too late in the development and
       deployment process.
@@ -71,26 +137,6 @@ Culture and Org.:
     usefulness: 3
     level: 3
     samm: TA1-A
-  Conduction of build-it, break-it, fix-it contests:
-    risk: Understanding security is hard, even for security champions and the conduction of security training often focuses on breaking a component instead of building a component secure.
-    measure: The build-it, break-it, fix-it contest allows to train people with security related roles like security champions the build, break and fix part of a secure application. This increases the learning of building secure components.
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 3
-      resources: 1
-    usefulness: 3
-    level: 3
-    implementation: https://builditbreakit.org/
-  Conduction of war games:
-    risk: Understanding incident response plans during an incident is hard and ineffective.
-    measure: War Games like activities help train for incidents. Security SMEs create attack scenarios
-      in a testing environment enabling the rainees to learn how to react in case of an incident.
-    difficultyOfImplementation:
-      knowledge: 4
-      time: 5
-      resources: 5
-    usefulness: 2
-    level: 4
   Creation of advanced abuse stories:
     risk: Simple user stories are not going deep enough. Relevant security considerations
       are performed. Security flaws are discovered too late in the development and
@@ -103,7 +149,7 @@ Culture and Org.:
     usefulness: 4
     level: 4
     dependsOn:
-    - Creation of simple abuse stories
+      - Creation of simple abuse stories
     samm: TA2-A
     implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't
       Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
@@ -122,18 +168,6 @@ Culture and Org.:
     implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't
       Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
       Security Stories and Security Tasks for Agile Development Environments</a>
-  Each team has a security champion:
-    risk: No one feels directly responsible for security and the securiy champion does not have enough
-      time to allocate to each team.
-    measure: Each team defines an individual to be responsible for security. These individuals are often
-      referred to as 'security champions'
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 2
-      resources: 1
-    usefulness: 3
-    level: 2
-    samm: EG2-B
   Information security tragets are communicated:
     risk: Employees don't known their organication security targets. Therefore
       security is not considered during development and administration as much as
@@ -147,32 +181,8 @@ Culture and Org.:
     usefulness: 4
     level: 1
     samm: SM1-B
-  Reward of good communication:
-    risk: Employees are not getting excited about security.
-    measure: Good communication and transparency encourages cross-organisational support. Gamification of security is also known to help, examples include T-Shirts, giftcards and 'High-Fives'.
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 2
-      resources: 1
-    usefulness: 3
-    level: 2
-    implementation: One example is the distributon of buttons as a reward, see <a
-      href='https://www.owasp.org/index.php/OWASP_Security_Buttons_Project'>OWASP
-      Security Buttons Project</a>
-  Security-Lessoned-Learned:
-    risk: After an incident, a simular incident might reoccur.
-    measure: Running a 'lessons learned' ession after an incident helps drive continuous improvement.
-      Regular meetings with security shampions are a good place to share and discuss lessons learned.
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 3
-      resources: 1
-    usefulness: 3
-    level: 3
-    samm: IM-3, ST-3, SR2-B
-
 Process:
-#  Data classification:
+  #  Data classification:
   Definition of simple BCDR practices for citical components:
     risk: In case of an emergency, like a power outage, DR actions to perform are not clear. This leads to reaction and remediation delays.
     measure: By understanding and documenting a business continuity and disaster recovery (BCDR) plan, the overall availabilitiy of systems and applications is increased. Success factors like responsibilties, Service Level Agreemenmts, Recovery Point Objectives, Recovery Time Objectives or Failover must be fully documentate and understood.
@@ -206,7 +216,7 @@ Process:
     level: 3
     samm: IR1-B
 
-#  Used licenses of components are known:
+  #  Used licenses of components are known:
 
   Prevention of unauthorized installation:
     risk: Unapproved components are used.
