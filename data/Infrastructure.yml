@@ -1,5 +1,5 @@
 ---
-Infrastructure:
+Infrastructure Hardening:
   Applications are running in virtualized environments:
     risk: Through a vulnerability in one service on a server, the attacker gains access
       to other services.
@@ -192,4 +192,41 @@ Infrastructure:
     level: 3
     dependsOn:
     - Applications are running in virtualized environments
+Patch Management:
+  A patch policy is defined:
+    risk: Vulnerabilities in containers stay for long
+    measure: Definition of a patch policy for containers is defined. How long do they live maximum? What happens when a ciritical vulnerability is discovered.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 1
+      resources: 2
+    usefulness: 5
+    level: 1
+  Nightly build of images:
+    risk: Vulnerabilities in containers stay for long.
+    measure: The all images build at least nightly.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+  Usage of a maximum life for containers:
+    risk: Vulnerabilities in containers stay for long
+    measure: The nightly builded images are deployed minimum every 30 days. Meaning a container does not lives longer than 30 days.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 3
+  Usage of a short maximum life for containers:
+    risk: Vulnerabilities in containers stay for long
+    measure: The nightly builded images are deployed minimum every 7 days. Meaning a container does not lives longer than 7 days.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 4
 ...
