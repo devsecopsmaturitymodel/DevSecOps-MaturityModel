@@ -61,8 +61,8 @@ Infrastructure:
     - Applications are running in virtualized environments
     implementation: seccomp, strace
   Immutable Infrastructure:
-    risk: Configuration drift happens when changes are made
-    measure: Immutable infrastrcuture makes sure that configuration drifts are not happening
+    risk: The availability of IT systems might be disturbed due to components failures
+    measure: Redundancies in the IT systems
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -70,7 +70,7 @@ Infrastructure:
     usefulness: 3
     level: 3
     dependsOn:
-    - Infrastructure as Code
+      - Infrastructure as Code
     implementation: Remove direct access to infrastructure
   Microservice-Architecture:
     risk: Monolithic applications are hard to test.
@@ -116,6 +116,16 @@ Infrastructure:
     dependsOn:
     - Defined deployment process
     - Defined build process
+  2FA:
+    risk: One factor authentication is simple to bruteforce
+    measure: Two factor authentication for all administrative accounts on systems and applications
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 3
+    usefulness: 4
+    level: 3
+    implementation: Smartcard, YubiKey, SMS
   Simple access control for systems:
     risk: Attackers a gaining access to interal systems and application interfaces
     measure: All internal systems are using simple authentication

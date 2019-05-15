@@ -116,7 +116,7 @@ Monitoring:
   Simple application metrics:
     risk: Attacks on an application are not recognized.
     measure: Gathering of application metrics helps to identify incidents like brute
-      force attacks.
+      force attacks, login/logout.
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -129,7 +129,7 @@ Monitoring:
       uses a lot of CPU from time to time, it is hard for a developer to find out
       the source with linux commands.
     measure: Gathering of system metrics helps to identify incidents and specially
-      bottlenecks.
+      bottlenecks like in CPU usage, memory usage and hard disk usage.
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -180,6 +180,28 @@ Logging:
     - Visualized logging
     - Alerting
     samm: SA2-B
+  PII logging concept:
+    risk: Personal identifiable information (PII) is logged and the law of GDPR is not followed.
+    measure: A concept how to log PII is documented and applied.
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 1
+    level: 1
+    implementation: rsyslog, logstash, fluentd, bash
+  Logging of security events:
+    risk: No track of security-relevant events makes it harder to analyse an incident.
+    measure: Security-relevant events like login/logout or creation, change, deletion of users should be logged.
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 4
+    level: 1
+    dependsOn:
+      - PII logging concept
+    implementation: rsyslog, logstash, fluentd, bash
   Centralized system logging:
     risk: Local stored system logs can be unauthorized manipulated by attackers or
       might be corrupt after an incident. In addition, it is hard to perform a aggregation

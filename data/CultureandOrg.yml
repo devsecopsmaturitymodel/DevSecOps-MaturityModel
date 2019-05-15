@@ -22,6 +22,7 @@ Education and Guidance:
     usefulness: 3
     level: 2
     samm: EG2-B
+    implementation: https://www.owasp.org/index.php/Security_Champions_Playbook
   Security-Lessoned-Learned:
     risk: After an incident, a simular incident might reoccur.
     measure: Running a 'lessons learned' ession after an incident helps drive continuous improvement.
