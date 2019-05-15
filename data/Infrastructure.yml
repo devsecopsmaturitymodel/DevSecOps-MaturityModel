@@ -9,7 +9,7 @@ Infrastructure Hardening:
       resources: 2
     usefulness: 4
     level: 2
-    implementation: "For Containers: Deny running containers as root, deny mounting of the hole filesystem, ..."
+    implementation: "For Containers: Deny running containers as root, deny using advanced privileges, deny mounting of the hole filesystem, ..."
   Applications are running in virtualized environments:
     risk: Through a vulnerability in one service on a server, the attacker gains access
       to other services.
