@@ -39,14 +39,14 @@ Build:
   Signing of artefacts:
     risk: Unauthorized manipulation of artefacts might be difficult to spot. For example, this may result in
       images with malicious code in the Docker registry.
-    measure: Digitally signing artefacts helps to ensure their integrity. 
+    measure: Digitally signing artefacts for all steps during the build and specally docker images, helps to ensure their integrity.
     difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
-    usefulness: 2
-    level: 4
-    implementation: ""
+    usefulness: 4
+    level: 3
+    implementation: <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>, <a href="https://in-toto.github.io/">in-toto</a>
     dependsOn:
     - Defined build process
     samm: OA3-B
@@ -165,4 +165,11 @@ Deployment:
     dependsOn:
     - Same artefact for environments
     samm: EG1-B
+
+  Usage of trusted images:
+    risk: Developers or operations might start random images in the production cluster which have malicous code or known vulnerabilities.
+    Measure: Whitelist signed artificats/images or whitelist a trusted (internal) registry.
+    implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
+    dependsOn: Signing of artefacts:
+
 ...

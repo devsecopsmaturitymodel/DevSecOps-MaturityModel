@@ -480,14 +480,14 @@ Infrastructure tests:
     usefulness: 3
     level: 4
   Test of infrastructure components with known vulnerabilities:
-    risk: ""
-    measure: ""
+    risk: " Infrastructure components might have vulnerabilities."
+    measure: "Test for known vulnerabilities in infrastructure components"
     difficultyOfImplementation:
-      knowledge: 1
-      time: 1
-      resources: 1
-    usefulness: 5
-    level: 1
+      knowledge: 2
+      time: 5
+      resources: 2
+    usefulness: 3
+    level: 4
     implementation:
     - Anchore
     - Clair
@@ -535,4 +535,18 @@ Infrastructure tests:
     usefulness: 1
     level: 3
     implementation: HTC Hydra
+  Test network segmentation:
+    risk: Wrong or no network segmentation of pods makes it easyer for an attacker to access a database and extract or modify data.
+    measure: Integration of fine granulated network segmenation (also between pods in the same namespace)
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 2
+    implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
+    dependendsOn: Segmentated networks for virtual environments
+  Test cluster resources:
+    risk: The deployment configuration (e.g. kubernetes.yml)
+
 ...

@@ -1,5 +1,15 @@
 ---
 Infrastructure Hardening:
+  The cluster is hardened:
+    risk: Using default configurations for a cluster enviroment leads to potential risks.
+    measure: Harden cluster enviroments.
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 3
+      resources: 2
+    usefulness: 4
+    level: 2
+    implementation: "For Containers: Deny running containers as root, deny mounting of the hole filesystem, ..."
   Applications are running in virtualized environments:
     risk: Through a vulnerability in one service on a server, the attacker gains access
       to other services.
@@ -21,7 +31,7 @@ Infrastructure Hardening:
     usefulness: 3
     level: 2
     samm: SA1-A
-  Controlled networks for virtual environments:
+  Segmentated networks for virtual environments:
     risk: Virtual environments in default settings are able to access other virtual
       environments on the network stack. By using virtual machines, it is often possible
       to connect to other virtual machines. By using docker, one bridge is used by
@@ -34,7 +44,7 @@ Infrastructure Hardening:
     usefulness: 5
     level: 3
     dependsOn: []
-    implementation: Separation of networks, e.g. bridges or firewalls)
+    implementation: istio, bridges or firewalls)
   Infrastructure as Code:
     risk: No tracking of changes in systems might lead to errors in the configuration.
       In additions, it might lead to unauthorized changes. An examples is jenkins.
@@ -47,7 +57,7 @@ Infrastructure Hardening:
       resources: 4
     usefulness: 4
     level: 3
-    implementation: Ansible, Chef, Puppet, Jenkinsfile
+    implementation: GitOps, Ansible, Chef, Puppet, Jenkinsfile
   Limitation of system calls in virtual environments:
     risk: System calls in virtual environments like docker can lead to privilege escalation.
     measure: System calls in virtual environments like docker are audited and limited.
@@ -158,7 +168,7 @@ Infrastructure Hardening:
       the services inside (e.g. Nginx or a Java-Application).
     difficultyOfImplementation:
       knowledge: 4
-      time: 2
+      time: 3
       resources: 1
     usefulness: 3
     level: 2
@@ -205,12 +215,12 @@ Infrastructure Hardening:
 Patch Management:
   A patch policy is defined:
     risk: Vulnerabilities in containers stay for long
-    measure: Definition of a patch policy for containers is defined. How long do they live maximum? What happens when a ciritical vulnerability is discovered.
+    measure: Definition of a patch policy for containers is defined. How often does an images is getting build? How long do container live maximum? What happens when a ciritical vulnerability is discovered.
     difficultyOfImplementation:
       knowledge: 3
       time: 1
       resources: 2
-    usefulness: 5
+    usefulness: 4
     level: 1
   Nightly build of images:
     risk: Vulnerabilities in containers stay for long.
@@ -232,7 +242,7 @@ Patch Management:
     level: 3
   Usage of a short maximum life for containers:
     risk: Vulnerabilities in containers stay for long
-    measure: The nightly builded images are deployed minimum every 7 days. Meaning a container does not lives longer than 7 days.
+    measure: The nightly builded images are deployed minimum every 1 day. Meaning a container does not lives longer than 1 day.
     difficultyOfImplementation:
       knowledge: 3
       time: 4
