@@ -46,7 +46,9 @@ Build:
       resources: 2
     usefulness: 4
     level: 3
-    implementation: <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>, <a href="https://in-toto.github.io/">in-toto</a>
+    implementation: 
+      - <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>
+      - <a href="https://in-toto.github.io/">in-toto</a>
     dependsOn:
     - Defined build process
     samm: OA3-B
@@ -170,6 +172,24 @@ Deployment:
     risk: Developers or operations might start random images in the production cluster which have malicous code or known vulnerabilities.
     Measure: Whitelist signed artificats/images or whitelist a trusted (internal) registry.
     implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
-    dependsOn: Signing of artefacts:
+    dependsOn: Signing of artefacts
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 2
+  Inventory of running artifacts:
+    risk: In case a vulnerability of severity high or critical exists, it needs to be known where an artifacts with that vulnerability is deployed with which dependencies.
+    Measure: A documented inventory or a possibility to gather the needed information (e.g. the documentation of which script needs to be run by whoom) must be in place.
+    implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
+    dependsOn:
+    - Defined deployment process
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 1
 
 ...

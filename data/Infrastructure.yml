@@ -9,7 +9,10 @@ Infrastructure Hardening:
       resources: 2
     usefulness: 4
     level: 2
-    implementation: "For Containers: Deny running containers as root, deny using advanced privileges, deny mounting of the hole filesystem, ..."
+    implementation: 
+      - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes Bench for Security</a>
+      - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
+      - "For example for Containers: Deny running containers as root, deny using advanced privileges, deny mounting of the hole filesystem, ..."
   Applications are running in virtualized environments:
     risk: Through a vulnerability in one service on a server, the attacker gains access
       to other services.
@@ -42,9 +45,12 @@ Infrastructure Hardening:
       time: 3
       resources: 3
     usefulness: 5
-    level: 3
+    level: 1
     dependsOn: []
-    implementation: istio, bridges or firewalls)
+    implementation: 
+      - istio
+      - bridges
+      - firewalls
   Infrastructure as Code:
     risk: No tracking of changes in systems might lead to errors in the configuration.
       In additions, it might lead to unauthorized changes. An examples is jenkins.
@@ -128,7 +134,7 @@ Infrastructure Hardening:
     - Defined build process
   2FA:
     risk: One factor authentication is simple to bruteforce
-    measure: Two factor authentication for all administrative accounts on systems and applications
+    measure: Two factor authentication for all privileged accounts on systems and applications
     difficultyOfImplementation:
       knowledge: 3
       time: 2
@@ -209,7 +215,7 @@ Infrastructure Hardening:
       time: 2
       resources: 3
     usefulness: 3
-    level: 3
+    level: 2
     dependsOn:
     - Applications are running in virtualized environments
 Patch Management:
