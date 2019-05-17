@@ -1,5 +1,5 @@
 ---
-Dynamic depth:
+Dynamic depth for applications:
   Coverage analysis:
     risk: Parts of the service are not still covered.
     measure: Check that there are no missing paths in the application with coverage-tools.
@@ -120,7 +120,7 @@ Dynamic depth:
     dependsOn:
     - Usage of different roles
     implementation: SecureCodeBox
-Static depth:
+Static depth for applications:
   Exclusion of source code duplicates:
     risk: Duplicates in source code might influence the stability of the application.
     measure: Automatic Detection and manual removal of duplicates in source code.
@@ -457,7 +457,7 @@ Application tests:
     dependsOn:
     - Defined deployment process
     samm: ST2-B
-Infrastructure tests:
+Dynamic depth for infrastructure:
   Advanced infrastructure tests:
     risk: Critical infrastructure components like firewalls might be configured wrong
       in the first place or after a change.
@@ -479,20 +479,6 @@ Infrastructure tests:
       resources: 5
     usefulness: 3
     level: 4
-  Test of infrastructure components with known vulnerabilities:
-    risk: " Infrastructure components might have vulnerabilities."
-    measure: "Test for known vulnerabilities in infrastructure components"
-    difficultyOfImplementation:
-      knowledge: 2
-      time: 5
-      resources: 2
-    usefulness: 3
-    level: 4
-    implementation:
-    - Anchore
-    - Clair
-    - OpenSCAP
-    - <a href='https://github.com/future-architect/vuls'>Vuls</a>
   Test of the configuration of cloud environments:
     risk: Standard hardening practices for cloud environments are not performed leading
       to vulnerabilities.
@@ -519,8 +505,6 @@ Infrastructure tests:
     usefulness: 4
     level: 2
     implementation:
-    - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
-    - Docker Security Scan
     - openVAS
     samm: EH2-B
   Weak password test:
@@ -546,7 +530,41 @@ Infrastructure tests:
     level: 2
     implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
     dependendsOn: Segmentated networks for virtual environments
+Static depth for infrastructure:
   Test cluster resources:
     risk: The deployment configuration (e.g. kubernetes.yml)
+
+
+  Test of infrastructure components with known vulnerabilities:
+    risk: " Infrastructure components might have vulnerabilities."
+    measure: "Test for known vulnerabilities in infrastructure components."
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 5
+      resources: 2
+    usefulness: 2
+    level: 4
+    implementation:
+      - Anchore
+      - Clair
+      - OpenSCAP
+      - <a href='https://github.com/future-architect/vuls'>Vuls</a>
+  Test of the configuration of cloud environments:
+    risk: Standard hardening practices for cloud environments are not performed leading
+      to vulnerabilities.
+    measure: With the help of tools the configuration of virtual environments are
+      tested.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 4
+    level: 2
+    implementation:
+     - kube-bench TODO <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes
+      Bench for Security</a>
+      - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
+      - Docker Security Scan
+    samm: EH2-B
 
 ...

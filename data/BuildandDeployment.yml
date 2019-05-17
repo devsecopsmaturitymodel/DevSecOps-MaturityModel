@@ -171,5 +171,22 @@ Deployment:
     Measure: Whitelist signed artificats/images or whitelist a trusted (internal) registry.
     implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
     dependsOn: Signing of artefacts:
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 2
+Inventory of running artifacts:
+  risk: In case of vulnerability of severity high or critical, it needs to be known where an artifacts is deployed with which dependencies.
+  Measure: A documented inventory a a possibility to gather the needed information (e.g. the documentation of which script needs to be run by whoom) needs to be in place.
+  implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
+  dependsOn: Defined deployment process
+  difficultyOfImplementation:
+    knowledge: 1
+    time: 1
+    resources: 1
+  usefulness: 3
+  level: 1
 
 ...
