@@ -422,7 +422,7 @@ Application tests:
       time: 4
       resources: 2
     usefulness: 2
-    level: 2
+    level: 3
     implementation: HttpUnit
     samm: ST2-B
   Security unit tests for important components:
@@ -434,7 +434,7 @@ Application tests:
       time: 4
       resources: 2
     usefulness: 3
-    level: 1
+    level: 2
     comment: "Die Integration von Modultests findet schon w\xE4hrend der Entwicklung
       statt, es wird auf Schwachstellen in Sub-Routinen, Funktionen, Module, Bibliotheken
       usw. gepr\xFCft."
@@ -458,16 +458,6 @@ Application tests:
     - Defined deployment process
     samm: ST2-B
 Dynamic depth for infrastructure:
-  Advanced infrastructure tests:
-    risk: Critical infrastructure components like firewalls might be configured wrong
-      in the first place or after a change.
-    measure: Tests of the security of critical infrastructure components are performed.
-    difficultyOfImplementation:
-      knowledge: 2
-      time: 2
-      resources: 1
-    usefulness: 3
-    level: 4
   Load tests:
     risk: As it is unknown how many requests the systems and applications can serve,
       due to an unexpected load the availability is disturbed.
@@ -480,24 +470,8 @@ Dynamic depth for infrastructure:
     usefulness: 3
     level: 4
   Test of the configuration of cloud environments:
-    risk: Standard hardening practices for cloud environments are not performed leading
-      to vulnerabilities.
-    measure: With the help of tools the configuration of virtual environments are
-      tested.
-    difficultyOfImplementation:
-      knowledge: 2
-      time: 2
-      resources: 1
-    usefulness: 4
-    level: 2
-    implementation: <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes
-      Bench for Security</a>
-    samm: EH2-B
-  Test of the configuration of virtual environments:
-    risk: Standard hardening practices for virtual environments are not performed
-      leading to vulnerabilties.
-    measure: With the help of tools the configuration of virtual environments are
-      tested.
+    risk: Standard hardening practices for cloud environments are not performed leading to vulnerabilities.
+    measure: With the help of tools the configuration of virtual environments are tested.
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -505,7 +479,8 @@ Dynamic depth for infrastructure:
     usefulness: 4
     level: 2
     implementation:
-    - openVAS
+      - <a href='https://github.com/aquasecurity/kube-hunter'>kube-hunter</a>
+      - openVAS
     samm: EH2-B
   Weak password test:
     risk: Weak passwords in components like applications or systems, specially for
@@ -527,29 +502,36 @@ Dynamic depth for infrastructure:
       time: 2
       resources: 1
     usefulness: 3
-    level: 2
+    level: 1
     implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
     dependendsOn: Segmentated networks for virtual environments
 Static depth for infrastructure:
-  Test cluster resources:
-    risk: The deployment configuration (e.g. kubernetes.yml)
-
-
-  Test of infrastructure components with known vulnerabilities:
+  Test cluster deployment resources:
+    risk: The deployment configuration (e.g. kubernetes deployment resources) might contain unsecure configurations.
+    measure: Test the deployment configuration for virtualized environments for unsecure configurations.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 1
+      resources: 2
+    usefulness: 3
+    level: 2
+    implementation:
+      - <a href="https://kubesec.io/">kubesec</a>
+  Test of infrastructure components for known vulnerabilities:
     risk: " Infrastructure components might have vulnerabilities."
-    measure: "Test for known vulnerabilities in infrastructure components."
+    measure: "Test for known vulnerabilities in infrastructure components. Often, the only way to respond to known vulnerabilities in operating system packages is to accept the risk and wait for a patch."
     difficultyOfImplementation:
       knowledge: 2
       time: 5
       resources: 2
     usefulness: 2
-    level: 4
+    level: 3
     implementation:
       - Anchore
       - Clair
       - OpenSCAP
       - <a href='https://github.com/future-architect/vuls'>Vuls</a>
-  Test of the configuration of cloud environments:
+  Test the configuration of cloud environments:
     risk: Standard hardening practices for cloud environments are not performed leading
       to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
@@ -561,10 +543,7 @@ Static depth for infrastructure:
     usefulness: 4
     level: 2
     implementation:
-     - kube-bench TODO <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes
-      Bench for Security</a>
-      - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
-      - Docker Security Scan
+     - <a href="https://github.com/aquasecurity/kube-bench">kube-bench</a>
     samm: EH2-B
 
 ...
