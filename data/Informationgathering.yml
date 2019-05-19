@@ -13,6 +13,7 @@ Monitoring:
     dependsOn:
     - Simple application metrics
     - Visualized metrics
+    samm2: o-incident-management|A|2
   Advanced webapplication metrics:
     risk: People are not looking into tests results. Vulnerabilities not recolonized,
       even they are detected by tools.
@@ -26,6 +27,7 @@ Monitoring:
     dependsOn:
     - Simple application metrics
     - Visualized metrics
+    samm2: o-incident-management|A|2
   Alerting:
     risk: Incidents are discovered after they happend.
     measure: Thresholds for metrics are set. In case the thresholds are reached, alarms
@@ -38,6 +40,7 @@ Monitoring:
     level: 2
     dependsOn:
     - Visualized metrics
+    samm2: o-operational-management|B|3
     samm: OE1-B
   Coverage and control metrics:
     risk: The effectiveness of configuration, patch and vulnerablity management is
@@ -57,6 +60,7 @@ Monitoring:
     dependsOn:
     - Visualized metrics
     implementation: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+    samm2: o-incident-management|A|2
   Deactivation of unused metrics:
     risk: High resources are used while gathering unused metrics.
     measure: Deactivation of unused metrics helps to free resources.
@@ -68,6 +72,7 @@ Monitoring:
     level: 3
     dependsOn:
     - Visualized metrics
+    samm2: o-incident-management|A|1
   Defence metrics:
     risk: IDS/IPS systems like packet- or application-firewalls detect and prevent
       attacks. It is not known how many attacks has been detected and blocked.
@@ -81,6 +86,7 @@ Monitoring:
     level: 4
     dependsOn:
     - Visualized metrics
+    samm2: o-incident-management|A|2
   Grouping of metrics:
     risk: The analysis of metrics takes long.
     measure: Meaningful grouping of metrics helps to speed up analysis.
@@ -90,6 +96,7 @@ Monitoring:
       resources: 2
     usefulness: 2
     level: 3
+    samm2: o-incident-management|A|2
   Metrics are combined with tests:
     risk: Changes might cause high load due to programming errors.
     measure: Metrics during tests helps to identify programming errors.
@@ -101,6 +108,7 @@ Monitoring:
     level: 4
     dependsOn:
     - Grouping of metrics
+    samm2: o-incident-management|A|2
   Screens with metric visualization:
     risk: Security related information is discovered too late during an incident.
     measure: By having an internal accessable screen with a security related dashboards
@@ -113,6 +121,7 @@ Monitoring:
     level: 4
     dependsOn:
     - Grouping of metrics
+    samm2: o-incident-management|A|2
   Simple application metrics:
     risk: Attacks on an application are not recognized.
     measure: Gathering of application metrics helps to identify incidents like brute
@@ -124,6 +133,7 @@ Monitoring:
     usefulness: 5
     level: 1
     implementation: Prometheus
+    samm2: o-incident-management|A|1
   Simple system metrics:
     risk: Without simple metrics analysis of incidents are hard. In case an application
       uses a lot of CPU from time to time, it is hard for a developer to find out
@@ -137,6 +147,7 @@ Monitoring:
     usefulness: 5
     level: 1
     implementation: collectd
+    samm2: o-incident-management|A|1
   Targeted alerting:
     risk: People are bored (irodiert) of incident alarm messages, as they are not
       responsbile to react.
@@ -151,6 +162,7 @@ Monitoring:
     dependsOn:
     - Alerting
     samm: OE1-B
+    samm2: o-operational-management|B|3
   Visualized metrics:
     risk: Not vizualized metrics lead to restricted usage of metrics.
     measure: Metrics are vizualized in real time in a user friendly way.
@@ -163,6 +175,7 @@ Monitoring:
     dependsOn:
     - Simple application metrics
     - Simple system metrics
+    samm2: o-incident-management|A|2
 Logging:
   Centralized application logging:
     risk: Local stored logs can be unauthorized manipulated by attackers with system
@@ -180,6 +193,7 @@ Logging:
     - Visualized logging
     - Alerting
     samm: SA2-B
+    samm2: o-incident-management|A|1
   PII logging concept:
     risk: Personal identifiable information (PII) is logged and the law of GDPR is not followed.
     measure: A concept how to log PII is documented and applied.
@@ -190,6 +204,7 @@ Logging:
     usefulness: 1
     level: 1
     implementation: rsyslog, logstash, fluentd, bash
+    samm2: o-incident-management|A|1
   Logging of security events:
     risk: No track of security-relevant events makes it harder to analyse an incident.
     measure: Security-relevant events like login/logout or creation, change, deletion of users should be logged.
@@ -202,6 +217,7 @@ Logging:
     dependsOn:
       - PII logging concept
     implementation: rsyslog, logstash, fluentd, bash
+    samm2: o-incident-management|A|1
   Centralized system logging:
     risk: Local stored system logs can be unauthorized manipulated by attackers or
       might be corrupt after an incident. In addition, it is hard to perform a aggregation
@@ -215,6 +231,7 @@ Logging:
     usefulness: 2
     level: 1
     implementation: rsyslog, Logstash
+    samm2: o-incident-management|A|1
   Correlation of security events:
     risk: Detection of security related events with hints on different systems/tools/metrics
       is not possible.
@@ -229,6 +246,7 @@ Logging:
     dependsOn:
     - Visualized logging
     - Alerting
+    samm2: o-incident-management|A|2
   Visualized logging:
     risk: System and application protocols are not visualized properly which leads
       to no or very limited logging assessment. Specally developers might have difficulty
@@ -245,4 +263,5 @@ Logging:
     - Centralized system logging
     - Centralized application logging
     implementation: ELK-Stack
+    samm2: o-incident-management|A|1
 ...

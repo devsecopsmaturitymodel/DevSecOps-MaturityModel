@@ -1,7 +1,7 @@
 ---
 Education and Guidance:
   Security consulting on request:
-    risk: TODO
+    risk: Not asking a security expert when questions regarding security appear might lead to flaws.
     measure: Security consulting to teams is given on request. The security consultants can be internal or external.
     difficultyOfImplementation:
       knowledge: 2
