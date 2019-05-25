@@ -152,6 +152,7 @@ Infrastructure Hardening:
     usefulness: 4
     level: 3
     implementation: Smartcard, YubiKey, SMS
+    samm2: TODO
   Simple access control for systems:
     risk: Attackers a gaining access to interal systems and application interfaces
     measure: All internal systems are using simple authentication

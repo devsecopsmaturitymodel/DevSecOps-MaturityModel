@@ -352,7 +352,7 @@ Consolidation:
       erfasst werden. Bei Mikroservice-Architektur k\xF6nnen einzelne Mikroservices
       i.d.R. Teams zugewiesen werden. Bei DAST: Schwachstellen sind klassifiziert
       und k\xF6nnen serverseitigen und klientenseitigen Teams zugewiesen werden."
-      samm2: i-defect-management|B|2
+    samm2: "i-defect-management|B|2"
   Reproducible defect tickets:
     risk: Vulnerability descriptions are hard to understand by staff from operations
       and development.
@@ -493,7 +493,7 @@ Application tests:
     dependsOn:
     - Defined deployment process
     samm: ST2-B
-    v-security-testing|B|3
+    samm2: v-security-testing|B|3
 Dynamic depth for infrastructure:
   Load tests:
     risk: As it is unknown how many requests the systems and applications can serve,
@@ -532,7 +532,7 @@ Dynamic depth for infrastructure:
     usefulness: 1
     level: 3
     implementation: HTC Hydra
-    v-security-testing|A|2
+    samm2: v-security-testing|A|2
   Test network segmentation:
     risk: Wrong or no network segmentation of pods makes it easyer for an attacker to access a database and extract or modify data.
     measure: Integration of fine granulated network segmenation (also between pods in the same namespace)
@@ -544,7 +544,7 @@ Dynamic depth for infrastructure:
     level: 1
     implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
     dependendsOn: Segmentated networks for virtual environments
-    v-security-testing|A|2
+    samm2: v-security-testing|A|2
 Static depth for infrastructure:
   Test cluster deployment resources:
     risk: The deployment configuration (e.g. kubernetes deployment resources) might contain unsecure configurations.
