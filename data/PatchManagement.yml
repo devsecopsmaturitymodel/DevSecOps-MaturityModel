@@ -1,0 +1,41 @@
+Patch Management:
+  A patch policy is defined:
+    risk: Vulnerabilities in running containers stay for long and might get exploited.
+    measure: Definition of a patch policy for all artifacts in images is defined. How often is an images getting build? How long do container live maximum?
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 1
+      resources: 2
+    usefulness: 4
+    level: 1
+    samm2: o-environment-management|B|1
+  Nightly build of images:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: Images are getting build at least nightly.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    samm2: o-environment-management|B|1
+  Usage of a maximum life for containers:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: The nightly builded images are deployed minimum every 30 days. Meaning a container does not lives longer than 30 days.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 3
+    samm2: o-environment-management|B|1
+  Usage of a short maximum life for containers:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: The nightly builded images are deployed minimum every 1 day. Meaning a container does not lives longer than 1 day.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 4
+    samm2: o-environment-management|B|1

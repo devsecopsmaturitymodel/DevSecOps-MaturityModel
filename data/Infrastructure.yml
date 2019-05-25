@@ -2,14 +2,18 @@
 Infrastructure Hardening:
   The cluster is hardened:
     risk: Using default configurations for a cluster enviroment leads to potential risks.
-    measure: Harden cluster enviroments.
+    measure: Harden cluster enviroments according to best practices.
     difficultyOfImplementation:
       knowledge: 4
       time: 3
       resources: 2
     usefulness: 4
     level: 2
-    implementation: "For Containers: Deny running containers as root, deny using advanced privileges, deny mounting of the hole filesystem, ..."
+    implementation: 
+      - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Kubernetes Bench for Security</a>
+      - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
+      - "For example for Containers: Deny running containers as root, deny using advanced privileges, deny mounting of the hole filesystem, ..."
+    samm2: o-environment-management|A|1
   Applications are running in virtualized environments:
     risk: Through a vulnerability in one service on a server, the attacker gains access
       to other services.
@@ -20,6 +24,7 @@ Infrastructure Hardening:
       resources: 5
     usefulness: 3
     level: 2
+    samm2: o-environment-management|A|1
   Checking the sources of used libraries:
     risk: Application and system libraries can have implementation flaws or deployment
       flaws.
@@ -31,6 +36,7 @@ Infrastructure Hardening:
     usefulness: 3
     level: 2
     samm: SA1-A
+    samm2: o-environment-management|A|1
   Segmentated networks for virtual environments:
     risk: Virtual environments in default settings are able to access other virtual
       environments on the network stack. By using virtual machines, it is often possible
@@ -42,9 +48,13 @@ Infrastructure Hardening:
       time: 3
       resources: 3
     usefulness: 5
-    level: 3
+    level: 1
     dependsOn: []
-    implementation: istio, bridges or firewalls)
+    implementation: 
+      - istio
+      - bridges
+      - firewalls
+    samm2: o-environment-management|A|1
   Infrastructure as Code:
     risk: No tracking of changes in systems might lead to errors in the configuration.
       In additions, it might lead to unauthorized changes. An examples is jenkins.
@@ -58,6 +68,7 @@ Infrastructure Hardening:
     usefulness: 4
     level: 3
     implementation: GitOps, Ansible, Chef, Puppet, Jenkinsfile
+    samm2: o-environment-management|A|1
   Limitation of system calls in virtual environments:
     risk: System calls in virtual environments like docker can lead to privilege escalation.
     measure: System calls in virtual environments like docker are audited and limited.
@@ -70,6 +81,7 @@ Infrastructure Hardening:
     dependsOn:
     - Applications are running in virtualized environments
     implementation: seccomp, strace
+    samm2: o-environment-management|A|1
   Immutable Infrastructure:
     risk: The availability of IT systems might be disturbed due to components failures
     measure: Redundancies in the IT systems
@@ -82,6 +94,7 @@ Infrastructure Hardening:
     dependsOn:
       - Infrastructure as Code
     implementation: Remove direct access to infrastructure
+    samm2: o-environment-management|A|1
   Microservice-Architecture:
     risk: Monolithic applications are hard to test.
     measure: A microservice-architecture helps to have small components, which are
@@ -93,6 +106,7 @@ Infrastructure Hardening:
     usefulness: 3
     level: 4
     samm: SA2
+    samm2: o-environment-management|A|1
   Production near environments are used by developers:
     risk: In case an errors occurs in production, the developer need to be able to
       create a production near environment on a local development environment.
@@ -111,6 +125,7 @@ Infrastructure Hardening:
     - Defined deployment process
     - Infrastructure as Code
     samm: SA1
+    samm2: o-environment-management|A|1
   Role based authentication and authorization:
     risk: Everyone is able to get unauthorized access to information on systems or
       to modify information unauthorized on systems.
@@ -126,9 +141,10 @@ Infrastructure Hardening:
     dependsOn:
     - Defined deployment process
     - Defined build process
+    samm2: o-environment-management|A|1
   2FA:
     risk: One factor authentication is simple to bruteforce
-    measure: Two factor authentication for all administrative accounts on systems and applications
+    measure: Two factor authentication for all privileged accounts on systems and applications
     difficultyOfImplementation:
       knowledge: 3
       time: 2
@@ -149,6 +165,7 @@ Infrastructure Hardening:
     - Defined deployment process
     implementation: HTTP-Basic Authentication, TLS, VPN
     samm: EH1-B
+    samm2: o-environment-management|A|1
   Usage of a chaos monkey:
     risk: Due to manuel changes on a system, they are not replaceable anymore. In
       case of a crash it might happen that a planned redudant system is unavailable.
@@ -161,6 +178,7 @@ Infrastructure Hardening:
       resources: 5
     usefulness: 3
     level: 4
+    samm2: o-environment-management|A|1
   Usage of security by default for components:
     risk: Components (images, libraries, applications) are not hardened.
     measure: Hardening of components is important, specially for image on which other
@@ -176,6 +194,7 @@ Infrastructure Hardening:
       authentication'
     dependsOn:
     - Defined build process
+    samm2: o-environment-management|A|1
   Usage of test and production environments:
     risk: Security tests are not running reculary because test environments are missing
     measure: A production and a production like envirnoment is used
@@ -187,6 +206,7 @@ Infrastructure Hardening:
     level: 1
     dependsOn:
     - Defined deployment process
+    samm2: o-environment-management|A|1
   Versioning:
     risk: Changes to production systems can not be undone.
     measure: Versioning of artifacts related to production environments. For example
@@ -199,6 +219,7 @@ Infrastructure Hardening:
     level: 3
     dependsOn:
     - Defined deployment process
+    samm2: o-environment-management|A|1
   Virtual environments are limited:
     risk: Denail of service (intenenally by an attacker or uninteninally by a bug)
       on one service effects other services
@@ -209,44 +230,8 @@ Infrastructure Hardening:
       time: 2
       resources: 3
     usefulness: 3
-    level: 3
+    level: 2
     dependsOn:
     - Applications are running in virtualized environments
-Patch Management:
-  A patch policy is defined:
-    risk: Vulnerabilities in containers stay for long
-    measure: Definition of a patch policy for containers is defined. How often does an images is getting build? How long do container live maximum? What happens when a ciritical vulnerability is discovered.
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 1
-      resources: 2
-    usefulness: 4
-    level: 1
-  Nightly build of images:
-    risk: Vulnerabilities in containers stay for long.
-    measure: The all images build at least nightly.
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 2
-      resources: 2
-    usefulness: 3
-    level: 2
-  Usage of a maximum life for containers:
-    risk: Vulnerabilities in containers stay for long
-    measure: The nightly builded images are deployed minimum every 30 days. Meaning a container does not lives longer than 30 days.
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 4
-      resources: 2
-    usefulness: 3
-    level: 3
-  Usage of a short maximum life for containers:
-    risk: Vulnerabilities in containers stay for long
-    measure: The nightly builded images are deployed minimum every 1 day. Meaning a container does not lives longer than 1 day.
-    difficultyOfImplementation:
-      knowledge: 3
-      time: 4
-      resources: 2
-    usefulness: 3
-    level: 4
+    samm2: o-environment-management|A|1
 ...
