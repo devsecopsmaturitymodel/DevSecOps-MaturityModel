@@ -13,7 +13,7 @@ Build:
     usefulness: 2
     level: 4
     implementation: Docker
-    dependsOn:
+    samm2: TODO
   Defined build process:
     risk: Performing builds without a defined process is error prone.
       For example, as a result of incorect security related configuration.
@@ -26,6 +26,7 @@ Build:
     usefulness: 4
     level: 1
     implementation: "Jenkins, Docker"
+    samm2: i-secure-build|A|1
   Regular tests:
     risk: After pushing source code to the version control system, any elay in receiving feedback on defects makes them harder for the developer to remediate. 
     measure: On each push and/or at given intervals automatic security tests are performed.
@@ -36,6 +37,21 @@ Build:
     usefulness: 2
     level: 2
     implementation: ""
+    samm2: i-secure-build|A|3
+  Signing of code:
+    risk: Unauthorized manipulation of source code might be difficult to spot.
+    measure: Digitally signing commits helps to prevent unauthorized manipulation of source code.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 3
+    implementation: 
+    dependsOn:
+    - Defined build process
+    samm: OA3-B
+    samm2: i-secure-build|A|2
   Signing of artefacts:
     risk: Unauthorized manipulation of artefacts might be difficult to spot. For example, this may result in
       images with malicious code in the Docker registry.
@@ -46,10 +62,13 @@ Build:
       resources: 2
     usefulness: 4
     level: 3
-    implementation: <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>, <a href="https://in-toto.github.io/">in-toto</a>
+    implementation: 
+      - <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>
+      - <a href="https://in-toto.github.io/">in-toto</a>
     dependsOn:
     - Defined build process
     samm: OA3-B
+    samm2: i-secure-build|A|1
 Deployment:
   Backup before deployment:
     risk: If errors are experienced during the deployment process you want to deploy
@@ -66,6 +85,7 @@ Deployment:
     dependsOn:
     - Defined deployment process
     samm: OE2-A
+    samm2: TODO
   Blue/Green Deployment:
     risk: A new artefact version can have unknown defects.
     measure: By having multiple production environments, a deployment can be performent
@@ -80,6 +100,7 @@ Deployment:
       Deployments</a>
     dependsOn:
     - Smoke Test
+    samm2: TODO
   Defined deployment process:
     risk: Deployments without a defined process are error prone thus allowing old or untested artefact to be deployed.
     measure: A defined deployment process significantly lowers the likelihood of errors during the deployment phase.
@@ -90,6 +111,7 @@ Deployment:
     usefulness: 4
     level: 1
     implementation: Jenkins, Docker
+    samm2: i-secure-deployment|A|1
   Environment depending configuration parameters:
     risk: Attackers who compromise source code can see confidential access information
       like database credentials.
@@ -103,6 +125,7 @@ Deployment:
     level: 2
     implementation: ""
     samm: SA2-A
+    samm2: i-secure-deployment|B|2 TODO might be 1
   Handover of confidential parameters:
     risk: Attackers who compromise a system can see confidential access information
       like database credentials. Parameters are often used to set credentials, for
@@ -121,6 +144,7 @@ Deployment:
     dependsOn:
     - Environment depending configuration parameters
     samm: "SA2-A"
+    samm2: i-secure-deployment|B|2 TODO might be 1
   Rolling update on deployment:
     risk: While a deployment is performed, the application can not be reached.
     measure: A deployment without downtime is performed*.
@@ -133,6 +157,7 @@ Deployment:
     implementation: Docker, Webserver, rolling update
     dependsOn:
     - Defined deployment process
+    samm2: TODO
   Same artefact for environments:
     risk: Building of an artefact for different environments means that an untested
       artefact might reach the production environment.
@@ -147,8 +172,8 @@ Deployment:
     implementation: Docker
     dependsOn:
     - Defined build process
-    samm:
-    - OE2-A
+    samm: OE2-A
+    samm2: TODO
   Usage of feature toggles:
     risk: By using environment dependent configuration, some parameters will not be
       tested correctly. i.e. <pre>if
@@ -165,11 +190,31 @@ Deployment:
     dependsOn:
     - Same artefact for environments
     samm: EG1-B
-
+    samm2: TODO
   Usage of trusted images:
     risk: Developers or operations might start random images in the production cluster which have malicous code or known vulnerabilities.
     Measure: Whitelist signed artificats/images or whitelist a trusted (internal) registry.
     implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
-    dependsOn: Signing of artefacts:
+    dependsOn: Signing of artefacts
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 2
+    samm2: i-secure-build|A|3
+  Inventory of running artifacts:
+    risk: In case a vulnerability of severity high or critical exists, it needs to be known where an artifacts with that vulnerability is deployed with which dependencies.
+    Measure: A documented inventory or a possibility to gather the needed information (e.g. the documentation of which script needs to be run by whoom) must be in place.
+    implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
+    dependsOn:
+    - Defined deployment process
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 1
+    samm2: o-incident-management|TODO
 
 ...
