@@ -19,7 +19,7 @@ foreach ($dimensions as $dimension => $subdimensions) {
         for ($i = 1; $i <= 4; $i++) {
             $tableContent .= "<td><ul>";
             foreach ($element as $elementName => $content) {
-                if(array_key_exists("samm2", $content)) {
+                if(array_key_exists("samm2", $content) && !preg_match("/TODO/i", $content["samm2"])) {
                     $content = getContentForLevelFromSubdimensions($i, $content, $elementName);
 
                     if ($content != "") {
@@ -33,7 +33,7 @@ foreach ($dimensions as $dimension => $subdimensions) {
         for ($i = 1; $i <= 4; $i++) {
             $tableContent .= "<td><ul>";
             foreach ($element as $elementName => $content) {
-                if(!array_key_exists("samm2", $content)) {
+                if(!array_key_exists("samm2", $content) || preg_match("/TODO/i", $content["samm2"])) {
                     $content = getContentForLevelFromSubdimensions($i, $content, $elementName);
 
                     if ($content != "") {

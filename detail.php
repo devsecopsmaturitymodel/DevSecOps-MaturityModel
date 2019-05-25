@@ -86,6 +86,10 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
     	$samm = $element['samm'];
     	echo "<div><b>OWASP SAMM 1 Mapping:</b> $samm</div>";
     }
+    if (array_key_exists("samm2", $element) && !empty($element['samm2'])) {
+    	$samm = $element['samm2'];
+    	echo "<div><b>OWASP SAMM 2 Mapping:</b> $samm</div>";
+    }    
 }
 
 printDetail($dimension, $subdimension, $elementName, $dimensions);
