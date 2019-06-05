@@ -13,7 +13,7 @@ include_once "detail.php";
 foreach ($dimensions as $dimension => $subdimensions) {
     echo "<h1>Dimension $dimension</h1>";
     foreach ($subdimensions as $subdimension => $element) {
-        echo "<h2>Unter-Dimension $subdimension</h2>";
+        echo "<h2>Sub-Dimension $subdimension</h2>";
 
         for ($i = 1; $i <= 4; $i++) {
             $tableContent .= "<td><ul>";
