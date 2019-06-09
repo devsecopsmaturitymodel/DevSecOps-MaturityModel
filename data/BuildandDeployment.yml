@@ -13,7 +13,7 @@ Build:
     usefulness: 2
     level: 4
     implementation: Docker
-    samm2: TODO
+    samm2: i-secure-build|A|2
   Defined build process:
     risk: Performing builds without a defined process is error prone.
       For example, as a result of incorect security related configuration.
@@ -125,7 +125,7 @@ Deployment:
     level: 2
     implementation: ""
     samm: SA2-A
-    samm2: i-secure-deployment|B|2 TODO might be 1
+    samm2: i-secure-deployment|B|1
   Handover of confidential parameters:
     risk: Attackers who compromise a system can see confidential access information
       like database credentials. Parameters are often used to set credentials, for
@@ -157,7 +157,7 @@ Deployment:
     implementation: Docker, Webserver, rolling update
     dependsOn:
     - Defined deployment process
-    samm2: TODO
+    samm2: i-secure-deployment|A|1
   Same artefact for environments:
     risk: Building of an artefact for different environments means that an untested
       artefact might reach the production environment.
@@ -173,7 +173,7 @@ Deployment:
     dependsOn:
     - Defined build process
     samm: OE2-A
-    samm2: TODO
+    samm2: i-secure-deployment|A|2
   Usage of feature toggles:
     risk: By using environment dependent configuration, some parameters will not be
       tested correctly. i.e. <pre>if
@@ -202,7 +202,7 @@ Deployment:
       resources: 1
     usefulness: 3
     level: 2
-    samm2: i-secure-build|A|3
+    samm2: i-secure-deployment|A|2
   Inventory of running artifacts:
     risk: In case a vulnerability of severity high or critical exists, it needs to be known where an artifacts with that vulnerability is deployed with which dependencies.
     Measure: A documented inventory or a possibility to gather the needed information (e.g. the documentation of which script needs to be run by whoom) must be in place.
