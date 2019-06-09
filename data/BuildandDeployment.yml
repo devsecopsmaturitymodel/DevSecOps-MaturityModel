@@ -179,7 +179,7 @@ Deployment:
       tested correctly. i.e. <pre>if
       (host == 'production') {} else {}</pre>
     measure: Usage of environment independend configration parameter, called feature
-      toggles, helps to enhance the test coverage.
+      toggles, helps to enhance the test coverage. Only what has been tested, goes to production.
     difficultyOfImplementation:
       knowledge: 2
       time: 1
