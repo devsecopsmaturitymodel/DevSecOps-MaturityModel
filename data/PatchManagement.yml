@@ -39,3 +39,13 @@ Patch Management:
     usefulness: 3
     level: 4
     samm2: o-environment-management|B|1
+  Reduction of the attack surface:
+    risk: Dependencies might have Vulnerabilities, but the dependency is not needed.
+    measure: Removal of not needed dependencies.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    samm2: o-environment-management|B|1    
