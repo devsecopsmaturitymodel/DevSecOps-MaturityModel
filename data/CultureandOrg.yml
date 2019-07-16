@@ -10,6 +10,27 @@ Education and Guidance:
     usefulness: 3
     level: 1
     samm: EG2-B
+  Regulary security training of security champions:
+    risk: Understanding security is hard, even for security champions.
+    measure: Regulary security training of security champions.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    samm: EG2-B
+  Regulary security training for everyone:
+    risk: Understanding security is hard, for interal as well as external employees.
+    measure: Regulary security training for everyone.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 3
+    samm: EG2-B
+    implementation: Often, external employees are not invited for interal trainings. This activity focuses on providing security trainings to internal as well as external employyes. It is conducted every two weeks for around one hour.
   Each team has a security champion:
     risk: No one feels directly responsible for security and the securiy champion does not have enough
       time to allocate to each team.
