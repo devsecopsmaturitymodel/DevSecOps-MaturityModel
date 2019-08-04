@@ -546,6 +546,18 @@ Dynamic depth for infrastructure:
     dependendsOn: Segmentated networks for virtual environments
     samm2: v-security-testing|A|2
 Static depth for infrastructure:
+  Test the definition of virtualized environments:
+    risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might contains unsecure configurations.
+    measure: Test the definition of virtualized environments for unsecure configurations.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 1
+      resources: 2
+    usefulness: 3
+    level: 2
+    implementation:
+      - <a href="https://github.com/hadolint/hadolint">hadolint</a>
+    samm2: v-security-testing|A|1  
   Test cluster deployment resources:
     risk: The deployment configuration (e.g. kubernetes deployment resources) might contain unsecure configurations.
     measure: Test the deployment configuration for virtualized environments for unsecure configurations.
@@ -588,5 +600,4 @@ Static depth for infrastructure:
      - <a href="https://github.com/aquasecurity/kube-bench">kube-bench</a>
     samm: EH2-B
     samm2: v-security-testing|A|1
-
 ...
