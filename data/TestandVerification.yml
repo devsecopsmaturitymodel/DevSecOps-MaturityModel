@@ -407,15 +407,15 @@ Consolidation:
     usefulness: 2
     level: 4
   samm2: i-defect-management|B|2
-  Treatment of defects with severity high:
+  Treatment of defects with severity high or higher:
     risk: Vulnerabilities with severity high or higher are not visible.
     measure: Vulnerabilities with severity high or higher are added to the quality gate.
     difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
-    usefulness: 3
-    level: 3
+    usefulness: 4
+    level: 1
     comment: False positive analysis, specially for static analysis, is time consuming.
     samm2: i-defect-management|B|2  
   Treatment of defects with severity middle:
