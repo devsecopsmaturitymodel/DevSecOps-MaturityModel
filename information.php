@@ -24,7 +24,10 @@ One of the biggest insurances in europe based his own maturity model on DSOMM. A
 
 <h2>Slides and talks</h2>
 <ul>
+    <li><a href="https://docs.google.com/presentation/d/1rrbyXqxy3LXAJNPFrVH99mj_BNaJKymMsXZItYArWEM/edit?usp=sharing">DevSecOps Maturity Model</a>, 2017</li>
+    <li><a href="https://docs.google.com/presentation/d/1zF7c_0cPYBO7LHcLNtEApQBB_qJugXgRQUyiwBKKtKk/edit?usp=sharing">DevSecOps Maturity Model @ Open Security Summit</a>, 2018</li>
     <li><a href="https://docs.google.com/presentation/d/1dAewXIHgBEKHKwBPpM5N_G2eM6PRpduoGJrp6R6pNUI/edit?usp=sharing">Dynamic Application Security Testing for Enterprise</a>, 14.07.2018</li>
+    <li><a href="">TODO:Fail Fast, Automation of Security Tests</a>, 26.09.2019</li>
     <li><a href="https://www.youtube.com/watch?v=gWjGWebWahE&t=448s">Security in DevOps-Strategies</a>, 28.09.2017, Hamburg, Germany</li>
 </ul>
 

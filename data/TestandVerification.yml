@@ -307,7 +307,7 @@ Test-Intensity:
       time: 3
       resources: 5
     usefulness: 3
-    level: 4
+    level: 1
     samm2: v-security-testing|A|2    
 Consolidation:
   Advanced visualization of defects:
