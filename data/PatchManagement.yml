@@ -48,4 +48,5 @@ Patch Management:
       resources: 2
     usefulness: 3
     level: 2
-    samm2: o-environment-management|B|1    
+    samm2: o-environment-management|B|1
+    implementation: <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
