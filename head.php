@@ -66,7 +66,7 @@ function getTableHeader() {
 			gettext ( "Level 1: Basic understanding of security practices" ),
 			gettext ( "Level 2: Understanding of security practices" ),
 			gettext ( "Level 3: High understanding of security practices" ),
-			gettext ( "Level 4: Advanced understanding of security practives at scale" ) 
+			gettext ( "Level 4: Advanced understanding of security practices at scale" ) 
 	);
 	$headerContent = "<thead  class=\"thead-default\"><tr>";
 	foreach ( $headers as $header ) {
