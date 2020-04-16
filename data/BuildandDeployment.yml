@@ -1,7 +1,7 @@
 ---
 Build:
-  Building and testing of artefacts in virtual environments:
-    risk: While building and testing artefacts, third party systems, application frameworks
+  Building and testing of artifacts in virtual environments:
+    risk: While building and testing artifacts, third party systems, application frameworks
       and 3rd party libraries are used. These might be malicious as a result of vulnerable
       libraries or because they are altered during the delivery phase.
     measure: Each step during within the build and testing phase is performed in a separate virtual
@@ -16,7 +16,7 @@ Build:
     samm2: i-secure-build|A|2
   Defined build process:
     risk: Performing builds without a defined process is error prone.
-      For example, as a result of incorect security related configuration.
+      For example, as a result of incorrect security related configuration.
     measure: A well defined build process lowers the possibility of errors during the build
       process.
     difficultyOfImplementation:
@@ -28,7 +28,7 @@ Build:
     implementation: "Jenkins, Docker"
     samm2: i-secure-build|A|1
   Regular tests:
-    risk: After pushing source code to the version control system, any elay in receiving feedback on defects makes them harder for the developer to remediate. 
+    risk: After pushing source code to the version control system, any delay in receiving feedback on defects makes them harder for the developer to remediate.
     measure: On each push and/or at given intervals automatic security tests are performed.
     difficultyOfImplementation:
       knowledge: 1
@@ -47,22 +47,22 @@ Build:
       resources: 2
     usefulness: 3
     level: 3
-    implementation: 
+    implementation:
     dependsOn:
     - Defined build process
     samm: OA3-B
     samm2: i-secure-build|A|2
-  Signing of artefacts:
-    risk: Unauthorized manipulation of artefacts might be difficult to spot. For example, this may result in
+  Signing of artifacts:
+    risk: Unauthorized manipulation of artifacts might be difficult to spot. For example, this may result in
       images with malicious code in the Docker registry.
-    measure: Digitally signing artefacts for all steps during the build and specally docker images, helps to ensure their integrity.
+    measure: Digitally signing artifacts for all steps during the build and especially docker images, helps to ensure their integrity.
     difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 2
     usefulness: 4
     level: 3
-    implementation: 
+    implementation:
       - <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>
       - <a href="https://in-toto.github.io/">in-toto</a>
     dependsOn:
@@ -80,15 +80,15 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 2
-    implementation: A complete database dabackup might be performed*. For large and complex
+    implementation: A complete database backup might be performed*. For large and complex
       environments, a Point in Time Recovery for databases should be implemented.
     dependsOn:
     - Defined deployment process
     samm: OE2-A
     samm2: TODO
   Blue/Green Deployment:
-    risk: A new artefact version can have unknown defects.
-    measure: By having multiple production environments, a deployment can be performent
+    risk: A new artifacts version can have unknown defects.
+    measure: By having multiple production environments, a deployment can be performant
       on the first environment to spot possible defects before it is deployment in the production environment(s)
     difficultyOfImplementation:
       knowledge: 1
@@ -102,7 +102,7 @@ Deployment:
     - Smoke Test
     samm2: TODO
   Defined deployment process:
-    risk: Deployments without a defined process are error prone thus allowing old or untested artefact to be deployed.
+    risk: Deployments without a defined process are error prone thus allowing old or untested artifact to be deployed.
     measure: A defined deployment process significantly lowers the likelihood of errors during the deployment phase.
     difficultyOfImplementation:
       knowledge: 2
@@ -158,11 +158,11 @@ Deployment:
     dependsOn:
     - Defined deployment process
     samm2: i-secure-deployment|A|1
-  Same artefact for environments:
-    risk: Building of an artefact for different environments means that an untested
-      artefact might reach the production environment.
-    measure: Building an artefact once and deploying it to different environments means
-      that only tested artefacts are allowed to reach the production environment
+  Same artifact for environments:
+    risk: Building of an artifact for different environments means that an untested
+      artifact might reach the production environment.
+    measure: Building an artifact once and deploying it to different environments means
+      that only tested artifacts are allowed to reach the production environment
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -178,7 +178,7 @@ Deployment:
     risk: By using environment dependent configuration, some parameters will not be
       tested correctly. i.e. <pre>if
       (host == 'production') {} else {}</pre>
-    measure: Usage of environment independend configration parameter, called feature
+    measure: Usage of environment independent configuration parameter, called feature
       toggles, helps to enhance the test coverage. Only what has been tested, goes to production.
     difficultyOfImplementation:
       knowledge: 2
@@ -188,14 +188,14 @@ Deployment:
     level: 3
     implementation: Docker
     dependsOn:
-    - Same artefact for environments
+    - Same artifact for environments
     samm: EG1-B
     samm2: TODO
   Usage of trusted images:
     risk: Developers or operations might start random images in the production cluster which have malicous code or known vulnerabilities.
-    Measure: Whitelist signed artificats/images or whitelist a trusted (internal) registry.
+    Measure: Whitelist signed artifacts/images or whitelist a trusted (internal) registry.
     implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
-    dependsOn: Signing of artefacts
+    dependsOn: Signing of artifacts
     difficultyOfImplementation:
       knowledge: 1
       time: 1
