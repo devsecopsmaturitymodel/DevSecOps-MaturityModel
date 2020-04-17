@@ -21,7 +21,7 @@ Education and Guidance:
     level: 2
     samm: EG2-B
   Regular security training for everyone:
-    risk: Understanding security is hard, for internal as well as external employees.
+    risk: "Understanding security is hard, for internal as well as external employees."
     measure: Regular security training for everyone.
     difficultyOfImplementation:
       knowledge: 3
@@ -30,7 +30,8 @@ Education and Guidance:
     usefulness: 3
     level: 3
     samm: EG2-B
-    implementation: Often, external employees are not invited for interal trainings. This activity focuses on providing security trainings to internal as well as external employees. It is conducted every two weeks for around one hour. Each team has a security champion:
+    implementation: Often, external employees are not invited for interal trainings. This activity focuses on providing security trainings to internal as well as external employees. It is conducted every two weeks for around one hour. 
+  Each team has a security champion:
     risk: No one feels directly responsible for security and the security champion does not have enough time to allocate to each team.
     measure: Each team defines an individual to be responsible for security. These individuals are often referred to as 'security champions'
     difficultyOfImplementation:
@@ -154,9 +155,10 @@ Culture and Org.:
     usefulness: 4
     level: 4
     dependsOn:
-      - Creation of simple abuse stories
+      - "Creation of simple abuse stories"
     samm: TA2-A
-    implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical Security Stories and Security Tasks for Agile Development Environments</a> Creation of simple abuse stories:
+    implementation: "<a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical Security Stories and Security Tasks for Agile Development Environments</a>"
+  Creation of simple abuse stories:
     risk: User stories mostly don't consider security implications. Security flaws are discovered too late in the development and deployment process.
     measure: Abuse stories are created during the creation of user stories.
     difficultyOfImplementation:
@@ -166,7 +168,8 @@ Culture and Org.:
     usefulness: 4
     level: 2
     samm: TA2-A
-    implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical Security Stories and Security Tasks for Agile Development Environments</a> Information security targets are communicated:
+    implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical Security Stories and Security Tasks for Agile Development Environments</a>
+  Information security targets are communicated:
     risk: Employees don't known their organisation security targets. Therefore security is not considered during development and administration as much as it should be.
     measure: Transparent and timely communication of the security targets by senior management is essential to ensure teams' buy-in and support.
     difficultyOfImplementation:
