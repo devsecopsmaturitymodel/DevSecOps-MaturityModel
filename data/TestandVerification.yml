@@ -294,7 +294,7 @@ Consolidation:
     implementation:
     - OWASP Defect Dojo
     - SecureCodeBox
-    samm2: i-defect-management|B|1
+    samm2: defect-management|B|1
   Definition of quality gates:
     risk: Improper examination of vulnerabilities leads to no visibility at all.
     measure: Quality gates for found vulnerabilities are defined. In the start it is important to not overload the security analyst, therefore the recommendation is to start with alerting of high cirital vulnerabilities.
@@ -304,9 +304,10 @@ Consolidation:
       resources: 1
     usefulness: 4
     level: 1
-    samm: IR2-A
-    samm2: i-defect-management|A|2
-    implementation: "See other actions, e.g. \"Treatment of defects with severity high\"." Integration of vulnerability issues into the development process:
+    samm: "IR2-A"
+    samm2: "i-defect-management|A|2"
+    implementation: "See other actions, e.g. \"Treatment of defects with severity high\"."
+  Integration of vulnerability issues into the development process:
     risk: To read console output of the build server to search for vulnerabilities might be difficult. Also, to check a vulnerability management system might not be a daily task for a developer.
     measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
     difficultyOfImplementation:
@@ -315,7 +316,7 @@ Consolidation:
       resources: 1
     usefulness: 2
     level: 3
-    implementation: At SAST (Static Application Security Testing): Server-side / client-side teams can easily be recorded. With microservice architecture, individual microservices can be used usually Teams. At DAST (Dynamic Application Security Testing): vulnerabilities are classified and can be assigned to server-side and client-side teams.
+    implementation: "At SAST (Static Application Security Testing): Server-side / client-side teams can easily be recorded. With microservice architecture, individual microservices can be used usually Teams. At DAST (Dynamic Application Security Testing): vulnerabilities are classified and can be assigned to server-side and client-side teams."
     samm2: "i-defect-management|B|2"
   Reproducible defect tickets:
     risk: Vulnerability descriptions are hard to understand by staff from operations and development.
