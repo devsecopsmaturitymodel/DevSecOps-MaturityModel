@@ -6,8 +6,9 @@ With the help of DevOps strategies security can also be enhanced. For example, e
 
 Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking DevSecOps Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
 
-## Backlink
-- [OWASP project page](https://owasp.org/www-project-devsecops-maturity-model/)
+## Back link
+- [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
+- [OWASP](https://owasp.org)
 
 ## TODO
 - Introduce applications security maturity models.
