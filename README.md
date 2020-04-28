@@ -19,6 +19,7 @@ Attackers are intelligent and creative, equipped with new technologies and purpo
 * Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
 
 # Back link
+- [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
 - [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
 - [OWASP](https://owasp.org)
 
