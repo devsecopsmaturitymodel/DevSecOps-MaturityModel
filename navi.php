@@ -8,13 +8,15 @@ $nav = array(
     "graph.php" => "Dependencies",
     "report.php" => "Full Report",
     //"usefulnessHardness.php" => "Heatmap",
-    "information.php" => "Information"
+    "md.php?file=README" => "About this project",
 );
 
 echo "<ul class=\"nav nav-tabs\">";
 foreach ($nav as $item => $value) {
     echo "<li ";
-    if(strpos($_SERVER['PHP_SELF'], $item)) {
+    //$item = preg_replace("/\?.*/", "", $item);
+    
+    if(strpos($_SERVER['REQUEST_URI'], $item)) {
         echo "class=\"active\"";
     }
     echo "role=\"\"><a href=\"$item\">$value</a></li>";
