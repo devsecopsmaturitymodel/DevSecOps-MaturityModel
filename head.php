@@ -61,12 +61,12 @@ bindtextdomain ( $domain, "locale" );
 textdomain ( $domain );
 function getTableHeader() {
 	$headers = array (
-			gettext ( "Dimension" ),
-			gettext ( "Sub-Dimension" ),
-			gettext ( "Level 1: Basic understanding of security practices" ),
-			gettext ( "Level 2: Understanding of security practices" ),
-			gettext ( "Level 3: High understanding of security practices" ),
-			gettext ( "Level 4: Advanced understanding of security practices at scale" ) 
+			"Dimension",
+			"Sub-Dimension",
+			"Level 1: Basic understanding of security practices" ,
+			"Level 2: Adoption of basic security practices",
+			"Level 3: High adoption of security practices",
+			"Level 4: Advanced deployment of security practices at scale"
 	);
 	$headerContent = "<thead  class=\"thead-default\"><tr>";
 	foreach ( $headers as $header ) {
