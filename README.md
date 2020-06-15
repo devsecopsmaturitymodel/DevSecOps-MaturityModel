@@ -26,3 +26,6 @@ Attackers are intelligent and creative, equipped with new technologies and purpo
 # Your help is needed to
 * Introduce applications security maturity models.
 * Introduce more infrastructure related stuff, e.g. patch management for worker-nodes
+
+# Development
+By adding/removing a subdimension, _countSubdimensions_ in _example.js_ needs to be adjusted.

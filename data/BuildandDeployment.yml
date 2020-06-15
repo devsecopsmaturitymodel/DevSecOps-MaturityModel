@@ -70,6 +70,58 @@ Build:
     samm: OA3-B
     samm2: i-secure-build|A|1
 Deployment:
+  A patch policy is defined:
+    risk: Vulnerabilities in running components (e.g. containers) stay for long and might get exploited.
+    measure: Definition of a patch policy for all artifacts in components (e.g. images/containers) is defined. How often is an images getting build? How long do images maximum life?
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 1
+      resources: 2
+    usefulness: 4
+    level: 1
+    samm2: o-environment-management|B|1
+  Nightly build of images:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: Images are getting build at least nightly.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    samm2: o-environment-management|B|1
+  Usage of a maximum lifetime for images:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited, therefore a maximum lifetime (age) is needed to be defined.
+    measure: The nightly builded images are deployed minimum every 30 days. Meaning a container does not lives longer than 30 days.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 3
+    samm2: o-environment-management|B|1
+  Usage of a short maximum life for containers:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: The nightly builded images are deployed minimum every 1 day. Meaning a container does not lives longer than 1 day.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 4
+    samm2: o-environment-management|B|1
+  Reduction of the attack surface:
+    risk: Dependencies might have Vulnerabilities, but the dependency is not needed.
+    measure: Removal of not needed dependencies.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    samm2: o-environment-management|B|1
+    implementation: <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
+
   Backup before deployment:
     risk: If errors are experienced during the deployment process you want to deploy
       an old release. However, due to changes in the database this is often unfeasible.

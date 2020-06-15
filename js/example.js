@@ -14,7 +14,7 @@ function loadDiagramm() {
                 });
             });
         });
-        var countSubdimensions = 16;
+        var countSubdimensions = 15;
         var chart = circularHeatChart()
             .segmentHeight(50)
             .innerRadius(190)
