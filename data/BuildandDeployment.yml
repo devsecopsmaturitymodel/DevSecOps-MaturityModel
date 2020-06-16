@@ -69,7 +69,7 @@ Build:
     - Defined build process
     samm: OA3-B
     samm2: i-secure-build|A|1
-Deployment:
+Patch Management:
   A patch policy is defined:
     risk: Vulnerabilities in running components (e.g. containers) stay for long and might get exploited.
     measure: Definition of a patch policy for all artifacts in components (e.g. images/containers) is defined. How often is an images getting build? How long do images maximum life?
@@ -121,7 +121,7 @@ Deployment:
     level: 2
     samm2: o-environment-management|B|1
     implementation: <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
-
+Deployment:
   Backup before deployment:
     risk: If errors are experienced during the deployment process you want to deploy
       an old release. However, due to changes in the database this is often unfeasible.
