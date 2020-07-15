@@ -353,7 +353,8 @@ Consolidation:
     implementation:
     - OWASP Dependency Check Jenkins Plugin
     - LogParser Jenkins Plugins
-    - <a href="https://github.com/secureCodeBox/secureCodeBox">SecureCodeBox</a>
+    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
+    - <a href="https://github.com/faloker/purify/">Purify</a>
     samm2: i-defect-management|B|1
   Treatment of all defects:
     risk: Vulnerabilities with severity low are not visible.
@@ -397,8 +398,8 @@ Consolidation:
     usefulness: 2
     level: 4
     implementation:
-    - OWASP Defect Dojo
-    - SecureCodeBox
+    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
+    - <a href="https://github.com/faloker/purify/">Purify</a>
     samm2: i-defect-management|B|1
 Application tests:
   High coverage of security related module and integration tests:
