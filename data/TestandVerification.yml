@@ -292,8 +292,8 @@ Consolidation:
     usefulness: 2
     level: 4
     implementation:
-    - OWASP Defect Dojo
-    - SecureCodeBox
+    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
+    - <a href="https://github.com/faloker/purify/">Purify</a>
     samm2: defect-management|B|1
   Definition of quality gates:
     risk: Improper examination of vulnerabilities leads to no visibility at all.
@@ -353,7 +353,7 @@ Consolidation:
     implementation:
     - OWASP Dependency Check Jenkins Plugin
     - LogParser Jenkins Plugins
-    - SecureCodeBox
+    - <a href="https://github.com/secureCodeBox/secureCodeBox">SecureCodeBox</a>
     samm2: i-defect-management|B|1
   Treatment of all defects:
     risk: Vulnerabilities with severity low are not visible.
