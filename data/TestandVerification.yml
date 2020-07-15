@@ -331,14 +331,16 @@ Consolidation:
     samm2: i-defect-management|B|2
   Simple false positive treatment:
     risk: As false positive occure during each test, all vulnerabilities might be ignored.
-    measure: False positives are suppressed so they will not show up on the next tests again.
+    measure: False positives are suppressed so they will not show up on the next tests again. Most security tools have the possibility to suppress false positives. A Vulnerability Management System might be used.
     difficultyOfImplementation:
       knowledge: 1
       time: 1
       resources: 1
     usefulness: 4
     level: 1
-    implementation: Most security tools have the possibility to suppress false positives.
+    implementation:
+    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
+    - <a href="https://github.com/faloker/purify/">Purify</a>
     samm: IR2-A
     samm2: i-defect-management|A|2
   Simple visualization of defects:
