@@ -216,4 +216,56 @@ Deployment:
     usefulness: 3
     level: 1
     samm2: o-incident-management|TODO
+Patch Management:
+  A patch policy is defined:
+    risk: Vulnerabilities in running containers stay for long and might get exploited.
+    measure: A patch policy for all artifacts (e.g. in images) is defined. How often is an images getting build?
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 1
+      resources: 2
+    usefulness: 4
+    level: 1
+    samm2: o-environment-management|B|1
+  Nightly build of images:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: Images are getting build at least nightly.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    samm2: o-environment-management|B|1
+  Usage of a maximum life for containers:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: The periodically builded images are deployed minimum every 30 days (better hourly/daily/weekly). Meaning a container does not lives longer than 30 days.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 3
+    samm2: o-environment-management|B|1
+  Usage of a short maximum life for containers:
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
+    measure: The nightly builded images are deployed minimum every 1 day.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 4
+      resources: 2
+    usefulness: 3
+    level: 4
+    samm2: o-environment-management|B|1
+  Reduction of the attack surface:
+    risk: Dependencies might have Vulnerabilities, but the component or dependency is not needed.
+    measure: Removal of not needed components or dependencies.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 2
+    samm2: o-environment-management|B|1
+    implementation: <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
 ...
