@@ -23,6 +23,10 @@ Attackers are intelligent and creative, equipped with new technologies and purpo
 - [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
 - [OWASP](https://owasp.org)
 
-# Your help is needed to
-* Introduce applications security maturity models.
-* Introduce more infrastructure related stuff, e.g. patch management for worker-nodes
+# Your help is needed to perform
+* Adding a manual on how to use DSOMM
+* Integration of Incident Response
+* DevSecOps Toolchain Categorization
+* App Sec Maturity Models Mapping
+* CAMS Categorization
+* Addinng of evidence
