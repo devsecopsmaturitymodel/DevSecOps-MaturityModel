@@ -126,9 +126,7 @@ Education and Guidance:
     usefulness: 3
     level: 2
     implementation: 
-      - Enhance motivation can be performed with the distribution of pins as a reward, see <a
-      href='https://www.owasp.org/index.php/OWASP_Security_Buttons_Project'>OWASP
-      Security Buttons Project</a>
+      - Enhance motivation can be performed with the distribution of pins as a reward, see <a href='https://github.com/wurstbrot/security-pins'>OWASP Security Pins Project</a>
       - https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
   Aligning security in teams:
     risk: The concept of Security Champions might suggest that only he/she is responsible for security. However, everyone in the project team should be responsible for security.
