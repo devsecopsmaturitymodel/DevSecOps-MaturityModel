@@ -118,16 +118,18 @@ Education and Guidance:
     level: 4
   Reward of good communication:
     risk: Employees are not getting excited about security.
-    measure: Good communication and transparency encourages cross-organisational support. Gamification of security is also known to help, examples include T-Shirts, giftcards and 'High-Fives'.
+    measure: Good communication and transparency encourages cross-organisational support. Gamification of security is also known to help, examples include T-Shirts, mugs, cups, giftcards and 'High-Fives'.
     difficultyOfImplementation:
       knowledge: 3
       time: 2
       resources: 1
     usefulness: 3
     level: 2
-    implementation: One example is the distribution of buttons as a reward, see <a
+    implementation: 
+      - Enhance motivation can be performed with the distribution of pins as a reward, see <a
       href='https://www.owasp.org/index.php/OWASP_Security_Buttons_Project'>OWASP
       Security Buttons Project</a>
+      - https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
   Aligning security in teams:
     risk: The concept of Security Champions might suggest that only he/she is responsible for security. However, everyone in the project team should be responsible for security.
     measure: By aligning security SME with project teams, a higher security standard can be achieved.
