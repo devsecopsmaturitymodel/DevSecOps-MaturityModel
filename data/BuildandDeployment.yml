@@ -237,9 +237,9 @@ Patch Management:
     usefulness: 3
     level: 2
     samm2: o-environment-management|B|1
-  Usage of a maximum life for containers:
-    risk: Vulnerabilities in running containers stay for too long and might get exploited.
-    measure: The periodically builded images are deployed minimum every 30 days (better hourly/daily/weekly). Meaning a container does not lives longer than 30 days.
+  Usage of a maximum lifetime (age) for images:
+    risk: Vulnerabilities in images of running containers stay for too long and might get exploited.
+    measure: The periodically builded images are deployed minimum every 30 days (better hourly/daily/weekly). Meaning an image is not in production for longer than 30 days.
     difficultyOfImplementation:
       knowledge: 3
       time: 4
@@ -247,7 +247,7 @@ Patch Management:
     usefulness: 3
     level: 3
     samm2: o-environment-management|B|1
-  Usage of a short maximum life for containers:
+  Usage of a short maximum lifetime for images:
     risk: Vulnerabilities in running containers stay for too long and might get exploited.
     measure: The nightly builded images are deployed minimum every 1 day.
     difficultyOfImplementation:
@@ -257,6 +257,8 @@ Patch Management:
     usefulness: 3
     level: 4
     samm2: o-environment-management|B|1
+    implementation:
+      - "Sample concept:<br/>(1) each container has a set lifetime and is killed / replaced with a new container multiple times a day where you have some form of a graceful replacement to ensure no (short) service outage will occur to the end users.<br/>(2) twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline. If the testing has no blocking issues the new images will be released for deployment during the next "restart" of a container. What has to be done, is to ensure the new containers are deployed in some canary deployment manner, this will ensure that if (and only if) something buggy has been introduced which breaks functionality the canary deployment will make sure the "older version" is being used and not the buggy newer one."    
   Reduction of the attack surface:
     risk: Dependencies might have Vulnerabilities, but the component or dependency is not needed.
     measure: Removal of not needed components or dependencies.
