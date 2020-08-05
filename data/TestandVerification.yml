@@ -214,9 +214,9 @@ Static depth for applications:
       - <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
       - <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
     samm2: v-security-testing|A|2
-  Test of middleware components with known vulnerabilities:
+  Test of backend components with known vulnerabilities:
     risk: Components of the middleware might have vulnerabilities.
-    measure: Tests for known vulnerabilities in components of the middleware are performed.
+    measure: Tests for known vulnerabilities in components of the backend/middleware are performed.
     difficultyOfImplementation:
       knowledge: 1
       time: 2
@@ -529,16 +529,18 @@ Static depth for infrastructure:
       - <a href="https://kubesec.io/">kubesec</a>
     samm2: v-security-testing|A|1
   Test of infrastructure components for known vulnerabilities:
-    risk: " Infrastructure components might have vulnerabilities."
-    measure: "Test for known vulnerabilities in infrastructure components. Often, the only way to respond to known vulnerabilities in operating system packages is to accept the risk and wait for a patch."
+    risk: "Infrastructure components might have vulnerabilities."
+    measure: "Test for known vulnerabilities in infrastructure components. Often, the only way to respond to known vulnerabilities in operating system packages is to accept the risk and wait for a patch. As the patch needs to be applied fast when it is available, this activity depends on 'Usage of a maximum life for images'."
     difficultyOfImplementation:
       knowledge: 2
       time: 5
       resources: 2
-    usefulness: 2
-    level: 3
+    usefulness: 1
+    level: 4
+    dependsOn:
+    - Usage of a maximum lifetime for images
     implementation:
-      - Anchore
+      - Anchore.io
       - Clair
       - OpenSCAP
       - <a href='https://github.com/future-architect/vuls'>Vuls</a>
