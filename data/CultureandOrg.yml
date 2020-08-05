@@ -1,5 +1,30 @@
 ---
 Education and Guidance:
+  Ad-Hoc Security trainings for software developers:
+    risk: Understanding security is hard and personnel needs to be trained on it. Otherwise, flaws like an SQL Injection might be introduced into the software which might get exploited.
+    measure: Provide security awareness training for all personnel involved in software development Ad-Hoc.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 1
+    samm: EG1-A
+      - In case you do not have the budget to hire an external security expert, an option is to use the <a href="https://github.com/bkimminich/juice-shop">OWASP Juice Shop</a> on a "hacking Friday"
+      - https://cheatsheetseries.owasp.org/    
+  Regular security training for all:
+    risk: Understanding security is hard.
+    measure: Provide security awareness training for all personnel involved in software development on a regular basis like twice in a year for 1-3 days.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 2
+    samm: EG1-A
+    implementation:
+      - In case you do not have the budget to hire an external security expert, an option is to use the <a href="https://github.com/bkimminich/juice-shop">OWASP Juice Shop</a> on a "hacking Friday"
+      - https://cheatsheetseries.owasp.org/
   Security consulting on request:
     risk: Not asking a security expert when questions regarding security appear might lead to flaws.
     measure: Security consulting to teams is given on request. The security consultants can be internal or external.
