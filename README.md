@@ -7,6 +7,14 @@ With the help of DevOps strategies security can also be enhanced. For example, e
 
 Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking DevSecOps Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
 
+# Usage
+Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/wurstbrot/DevSecOps-MaturityModel/) and run `startDocker.bash`.
+* _matrix_ shows the dimensions, subdimensions and activities are described.
+* _Implementation Levels_ can be used to measure the current implementation level by clicking on the specific activities which have been performed.
+* _Ease and Value of Implementation_ is used for the maturity model development to see the ease and value of each activity to be able to compare it with activities within the subdimension and activities from other subdimensions.
+* _Dependenies_ shows the dependencies between activities
+* _Full Report_ prints all activities to be able to print it
+
 # Slides and talks
 * [Continuous Application Security Testing for Enterprise](https://docs.google.com/presentation/d/1dAewXIHgBEKHKwBPpM5N_G2eM6PRpduoGJrp6R6pNUI/edit?usp=sharing), DevOps Meetup Hamburg, 26.09.2019
 * [DevSecOps Maturity Model](https://docs.google.com/presentation/d/1zF7c_0cPYBO7LHcLNtEApQBB_qJugXgRQUyiwBKKtKk/edit?usp=sharing), Open Security Summit, near London, 2018
