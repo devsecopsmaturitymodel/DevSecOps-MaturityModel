@@ -16,7 +16,9 @@ Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/
 * _Full Report_ prints all activities to be able to print it
 
 # Slides and talks
-* [Continuous Application Security Testing for Enterprise](https://docs.google.com/presentation/d/1dAewXIHgBEKHKwBPpM5N_G2eM6PRpduoGJrp6R6pNUI/edit?usp=sharing), DevOps Meetup Hamburg, 26.09.2019
+* [Online: Usage of the OWASP DevSecOps Maturity Model](https://www.meetup.com/de-DE/OWASP-Ottawa/events/272355636/) 2020-08-17
+* [Online: OWASP DevSecOps Maturity Model - Culture (German)](https://www.meetup.com/de-DE/Breaking-Agile/) 2020-08-25
+* [Continuous Application Security Testing for Enterprise](https://docs.google.com/presentation/d/1dAewXIHgBEKHKwBPpM5N_G2eM6PRpduoGJrp6R6pNUI/edit?usp=sharing), DevOps Meetup Hamburg, 2019-09-26
 * [DevSecOps Maturity Model](https://docs.google.com/presentation/d/1zF7c_0cPYBO7LHcLNtEApQBB_qJugXgRQUyiwBKKtKk/edit?usp=sharing), Open Security Summit, near London, 2018
 * [Security in DevOps-Strategies](https://www.youtube.com/watch?v=gWjGWebWahE&t=448s), 28.09.2017, Hamburg, Germany
 * [DevSecOps Maturity Model](https://docs.google.com/presentation/d/1rrbyXqxy3LXAJNPFrVH99mj_BNaJKymMsXZItYArWEM/edit?usp=sharing), 2017
