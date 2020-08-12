@@ -214,9 +214,9 @@ Static depth for applications:
       - <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
       - <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
     samm2: v-security-testing|A|2
-  Test of backend components with known vulnerabilities:
-    risk: Components of the middleware might have vulnerabilities.
-    measure: Tests for known vulnerabilities in components of the backend/middleware are performed.
+  Test of server side components with known vulnerabilities:
+    risk: Server side components might have vulnerabilities.
+    measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware) are performed.
     difficultyOfImplementation:
       knowledge: 1
       time: 2
