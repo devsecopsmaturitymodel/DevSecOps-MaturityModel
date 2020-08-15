@@ -260,11 +260,11 @@ Patch Management:
     implementation:
       - Sample concept:<br/>(1) each container has a set lifetime and is killed / replaced with a new container multiple times a day where you have some form of a graceful replacement to ensure no (short) service outage will occur to the end users.<br/>(2) twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline. If the testing has no blocking issues the new images will be released for deployment during the next "restart" of a container. What has to be done, is to ensure the new containers are deployed in some canary deployment manner, this will ensure that if (and only if) something buggy has been introduced which breaks functionality the canary deployment will make sure the "older version" is being used and not the buggy newer one.
   Reduction of the attack surface:
-    risk: Dependencies might have Vulnerabilities, but the component or dependency is not needed.
-    measure: Removal of not needed components or dependencies.
+    risk: Components, dependencies, or files might have Vulnerabilities, but the they are not needed.
+    measure: Removal of not needed components, dependencies or files.
     difficultyOfImplementation:
       knowledge: 3
-      time: 2
+      time: 3
       resources: 2
     usefulness: 3
     level: 2
