@@ -85,6 +85,7 @@ Infrastructure Hardening:
     level: 3
     dependsOn:
       - Infrastructure as Code
+      - Usage of <a href="https://semver.org/">Semantic Versioning</a> for components like project images
     implementation: Remove direct access to infrastructure
     samm2: o-environment-management|A|1
   Microservice-Architecture:
