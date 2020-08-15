@@ -269,5 +269,7 @@ Patch Management:
     usefulness: 3
     level: 2
     samm2: o-environment-management|B|1
-    implementation: <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
+    implementation: 
+    - <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
+    - <a href="https://getfedora.org/coreos?stream=stable">Fedora CoreOS</a>
 ...
