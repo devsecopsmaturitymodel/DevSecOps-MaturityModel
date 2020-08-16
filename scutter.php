@@ -97,7 +97,7 @@ function getJson($dimensions)
             .tickFormat(function (d) {
                 return getLabelForAxis(d);
             })
-            .axisLabel("Ease of Implementation");
+            .axisLabel("Difficulty of Implementation");
         chart.yAxis
             .tickFormat(function (d) {
                 return getLabelForAxis(d);
