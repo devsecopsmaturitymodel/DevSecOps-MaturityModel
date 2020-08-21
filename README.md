@@ -45,3 +45,6 @@ In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describe
 
 # Sponsors
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro) (Time, Logo, Icons)
+
+# License
+The OWASP DevSecOpsMaturity Model and any contributions are Copyright © by Timo Pagel 2017-2020
