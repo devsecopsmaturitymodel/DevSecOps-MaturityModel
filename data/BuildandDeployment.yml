@@ -206,15 +206,14 @@ Deployment:
   Inventory of running artifacts:
     risk: In case a vulnerability of severity high or critical exists, it needs to be known where an artifacts with that vulnerability is deployed with which dependencies.
     Measure: A documented inventory or a possibility to gather the needed information (e.g. the documentation of which script needs to be run by whoom) must be in place.
-    implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
     dependsOn:
     - Defined deployment process
     difficultyOfImplementation:
-      knowledge: 1
-      time: 1
-      resources: 1
+      knowledge: 2
+      time: 2
+      resources: 3
     usefulness: 3
-    level: 1
+    level: 3
     samm2: o-incident-management|TODO
 Patch Management:
   A patch policy is defined:
