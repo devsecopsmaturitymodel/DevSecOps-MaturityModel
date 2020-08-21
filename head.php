@@ -48,6 +48,10 @@
 
 <meta name="keywords" content="DevSecOps, DevOps, security, hardening">
 <meta name="author" content="Timo Pagel">
+<?php 
+	$url = "https://dsomm.timo-pagel.de{$_SERVER['SCRIPT_NAME']}"; 
+	echo "<link rel='canonical' href=$url>";
+?>
 </head>
 
 <?php
