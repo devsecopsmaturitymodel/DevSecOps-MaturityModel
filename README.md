@@ -40,3 +40,6 @@ Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/
 * App Sec Maturity Models Mapping
 * CAMS Categorization
 * Addinng of evidence
+
+# Sponsors
+[![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro) (Time, Logo, Icons)

@@ -10,8 +10,13 @@ $nav = array(
     //"usefulnessHardness.php" => "Heatmap",
     "md.php?file=README" => "About this project",
 );
+?>
+<ul class="nav nav-tabs">
 
-echo "<ul class=\"nav nav-tabs\">";
+<a class="navbar-brand" href="https://dsomm.timo-pagel.de">
+    <img height="100%" src="/assets/images/logo.png" alt="OWASP DevSecOps Maturity Model">
+</a>
+<?php
 foreach ($nav as $item => $value) {
     echo "<li ";
     //$item = preg_replace("/\?.*/", "", $item);

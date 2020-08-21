@@ -45,6 +45,9 @@
 
 <link href="print.css" rel="spiderweb.css" />
 <link href="print.css" rel="stylesheet" />
+
+<meta name="keywords" content="DevSecOps, DevOps, security, hardening">
+<meta name="author" content="Timo Pagel">
 </head>
 
 <?php
@@ -95,7 +98,7 @@ function getTable($dimensions) {
 		foreach ( $subdimensions as $subdimension => $element ) {
 			$tableContent .= "<tr>";
 			$tableContent .= "<td>";
-			$tableContent .= "$dimension";
+			$tableContent .= "<img height='40px' src=\"assets/images/$dimension.png\"> $dimension";
 			$tableContent .= "</td>";
 			
 			$tableContent .= "<td>";
