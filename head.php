@@ -37,6 +37,8 @@
 <title>OWASP DevSecOps Maturity Model - <?php echo $title ?></title>
 
 <meta property="og:image" content="https://dsomm.timo-pagel.de/assets/images/logo.png">
+<meta property="og:title" content="OWASP DevSecOps Maturity Model">
+<meta property="og:description" content="The OWASP DevSecOps Maturity Model provides opportunities to harden DevOps strategies and shows how these can be prioritized">
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
