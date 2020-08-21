@@ -34,7 +34,7 @@
 <link rel="stylesheet" href="spiderweb.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $title ?></title>
+<title>OWASP DevSecOps Maturity Model - <?php echo $title ?></title>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
