@@ -237,6 +237,19 @@ Patch Management:
     usefulness: 3
     level: 2
     samm2: o-environment-management|B|1
+  Automated PRs for patches:
+    risk: Known vulnerabilities components might stay for long and get exploited, even when a patch is available.
+    measure: Fast patching of third party component is needed. The DevOps way is to have an automated pull request for new components. This includes <ul><li>Applications</li><li>Virutalized operating system components (e.g. container images)</li><li>Operating Systems</li><li>Infrastructure as Code/GitOps (e.g. argocd)</li></ul>
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 2
+    usefulness: 5
+    level: 1
+    samm2: o-environment-management|B|1
+    implementation:
+      - <a href="https://dependabot.com/">dependabot</li>
+      - Jenkins
   Usage of a maximum lifetime for images:
     risk: Vulnerabilities in images of running containers stay for too long and might get exploited. Long running containers have potential memory leaks. A compromised container might get killed by restarting the container (e.g. in case the attacker has not reached the persistence layer).
     measure: The periodically builded images are deployed minimum every 30 days (better hourly/daily/weekly). Meaning an image is not in production for longer than 30 days. 
