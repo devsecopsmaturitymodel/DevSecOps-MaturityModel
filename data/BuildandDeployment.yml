@@ -190,7 +190,6 @@ Deployment:
     dependsOn:
     - Same artifact for environments
     samm: EG1-B
-    samm2: TODO
   Usage of trusted images:
     risk: Developers or operations might start random images in the production cluster which have malicous code or known vulnerabilities.
     Measure: Whitelist signed artifacts/images or whitelist a trusted (internal) registry.
@@ -247,7 +246,7 @@ Patch Management:
     level: 1
     samm2: o-environment-management|B|1
     implementation:
-      - <a href="https://dependabot.com/">dependabot</li>
+      - <a href="https://dependabot.com/">dependabot</a>
       - Jenkins
   Usage of a maximum lifetime for images:
     risk: Vulnerabilities in images of running containers stay for too long and might get exploited. Long running containers have potential memory leaks. A compromised container might get killed by restarting the container (e.g. in case the attacker has not reached the persistence layer).
