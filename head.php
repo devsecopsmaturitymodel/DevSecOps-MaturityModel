@@ -36,6 +36,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>OWASP DevSecOps Maturity Model - <?php echo $title ?></title>
 
+<meta property="og:image" content="https://dsomm.timo-pagel.de/assets/images/logo.png">
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
