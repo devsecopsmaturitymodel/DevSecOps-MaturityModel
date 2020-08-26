@@ -574,4 +574,26 @@ Static depth for infrastructure:
       - <a href="https://github.com/dxa4481/truffleHog">truffleHog</a>
       - <a href="https://github.com/nccgroup/go-pillage-registries">go-pillage-registries</a>
     samm2: v-security-testing|A|1
+  Check for image lifetime:
+    risk: Old container images in production indicate that patch management is not performed and therefore vulnerabilities might exists.
+    measure: Check the image age of containers in production.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 1
+      resources: 1
+    usefulness: 2
+    level: 3
+    implementation:
+    samm2: v-security-testing|A|1
+  Check for new image version​:
+    risk: When a new version of an image is available, it might fixes security vulnerabilities.
+    measure: Check for new images of containers in production.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 3
+      resources: 1
+    usefulness: 2
+    level: 3
+    implementation:
+    samm2: v-security-testing|A|2    
 ...
