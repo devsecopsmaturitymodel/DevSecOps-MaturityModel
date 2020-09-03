@@ -11,6 +11,9 @@ Dynamic depth for applications:
     level: 4
     implementation: OWASP Code Pulse
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - part of periodic review, PDCA
   Coverage of client side dynamic components:
     risk: Parts of the service are not covered during the scan, because JavaScript is not getting executed. Therefore, the co
     measure: Usage of a spider which executes dynamic content like JavaScript, e.g. via Selenium.
@@ -24,6 +27,9 @@ Dynamic depth for applications:
     - Usage of different roles
     samm: ST-2
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 14.2.3
+      - 14.2.8
     implementation: Ajax Spider
   Coverage of hidden endpoints:
     risk: Hidden endpoints of the service are not getting tracked.
@@ -38,6 +44,8 @@ Dynamic depth for applications:
     dependsOn:
     - Usage of different roles
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
   Coverage of more input vectors:
     risk: Parts of the service are not covered. For example specially formatted or coded parameters are not getting detected as parameter (e.g. parameters in REST-like URLs, parameters in JSON-Format or base64-coded parameters).
     measure: Special parameter and special encodings are defined, so that they get fuzzed by the used vulnerability scanners.
@@ -50,6 +58,8 @@ Dynamic depth for applications:
     dependsOn:
     - Usage of different roles
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
   Coverage of sequential operations:
     risk: Sequential operations like workflows (e.g. login -> put products in the basket
     measure: Sequential operations are defined and checked by the vulnerability scanner in the defined order.
@@ -63,6 +73,9 @@ Dynamic depth for applications:
     dependsOn:
     - Usage of different roles
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 14.2.8
+      - 14.2.3
   Coverage of service to service communication:
     risk: Service to service communication is not covered.
     measure: Service to service communication is dumped and checked.
@@ -75,6 +88,9 @@ Dynamic depth for applications:
     dependsOn:
     - Simple Scan
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 14.2.3
+      - 14.2.8
   Simple Scan:
     risk: Deficient security tests are performed. Simple vulnerabilities are not detected and missing security configurations (e.g. headers) are not set. Fast feedback is not given.
     measure: A simple scan is performed to get a security baseline. In case the test is done in under 10 minutes, it should be part of the build and deployment process.
@@ -91,6 +107,9 @@ Dynamic depth for applications:
     - OWASP Zap
     - Arachni
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - 14.2.3
+      - 14.2.8
   Usage of different roles:
     risk: Parts of the service are not covered during the scan, because a login is not performed.
     measure: Integration of authentication with all roles used in the service.
@@ -103,6 +122,10 @@ Dynamic depth for applications:
     dependsOn:
     - Simple Scan
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 14.2.3
+      - 14.2.8
   Usage of multiple scanners:
     risk: Each vulnerability scanner has different opportunities. By using just one scanner, some vulnerabilities might not be found.
     measure: Usage of multiple spiders and scanner enhance the coverage and the vulnerabilities.
@@ -116,6 +139,9 @@ Dynamic depth for applications:
     - Usage of different roles
     implementation: SecureCodeBox
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.5
 Static depth for applications:
   Exclusion of source code duplicates:
     risk: Duplicates in source code might influence the stability of the application.
@@ -130,6 +156,10 @@ Static depth for applications:
     dependsOn:
     - Defined build process
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 14.2.1
+      - 14.2.5
   Static analysis for all components/libraries:
     risk: Used components like libraries and legacy applications might have vulnerabilities
     measure: Usage of a static analysis for all used components.
@@ -143,6 +173,8 @@ Static depth for applications:
     - "Static analysis for important client side components"
     - "Static analysis for important server side components"
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
   Static analysis for all self written components:
     risk: Parts in the source code of the frontend or middleware have vulnerabilities.
     measure: Usage of static analysis tools for all parts of the middleware and frontend.
@@ -158,6 +190,8 @@ Static depth for applications:
     - "Static analysis for important client side components"
     - "Static analysis for important server side components"
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
   Static analysis for important client side components:
     risk: Important parts in the source code of the frontend have vulnerabilities.
     measure: Usage of static analysis tools for important parts of the frontend are used. Static analysis uses for example string matching algorithms and/or dataflow analysis.
@@ -173,6 +207,8 @@ Static depth for applications:
     - jsprime
     - <a href='https://github.com/ing-bank/bdd-mobile-security-automation-framework'>bdd-mobile-security-automation-framework</a>
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
     dependsOn:
     - Defined build process
   Static analysis for important server side components:
@@ -188,6 +224,8 @@ Static depth for applications:
     dependsOn:
     - Defined build process
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
   Stylistic analysis:
     risk: False source code indenting might lead to vulnerabilities.
     measure: Analysis of compliance to style guides of the source code ensures that source code indenting rules are met.
@@ -199,6 +237,10 @@ Static depth for applications:
     level: 4
     implementation: PMD
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
   Test of client side components with known vulnerabilities:
     risk: Client side components might have vulnerabilities.
     measure: Tests for known vulnerabilities in components of the frontend are performed.
@@ -214,6 +256,8 @@ Static depth for applications:
       - <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
       - <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
   Test of server side components with known vulnerabilities:
     risk: Server side components might have vulnerabilities.
     measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware) are performed.
@@ -228,6 +272,8 @@ Static depth for applications:
     implementation: OWASP Dependency Check
     samm: SA
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
   Usage of multiple analysers:
     risk: Each vulnerability analyser has different opportunities. By using just one analyser, some vulnerabilities might not be found.
     measure: Usage of multiple static tools to find more vulnerabilities.
@@ -238,6 +284,10 @@ Static depth for applications:
     usefulness: 1
     level: 4
     samm2: v-security-testing|A|3
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
     dependsOn:
     - "Test of server side components with known vulnerabilities"
     - "Test of client side components with known vulnerabilities"
@@ -253,6 +303,12 @@ Test-Intensity:
     usefulness: 2
     level: 3
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 14.2.2
+      - 14.2.3
+      - 14.2.1
+      - 14.2.5
+      - 12.6.1
   Deactivating of unneeded tests:
     risk: As tools cover a wide range of different vulnerability tests, they might not match the used components. Therefore, they need more time and resources as they need and the feedback loops takes too much time.
     measure: Unneeded tests are deactivated. For example in case the service is using a Mongo database and no mysql database, the dynamic scan doesn't need to test for sql injections.
@@ -263,6 +319,10 @@ Test-Intensity:
     usefulness: 1
     level: 2
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
   Default settings for intensity:
     risk: Time pressure and ignorance might lead to false predictions for the test intensity.
     measure: The intensity of the used tools are not modified to safe time.
@@ -273,6 +333,10 @@ Test-Intensity:
     usefulness: 1
     level: 1
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
   High test intensity:
     risk: A too small intensity or a too high confidence might lead to not visible vulnerabilities.
     measure: A deep scan with high test intensity and a low confidence threshold is performed.
@@ -283,6 +347,10 @@ Test-Intensity:
     usefulness: 3
     level: 1
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
 Consolidation:
   Advanced visualization of defects:
     risk: Correlation of the vulnerabilities of different tools to have an overview of the the overall security level per component/project/team is not given.
@@ -297,6 +365,11 @@ Consolidation:
     - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
     - <a href="https://github.com/faloker/purify/">Purify</a>
     samm2: defect-management|B|1
+    iso27001-2017:
+      - 16.1.4
+      - 8.2.1
+      - 8.2.2
+      - 8.2.3
   Definition of quality gates:
     risk: Improper examination of vulnerabilities leads to no visibility at all.
     measure: Quality gates for found vulnerabilities are defined. In the start it is important to not overload the security analyst, therefore the recommendation is to start with alerting of high cirital vulnerabilities.
@@ -308,6 +381,10 @@ Consolidation:
     level: 1
     samm: "IR2-A"
     samm2: "i-defect-management|A|2"
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.6.1
+      - 16.1.4
     implementation: "See other actions, e.g. \"Treatment of defects with severity high\"."
   Integration of vulnerability issues into the development process:
     risk: To read console output of the build server to search for vulnerabilities might be difficult. Also, to check a vulnerability management system might not be a daily task for a developer.
@@ -320,6 +397,11 @@ Consolidation:
     level: 3
     implementation: "At SAST (Static Application Security Testing): Server-side / client-side teams can easily be recorded. With microservice architecture, individual microservices can be used usually Teams. At DAST (Dynamic Application Security Testing): vulnerabilities are classified and can be assigned to server-side and client-side teams."
     samm2: "i-defect-management|B|2"
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 16.1.4
+      - 16.1.5
+      - 16.1.6
   Reproducible defect tickets:
     risk: Vulnerability descriptions are hard to understand by staff from operations and development.
     measure: Vulnerabilities include the test procedure to give the staff from operations and development the ability to reproduce vulnerabilities. This enhances the understanding of vulnerabilities and therefore the fix have a higher quality.
@@ -331,6 +413,11 @@ Consolidation:
     level: 4
     implementation: <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
     samm2: i-defect-management|B|2
+    iso27001-2017:
+      - 16.1.4
+      - 8.2.1
+      - 8.2.2
+      - 8.2.3
   Simple false positive treatment:
     risk: As false positive occure during each test, all vulnerabilities might be ignored.
     measure: False positives are suppressed so they will not show up on the next tests again. Most security tools have the possibility to suppress false positives. A Vulnerability Management System might be used.
@@ -345,6 +432,9 @@ Consolidation:
     - <a href="https://github.com/faloker/purify/">Purify</a>
     samm: IR2-A
     samm2: i-defect-management|A|2
+    iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 16.1.6
   Simple visualization of defects:
     risk: The security level of a component is not visible. Therefore, the motivation to enhance the security is not give.
     measure: Vulnerabilities are simple visualized.
@@ -360,6 +450,11 @@ Consolidation:
     - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
     - <a href="https://github.com/faloker/purify/">Purify</a>
     samm2: i-defect-management|B|1
+    iso27001-2017:
+      - 16.1.4
+      - 8.2.1
+      - 8.2.2
+      - 8.2.3
   Treatment of all defects:
     risk: Vulnerabilities with severity low are not visible.
     measure: All vulnerabilities are added to the quality gate.
@@ -369,7 +464,10 @@ Consolidation:
       resources: 1
     usefulness: 2
     level: 4
-  samm2: i-defect-management|B|2
+    samm2: i-defect-management|B|2
+    iso27001-2017:
+    - 16.1.4
+    - 12.6.1
   Treatment of defects with severity high or higher:
     risk: Vulnerabilities with severity high or higher are not visible.
     measure: Vulnerabilities with severity high or higher are added to the quality gate.
@@ -381,6 +479,9 @@ Consolidation:
     level: 1
     comment: False positive analysis, specially for static analysis, is time consuming.
     samm2: i-defect-management|B|2
+    iso27001-2017:
+      - 16.1.4
+      - 12.6.1
   Treatment of defects with severity middle:
     risk: Vulnerabilities with severity middle are not visible.
     measure: Vulnerabilities with severity middle are added to the quality gate.
@@ -392,6 +493,9 @@ Consolidation:
     level: 3
     comment: False positive analysis, specially for static analysis, is time consuming.
     samm2: i-defect-management|B|2
+    iso27001-2017:
+      - 16.1.4
+      - 12.6.1
   Usage of a vulnerability management system:
     risk: Maintenance of false positives in each tool enforces a high workload. In addition a correlation of the same finding from different tools is not possible.
     measure: Aggregation of vulnerabilities in one tool reduce the workload to mark false positives.
@@ -405,6 +509,12 @@ Consolidation:
     - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
     - <a href="https://github.com/faloker/purify/">Purify</a>
     samm2: i-defect-management|B|1
+    iso27001-2017:
+      - 12.6.1
+      - 16.1.3
+      - 16.1.4
+      - 16.1.5
+      - 16.1.6
 Application tests:
   High coverage of security related module and integration tests:
     risk: Vulnerabilities are rising due to code changes in a complex microservice environment in not important components.
@@ -417,6 +527,9 @@ Application tests:
     level: 4
     samm: ST2-B
     samm2: v-security-testing|B|3
+    iso27001-2017:
+      - 14.2.3
+      - 14.2.8
   Security integration tests for important components:
     risk: Vulnerabilities are rising due to code changes in a complex microservice environment.
     measure: Implementation of essential security related integration tests. For example for authentication and authorization.
@@ -429,6 +542,9 @@ Application tests:
     implementation: HttpUnit
     samm: ST2-B
     samm2: v-security-testing|B|3
+    iso27001-2017:
+      - 14.2.3
+      - 14.2.8
   Security unit tests for important components:
     risk: Vulnerabilities are rising due to code changes.
     measure: Usage of unit tests to test important security related features like authentication and authorization.
@@ -444,6 +560,9 @@ Application tests:
     - <a href='https://karma-runner.github.io'>Karma</a>
     samm: ST2-B
     samm2: v-security-testing|B|3
+    iso27001-2017:
+      - 14.2.3
+      - 14.2.8
   Smoke Test:
     risk: During a deployment an error might happen which leads to non-availability of the system, a part of the system or a feature.
     measure: Integration tests are performed against the production environment after each deployment.
@@ -458,6 +577,9 @@ Application tests:
     - Defined deployment process
     samm: ST2-B
     samm2: v-security-testing|B|3
+    iso27001-2017:
+      - 14.2.3
+      - 14.2.8
 Dynamic depth for infrastructure:
   Load tests:
     risk: As it is unknown how many requests the systems and applications can serve, due to an unexpected load the availability is disturbed.
@@ -469,6 +591,10 @@ Dynamic depth for infrastructure:
     usefulness: 3
     level: 4
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - 12.1.3
+      - 14.2.3
+      - 14.2.8
   Test of the configuration of cloud environments:
     risk: Standard hardening practices for cloud environments are not performed leading to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are tested.
@@ -482,6 +608,11 @@ Dynamic depth for infrastructure:
       - <a href='https://github.com/aquasecurity/kube-hunter'>kube-hunter</a>
       - openVAS
     samm: EH2-B
+    iso27001-2017:
+      - system hardening is not explicitly covered by ISO 27001 - too specific
+      - 12.6.1
+      - 14.2.3
+      - 14.2.8
   Weak password test:
     risk: Weak passwords in components like applications or systems, specially for privileged accounts, lead to take over of that account.
     measure: Automatic brute force attacks are performed. Specially the usage of standard accounts like 'admin' and employee user-ids is recommended.
@@ -493,6 +624,8 @@ Dynamic depth for infrastructure:
     level: 3
     implementation: HTC Hydra
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 9.4.3
   Test network segmentation:
     risk: Wrong or no network segmentation of pods makes it easyer for an attacker to access a database and extract or modify data.
     measure: Integration of fine granulated network segmenation (also between pods in the same namespace)
@@ -505,6 +638,10 @@ Dynamic depth for infrastructure:
     implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
     dependendsOn: Segmented networks for virtual environments
     samm2: v-security-testing|A|2
+    iso27001-2017:
+      - 13.1.3
+      - 14.2.3
+      - 14.2.8
 Static depth for infrastructure:
   Test the definition of virtualized environments:
     risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might contains unsecure configurations.
@@ -518,6 +655,12 @@ Static depth for infrastructure:
     implementation:
       - <a href="https://github.com/hadolint/hadolint">hadolint</a>
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - system hardening, virtual environments are not explicitly covered by ISO 27001 - too specific
+      - 12.6.1
+      - 14.2.3
+      - 14.2.8
+      - 14.2.1
   Test cluster deployment resources:
     risk: The deployment configuration (e.g. kubernetes deployment resources) might contain unsecured configurations.
     measure: Test the deployment configuration for virtualized environments for unsecured configurations.
@@ -530,6 +673,11 @@ Static depth for infrastructure:
     implementation:
       - <a href="https://kubesec.io/">kubesec</a>
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - system hardening is not explicitly covered by ISO 27001 - too specific
+      - 12.6.1
+      - 14.2.3
+      - 14.2.8
   Test of infrastructure components for known vulnerabilities:
     risk: "Infrastructure components might have vulnerabilities."
     measure: "Test for known vulnerabilities in infrastructure components. Often, the only way to respond to known vulnerabilities in operating system packages is to accept the risk and wait for a patch. As the patch needs to be applied fast when it is available, this activity depends on 'Usage of a maximum life for images'."
@@ -547,6 +695,9 @@ Static depth for infrastructure:
       - OpenSCAP
       - <a href='https://github.com/future-architect/vuls'>Vuls</a>
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.1
   Test the configuration of cloud environments:
     risk: Standard hardening practices for cloud environments are not performed leading to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
@@ -561,6 +712,11 @@ Static depth for infrastructure:
      - <a href="https://github.com/aquasecurity/kube-bench">kube-bench</a>
     samm: EH2-B
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - system hardening is not explicitly covered by ISO 27001 - too specific
+      - 12.6.1
+      - 14.2.3
+      - 14.2.8
   Stored Secrets:
     risk: Stored secrets in git history, in container images or directly in code shouldn't exists because they might be read unauthorized.
     measure: Test for secrets in code, container images and history
@@ -574,6 +730,10 @@ Static depth for infrastructure:
       - <a href="https://github.com/dxa4481/truffleHog">truffleHog</a>
       - <a href="https://github.com/nccgroup/go-pillage-registries">go-pillage-registries</a>
     samm2: v-security-testing|A|1
+    iso27001-2017:
+      - vcs usage is not explicitly covered by ISO 27001 - too specific
+      - 9.4.3
+      - 10.1.2
   Check for image lifetime:
     risk: Old container images in production indicate that patch management is not performed and therefore vulnerabilities might exists.
     measure: Check the image age of containers in production.
