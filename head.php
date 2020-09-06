@@ -56,6 +56,12 @@
 	$url = "https://dsomm.timo-pagel.de{$_SERVER['SCRIPT_NAME']}"; 
 	echo "<link rel='canonical' href=$url>";
 ?>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover({placement: "bottom", trigger: "hover"}).on('click', function () {
+            $(this).popover('toggle');
+        });
+    })</script>
 </head>
 
 <?php

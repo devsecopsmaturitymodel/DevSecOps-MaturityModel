@@ -47,7 +47,8 @@ foreach ($dimensions as $dimension => $subdimensions) {
         echo "<tr>";
         echo "<td>$dimension</td>";
         echo "<td>$subdimension</td>";
-          echo "<td>$activityName</td>";
+        $tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $content ) . "</div>";
+	    echo "<td><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></td>";
            echo "<td>" . getFlattenedArray($content, "samm2") . "</td>";
            echo "<td>" . getFlattenedArray($content, "iso27001-2017") . "</td>";
         }
