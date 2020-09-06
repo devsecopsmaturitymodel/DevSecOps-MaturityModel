@@ -89,7 +89,16 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
     if (array_key_exists("samm2", $element) && !empty($element['samm2'])) {
     	$samm = $element['samm2'];
     	echo "<div><b>OWASP SAMM 2 Mapping:</b> $samm</div>";
-    }    
+    }
+    if (array_key_exists("iso27001-2017", $element) && !empty($element['iso27001-2017'])) {
+        echo "<div><b>ISO27001:2017 Controls Mapping:</b></div>";
+
+        echo "<ul>";
+        foreach ($element['iso27001-2017'] as $isocontrol) {
+            echo "<li>$isocontrol</li>";
+        }
+        echo "</ul>";
+    }
 }
 
 printDetail($dimension, $subdimension, $elementName, $dimensions);
