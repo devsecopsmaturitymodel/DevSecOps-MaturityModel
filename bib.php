@@ -37,3 +37,21 @@ function getCsv() {
     return $csv;
 }
 
+function getFlattenedArray($array, $index) {
+    if(!array_key_exists($index, $array)) {
+        return "TODO";   
+    }
+
+    $return = "";
+    $potentialArray = $array[$index];
+    if(is_array($potentialArray)) {
+        $return .= "<ul>";
+        foreach($potentialArray as $element => $content) {
+            $return .= "<li>$content</li>";
+        }
+        $return .= "</ul>";
+    }else {
+        $return .= $potentialArray;
+    }
+    return $return;
+}

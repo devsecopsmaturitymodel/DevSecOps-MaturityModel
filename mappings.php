@@ -24,22 +24,6 @@ $noMappingExists = array();
 </thead>
 <tbody>
 <?php
-function getFlattenedArray($array, $index) {
-    if(!array_key_exists($index, $array)) {
-        return "TODO";   
-    }
-
-    $return = "";
-    $potentialArray = $array[$index];
-    if(is_array($potentialArray)) {
-        foreach($potentialArray as $element => $content) {
-            $return .= "$content";
-        }
-    }else {
-        $return .= $potentialArray;
-    }
-    return $return;
-}
 
 foreach ($dimensions as $dimension => $subdimensions) {
     foreach ($subdimensions as $subdimension => $activity) {
