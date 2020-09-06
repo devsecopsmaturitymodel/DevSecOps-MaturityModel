@@ -256,7 +256,7 @@ Deployment:
       - 14.1.3
   Inventory of running artifacts:
     risk: In case a vulnerability of severity high or critical exists, it needs to be known where an artifacts with that vulnerability is deployed with which dependencies.
-    Measure: A documented inventory or a possibility to gather the needed information (e.g. the documentation of which script needs to be run by whoom) must be in place.
+    measure: A documented inventory or a possibility to gather the needed information (e.g. the documentation of which script needs to be run by whoom) must be in place.
     dependsOn:
     - Defined deployment process
     difficultyOfImplementation:
