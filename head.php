@@ -56,6 +56,12 @@
 	$url = "https://dsomm.timo-pagel.de{$_SERVER['SCRIPT_NAME']}"; 
 	echo "<link rel='canonical' href=$url>";
 ?>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover({placement: "bottom", trigger: "hover"}).on('click', function () {
+            $(this).popover('toggle');
+        });
+    })</script>
 </head>
 
 <?php
@@ -113,7 +119,7 @@ function getTable($dimensions) {
 			$tableContent .= "$subdimension";
 			$tableContent .= "</td>";
 			
-			for($i = 1; $i <= 4; $i ++) {
+			for($i = 1; $i <= NUMBER_LEVELS; $i ++) {
 				$tableContent .= "<td><ul>";
 				foreach ( $element as $elementName => $content ) {
 					$content = getContentForLevelFromSubdimensions ( $i, $content, $elementName );

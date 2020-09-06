@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ERROR);
-
+define(NUMBER_LEVELS, 4);
 function readCSV($filename, $delimiter)
 {
     if (!file_exists($filename) || !is_readable($filename))
@@ -36,3 +36,4 @@ function getCsv() {
     $csv= readCSV($csvFile, ",");
     return $csv;
 }
+

@@ -13,9 +13,4 @@ echo getTable($dimensions);
 echo "<h1>Activtities per Dimension</h1>";
 echo '<div class="extra">'.getInfos($dimensions) . '</div>';
 ?>
-<script>
-    $(function () {
-        $('[data-toggle="popover"]').popover({placement: "bottom", trigger: "hover"}).on('click', function () {
-            $(this).popover('toggle');
-        });
-    })</script>
+
