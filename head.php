@@ -113,7 +113,7 @@ function getTable($dimensions) {
 			$tableContent .= "$subdimension";
 			$tableContent .= "</td>";
 			
-			for($i = 1; $i <= 4; $i ++) {
+			for($i = 1; $i <= NUMBER_LEVELS; $i ++) {
 				$tableContent .= "<td><ul>";
 				foreach ( $element as $elementName => $content ) {
 					$content = getContentForLevelFromSubdimensions ( $i, $content, $elementName );
