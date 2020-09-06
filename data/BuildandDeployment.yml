@@ -240,9 +240,8 @@ Deployment:
       - 12.1.4
   Usage of trusted images:
     risk: Developers or operations might start random images in the production cluster which have malicous code or known vulnerabilities.
-    Measure: Whitelist signed artifacts/images or whitelist a trusted (internal) registry.
-    implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
-    dependsOn: Signing of artifacts
+    measure: Create image assessment criteria, perform an evaluation of images and create a whitelist of artifacts/container images/virtual machine images.
+    implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key. 
     difficultyOfImplementation:
       knowledge: 1
       time: 1
