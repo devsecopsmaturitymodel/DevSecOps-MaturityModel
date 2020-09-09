@@ -16,14 +16,14 @@ function getJson($dimensions)
     foreach ($dimensions as $dimension => $subdimensions) {
         foreach ($subdimensions as $subdimension => $element) {
             $values = array();
-            foreach ($element as $elementName => $content) {
+            foreach ($element as $activityName => $content) {
                 $values[] = array(
                     "series" => 0,
                     "shape" => $shapes[$shape],
                     "size" => 3000,
                     "x" => getDifficultyOfImplementation($dimensions, $content),
                     "y" => $content["usefulness"],
-                    "key" => $elementName
+                    "key" => $activityName
                 );
             }
             $json[] = array(

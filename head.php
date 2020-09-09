@@ -121,12 +121,12 @@ function getTable($dimensions) {
 			
 			for($i = 1; $i <= NUMBER_LEVELS; $i ++) {
 				$tableContent .= "<td><ul>";
-				foreach ( $element as $elementName => $content ) {
-					$content = getContentForLevelFromSubdimensions ( $i, $content, $elementName );
+				foreach ( $element as $activityName => $content ) {
+					$content = getContentForLevelFromSubdimensions ( $i, $content, $activityName );
 					if ($content != "") {
-						$elementLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $elementName );
-						$tableContent .= "<a href='$elementLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$elementName'";
-						if (elementIsSelected ( $elementName )) {
+						$elementLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
+						$tableContent .= "<a href='$elementLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$activityName'";
+						if (elementIsSelected ( $activityName )) {
 							$tableContent .= "class='selected'";
 						}
 						$tableContent .= "><li>" . $content . "</li></a>";
@@ -143,11 +143,11 @@ function getTable($dimensions) {
 	$table .= "</table>";
 	return $table;
 }
-function getContentForLevelFromSubdimensions($level, $subdimension, $elementName) {
+function getContentForLevelFromSubdimensions($level, $subdimension, $activityName) {
 	if ($level != $subdimension ["level"]) {
 		return "";
 	}
 	$tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $subdimension ) . "</div>";
-	return "<div data-toggle=\"popover\" data-title=\"$elementName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $elementName . "</div>";
+	return "<div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div>";
 }
 

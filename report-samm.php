@@ -21,13 +21,13 @@ foreach ($dimensions as $dimension => $subdimensions) {
         echo "<h3 style='color:green;'>With SAMM2 Mapping</h3>";
         for ($i = 1; $i <= 4; $i++) {
             $tableContent .= "<td><ul>";
-            foreach ($element as $elementName => $content) {
+            foreach ($element as $activityName => $content) {
                 if(array_key_exists("samm2", $content) && !preg_match("/TODO/i", $content["samm2"])) {
-                    $content2 = getContentForLevelFromSubdimensions($i, $content, $elementName);
+                    $content2 = getContentForLevelFromSubdimensions($i, $content, $activityName);
 
                     if ($content2 != "") {
-                        printDetail($dimension, $subdimension, $elementName, $dimensions, true);
-                        $mappingExists[$subdimension][$content["samm2"]][$elementName] = $content;
+                        printDetail($dimension, $subdimension, $activityName, $dimensions, true);
+                        $mappingExists[$subdimension][$content["samm2"]][$activityName] = $content;
                     }
                 }
             }
@@ -36,14 +36,14 @@ foreach ($dimensions as $dimension => $subdimensions) {
         echo "<h3 style='color:red;'>Without SAMM2 Mapping</h3>";
         for ($i = 1; $i <= 4; $i++) {
             $tableContent .= "<td><ul>";
-            foreach ($element as $elementName => $content) {
+            foreach ($element as $activityName => $content) {
                 if(!array_key_exists("samm2", $content) || preg_match("/TODO/i", $content["samm2"])) {
-                    $content2 = getContentForLevelFromSubdimensions($i, $content, $elementName);
+                    $content2 = getContentForLevelFromSubdimensions($i, $content, $activityName);
 
                     if ($content2 != "") {
-                        printDetail($dimension, $subdimension, $elementName, $dimensions, true);
-                        $content["name"] = $elementName;
-                        $noMappingExists[$subdimension][$content["samm2"]][$elementName] = $content;
+                        printDetail($dimension, $subdimension, $activityName, $dimensions, true);
+                        $content["name"] = $activityName;
+                        $noMappingExists[$subdimension][$content["samm2"]][$activityName] = $content;
                     }
                 }
             }
@@ -56,8 +56,8 @@ foreach ($mappingExists as $dimension => $category) {
     foreach($category as $category => $content) {
         //var_dump($content);exit;
         echo $category . " ".count($content) . " ";
-        foreach($content as $elementName => $content2){ 
-            echo "$elementName" . " /";   }  
+        foreach($content as $activityName => $content2){ 
+            echo "$activityName" . " /";   }  
         echo   "<br>";
     }
 }

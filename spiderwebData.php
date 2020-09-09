@@ -12,10 +12,10 @@ function getSpiderWebData($dimensions)
                     $data[$level][$dimension][$subdimension]['count'] = 0;
                     $data[$level][$dimension][$subdimension]['selected'] = 0;
                 }
-                foreach ($element as $elementName => $content) {
+                foreach ($element as $activityName => $content) {
                     if ($level == $content["level"]) {
                         $data[$level][$dimension][$subdimension]['count']++;
-                        if (elementIsSelected($elementName)) {
+                        if (elementIsSelected($activityName)) {
                             $data[$level][$dimension][$subdimension]['selected']++;
                         }
                     }
@@ -75,11 +75,11 @@ function fwritecsv2($filePointer, $dataArray, $delimiter = ",", $enclosure = "\"
 
 //var_dump( getSpiderWebData($dimensions));exit;
 
-function deleteElement(&$data, $elementName)
+function deleteElement(&$data, $activityName)
 {
     $count = 0;
     foreach ($data as $element) {
-        if ($elementName == $element["element"]) {
+        if ($activityName == $element["element"]) {
             unset($data[$count]);
         }
         $count++;
@@ -90,8 +90,8 @@ function isElementExisting($dimensions, $givenElementName)
 {
     foreach ($dimensions as $dimension => $subdimensions) {
         foreach ($subdimensions as $subdimension => $element) {
-            foreach ($element as $elementName => $content) {
-                if ($elementName == $givenElementName) {
+            foreach ($element as $activityName => $content) {
+                if ($activityName == $givenElementName) {
                     return true;
                 }
             }

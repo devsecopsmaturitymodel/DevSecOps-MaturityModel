@@ -14,13 +14,13 @@ $noMappingExists = array();
 ?>
 <table class="table">
 <thead>
-<tr>
-    <th scope="col">Dimension</th>
-    <th scope="col">Subdimension</th>
-    <th scope="col">Actvity</th>
-    <th scope="col">SAMM 2</th>
-    <th scope="col">ISO 27001</th>
-</tr>
+    <tr>
+        <th scope="col">Dimension</th>
+        <th scope="col">Subdimension</th>
+        <th scope="col">Actvity</th>
+        <th scope="col">SAMM 2</th>
+        <th scope="col">ISO 27001</th>
+    </tr>
 </thead>
 <tbody>
 <?php

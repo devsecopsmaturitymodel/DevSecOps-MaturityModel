@@ -119,8 +119,8 @@ function getElementByName($dimensions, $name)
 {
     foreach ($dimensions as $dimensionName => $subDimension) {
         foreach ($subDimension as $subDimensionName => $elements) {
-            foreach ($elements as $elementName => $element) {
-                if ($elementName == $name) {
+            foreach ($elements as $activityName => $element) {
+                if ($activityName == $name) {
                     return $element;
                 }
             }

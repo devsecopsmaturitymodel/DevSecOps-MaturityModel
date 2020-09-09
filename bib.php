@@ -20,10 +20,10 @@ function readCSV($filename, $delimiter)
     return $data;
 }
 
-function elementIsSelected($elementName)
+function elementIsSelected($activityName)
 {
     foreach (getCsv() as $element) {
-        if ($elementName == $element["element"]) {
+        if ($activityName == $element["element"]) {
             return true;
         }
     }

@@ -12,7 +12,7 @@ include_once "navi.php"
 include_once "data.php";
 function hasElementChildren($element) {
     $hasContent = false;
-    foreach ($element as $elementName => $content) {
+    foreach ($element as $activityName => $content) {
         if (!array_key_exists("dependsOn", $content)) {
             continue;
         }
@@ -62,9 +62,9 @@ foreach ($dimensions as $dimension => $subdimensions) {
         }
     </style>
 <?php
-function getSourceAndParent($elementName, $subdimension, $parent = "")
+function getSourceAndParent($activityName, $subdimension, $parent = "")
 {
-    return "{source: \"$elementName\", target: \"$parent\", type: \"" . base64_encode($subdimension) . "\"}";
+    return "{source: \"$activityName\", target: \"$parent\", type: \"" . base64_encode($subdimension) . "\"}";
 }
 
 
@@ -83,7 +83,7 @@ foreach ($dimensions as $dimension => $subdimensions) {
                     $first = true;
 
                     //if($subdimension != "Erzeugung") continue;
-                    foreach ($element as $elementName => $content) {
+                    foreach ($element as $activityName => $content) {
                         if (!array_key_exists("dependsOn", $content)) {
                             continue;
                         }
@@ -98,14 +98,14 @@ foreach ($dimensions as $dimension => $subdimensions) {
                                     echo ",";
                                 }
                                 $first = false;
-                                echo getSourceAndParent($elementName, $subdimension, $dependsOn);
+                                echo getSourceAndParent($activityName, $subdimension, $dependsOn);
                             }
                         } else {
                             if (!$first) {
                                 echo ",";
                             }
                             $first = false;
-                            echo getSourceAndParent($elementName, $subdimension, $parent);
+                            echo getSourceAndParent($activityName, $subdimension, $parent);
                         }
 
                     }
