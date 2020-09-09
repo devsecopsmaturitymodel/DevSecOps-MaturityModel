@@ -24,7 +24,7 @@ include_once "head.php";
                     $all[$subdimension][$i]['usefulness'] = array();
                     $all[$subdimension][$i]['difficultyOfImplementation'] = array();
                 }
-                foreach ($element as $elementName => $elementImplementation) {
+                foreach ($element as $activityName => $elementImplementation) {
                     if ($elementImplementation['level'] != $i) continue;
                     $all[$subdimension][$i]['usefulness'][] = $elementImplementation['usefulness'];
 

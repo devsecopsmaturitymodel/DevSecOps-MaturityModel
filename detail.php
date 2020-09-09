@@ -10,11 +10,11 @@ include_once "navi.php";
 
 $dimension = $_GET['dimension'];
 $subdimension = $_GET['subdimension'];
-$elementName = $_GET['element'];
+$activityName = $_GET['element'];
 
-function printDetail($dimension, $subdimension, $elementName, $dimensions, $report = false)
+function printDetail($dimension, $subdimension, $activityName, $dimensions, $report = false)
 {
-    $element = $dimensions[$dimension][$subdimension][$elementName];
+    $element = $dimensions[$dimension][$subdimension][$activityName];
 
     if ($element == null) { //Whitelist approach for security reasons (deny XSS)
         //echo "Sorry, we could not found the element";
@@ -34,9 +34,9 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
 
             $pageH1 .= " -> $subdimension";
         }
-        $pageH1 .= ": $elementName";
+        $pageH1 .= ": $activityName";
     } else {
-        $pageH1 .= "$elementName";
+        $pageH1 .= "$activityName";
     }
 
     echo "<h$headerWeight>$pageH1</h$headerWeight>";
@@ -101,4 +101,4 @@ function printDetail($dimension, $subdimension, $elementName, $dimensions, $repo
     }
 }
 
-printDetail($dimension, $subdimension, $elementName, $dimensions);
+printDetail($dimension, $subdimension, $activityName, $dimensions);
