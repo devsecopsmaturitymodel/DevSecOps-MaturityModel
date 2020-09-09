@@ -50,6 +50,9 @@ Create issues or even better Pull Requests in [github](https://github.com/wurstb
 # Sponsors
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro) (Time, Logo, Icons)
 
+# Donations
+You are using the model or you are inspired by it, want to help but don't want to create pull requests? You can donate at the [OWASP Project Wiki Page](https://owasp.org/donate/?reponame=www-project-devsecops-maturity-model&title=OWASP+Devsecops+Maturity+Model). Donations might be used for the design of logos/images/design or travels.
+
 # License
 This program is free software: you can redistribute it and/or modify it under the terms of the [GPL 3](https://www.gnu.org/licenses/) license.
 The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2020
