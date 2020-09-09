@@ -55,7 +55,9 @@ You are using the model or you are inspired by it, want to help but don't want t
 
 # License
 This program is free software: you can redistribute it and/or modify it under the terms of the [GPL 3](https://www.gnu.org/licenses/) license.
-The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2020
+
 The intellectual property (content in the _data_ folder) is licensed under Attribution-ShareAlike.
 An example attribution by changing the content:
 > This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.timo-pagel.de).
+
+The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2020.
