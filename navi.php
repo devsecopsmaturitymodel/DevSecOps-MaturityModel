@@ -5,7 +5,7 @@ $nav = array(
     "index.php" => "Matrix",
     "spiderweb.php" => "Implementation Levels",
     "scutter.php" => "Ease and Value",
-    "mappings.php" => "Mappings",
+    "mappings.php?performed=true&planned=true" => "Mappings",
     "graph.php" => "Dependencies",
     "report.php?performed=true&planned=true" => "Full Report",
     //"usefulnessHardness.php" => "Heatmap",

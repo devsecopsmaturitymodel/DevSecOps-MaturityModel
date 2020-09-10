@@ -27,6 +27,42 @@ foreach ($dimensions as $dimensionName => $subDimension) {
     }
 }
 
+if(array_key_exists("performed", $_GET)) {
+    $showPerformed = $_GET['performed'];
+ 
+    if($showPerformed != "true") $showPerformed = false;
+}else {
+    $showPerformed = false;
+}
+
+if(array_key_exists("planned", $_GET)) {
+    $showPlanned = $_GET['planned'];
+
+    if($showPlanned != "true") $showPlanned = false;
+}else {
+    $showPlanned = false;
+}
+$filteredDimensions = array();
+foreach ($dimensions as $dimensionName => $subDimension) {
+    ksort($subDimension);
+    foreach ($subDimension as $subDimensionName => $elements) {
+        $newElements = $elements;
+        ksort($newElements);
+        foreach($newElements as $activityName => $activity) {
+            if(elementIsSelected($activityName) && !$showPerformed) {
+                continue;
+            }
+
+            if(!elementIsSelected($activityName) && !$showPlanned) {
+                continue;
+            } 
+            $filteredDimensions[$dimensionName][$subDimensionName][$activityName] = $activity;
+        }
+        
+    }
+}
+
+
 function getDifficultyOfImplementationWithDependencies($dimensions, $elementImplementation, &$allElements)
 {
     if($elementImplementation == null) {

@@ -21,24 +21,32 @@ if(array_key_exists("sort", $_GET)) {
 ?>
 
 <form method="get">
-<div class="form-check">
-<input class="form-check-input" type="radio" name="sort" id="exampleRadios1" value="activity" checked>
-  <label class="form-check-label" for="exampleRadios1">
-    Activity
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="samm2">
-  <label class="form-check-label" for="exampleRadios2">
-    SAMM 2
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="sort" id="exampleRadios3" value="iso27001-2017">
-  <label class="form-check-label" for="exampleRadios3">
-    ISO27001:27001
-  </label>
-</div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="sort" id="exampleRadios1" value="activity" <?php if($_GET['sort'] == "activity") echo "checked"; ?>>
+        <label class="form-check-label" for="exampleRadios1">
+            Activity
+        </label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="samm2" <?php if($_GET['sort'] == "samm2") echo "checked"; ?>>
+        <label class="form-check-label" for="exampleRadios2">
+            SAMM 2
+        </label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="sort" id="exampleRadios3" value="iso27001-2017" <?php if($_GET['sort'] == "iso27001-2017") echo "checked"; ?>>
+        <label class="form-check-label" for="exampleRadios3">
+            ISO27001:27001
+        </label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="performed" id="exampleCheck1" value="true" <?php if($showPerformed) {echo " checked=checked";}?>>
+        <label class="form-check-label" for="exampleCheck1">Show performed activities</label>
+  </div>
+  <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="planned" id="exampleCheck2" value="true" <?php if($showPlanned) {echo " checked=checked";} ?>>
+        <label class="form-check-label" for="exampleCheck2">Show planned activities</label>
+  </div>  
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
@@ -58,7 +66,7 @@ if($sort == "activity") {
     </thead>
     <tbody>
 <?php
-    foreach ($dimensions as $dimension => $subdimensions) {
+    foreach ($filteredDimensions as $dimension => $subdimensions) {
         foreach ($subdimensions as $subdimension => $activity) {
         foreach ($activity as $activityName => $content) {
             echo "<tr>";
@@ -94,7 +102,7 @@ if($sort == "activity") {
     <tbody>
 <?php    
     $mapping = array();
-    foreach ($dimensions as $dimension => $subdimensions) {
+    foreach ($filteredDimensions as $dimension => $subdimensions) {
         foreach ($subdimensions as $subdimension => $activity) {
             foreach ($activity as $activityName => $content) {
                 $content["dimension"] = $dimension;
@@ -110,7 +118,7 @@ if($sort == "activity") {
             }
         }
     }
-    ksort($mapping);
+    ksort($mapping, SORT_NUMERIC);
 
     foreach($mapping as $mappingName => $mappingElement) {
         foreach($mappingElement as $activityName => $activity) {
