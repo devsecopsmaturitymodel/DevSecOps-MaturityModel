@@ -22,6 +22,7 @@ Join #dsomm in [OWASP Slack](http://owaspslack.com/).
 Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
 
 # Slides and talks
+* [Video: Benutzung vom OWASP DevSecOps Maturity Model (German)](https://vimeo.com/456523229)
 * [Online: OWASP DevSecOps Maturity Model - Culture (German)](https://www.meetup.com/de-DE/Breaking-Agile/) 2020-08-25
 * [Video: Usage of the OWASP DevSecOps Maturity Model](https://www.youtube.com/watch?v=tX9RHZ_O5NU), [OWASP Ottawa Chapter](https://www.meetup.com/de-DE/OWASP-Ottawa/events/272355636/), 2020-08-17
 * [Continuous Application Security Testing for Enterprise](https://docs.google.com/presentation/d/1dAewXIHgBEKHKwBPpM5N_G2eM6PRpduoGJrp6R6pNUI/edit?usp=sharing), DevOps Meetup Hamburg, 2019-09-26
