@@ -124,8 +124,8 @@ function getTable($dimensions) {
 				foreach ( $element as $activityName => $content ) {
 					$content = getContentForLevelFromSubdimensions ( $i, $content, $activityName );
 					if ($content != "") {
-						$elementLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
-						$tableContent .= "<a href='$elementLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$activityName'";
+						$activityLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
+						$tableContent .= "<a href='$activityLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$activityName'";
 						if (elementIsSelected ( $activityName )) {
 							$tableContent .= "class='selected'";
 						}

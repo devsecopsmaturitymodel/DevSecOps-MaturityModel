@@ -53,7 +53,7 @@ if($sort == "activity") {
             <th scope="col">Subdimension</th>
             <th scope="col">Actvity</th>
             <th scope="col">SAMM 2</th>
-            <th scope="col">ISO 27001</th>
+            <th scope="col">ISO 27001 Controls</th>
         </tr>
     </thead>
     <tbody>
@@ -65,7 +65,8 @@ if($sort == "activity") {
             echo "<td>$dimension</td>";
             echo "<td>$subdimension</td>";
             $tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $content ) . "</div>";
-            echo "<td><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></td>";
+            $activityLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
+            echo "<td><a href='$activityLink'><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></a></td>";
             echo "<td>" . getFlattenedArray($content, "samm2") . "</td>";
             echo "<td>" . getFlattenedArray($content, "iso27001-2017") . "</td>";
             }
@@ -76,7 +77,13 @@ if($sort == "activity") {
     <table class="table">
     <thead>
         <tr>
-            <th scope="col"><?php echo $sort;?></th> 
+            <?php
+                if($sort == "iso27001-2017") {
+                    echo '<th scope="col">ISO 27001 Control</th>';
+                }else {
+                    echo '<th scope="col">' . $sort . '</th>';
+                }
+            ?>
             <th scope="col">Dimension</th>
             <th scope="col">Subdimension</th>
             <th scope="col">Actvity</th>
@@ -103,7 +110,6 @@ if($sort == "activity") {
             }
         }
     }
-    //var_dump($mapping);exit;
     ksort($mapping);
 
     foreach($mapping as $mappingName => $mappingElement) {
@@ -113,7 +119,8 @@ if($sort == "activity") {
         echo "<td>" . $activity['dimension'] . "</td>";
         echo "<td>" . $activity['subdimension'] . "</td>";
         $tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $activity ) . "</div>";
-        echo "<td><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></td>";
+        $activityLink = "detail.php?dimension=" . urlencode ( $activity['dimension'] ) . "&subdimension=" . urlencode ( $activity['subdimension'] ) . "&element=" . urlencode ( $activityName );
+        echo "<td><a href='$activityLink'><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></></td>";
         echo "<td>" . getFlattenedArray($activity, "samm2") . "</td>";    
         echo "<td>" . getFlattenedArray($content, "iso27001-2017") . "</td>";        
         }
