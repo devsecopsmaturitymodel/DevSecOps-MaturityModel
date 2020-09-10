@@ -100,8 +100,8 @@ Deployment:
     samm: OE2-A
     samm2: TODO
     iso27001-2017:
-      - 12.3
-      - 14.2.6
+      - "12.3"
+      - "14.2.6"
   Blue/Green Deployment:
     risk: A new artifacts version can have unknown defects.
     measure: By having multiple production environments, a deployment can be performant
@@ -267,8 +267,8 @@ Deployment:
     level: 3
     samm2: o-incident-management|TODO
     iso27001-2017:
-      - 8.1
-      - 8.2
+      - "8.1"
+      - "8.2"
 Patch Management:
   A patch policy is defined:
     risk: Vulnerabilities in running containers stay for long and might get exploited.
@@ -307,8 +307,8 @@ Patch Management:
     level: 1
     samm2: o-environment-management|B|1
     iso27001-2017:
-      - 12.6.1
-      - 14.2.5
+      - "12.6.1"
+      - "14.2.5"
     implementation:
       - <a href="https://dependabot.com/">dependabot</a>
       - Jenkins
