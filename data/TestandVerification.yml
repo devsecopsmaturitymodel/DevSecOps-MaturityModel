@@ -763,8 +763,8 @@ Static depth for infrastructure:
       - 12.6.1
       - 14.2.5    
       - 12.2.1
-  Check for malware in components:
-    risk: Third party components might be compromised by malware. Ether due to the maintainer (e.g. typo squatting of an image name and using the wrong image) or by an attacker on behalf of the maintainer with stolen credentials.
+  Check for malware:
+    risk: Third party might include  malware. Ether due to the maintainer (e.g. typo squatting of an image name and using the wrong image) or by an attacker on behalf of the maintainer with stolen credentials.
     measure: Check for malware in components (e.g. container images, VM baseline images, libaries).
     difficultyOfImplementation:
       knowledge: 2
