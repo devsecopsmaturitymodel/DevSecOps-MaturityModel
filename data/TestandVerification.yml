@@ -634,7 +634,7 @@ Dynamic depth for infrastructure:
       time: 2
       resources: 1
     usefulness: 3
-    level: 1
+    level: 2
     implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
     dependendsOn: Segmented networks for virtual environments
     samm2: v-security-testing|A|2
@@ -642,6 +642,24 @@ Dynamic depth for infrastructure:
       - 13.1.3
       - 14.2.3
       - 14.2.8
+  Test for exposed services:
+    risk: Standard network segmentation and firewalling has not been performed, leading to world open cluster management ports.
+    measure: With the help of tools the network configuration of unintenonal exposed cluster(s) are tested.
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 1
+    implementation:
+     - nmap
+     - OWASP Amass
+    samm: EH2-B
+    samm2: v-security-testing|A|1
+    iso27001-2017:
+      - 13.1.3
+      - 14.2.3
+      - 14.2.8    
 Static depth for infrastructure:
   Test the definition of virtualized environments:
     risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might contains unsecure configurations.
