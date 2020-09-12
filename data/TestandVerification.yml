@@ -628,7 +628,7 @@ Dynamic depth for infrastructure:
       - 9.4.3
   Test network segmentation:
     risk: Wrong or no network segmentation of pods makes it easyer for an attacker to access a database and extract or modify data.
-    measure: Integration of fine granulated network segmenation (also between pods in the same namespace)
+    measure: Cluster interal test needs to be performed. Integration of fine granulated network segmenation (also between pods in the same namespace).
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -644,7 +644,7 @@ Dynamic depth for infrastructure:
       - 14.2.8
   Test for exposed services:
     risk: Standard network segmentation and firewalling has not been performed, leading to world open cluster management ports.
-    measure: With the help of tools the network configuration of unintenonal exposed cluster(s) are tested.
+    measure: With the help of tools the network configuration of unintenonal exposed cluster(s) are tested. To identify clusters, all subdomains might need to be identified with a tool like OWASP Amass to perform portscans based o the result.
     difficultyOfImplementation:
       knowledge: 1
       time: 1
@@ -653,7 +653,7 @@ Dynamic depth for infrastructure:
     level: 1
     implementation:
      - nmap
-     - OWASP Amass
+     - <a href="https://github.com/OWASP/Amass">OWASP Amass</a>
     samm: EH2-B
     samm2: v-security-testing|A|1
     iso27001-2017:
