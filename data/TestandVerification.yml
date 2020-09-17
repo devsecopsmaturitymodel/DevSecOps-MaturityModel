@@ -716,7 +716,7 @@ Static depth for infrastructure:
     iso27001-2017:
       - 12.6.1
       - 14.2.1
-  Test the configuration of cloud environments:
+  Test the clould configuration:
     risk: Standard hardening practices for cloud environments are not performed leading to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
       tested.
