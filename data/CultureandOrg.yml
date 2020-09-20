@@ -218,7 +218,9 @@ Culture and Org.:
       time: 3
       resources: 1
     usefulness: 3
-    level: 3
+    level: 2
+    implementation:
+      - <a href="https://github.com/Toreon/threat-model-playbook">Threat modelling Playbook</a>
     samm: TA1-A
     iso27001-2017:
       - not explicitly covered by ISO 27001
