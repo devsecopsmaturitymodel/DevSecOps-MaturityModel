@@ -33,7 +33,7 @@ Create issues or even better Pull Requests in [github](https://github.com/wurstb
 # Assessment
 In case you would like to perform a DevSecOps assessment, the following tools are available:
 * Usage of the applicaton in a `container`.
-* Development of an export to (OWASP Maturity Models)[https://github.com/OWASP/Maturity-Models] (recommended for assessments with a lot of teams)
+* Development of an export to [OWASP Maturity Models](https://github.com/OWASP/Maturity-Models) (recommended for assessments with a lot of teams)
 * Creation of your excel sheet (not recommended, you want to use DevOps, don't even try!)
 
 ## Container
@@ -86,6 +86,8 @@ docker run -d -p 80:80 wurstbrot/dsomm:latest
 * The dimension _Test and Verifiacation_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
 * The sub-dimension <i>Process</i> has been added after a discussion with [Francois Raynaud](https://www.linkedin.com/in/francoisraynaud/) that reactive activities are missing.
 * Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
+* Adding ISO 27001:2017 mapping, [Andre Baumeier](https://github.com/AndreBaumeier).
+* Providing a documentation of how to use `docker` in the Juice Shop for simple copy&paste, [Björn Kimminich](https://github.com/bkimminich/).
 
 # Back link
 - [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
