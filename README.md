@@ -78,7 +78,6 @@ This approach also allows teams to perform self assessment with changes tracked 
 yum update -y
 yum install -y docker
 service docker start
-docker pull bkimminich/juice-shop
 docker run -d -p 80:80 wurstbrot/dsomm:latest
 ```
 
