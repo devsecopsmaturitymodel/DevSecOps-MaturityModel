@@ -30,6 +30,58 @@ Create issues or even better Pull Requests in [github](https://github.com/wurstb
 * [Security in DevOps-Strategies](https://www.youtube.com/watch?v=gWjGWebWahE&t=448s), 28.09.2017, Hamburg, Germany
 * [DevSecOps Maturity Model](https://docs.google.com/presentation/d/1rrbyXqxy3LXAJNPFrVH99mj_BNaJKymMsXZItYArWEM/edit?usp=sharing), 2017
 
+# Assessment
+In case you would like to perform a DevSecOps assessment, the following tools are available:
+* Usage of the applicaton in a `container`.
+* Development of an export to (OWASP Maturity Models)[https://github.com/OWASP/Maturity-Models] (recommended for assessments with a lot of teams)
+* Creation of your excel sheet (not recommended, you want to use DevOps, don't even try!)
+
+## Container
+1. Install [Docker](https://www.docker.com)
+2. Run `docker run --rm -p 8080:80 wurstbrot/dsomm:latest 
+3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
+   of the native docker installation)
+
+In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
+In case the application should be visible, but the "Implementation Level" shouldn't be changeable, consider the following code:
+```
+#!/bin/bash
+set -xe
+
+IMAGE_NAME="<YOUR ORGANIZATION>/dsomm:latest"
+
+rm -Rf DevSecOps-MaturityModel || true
+git clone git@github.com:wurstbrot/DevSecOps-MaturityModel.git
+cp  data/* DevSecOps-MaturityModel/data
+cp -a selectedData.csv DevSecOps-MaturityModel/selectedData.csv
+
+cd DevSecOps-MaturityModel
+docker build -t $IMAGE_NAME .
+docker push $IMAGE_NAME
+```
+This approach also allows teams to perform self assessment with changes tracked in a repository.
+
+## Amazon EC2 Instance
+
+1. In the _EC2_ sidenav select _Instances_ and click _Launch Instance_
+2. In _Step 1: Choose an Amazon Machine Image (AMI)_ choose an _Amazon
+   Linux AMI_ or _Amazon Linux 2 AMI_
+3. In _Step 3: Configure Instance Details_ unfold _Advanced Details_ and
+   copy the script below into _User Data_
+4. In _Step 6: Configure Security Group_ add a _Rule_ that opens port 80
+   for HTTP
+5. Launch your instance
+6. Browse to your instance's public DNS
+
+```
+#!/bin/bash
+yum update -y
+yum install -y docker
+service docker start
+docker pull bkimminich/juice-shop
+docker run -d -p 80:80 wurstbrot/dsomm:latest
+```
+
 # Credits
 * The dimension _Test and Verifiacation_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
 * The sub-dimension <i>Process</i> has been added after a discussion with [Francois Raynaud](https://www.linkedin.com/in/francoisraynaud/) that reactive activities are missing.
