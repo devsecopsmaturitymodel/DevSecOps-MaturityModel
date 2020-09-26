@@ -18,7 +18,7 @@ Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/
 In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describes different strategic approaches for your secure DevOps strategy. The use OWASP DSOMM in combination with [OWASP SAMM](https//owaspsamm.org) is explained.
 
 # Community
-Join #dsomm in [OWASP Slack](http://owaspslack.com/).
+Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw#/).
 Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
 
 # Slides and talks
