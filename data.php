@@ -138,10 +138,27 @@ function build_table_tooltip($array, $headerWeight = 2)
     $mapResources = $mapTime;
     $mapUsefulness = $mapTime;
 
+    $evidenceContent = "";
+    if(array_key_exists("evidence", $array)) {
+        if( is_array($array['evidence'])) {
+            $evidenceContent .= "<ul>";
+            foreach($array['evidence'] as $content) {
+                $evidenceContent .= "<li>".str_replace("\"", "'", $content) . "</li>";
+            }
+            $evidenceContent .= "</ul>";
+        }else {
+            $evidenceContent = str_replace("\"", "'", $array['evidence']);
+        }
+    }else {
+        $evidenceContent = "TODO";
+    }
+
     $html = "";
     $html .= "<h" . $headerWeight . ">Risk and Opportunity</h$headerWeight>";
-    $html .= "<div><b>" . gettext("Risk") . ":</b> " . $array['risk'] . "</div>";
-    $html .= "<div><b>" . gettext("Opportunity") . ":</b> " . $array['measure'] . "</div>";
+    $html .= "<div><b>" . "Risk" . ":</b> " . $array['risk'] . "</div>";
+    $html .= "<div><b>" . "Opportunity" . ":</b> " . $array['measure'] . "</div>";
+    if(IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
+        $html .= "<div><b>" . "Evidence" . ":</b> " . $evidenceContent . "</div>"; 
     $html .= "<hr />";
     $html .= "<h$headerWeight>Exploit details</h$headerWeight>";
     $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";

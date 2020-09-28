@@ -47,6 +47,9 @@ Education and Guidance:
   Regular security training of security champions:
     risk: Understanding security is hard, even for security champions.
     measure: Regular security training of security champions.
+    evidence:
+      - Process Documentation: TODO
+      - Training Content: TOODO
     difficultyOfImplementation:
       knowledge: 3
       time: 2

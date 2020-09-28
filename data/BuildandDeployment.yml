@@ -21,6 +21,7 @@ Build:
       For example, as a result of incorrect security related configuration.
     measure: A well defined build process lowers the possibility of errors during the build
       process.
+    evidence: The build process is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a> in the folder <i>vars</>. Projects are using a <i>Jenkinsfile</i> to use the defined process.
     difficultyOfImplementation:
       knowledge: 2
       time: 3
