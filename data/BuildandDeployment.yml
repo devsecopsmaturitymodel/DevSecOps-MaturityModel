@@ -306,7 +306,7 @@ Patch Management:
       time: 4
       resources: 2
     usefulness: 3
-    level: 3
+    level: 2
     samm2: o-environment-management|B|1
     iso27001-2017:
       - 12.6.1
