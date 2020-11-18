@@ -731,6 +731,26 @@ Static depth for infrastructure:
     iso27001-2017:
       - 12.6.1
       - 14.2.1
+  Correlate known vulnerabilities in infrastructure with new image versions:
+    risk: "TODO."
+    measure: "TODO"
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 5
+      resources: 4
+    usefulness: 1
+    level: 4
+    dependsOn:
+    - Usage of a maximum lifetime for images
+    implementation:
+      - Anchore.io
+      - Clair
+      - OpenSCAP
+      - <a href='https://github.com/future-architect/vuls'>Vuls</a>
+    samm2: v-security-testing|A|1
+    iso27001-2017:
+      - 12.6.1
+      - 14.2.1      
   Test the clould configuration:
     risk: Standard hardening practices for cloud environments are not performed leading to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
