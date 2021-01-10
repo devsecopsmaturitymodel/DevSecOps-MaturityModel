@@ -12,7 +12,7 @@ In case you identified a security related issue with severity of _low_ to _mediu
 In case you identified a security related issue with severity of _high_ or _critical_, please disclose information about the issue non public via email to `timo.pagel@owasp.org`.
 
 We encourage researchers to include a Proof-of-Concept, supported by screenshots or videos.
-For each given security related issue with severity _high_ or _critical_ (based on SDA SE own assessment), we will respond within one week.
+For each given security related issue with severity _high_ or _critical_ (based on own assessment), we will respond within one week.
 
 
 # Supported versions and update policy
