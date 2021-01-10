@@ -22,3 +22,6 @@ Please be aware that only the most recent version will be subject of security pa
 # Known security gaps and future enhancements
 
 There is no format in commits to identify security related fixes and it is not planned yet.
+
+# Production Usage
+The patch management process of the application is weak. It is recommended to not use the application with production data in public. Please use at least authentication/authorization in front of the application (e.g. https://github.com/oauth2-proxy/oauth2-proxy).
