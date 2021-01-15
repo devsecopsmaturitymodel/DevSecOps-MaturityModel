@@ -120,4 +120,4 @@ The intellectual property (content in the _data_ folder) is licensed under Attri
 An example attribution by changing the content:
 > This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.timo-pagel.de).
 
-The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2020.
+The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2021.
