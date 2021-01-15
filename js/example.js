@@ -14,10 +14,10 @@ function loadDiagramm() {
                 });
             });
         });
-        var countSubdimensions = 16;
+        var countSubdimensions = 17;
         var chart = circularHeatChart()
-            .segmentHeight(50)
-            .innerRadius(190)
+            .segmentHeight(40)
+            .innerRadius(170)
             .numSegments(countSubdimensions)
             .radialLabels(["Maturity 1", "Maturity 2", "Maturity 3", "Maturity 4"])
             .segmentLabels(labels)
@@ -33,5 +33,15 @@ function loadDiagramm() {
     $('html,body').scrollTop(0);
 }
 function replaceSubdimensionName(name) {
-    return name.replace("for applications", "app").replace("Hardening", "Hard.").replace("Guidance", "Guid.").replace("for infrastructure", "infra")
+    return name
+        .replace("for applications", "app")
+        .replace("Hardening", "Hard.")
+        .replace("Guidance", "Guid.")
+        .replace("for infrastructure", "infra")
+        .replace("Dynamic", "Dyn.")
+        .replace("Infrastructure", "Infra.")
+        .replace("Application", "App.")
+        .replace("Education", "Edu.")
+        .replace("Management", "Education.")
+        ;
 }

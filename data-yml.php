@@ -10,10 +10,11 @@ function readYaml($file) {
 }
 
 $dimensions = array(
+    "Application" => readYaml("data/Application.yml"),
     "Culture and Org." => readYaml("data/CultureAndOrg.yml"),
     "Build and Deployment" => readYaml("data/BuildAndDeployment.yml"),
     "Information Gathering" => readYaml("data/InformationGathering.yml"),
-    "Infrastructure" => readYaml("data/Infrastructure.yml"),
+    "Hardening" => readYaml("data/Hardening.yml"),
     "Test and Verification" => readYaml("data/TestAndVerification.yml"),
 );
 

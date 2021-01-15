@@ -63,7 +63,7 @@ Infrastructure Hardening:
     iso27001-2017:
       - virtual environments are not explicitly covered by ISO 27001 - too specific
       - 13.1.3
-  Filter for outcoing traffic:
+  Filter outcoing traffic:
     risk: A compromised infrastructure component might try to send out stolen data.
     measure: Having a whitelist and explizitly allowing egress traffic provides the ability to stop unauthorized data leackage.
     difficultyOfImplementation:
@@ -284,4 +284,72 @@ Infrastructure Hardening:
       - 12.1.3
       - 13.1.3
       - 17.2.1
+Application Hardening:
+  Application Hardening Level 1:
+    risk: Using an insecure application might lead to a compromised application. This might lead to total data theft or data modification.
+    measure: |
+      Following frameworks like the
+        <ul>
+          <li>OWASP Application Security Verification Standard Level 1</li>
+          <li>OWASP Mobile Application Security Verification Standard Level 1</li>
+        </ul>
+
+      in all applications provides a good baseline.
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 4
+      resources: 2
+    usefulness: 4
+    level: 1
+    implementation:
+      - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP ASVS</a>
+      - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
+    samm2: software-requirements|A|1
+    iso27001-2017:
+      - hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+
+  Application Hardening Level 2:
+    risk: Using an insecure application might lead to a compromised application. This might lead to total data theft or data modification.
+    measure: |
+      Following frameworks like the
+        <ul>
+          <li>OWASP Application Security Verification Standard Level 2</li>
+          <li>OWASP Mobile Application Security Verification Standard Level 2</li>
+        </ul>
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 4
+      resources: 2
+    usefulness: 4
+    level: 2
+    implementation:
+      - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP ASVS</a>
+      - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
+    samm2: software-requirements|A|2
+    iso27001-2017:
+      - hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+
+  Application Hardening Level 3:
+    risk: Using an insecure application might lead to a compromised application. This might lead to total data theft or data modification.
+    measure: |
+      Following frameworks like the
+        <ul>
+          <li>OWASP Application Security Verification Standard Level 3</li>
+          <li>OWASP Mobile Application Security Verification Standard Maturity Requirements</li>
+        </ul>
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 4
+      resources: 2
+    usefulness: 4
+    level: 4
+    implementation:
+      - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP ASVS</a>
+      - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
+    samm2: software-requirements|A|3
+    iso27001-2017:
+      - hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
 ...

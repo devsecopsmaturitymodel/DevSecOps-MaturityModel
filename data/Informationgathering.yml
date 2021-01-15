@@ -32,7 +32,8 @@ Monitoring:
       - 12.6.1
   Alerting:
     risk: Incidents are discovered after they happend.
-    measure: Thresholds for metrics are set. In case the thresholds are reached, alarms are send out. Which should get attention due to the critically.
+    measure: |
+      Thresholds for metrics are set. In case the thresholds are reached, alarms are send out. Which should get attention due to the critically.
     difficultyOfImplementation:
       knowledge: 2
       time: 5
@@ -79,7 +80,9 @@ Monitoring:
       - 12.1.3
   Defence metrics:
     risk: IDS/IPS systems like packet- or application-firewalls detect and prevent attacks. It is not known how many attacks has been detected and blocked.
-    measure: Gathering of defence metrics like TCP/UDP sources enables to assume the geographic location of the request.
+    measure: |
+      Gathering of defence metrics like TCP/UDP sources enables to assume the geographic location of the request.
+      Assuming a Kubernetes cluster with an egress-traffic filter (e.g. IP/domain based), an alert might be send out in case of every violation. For ingress-traffic, alerting might not even be considered.
     difficultyOfImplementation:
       knowledge: 3
       time: 5
@@ -88,6 +91,7 @@ Monitoring:
     level: 4
     dependsOn:
     - Visualized metrics
+    - Filter outcoing traffic
     samm2: o-incident-management|A|2
     iso27001-2017:
       - 12.4.1
