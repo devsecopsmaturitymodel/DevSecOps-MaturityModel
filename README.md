@@ -8,8 +8,6 @@ With the help of DevOps strategies security can also be enhanced. For example, e
 Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking DevSecOps Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
 
 # Usage
-The "Usage" in the navigation.
-
 Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/wurstbrot/DevSecOps-MaturityModel/) and run `startDocker.bash`.
 * _matrix_ shows the dimensions, subdimensions and activities are described.
 * _Implementation Levels_ can be used to measure the current implementation level by clicking on the specific activities which have been performed.
