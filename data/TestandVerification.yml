@@ -686,7 +686,8 @@ Static depth for infrastructure:
     usefulness: 3
     level: 2
     implementation:
-      - <a href="https://github.com/hadolint/hadolint">hadolint</a>
+      - <a href="https://github.com/hadolint/hadolint">Dockerfile with hadolint</a>
+      - <a href="https://github.com/zegl/kube-score">Deployment with kube-score</a>
     samm2: v-security-testing|A|1
     iso27001-2017:
       - system hardening, virtual environments are not explicitly covered by ISO 27001 - too specific
@@ -750,7 +751,7 @@ Static depth for infrastructure:
     samm2: v-security-testing|A|1
     iso27001-2017:
       - 12.6.1
-      - 14.2.1      
+      - 14.2.1
   Test the clould configuration:
     risk: Standard hardening practices for cloud environments are not performed leading to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
@@ -801,7 +802,7 @@ Static depth for infrastructure:
     iso27001-2017:
       - 12.6.1
       - 14.2.5
-  Check for new image version​:
+  Check for new image version:
     risk: When a new version of an image is available, it might fixes security vulnerabilities.
     measure: Check for new images of containers in production.
     difficultyOfImplementation:
