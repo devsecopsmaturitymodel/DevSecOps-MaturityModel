@@ -1,5 +1,5 @@
 ---
-
+In this article the dimensions and corresponding sub-dimensions are explained.
 # Hardening
 The dimension hardening covers topic of "traditional" hardening of software and infrastructure components.
 
