@@ -61,8 +61,13 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
         }
     }
 
-    
-    
+
+    if (array_key_exists("md-description", $element) && !empty($element['md-description'])) {
+        echo "<div style=\"background: #F5F5F5\"";
+        $parsedown = new Parsedown();
+        echo $parsedown->text($element['md-description']);
+        echo "</div>";
+    }
     if (array_key_exists("implementation", $element) && !empty($element['implementation'])) {
         $implementation = $element['implementation'];
         echo "<div><b>Implementation hints:</b> ";

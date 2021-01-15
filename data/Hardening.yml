@@ -301,6 +301,23 @@ Application Hardening:
       resources: 2
     usefulness: 4
     level: 1
+    md-description: |
+      To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jumpstart the development process, but also do so securely.
+
+      [...]
+
+      ### Planning aka Requirements Gathering & Analysis
+      The Requirements gathering process tries to answer the question: _"What is the system going to do?"_ At this stage, the [SAMM project](https://owaspsamm.org/model/) offers 3 distinct maturity levels covering both [in-house](https://owaspsamm.org/model/design/security-requirements/stream-a/) software development and [third party](https://owaspsamm.org/model/design/security-requirements/stream-b/) supplier security.
+
+      ![SAMM Requirements](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/OWASP-in0.png)
+
+      Organisations can use these to add solid security considerations at the start of the Software Development or Procurement process.
+
+      These general security considerations can be audited by using a subsection of the ASVS controls in section V1 as a questionnaire. This process attempts to ensure that every feature has concrete security considerations.
+
+      In case of internal development and if the organisation maps Features to Epics, the [Security Knowledge Framework](https://securityknowledgeframework.org/) can be used to facilitate this process by leveraging its questionnaire function, shown below.
+
+      Source: [OWASP Project Integration](https://raw.githubusercontent.com/OWASP/www-project-integration-standards/master/writeups/owasp_in_sdlc/index.md)
     implementation:
       - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP ASVS</a>
       - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>

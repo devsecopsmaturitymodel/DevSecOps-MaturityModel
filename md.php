@@ -1,7 +1,7 @@
 <?php
 
 $title = "About this project";
-include_once "bib/parsedown/Parsedown.php";
+
 include_once "head.php";
 
 ?>

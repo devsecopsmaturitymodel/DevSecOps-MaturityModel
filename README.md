@@ -93,7 +93,7 @@ docker run -d -p 80:80 wurstbrot/dsomm:latest
 * Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
 * Adding ISO 27001:2017 mapping, [Andre Baumeier](https://github.com/AndreBaumeier).
 * Providing a documentation of how to use `docker` in the Juice Shop for simple copy&paste, [Björn Kimminich](https://github.com/bkimminich/).
-
+* [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md) for providing documentation on different DevSecOps practices which are copied&pasted/ (and adapted)
 # Back link
 - [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
 - [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
