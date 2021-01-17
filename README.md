@@ -95,7 +95,7 @@ docker run -d -p 80:80 wurstbrot/dsomm:latest
 * Adding ISO 27001:2017 mapping, [Andre Baumeier](https://github.com/AndreBaumeier).
 * Providing a documentation of how to use `docker` in the Juice Shop for simple copy&paste, [Björn Kimminich](https://github.com/bkimminich/).
 * [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md) for providing documentation on different DevSecOps practices which are copied&pasted/ (and adopted) (https://github.com/northdpole, https://github.com/ThunderSon)
-* [AppSecure NRW](https://appsecure.nrw/) for providing [level 0](https://github.com/AppSecure-nrw/security-belts/blob/master/white/do-not-start-alone.md)
+* The requirements from [level 0](https://github.com/AppSecure-nrw/security-belts/blob/master/white/do-not-start-alone.md) are based on/copied from [AppSecure NRW](https://appsecure.nrw/)
 
 # Back link
 - [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
