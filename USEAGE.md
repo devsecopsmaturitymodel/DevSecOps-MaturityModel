@@ -1,6 +1,63 @@
 ---
-In this article the dimensions and corresponding sub-dimensions are explained.
-# Hardening
+In this article the usage of DSOMM is explained and the dimensions and corresponding sub-dimensions.
+
+# Pre-Requirements
+Before you start, there is kind of maturity level 0. The pre-requirements are highly based (mostly copied) on [AppSecure NRW](https://github.com/AppSecure-nrw/security-belts/tree/master/white).
+## Onboard Product Owner and other Manager
+Software vulnerabilities might be exploited when shipped into production. This results in risks for the organization. The person responsible for judging "risks vs. revenue" on your product (e.g., Product Owner, manager) must be convinced that continuously improving security through Security Belts is the best way to minimize risk and build better products. Judging about security risks requires company specific understanding about security risk management. Ensure that the aforementioned roles have this knowledge and train them if this is not the case.
+- Identify the persons who are judging "risks vs. revenue".
+- Raise the awareness of these persons (e.g., show how easy it is to exploit software).
+- Convince these persons that security is a continuous effort and that Security Belts are a cost efficient solution.
+
+### Benefits
+
+- The Product Owner is aware that software can have security vulnerabilities.
+- Resources are allocated to improve in security - to avoid, detect and fix security vulnerabilities.
+- Management can perform well informed decision when judging "risks vs. revenue".
+- The Product Owner has transparency on how secure the product is.
+
+## Get to Know Security Policies
+Identify the security policies of your organization and adhere to them. 
+
+Share with the Security Champion Guild how you perform the required activities from the policies, so others can benefit from your experience. In addition, provide feedback to the policy owner. Whenever you find yourself not adhering to the policies, communicate this to the person responsible for judging "risks vs. revenue" on your product (e.g., your Product Owner, manager), so they are aware of being out of policy.
+
+### Benefits
+
+- Building and operating software securely is hard; utilizing standards (as described in the security policies) makes it at least a bit easier.
+- Basic security risks, which are covered by security policies, are handled.
+
+## Continuously Improve your Security Belt Rank
+Security is like a big pizza. You cannot eat it as a whole, but you can slice it and continuously eat small slices. To make this happen, ensure that the Product Owner continuously prioritizes the security belt activities for the next belt highly within the product backlog. Security belt activities make good slices because they are of reasonable size and have a defined output. Celebrate all your implemented security belt activities.
+
+## Benefits
+
+- The team has time to improve its software security.
+- The team's initially high motivation and momentum can be used.
+- The Product Owner has transparency of the investment and benefit of security belts.
+- The team is improving its software security.
+
+## Review Security Belt Activities
+Let the Security Champion Guild review your implementations of security belt activities (or concepts of these implementations) as soon as possible. This helps to eradicate misunderstandings of security belt activities early.
+
+### Benefits
+
+- The quality of the implementation is increased.
+- Successes can be celebrated intermediately.
+- Early feedback before the belt assessment.
+## Utilize Pairing when starting an activity
+When implementing a security belt activity, approach a peer from the Security Champion Guild to get you started.
+
+## Benefits
+
+- Knowledge how to implement security belt activities is spread, so everyone benefits of prior knowledge.
+- Starting to implement security belt activities with guidance is easier.
+- The team is improving its software security while avoiding previously made mistakes.
+
+# Dimensions
+
+In the following the dimesions and corresponding sub dimension are described. The descriptions are highly based (mostly copied) on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md).
+
+## Hardening
 The dimension hardening covers topic of "traditional" hardening of software and infrastructure components.
 
 There is an abundance of libraries and frameworks implementing secure defaults. For frontend development, [ReactJS](https://reactjs.org/) seems to be the latest favourite in the Javascript world.
@@ -38,7 +95,7 @@ Pentests are conducted against features released on every release and also perio
 Culture and Organization covers topics related to culture and organization like processes, education and the design phase.
 
 Once requirements are gathered and analysis is performed, implementation specifics need to be defined. The outcome of this stage is usually a diagram outlining data flows and a general system architecture. This presents an opportunity for both threat modeling and attaching security considerations to every ticket and epic that is the outcome of this stage.
-## Design
+### Design
 There is some great advice on threat modeling out there *e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/) article or [this](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) one.
 
 A bite sized primer by Adam Shostack himself can be found [here](https://adam.shostack.org/blog/2018/03/threat-modeling-panel-at-appsec-cali-2018/).
@@ -80,7 +137,7 @@ Based on a detailed threat model defined and updated through code, the team deci
 * Permissions matrix defined.
 * Input is escaped output is encoded appropriately using well established libraries.
 
-# Education and Guidence
+### Education and Guidence
 Metrics won't necessarily improve without training engineering teams and somehow building a security-minded culture. Security training is a long and complicated discussion. There is a variety of approaches out there, on the testing-only end of the spectrum there is fully black box virtual machines such as [DVWA](http://www.dvwa.co.uk/), [Metasploitable series](https://metasploit.help.rapid7.com/docs/metasploitable-2) and the [VulnHub](https://www.vulnhub.com/) project.
 
 The code & remediation end of the spectrum isn't as well-developed, mainly due to the complexity involved in building and distributing such material. However, there are some respectable solutions, [Remediate The Flag](https://www.remediatetheflag.com/) can be used to setup a code based challenge.
@@ -95,7 +152,7 @@ However, to our knowledge, the most flexible project out there is probably the [
 
 ![Juice Shop](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/juiceshop.png "Juice Shop")
 
-# Process
+### Process
 **Example High Maturity Scenario:**
 
 Business continuity and Security teams run incident management drills periodically to refresh incident playbook knowledge.
@@ -147,16 +204,9 @@ The CI/CD system, when migrating successful QA environments to production, appli
 
 Secrets live in-memory only and are persisted in a dedicated Secrets Storage solution such as Hashicorp Vault.
 
-### 2. The In-Between Stage
-
-A successful project will hopefully exist for several SDLC cycles. Each cycle adding features and fixing bugs based on the input from previous ones. The time in this stage is often invested in [Retrospective Meetings](https://www.scrum.org/resources/what-is-a-sprint-retrospective), metrics gathering, various admin work, and training or culture building.
-
-The Open Source community at this stage comes to the rescue with a number of high quality guides, applications, frameworks, and complete integrated solutions.
+## Information Gathering
 
 Concerning metrics, the community has been quite vocal on what to measure and how important it is. The OWASP CISO guide offers 3 broad categories of SDLC metrics[1] which can be used to measure effectiveness of security practices. Moreover, there is a number of presentations on what could be leveraged to improve a security programme, starting from Marcus' Ranum's [keynote](https://www.youtube.com/watch?v=yW7kSVwucSk) at Appsec California[1], Caroline Wong's similar [presentation](https://www.youtube.com/watch?v=dY8IuQ8rUd4) and [this presentation](https://www.youtube.com/watch?v=-XI2DL2Uulo) by J. Rose and R. Sulatycki. These among several writeups by private companies all offering their own version of what could be measured.
-
-# Information Gathering
-From the OWASP Integration Project
 
 Projects such as the [ELK stack](https://www.elastic.co/elastic-stack), [Grafana](https://grafana.com/) and [Prometheus](https://prometheus.io/docs/introduction/overview/) can be used to aggregate logging and provide observability.
 
@@ -167,4 +217,5 @@ However, no matter the WAFs, Logging, and secure configuration enforced at this 
 Logging from all components gets aggregated in dashboards and alerts are raised based on several Thresholds and events. There are canary values and events fired against monitoring from time to time to validate it works.
 
 # Credits
-This document is highly based on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md)
+
+The
