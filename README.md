@@ -13,6 +13,7 @@ Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/
 * _Implementation Levels_ can be used to measure the current implementation level by clicking on the specific activities which have been performed.
 * _Ease and Value of Implementation_ is used for the maturity model development to see the ease and value of each activity to be able to compare it with activities within the subdimension and activities from other subdimensions.
 * _Dependenies_ shows the dependencies between activities
+* _Useage_ describes the dimensions
 * _Full Report_ prints all activities to be able to print it
 
 In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describes different strategic approaches for your secure DevOps strategy. The use OWASP DSOMM in combination with [OWASP SAMM](https//owaspsamm.org) is explained.
@@ -93,7 +94,7 @@ docker run -d -p 80:80 wurstbrot/dsomm:latest
 * Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
 * Adding ISO 27001:2017 mapping, [Andre Baumeier](https://github.com/AndreBaumeier).
 * Providing a documentation of how to use `docker` in the Juice Shop for simple copy&paste, [Björn Kimminich](https://github.com/bkimminich/).
-
+* [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md) for providing documentation on different DevSecOps practices which are copied&pasted/ (and adopted) (https://github.com/northdpole, https://github.com/ThunderSon)
 # Back link
 - [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
 - [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)

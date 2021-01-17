@@ -9,7 +9,9 @@ $nav = array(
     "graph.php" => "Dependencies",
     "report.php?performed=true&planned=true" => "Full Report",
     //"usefulnessHardness.php" => "Heatmap",
+    "md.php?file=USEAGE" => "Usage",
     "md.php?file=README" => "About this project",
+
 );
 ?>
 <ul class="nav nav-tabs">
