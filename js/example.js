@@ -36,6 +36,7 @@ function replaceSubdimensionName(name) {
     return name
         .replace("for applications", "app")
         .replace("Hardening", "Hard.")
+        .replace("Implementation", "Impl.")
         .replace("Guidance", "Guid.")
         .replace("for infrastructure", "infra")
         .replace("Dynamic", "Dyn.")

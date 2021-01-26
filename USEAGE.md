@@ -55,10 +55,10 @@ When implementing a security belt activity, approach a peer from the Security Ch
 
 # Dimensions
 
-In the following the dimesions and corresponding sub dimension are described. The descriptions are highly based (mostly copied) on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md).
+In the following the dimensions and corresponding sub dimension are described. The descriptions are highly based (mostly copied) on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md).
 
-## Hardening
-The dimension hardening covers topic of "traditional" hardening of software and infrastructure components.
+## Implementation
+The dimension Implementation covers topic of "traditional" hardening of software and infrastructure components.
 
 There is an abundance of libraries and frameworks implementing secure defaults. For frontend development, [ReactJS](https://reactjs.org/) seems to be the latest favourite in the Javascript world.
 
