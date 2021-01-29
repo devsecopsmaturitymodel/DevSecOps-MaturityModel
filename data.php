@@ -14,7 +14,7 @@ $dimensions = array(
     "Culture and Org." => readYaml("data/CultureandOrg.yml"),
     "Build and Deployment" => readYaml("data/BuildandDeployment.yml"),
     "Information Gathering" => readYaml("data/Informationgathering.yml"),
-    "Hardening" => readYaml("data/Hardening.yml"),
+    "Implementation" => readYaml("data/Implementation.yml"),
     "Test and Verification" => readYaml("data/TestandVerification.yml")
 );
 
