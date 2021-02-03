@@ -43,7 +43,7 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
     echo build_table_tooltip($element, $headerWeight + 1);
     echo "<hr/>";
 
-    if (array_key_exists("dependsOn", $element) || array_key_exists("implementation", $element) || array_key_exists("comment", $element)) {
+    if (array_key_exists("dependsOn", $element) || array_key_exists("implementation", $element) || array_key_exists("comment", $element) || array_key_exists("meta", $element)) {
         echo "<h" . ($headerWeight + 1) . ">Additional Information</h" . ($headerWeight + 1) . ">";
         if (array_key_exists("dependsOn", $element)) {
             $dependsOn = $element['dependsOn'];
@@ -59,6 +59,7 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
 
             echo "<div><b>Dependencies:</b> $dependencies</div>";
         }
+        echo getElementContentAndCheckExistence($element, "meta");
     }
 
 
