@@ -93,11 +93,6 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
     }
 }
 
-function getMeta($dimensions, $elementImplementation)
-{
-
-}
-
 function getDifficultyOfImplementation($dimensions, $elementImplementation)
 {
     if ($elementImplementation == null) {
