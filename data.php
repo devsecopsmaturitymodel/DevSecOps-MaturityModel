@@ -3,7 +3,8 @@ $dimensions = array();
 
 $files = scandir("data");
 
-function readYaml($file) {
+function readYaml($file)
+{
     return yaml_parse(
         file_get_contents($file)
     );
@@ -28,19 +29,19 @@ foreach ($dimensions as $dimensionName => $subDimension) {
     }
 }
 
-if(array_key_exists("performed", $_GET)) {
+if (array_key_exists("performed", $_GET)) {
     $showPerformed = $_GET['performed'];
- 
-    if($showPerformed != "true") $showPerformed = false;
-}else {
+
+    if ($showPerformed != "true") $showPerformed = false;
+} else {
     $showPerformed = false;
 }
 
-if(array_key_exists("planned", $_GET)) {
+if (array_key_exists("planned", $_GET)) {
     $showPlanned = $_GET['planned'];
 
-    if($showPlanned != "true") $showPlanned = false;
-}else {
+    if ($showPlanned != "true") $showPlanned = false;
+} else {
     $showPlanned = false;
 }
 $filteredDimensions = array();
@@ -49,25 +50,25 @@ foreach ($dimensions as $dimensionName => $subDimension) {
     foreach ($subDimension as $subDimensionName => $elements) {
         $newElements = $elements;
         ksort($newElements);
-        foreach($newElements as $activityName => $activity) {
-            if(elementIsSelected($activityName) && !$showPerformed) {
+        foreach ($newElements as $activityName => $activity) {
+            if (elementIsSelected($activityName) && !$showPerformed) {
                 continue;
             }
 
-            if(!elementIsSelected($activityName) && !$showPlanned) {
+            if (!elementIsSelected($activityName) && !$showPlanned) {
                 continue;
-            } 
+            }
             $filteredDimensions[$dimensionName][$subDimensionName][$activityName] = $activity;
         }
-        
+
     }
 }
 
 
 function getDifficultyOfImplementationWithDependencies($dimensions, $elementImplementation, &$allElements)
 {
-    if($elementImplementation == null) {
-        return ;
+    if ($elementImplementation == null) {
+        return;
     }
     $knowledge = getKnowledge($elementImplementation);
 
@@ -94,8 +95,8 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
 
 function getDifficultyOfImplementation($dimensions, $elementImplementation)
 {
-    if($elementImplementation == null) {
-        return ;
+    if ($elementImplementation == null) {
+        return;
     }
     $knowledge = getKnowledge($elementImplementation);
 
@@ -131,6 +132,49 @@ function getKnowledge($elementImplementation)
     return $knowledge;
 }
 
+function getElementContentAndCheckExistence($parent, $name)
+{
+    if (array_key_exists($name, $parent)) {
+        return getElementContent($parent[$name]);
+    }
+    return "";
+}
+
+function getElementContent($element)
+{
+    $contentString = "";
+    if (is_array($element)) {
+        if (isAssoc($element)) {
+            foreach ($element as $title => $elementContent) {
+                $titleWithSpace = preg_replace('/(?<=[a-z])[A-Z]|[A-Z](?=[a-z])/', ' $0', $title);
+                $contentString .= "<b>" . ucfirst($titleWithSpace) . "</b>";
+                $contentString .= "<ul>";
+                if (is_array($elementContent)) {
+                    $contentString .= getElementContent($elementContent);
+                } else
+                    $contentString .= "<li>" . str_replace("\"", "'", $elementContent) . "</li>";
+                $contentString .= "</ul>";
+            }
+
+        } else {
+            $contentString .= "<ul>";
+            foreach ($element as $content) {
+                $contentString .= "<li>" . str_replace("\"", "'", $content) . "</li>";
+            }
+            $contentString .= "</ul>";
+        }
+
+    } else {
+        $contentString = str_replace("\"", "'", $element);
+    }
+    return $contentString;
+}
+
+function isAssoc(array $arr)
+{
+    if (array() === $arr) return false;
+    return array_keys($arr) !== range(0, count($arr) - 1);
+}
 
 function build_table_tooltip($array, $headerWeight = 2)
 {
@@ -139,18 +183,9 @@ function build_table_tooltip($array, $headerWeight = 2)
     $mapResources = $mapTime;
     $mapUsefulness = $mapTime;
 
-    $evidenceContent = "";
-    if(array_key_exists("evidence", $array)) {
-        if( is_array($array['evidence'])) {
-            $evidenceContent .= "<ul>";
-            foreach($array['evidence'] as $content) {
-                $evidenceContent .= "<li>".str_replace("\"", "'", $content) . "</li>";
-            }
-            $evidenceContent .= "</ul>";
-        }else {
-            $evidenceContent = str_replace("\"", "'", $array['evidence']);
-        }
-    }else {
+    getElementContentAndCheckExistence($array, "meta");
+    $evidenceContent = getElementContentAndCheckExistence($array, "evidence");
+    if ($evidenceContent == "") {
         $evidenceContent = "TODO";
     }
 
@@ -158,14 +193,14 @@ function build_table_tooltip($array, $headerWeight = 2)
     $html .= "<h" . $headerWeight . ">Risk and Opportunity</h$headerWeight>";
     $html .= "<div><b>" . "Risk" . ":</b> " . $array['risk'] . "</div>";
     $html .= "<div><b>" . "Opportunity" . ":</b> " . $array['measure'] . "</div>";
-    if(IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
-        $html .= "<div><b>" . "Evidence" . ":</b> " . $evidenceContent . "</div>"; 
+    if (IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
+        $html .= "<div><b>" . "Evidence" . ":</b> " . $evidenceContent . "</div>";
     $html .= "<hr />";
     $html .= "<h$headerWeight>Exploit details</h$headerWeight>";
-    $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness']-1]) . "</div>";
-    $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['difficultyOfImplementation']['knowledge']-1]) . "</div>";
-    $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['difficultyOfImplementation']['time']-1]) . "</div>";
-    $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$array['difficultyOfImplementation']['resources']-1]) . "</div>";
+    $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness'] - 1]) . "</div>";
+    $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['difficultyOfImplementation']['knowledge'] - 1]) . "</div>";
+    $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['difficultyOfImplementation']['time'] - 1]) . "</div>";
+    $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$array['difficultyOfImplementation']['resources'] - 1]) . "</div>";
     return $html;
 }
 
