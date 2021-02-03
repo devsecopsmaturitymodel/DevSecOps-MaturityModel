@@ -141,8 +141,6 @@ function getElementContentAndCheckExistence($parent, $name)
 {
     if (array_key_exists($name, $parent)) {
         return getElementContent($parent[$name]);
-    } else {
-        echo $name;
     }
     return "";
 }
