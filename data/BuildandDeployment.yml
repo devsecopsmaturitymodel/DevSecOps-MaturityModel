@@ -14,11 +14,9 @@ Build:
       resources: 2
     usefulness: 2
     implementation:
-      - CI/CD Tools, e.g. Jenkins
       - Container technologies and orchestration like Docker, Kubernetes
+      - CI/CD Tools, e.g. Jenkins
     level: 2
-      - Container technologies and orchestration like Docker, Kubernetes
-      - CI/CD Tools, e.g. Jenkins
     samm2: i-secure-build|A|2
     iso27001-2017:
       - 14.2.6
