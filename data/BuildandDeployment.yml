@@ -264,7 +264,7 @@ Deployment:
 Patch Management:
   A patch policy is defined:
     risk: Vulnerabilities in running containers stay for long and might get exploited.
-    measure: A patch policy for all artifacts (e.g. in images) is defined. How often is an images getting build?
+    measure: A patch policy for all artifacts (e.g. in images) is defined. How often is an image rebuilt?
     difficultyOfImplementation:
       knowledge: 3
       time: 1
@@ -278,7 +278,7 @@ Patch Management:
       - 14.2.5
   Nightly build of images:
     risk: Vulnerabilities in running containers stay for too long and might get exploited.
-    measure: Images are getting build at least nightly.
+    measure: Images are built at least nightly.
     difficultyOfImplementation:
       knowledge: 3
       time: 2
@@ -290,7 +290,12 @@ Patch Management:
       - 12.6.1
   Automated PRs for patches:
     risk: Known vulnerabilities components might stay for long and get exploited, even when a patch is available.
-    measure: Fast patching of third party component is needed. The DevOps way is to have an automated pull request for new components. This includes <ul><li>Applications</li><li>Virutalized operating system components (e.g. container images)</li><li>Operating Systems</li><li>Infrastructure as Code/GitOps (e.g. argocd)</li></ul>
+    measure: >-
+      Fast patching of third party component is needed. The DevOps way is to have an automated pull request for new components.
+      This includes <ul>
+      <li>Applications</li><li>Virutalized operating system components (e.g. container images)</li>
+      <li>Operating Systems</li><li>Infrastructure as Code/GitOps (e.g. argocd)</li>
+      </ul>
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -305,8 +310,11 @@ Patch Management:
       - <a href="https://dependabot.com/">dependabot</a>
       - Jenkins
   Usage of a maximum lifetime for images:
-    risk: Vulnerabilities in images of running containers stay for too long and might get exploited. Long running containers have potential memory leaks. A compromised container might get killed by restarting the container (e.g. in case the attacker has not reached the persistence layer).
-    measure: The periodically builded images are deployed minimum every 30 days (better hourly/daily/weekly). Meaning an image is not in production for longer than 30 days. 
+    risk: >-
+      Vulnerabilities in images of running containers stay for too long and might get exploited.
+      Long running containers have potential memory leaks.
+      A compromised container might get killed by restarting the container (e.g. in case the attacker has not reached the persistence layer).
+    measure: The periodically built images are deployed minimum every 30 days (better hourly/daily/weekly). Meaning an image is not in production for longer than 30 days.
     difficultyOfImplementation:
       knowledge: 3
       time: 4
@@ -318,7 +326,7 @@ Patch Management:
       - 12.6.1
   Usage of a short maximum lifetime for images:
     risk: Vulnerabilities in running containers stay for too long and might get exploited.
-    measure: The nightly builded images are deployed minimum every 1 day.
+    measure: Nightly built images are deployed at minimum every 1 day.
     difficultyOfImplementation:
       knowledge: 3
       time: 4
@@ -332,7 +340,9 @@ Patch Management:
       - Sample concept:<br/>(1) each container has a set lifetime and is killed / replaced with a new container multiple times a day where you have some form of a graceful replacement to ensure no (short) service outage will occur to the end users.<br/>(2) twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline. If the testing has no blocking issues the new images will be released for deployment during the next "restart" of a container. What has to be done, is to ensure the new containers are deployed in some canary deployment manner, this will ensure that if (and only if) something buggy has been introduced which breaks functionality the canary deployment will make sure the "older version" is being used and not the buggy newer one.
   Reduction of the attack surface:
     risk: Components, dependencies, files or file access rights might have vulnerabilities, but the they are not needed.
-    measure: Removal of not needed components, dependencies, files or file access rights. For container images the usage of distroless images is recommended.
+    measure: >-
+      Removal of unneeded components, dependencies, files or file access rights.
+      For container images the usage of distroless images is recommended.
     difficultyOfImplementation:
       knowledge: 3
       time: 3
