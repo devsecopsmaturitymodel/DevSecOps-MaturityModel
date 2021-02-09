@@ -1,4 +1,6 @@
 ---
+title: A patch policy is defined
+id: APatchPolicyIsDefined
 risk: Vulnerabilities in running containers stay for long and might get exploited.
 measure: A patch policy for all artifacts (e.g. in images) is defined. How often is
   an image rebuilt?
@@ -12,6 +14,4 @@ iso27001-2017:
 - 12.6.1
 - 12.5.1
 - 14.2.5
-title: A patch policy is defined
-id: APatchPolicyIsDefined
 ...

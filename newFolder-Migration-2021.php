@@ -33,9 +33,10 @@ foreach ($dimensions as $dimensionName => $subDimension) {
             unset($element['level']); // level from folder
             $idWithSpace=mb_convert_case($elementName, MB_CASE_TITLE);
             $idSanitized =  str_replace("/", "Or", $idWithSpace);
-            $element['title'] = $elementName;
+
             $id =  str_replace(" ", "", $idSanitized);
             $filePath = $folder . $id . ".yaml";
+            $element = array('id' => $id) + array('title' => $elementName) +  $element; // Add properties to the top
             $element['id'] = $id;
             $yamlContent = yaml_emit ( $element );
 
