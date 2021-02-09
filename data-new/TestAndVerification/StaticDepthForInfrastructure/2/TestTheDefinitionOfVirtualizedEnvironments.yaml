@@ -1,0 +1,22 @@
+---
+risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might
+  contains unsecure configurations.
+measure: Test the definition of virtualized environments for unsecured configurations.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 1
+  resources: 2
+usefulness: 3
+implementation:
+- <a href="https://github.com/hadolint/hadolint">Dockerfile with hadolint</a>
+- <a href="https://github.com/zegl/kube-score">Deployment with kube-score</a>
+samm2: v-security-testing|A|1
+iso27001-2017:
+- system hardening, virtual environments are not explicitly covered by ISO 27001 -
+  too specific
+- 12.6.1
+- 14.2.3
+- 14.2.8
+- 14.2.1
+id: TestTheDefinitionOfVirtualizedEnvironments
+...

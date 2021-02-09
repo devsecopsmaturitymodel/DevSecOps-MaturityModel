@@ -1,0 +1,20 @@
+---
+risk: The deployment configuration (e.g. kubernetes deployment resources) might contain
+  unsecured configurations.
+measure: Test the deployment configuration for virtualized environments for unsecured
+  configurations.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 1
+  resources: 2
+usefulness: 3
+implementation:
+- <a href="https://kubesec.io/">kubesec</a>
+samm2: v-security-testing|A|1
+iso27001-2017:
+- system hardening is not explicitly covered by ISO 27001 - too specific
+- 12.6.1
+- 14.2.3
+- 14.2.8
+id: TestClusterDeploymentResources
+...

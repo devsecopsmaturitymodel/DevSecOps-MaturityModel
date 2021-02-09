@@ -1,0 +1,18 @@
+---
+risk: Unapproved components are used.
+measure: Components must be whitelisted. Regular scans on the docker infrastructure
+  (e.g. cluster) need to be performed, to verify that only standardized base images
+  are used.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 1
+  resources: 1
+usefulness: 3
+iso27001-2017:
+- 12.5.1
+- 12.6.1
+implementation: 'Example: All docker images used by teams need to be based on standard
+  images.'
+comment: By preventing teams from trying out new components, innovation might be hampered
+id: PreventionOfUnauthorizedInstallation
+...

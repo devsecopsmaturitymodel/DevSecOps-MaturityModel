@@ -1,0 +1,19 @@
+---
+risk: The availability of IT systems might be disturbed due to components failures
+measure: Redundancies in the IT systems
+difficultyOfImplementation:
+  knowledge: 2
+  time: 2
+  resources: 1
+usefulness: 3
+dependsOn:
+- Infrastructure as Code
+- Usage of <a href="https://semver.org/">Semantic Versioning</a> for components like
+  project images
+implementation: Remove direct access to infrastructure
+samm2: o-environment-management|A|1
+iso27001-2017:
+- not explicitly covered by ISO 27001 - too specific
+- 17.2.1
+id: ImmutableInfrastructure
+...

@@ -1,0 +1,23 @@
+---
+risk: While building and testing artifacts, third party systems, application frameworks
+  and 3rd party libraries are used. These might be malicious as a result of vulnerable
+  libraries or because they are altered during the delivery phase.
+measure: Each step during within the build and testing phase is performed in a separate
+  virtual environments, which is destroyed afterward.
+meta:
+  implementationGuide: Depending on your envirnoment, usage of virtual machines or
+    container technoligy is a good way. After the build, the filesystem should not
+    be used again in other builds.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 2
+  resources: 2
+usefulness: 2
+implementation:
+- Container technologies and orchestration like Docker, Kubernetes
+- CI/CD Tools, e.g. Jenkins
+samm2: i-secure-build|A|2
+iso27001-2017:
+- 14.2.6
+id: BuildingAndTestingOfArtifactsInVirtualEnvironments
+...

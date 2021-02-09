@@ -1,0 +1,15 @@
+---
+risk: A too small intensity or a too high confidence might lead to not visible vulnerabilities.
+measure: A deep scan with high test intensity and a low confidence threshold is performed.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 3
+  resources: 5
+usefulness: 3
+samm2: v-security-testing|A|2
+iso27001-2017:
+- 12.6.1
+- 14.2.1
+- 14.2.5
+id: HighTestIntensity
+...

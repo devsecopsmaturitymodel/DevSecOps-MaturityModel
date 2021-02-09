@@ -1,0 +1,20 @@
+---
+risk: Vulnerability descriptions are hard to understand by staff from operations and
+  development.
+measure: Vulnerabilities include the test procedure to give the staff from operations
+  and development the ability to reproduce vulnerabilities. This enhances the understanding
+  of vulnerabilities and therefore the fix have a higher quality.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 2
+  resources: 2
+usefulness: 2
+implementation: <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
+samm2: i-defect-management|B|2
+iso27001-2017:
+- 16.1.4
+- 8.2.1
+- 8.2.2
+- 8.2.3
+id: ReproducibleDefectTickets
+...

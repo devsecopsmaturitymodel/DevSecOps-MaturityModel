@@ -1,0 +1,19 @@
+---
+risk: As tools cover a wide range of different vulnerability tests, they might not
+  match the used components. Therefore, they need more time and resources as they
+  need and the feedback loops takes too much time.
+measure: Unneeded tests are deactivated. For example in case the service is using
+  a Mongo database and no mysql database, the dynamic scan doesn't need to test for
+  sql injections.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 3
+  resources: 1
+usefulness: 1
+samm2: v-security-testing|A|2
+iso27001-2017:
+- 12.6.1
+- 14.2.1
+- 14.2.5
+id: DeactivatingOfUnneededTests
+...

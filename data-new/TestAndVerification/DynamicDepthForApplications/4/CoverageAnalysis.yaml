@@ -1,0 +1,15 @@
+---
+risk: Parts of the service are not still covered.
+measure: Check that there are no missing paths in the application with coverage-tools.
+difficultyOfImplementation:
+  knowledge: 4
+  time: 5
+  resources: 3
+usefulness: 4
+implementation: OWASP Code Pulse
+samm2: v-security-testing|A|2
+iso27001-2017:
+- not explicitly covered by ISO 27001 - too specific
+- part of periodic review, PDCA
+id: CoverageAnalysis
+...

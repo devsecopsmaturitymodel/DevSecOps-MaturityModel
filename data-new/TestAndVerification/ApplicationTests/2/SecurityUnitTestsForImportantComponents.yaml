@@ -1,0 +1,21 @@
+---
+risk: Vulnerabilities are rising due to code changes.
+measure: Usage of unit tests to test important security related features like authentication
+  and authorization.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 4
+  resources: 2
+usefulness: 3
+comment: The integration of module tests takes place during development instead, it
+  highlights vulnerabilities in sub-routines, functions, modules, libraries etc. checked.
+implementation:
+- JUnit
+- <a href='https://karma-runner.github.io'>Karma</a>
+samm: ST2-B
+samm2: v-security-testing|B|3
+iso27001-2017:
+- 14.2.3
+- 14.2.8
+id: SecurityUnitTestsForImportantComponents
+...

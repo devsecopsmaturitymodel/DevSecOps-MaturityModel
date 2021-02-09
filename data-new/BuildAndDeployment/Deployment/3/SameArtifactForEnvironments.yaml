@@ -1,0 +1,21 @@
+---
+risk: Building of an artifact for different environments means that an untested artifact
+  might reach the production environment.
+measure: Building an artifact once and deploying it to different environments means
+  that only tested artifacts are allowed to reach the production environment
+difficultyOfImplementation:
+  knowledge: 2
+  time: 2
+  resources: 1
+usefulness: 4
+implementation: Docker
+dependsOn:
+- Defined build process
+samm: OE2-A
+samm2: i-secure-deployment|A|2
+iso27001-2017:
+- 14.3.1
+- 14.2.8
+- 12.1.4
+id: SameArtifactForEnvironments
+...

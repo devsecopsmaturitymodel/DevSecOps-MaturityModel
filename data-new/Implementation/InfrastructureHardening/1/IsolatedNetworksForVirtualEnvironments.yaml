@@ -1,0 +1,22 @@
+---
+risk: Virtual environments in default settings are able to access other virtual environments
+  on the network stack. By using virtual machines, it is often possible to connect
+  to other virtual machines. By using docker, one bridge is used by default so that
+  all containers on one host can communicate with each other.
+measure: The communication between virtual environments is controlled and regulated.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 3
+  resources: 3
+usefulness: 5
+dependsOn: []
+implementation:
+- istio
+- bridges
+- firewalls
+samm2: o-environment-management|A|1
+iso27001-2017:
+- virtual environments are not explicitly covered by ISO 27001 - too specific
+- 13.1.3
+id: IsolatedNetworksForVirtualEnvironments
+...

@@ -1,0 +1,18 @@
+---
+risk: Unauthorized manipulation of source code might be difficult to spot.
+measure: Digitally signing commits helps to prevent unauthorized manipulation of source
+  code.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 2
+  resources: 2
+usefulness: 3
+implementation: ~
+dependsOn:
+- Defined build process
+samm: OA3-B
+samm2: i-secure-build|A|2
+iso27001-2017:
+- 14.2.6
+id: SigningOfCode
+...

@@ -1,0 +1,24 @@
+---
+risk: Infrastructure components might have vulnerabilities.
+measure: Test for known vulnerabilities in infrastructure components. Often, the only
+  way to respond to known vulnerabilities in operating system packages is to accept
+  the risk and wait for a patch. As the patch needs to be applied fast when it is
+  available, this activity depends on 'Usage of a maximum life for images'.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 5
+  resources: 2
+usefulness: 1
+dependsOn:
+- Usage of a maximum lifetime for images
+implementation:
+- Anchore.io
+- Clair
+- OpenSCAP
+- <a href='https://github.com/future-architect/vuls'>Vuls</a>
+samm2: v-security-testing|A|1
+iso27001-2017:
+- 12.6.1
+- 14.2.1
+id: TestOfInfrastructureComponentsForKnownVulnerabilities
+...

@@ -1,0 +1,19 @@
+---
+risk: Everyone is able to get unauthorized access to information on systems or to
+  modify information unauthorized on systems.
+measure: The usage of a (role based) access control helps to restrict system access
+  to authorized users.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 3
+  resources: 1
+usefulness: 3
+implementation: Directory Service, Plugins
+dependsOn:
+- Defined deployment process
+- Defined build process
+samm2: o-environment-management|A|1
+iso27001-2017:
+- 9.4.1
+id: RoleBasedAuthenticationAndAuthorization
+...

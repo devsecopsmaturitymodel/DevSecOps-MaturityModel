@@ -1,0 +1,20 @@
+---
+risk: Each vulnerability analyser has different opportunities. By using just one analyser,
+  some vulnerabilities might not be found.
+measure: Usage of multiple static tools to find more vulnerabilities.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 3
+  resources: 5
+usefulness: 1
+samm2: v-security-testing|A|3
+iso27001-2017:
+- 12.6.1
+- 14.2.1
+- 14.2.5
+dependsOn:
+- Test of server side components with known vulnerabilities
+- Test of client side components with known vulnerabilities
+- Static analysis for all self written components
+id: UsageOfMultipleAnalysers
+...

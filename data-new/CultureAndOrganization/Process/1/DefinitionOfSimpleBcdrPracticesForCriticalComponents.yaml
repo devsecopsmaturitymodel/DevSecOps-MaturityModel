@@ -1,0 +1,16 @@
+---
+risk: In case of an emergency, like a power outage, DR actions to perform are not
+  clear. This leads to reaction and remediation delays.
+measure: By understanding and documenting a business continuity and disaster recovery
+  (BCDR) plan, the overall availability of systems and applications is increased.
+  Success factors like responsibilities, Service Level Agreements, Recovery Point
+  Objectives, Recovery Time Objectives or Failover must be fully documented and understood.
+difficultyOfImplementation:
+  knowledge: 4
+  time: 3
+  resources: 2
+usefulness: 4
+iso27001-2017:
+- 17.1.1
+id: DefinitionOfSimpleBcdrPracticesForCriticalComponents
+...

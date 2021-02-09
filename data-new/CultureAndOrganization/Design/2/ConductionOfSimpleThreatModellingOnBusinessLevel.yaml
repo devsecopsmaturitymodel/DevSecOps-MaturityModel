@@ -1,0 +1,18 @@
+---
+risk: Business related threats are discovered too late in the development and deployment
+  process.
+measure: Threat modelling of business functionality is performed during the product
+  backlog creation to facilitate early detection of security defects.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 3
+  resources: 1
+usefulness: 3
+samm: TA1-A
+iso27001-2017:
+- not explicitly covered by ISO 27001
+- may be part of risk assessment
+- 8.2.1
+- 14.2.1
+id: ConductionOfSimpleThreatModellingOnBusinessLevel
+...

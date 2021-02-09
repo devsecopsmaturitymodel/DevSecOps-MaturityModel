@@ -1,0 +1,16 @@
+---
+risk: As it is unknown how many requests the systems and applications can serve, due
+  to an unexpected load the availability is disturbed.
+measure: Load test against the production system or a production near system is performed.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 2
+  resources: 5
+usefulness: 3
+samm2: v-security-testing|A|1
+iso27001-2017:
+- 12.1.3
+- 14.2.3
+- 14.2.8
+id: LoadTests
+...

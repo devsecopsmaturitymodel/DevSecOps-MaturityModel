@@ -1,0 +1,15 @@
+---
+risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains unsecure
+  configurations.
+measure: Test virtualized environments for unsecured configurations.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 1
+  resources: 2
+usefulness: 3
+implementation:
+- <a href="https://github.com/wagoodman/dive">Dive to inspect a container images</a>
+- Cluster Scanner (will be open sourced soon) to check different aspects
+samm2: v-security-testing|A|1
+id: TestOfVirtualizedEnvironments
+...

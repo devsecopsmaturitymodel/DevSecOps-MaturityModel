@@ -1,0 +1,16 @@
+---
+risk: Not visualized metrics lead to restricted usage of metrics.
+measure: Metrics are visualized in real time in a user friendly way.
+difficultyOfImplementation:
+  knowledge: 1
+  time: 2
+  resources: 2
+usefulness: 3
+dependsOn:
+- Simple application metrics
+- Simple system metrics
+samm2: o-incident-management|A|2
+iso27001-2017:
+- 12.1.3
+id: VisualizedMetrics
+...

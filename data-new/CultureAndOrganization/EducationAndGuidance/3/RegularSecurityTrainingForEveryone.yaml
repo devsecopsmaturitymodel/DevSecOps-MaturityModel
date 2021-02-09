@@ -1,0 +1,16 @@
+---
+risk: Understanding security is hard, for internal as well as external employees.
+measure: Regular security training for everyone.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 2
+  resources: 2
+usefulness: 3
+samm: EG2-B
+iso27001-2017:
+- 7.2.2
+implementation: Often, external employees are not invited for interal trainings. This
+  activity focuses on providing security trainings to internal as well as external
+  employees. It is conducted every two weeks for around one hour.
+id: RegularSecurityTrainingForEveryone
+...

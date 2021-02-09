@@ -1,0 +1,19 @@
+---
+risk: Wrong or no network segmentation of pods makes it easyer for an attacker to
+  access a database and extract or modify data.
+measure: Cluster interal test needs to be performed. Integration of fine granulated
+  network segmenation (also between pods in the same namespace).
+difficultyOfImplementation:
+  knowledge: 2
+  time: 2
+  resources: 1
+usefulness: 3
+implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
+dependendsOn: Segmented networks for virtual environments
+samm2: v-security-testing|A|2
+iso27001-2017:
+- 13.1.3
+- 14.2.3
+- 14.2.8
+id: TestNetworkSegmentation
+...
