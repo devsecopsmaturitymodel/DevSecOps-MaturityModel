@@ -1,4 +1,6 @@
 ---
+id: LimitationOfSystemCallsInVirtualEnvironments
+title: Limitation of system calls in virtual environments
 risk: System calls in virtual environments like docker can lead to privilege escalation.
 measure: System calls in virtual environments like docker are audited and limited.
 difficultyOfImplementation:
@@ -12,6 +14,4 @@ implementation: seccomp, strace
 samm2: o-environment-management|A|1
 iso27001-2017:
 - system hardenong is not explicitly covered by ISO 27001 - too specific
-title: Limitation of system calls in virtual environments
-id: LimitationOfSystemCallsInVirtualEnvironments
 ...

@@ -1,4 +1,6 @@
 ---
+id: FullCoverageOfApp.HardeningLevel3
+title: Full Coverage of App. Hardening Level 3
 risk: Using an insecure application might lead to a compromised application. This
   might lead to total data theft or data modification.
 measure: |
@@ -21,6 +23,4 @@ samm2: software-requirements|A|3
 iso27001-2017:
 - hardening is not explicitly covered by ISO 27001 - too specific
 - 13.1.3
-title: Full Coverage of App. Hardening Level 3
-id: FullCoverageOfApp.HardeningLevel3
 ...

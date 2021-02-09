@@ -1,4 +1,6 @@
 ---
+id: ConductionOfSimpleThreatModellingOnBusinessLevel
+title: Conduction of simple threat modelling on business level
 risk: Business related threats are discovered too late in the development and deployment
   process.
 measure: Threat modelling of business functionality is performed during the product
@@ -14,6 +16,4 @@ iso27001-2017:
 - may be part of risk assessment
 - 8.2.1
 - 14.2.1
-title: Conduction of simple threat modelling on business level
-id: ConductionOfSimpleThreatModellingOnBusinessLevel
 ...

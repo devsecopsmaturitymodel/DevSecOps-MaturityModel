@@ -1,4 +1,6 @@
 ---
+id: BackupBeforeDeployment
+title: Backup before deployment
 risk: If errors are experienced during the deployment process you want to deploy an
   old release. However, due to changes in the database this is often unfeasible.
 measure: Performing automated backups before deployment can help facilitate deployments
@@ -17,6 +19,4 @@ samm2: TODO
 iso27001-2017:
 - "12.3"
 - 14.2.6
-title: Backup before deployment
-id: BackupBeforeDeployment
 ...

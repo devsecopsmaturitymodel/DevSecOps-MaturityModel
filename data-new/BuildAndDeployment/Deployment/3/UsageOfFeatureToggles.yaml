@@ -1,4 +1,6 @@
 ---
+id: UsageOfFeatureToggles
+title: Usage of feature toggles
 risk: By using environment dependent configuration, some parameters will not be tested
   correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
 measure: Usage of environment independent configuration parameter, called feature
@@ -18,6 +20,4 @@ iso27001-2017:
 - 14.2.8
 - 14.2.9
 - 12.1.4
-title: Usage of feature toggles
-id: UsageOfFeatureToggles
 ...

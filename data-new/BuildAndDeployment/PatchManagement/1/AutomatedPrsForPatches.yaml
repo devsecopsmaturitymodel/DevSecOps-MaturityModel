@@ -1,4 +1,6 @@
 ---
+id: AutomatedPrsForPatches
+title: Automated PRs for patches
 risk: Known vulnerabilities components might stay for long and get exploited, even
   when a patch is available.
 measure: Fast patching of third party component is needed. The DevOps way is to have
@@ -17,6 +19,4 @@ iso27001-2017:
 implementation:
 - <a href="https://dependabot.com/">dependabot</a>
 - Jenkins
-title: Automated PRs for patches
-id: AutomatedPrsForPatches
 ...

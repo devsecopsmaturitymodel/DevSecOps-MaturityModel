@@ -1,4 +1,6 @@
 ---
+id: VisualizedLogging
+title: Visualized logging
 risk: System and application protocols are not visualized properly which leads to
   no or very limited logging assessment. Specially developers might have difficulty
   to read applications logs with unusually tools like the Linux tool 'cat'
@@ -17,6 +19,4 @@ samm2: o-incident-management|A|1
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 12.4.1
-title: Visualized logging
-id: VisualizedLogging
 ...

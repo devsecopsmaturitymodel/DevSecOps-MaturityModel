@@ -1,4 +1,6 @@
 ---
+id: ScreensWithMetricVisualization
+title: Screens with metric visualization
 risk: Security related information is discovered too late during an incident.
 measure: By having an internal accessible screen with a security related dashboards
   helps to visualize incidents.
@@ -13,6 +15,4 @@ samm2: o-incident-management|A|2
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 16.1.5
-title: Screens with metric visualization
-id: ScreensWithMetricVisualization
 ...

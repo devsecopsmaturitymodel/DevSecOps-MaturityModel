@@ -1,4 +1,6 @@
 ---
+id: SecurityIntegrationTestsForImportantComponents
+title: Security integration tests for important components
 risk: Vulnerabilities are rising due to code changes in a complex microservice environment.
 measure: Implementation of essential security related integration tests. For example
   for authentication and authorization.
@@ -13,6 +15,4 @@ samm2: v-security-testing|B|3
 iso27001-2017:
 - 14.2.3
 - 14.2.8
-title: Security integration tests for important components
-id: SecurityIntegrationTestsForImportantComponents
 ...

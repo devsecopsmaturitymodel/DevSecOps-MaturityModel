@@ -1,4 +1,6 @@
 ---
+id: DefinitionOfSimpleBcdrPracticesForCriticalComponents
+title: Definition of simple BCDR practices for critical components
 risk: In case of an emergency, like a power outage, DR actions to perform are not
   clear. This leads to reaction and remediation delays.
 measure: By understanding and documenting a business continuity and disaster recovery
@@ -12,6 +14,4 @@ difficultyOfImplementation:
 usefulness: 4
 iso27001-2017:
 - 17.1.1
-title: Definition of simple BCDR practices for critical components
-id: DefinitionOfSimpleBcdrPracticesForCriticalComponents
 ...

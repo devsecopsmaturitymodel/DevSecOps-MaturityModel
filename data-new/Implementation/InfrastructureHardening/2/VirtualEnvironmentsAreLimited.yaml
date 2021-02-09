@@ -1,4 +1,6 @@
 ---
+id: VirtualEnvironmentsAreLimited
+title: Virtual environments are limited
 risk: Denial of service (internally by an attacker or unintentionally by a bug) on
   one service effects other services
 measure: All virtual environments are using resource limits on hard disks, memory
@@ -16,6 +18,4 @@ iso27001-2017:
 - 12.1.3
 - 13.1.3
 - 17.2.1
-title: Virtual environments are limited
-id: VirtualEnvironmentsAreLimited
 ...

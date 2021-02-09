@@ -1,4 +1,6 @@
 ---
+id: Alerting
+title: Alerting
 risk: Incidents are discovered after they happend.
 measure: |
   Thresholds for metrics are set. In case the thresholds are reached, alarms are send out. Which should get attention due to the critically.
@@ -15,6 +17,4 @@ iso27001-2017:
 - 16.1.2
 - 16.1.4
 - 12.1.4
-title: Alerting
-id: Alerting
 ...

@@ -1,4 +1,6 @@
 ---
+id: ImmutableInfrastructure
+title: Immutable Infrastructure
 risk: The availability of IT systems might be disturbed due to components failures
 measure: Redundancies in the IT systems
 difficultyOfImplementation:
@@ -15,6 +17,4 @@ samm2: o-environment-management|A|1
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 17.2.1
-title: Immutable Infrastructure
-id: ImmutableInfrastructure
 ...

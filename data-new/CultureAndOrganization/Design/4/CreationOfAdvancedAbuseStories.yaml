@@ -1,4 +1,6 @@
 ---
+id: CreationOfAdvancedAbuseStories
+title: Creation of advanced abuse stories
 risk: Simple user stories are not going deep enough. Relevant security considerations
   are performed. Security flaws are discovered too late in the development and deployment
   process
@@ -20,6 +22,4 @@ iso27001-2017:
 implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't
   Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
   Security Stories and Security Tasks for Agile Development Environments</a>
-title: Creation of advanced abuse stories
-id: CreationOfAdvancedAbuseStories
 ...

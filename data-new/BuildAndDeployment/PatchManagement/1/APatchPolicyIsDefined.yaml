@@ -1,6 +1,6 @@
 ---
-title: A patch policy is defined
 id: APatchPolicyIsDefined
+title: A patch policy is defined
 risk: Vulnerabilities in running containers stay for long and might get exploited.
 measure: A patch policy for all artifacts (e.g. in images) is defined. How often is
   an image rebuilt?

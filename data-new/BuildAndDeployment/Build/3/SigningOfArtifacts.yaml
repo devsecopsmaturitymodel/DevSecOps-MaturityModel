@@ -1,4 +1,6 @@
 ---
+id: SigningOfArtifacts
+title: Signing of artifacts
 risk: Unauthorized manipulation of artifacts might be difficult to spot. For example,
   this may result in images with malicious code in the Docker registry.
 measure: Digitally signing artifacts for all steps during the build and especially
@@ -17,6 +19,4 @@ samm: OA3-B
 samm2: i-secure-build|A|1
 iso27001-2017:
 - 14.2.6
-title: Signing of artifacts
-id: SigningOfArtifacts
 ...

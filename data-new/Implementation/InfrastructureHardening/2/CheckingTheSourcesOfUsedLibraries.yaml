@@ -1,4 +1,6 @@
 ---
+id: CheckingTheSourcesOfUsedLibraries
+title: Checking the sources of used libraries
 risk: Application and system libraries can have implementation flaws or deployment
   flaws.
 measure: Each libraries source is checked to have a trusted source.
@@ -13,6 +15,4 @@ iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 14.2.1
 - 14.2.5
-title: Checking the sources of used libraries
-id: CheckingTheSourcesOfUsedLibraries
 ...

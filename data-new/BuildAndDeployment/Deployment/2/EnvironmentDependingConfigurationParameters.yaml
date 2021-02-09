@@ -1,4 +1,6 @@
 ---
+id: EnvironmentDependingConfigurationParameters
+title: Environment depending configuration parameters
 risk: Attackers who compromise source code can see confidential access information
   like database credentials.
 measure: Configuration parameters are set for each environment not in the source code.
@@ -13,6 +15,4 @@ samm2: i-secure-deployment|B|1
 iso27001-2017:
 - 9.4.5
 - 14.2.6
-title: Environment depending configuration parameters
-id: EnvironmentDependingConfigurationParameters
 ...

@@ -1,4 +1,6 @@
 ---
+id: DefinedBuildProcess
+title: Defined build process
 risk: Performing builds without a defined process is error prone. For example, as
   a result of incorrect security related configuration.
 measure: A well defined build process lowers the possibility of errors during the
@@ -18,6 +20,4 @@ samm2: i-secure-build|A|1
 iso27001-2017:
 - 12.1.1
 - 14.2.2
-title: Defined build process
-id: DefinedBuildProcess
 ...

@@ -1,4 +1,6 @@
 ---
+id: SigningOfCode
+title: Signing of code
 risk: Unauthorized manipulation of source code might be difficult to spot.
 measure: Digitally signing commits helps to prevent unauthorized manipulation of source
   code.
@@ -14,6 +16,4 @@ samm: OA3-B
 samm2: i-secure-build|A|2
 iso27001-2017:
 - 14.2.6
-title: Signing of code
-id: SigningOfCode
 ...

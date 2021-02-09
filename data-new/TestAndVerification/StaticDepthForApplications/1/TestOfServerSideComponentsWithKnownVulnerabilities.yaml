@@ -1,4 +1,6 @@
 ---
+id: TestOfServerSideComponentsWithKnownVulnerabilities
+title: Test of server side components with known vulnerabilities
 risk: Server side components might have vulnerabilities.
 measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware)
   are performed.
@@ -14,6 +16,4 @@ samm: SA
 samm2: v-security-testing|A|2
 iso27001-2017:
 - 12.6.1
-title: Test of server side components with known vulnerabilities
-id: TestOfServerSideComponentsWithKnownVulnerabilities
 ...

@@ -1,4 +1,6 @@
 ---
+id: DefaultSettingsForIntensity
+title: Default settings for intensity
 risk: Time pressure and ignorance might lead to false predictions for the test intensity.
 measure: The intensity of the used tools are not modified to safe time.
 difficultyOfImplementation:
@@ -11,6 +13,4 @@ iso27001-2017:
 - 12.6.1
 - 14.2.1
 - 14.2.5
-title: Default settings for intensity
-id: DefaultSettingsForIntensity
 ...

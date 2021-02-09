@@ -1,4 +1,6 @@
 ---
+id: VisualizedMetrics
+title: Visualized metrics
 risk: Not visualized metrics lead to restricted usage of metrics.
 measure: Metrics are visualized in real time in a user friendly way.
 difficultyOfImplementation:
@@ -12,6 +14,4 @@ dependsOn:
 samm2: o-incident-management|A|2
 iso27001-2017:
 - 12.1.3
-title: Visualized metrics
-id: VisualizedMetrics
 ...

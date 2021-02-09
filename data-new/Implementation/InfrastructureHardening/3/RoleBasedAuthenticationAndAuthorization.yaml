@@ -1,4 +1,6 @@
 ---
+id: RoleBasedAuthenticationAndAuthorization
+title: Role based authentication and authorization
 risk: Everyone is able to get unauthorized access to information on systems or to
   modify information unauthorized on systems.
 measure: The usage of a (role based) access control helps to restrict system access
@@ -15,6 +17,4 @@ dependsOn:
 samm2: o-environment-management|A|1
 iso27001-2017:
 - 9.4.1
-title: Role based authentication and authorization
-id: RoleBasedAuthenticationAndAuthorization
 ...

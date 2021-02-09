@@ -1,4 +1,6 @@
 ---
+id: ConductionOfWarGames
+title: Conduction of war games
 risk: Understanding incident response plans during an incident is hard and ineffective.
 measure: War Games like activities help train for incidents. Security SMEs create
   attack scenarios in a testing environment enabling the trainees to learn how to
@@ -13,6 +15,4 @@ iso27001-2017:
 - 7.2.2
 - "16.1"
 - 16.1.5
-title: Conduction of war games
-id: ConductionOfWarGames
 ...

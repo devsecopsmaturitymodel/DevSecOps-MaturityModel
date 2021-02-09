@@ -1,4 +1,6 @@
 ---
+id: InventoryOfRunningArtifacts
+title: Inventory of running artifacts
 risk: In case a vulnerability of severity high or critical exists, it needs to be
   known where an artifacts with that vulnerability is deployed with which dependencies.
 measure: A documented inventory or a possibility to gather the needed information
@@ -14,6 +16,4 @@ samm2: o-incident-management|TODO
 iso27001-2017:
 - "8.1"
 - "8.2"
-title: Inventory of running artifacts
-id: InventoryOfRunningArtifacts
 ...

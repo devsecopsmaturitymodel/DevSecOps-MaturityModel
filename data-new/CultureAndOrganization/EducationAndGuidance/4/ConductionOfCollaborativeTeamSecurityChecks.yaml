@@ -1,4 +1,6 @@
 ---
+id: ConductionOfCollaborativeTeamSecurityChecks
+title: Conduction of collaborative team security checks
 risk: Development teams limited insight over security practices.
 measure: Mutual security testing the security of other teams's project enhances security
   awareness and knowledge.
@@ -11,6 +13,4 @@ samm: EG2-A
 iso27001-2017:
 - Mutual scurity testing is not explicitly required in ISO 27001 may be
 - 7.2.2
-title: Conduction of collaborative team security checks
-id: ConductionOfCollaborativeTeamSecurityChecks
 ...

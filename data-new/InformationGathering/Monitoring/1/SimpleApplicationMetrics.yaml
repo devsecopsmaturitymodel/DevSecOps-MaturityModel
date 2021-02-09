@@ -1,4 +1,6 @@
 ---
+id: SimpleApplicationMetrics
+title: Simple application metrics
 risk: Attacks on an application are not recognized.
 measure: Gathering of application metrics helps to identify incidents like brute force
   attacks, login/logout.
@@ -11,6 +13,4 @@ implementation: Prometheus
 samm2: o-incident-management|A|1
 iso27001-2017:
 - 12.4.1
-title: Simple application metrics
-id: SimpleApplicationMetrics
 ...

@@ -1,4 +1,6 @@
 ---
+id: ConductionOfBuild-It,Break-It,Fix-ItContests
+title: Conduction of build-it, break-it, fix-it contests
 risk: Understanding security is hard, even for security champions and the conduction
   of security training often focuses on breaking a component instead of building a
   component secure.
@@ -13,6 +15,4 @@ usefulness: 3
 iso27001-2017:
 - 7.2.2
 implementation: https://builditbreakit.org/
-title: Conduction of build-it, break-it, fix-it contests
-id: ConductionOfBuild-It,Break-It,Fix-ItContests
 ...

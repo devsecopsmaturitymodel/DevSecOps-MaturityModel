@@ -1,4 +1,6 @@
 ---
+id: IsolatedNetworksForVirtualEnvironments
+title: Isolated networks for virtual environments
 risk: Virtual environments in default settings are able to access other virtual environments
   on the network stack. By using virtual machines, it is often possible to connect
   to other virtual machines. By using docker, one bridge is used by default so that
@@ -18,6 +20,4 @@ samm2: o-environment-management|A|1
 iso27001-2017:
 - virtual environments are not explicitly covered by ISO 27001 - too specific
 - 13.1.3
-title: Isolated networks for virtual environments
-id: IsolatedNetworksForVirtualEnvironments
 ...

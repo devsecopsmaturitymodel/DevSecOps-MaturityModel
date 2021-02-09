@@ -1,4 +1,6 @@
 ---
+id: CoverageAndControlMetrics
+title: Coverage and control metrics
 risk: The effectiveness of configuration, patch and vulnerability management is unknown.
 measure: "Usage of Coverage- and control-metrics to show the effectiveness of the
   security program. Coverage is the degree in \n        which a specific security
@@ -17,6 +19,4 @@ implementation: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20F
 samm2: o-incident-management|A|2
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
-title: Coverage and control metrics
-id: CoverageAndControlMetrics
 ...

@@ -1,4 +1,6 @@
 ---
+id: ReproducibleDefectTickets
+title: Reproducible defect tickets
 risk: Vulnerability descriptions are hard to understand by staff from operations and
   development.
 measure: Vulnerabilities include the test procedure to give the staff from operations
@@ -16,6 +18,4 @@ iso27001-2017:
 - 8.2.1
 - 8.2.2
 - 8.2.3
-title: Reproducible defect tickets
-id: ReproducibleDefectTickets
 ...

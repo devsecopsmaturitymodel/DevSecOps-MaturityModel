@@ -1,4 +1,6 @@
 ---
+id: SimpleFalsePositiveTreatment
+title: Simple false positive treatment
 risk: As false positive occure during each test, all vulnerabilities might be ignored.
 measure: False positives are suppressed so they will not show up on the next tests
   again. Most security tools have the possibility to suppress false positives. A Vulnerability
@@ -16,6 +18,4 @@ samm2: i-defect-management|A|2
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 16.1.6
-title: Simple false positive treatment
-id: SimpleFalsePositiveTreatment
 ...

@@ -1,4 +1,6 @@
 ---
+id: StaticAnalysisForImportantClientSideComponents
+title: Static analysis for important client side components
 risk: Important parts in the source code of the frontend have vulnerabilities.
 measure: Usage of static analysis tools for important parts of the frontend are used.
   Static analysis uses for example string matching algorithms and/or dataflow analysis.
@@ -17,6 +19,4 @@ iso27001-2017:
 - 12.6.1
 dependsOn:
 - Defined build process
-title: Static analysis for important client side components
-id: StaticAnalysisForImportantClientSideComponents
 ...

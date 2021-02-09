@@ -1,4 +1,6 @@
 ---
+id: UsageOfAChaosMonkey
+title: Usage of a chaos monkey
 risk: Due to manuel changes on a system, they are not replaceable anymore. In case
   of a crash it might happen that a planned redundant system is unavailable. In addition,
   it is hard to replay manual changes.
@@ -13,6 +15,4 @@ samm2: o-environment-management|A|1
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 17.1.3
-title: Usage of a chaos monkey
-id: UsageOfAChaosMonkey
 ...

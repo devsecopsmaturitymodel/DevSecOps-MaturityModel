@@ -1,4 +1,6 @@
 ---
+id: HighTestIntensity
+title: High test intensity
 risk: A too small intensity or a too high confidence might lead to not visible vulnerabilities.
 measure: A deep scan with high test intensity and a low confidence threshold is performed.
 difficultyOfImplementation:
@@ -11,6 +13,4 @@ iso27001-2017:
 - 12.6.1
 - 14.2.1
 - 14.2.5
-title: High test intensity
-id: HighTestIntensity
 ...

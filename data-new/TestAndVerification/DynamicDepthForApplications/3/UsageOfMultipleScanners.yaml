@@ -1,4 +1,6 @@
 ---
+id: UsageOfMultipleScanners
+title: Usage of multiple scanners
 risk: Each vulnerability scanner has different opportunities. By using just one scanner,
   some vulnerabilities might not be found.
 measure: Usage of multiple spiders and scanner enhance the coverage and the vulnerabilities.
@@ -14,6 +16,4 @@ samm2: v-security-testing|A|2
 iso27001-2017:
 - 12.6.1
 - 14.2.5
-title: Usage of multiple scanners
-id: UsageOfMultipleScanners
 ...

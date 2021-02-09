@@ -1,4 +1,6 @@
 ---
+id: Versioning
+title: versioning
 risk: Changes to production systems can not be undone.
 measure: versioning of artifacts related to production environments. For example Jenkins
   configuration, docker images, system provisioning code.
@@ -15,6 +17,4 @@ iso27001-2017:
 - 12.1.1
 - 12.1.2
 - 14.2.2
-title: versioning
-id: Versioning
 ...

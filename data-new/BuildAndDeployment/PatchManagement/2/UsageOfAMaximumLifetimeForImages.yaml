@@ -1,4 +1,6 @@
 ---
+id: UsageOfAMaximumLifetimeForImages
+title: Usage of a maximum lifetime for images
 risk: Vulnerabilities in images of running containers stay for too long and might
   get exploited. Long running containers have potential memory leaks. A compromised
   container might get killed by restarting the container (e.g. in case the attacker
@@ -13,6 +15,4 @@ usefulness: 3
 samm2: o-environment-management|B|1
 iso27001-2017:
 - 12.6.1
-title: Usage of a maximum lifetime for images
-id: UsageOfAMaximumLifetimeForImages
 ...

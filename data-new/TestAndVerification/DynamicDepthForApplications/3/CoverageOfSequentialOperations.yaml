@@ -1,4 +1,6 @@
 ---
+id: CoverageOfSequentialOperations
+title: Coverage of sequential operations
 risk: Sequential operations like workflows (e.g. login -> put products in the basket
 measure: Sequential operations are defined and checked by the vulnerability scanner
   in the defined order.
@@ -14,6 +16,4 @@ samm2: v-security-testing|A|2
 iso27001-2017:
 - 14.2.8
 - 14.2.3
-title: Coverage of sequential operations
-id: CoverageOfSequentialOperations
 ...

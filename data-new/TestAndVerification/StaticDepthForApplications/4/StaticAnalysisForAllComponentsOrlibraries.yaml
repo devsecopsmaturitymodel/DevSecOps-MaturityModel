@@ -1,4 +1,6 @@
 ---
+id: StaticAnalysisForAllComponentsOrlibraries
+title: Static analysis for all components/libraries
 risk: Used components like libraries and legacy applications might have vulnerabilities
 measure: Usage of a static analysis for all used components.
 difficultyOfImplementation:
@@ -12,6 +14,4 @@ dependsOn:
 samm2: v-security-testing|A|2
 iso27001-2017:
 - 12.6.1
-title: Static analysis for all components/libraries
-id: StaticAnalysisForAllComponentsOrlibraries
 ...

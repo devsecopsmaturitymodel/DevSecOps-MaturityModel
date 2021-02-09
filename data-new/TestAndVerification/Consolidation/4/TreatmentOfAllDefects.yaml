@@ -1,4 +1,6 @@
 ---
+id: TreatmentOfAllDefects
+title: Treatment of all defects
 risk: Vulnerabilities with severity low are not visible.
 measure: All vulnerabilities are added to the quality gate.
 difficultyOfImplementation:
@@ -10,6 +12,4 @@ samm2: i-defect-management|B|2
 iso27001-2017:
 - 16.1.4
 - 12.6.1
-title: Treatment of all defects
-id: TreatmentOfAllDefects
 ...

@@ -1,4 +1,6 @@
 ---
+id: TargetedAlerting
+title: Targeted alerting
 risk: People are bored (ignorant) of incident alarm messages, as they are not responsible
   to react.
 measure: By the definition of target groups for incidents people are only getting
@@ -15,6 +17,4 @@ samm2: o-operational-management|B|3
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 16.1.5
-title: Targeted alerting
-id: TargetedAlerting
 ...

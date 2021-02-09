@@ -1,4 +1,6 @@
 ---
+id: TreatmentOfDefectsWithSeverityHighOrHigher
+title: Treatment of defects with severity high or higher
 risk: Vulnerabilities with severity high or higher are not visible.
 measure: Vulnerabilities with severity high or higher are added to the quality gate.
 difficultyOfImplementation:
@@ -11,6 +13,4 @@ samm2: i-defect-management|B|2
 iso27001-2017:
 - 16.1.4
 - 12.6.1
-title: Treatment of defects with severity high or higher
-id: TreatmentOfDefectsWithSeverityHighOrHigher
 ...

@@ -1,4 +1,6 @@
 ---
+id: TestTheDefinitionOfVirtualizedEnvironments
+title: Test the definition of virtualized environments
 risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might
   contains unsecure configurations.
 measure: Test the definition of virtualized environments for unsecured configurations.
@@ -18,6 +20,4 @@ iso27001-2017:
 - 14.2.3
 - 14.2.8
 - 14.2.1
-title: Test the definition of virtualized environments
-id: TestTheDefinitionOfVirtualizedEnvironments
 ...

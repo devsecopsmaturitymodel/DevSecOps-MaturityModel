@@ -1,4 +1,6 @@
 ---
+id: TestOfTheConfigurationOfCloudEnvironments
+title: Test of the configuration of cloud environments
 risk: Standard hardening practices for cloud environments are not performed leading
   to vulnerabilities.
 measure: With the help of tools the configuration of virtual environments are tested.
@@ -16,6 +18,4 @@ iso27001-2017:
 - 12.6.1
 - 14.2.3
 - 14.2.8
-title: Test of the configuration of cloud environments
-id: TestOfTheConfigurationOfCloudEnvironments
 ...

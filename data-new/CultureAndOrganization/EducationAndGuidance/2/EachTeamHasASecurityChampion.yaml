@@ -1,4 +1,6 @@
 ---
+id: EachTeamHasASecurityChampion
+title: Each team has a security champion
 risk: No one feels directly responsible for security and the security champion does
   not have enough time to allocate to each team.
 measure: Each team defines an individual to be responsible for security. These individuals
@@ -14,6 +16,4 @@ iso27001-2017:
 - 7.2.1
 - 7.2.2
 implementation: https://www.owasp.org/index.php/Security_Champions_Playbook
-title: Each team has a security champion
-id: EachTeamHasASecurityChampion
 ...

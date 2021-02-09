@@ -1,4 +1,6 @@
 ---
+id: BlueOrgreenDeployment
+title: Blue/Green Deployment
 risk: A new artifacts version can have unknown defects.
 measure: By having multiple production environments, a deployment can be performant
   on the first environment to spot possible defects before it is deployment in the
@@ -20,6 +22,4 @@ iso27001-2017:
 - 12.1.4
 - 12.5.1
 - 14.2.9
-title: Blue/Green Deployment
-id: BlueOrgreenDeployment
 ...

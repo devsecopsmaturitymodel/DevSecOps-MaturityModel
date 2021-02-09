@@ -1,4 +1,6 @@
 ---
+id: DeactivatingOfUnneededTests
+title: Deactivating of unneeded tests
 risk: As tools cover a wide range of different vulnerability tests, they might not
   match the used components. Therefore, they need more time and resources as they
   need and the feedback loops takes too much time.
@@ -15,6 +17,4 @@ iso27001-2017:
 - 12.6.1
 - 14.2.1
 - 14.2.5
-title: Deactivating of unneeded tests
-id: DeactivatingOfUnneededTests
 ...

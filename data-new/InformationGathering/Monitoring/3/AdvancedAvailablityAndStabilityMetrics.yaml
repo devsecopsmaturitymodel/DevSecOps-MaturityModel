@@ -1,4 +1,6 @@
 ---
+id: AdvancedAvailablityAndStabilityMetrics
+title: Advanced availablity and stability metrics
 risk: Trends and advanced attacks are not detected.
 measure: Advanced metrics are gathered in relation to availability and stability.
   For example unplanned downtime's per year.
@@ -13,6 +15,4 @@ dependsOn:
 samm2: o-incident-management|A|2
 iso27001-2017:
 - 12.1.3
-title: Advanced availablity and stability metrics
-id: AdvancedAvailablityAndStabilityMetrics
 ...

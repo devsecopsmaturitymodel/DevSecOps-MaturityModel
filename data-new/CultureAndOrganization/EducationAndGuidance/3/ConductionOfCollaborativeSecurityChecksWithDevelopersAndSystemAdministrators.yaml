@@ -1,4 +1,6 @@
 ---
+id: ConductionOfCollaborativeSecurityChecksWithDevelopersAndSystemAdministrators
+title: Conduction of collaborative security checks with developers and system administrators
 risk: Security checks by external companies do not increase the understanding of an
   application/system for internal employees.
 measure: Periodically security reviews of source code (SCA), in which security SME,
@@ -15,6 +17,4 @@ iso27001-2017:
 - 7.2.2
 - 12.6.1
 - 12.7.1
-title: Conduction of collaborative security checks with developers and system administrators
-id: ConductionOfCollaborativeSecurityChecksWithDevelopersAndSystemAdministrators
 ...

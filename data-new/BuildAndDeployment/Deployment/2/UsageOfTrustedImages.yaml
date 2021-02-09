@@ -1,4 +1,6 @@
 ---
+id: UsageOfTrustedImages
+title: Usage of trusted images
 risk: Developers or operations might start random images in the production cluster
   which have malicous code or known vulnerabilities.
 measure: Create image assessment criteria, perform an evaluation of images and create
@@ -16,6 +18,4 @@ iso27001-2017:
 - 15.1.2
 - 15.1.3
 - 14.1.3
-title: Usage of trusted images
-id: UsageOfTrustedImages
 ...

@@ -1,4 +1,6 @@
 ---
+id: DefinedDeploymentProcess
+title: Defined deployment process
 risk: Deployments without a defined process are error prone thus allowing old or untested
   artifact to be deployed.
 measure: A defined deployment process significantly lowers the likelihood of errors
@@ -13,6 +15,4 @@ samm2: i-secure-deployment|A|1
 iso27001-2017:
 - 12.1.1
 - 14.2.2
-title: Defined deployment process
-id: DefinedDeploymentProcess
 ...

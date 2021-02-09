@@ -1,4 +1,6 @@
 ---
+id: CoverageOfServiceToServiceCommunication
+title: Coverage of service to service communication
 risk: Service to service communication is not covered.
 measure: Service to service communication is dumped and checked.
 difficultyOfImplementation:
@@ -12,6 +14,4 @@ samm2: v-security-testing|A|2
 iso27001-2017:
 - 14.2.3
 - 14.2.8
-title: Coverage of service to service communication
-id: CoverageOfServiceToServiceCommunication
 ...

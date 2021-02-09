@@ -1,4 +1,6 @@
 ---
+id: SecurityConsultingOnRequest
+title: Security consulting on request
 risk: Not asking a security expert when questions regarding security appear might
   lead to flaws.
 measure: Security consulting to teams is given on request. The security consultants
@@ -14,6 +16,4 @@ iso27001-2017:
 - 6.1.1
 - 6.1.4
 - 6.1.5
-title: Security consulting on request
-id: SecurityConsultingOnRequest
 ...

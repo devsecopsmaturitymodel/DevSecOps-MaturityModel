@@ -1,4 +1,6 @@
 ---
+id: SimpleScan
+title: Simple Scan
 risk: Deficient security tests are performed. Simple vulnerabilities are not detected
   and missing security configurations (e.g. headers) are not set. Fast feedback is
   not given.
@@ -19,6 +21,4 @@ samm2: v-security-testing|A|1
 iso27001-2017:
 - 14.2.3
 - 14.2.8
-title: Simple Scan
-id: SimpleScan
 ...

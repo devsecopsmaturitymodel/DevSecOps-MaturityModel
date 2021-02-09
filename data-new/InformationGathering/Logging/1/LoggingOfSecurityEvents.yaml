@@ -1,4 +1,6 @@
 ---
+id: LoggingOfSecurityEvents
+title: Logging of security events
 risk: No track of security-relevant events makes it harder to analyse an incident.
 measure: Security-relevant events like login/logout or creation, change, deletion
   of users should be logged.
@@ -13,6 +15,4 @@ implementation: rsyslog, logstash, fluentd, bash
 samm2: o-incident-management|A|1
 iso27001-2017:
 - 12.4.1
-title: Logging of security events
-id: LoggingOfSecurityEvents
 ...

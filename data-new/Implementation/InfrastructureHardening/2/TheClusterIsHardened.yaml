@@ -1,4 +1,6 @@
 ---
+id: TheClusterIsHardened
+title: The cluster is hardened
 risk: Using default configurations for a cluster environment leads to potential risks.
 measure: Harden cluster environments according to best practices. Level 1 and partiually
   level 2 from hardening practices like 'CIS Kubernetes Bench for Security' should
@@ -17,6 +19,4 @@ samm2: o-environment-management|A|1
 iso27001-2017:
 - system hardening is not explicitly covered by ISO 27001 - too specific
 - 13.1.3
-title: The cluster is hardened
-id: TheClusterIsHardened
 ...

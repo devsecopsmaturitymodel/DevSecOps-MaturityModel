@@ -1,4 +1,6 @@
 ---
+id: RegularSecurityTrainingForEveryone
+title: Regular security training for everyone
 risk: Understanding security is hard, for internal as well as external employees.
 measure: Regular security training for everyone.
 difficultyOfImplementation:
@@ -12,6 +14,4 @@ iso27001-2017:
 implementation: Often, external employees are not invited for interal trainings. This
   activity focuses on providing security trainings to internal as well as external
   employees. It is conducted every two weeks for around one hour.
-title: Regular security training for everyone
-id: RegularSecurityTrainingForEveryone
 ...

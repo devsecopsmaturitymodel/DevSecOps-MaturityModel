@@ -1,4 +1,6 @@
 ---
+id: ProductionNearEnvironmentsAreUsedByDevelopers
+title: Production near environments are used by developers
 risk: In case an errors occurs in production, the developer need to be able to create
   a production near environment on a local development environment.
 measure: Usage of infrastructure as code helps to create a production near environment.
@@ -18,6 +20,4 @@ samm2: o-environment-management|A|1
 iso27001-2017:
 - 12.1.4
 - 17.2.1
-title: Production near environments are used by developers
-id: ProductionNearEnvironmentsAreUsedByDevelopers
 ...

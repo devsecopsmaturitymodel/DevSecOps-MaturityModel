@@ -1,4 +1,6 @@
 ---
+id: SimpleSystemMetrics
+title: Simple system metrics
 risk: Without simple metrics analysis of incidents are hard. In case an application
   uses a lot of CPU from time to time, it is hard for a developer to find out the
   source with linux commands.
@@ -13,6 +15,4 @@ implementation: collectd
 samm2: o-incident-management|A|1
 iso27001-2017:
 - 12.1.3
-title: Simple system metrics
-id: SimpleSystemMetrics
 ...

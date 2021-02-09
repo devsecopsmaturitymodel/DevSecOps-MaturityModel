@@ -1,4 +1,6 @@
 ---
+id: ConductionOfAdvancedThreatModelling
+title: Conduction of advanced threat modelling
 risk: Inadequate identification of business and technical risks.
 measure: Threat modelling is performed by using reviewing user stories and producing
   security driven data flow diagrams.
@@ -26,6 +28,4 @@ iso27001-2017:
 - may be part of risk assessment
 - 8.2.1
 - 14.2.1
-title: Conduction of advanced threat modelling
-id: ConductionOfAdvancedThreatModelling
 ...

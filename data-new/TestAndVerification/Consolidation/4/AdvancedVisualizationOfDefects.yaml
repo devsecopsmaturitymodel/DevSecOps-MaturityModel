@@ -1,4 +1,6 @@
 ---
+id: AdvancedVisualizationOfDefects
+title: Advanced visualization of defects
 risk: Correlation of the vulnerabilities of different tools to have an overview of
   the the overall security level per component/project/team is not given.
 measure: Findings are visualized per component/project/team.
@@ -16,6 +18,4 @@ iso27001-2017:
 - 8.2.1
 - 8.2.2
 - 8.2.3
-title: Advanced visualization of defects
-id: AdvancedVisualizationOfDefects
 ...

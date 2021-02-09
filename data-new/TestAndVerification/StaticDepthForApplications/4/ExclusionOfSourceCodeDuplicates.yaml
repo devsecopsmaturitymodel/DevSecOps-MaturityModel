@@ -1,4 +1,6 @@
 ---
+id: ExclusionOfSourceCodeDuplicates
+title: Exclusion of source code duplicates
 risk: Duplicates in source code might influence the stability of the application.
 measure: Automatic Detection and manual removal of duplicates in source code.
 difficultyOfImplementation:
@@ -14,6 +16,4 @@ iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 14.2.1
 - 14.2.5
-title: Exclusion of source code duplicates
-id: ExclusionOfSourceCodeDuplicates
 ...

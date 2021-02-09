@@ -1,4 +1,6 @@
 ---
+id: TestOfClientSideComponentsWithKnownVulnerabilities
+title: Test of client side components with known vulnerabilities
 risk: Client side components might have vulnerabilities.
 measure: Tests for known vulnerabilities in components of the frontend are performed.
 difficultyOfImplementation:
@@ -14,6 +16,4 @@ implementation:
 samm2: v-security-testing|A|2
 iso27001-2017:
 - 12.6.1
-title: Test of client side components with known vulnerabilities
-id: TestOfClientSideComponentsWithKnownVulnerabilities
 ...

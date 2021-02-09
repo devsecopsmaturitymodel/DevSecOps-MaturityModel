@@ -1,4 +1,6 @@
 ---
+id: TestOfVirtualizedEnvironments
+title: Test of virtualized environments
 risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains unsecure
   configurations.
 measure: Test virtualized environments for unsecured configurations.
@@ -11,6 +13,4 @@ implementation:
 - <a href="https://github.com/wagoodman/dive">Dive to inspect a container images</a>
 - Cluster Scanner (will be open sourced soon) to check different aspects
 samm2: v-security-testing|A|1
-title: Test of virtualized environments
-id: TestOfVirtualizedEnvironments
 ...

@@ -1,4 +1,6 @@
 ---
+id: TestOfInfrastructureComponentsForKnownVulnerabilities
+title: Test of infrastructure components for known vulnerabilities
 risk: Infrastructure components might have vulnerabilities.
 measure: Test for known vulnerabilities in infrastructure components. Often, the only
   way to respond to known vulnerabilities in operating system packages is to accept
@@ -20,6 +22,4 @@ samm2: v-security-testing|A|1
 iso27001-2017:
 - 12.6.1
 - 14.2.1
-title: Test of infrastructure components for known vulnerabilities
-id: TestOfInfrastructureComponentsForKnownVulnerabilities
 ...

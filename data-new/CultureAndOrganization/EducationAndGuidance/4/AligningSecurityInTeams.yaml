@@ -1,4 +1,6 @@
 ---
+id: AligningSecurityInTeams
+title: Aligning security in teams
 risk: The concept of Security Champions might suggest that only he/she is responsible
   for security. However, everyone in the project team should be responsible for security.
 measure: By aligning security SME with project teams, a higher security standard can
@@ -13,6 +15,4 @@ usefulness: 5
 samm: EG2-B
 iso27001-2017:
 - 7.1.1
-title: Aligning security in teams
-id: AligningSecurityInTeams
 ...

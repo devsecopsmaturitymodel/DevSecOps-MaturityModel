@@ -1,4 +1,6 @@
 ---
+id: StylisticAnalysis
+title: Stylistic analysis
 risk: False source code indenting might lead to vulnerabilities.
 measure: Analysis of compliance to style guides of the source code ensures that source
   code indenting rules are met.
@@ -13,6 +15,4 @@ iso27001-2017:
 - 12.6.1
 - 14.2.1
 - 14.2.5
-title: Stylistic analysis
-id: StylisticAnalysis
 ...

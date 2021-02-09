@@ -1,4 +1,6 @@
 ---
+id: NightlyBuildOfImages
+title: Nightly build of images
 risk: Vulnerabilities in running containers stay for too long and might get exploited.
 measure: Images are built at least nightly.
 difficultyOfImplementation:
@@ -9,6 +11,4 @@ usefulness: 3
 samm2: o-environment-management|B|1
 iso27001-2017:
 - 12.6.1
-title: Nightly build of images
-id: NightlyBuildOfImages
 ...

@@ -1,4 +1,6 @@
 ---
+id: TestClusterDeploymentResources
+title: Test cluster deployment resources
 risk: The deployment configuration (e.g. kubernetes deployment resources) might contain
   unsecured configurations.
 measure: Test the deployment configuration for virtualized environments for unsecured
@@ -16,6 +18,4 @@ iso27001-2017:
 - 12.6.1
 - 14.2.3
 - 14.2.8
-title: Test cluster deployment resources
-id: TestClusterDeploymentResources
 ...

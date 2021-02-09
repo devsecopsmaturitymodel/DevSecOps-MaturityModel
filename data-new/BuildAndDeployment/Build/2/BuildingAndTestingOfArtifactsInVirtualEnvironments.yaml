@@ -1,4 +1,6 @@
 ---
+id: BuildingAndTestingOfArtifactsInVirtualEnvironments
+title: Building and testing of artifacts in virtual environments
 risk: While building and testing artifacts, third party systems, application frameworks
   and 3rd party libraries are used. These might be malicious as a result of vulnerable
   libraries or because they are altered during the delivery phase.
@@ -19,6 +21,4 @@ implementation:
 samm2: i-secure-build|A|2
 iso27001-2017:
 - 14.2.6
-title: Building and testing of artifacts in virtual environments
-id: BuildingAndTestingOfArtifactsInVirtualEnvironments
 ...

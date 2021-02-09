@@ -1,4 +1,6 @@
 ---
+id: RegularTests
+title: Regular tests
 risk: After pushing source code to the version control system, any delay in receiving
   feedback on defects makes them harder for the developer to remediate.
 measure: On each push and/or at given intervals automatic security tests are performed.
@@ -13,6 +15,4 @@ iso27001-2017:
 - 14.2.3
 - 14.2.8
 - 14.2.9
-title: Regular tests
-id: RegularTests
 ...

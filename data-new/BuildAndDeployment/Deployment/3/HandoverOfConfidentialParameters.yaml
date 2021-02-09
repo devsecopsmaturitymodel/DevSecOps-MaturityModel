@@ -1,4 +1,6 @@
 ---
+id: HandoverOfConfidentialParameters
+title: Handover of confidential parameters
 risk: Attackers who compromise a system can see confidential access information like
   database credentials. Parameters are often used to set credentials, for example
   by starting containers or applications. These parameters can often be seen by any
@@ -21,6 +23,4 @@ iso27001-2017:
 - 9.4.3
 - 9.4.1
 - 10.1.2
-title: Handover of confidential parameters
-id: HandoverOfConfidentialParameters
 ...

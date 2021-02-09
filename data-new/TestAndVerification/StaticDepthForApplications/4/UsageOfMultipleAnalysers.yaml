@@ -1,4 +1,6 @@
 ---
+id: UsageOfMultipleAnalysers
+title: Usage of multiple analysers
 risk: Each vulnerability analyser has different opportunities. By using just one analyser,
   some vulnerabilities might not be found.
 measure: Usage of multiple static tools to find more vulnerabilities.
@@ -16,6 +18,4 @@ dependsOn:
 - Test of server side components with known vulnerabilities
 - Test of client side components with known vulnerabilities
 - Static analysis for all self written components
-title: Usage of multiple analysers
-id: UsageOfMultipleAnalysers
 ...

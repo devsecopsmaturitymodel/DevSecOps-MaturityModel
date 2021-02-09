@@ -1,4 +1,6 @@
 ---
+id: CoverageAnalysis
+title: Coverage analysis
 risk: Parts of the service are not still covered.
 measure: Check that there are no missing paths in the application with coverage-tools.
 difficultyOfImplementation:
@@ -11,6 +13,4 @@ samm2: v-security-testing|A|2
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - part of periodic review, PDCA
-title: Coverage analysis
-id: CoverageAnalysis
 ...
