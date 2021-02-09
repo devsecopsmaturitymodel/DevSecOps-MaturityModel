@@ -17,5 +17,6 @@ samm2: v-security-testing|B|3
 iso27001-2017:
 - 14.2.3
 - 14.2.8
+title: Security unit tests for important components
 id: SecurityUnitTestsForImportantComponents
 ...

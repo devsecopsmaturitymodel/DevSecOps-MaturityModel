@@ -17,5 +17,6 @@ iso27001-2017:
 - 12.6.1
 dependsOn:
 - Defined build process
+title: Static analysis for important client side components
 id: StaticAnalysisForImportantClientSideComponents
 ...

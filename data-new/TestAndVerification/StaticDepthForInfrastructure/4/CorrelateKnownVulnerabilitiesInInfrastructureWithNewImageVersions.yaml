@@ -17,5 +17,6 @@ samm2: v-security-testing|A|1
 iso27001-2017:
 - 12.6.1
 - 14.2.1
+title: Correlate known vulnerabilities in infrastructure with new image versions
 id: CorrelateKnownVulnerabilitiesInInfrastructureWithNewImageVersions
 ...

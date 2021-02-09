@@ -15,5 +15,6 @@ dependsOn:
 samm2: o-environment-management|A|1
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
+title: Usage of security by default for components
 id: UsageOfSecurityByDefaultForComponents
 ...

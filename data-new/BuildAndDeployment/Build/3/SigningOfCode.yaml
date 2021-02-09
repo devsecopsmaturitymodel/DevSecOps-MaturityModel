@@ -14,5 +14,6 @@ samm: OA3-B
 samm2: i-secure-build|A|2
 iso27001-2017:
 - 14.2.6
+title: Signing of code
 id: SigningOfCode
 ...

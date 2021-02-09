@@ -16,5 +16,6 @@ dependsOn:
 - Test of server side components with known vulnerabilities
 - Test of client side components with known vulnerabilities
 - Static analysis for all self written components
+title: Usage of multiple analysers
 id: UsageOfMultipleAnalysers
 ...

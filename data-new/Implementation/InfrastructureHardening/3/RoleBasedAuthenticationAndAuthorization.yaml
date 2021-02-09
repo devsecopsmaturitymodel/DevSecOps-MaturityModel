@@ -15,5 +15,6 @@ dependsOn:
 samm2: o-environment-management|A|1
 iso27001-2017:
 - 9.4.1
+title: Role based authentication and authorization
 id: RoleBasedAuthenticationAndAuthorization
 ...

@@ -14,5 +14,6 @@ samm2: o-incident-management|TODO
 iso27001-2017:
 - "8.1"
 - "8.2"
+title: Inventory of running artifacts
 id: InventoryOfRunningArtifacts
 ...

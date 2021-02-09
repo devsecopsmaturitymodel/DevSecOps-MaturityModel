@@ -12,5 +12,6 @@ iso27001-2017:
 - 12.6.1
 - 14.2.5
 - 12.2.1
+title: Check for new image version
 id: CheckForNewImageVersion
 ...

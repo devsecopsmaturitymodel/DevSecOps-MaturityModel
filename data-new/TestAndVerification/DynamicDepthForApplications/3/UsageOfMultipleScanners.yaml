@@ -14,5 +14,6 @@ samm2: v-security-testing|A|2
 iso27001-2017:
 - 12.6.1
 - 14.2.5
+title: Usage of multiple scanners
 id: UsageOfMultipleScanners
 ...

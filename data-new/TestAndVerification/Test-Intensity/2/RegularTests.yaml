@@ -13,5 +13,6 @@ iso27001-2017:
 - 14.2.3
 - 14.2.8
 - 14.2.9
+title: Regular tests
 id: RegularTests
 ...

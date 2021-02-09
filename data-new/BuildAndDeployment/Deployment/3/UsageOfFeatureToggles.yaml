@@ -18,5 +18,6 @@ iso27001-2017:
 - 14.2.8
 - 14.2.9
 - 12.1.4
+title: Usage of feature toggles
 id: UsageOfFeatureToggles
 ...

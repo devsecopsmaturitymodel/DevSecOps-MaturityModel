@@ -12,5 +12,6 @@ samm: SM1-B
 iso27001-2017:
 - 5.1.1
 - 7.2.1
+title: Information security targets are communicated
 id: InformationSecurityTargetsAreCommunicated
 ...

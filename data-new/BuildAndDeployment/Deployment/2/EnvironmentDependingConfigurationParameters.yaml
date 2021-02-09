@@ -13,5 +13,6 @@ samm2: i-secure-deployment|B|1
 iso27001-2017:
 - 9.4.5
 - 14.2.6
+title: Environment depending configuration parameters
 id: EnvironmentDependingConfigurationParameters
 ...

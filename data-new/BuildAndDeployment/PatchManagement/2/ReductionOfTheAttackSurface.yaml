@@ -15,5 +15,6 @@ iso27001-2017:
 implementation:
 - <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
 - <a href="https://getfedora.org/coreos?stream=stable">Fedora CoreOS</a>
+title: Reduction of the attack surface
 id: ReductionOfTheAttackSurface
 ...

@@ -20,5 +20,6 @@ iso27001-2017:
 - 12.1.4
 - 12.5.1
 - 14.2.9
+title: Blue/Green Deployment
 id: BlueOrgreenDeployment
 ...

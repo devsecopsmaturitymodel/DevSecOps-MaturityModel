@@ -9,5 +9,6 @@ usefulness: 3
 samm2: o-environment-management|B|1
 iso27001-2017:
 - 12.6.1
+title: Nightly build of images
 id: NightlyBuildOfImages
 ...

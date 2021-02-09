@@ -10,5 +10,6 @@ samm2: o-incident-management|A|2
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 12.1.3
+title: Grouping of metrics
 id: GroupingOfMetrics
 ...

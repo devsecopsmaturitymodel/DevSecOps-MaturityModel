@@ -14,5 +14,6 @@ dependsOn:
 samm2: v-security-testing|A|2
 iso27001-2017:
 - 12.6.1
+title: Static analysis for all self written components
 id: StaticAnalysisForAllSelfWrittenComponents
 ...

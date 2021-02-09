@@ -13,5 +13,6 @@ samm: EH1-B
 samm2: o-environment-management|A|1
 iso27001-2017:
 - 9.4.1
+title: Simple access control for systems
 id: SimpleAccessControlForSystems
 ...

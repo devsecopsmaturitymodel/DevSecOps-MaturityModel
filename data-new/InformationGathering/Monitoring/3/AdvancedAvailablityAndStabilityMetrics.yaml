@@ -13,5 +13,6 @@ dependsOn:
 samm2: o-incident-management|A|2
 iso27001-2017:
 - 12.1.3
+title: Advanced availablity and stability metrics
 id: AdvancedAvailablityAndStabilityMetrics
 ...

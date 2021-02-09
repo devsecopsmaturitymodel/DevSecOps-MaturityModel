@@ -20,5 +20,6 @@ implementation:
   will ensure that if (and only if) something buggy has been introduced which breaks
   functionality the canary deployment will make sure the "older version" is being
   used and not the buggy newer one.
+title: Usage of a short maximum lifetime for images
 id: UsageOfAShortMaximumLifetimeForImages
 ...

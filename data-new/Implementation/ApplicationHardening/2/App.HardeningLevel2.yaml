@@ -20,5 +20,6 @@ samm2: software-requirements|A|2
 iso27001-2017:
 - hardening is not explicitly covered by ISO 27001 - too specific
 - 13.1.3
+title: App. Hardening Level 2
 id: App.HardeningLevel2
 ...

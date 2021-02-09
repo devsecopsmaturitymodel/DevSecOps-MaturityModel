@@ -18,5 +18,6 @@ samm2: i-secure-build|A|1
 iso27001-2017:
 - 12.1.1
 - 14.2.2
+title: Defined build process
 id: DefinedBuildProcess
 ...

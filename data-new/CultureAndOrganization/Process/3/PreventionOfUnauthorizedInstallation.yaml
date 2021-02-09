@@ -14,5 +14,6 @@ iso27001-2017:
 implementation: 'Example: All docker images used by teams need to be based on standard
   images.'
 comment: By preventing teams from trying out new components, innovation might be hampered
+title: Prevention of unauthorized installation
 id: PreventionOfUnauthorizedInstallation
 ...

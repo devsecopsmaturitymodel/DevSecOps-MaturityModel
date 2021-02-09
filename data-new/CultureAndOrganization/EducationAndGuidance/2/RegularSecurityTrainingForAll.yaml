@@ -15,5 +15,6 @@ implementation:
   is to use the <a href="https://github.com/bkimminich/juice-shop">OWASP Juice Shop</a>
   on a "hacking Friday"
 - https://cheatsheetseries.owasp.org/
+title: Regular security training for all
 id: RegularSecurityTrainingForAll
 ...

@@ -18,5 +18,6 @@ samm2: o-environment-management|A|1
 iso27001-2017:
 - virtual environments are not explicitly covered by ISO 27001 - too specific
 - 13.1.3
+title: Isolated networks for virtual environments
 id: IsolatedNetworksForVirtualEnvironments
 ...

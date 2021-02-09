@@ -12,5 +12,6 @@ samm2: v-security-testing|A|2
 iso27001-2017:
 - 14.2.3
 - 14.2.8
+title: Coverage of service to service communication
 id: CoverageOfServiceToServiceCommunication
 ...

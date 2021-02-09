@@ -14,5 +14,6 @@ samm2: v-security-testing|A|2
 iso27001-2017:
 - 14.2.8
 - 14.2.3
+title: Coverage of sequential operations
 id: CoverageOfSequentialOperations
 ...

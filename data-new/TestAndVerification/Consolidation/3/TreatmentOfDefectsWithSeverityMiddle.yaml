@@ -11,5 +11,6 @@ samm2: i-defect-management|B|2
 iso27001-2017:
 - 16.1.4
 - 12.6.1
+title: Treatment of defects with severity middle
 id: TreatmentOfDefectsWithSeverityMiddle
 ...

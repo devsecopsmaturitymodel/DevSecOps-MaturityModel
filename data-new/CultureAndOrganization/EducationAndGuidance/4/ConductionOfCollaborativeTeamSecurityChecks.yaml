@@ -11,5 +11,6 @@ samm: EG2-A
 iso27001-2017:
 - Mutual scurity testing is not explicitly required in ISO 27001 may be
 - 7.2.2
+title: Conduction of collaborative team security checks
 id: ConductionOfCollaborativeTeamSecurityChecks
 ...

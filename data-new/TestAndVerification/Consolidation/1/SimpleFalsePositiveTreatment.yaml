@@ -16,5 +16,6 @@ samm2: i-defect-management|A|2
 iso27001-2017:
 - not explicitly covered by ISO 27001 - too specific
 - 16.1.6
+title: Simple false positive treatment
 id: SimpleFalsePositiveTreatment
 ...
