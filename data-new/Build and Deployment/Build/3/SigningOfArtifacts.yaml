@@ -1,0 +1,22 @@
+---
+risk: Unauthorized manipulation of artifacts might be difficult to spot. For example,
+  this may result in images with malicious code in the Docker registry.
+measure: Digitally signing artifacts for all steps during the build and especially
+  docker images, helps to ensure their integrity.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 2
+  resources: 2
+usefulness: 4
+level: 3
+implementation:
+- <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>
+- <a href="https://in-toto.github.io/">in-toto</a>
+dependsOn:
+- Defined build process
+samm: OA3-B
+samm2: i-secure-build|A|1
+iso27001-2017:
+- 14.2.6
+id: SigningOfArtifacts
+...

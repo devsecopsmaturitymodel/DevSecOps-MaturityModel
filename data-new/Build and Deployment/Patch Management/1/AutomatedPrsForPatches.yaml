@@ -1,0 +1,22 @@
+---
+risk: Known vulnerabilities components might stay for long and get exploited, even
+  when a patch is available.
+measure: Fast patching of third party component is needed. The DevOps way is to have
+  an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virutalized
+  operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
+  as Code/GitOps (e.g. argocd)</li> </ul>
+difficultyOfImplementation:
+  knowledge: 2
+  time: 2
+  resources: 2
+usefulness: 5
+level: 1
+samm2: o-environment-management|B|1
+iso27001-2017:
+- 12.6.1
+- 14.2.5
+implementation:
+- <a href="https://dependabot.com/">dependabot</a>
+- Jenkins
+id: AutomatedPrsForPatches
+...

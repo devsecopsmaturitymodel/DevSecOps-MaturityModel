@@ -1,0 +1,15 @@
+---
+risk: The impact of a change is not controlled because these are not recorded or documented.
+measure: Each change of a system is automatically recorded and adequately logged.
+difficultyOfImplementation:
+  knowledge: 4
+  time: 3
+  resources: 1
+usefulness: 3
+level: 3
+iso27001-2017:
+- 14.2.2
+- 12.1.2
+- 12.4.1
+id: DefinitionOfAChangeManagementProcess
+...

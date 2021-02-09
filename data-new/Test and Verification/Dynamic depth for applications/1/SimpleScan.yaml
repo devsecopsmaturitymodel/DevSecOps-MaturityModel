@@ -1,0 +1,24 @@
+---
+risk: Deficient security tests are performed. Simple vulnerabilities are not detected
+  and missing security configurations (e.g. headers) are not set. Fast feedback is
+  not given.
+measure: A simple scan is performed to get a security baseline. In case the test is
+  done in under 10 minutes, it should be part of the build and deployment process.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 3
+  resources: 1
+usefulness: 2
+level: 1
+dependsOn:
+- Defined build process
+samm: ST2
+implementation:
+- OWASP Zap
+- Arachni
+samm2: v-security-testing|A|1
+iso27001-2017:
+- 14.2.3
+- 14.2.8
+id: SimpleScan
+...

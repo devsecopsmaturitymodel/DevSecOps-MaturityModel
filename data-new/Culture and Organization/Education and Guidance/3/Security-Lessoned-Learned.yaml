@@ -1,0 +1,16 @@
+---
+risk: After an incident, a similar incident might reoccur.
+measure: Running a 'lessons learned' session after an incident helps drive continuous
+  improvement. Regular meetings with security champions are a good place to share
+  and discuss lessons learned.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 3
+  resources: 1
+usefulness: 3
+level: 3
+samm: IM-3, ST-3, SR2-B
+iso27001-2017:
+- 16.1.6
+id: Security-Lessoned-Learned
+...

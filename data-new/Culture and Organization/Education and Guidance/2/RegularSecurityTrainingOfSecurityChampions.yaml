@@ -1,0 +1,18 @@
+---
+risk: Understanding security is hard, even for security champions.
+measure: Regular security training of security champions.
+evidence: |
+  - Process Documentation: TODO
+  - Training Content: TOODO
+difficultyOfImplementation:
+  knowledge: 3
+  time: 2
+  resources: 2
+usefulness: 3
+level: 2
+samm: EG2-B
+iso27001-2017:
+- security champions are missing in ISO 27001
+- 7.2.2
+id: RegularSecurityTrainingOfSecurityChampions
+...

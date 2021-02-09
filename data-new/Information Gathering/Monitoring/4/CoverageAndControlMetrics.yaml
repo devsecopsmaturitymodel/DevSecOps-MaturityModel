@@ -1,0 +1,22 @@
+---
+risk: The effectiveness of configuration, patch and vulnerability management is unknown.
+measure: "Usage of Coverage- and control-metrics to show the effectiveness of the
+  security program. Coverage is the degree in \n        which a specific security
+  control for a specific target group is applied with all resources.\n        The
+  control degree shows the actual application of security standards and security-guidelines.
+  Examples are gathering information on anti-virus, anti-rootkits, patch management,
+  server configuration and vulnerability management."
+difficultyOfImplementation:
+  knowledge: 3
+  time: 5
+  resources: 2
+usefulness: 4
+level: 4
+dependsOn:
+- Visualized metrics
+implementation: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+samm2: o-incident-management|A|2
+iso27001-2017:
+- not explicitly covered by ISO 27001 - too specific
+id: CoverageAndControlMetrics
+...

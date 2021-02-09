@@ -1,0 +1,23 @@
+---
+risk: In case an errors occurs in production, the developer need to be able to create
+  a production near environment on a local development environment.
+measure: Usage of infrastructure as code helps to create a production near environment.
+  The developer needs to be trained in order to setup a local development environment.
+  In addition, it should be possible to create production like test data. Often personal
+  identifiable information is anonymized in order to comply with data protection laws.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 3
+  resources: 3
+usefulness: 4
+level: 4
+dependsOn:
+- Defined deployment process
+- Infrastructure as Code
+samm: SA1
+samm2: o-environment-management|A|1
+iso27001-2017:
+- 12.1.4
+- 17.2.1
+id: ProductionNearEnvironmentsAreUsedByDevelopers
+...

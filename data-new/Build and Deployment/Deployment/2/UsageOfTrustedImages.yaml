@@ -1,0 +1,21 @@
+---
+risk: Developers or operations might start random images in the production cluster
+  which have malicous code or known vulnerabilities.
+measure: Create image assessment criteria, perform an evaluation of images and create
+  a whitelist of artifacts/container images/virtual machine images.
+implementation: Kubernetes Admission Controller can whitelist registries and/or whitelist
+  a signing key.
+difficultyOfImplementation:
+  knowledge: 1
+  time: 1
+  resources: 1
+usefulness: 3
+level: 2
+samm2: i-secure-deployment|A|2
+iso27001-2017:
+- 15.1.1
+- 15.1.2
+- 15.1.3
+- 14.1.3
+id: UsageOfTrustedImages
+...

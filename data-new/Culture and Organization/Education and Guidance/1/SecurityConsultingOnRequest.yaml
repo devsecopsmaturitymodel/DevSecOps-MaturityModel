@@ -1,0 +1,19 @@
+---
+risk: Not asking a security expert when questions regarding security appear might
+  lead to flaws.
+measure: Security consulting to teams is given on request. The security consultants
+  can be internal or external.
+difficultyOfImplementation:
+  knowledge: 2
+  time: 1
+  resources: 1
+usefulness: 3
+level: 1
+samm: EG2-B
+iso27001-2017:
+- security consulting is missing in ISO 27001 may be
+- 6.1.1
+- 6.1.4
+- 6.1.5
+id: SecurityConsultingOnRequest
+...

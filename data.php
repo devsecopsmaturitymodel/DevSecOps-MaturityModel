@@ -2,7 +2,7 @@
 $dimensions = array();
 
 $files = scandir("data");
-
+$Extra = new ParsedownExtra();
 function readYaml($file)
 {
     return yaml_parse(
@@ -11,7 +11,6 @@ function readYaml($file)
 }
 
 $dimensions = array(
-    "Application" => readYaml("data/Application.yml"),
     "Culture and Org." => readYaml("data/CultureandOrg.yml"),
     "Build and Deployment" => readYaml("data/BuildandDeployment.yml"),
     "Information Gathering" => readYaml("data/Informationgathering.yml"),
@@ -142,6 +141,7 @@ function getElementContentAndCheckExistence($parent, $name)
 
 function getElementContent($element)
 {
+    $Extra = new ParsedownExtra();
     $contentString = "";
     if (is_array($element)) {
         if (isAssoc($element)) {
@@ -152,14 +152,14 @@ function getElementContent($element)
                 if (is_array($elementContent)) {
                     $contentString .= getElementContent($elementContent);
                 } else
-                    $contentString .= "<li>" . str_replace("\"", "'", $elementContent) . "</li>";
+                    $contentString .= "<li>" . $Extra->text($elementContent) . "</li>";
                 $contentString .= "</ul>";
             }
 
         } else {
             $contentString .= "<ul>";
             foreach ($element as $content) {
-                $contentString .= "<li>" . str_replace("\"", "'", $content) . "</li>";
+                $contentString .= "<li>" . $Extra->text($content) . "</li>";
             }
             $contentString .= "</ul>";
         }

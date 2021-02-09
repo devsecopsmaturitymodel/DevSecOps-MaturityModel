@@ -1,0 +1,18 @@
+---
+risk: Security tests are not running regularly because test environments are missing
+measure: A production and a production like envirnoment is used
+difficultyOfImplementation:
+  knowledge: 3
+  time: 3
+  resources: 5
+usefulness: 4
+level: 1
+dependsOn:
+- Defined deployment process
+samm2: o-environment-management|A|1
+iso27001-2017:
+- not explicitly covered by ISO 27001 - too specific
+- 12.1.4
+- 17.2.1
+id: UsageOfTestAndProductionEnvironments
+...

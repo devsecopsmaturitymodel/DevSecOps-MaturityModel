@@ -1,0 +1,16 @@
+---
+risk: Development teams limited insight over security practices.
+measure: Mutual security testing the security of other teams's project enhances security
+  awareness and knowledge.
+difficultyOfImplementation:
+  resources: 2
+  knowledge: 4
+  time: 4
+usefulness: 2
+level: 4
+samm: EG2-A
+iso27001-2017:
+- Mutual scurity testing is not explicitly required in ISO 27001 may be
+- 7.2.2
+id: ConductionOfCollaborativeTeamSecurityChecks
+...

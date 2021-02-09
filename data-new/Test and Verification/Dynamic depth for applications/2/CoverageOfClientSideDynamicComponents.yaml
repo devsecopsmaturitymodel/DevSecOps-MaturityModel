@@ -1,0 +1,21 @@
+---
+risk: Parts of the service are not covered during the scan, because JavaScript is
+  not getting executed. Therefore, the co
+measure: Usage of a spider which executes dynamic content like JavaScript, e.g. via
+  Selenium.
+difficultyOfImplementation:
+  knowledge: 3
+  time: 3
+  resources: 1
+usefulness: 4
+level: 2
+dependsOn:
+- Usage of different roles
+samm: ST-2
+samm2: v-security-testing|A|2
+iso27001-2017:
+- 14.2.3
+- 14.2.8
+implementation: Ajax Spider
+id: CoverageOfClientSideDynamicComponents
+...

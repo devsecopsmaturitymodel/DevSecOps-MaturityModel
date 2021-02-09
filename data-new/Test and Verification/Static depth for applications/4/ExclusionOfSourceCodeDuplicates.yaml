@@ -1,0 +1,19 @@
+---
+risk: Duplicates in source code might influence the stability of the application.
+measure: Automatic Detection and manual removal of duplicates in source code.
+difficultyOfImplementation:
+  knowledge: 1
+  time: 1
+  resources: 1
+usefulness: 1
+level: 4
+implementation: PMD
+dependsOn:
+- Defined build process
+samm2: v-security-testing|A|2
+iso27001-2017:
+- not explicitly covered by ISO 27001 - too specific
+- 14.2.1
+- 14.2.5
+id: ExclusionOfSourceCodeDuplicates
+...

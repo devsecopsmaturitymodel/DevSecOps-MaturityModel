@@ -1,0 +1,18 @@
+---
+risk: The concept of Security Champions might suggest that only he/she is responsible
+  for security. However, everyone in the project team should be responsible for security.
+measure: By aligning security SME with project teams, a higher security standard can
+  be achieved.
+difficultyOfImplementation:
+  knowledge: 4
+  time: 5
+  resources: 1
+implementation: Security SME are involved in discussion for requirements analysis,
+  software design and sprint planning to provide guidance and suggestions.
+usefulness: 5
+level: 4
+samm: EG2-B
+iso27001-2017:
+- 7.1.1
+id: AligningSecurityInTeams
+...

@@ -1,0 +1,19 @@
+---
+risk: Client side components might have vulnerabilities.
+measure: Tests for known vulnerabilities in components of the frontend are performed.
+difficultyOfImplementation:
+  knowledge: 1
+  time: 2
+  resources: 1
+usefulness: 2
+level: 3
+dependsOn:
+- Defined build process
+implementation:
+- <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
+- <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
+samm2: v-security-testing|A|2
+iso27001-2017:
+- 12.6.1
+id: TestOfClientSideComponentsWithKnownVulnerabilities
+...

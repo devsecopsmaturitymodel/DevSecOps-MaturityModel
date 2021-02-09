@@ -1,0 +1,17 @@
+---
+risk: Employees don't known their organisation security targets. Therefore security
+  is not considered during development and administration as much as it should be.
+measure: Transparent and timely communication of the security targets by senior management
+  is essential to ensure teams' buy-in and support.
+difficultyOfImplementation:
+  knowledge: 1
+  time: 1
+  resources: 1
+usefulness: 4
+level: 0
+samm: SM1-B
+iso27001-2017:
+- 5.1.1
+- 7.2.1
+id: InformationSecurityTargetsAreCommunicated
+...

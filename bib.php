@@ -1,9 +1,11 @@
 <?php
-error_reporting(E_ERROR);
-define(NUMBER_LEVELS, 4);
-define(IS_SHOW_EVIDENCE_TODO, false);
+require __DIR__ . '/vendor/autoload.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+define('NUMBER_LEVELS', 4);
+define('IS_SHOW_EVIDENCE_TODO', false);
 
-include_once "bib/parsedown/Parsedown.php";
 function readCSV($filename, $delimiter)
 {
     if (!file_exists($filename) || !is_readable($filename))
