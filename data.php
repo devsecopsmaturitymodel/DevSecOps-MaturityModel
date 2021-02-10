@@ -1,19 +1,15 @@
 <?php
+require_once("functions.php");
+
 $dimensions = array();
 
 $files = scandir("data");
 
-function readYaml($file)
-{
-    return yaml_parse(
-        file_get_contents($file)
-    );
-}
 
 $dimensions = array(
     "Application" => readYaml("data/Application.yml"),
     "Culture and Org." => readYaml("data/CultureandOrg.yml"),
-    "Build and Deployment" => readYaml("data/BuildandDeployment.yml"),
+    "Build and Deployment" => readYaml("data/BuildandDeployment.yml#/sub-dimensions"),
     "Information Gathering" => readYaml("data/Informationgathering.yml"),
     "Implementation" => readYaml("data/Implementation.yml"),
     "Test and Verification" => readYaml("data/TestandVerification.yml")

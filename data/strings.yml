@@ -1,0 +1,11 @@
+---
+#
+# Various strings and messages
+#
+strings:
+  en: &en
+    labels: ["Very Low", "Low", "Medium", "High", "Very High"]
+    hardness: ["Very soft", "Soft", "Medium", "High", "Very high"]
+  de:
+    <<: *en
+    hardness: ["Sehr gering", "Gering", "Mittel", "Hoch", "Sehr hoch"]
