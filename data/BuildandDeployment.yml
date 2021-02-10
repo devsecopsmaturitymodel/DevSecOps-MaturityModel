@@ -1,6 +1,8 @@
 ---
 Build:
-  Building and testing of artifacts in virtual environments:
+  testing-in-virtual-environments:
+    label: >-
+      Building and testing of artifacts in virtual environments
     risk: While building and testing artifacts, third party systems, application frameworks
       and 3rd party libraries are used. These might be malicious as a result of vulnerable
       libraries or because they are altered during the delivery phase.
