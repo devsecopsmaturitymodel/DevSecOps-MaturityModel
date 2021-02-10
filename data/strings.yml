@@ -6,6 +6,10 @@ strings:
   en: &en
     labels: ["Very Low", "Low", "Medium", "High", "Very High"]
     hardness: ["Very soft", "Soft", "Medium", "High", "Very high"]
+    maturity_levels: ["Level 1: Basic understanding of security practices" ,
+             "Level 2: Adoption of basic security practices",
+             "Level 3: High adoption of security practices",
+             "Level 4: Advanced deployment of security practices at scale"]
   de:
     <<: *en
     hardness: ["Sehr gering", "Gering", "Mittel", "Hoch", "Sehr hoch"]

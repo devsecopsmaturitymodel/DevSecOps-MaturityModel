@@ -2,9 +2,10 @@
 sub-dimensions:
   Build:
     Building and testing of artifacts in virtual environments:
-      risk: While building and testing artifacts, third party systems, application frameworks
-        and 3rd party libraries are used. These might be malicious as a result of vulnerable
-        libraries or because they are altered during the delivery phase.
+      risk:
+        - While building and testing artifacts, third party systems, application frameworks
+          and 3rd party libraries are used. These might be malicious as a result of vulnerable
+          libraries or because they are altered during the delivery phase.
       measure: Each step during within the build and testing phase is performed in a separate virtual
         environments, which is destroyed afterward.
       meta:
@@ -22,8 +23,9 @@ sub-dimensions:
       iso27001-2017:
         - 14.2.6
     Defined build process:
-      risk: Performing builds without a defined process is error prone.
-        For example, as a result of incorrect security related configuration.
+      risk:
+        - Performing builds without a defined process is error prone;
+          for example, as a result of incorrect security related configuration.
       measure: A well defined build process lowers the possibility of errors during the build
         process.
       evidence: The build process is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a> in the folder <i>vars</>. Projects are using a <i>Jenkinsfile</i> to use the defined process.
@@ -149,9 +151,11 @@ sub-dimensions:
         - 9.4.5
         - 14.2.6
     Handover of confidential parameters:
-      risk: Attackers who compromise a system can see confidential access information
-        like database credentials. Parameters are often used to set credentials, for
-        example by starting containers or applications. These parameters can often be
+      risk:
+      - Attackers who compromise a system can see confidential access information
+        like database credentials.
+      - Parameters are often used to set credentials, for
+        example by starting containers or applications; these parameters can often be
         seen by any one listing running processes on the target system.
       measure: By using encryption, it is harder to read credentials , e.g.
         from the file system. Also, the usage of a credential management system can help
