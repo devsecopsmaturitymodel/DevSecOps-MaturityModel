@@ -1,13 +1,5 @@
 <?php
-$dimensions = array();
-
-
-function readYaml($file)
-{
-    return yaml_parse(
-        file_get_contents($file)
-    );
-}
+include "functions.php";
 
 $dimensions = array(
     "Culture and Organization" => readYaml("data/CultureandOrg.yml"),
