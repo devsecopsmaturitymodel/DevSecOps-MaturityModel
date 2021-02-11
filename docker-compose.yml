@@ -3,5 +3,5 @@ services:
   dsomm:
     build: .
     ports:
-    - "81:80"
+    - "8080:80"
 
