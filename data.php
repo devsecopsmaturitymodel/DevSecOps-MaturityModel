@@ -1,18 +1,13 @@
 <?php
+require_once("functions.php");
+
 $dimensions = array();
 
 $files = scandir("data");
-$Extra = new ParsedownExtra();
-function readYaml($file)
-{
-    return yaml_parse(
-        file_get_contents($file)
-    );
-}
 
 $dimensions = array(
     "Culture and Org." => readYaml("data/CultureandOrg.yml"),
-    "Build and Deployment" => readYaml("data/BuildandDeployment.yml"),
+    "Build and Deployment" => readYaml("data/BuildandDeployment.yml#/sub-dimensions"),
     "Information Gathering" => readYaml("data/Informationgathering.yml"),
     "Implementation" => readYaml("data/Implementation.yml"),
     "Test and Verification" => readYaml("data/TestandVerification.yml")
@@ -176,6 +171,14 @@ function isAssoc(array $arr)
     return array_keys($arr) !== range(0, count($arr) - 1);
 }
 
+
+function render_risk($risk) {
+
+    if (is_array($risk)) {
+        return implode("\ ", $risk);
+    }
+    return $risk;
+}
 function build_table_tooltip($array, $headerWeight = 2)
 {
     $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
@@ -191,7 +194,7 @@ function build_table_tooltip($array, $headerWeight = 2)
 
     $html = "";
     $html .= "<h" . $headerWeight . ">Risk and Opportunity</h$headerWeight>";
-    $html .= "<div><b>" . "Risk" . ":</b> " . $array['risk'] . "</div>";
+    $html .= "<div><b>" . "Risk" . ":</b> " . render_risk($array['risk']) . "</div>";
     $html .= "<div><b>" . "Opportunity" . ":</b> " . $array['measure'] . "</div>";
     if (IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
         $html .= "<div><b>" . "Evidence" . ":</b> " . $evidenceContent . "</div>";

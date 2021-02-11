@@ -1,0 +1,9 @@
+version: "3.0"
+services:
+  dsomm:
+    build: .
+    volumes:
+    - .:/var/www/html
+    ports:
+    - "81:80"
+

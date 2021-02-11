@@ -47,16 +47,7 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
         echo "<h" . ($headerWeight + 1) . ">Additional Information</h" . ($headerWeight + 1) . ">";
         if (array_key_exists("dependsOn", $element)) {
             $dependsOn = $element['dependsOn'];
-            $dependencies = "";
-            $first = true;
-            foreach ($dependsOn as $dimensionElement) {
-                if (!$first) {
-                    $dependencies .= ", ";
-                }
-                $dependencies .= $dimensionElement;
-                $first = false;
-            }
-
+            $dependencies =  implode(", ", $dependsOn);
             echo "<div><b>Dependencies:</b> $dependencies</div>";
         }
         echo getElementContentAndCheckExistence($element, "meta");
