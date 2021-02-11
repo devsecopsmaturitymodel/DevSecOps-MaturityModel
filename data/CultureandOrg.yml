@@ -10,6 +10,7 @@ Education and Guidance:
     usefulness: 3
     level: 1
     samm: EG1-A
+    implementation:
       - In case you do not have the budget to hire an external security expert, an option is to use the <a href="https://github.com/bkimminich/juice-shop">OWASP Juice Shop</a> on a "hacking Friday"
       - https://cheatsheetseries.owasp.org/
     iso27001-2017:
