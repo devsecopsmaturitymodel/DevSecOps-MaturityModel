@@ -676,6 +676,17 @@ Dynamic depth for infrastructure:
       - 14.2.3
       - 14.2.8    
 Static depth for infrastructure:
+  Analyse logs:
+    risk: Not getting are of happend attacks.
+    measure: Check logs for keywords.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 2
+    usefulness: 3
+    level: 3
+    implementation:
+      - https://github.com/Neo23x0/sigma
   Test of virtualized environments:
     risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains unsecure configurations.
     measure: Test virtualized environments for unsecured configurations.
