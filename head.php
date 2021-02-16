@@ -97,8 +97,7 @@ function getInfos($dimensions) {
 }
 function getElementCount($dimensions) {
 	$count = 0;
-    foreach ( getActions($dimensions) as $a ) {
-        list($dimension, $subdimension, $element) = $a;
+    foreach ( getActions($dimensions) as list($dimension, $subdimension, $element) ) {
         $count = $count + count ( $element );
         echo "$subdimension: " . count ( $element ) . "<br>";
 	}
@@ -107,11 +106,8 @@ function getElementCount($dimensions) {
 function getTable($dimensions) {
 	$tableContent = "";
 	$tableContent .= getTableHeader ();
-    $actions = getActions($dimensions);
 
-	foreach ( $actions as $a ) {
-        list($dimension, $subdimension, $element) = $a;
-
+	foreach ( getActions($dimensions) as list($dimension, $subdimension, $element) ) {
         $dimension_icon = isset($dimensions[$dimension]["_meta"]["icon"]) ? $dimensions[$dimension]["_meta"]["icon"] : "$dimension.png";
         $dimension_label = isset($dimensions[$dimension]["_meta"]["label"]) ? $dimensions[$dimension]["_meta"]["label"] : "$dimension";
 
