@@ -17,8 +17,24 @@ function readYaml($file) {
     return $ret;
 }
 
+function getActions($dimensions) {
+    foreach ($dimensions as $dimension => $subdimensions) {
+        foreach ($subdimensions as $subdimension => $element) {
+            if ($subdimension == "_meta")
+                continue;
+            yield array($dimension, $subdimension, $element);
+        }
+    }
+}
+
+
 // TODO create testcases
-if (false) {
+
+function test_getActions(){
+    $dimensions = readYaml("data/dimensions.yaml");
+    echo var_dump(getActions($dimensions));
+}
+function test_readYaml() {
     $ret = readYaml("data/strings.yml");
     echo var_dump($ret);
     echo "<hr>";

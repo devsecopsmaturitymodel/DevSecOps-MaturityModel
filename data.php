@@ -5,13 +5,7 @@ $dimensions = array();
 
 $files = scandir("data");
 
-$dimensions = array(
-    "Culture and Org." => readYaml("data/CultureandOrg.yml"),
-    "Build and Deployment" => readYaml("data/BuildandDeployment.yml#/sub-dimensions"),
-    "Information Gathering" => readYaml("data/Informationgathering.yml"),
-    "Implementation" => readYaml("data/Implementation.yml"),
-    "Test and Verification" => readYaml("data/TestandVerification.yml")
-);
+$dimensions = readYaml("data/dimensions.yaml");
 
 ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {

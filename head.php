@@ -97,46 +97,50 @@ function getInfos($dimensions) {
 }
 function getElementCount($dimensions) {
 	$count = 0;
-	foreach ( $dimensions as $dimension => $subdimensions ) {
-		foreach ( $subdimensions as $subdimension => $element ) {
-			$count = $count + count ( $element );
-			echo "$subdimension: " . count ( $element ) . "<br>";
-		}
+    foreach ( getActions($dimensions) as $a ) {
+        list($dimension, $subdimension, $element) = $a;
+        $count = $count + count ( $element );
+        echo "$subdimension: " . count ( $element ) . "<br>";
 	}
 	return $count;
 }
 function getTable($dimensions) {
 	$tableContent = "";
 	$tableContent .= getTableHeader ();
-	foreach ( $dimensions as $dimension => $subdimensions ) {
-		foreach ( $subdimensions as $subdimension => $element ) {
-			$tableContent .= "<tr>";
-			$tableContent .= "<td>";
-			$tableContent .= "<img height='40px' src=\"assets/images/$dimension.png\"> $dimension";
-			$tableContent .= "</td>";
-			
-			$tableContent .= "<td>";
-			$tableContent .= "$subdimension";
-			$tableContent .= "</td>";
-			
-			for($i = 1; $i <= NUMBER_LEVELS; $i ++) {
-				$tableContent .= "<td><ul>";
-				foreach ( $element as $activityName => $content ) {
-					$content = getContentForLevelFromSubdimensions ( $i, $content, $activityName );
-					if ($content != "") {
-						$activityLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
-						$tableContent .= "<a href='$activityLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$activityName'";
-						if (elementIsSelected ( $activityName )) {
-							$tableContent .= "class='selected'";
-						}
-						$tableContent .= "><li>" . $content . "</li></a>";
-					}
-				}
-				$tableContent .= "</ul></td>";
-			}
-			
-			$tableContent .= "</tr>";
-		}
+    $actions = getActions($dimensions);
+
+	foreach ( $actions as $a ) {
+        list($dimension, $subdimension, $element) = $a;
+
+        $dimension_icon = isset($dimensions[$dimension]["_meta"]["icon"]) ? $dimensions[$dimension]["_meta"]["icon"] : "$dimension.png";
+        $dimension_label = isset($dimensions[$dimension]["_meta"]["label"]) ? $dimensions[$dimension]["_meta"]["label"] : "$dimension";
+
+        $tableContent .= "<tr>";
+        $tableContent .= "<td>";
+        $tableContent .= "<img height='40px' src=\"assets/images/$dimension_icon\"> $dimension_label";
+        $tableContent .= "</td>";
+
+        $tableContent .= "<td>";
+        $tableContent .= "$subdimension";
+        $tableContent .= "</td>";
+
+        for($i = 1; $i <= NUMBER_LEVELS; $i ++) {
+            $tableContent .= "<td><ul>";
+            foreach ( $element as $activityName => $content ) {
+                $content = getContentForLevelFromSubdimensions ( $i, $content, $activityName );
+                if ($content != "") {
+                    $activityLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
+                    $tableContent .= "<a href='$activityLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$activityName'";
+                    if (elementIsSelected ( $activityName )) {
+                        $tableContent .= "class='selected'";
+                    }
+                    $tableContent .= "><li>" . $content . "</li></a>";
+                }
+            }
+            $tableContent .= "</ul></td>";
+        }
+
+        $tableContent .= "</tr>";
 	}
 	$table = '<table class="table table-striped"><caption>OWASP DevSecOps Maturity Model</caption>';
 	$table .= $tableContent;
