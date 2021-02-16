@@ -11,6 +11,8 @@ ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
     foreach ($subDimension as $subDimensionName => $elements) {
+        if (substr($subDimensionName, 0, 1) == "_")
+            continue;
         $newElements = $elements;
         ksort($newElements);
         $dimensions[$dimensionName][$subDimensionName] = $newElements;
@@ -36,6 +38,8 @@ $filteredDimensions = array();
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
     foreach ($subDimension as $subDimensionName => $elements) {
+        if (substr($subDimensionName, 0, 1) == "_")
+            continue;
         $newElements = $elements;
         ksort($newElements);
         foreach ($newElements as $activityName => $activity) {

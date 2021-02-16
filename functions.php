@@ -18,9 +18,12 @@ function readYaml($file) {
 }
 
 function getActions($dimensions) {
+    ksort($dimensions);
     foreach ($dimensions as $dimension => $subdimensions) {
+        ksort($subdimensions);
+
         foreach ($subdimensions as $subdimension => $element) {
-            if ($subdimension == "_meta")
+            if (substr($subdimension, 0, 1) == "_")
                 continue;
             yield array($dimension, $subdimension, $element);
         }
