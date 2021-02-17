@@ -1,44 +1,81 @@
 ---
-In this article the usage of DSOMM is explained and the dimensions and corresponding sub-dimensions.
+This article explains the usage of DSOMM, the dimensions and
+ corresponding sub-dimensions.
 
 # Pre-Requirements
+
 Before you start, there is kind of maturity level 0.
 
 The pre-requirements are highly based (mostly copied) on [AppSecure NRW](https://github.com/AppSecure-nrw/security-belts/tree/master/white).
 
-## Onboard Product Owner and other Manager
+## Risk management
 
-Software vulnerabilities might be exploited when shipped into production.
+[NIST defines  `risk`](https://csrc.nist.gov/glossary/term/risk) as
 
-This results in risks for the organization.
+> a measure of the extent to which an entity is threatened by a potential
+circumstance or event, and typically is a function of:
+> 1.  the adverse impact, or magnitude of harm, that would arise
+>    if the circumstance or event occurs; and
+> 2. the likelihood of occurrence.
 
-The person responsible for judging "risks vs.
-revenue" on your product
-(e.g., Product Owner, manager) must be convinced that continuously improving
-security through Security Belts is the best way
+In information security, risks arise from the loss of:
+- confidentiality,
+- integrity,
+- or availability
+
+of information or information systems and reflect the
+potential adverse impacts to:
+- organizational operations
+  (including: - mission, - functions, - image, - or reputation),
+- organizational assets,
+- individuals,
+- other organizations
+(see [NIST.SP.800-53Ar4](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53Ar4.pdf).
+
+A risk then tied to a **threat**, its **probability** and its **impacts**.
+
+If you are interested in Risk Management frameworks and
+strategies, you can start from
+[FISMA](https://csrc.nist.gov/Projects/risk-management/).
+
+
+## Onboard Product Owner and other Managers
+
+TO adopt a DSOMM in a product or a project, it is important to identify
+the person or the team which is responsible to ensure
+that risk-related considerations reflects the organizational
+risk tolerance
+(see [Risk Executive](https://csrc.nist.gov/glossary/term/risk_executive)
+for a more complete view).
+
+Depending on the project, this "Risk Manager" - which in layman terms
+is responsible for judging "risks vs. costs" of the product -
+can be the `Project Manager`, the `Product Owner` or else:
+it is important that he has the proper risk management
+knowledge and, receive a proper training.
+
+The "Risk Manager" must be convinced that continuously improving
+security through DSOMM is an effective way to
 to minimize risk and build better products.
-Judging about security risks requires company specific understanding
-about security risk management.
-Ensure that the aforementioned roles have this knowledge
-and train them if this is not the case.
-- Identify the persons who are judging "risks vs.
-revenue".
-- Raise the awareness of these persons
-  (e.g., show how easy it is to exploit software).
-- Convince these persons that security is a continuous effort
-  and that Security Belts are a cost efficient solution.
+
+The first steps for deploying DSOMM are then the following:
+
+1. identify the persons in charge for risk decisions
+1. make them aware of information security risks, showing the impacts of
+ threats and their probability.
+1. convince them that security requires continuous efforts
 
 ### Benefits
 
-- The Product Owner is aware that software can have security vulnerabilities.
-- Resources are allocated to improve in security -
-  to avoid, detect and fix security vulnerabilities.
-- Management can perform well informed decision when
-  judging "risks vs.
-revenue".
-- The Product Owner has transparency on how secure the product is.
+- The "Risk Manager" is aware that all software have security vulnerabilities,
+  and that the related risks should be minimized.
+- Resources must be allocated to improve security and
+  to avoid, detect and fix vulnerabilities.
+- Management can perform well informed risk decisions
+- The "Risk Manager" has transparent knowledge on how secure the product is.
 
 ## Get to Know Security Policies
+
 Identify the security policies of your organization and adhere to them.
 
 
