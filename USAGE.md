@@ -392,6 +392,3 @@ are raised based on several Thresholds and events.
 There are canary values and events fired against monitoring
 from time to time to validate it works.
 
-# Credits
-
-The
