@@ -41,7 +41,7 @@ strategies, you can start from
 
 ## Onboard Product Owner and other Managers
 
-TO adopt a DSOMM in a product or a project, it is important to identify
+To adopt a DSOMM in a product or a project, it is important to identify
 the person or the team which is responsible to ensure
 that risk-related considerations reflects the organizational
 risk tolerance
