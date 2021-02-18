@@ -6,7 +6,10 @@ This article explains the usage of DSOMM, the dimensions and
 
 Before you start, there is kind of maturity level 0.
 
-The pre-requirements are highly based (mostly copied) on [AppSecure NRW](https://github.com/AppSecure-nrw/security-belts/tree/master/white).
+The pre-requirements are highly based (mostly copied) on
+ [AppSecure NRW](https://github.com/AppSecure-nrw/security-belts/tree/master/white).
+
+This model is based on "Security Belts".
 
 ## Risk management
 
@@ -78,50 +81,53 @@ The first steps for deploying DSOMM are then the following:
 
 Identify the security policies of your organization and adhere to them.
 
-
 Share with the Security Champion Guild how you perform the required activities
 from the policies, so others can benefit from your experience.
+
 In addition, provide feedback to the policy owner.
-Whenever you find yourself not adhering to the policies,
-communicate this to the person responsible for judging "risks vs.
-revenue"
-on your product (e.g., your Product Owner, manager),
-so they are aware of being out of policy.
+
+Communicate discrepancies with the defined security policies
+to the "Risk Manager"
+so that he can take proper measures.
 
 ### Benefits
 
-- Building and operating software securely is hard; utilizing standards
-  (as described in the security policies) makes it at least a bit easier.
-- Basic security risks, which are covered by security policies, are handled.
+- Adopting security policies addressing threats
+  simplifies building secure software.
+- Basic security risks are handled.
 
 ## Continuously Improve your Security Belt Rank
 
 Security is like a big pizza.
 You cannot eat it as a whole,
 but you can slice it and continuously eat small slices.
-To make this happen, ensure that the Product Owner continuously prioritizes
+
+Ensure that the "Risk Manager" continuously prioritizes
 the security belt activities for the next belt highly
 within the product backlog.
-Security belt activities make good slices because they are of reasonable
-size and have a defined output.
-Celebrate all your implemented security belt activities.
 
-## Benefits
+Security belt activities make "good slices" because they are of reasonable
+size and have a defined output.
+
+Celebrate all your implemented security belt activities!
+
+### Benefits
 
 - The team has time to improve its software security.
 - The team's initially high motivation and momentum can be used.
-- The Product Owner has transparency of the investment
-  and benefit of security belts.
+- The Risk Manager has visibility on the investment
+  and the benefits of security belts.
 - The team is improving its software security.
 
 ## Review Security Belt Activities
+
 Let the Security Champion Guild review your implementations of security belt
 activities (or concepts of these implementations) as soon as possible.
 This helps to eradicate misunderstandings of security belt activities early.
 
 ### Benefits
 
-- The quality of the implementation is increased.
+- The quality of the implementation increases.
 - Successes can be celebrated intermediately.
 - Early feedback before the belt assessment.
 
@@ -139,13 +145,15 @@ from the Security Champion Guild to get you started.
 
 # Dimensions
 
-In the following the dimensions and corresponding sub dimension are described.
+This section describes the various dimensions
+and the corresponding sub dimension.
+
 The descriptions are highly based (mostly copied)
 on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md).
 
 ## Implementation
 
-The dimension Implementation covers topic of "traditional"
+This dimension covers topic of "traditional"
 hardening of software and infrastructure components.
 
 There is an abundance of libraries and frameworks implementing
@@ -188,42 +196,57 @@ uses FTP to copy latest master to the development server which will become produ
 
 **Example High Maturity Scenario:**
 
-Team members have access to comprehensive documentation and a library of code snippets they can use to accelerate development.
+Team members have access to comprehensive documentation
+and a library of code snippets they can use to accelerate development.
 
-Linters are bundled with pre-commit hooks and no code reaches master without peer review.
+Linters are bundled with pre-commit hooks
+and no code reaches master without peer review.
 
 Pre-merge tests are executed before merging code into master.
-Tests run a comprehensive suite of tests covering unit tests, service acceptance tests,
+Tests run a comprehensive suite of tests covering unit tests,
+service acceptance tests,
 unit tests as well as regression tests.
 
-Once a day a pipeline of specially configured static code analysis tools runs against
-the features merged that day, the results are triaged by a trained security team and fed to engineering.
+Once a day a pipeline of specially configured
+static code analysis tools runs against
+the features merged that day, the results are
+triaged by a trained security team and fed to engineering.
 
 There is a cronjob executing Dynamic Analysis tools against Staging
 with a similar process.
 
-Pentests are conducted against features released on every release and also periodically against the whole software stack.
+Pentests are conducted against features released on every release
+and also periodically against the whole software stack.
 
 # Culture and Organization
 
-Culture and Organization covers topics related to culture and organization like processes, education and the design phase.
+This section covers topics related to culture and organization like
+processes, education and the design phase.
 
-Once requirements are gathered and analysis is performed, implementation specifics need to be defined.
-The outcome of this stage is usually a diagram outlining data flows and a general system architecture.
-This presents an opportunity for both threat modeling and attaching security considerations
- to every ticket and epic that is the outcome of this stage.
+Once requirements are gathered and analysis is performed,
+implementation specifics need to be defined.
+The outcome of this stage is usually a diagram outlining data flows
+and a general system architecture.
+This presents an opportunity for both threat modeling
+and attaching security considerations
+to every ticket and epic that is the outcome of this stage.
 
 ### Design
 
 There is some great advice on threat modeling out there
-*e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/) article or [this](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) one.
+*e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/)
+article or [this](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) one.
 
-A bite sized primer by Adam Shostack himself can be found [here](https://adam.shostack.org/blog/2018/03/threat-modeling-panel-at-appsec-cali-2018/).
+A bite sized primer by Adam Shostack himself can be found
+[here](https://adam.shostack.org/blog/2018/03/threat-modeling-panel-at-appsec-cali-2018/).
 
-OWASP includes a short [article](https://wiki.owasp.org/index.php/Category:Threat_Modeling) on Threat Modeling along with a relevant [Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html).
+OWASP includes a short [article](https://wiki.owasp.org/index.php/Category:Threat_Modeling)
+on Threat Modeling along with a relevant [Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html).
 Moreover, if you're following OWASP SAMM, it has a short section on [Threat Assessment](https://owaspsamm.org/model/design/threat-assessment/).
 
-There's a few projects that can help with creating Threat Models at this stage, [PyTM](https://github.com/izar/pytm) is one, [ThreatSpec](https://github.com/threatspec/threatspec) is another.
+There's a few projects that can help with creating Threat Models
+at this stage, [PyTM](https://github.com/izar/pytm) is one,
+[ThreatSpec](https://github.com/threatspec/threatspec) is another.
 
 > Note: _A threat model can be as simple as a data flow diagram with attack vectors on every flow and asset and equivalent remediations.
 An example can be found below._
