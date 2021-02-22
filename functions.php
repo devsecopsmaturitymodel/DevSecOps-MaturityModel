@@ -30,6 +30,10 @@ function getActions($dimensions) {
     }
 }
 
+function getReferenceLabel($reference_id) {
+    $referenceLabels = readYaml("data/strings.yml#/strings/en/references");
+    return $referenceLabels[$reference_id]["label"] ?? $reference_id;
+}
 
 // TODO create testcases
 

@@ -161,7 +161,8 @@ function getJson($dimensions)
 <form action="?" method="get">
 <input name="aggregated" type="hidden"
 <?php
-if($_GET['aggregated'] == "true") {
+$aggregated = $_GET['aggregated'] ?? null;
+if($aggregated == "true") {
     echo "value='false'";
 }else {
     echo "value='true'";
@@ -171,7 +172,7 @@ if($_GET['aggregated'] == "true") {
 </input>
     <button id="">
         <?php
-        if($_GET['aggregated'] == "true") {
+        if($aggregated == "true") {
             echo "Show specific values";
         }else {
             echo "Show total values";

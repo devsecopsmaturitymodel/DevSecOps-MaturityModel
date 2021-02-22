@@ -57,10 +57,11 @@ Build:
     implementation:
     - *ci-cd
     - Container technologies and orchestration like Docker, Kubernetes
-    samm2: i-secure-build|A|1
-    iso27001-2017:
-    - 12.1.1
-    - 14.2.2
+    references:
+      samm2: i-secure-build|A|1
+      iso27001-2017:
+      - 12.1.1
+      - 14.2.2
   Signing of code:
     risk: Unauthorized manipulation of source code might be difficult to spot.
     measure: Digitally signing commits helps to prevent unauthorized manipulation
@@ -74,10 +75,11 @@ Build:
     implementation: ~
     dependsOn:
     - Defined build process
-    samm: OA3-B
-    samm2: i-secure-build|A|2
-    iso27001-2017:
-    - 14.2.6
+    references:
+      samm: OA3-B
+      samm2: i-secure-build|A|2
+      iso27001-2017:
+      - 14.2.6
   Signing of artifacts:
     risk: Unauthorized manipulation of artifacts might be difficult to spot. For
       example, this may result in images with malicious code in the Docker registry.
@@ -94,10 +96,13 @@ Build:
     - <a href="https://in-toto.github.io/">in-toto</a>
     dependsOn:
     - Defined build process
-    samm: OA3-B
-    samm2: i-secure-build|A|1
-    iso27001-2017:
-    - 14.2.6
+    references:
+      samm:
+      - OA3-B
+      samm2:
+      - i-secure-build|A|1
+      iso27001-2017:
+      - 14.2.6
 Deployment:
   Backup before deployment:
     risk: If errors are experienced during the deployment process you want to deploy
@@ -114,11 +119,12 @@ Deployment:
       complex environments, a Point in Time Recovery for databases should be implemented.
     dependsOn:
     - Defined deployment process
-    samm: OE2-A
-    samm2: TODO
-    iso27001-2017:
-    - "12.3"
-    - 14.2.6
+    references:
+      samm: OE2-A
+      samm2: TODO
+      iso27001-2017:
+      - "12.3"
+      - 14.2.6
   Blue/Green Deployment:
     risk: A new artifacts version can have unknown defects.
     measure: By having multiple production environments, a deployment can be performant
@@ -134,14 +140,15 @@ Deployment:
       Deployments</a>
     dependsOn:
     - Smoke Test
-    samm2: TODO
-    iso27001-2017:
-    - 17.2.1
-    - 12.1.1
-    - 12.1.2
-    - 12.1.4
-    - 12.5.1
-    - 14.2.9
+    references:
+      samm2: TODO
+      iso27001-2017:
+      - 17.2.1
+      - 12.1.1
+      - 12.1.2
+      - 12.1.4
+      - 12.5.1
+      - 14.2.9
   Defined deployment process:
     risk: Deployments without a defined process are error prone thus allowing old
       or untested artifact to be deployed.
@@ -154,10 +161,11 @@ Deployment:
     usefulness: 4
     level: 1
     implementation: Jenkins, Docker
-    samm2: i-secure-deployment|A|1
-    iso27001-2017:
-    - 12.1.1
-    - 14.2.2
+    references:
+      samm2: i-secure-deployment|A|1
+      iso27001-2017:
+      - 12.1.1
+      - 14.2.2
   Environment depending configuration parameters:
     risk: Attackers who compromise source code can see confidential access information
       like database credentials.
@@ -170,11 +178,12 @@ Deployment:
     usefulness: 4
     level: 2
     implementation: ""
-    samm: SA2-A
-    samm2: i-secure-deployment|B|1
-    iso27001-2017:
-    - 9.4.5
-    - 14.2.6
+    references:
+      samm: SA2-A
+      samm2: i-secure-deployment|B|1
+      iso27001-2017:
+      - 9.4.5
+      - 14.2.6
   Handover of confidential parameters:
     risk:
     - Attackers who compromise a system can see confidential access information
@@ -194,14 +203,15 @@ Deployment:
     implementation: ""
     dependsOn:
     - Environment depending configuration parameters
-    samm: SA2-A
-    samm2: i-secure-deployment|B|2 TODO might be 1
-    iso27001-2017:
-    - 14.1.3
-    - 13.1.3
-    - 9.4.3
-    - 9.4.1
-    - 10.1.2
+    references:
+      samm: SA2-A
+      samm2: i-secure-deployment|B|2 TODO might be 1
+      iso27001-2017:
+      - 14.1.3
+      - 13.1.3
+      - 9.4.3
+      - 9.4.1
+      - 10.1.2
   Rolling update on deployment:
     risk: While a deployment is performed, the application can not be reached.
     measure: A deployment without downtime is performed*.

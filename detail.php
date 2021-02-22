@@ -80,24 +80,6 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
     }
 
     printReferences($element);
-
-    if (array_key_exists("samm", $element) && !empty($element['samm'])) {
-    	$samm = $element['samm'];
-    	echo "<div><b>OWASP SAMM 1 Mapping:</b> $samm</div>";
-    }
-    if (array_key_exists("samm2", $element) && !empty($element['samm2'])) {
-    	$samm = $element['samm2'];
-    	echo "<div><b>OWASP SAMM 2 Mapping:</b> $samm</div>";
-    }
-    if (array_key_exists("iso27001-2017", $element) && !empty($element['iso27001-2017'])) {
-        echo "<div><b>ISO27001:2017 Controls Mapping:</b></div>";
-
-        echo "<ul>";
-        foreach ($element['iso27001-2017'] as $isocontrol) {
-            echo "<li>$isocontrol</li>";
-        }
-        echo "</ul>";
-    }
 }
 
 function printReferences($element) {
@@ -105,15 +87,15 @@ function printReferences($element) {
         return;
     }
     $actionLabels = readYaml("data/strings.yml#/actionLabels");
-    $referenceLabels = readYaml("data/strings.yml#/strings/en/references");
 
     $references = $element['references'];
     foreach ($references as $r => $values) {
-        $label = $referenceLabels[$r]['label'] ? $referenceLabels[$r]['label'] : $r ;
+        $label = getReferenceLabel($r);
         echo "<div><h3>$label</h3></div>";
         echo "<ul><li>".  implode("</li><li>", $values) ."</li></ul>";
     }
     
 
 }
+echo var_dump($dimensions);
 printDetail($dimension, $subdimension, $activityName, $dimensions);

@@ -11,33 +11,38 @@ include_once "detail.php";
 
 $mappingExists = array();
 $noMappingExists = array();
+$sort = $_GET["sort"] ?? "activity";
 
-if(array_key_exists("sort", $_GET)) {
-    $sort = $_GET["sort"];
-}else {
-    $sort = "activity";
+
+$referenceLabels = readYaml("data/strings.yml#/strings/en/references");
+
+function formCheck($reference_id) {
+        if($_GET['sort'] == $reference_id) {
+            $checked = "checked";
+        }
+        $reference_label = $referenceLabels[$reference_id]["label"] ?? $reference_id;
+        echo '
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="'.$reference_id.'"
+         '. $checked. '
+        <label class="form-check-label" for="exampleRadios2">'. $reference_label.'</label>
+        </div>
+        ';
 }
 
 ?>
-
 <form method="get">
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="sort" id="exampleRadios1" value="activity" <?php if($_GET['sort'] == "activity") echo "checked"; ?>>
-        <label class="form-check-label" for="exampleRadios1">
-            Activity
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="samm2" <?php if($_GET['sort'] == "samm2") echo "checked"; ?>>
-        <label class="form-check-label" for="exampleRadios2">
-            SAMM 2
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" type="radio" name="sort" id="exampleRadios3" value="iso27001-2017" <?php if($_GET['sort'] == "iso27001-2017") echo "checked"; ?>>
-        <label class="form-check-label" for="exampleRadios3">
-            ISO27001:27001
-        </label>
+        <input class="form-check-input" type="radio" name="sort" id="exampleRadios1" value="activity"
+         <?php if($_GET['sort'] == "activity") echo "checked"; ?>>
+        <label class="form-check-label" for="exampleRadios1"> Activity </label>
+    </div>
+    <?php
+    foreach($referenceLabels as $r) {
+        echo formCheck($r);
+    }
+    ?>
+
     </div>
     <div class="form-check">
         <input type="checkbox" class="form-check-input" name="performed" id="exampleCheck1" value="true" <?php if($showPerformed) {echo " checked=checked";}?>>
@@ -85,13 +90,7 @@ if($sort == "activity") {
     <table class="table">
     <thead>
         <tr>
-            <?php
-                if($sort == "iso27001-2017") {
-                    echo '<th scope="col">ISO 27001 Control</th>';
-                }else {
-                    echo '<th scope="col">' . $sort . '</th>';
-                }
-            ?>
+            <?php echo '<th scope="col">' . $sort . '</th>'; ?>
             <th scope="col">Dimension</th>
             <th scope="col">Subdimension</th>
             <th scope="col">Actvity</th>
