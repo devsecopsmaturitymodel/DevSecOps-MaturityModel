@@ -30,13 +30,15 @@ Build:
       time: 2
       resources: 2
     usefulness: 2
+    level: 2
     implementation:
     - Container technologies and orchestration like Docker, Kubernetes
     - *ci-cd
-    level: 2
-    samm2: i-secure-build|A|2
-    iso27001-2017:
-    - 14.2.6
+    references:
+      samm2:
+      - i-secure-build|A|2
+      iso27001-2017:
+      - 14.2.6
   Defined build process:
     risk:
     - Performing builds without a defined process is error prone; for example, as

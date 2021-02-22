@@ -78,6 +78,9 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
         $comment = $element['comment'];
         echo "<div><b>Comments:</b> $comment</div>";
     }
+
+    printReferences($element);
+
     if (array_key_exists("samm", $element) && !empty($element['samm'])) {
     	$samm = $element['samm'];
     	echo "<div><b>OWASP SAMM 1 Mapping:</b> $samm</div>";
@@ -97,4 +100,20 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
     }
 }
 
+function printReferences($element) {
+    if (!array_key_exists("references", $element)) {
+        return;
+    }
+    $actionLabels = readYaml("data/strings.yml#/actionLabels");
+    $referenceLabels = readYaml("data/strings.yml#/strings/en/references");
+
+    $references = $element['references'];
+    foreach ($references as $r => $values) {
+        $label = $referenceLabels[$r]['label'] ? $referenceLabels[$r]['label'] : $r ;
+        echo "<div><h3>$label</h3></div>";
+        echo "<ul><li>".  implode("</li><li>", $values) ."</li></ul>";
+    }
+    
+
+}
 printDetail($dimension, $subdimension, $activityName, $dimensions);
