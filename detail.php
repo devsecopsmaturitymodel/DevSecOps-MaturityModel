@@ -1,6 +1,8 @@
 <?php
 
-$title = "Details for '" . htmlspecialchars($_GET['element']) . "'";
+if (array_key_exists("element", $_GET)) {
+    $title = "Details for '" . htmlspecialchars($_GET['element']) . "'";
+}
 include_once "head.php";
 ?>
     <body>
@@ -8,13 +10,13 @@ include_once "head.php";
 include_once "data.php";
 include_once "navi.php";
 
-$dimension = $_GET['dimension'];
-$subdimension = $_GET['subdimension'];
-$activityName = $_GET['element'];
+$dimension = $_GET['dimension'] ?? null;
+$subdimension = $_GET['subdimension'] ?? null;
+$activityName = $_GET['element'] ?? null;
 
 function printDetail($dimension, $subdimension, $activityName, $dimensions, $report = false)
 {
-    $element = $dimensions[$dimension][$subdimension][$activityName];
+    $element = $dimensions[$dimension][$subdimension][$activityName] ?? null;
 
     if ($element == null) { //Whitelist approach for security reasons (deny XSS)
         //echo "Sorry, we could not found the element";
@@ -90,6 +92,9 @@ function printReferences($element) {
 
     $references = $element['references'];
     foreach ($references as $r => $values) {
+        // if it's not an array, array-ze it. Remove after fixing all yamls.
+        $values = is_array($values) ? $values : array($values);
+
         $label = getReferenceLabel($r);
         echo "<div><h3>$label</h3></div>";
         echo "<ul><li>".  implode("</li><li>", $values) ."</li></ul>";
@@ -97,5 +102,5 @@ function printReferences($element) {
     
 
 }
-echo var_dump($dimensions);
+// echo var_dump($dimensions);
 printDetail($dimension, $subdimension, $activityName, $dimensions);

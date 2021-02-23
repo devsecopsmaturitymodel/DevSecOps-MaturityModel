@@ -17,6 +17,7 @@ function readYaml($file) {
     return $ret;
 }
 
+/** This function should be a sort of db wrapper. */
 function getActions($dimensions) {
     ksort($dimensions);
     foreach ($dimensions as $dimension => $subdimensions) {
@@ -30,9 +31,41 @@ function getActions($dimensions) {
     }
 }
 
+function getReferenceLabels(){
+    return readYaml("data/strings.yml#/strings/en/references");
+}
 function getReferenceLabel($reference_id) {
     $referenceLabels = readYaml("data/strings.yml#/strings/en/references");
+
     return $referenceLabels[$reference_id]["label"] ?? $reference_id;
+}
+
+
+function renderSamm($samm_reference){
+    return "$samm_reference";
+}
+function as_list($items){
+    if(is_array($items)){
+        yield from $items;
+    } else {
+        yield $items;
+    }
+}
+function renderSamms($samm_references) {
+    if( ! is_array($samm_references) ){
+        return renderSamm($samm_references);
+    }
+
+        $ret = "<ul><li>"
+            . implode("</li><li>", array_map('renderSamm', $samm_references)) 
+            ."</li></ul>";
+    return $ret;
+}
+function getReferences($references) {
+    foreach ($references as $r_name => $rlist) {
+
+    }
+
 }
 
 // TODO create testcases

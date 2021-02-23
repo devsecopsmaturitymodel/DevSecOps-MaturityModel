@@ -36,9 +36,9 @@ Build:
     - *ci-cd
     references:
       samm2:
-      - i-secure-build|A|2
+      - "samm2:i-secure-build|A|2"
       iso27001-2017:
-      - 14.2.6
+      - "iso27001-2017:14.2.6"
   Defined build process:
     risk:
     - Performing builds without a defined process is error prone; for example, as
@@ -58,7 +58,8 @@ Build:
     - *ci-cd
     - Container technologies and orchestration like Docker, Kubernetes
     references:
-      samm2: i-secure-build|A|1
+      samm2:
+      - i-secure-build|A|1
       iso27001-2017:
       - 12.1.1
       - 14.2.2
@@ -120,8 +121,10 @@ Deployment:
     dependsOn:
     - Defined deployment process
     references:
-      samm: OE2-A
-      samm2: TODO
+      samm:
+      - OE2-A
+      samm2:
+        - TODO
       iso27001-2017:
       - "12.3"
       - 14.2.6
@@ -141,7 +144,8 @@ Deployment:
     dependsOn:
     - Smoke Test
     references:
-      samm2: TODO
+      samm2:
+      - TODO
       iso27001-2017:
       - 17.2.1
       - 12.1.1
@@ -179,8 +183,10 @@ Deployment:
     level: 2
     implementation: ""
     references:
-      samm: SA2-A
-      samm2: i-secure-deployment|B|1
+      samm:
+      - SA2-A
+      samm2:
+      - i-secure-deployment|B|1
       iso27001-2017:
       - 9.4.5
       - 14.2.6
@@ -283,7 +289,7 @@ Deployment:
       resources: 1
     usefulness: 3
     level: 2
-    samm2: i-secure-deployment|A|2
+    samm2: samm2:i-secure-deployment|A|2
     iso27001-2017:
     - 15.1.1
     - 15.1.2
