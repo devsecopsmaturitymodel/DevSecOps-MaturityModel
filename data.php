@@ -5,18 +5,14 @@ $dimensions = array();
 
 $files = scandir("data");
 
-$dimensions = array(
-    "Culture and Org." => readYaml("data/CultureandOrg.yml"),
-    "Build and Deployment" => readYaml("data/BuildandDeployment.yml#/sub-dimensions"),
-    "Information Gathering" => readYaml("data/Informationgathering.yml"),
-    "Implementation" => readYaml("data/Implementation.yml"),
-    "Test and Verification" => readYaml("data/TestandVerification.yml")
-);
+$dimensions = readYaml("data/dimensions.yaml");
 
 ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
     foreach ($subDimension as $subDimensionName => $elements) {
+        if (substr($subDimensionName, 0, 1) == "_")
+            continue;
         $newElements = $elements;
         ksort($newElements);
         $dimensions[$dimensionName][$subDimensionName] = $newElements;
@@ -42,6 +38,8 @@ $filteredDimensions = array();
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
     foreach ($subDimension as $subDimensionName => $elements) {
+        if (substr($subDimensionName, 0, 1) == "_")
+            continue;
         $newElements = $elements;
         ksort($newElements);
         foreach ($newElements as $activityName => $activity) {

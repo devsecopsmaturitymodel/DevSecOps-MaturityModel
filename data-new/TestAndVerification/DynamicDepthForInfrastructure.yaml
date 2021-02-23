@@ -1,0 +1,93 @@
+---
+Dynamic depth for infrastructure:
+  Load tests:
+    risk: As it is unknown how many requests the systems and applications can serve,
+      due to an unexpected load the availability is disturbed.
+    measure: Load test against the production system or a production near system is
+      performed.
+    difficultyOfImplementation:
+      knowledge: 3
+      time: 2
+      resources: 5
+    usefulness: 3
+    level: 4
+    samm2: v-security-testing|A|1
+    iso27001-2017:
+    - 12.1.3
+    - 14.2.3
+    - 14.2.8
+  Test of the configuration of cloud environments:
+    risk: Standard hardening practices for cloud environments are not performed leading
+      to vulnerabilities.
+    measure: With the help of tools the configuration of virtual environments are
+      tested.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 4
+    level: 2
+    implementation:
+    - <a href='https://github.com/aquasecurity/kube-hunter'>kube-hunter</a>
+    - openVAS
+    samm: EH2-B
+    iso27001-2017:
+    - system hardening is not explicitly covered by ISO 27001 - too specific
+    - 12.6.1
+    - 14.2.3
+    - 14.2.8
+  Weak password test:
+    risk: Weak passwords in components like applications or systems, specially for
+      privileged accounts, lead to take over of that account.
+    measure: Automatic brute force attacks are performed. Specially the usage of standard
+      accounts like 'admin' and employee user-ids is recommended.
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 1
+      resources: 1
+    usefulness: 1
+    level: 3
+    implementation: HTC Hydra
+    samm2: v-security-testing|A|2
+    iso27001-2017:
+    - 9.4.3
+  Test network segmentation:
+    risk: Wrong or no network segmentation of pods makes it easyer for an attacker
+      to access a database and extract or modify data.
+    measure: Cluster interal test needs to be performed. Integration of fine granulated
+      network segmenation (also between pods in the same namespace).
+    difficultyOfImplementation:
+      knowledge: 2
+      time: 2
+      resources: 1
+    usefulness: 3
+    level: 2
+    implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
+    dependendsOn: Segmented networks for virtual environments
+    samm2: v-security-testing|A|2
+    iso27001-2017:
+    - 13.1.3
+    - 14.2.3
+    - 14.2.8
+  Test for exposed services:
+    risk: Standard network segmentation and firewalling has not been performed, leading
+      to world open cluster management ports.
+    measure: With the help of tools the network configuration of unintenonal exposed
+      cluster(s) are tested. To identify clusters, all subdomains might need to be
+      identified with a tool like OWASP Amass to perform portscans based o the result.
+    difficultyOfImplementation:
+      knowledge: 1
+      time: 1
+      resources: 1
+    usefulness: 3
+    level: 1
+    implementation:
+    - nmap
+    - <a href="https://github.com/OWASP/Amass">OWASP Amass</a>
+    samm: EH2-B
+    samm2: v-security-testing|A|1
+    iso27001-2017:
+    - 13.1.3
+    - 14.2.3
+    - 14.2.8
+...

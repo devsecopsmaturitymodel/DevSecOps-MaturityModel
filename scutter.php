@@ -8,13 +8,15 @@ include_once "navi.php";
 
 <?php
 include_once "data.php";
+include_once "functions.php";
+
+
 function getJson($dimensions)
 {
     $json = array();
     $shapes = array('circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square');
     $shape = 0;
-    foreach ($dimensions as $dimension => $subdimensions) {
-        foreach ($subdimensions as $subdimension => $element) {
+    foreach(getActions($dimensions) as list($dimension, $subdimension, $element)) {
             $values = array();
             foreach ($element as $activityName => $content) {
                 $values[] = array(
@@ -31,7 +33,6 @@ function getJson($dimensions)
                 "values" => $values
             );
             $shape++;
-        }
     }
     return json_encode($json);
 }
