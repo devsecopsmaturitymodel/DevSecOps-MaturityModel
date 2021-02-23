@@ -1,0 +1,21 @@
+maturity-levels:
+  level-1:
+    level: 1
+    label: "Basic understanding of security practices"
+    description: |-
+      An extensive description of Level 1
+  level-2:
+    level: 2
+    label:  "Adoption of basic security practices"
+    description: |-
+      An extensive description of this level in markdown format.
+  level-3:
+    level: 3
+    label:  "High adoption of security practices"
+    description: |-
+      An extensive description of this level in markdown format.
+  level-4:
+    level: 4
+    label:  "Advanced deployment of security practices at scale"
+    description: |-
+      An extensive description of this level in markdown format.

@@ -77,19 +77,20 @@ $domain = 'messages';
 bindtextdomain ( $domain, "locale" );
 textdomain ( $domain );
 function getTableHeader() {
-	$headers = array (
-			"Dimension",
-			"Sub-Dimension",
-			"Level 1: Basic understanding of security practices" ,
-			"Level 2: Adoption of basic security practices",
-			"Level 3: High adoption of security practices",
-			"Level 4: Advanced deployment of security practices at scale"
-	);
-	$headerContent = "<thead  class=\"thead-default\"><tr>";
-	foreach ( $headers as $header ) {
-		$headerContent .= "<th>$header</th>";
-	}
-	return $headerContent . "</tr></thead>";
+    $levels_labels = array_map(
+        function($item){
+            return "Level " . $item['level']. ": ". $item['label'];
+        },
+        readYaml("data/maturity-levels.yaml#/maturity-levels")
+    );
+    $headers = array_merge(
+        array ("Dimension", "Sub-Dimension"),
+        $levels_labels
+    );
+
+	return "<thead  class=\"thead-default\"><tr>"
+	    ."<th>" . implode("</th><th>", $headers) . "</th>"
+	    ."</tr></thead>";
 }
 function getInfos($dimensions) {
 	$text = "Activity Count: " . getElementCount ( $dimensions );
