@@ -167,7 +167,7 @@ function getJson($dimensions)
 
     <button id="">
         <?php
-        if($_GET['aggregated'] == "true") {
+        if($aggregated == "true") {
             echo "Show specific values";
         }else {
             echo "Show total values";
