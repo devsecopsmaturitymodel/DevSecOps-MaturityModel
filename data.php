@@ -135,31 +135,34 @@ function getElementContentAndCheckExistence($parent, $name)
 function getElementContent($element)
 {
     $Extra = new ParsedownExtra();
-    $contentString = "";
-    if (is_array($element)) {
-        if (isAssoc($element)) {
-            foreach ($element as $title => $elementContent) {
-                $titleWithSpace = preg_replace('/(?<=[a-z])[A-Z]|[A-Z](?=[a-z])/', ' $0', $title);
-                $contentString .= "<b>" . ucfirst($titleWithSpace) . "</b>";
-                $contentString .= "<ul>";
-                if (is_array($elementContent)) {
-                    $contentString .= getElementContent($elementContent);
-                } else
-                    $contentString .= "<li>" . $Extra->text($elementContent) . "</li>";
-                $contentString .= "</ul>";
-            }
+    if (!is_array($element)){
+        return str_replace("\"", "'", $element);
+    }
 
-        } else {
+    if (isAssoc($element)) {
+        $contentString = "";
+
+        foreach ($element as $title => $elementContent) {
+            $titleWithSpace = preg_replace('/(?<=[a-z])[A-Z]|[A-Z](?=[a-z])/', ' $0', $title);
+            $contentString .= "<b>" . ucfirst($titleWithSpace) . "</b>";
             $contentString .= "<ul>";
-            foreach ($element as $content) {
-                $contentString .= "<li>" . $Extra->text($content) . "</li>";
-            }
+            if (is_array($elementContent)) {
+                $contentString .= getElementContent($elementContent);
+            } else
+                $contentString .= "<li>" . $Extra->text($elementContent) . "</li>";
             $contentString .= "</ul>";
         }
+        return $contentString;
 
-    } else {
-        $contentString = str_replace("\"", "'", $element);
+    } 
+    
+    // default
+    $contentString = "<ul>";
+    foreach ($element as $content) {
+        $contentString .= "<li>" . $Extra->text($content) . "</li>";
     }
+    $contentString .= "</ul>";
+
     return $contentString;
 }
 
