@@ -59,6 +59,7 @@ foreach ($dimensions as $dimensionName => $subDimension) {
 
 function getDifficultyOfImplementationWithDependencies($dimensions, $elementImplementation, &$allElements)
 {
+    $aggregated = ($_GET['aggregated'] ?? false) == "true" ? "true" : false;
     if ($elementImplementation == null) {
         return;
     }
@@ -69,7 +70,7 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
     $allElements[] = $elementImplementation['difficultyOfImplementation']["time"];
     $allElements[] = $elementImplementation['difficultyOfImplementation']["resources"];
 
-    if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
+    if (array_key_exists('dependsOn', $elementImplementation) && $aggregated == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
             $dependencyElement = getElementByName($dimensions, $dependency);
             getDifficultyOfImplementationWithDependencies($dimensions, $dependencyElement, $allElements);
@@ -87,6 +88,7 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
 
 function getDifficultyOfImplementation($dimensions, $elementImplementation)
 {
+    $aggregated = ($_GET['aggregated'] ?? false) == "true" ? "true" : false;
     if ($elementImplementation == null) {
         return;
     }
@@ -96,7 +98,7 @@ function getDifficultyOfImplementation($dimensions, $elementImplementation)
     $value = $knowledge + $elementImplementation['difficultyOfImplementation']["time"] * 2 + $elementImplementation['difficultyOfImplementation']["resources"];
     $value = $value / 4;
 
-    if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
+    if (array_key_exists('dependsOn', $elementImplementation) && $aggregated == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
             $dependencyElement = getElementByName($dimensions, $dependency);
             $value += getDifficultyOfImplementation($dimensions, $dependencyElement);

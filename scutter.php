@@ -10,6 +10,8 @@ include_once "navi.php";
 include_once "data.php";
 include_once "functions.php";
 
+$aggregated = ($_GET['aggregated'] ?? false) == "true" ? "true" : false;
+
 
 function getJson($dimensions)
 {
@@ -21,7 +23,7 @@ function getJson($dimensions)
             foreach ($element as $activityName => $content) {
                 $values[] = array(
                     "series" => 0,
-                    "shape" => $shapes[$shape],
+                    "shape" => $shapes[$shape] ?? "square",
                     "size" => 3000,
                     "x" => getDifficultyOfImplementation($dimensions, $content),
                     "y" => $content["usefulness"],
@@ -159,16 +161,10 @@ function getJson($dimensions)
 <button id="toggleChartLabel">Toggle Label</button>
 
 <form action="?" method="get">
-<input name="aggregated" type="hidden"
 <?php
-if($_GET['aggregated'] == "true") {
-    echo "value='false'";
-}else {
-    echo "value='true'";
-}
-?>">
+    echo "<input name=\"aggregated\" type=\"hidden\" value=\"$aggregated\" />";
+?>
 
-</input>
     <button id="">
         <?php
         if($_GET['aggregated'] == "true") {
