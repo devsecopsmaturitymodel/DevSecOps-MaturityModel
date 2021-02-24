@@ -36,19 +36,19 @@ var _d3;
                 return d;
             }
             if (d <= 1.5) {
-                return "Sehr gering";
+                return "Very low";
             }
             if (d <= 2.5) {
-                return "Gering";
+                return "Low";
             }
             if (d <= 3.5) {
-                return "Mittel";
+                return "Medium";
             }
             if (d <= 4.5) {
-                return "Hoch"
+                return "High"
             }
             if (d <= 5) {
-                return "Sehr Hoch";
+                return "Very High";
             }
             return "";
         }
