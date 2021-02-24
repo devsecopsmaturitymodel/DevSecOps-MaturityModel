@@ -68,49 +68,52 @@ if($sort == "activity") {
 
     echo '<tbody>';
     
-    foreach ($filteredDimensions as $dimension => $subdimensions) {
-        foreach ($subdimensions as $subdimension => $activity) {
-            foreach ($activity as $activityName => $content) {
-                echo "<tr>";
-                echo "<td>$dimension</td>";
-                echo "<td>$subdimension</td>";
-                $tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $content ) . "</div>";
-                $activityLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
-                echo "<td><a href='$activityLink'><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></a></td>";
+    foreach(getActions($filteredDimensions) as list($dimension, $subdimension, $activities)) {
+        foreach ($activities as $activityName => $activity) {
+            echo "<tr>";
+            echo "<td>$dimension</td>";
+            echo "<td>$subdimension</td>";
+            $activityLink = "detail.php?". 
+                http_build_query(array(
+                    "dimension" => $dimension,
+                    "subdimension"=> $subdimension,
+                    "element"=> $activityName 
+                ));
+            echo "<td><a href='$activityLink'>"
+                .div_tooltip($activityName, $activityName, build_table_tooltip ( $activity ))
+                ."</a></td>";
 
-                foreach($referenceLabels as $r => $rLabel){
-                    $rlist = $content["references"][$r] ?? array();
-                    echo "<td>". renderSamms($rlist) ."</td>";
-                }
+            foreach($referenceLabels as $r => $rLabel){
+                $rlist = $activity["references"][$r] ?? array();
+                echo "<td>". renderSamms($rlist) ."</td>";
             }
         }
     }
-} else {
+} else { // sort by samm2, iso, samm
+    // populate mapping:
+    // mapping = value, activity, content
+    $mapping = array();
+    foreach(getActions($filteredDimensions) as list($dimension, $subdimension, $activities)) {
+        foreach ($activities as $activityName => $activity) {
+            $activity["dimension"] = $dimension;
+            $activity["subdimension"] = $subdimension;
+
+            $references = $activity["references"][$sort] ?? array();
+            foreach(as_list($references) as $mappingContent) {
+                $mapping[$mappingContent][$activityName] = $activity;
+            }
+        }
+    }
+
+
+    // render table
     echo '<table class="table">';
     $headings = array_merge(array("$sort"), $headings, array_keys(getReferenceLabels()));
     thead($headings);
 
     echo '<tbody>';
-    $mapping = array();
 
-
-    // populate mapping:
-    // mapping = value, activity, content
-    foreach ($filteredDimensions as $dimension => $subdimensions) {
-        foreach ($subdimensions as $subdimension => $activity) {
-            foreach ($activity as $activityName => $content) {
-                $content["dimension"] = $dimension;
-                $content["subdimension"] = $subdimension;
-
-                $references = $content["references"][$sort] ?? array();
-                foreach(as_list($references) as $mappingContent) {
-                    $mapping[$mappingContent][$activityName] = $content;
-                }
-            }
-        }
-    }
-
-    // render
+    // render mappings.
     ksort($mapping, SORT_NUMERIC);
     foreach($mapping as $mappingName => $mappingElement) {
         foreach($mappingElement as $activityName => $activity) {
@@ -118,9 +121,15 @@ if($sort == "activity") {
             echo "<td>" . $mappingName . "</td>";
             echo "<td>" . $activity['dimension'] . "</td>";
             echo "<td>" . $activity['subdimension'] . "</td>";
-            $tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $activity ) . "</div>";
-            $activityLink = "detail.php?dimension=" . urlencode ( $activity['dimension'] ) . "&subdimension=" . urlencode ( $activity['subdimension'] ) . "&element=" . urlencode ( $activityName );
-            echo "<td><a href='$activityLink'><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></></td>";
+            $activityLink = "detail.php?". 
+                http_build_query(array(
+                    "dimension" => $dimension,
+                    "subdimension"=> $subdimension,
+                    "element"=> $activityName 
+                ));
+            echo "<td><a href='$activityLink'>"
+                .div_tooltip($activityName, $activityName, build_table_tooltip ( $activity ))
+                ."</a></td>";
 
             foreach($referenceLabels as $r => $rLabel){
                 $rlist = $activity["references"][$r] ?? array();

@@ -8,7 +8,7 @@ $dimensions = array();
 $files = scandir("data");
 $dimensions = readYaml("data/dimensions.yaml");
 
-// reorder in-place $dimensions.
+// reorder in-place $dimensions. This should wrap readYaml(data/dimensions.yaml)
 ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
@@ -184,6 +184,9 @@ function render_risk($risk) {
     }
     return $risk;
 }
+/**
+ * Render an activity in a tooltip.
+ */
 function build_table_tooltip($array, $headerWeight = 2)
 {
     $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
@@ -211,6 +214,7 @@ function build_table_tooltip($array, $headerWeight = 2)
     $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$array['difficultyOfImplementation']['resources'] - 1]) . "</div>";
     return $html;
 }
+
 
 function getElementByName($dimensions, $name)
 {

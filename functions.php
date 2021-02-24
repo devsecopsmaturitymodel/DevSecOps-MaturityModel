@@ -46,7 +46,13 @@ function thead($headings){
         .'</th></tr></thead>';
 }
 
-
+function div_tooltip($title, $html_content, $html_tooltip) {
+    $tooltip =  "<div class='popoverdetails'>" .$html_tooltip . "</div>";
+    return "<div data-toggle=\"popover\" 
+        data-title=\"$title\" 
+        data-activity=\".$html_tooltip\" 
+        type=\"button\" data-html=\"true \">" . $html_content . "</div>";
+}
 function renderSamm($samm_reference){
     return "$samm_reference";
 }
