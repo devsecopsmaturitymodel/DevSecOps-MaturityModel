@@ -2,3 +2,7 @@
 html {
   overflow-y: scroll;
 }
+
+.form-radio {
+  display: inline-block;
+}

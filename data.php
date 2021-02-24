@@ -1,39 +1,46 @@
 <?php
 require_once("functions.php");
 
+$showPerformed = ($_GET['performed'] ?? false) == "true" ? "true" : false;
+$showPlanned = ($_GET['planned'] ?? false) == "true" ? "true" : false;
+
 $dimensions = array();
-
 $files = scandir("data");
-
 $dimensions = readYaml("data/dimensions.yaml");
 
+// reorder in-place $dimensions.
 ksort($dimensions);
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
     foreach ($subDimension as $subDimensionName => $elements) {
+
+        // Q: should I retain this?
         if (substr($subDimensionName, 0, 1) == "_")
             continue;
+
+        // Upgrade old configuration to `references:`
+        //   this code can be modified to other models.
+        foreach ($elements as $activityName => $content) {
+            
+            if ($content["references"] ?? null) // ignore new lines
+                continue;
+
+            $content["references"]["samm2"] = $content["samm2"] ?? array();
+            unset($content["samm2"]);
+            $content["references"]["iso27001-2017"] = $content["iso27001-2017"] ?? array();
+            unset($content["iso27001-2017"]);
+            //echo var_dump($elements[$activityName]);
+            //echo "<hr>";
+            $elements[$activityName] = $content;
+            
+        }
         $newElements = $elements;
         ksort($newElements);
         $dimensions[$dimensionName][$subDimensionName] = $newElements;
     }
 }
 
-if (array_key_exists("performed", $_GET)) {
-    $showPerformed = $_GET['performed'];
 
-    if ($showPerformed != "true") $showPerformed = false;
-} else {
-    $showPerformed = false;
-}
-
-if (array_key_exists("planned", $_GET)) {
-    $showPlanned = $_GET['planned'];
-
-    if ($showPlanned != "true") $showPlanned = false;
-} else {
-    $showPlanned = false;
-}
 $filteredDimensions = array();
 foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
@@ -208,10 +215,10 @@ function build_table_tooltip($array, $headerWeight = 2)
 function getElementByName($dimensions, $name)
 {
     foreach ($dimensions as $dimensionName => $subDimension) {
-        foreach ($subDimension as $subDimensionName => $elements) {
-            foreach ($elements as $activityName => $element) {
+        foreach ($subDimension as $subDimensionName => $activities) {
+            foreach ($activities as $activityName => $content) {
                 if ($activityName == $name) {
-                    return $element;
+                    return $content;
                 }
             }
         }

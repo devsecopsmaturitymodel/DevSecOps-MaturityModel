@@ -5,8 +5,9 @@ include_once "head.php";
 <?php
 include_once "navi.php";
 ?>
+
 <?php
-include_once "data.php";
+include_once "data.php";  // set showPlanned, showPerformed, filteredDimensions
 include_once "detail.php";
 include_once "functions.php";
 
@@ -22,7 +23,7 @@ function formCheck($reference_id, $sort) {
         $checked = ($sort == $reference_id) ? "checked": "";
         $reference_label = getReferenceLabel($reference_id);
         return '
-        <div class="form-check">
+        <div class="form-radio">
         <input class="form-check-input" type="radio" name="sort"
             id="radio'.$reference_id.'" 
             value="'.$reference_id.'"
@@ -31,25 +32,19 @@ function formCheck($reference_id, $sort) {
         </div>
         ';
 }
-function thead($headings){
-    echo '<thead><tr><th scope="col">'
-        .implode('</th><th scope="col">', $headings)
-        .'</th></tr></thead>';
-}
-
 
 ?>
 <form method="get">
-    <?php
-
-    // Print form headers
-    echo formCheck("activity", $sort);
-    foreach ($referenceLabels as $r => $metadata) {
-        echo formCheck($r, $sort);
-    }
-    ?>
-
-    </div>
+    <div class="sort-by">
+        Sort by:
+        <?php
+        // Print form headers
+        echo formCheck("activity", $sort);
+        foreach ($referenceLabels as $r => $metadata) {
+            echo formCheck($r, $sort);
+        }
+        ?>
+    </div>  
     <div class="form-check">
         <input type="checkbox" class="form-check-input" name="performed" id="exampleCheck1" value="true"
          <?php if($showPerformed) {echo " checked=checked";}?>>
@@ -83,12 +78,6 @@ if($sort == "activity") {
                 $activityLink = "detail.php?dimension=" . urlencode ( $dimension ) . "&subdimension=" . urlencode ( $subdimension ) . "&element=" . urlencode ( $activityName );
                 echo "<td><a href='$activityLink'><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></a></td>";
 
-                // uniform old content.                
-                if (!($content["references"] ?? NULL)){
-                    $content["references"]["samm2"] = $content["samm2"] ?? array();
-                    $content["references"]["iso27001-2017"] = $content["iso27001-2017"] ?? array();
-                }
-
                 foreach($referenceLabels as $r => $rLabel){
                     $rlist = $content["references"][$r] ?? array();
                     echo "<td>". renderSamms($rlist) ."</td>";
@@ -113,21 +102,8 @@ if($sort == "activity") {
                 $content["dimension"] = $dimension;
                 $content["subdimension"] = $subdimension;
 
-                if (! ($content["references"] ?? null)) {
-                    // default.
-                    if (!($content[$sort] ?? null)){
-                        error_log("No $sort mapping for $activityName");
-                        continue;
-                    }
-
-                    foreach(as_list($content[$sort]) as $mappingContent) {
-                        $mapping[$mappingContent][$activityName] = $content;
-                    }
-                    continue;
-                }
-
-                foreach($content["references"] as $mappingContent => $rlist) {
-                    echo var_dump("$mappingContent");
+                $references = $content["references"][$sort] ?? array();
+                foreach(as_list($references) as $mappingContent) {
                     $mapping[$mappingContent][$activityName] = $content;
                 }
             }
@@ -145,12 +121,6 @@ if($sort == "activity") {
             $tooltip = "<div class='popoverdetails'>" . build_table_tooltip ( $activity ) . "</div>";
             $activityLink = "detail.php?dimension=" . urlencode ( $activity['dimension'] ) . "&subdimension=" . urlencode ( $activity['subdimension'] ) . "&element=" . urlencode ( $activityName );
             echo "<td><a href='$activityLink'><div data-toggle=\"popover\" data-title=\"$activityName\" data-content=\"$tooltip\" type=\"button\" data-html=\"true \">" . $activityName . "</div></></td>";
-            
-                            // uniform old content.                
-            if (!($activity["references"] ?? NULL)){
-                $activity["references"]["samm2"] = $activity["samm2"] ?? array();
-                $activity["references"]["iso27001-2017"] = $activity["iso27001-2017"] ?? array();
-            }
 
             foreach($referenceLabels as $r => $rLabel){
                 $rlist = $activity["references"][$r] ?? array();

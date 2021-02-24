@@ -40,6 +40,12 @@ function getReferenceLabel($reference_id) {
     return $referenceLabels[$reference_id]["label"] ?? $reference_id;
 }
 
+function thead($headings){
+    echo '<thead><tr><th scope="col">'
+        .implode('</th><th scope="col">', $headings)
+        .'</th></tr></thead>';
+}
+
 
 function renderSamm($samm_reference){
     return "$samm_reference";
