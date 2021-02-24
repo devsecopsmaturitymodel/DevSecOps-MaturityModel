@@ -1,65 +1,24 @@
 <?php
 require_once("functions.php");
 
+// get form data
 $showPerformed = ($_GET['performed'] ?? false) == "true" ? "true" : false;
 $showPlanned = ($_GET['planned'] ?? false) == "true" ? "true" : false;
 
-$dimensions = array();
-$files = scandir("data");
-$dimensions = readYaml("data/dimensions.yaml");
+$dimensions = getDimensions();
 
-// reorder in-place $dimensions. This should wrap readYaml(data/dimensions.yaml)
-ksort($dimensions);
-foreach ($dimensions as $dimensionName => $subDimension) {
-    ksort($subDimension);
-    foreach ($subDimension as $subDimensionName => $elements) {
-
-        // Q: should I retain this?
-        if (substr($subDimensionName, 0, 1) == "_")
-            continue;
-
-        // Upgrade old configuration to `references:`
-        //   this code can be modified to other models.
-        foreach ($elements as $activityName => $content) {
-            
-            if ($content["references"] ?? null) // ignore new lines
-                continue;
-
-            $content["references"]["samm2"] = $content["samm2"] ?? array();
-            unset($content["samm2"]);
-            $content["references"]["iso27001-2017"] = $content["iso27001-2017"] ?? array();
-            unset($content["iso27001-2017"]);
-            //echo var_dump($elements[$activityName]);
-            //echo "<hr>";
-            $elements[$activityName] = $content;
-            
-        }
-        $newElements = $elements;
-        ksort($newElements);
-        $dimensions[$dimensionName][$subDimensionName] = $newElements;
-    }
-}
-
-
+// Create filteredDimensions
 $filteredDimensions = array();
-foreach ($dimensions as $dimensionName => $subDimension) {
-    ksort($subDimension);
-    foreach ($subDimension as $subDimensionName => $elements) {
-        if (substr($subDimensionName, 0, 1) == "_")
+foreach(getActions($dimensions) as list($dimension, $subdimension, $activities)) {
+    foreach ($activities as $activityName => $activity) {
+        if (elementIsSelected($activityName) && !$showPerformed) {
             continue;
-        $newElements = $elements;
-        ksort($newElements);
-        foreach ($newElements as $activityName => $activity) {
-            if (elementIsSelected($activityName) && !$showPerformed) {
-                continue;
-            }
-
-            if (!elementIsSelected($activityName) && !$showPlanned) {
-                continue;
-            }
-            $filteredDimensions[$dimensionName][$subDimensionName][$activityName] = $activity;
         }
 
+        if (!elementIsSelected($activityName) && !$showPlanned) {
+            continue;
+        }
+        $filteredDimensions[$dimension][$subdimension][$activityName] = $activity;
     }
 }
 
@@ -78,7 +37,7 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
 
     if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
-            $dependencyElement = getElementByName($dimensions, $dependency);
+            $dependencyElement = getActivity($dimensions, $dependency);
             getDifficultyOfImplementationWithDependencies($dimensions, $dependencyElement, $allElements);
 
 
@@ -105,7 +64,7 @@ function getDifficultyOfImplementation($dimensions, $elementImplementation)
 
     if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
-            $dependencyElement = getElementByName($dimensions, $dependency);
+            $dependencyElement = getActivity($dimensions, $dependency);
             $value += getDifficultyOfImplementation($dimensions, $dependencyElement);
         }
     }
@@ -142,31 +101,34 @@ function getElementContentAndCheckExistence($parent, $name)
 function getElementContent($element)
 {
     $Extra = new ParsedownExtra();
-    $contentString = "";
-    if (is_array($element)) {
-        if (isAssoc($element)) {
-            foreach ($element as $title => $elementContent) {
-                $titleWithSpace = preg_replace('/(?<=[a-z])[A-Z]|[A-Z](?=[a-z])/', ' $0', $title);
-                $contentString .= "<b>" . ucfirst($titleWithSpace) . "</b>";
-                $contentString .= "<ul>";
-                if (is_array($elementContent)) {
-                    $contentString .= getElementContent($elementContent);
-                } else
-                    $contentString .= "<li>" . $Extra->text($elementContent) . "</li>";
-                $contentString .= "</ul>";
-            }
+    if (!is_array($element)){
+        return str_replace("\"", "'", $element);
+    }
 
-        } else {
+    if (isAssoc($element)) {
+        $contentString = "";
+
+        foreach ($element as $title => $elementContent) {
+            $titleWithSpace = preg_replace('/(?<=[a-z])[A-Z]|[A-Z](?=[a-z])/', ' $0', $title);
+            $contentString .= "<b>" . ucfirst($titleWithSpace) . "</b>";
             $contentString .= "<ul>";
-            foreach ($element as $content) {
-                $contentString .= "<li>" . $Extra->text($content) . "</li>";
-            }
+            if (is_array($elementContent)) {
+                $contentString .= getElementContent($elementContent);
+            } else
+                $contentString .= "<li>" . $Extra->text($elementContent) . "</li>";
             $contentString .= "</ul>";
         }
+        return $contentString;
 
-    } else {
-        $contentString = str_replace("\"", "'", $element);
+    } 
+    
+    // default
+    $contentString = "<ul>";
+    foreach ($element as $content) {
+        $contentString .= "<li>" . $Extra->text($content) . "</li>";
     }
+    $contentString .= "</ul>";
+
     return $contentString;
 }
 
@@ -216,13 +178,13 @@ function build_table_tooltip($array, $headerWeight = 2)
 }
 
 
-function getElementByName($dimensions, $name)
+function getActivity($dimensions, $name)
 {
     foreach ($dimensions as $dimensionName => $subDimension) {
         foreach ($subDimension as $subDimensionName => $activities) {
-            foreach ($activities as $activityName => $content) {
+            foreach ($activities as $activityName => $activity) {
                 if ($activityName == $name) {
-                    return $content;
+                    return $activity;
                 }
             }
         }

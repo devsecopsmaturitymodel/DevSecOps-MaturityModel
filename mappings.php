@@ -85,7 +85,7 @@ if($sort == "activity") {
 
             foreach($referenceLabels as $r => $rLabel){
                 $rlist = $activity["references"][$r] ?? array();
-                echo "<td>". renderSamms($rlist) ."</td>";
+                echo "<td>". ul($rlist) ."</td>";
             }
         }
     }
@@ -133,7 +133,7 @@ if($sort == "activity") {
 
             foreach($referenceLabels as $r => $rLabel){
                 $rlist = $activity["references"][$r] ?? array();
-                echo "<td>". renderSamms($rlist) ."</td>";
+                echo "<td>". ul($rlist) ."</td>";
             }
         }
     }

@@ -10,23 +10,20 @@ include_once "navi.php"
     <h2>Navigation</h2>
 <?php
 include_once "data.php";
-function hasElementChildren($element) {
-    $hasContent = false;
-    foreach ($element as $activityName => $content) {
-        if (!array_key_exists("dependsOn", $content)) {
-            continue;
-        }
-        $hasContent = true;
+
+/** Return true if has dependsOn. */
+function hasElementChildren($activities) {
+    foreach ($activities as $activityName => $activity) {
+        if ($activity["dependsOn"] ?? null) 
+            return true;
     }
-    return $hasContent;
+    return false;
 }
 
-foreach ($dimensions as $dimension => $subdimensions) {
-    foreach ($subdimensions as $subdimension => $element) {
-
-        if (hasElementChildren($element)) {
-            echo "<a href='#" . base64_encode($subdimension) . "'>$dimension - $subdimension</a><br />";
-        }
+foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
+    if (hasElementChildren($activities)) {
+        echo "<a href='#" . base64_encode($subdimension) 
+            . "'> $dimension - $subdimension </a><br />";
     }
 }
 ?>
@@ -68,8 +65,7 @@ function getSourceAndParent($activityName, $subdimension, $parent = "")
 }
 
 
-foreach ($dimensions as $dimension => $subdimensions) {
-    foreach ($subdimensions as $subdimension => $element) {
+foreach (getActions($dimensions) as list($dimension, $subdimension, $element)) {
         if(!hasElementChildren($element)) {
             continue;
         }
@@ -209,6 +205,5 @@ foreach ($dimensions as $dimension => $subdimensions) {
             })();
         </script>
         <?php
-    }
 }
 ?>
