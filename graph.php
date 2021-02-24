@@ -10,15 +10,14 @@ include_once "navi.php"
     <h2>Navigation</h2>
 <?php
 include_once "data.php";
-function hasElementChildren($element) {
-    $hasContent = false;
-    foreach ($element as $activityName => $content) {
-        if (!array_key_exists("dependsOn", $content)) {
-            continue;
-        }
-        $hasContent = true;
+
+/** Return true if has dependsOn. */
+function hasElementChildren($activities) {
+    foreach ($activities as $activityName => $activity) {
+        if ($activity["dependsOn"] ?? null) 
+            return true;
     }
-    return $hasContent;
+    return false;
 }
 
 foreach ($dimensions as $dimension => $subdimensions) {
