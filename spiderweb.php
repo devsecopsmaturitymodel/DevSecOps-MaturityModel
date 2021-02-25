@@ -6,6 +6,7 @@ include_once "head.php";
 <?php
 include_once "data.php";
 include_once "navi.php";
+
 echo "<h1>$title</h1>"
 ?>
 <div class="spiderweb">

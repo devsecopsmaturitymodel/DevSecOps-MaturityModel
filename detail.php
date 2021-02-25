@@ -1,6 +1,8 @@
 <?php
 
-$title = "Details for '" . htmlspecialchars($_GET['element']) . "'";
+if (array_key_exists("element", $_GET)) {
+    $title = "Details for '" . htmlspecialchars($_GET['element']) . "'";
+}
 include_once "head.php";
 ?>
     <body>
@@ -8,13 +10,13 @@ include_once "head.php";
 include_once "data.php";
 include_once "navi.php";
 
-$dimension = $_GET['dimension'];
-$subdimension = $_GET['subdimension'];
-$activityName = $_GET['element'];
+$dimension = $_GET['dimension'] ?? null;
+$subdimension = $_GET['subdimension'] ?? null;
+$activityName = $_GET['element'] ?? null;
 
 function printDetail($dimension, $subdimension, $activityName, $dimensions, $report = false)
 {
-    $element = $dimensions[$dimension][$subdimension][$activityName];
+    $element = $dimensions[$dimension][$subdimension][$activityName] ?? null;
 
     if ($element == null) { //Whitelist approach for security reasons (deny XSS)
         //echo "Sorry, we could not found the element";
@@ -78,23 +80,27 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
         $comment = $element['comment'];
         echo "<div><b>Comments:</b> $comment</div>";
     }
-    if (array_key_exists("samm", $element) && !empty($element['samm'])) {
-    	$samm = $element['samm'];
-    	echo "<div><b>OWASP SAMM 1 Mapping:</b> $samm</div>";
-    }
-    if (array_key_exists("samm2", $element) && !empty($element['samm2'])) {
-    	$samm = $element['samm2'];
-    	echo "<div><b>OWASP SAMM 2 Mapping:</b> $samm</div>";
-    }
-    if (array_key_exists("iso27001-2017", $element) && !empty($element['iso27001-2017'])) {
-        echo "<div><b>ISO27001:2017 Controls Mapping:</b></div>";
 
-        echo "<ul>";
-        foreach ($element['iso27001-2017'] as $isocontrol) {
-            echo "<li>$isocontrol</li>";
-        }
-        echo "</ul>";
-    }
+    printReferences($element);
 }
 
+function printReferences($element) {
+    if (!array_key_exists("references", $element)) {
+        return;
+    }
+    $actionLabels = readYaml("data/strings.yml#/actionLabels");
+
+    $references = $element['references'];
+    foreach ($references as $r => $values) {
+        // if it's not an array, array-ze it. Remove after fixing all yamls.
+        $values = is_array($values) ? $values : array($values);
+
+        $label = getReferenceLabel($r);
+        echo "<div><h3>$label</h3></div>";
+        echo "<ul><li>".  implode("</li><li>", $values) ."</li></ul>";
+    }
+    
+
+}
+// echo var_dump($dimensions);
 printDetail($dimension, $subdimension, $activityName, $dimensions);

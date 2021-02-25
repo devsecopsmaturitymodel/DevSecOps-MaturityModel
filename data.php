@@ -1,58 +1,24 @@
 <?php
 require_once("functions.php");
 
-$dimensions = array();
+// get form data
+$showPerformed = ($_GET['performed'] ?? false) == "true" ? "true" : false;
+$showPlanned = ($_GET['planned'] ?? false) == "true" ? "true" : false;
 
-$files = scandir("data");
+$dimensions = getDimensions();
 
-$dimensions = readYaml("data/dimensions.yaml");
-
-ksort($dimensions);
-foreach ($dimensions as $dimensionName => $subDimension) {
-    ksort($subDimension);
-    foreach ($subDimension as $subDimensionName => $elements) {
-        if (substr($subDimensionName, 0, 1) == "_")
-            continue;
-        $newElements = $elements;
-        ksort($newElements);
-        $dimensions[$dimensionName][$subDimensionName] = $newElements;
-    }
-}
-
-if (array_key_exists("performed", $_GET)) {
-    $showPerformed = $_GET['performed'];
-
-    if ($showPerformed != "true") $showPerformed = false;
-} else {
-    $showPerformed = false;
-}
-
-if (array_key_exists("planned", $_GET)) {
-    $showPlanned = $_GET['planned'];
-
-    if ($showPlanned != "true") $showPlanned = false;
-} else {
-    $showPlanned = false;
-}
+// Create filteredDimensions
 $filteredDimensions = array();
-foreach ($dimensions as $dimensionName => $subDimension) {
-    ksort($subDimension);
-    foreach ($subDimension as $subDimensionName => $elements) {
-        if (substr($subDimensionName, 0, 1) == "_")
+foreach(getActions($dimensions) as list($dimension, $subdimension, $activities)) {
+    foreach ($activities as $activityName => $activity) {
+        if (elementIsSelected($activityName) && !$showPerformed) {
             continue;
-        $newElements = $elements;
-        ksort($newElements);
-        foreach ($newElements as $activityName => $activity) {
-            if (elementIsSelected($activityName) && !$showPerformed) {
-                continue;
-            }
-
-            if (!elementIsSelected($activityName) && !$showPlanned) {
-                continue;
-            }
-            $filteredDimensions[$dimensionName][$subDimensionName][$activityName] = $activity;
         }
 
+        if (!elementIsSelected($activityName) && !$showPlanned) {
+            continue;
+        }
+        $filteredDimensions[$dimension][$subdimension][$activityName] = $activity;
     }
 }
 
@@ -72,7 +38,7 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
 
     if (array_key_exists('dependsOn', $elementImplementation) && $aggregated == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
-            $dependencyElement = getElementByName($dimensions, $dependency);
+            $dependencyElement = getActivity($dimensions, $dependency);
             getDifficultyOfImplementationWithDependencies($dimensions, $dependencyElement, $allElements);
 
 
@@ -100,7 +66,7 @@ function getDifficultyOfImplementation($dimensions, $elementImplementation)
 
     if (array_key_exists('dependsOn', $elementImplementation) && $aggregated == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
-            $dependencyElement = getElementByName($dimensions, $dependency);
+            $dependencyElement = getActivity($dimensions, $dependency);
             $value += getDifficultyOfImplementation($dimensions, $dependencyElement);
         }
     }
@@ -140,10 +106,8 @@ function getElementContent($element)
     if (!is_array($element)){
         return str_replace("\"", "'", $element);
     }
-
     if (isAssoc($element)) {
         $contentString = "";
-
         foreach ($element as $title => $elementContent) {
             $titleWithSpace = preg_replace('/(?<=[a-z])[A-Z]|[A-Z](?=[a-z])/', ' $0', $title);
             $contentString .= "<b>" . ucfirst($titleWithSpace) . "</b>";
@@ -182,6 +146,9 @@ function render_risk($risk) {
     }
     return $risk;
 }
+/**
+ * Render an activity in a tooltip.
+ */
 function build_table_tooltip($array, $headerWeight = 2)
 {
     $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
@@ -210,13 +177,14 @@ function build_table_tooltip($array, $headerWeight = 2)
     return $html;
 }
 
-function getElementByName($dimensions, $name)
+
+function getActivity($dimensions, $name)
 {
     foreach ($dimensions as $dimensionName => $subDimension) {
-        foreach ($subDimension as $subDimensionName => $elements) {
-            foreach ($elements as $activityName => $element) {
+        foreach ($subDimension as $subDimensionName => $activities) {
+            foreach ($activities as $activityName => $activity) {
                 if ($activityName == $name) {
-                    return $element;
+                    return $activity;
                 }
             }
         }

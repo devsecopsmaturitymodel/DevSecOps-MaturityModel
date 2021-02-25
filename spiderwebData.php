@@ -1,26 +1,27 @@
 <?php
 
+$elementParam = $_REQUEST['element'] ?? null;
+
 include_once "bib.php";
 include_once "data.php";
 function getSpiderWebData($dimensions)
 {
     $data = array();
-    foreach ($dimensions as $dimension => $subdimensions) {
-        foreach ($subdimensions as $subdimension => $element) {
-            for ($level = 1; $level <= 4; $level++) {
-                if (!array_key_exists($subdimension, $data[$level][$dimension])) {
-                    $data[$level][$dimension][$subdimension]['count'] = 0;
-                    $data[$level][$dimension][$subdimension]['selected'] = 0;
-                }
-                foreach ($element as $activityName => $content) {
-                    if ($level == $content["level"]) {
-                        $data[$level][$dimension][$subdimension]['count']++;
-                        if (elementIsSelected($activityName)) {
-                            $data[$level][$dimension][$subdimension]['selected']++;
-                        }
+    foreach(getActions($dimensions) as list($dimension, $subdimension, $activities)) {
+        for ($level = 1; $level <= 4; $level++) {
+            // initialize $data cells
+            if (! ($data[$level][$dimension][$subdimension] ?? null)) {
+                $data[$level][$dimension][$subdimension]['count'] = 0;
+                $data[$level][$dimension][$subdimension]['selected'] = 0;
+            }
+            foreach ($activities as $activityName => $activity) {
+                if ($level == $activity["level"]) {
+                    $data[$level][$dimension][$subdimension]['count']++;
+                    if (elementIsSelected($activityName)) {
+                        $data[$level][$dimension][$subdimension]['selected']++;
                     }
-
                 }
+
             }
         }
     }
@@ -100,12 +101,15 @@ function isElementExisting($dimensions, $givenElementName)
     return false;
 }
 
-if ($_REQUEST['element'] == null) {
+if ($elementParam == null) {
     echo json_encode(getSpiderWebData($dimensions));
-} else {
+    return;
+} 
+
+{
     $csvFile = 'selectedData.csv';
     $csv = getCsv();
-    $element = $_REQUEST['element'];
+    $element = $elementParam;
 
     if (elementIsSelected($element)) {
         deleteElement($csv, $element);

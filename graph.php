@@ -20,12 +20,10 @@ function hasElementChildren($activities) {
     return false;
 }
 
-foreach ($dimensions as $dimension => $subdimensions) {
-    foreach ($subdimensions as $subdimension => $element) {
-
-        if (hasElementChildren($element)) {
-            echo "<a href='#" . base64_encode($subdimension) . "'>$dimension - $subdimension</a><br />";
-        }
+foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
+    if (hasElementChildren($activities)) {
+        echo "<a href='#" . base64_encode($subdimension) 
+            . "'> $dimension - $subdimension </a><br />";
     }
 }
 ?>
@@ -67,8 +65,7 @@ function getSourceAndParent($activityName, $subdimension, $parent = "")
 }
 
 
-foreach ($dimensions as $dimension => $subdimensions) {
-    foreach ($subdimensions as $subdimension => $element) {
+foreach (getActions($dimensions) as list($dimension, $subdimension, $element)) {
         if(!hasElementChildren($element)) {
             continue;
         }
@@ -208,6 +205,5 @@ foreach ($dimensions as $dimension => $subdimensions) {
             })();
         </script>
         <?php
-    }
 }
 ?>

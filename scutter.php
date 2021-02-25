@@ -55,13 +55,17 @@ function getJson($dimensions)
 
 <form action="?" method="get">
 <?php
-    echo "<input name=\"aggregated\" type=\"hidden\" value=\"$aggregated\" />";
-?>
-
+$aggregated = $_GET['aggregated'] ?? null;
+if($aggregated == "true") {
+    echo "value='false'";
+}else {
+    echo "value='true'";
+}
+?>">
     <button id="">
-        <?php
-        echo ($aggregated == "true") ?  "Show specific values" : "Show total values";
-        ?>
+<?php
+echo ($aggregated == "true") ?  "Show specific values" : "Show total values";
+?>
     </button>
 </form>
 <div id='chart'>
