@@ -25,6 +25,7 @@ foreach(getActions($dimensions) as list($dimension, $subdimension, $activities))
 
 function getDifficultyOfImplementationWithDependencies($dimensions, $elementImplementation, &$allElements)
 {
+    $aggregated = ($_GET['aggregated'] ?? false) == "true" ? "true" : false;
     if ($elementImplementation == null) {
         return;
     }
@@ -35,7 +36,7 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
     $allElements[] = $elementImplementation['difficultyOfImplementation']["time"];
     $allElements[] = $elementImplementation['difficultyOfImplementation']["resources"];
 
-    if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
+    if (array_key_exists('dependsOn', $elementImplementation) && $aggregated == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
             $dependencyElement = getActivity($dimensions, $dependency);
             getDifficultyOfImplementationWithDependencies($dimensions, $dependencyElement, $allElements);
@@ -53,6 +54,7 @@ function getDifficultyOfImplementationWithDependencies($dimensions, $elementImpl
 
 function getDifficultyOfImplementation($dimensions, $elementImplementation)
 {
+    $aggregated = ($_GET['aggregated'] ?? false) == "true" ? "true" : false;
     if ($elementImplementation == null) {
         return;
     }
@@ -62,7 +64,7 @@ function getDifficultyOfImplementation($dimensions, $elementImplementation)
     $value = $knowledge + $elementImplementation['difficultyOfImplementation']["time"] * 2 + $elementImplementation['difficultyOfImplementation']["resources"];
     $value = $value / 4;
 
-    if (array_key_exists('dependsOn', $elementImplementation) && $_GET['aggregated'] == "true") {
+    if (array_key_exists('dependsOn', $elementImplementation) && $aggregated == "true") {
         foreach ($elementImplementation['dependsOn'] as $dependency) {
             $dependencyElement = getActivity($dimensions, $dependency);
             $value += getDifficultyOfImplementation($dimensions, $dependencyElement);
@@ -104,10 +106,8 @@ function getElementContent($element)
     if (!is_array($element)){
         return str_replace("\"", "'", $element);
     }
-
     if (isAssoc($element)) {
         $contentString = "";
-
         foreach ($element as $title => $elementContent) {
             $titleWithSpace = preg_replace('/(?<=[a-z])[A-Z]|[A-Z](?=[a-z])/', ' $0', $title);
             $contentString .= "<b>" . ucfirst($titleWithSpace) . "</b>";
