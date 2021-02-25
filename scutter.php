@@ -1,4 +1,11 @@
 <?php
+/**
+ * scutter.php
+ *
+ * @package default
+ */
+
+
 include_once "head.php";
 ?>
 <body>
@@ -14,31 +21,37 @@ include_once "functions.php";
 $aggregated = ($_GET['aggregated'] ?? false) == "true" ? "true" : false;
 
 
-function getJson($dimensions)
-{
-    $json = array();
-    $shapes = array('circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square');
-    $shape = 0;
-    foreach(getActions($dimensions) as list($dimension, $subdimension, $element)) {
-            $values = array();
-            foreach ($element as $activityName => $content) {
-                $values[] = array(
-                    "series" => 0,
-                    "shape" => $shapes[$shape] ?? "square",
-                    "size" => 3000,
-                    "x" => getDifficultyOfImplementation($dimensions, $content),
-                    "y" => $content["usefulness"],
-                    "key" => $activityName
-                );
-            }
-            $json[] = array(
-                "key" => "$dimension - " . $subdimension,
-                "values" => $values
-            );
-            $shape++;
+/**
+ *
+ * @param unknown $dimensions
+ * @return unknown
+ */
+function getJson($dimensions) {
+  $json = array();
+  $shapes = array('circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square');
+  $shape = 0;
+  foreach (getActions($dimensions) as list($dimension, $subdimension, $element)) {
+    $values = array();
+    foreach ($element as $activityName => $content) {
+      $values[] = array(
+        "series" => 0,
+        "shape" => $shapes[$shape] ?? "square",
+        "size" => 3000,
+        "x" => getDifficultyOfImplementation($dimensions, $content),
+        "y" => $content["usefulness"],
+        "key" => $activityName
+      );
     }
-    return json_encode($json);
+    $json[] = array(
+      "key" => "$dimension - " . $subdimension,
+      "values" => $values
+    );
+    $shape++;
+  }
+  return json_encode($json);
 }
+
+
 ?>
 <script>
     /**************************************
@@ -56,10 +69,10 @@ function getJson($dimensions)
 <form action="?" method="get">
 <?php
 $aggregated = $_GET['aggregated'] ?? null;
-if($aggregated == "true") {
-    echo "value='false'";
+if ($aggregated == "true") {
+  echo "value='false'";
 }else {
-    echo "value='true'";
+  echo "value='true'";
 }
 ?>">
     <button id="">
