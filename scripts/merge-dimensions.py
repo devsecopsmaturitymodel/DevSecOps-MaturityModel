@@ -38,7 +38,7 @@ def dict_merge(*args, add_keys=True):
 if __name__ == "__main__":
     ret = {}
 
-    for f in glob("*/*"):
+    for f in glob("data-new/*/*"):
         dimension = f.split("/")[0]
         if dimension not in ret:
             ret[dimension] = {}
