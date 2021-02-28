@@ -43,6 +43,6 @@ function replaceSubdimensionName(name) {
         .replace("Infrastructure", "Infra.")
         .replace("Application", "App.")
         .replace("Education", "Edu.")
-        .replace("Management", "Education.")
+        .replace("Management", "Mgmt.")
         ;
 }
