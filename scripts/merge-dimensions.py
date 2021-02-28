@@ -39,9 +39,10 @@ if __name__ == "__main__":
     ret = {}
 
     for f in glob("data-new/*/*"):
-        dimension = f.split("/")[0]
+        dimension = f.split("/")[1]
         if dimension not in ret:
             ret[dimension] = {}
+            print ("Found " + dimension)
         ret[dimension] = dict_merge(ret[dimension], yaml_load(Path(f).read_text()))
 
     Path("data/dimensions.yaml").write_text(yaml_dump(ret))
