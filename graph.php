@@ -1,4 +1,11 @@
 <?php
+/**
+ * graph.php
+ *
+ * @package default
+ */
+
+
 $title = "Dependencies";
 include_once "head.php";
 ?>
@@ -11,20 +18,27 @@ include_once "navi.php"
 <?php
 include_once "data.php";
 
-/** Return true if has dependsOn. */
+
+/**
+ * Return true if has dependsOn.
+ *
+ * @param unknown $activities
+ * @return unknown
+ */
 function hasElementChildren($activities) {
-    foreach ($activities as $activityName => $activity) {
-        if ($activity["dependsOn"] ?? null) 
-            return true;
-    }
-    return false;
+  foreach ($activities as $activityName => $activity) {
+    if ($activity["dependsOn"] ?? null)
+      return true;
+  }
+  return false;
 }
 
+
 foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
-    if (hasElementChildren($activities)) {
-        echo "<a href='#" . base64_encode($subdimension) 
-            . "'> $dimension - $subdimension </a><br />";
-    }
+  if (hasElementChildren($activities)) {
+    echo "<a href='#" . base64_encode($subdimension)
+      . "'> $dimension - $subdimension </a><br />";
+  }
 }
 ?>
     <style>
@@ -59,53 +73,59 @@ foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)
         }
     </style>
 <?php
-function getSourceAndParent($activityName, $subdimension, $parent = "")
-{
-    return "{source: \"$activityName\", target: \"$parent\", type: \"" . base64_encode($subdimension) . "\"}";
+/**
+ *
+ * @param unknown $activityName
+ * @param unknown $subdimension
+ * @param unknown $parent       (optional)
+ * @return unknown
+ */
+function getSourceAndParent($activityName, $subdimension, $parent = "") {
+  return "{source: \"$activityName\", target: \"$parent\", type: \"" . base64_encode($subdimension) . "\"}";
 }
 
 
 foreach (getActions($dimensions) as list($dimension, $subdimension, $element)) {
-        if(!hasElementChildren($element)) {
-            continue;
-        }
+  if (!hasElementChildren($element)) {
+    continue;
+  }
 
-        echo "<h2 id='" .urlencode( base64_encode($subdimension)) . "'>$dimension - $subdimension</h2>";
-        ?>
+  echo "<h2 id='" .urlencode( base64_encode($subdimension)) . "'>$dimension - $subdimension</h2>";
+?>
         <script>
             (function () {
                 var links = [
                     <?php
-                    $first = true;
+  $first = true;
 
-                    //if($subdimension != "Erzeugung") continue;
-                    foreach ($element as $activityName => $content) {
-                        if (!array_key_exists("dependsOn", $content)) {
-                            continue;
-                        }
+  //if($subdimension != "Erzeugung") continue;
+  foreach ($element as $activityName => $content) {
+    if (!array_key_exists("dependsOn", $content)) {
+      continue;
+    }
 
-                        $parent = "Ohne";
-                        if (array_key_exists("dependsOn", $content)) {
-                            $parent = $content["dependsOn"][0];
-                        }
-                        if (array_key_exists("dependsOn", $content)) {
-                            foreach ($content["dependsOn"] as $dependsOn) {
-                                if (!$first) {
-                                    echo ",";
-                                }
-                                $first = false;
-                                echo getSourceAndParent($activityName, $subdimension, $dependsOn);
-                            }
-                        } else {
-                            if (!$first) {
-                                echo ",";
-                            }
-                            $first = false;
-                            echo getSourceAndParent($activityName, $subdimension, $parent);
-                        }
+    $parent = "Ohne";
+    if (array_key_exists("dependsOn", $content)) {
+      $parent = $content["dependsOn"][0];
+    }
+    if (array_key_exists("dependsOn", $content)) {
+      foreach ($content["dependsOn"] as $dependsOn) {
+        if (!$first) {
+          echo ",";
+        }
+        $first = false;
+        echo getSourceAndParent($activityName, $subdimension, $dependsOn);
+      }
+    } else {
+      if (!$first) {
+        echo ",";
+      }
+      $first = false;
+      echo getSourceAndParent($activityName, $subdimension, $parent);
+    }
 
-                    }
-                    ?>
+  }
+?>
                 ]
                 var nodes = {};
 
@@ -135,17 +155,17 @@ foreach (getActions($dimensions) as list($dimension, $subdimension, $element)) {
                 svg.append("defs").selectAll("marker")
                     .data([
                         <?php
-                        $isFirst = true;
-                        foreach ($dimensions as $dimension => $subdimensions) {
-                            foreach ($subdimensions as $subdimension => $element) {
-                                if (!$isFirst) {
-                                    echo ",";
-                                }
-                                $isFirst = false;
-                                echo "\"" .urlencode( base64_encode($subdimension) ). "\"";
-                            }
-                        }
-                        ?>
+  $isFirst = true;
+  foreach ($dimensions as $dimension => $subdimensions) {
+    foreach ($subdimensions as $subdimension => $element) {
+      if (!$isFirst) {
+        echo ",";
+      }
+      $isFirst = false;
+      echo "\"" .urlencode( base64_encode($subdimension) ). "\"";
+    }
+  }
+?>
                     ])
                     .enter().append("marker")
                     .attr("id", function (d) {

@@ -1,4 +1,11 @@
 <?php
+/**
+ * index.php
+ *
+ * @package default
+ */
+
+
 $title = gettext("Activities Overview");
 include_once "head.php";
 ?>
@@ -13,4 +20,3 @@ echo getTable($dimensions);
 echo "<h1>Activtities per Dimension</h1>";
 echo '<div class="extra">'.getInfos($dimensions) . '</div>';
 ?>
-

@@ -1,4 +1,11 @@
 <?php
+/**
+ * spiderweb.php
+ *
+ * @package default
+ */
+
+
 $title = "Identification of the degree of the implementation";
 include_once "head.php";
 ?>
@@ -12,8 +19,8 @@ echo "<h1>$title</h1>"
 <div class="spiderweb">
     <div class="chart" id="energychart"></div>
     <?php
-    echo getTable($dimensions);
-    ?>
+echo getTable($dimensions);
+?>
 </div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="js/circularHeatChart.js"></script>
