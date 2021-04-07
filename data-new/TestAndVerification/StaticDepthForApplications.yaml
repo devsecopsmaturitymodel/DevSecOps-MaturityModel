@@ -18,6 +18,9 @@ _yaml_references:
     npm-audit: &npm-audit >-
       [npm audit](https://docs.npmjs.com/cli/audit)
     retire-js: &retire-js https://github.com/RetireJS/retire.js
+    bdd-mobile-security-automation-framework: &bdd-mobile-security-automation-framework >-
+      https://github.com/ing-bank/bdd-mobile-security-automation-framework (Archived gh repo)
+    jsprime: &jsprime jsprime
 Static depth for applications:
   Exclusion of source code duplicates:
     risk: Duplicates in source code might influence the stability of the application.
@@ -89,7 +92,7 @@ Static depth for applications:
     - *eslint
     - *find-sec-bugs
     - jsprime
-    - <a href='https://github.com/ing-bank/bdd-mobile-security-automation-framework'>bdd-mobile-security-automation-framework</a> (Archived gh repo)
+    - *bdd-mobile-security-automation-framework
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
@@ -106,7 +109,10 @@ Static depth for applications:
       resources: 1
     usefulness: 4
     level: 2
-    implementation: eslint, FindSecurityBugs, jsprime
+    implementation:
+    - *eslint
+    - *find-sec-bugs
+    - *jsprime
     dependsOn:
     - Defined build process
     samm2: v-security-testing|A|2

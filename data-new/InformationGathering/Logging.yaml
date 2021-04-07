@@ -1,4 +1,19 @@
 ---
+_yaml_references:
+  tools:
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    httpunit: &httpunit HttpUnit
+    junit: &junit junit
+    karma-runner: &karma https://github.com/karma-runner/karma
+    curl: &curl cURL
+    owasp-zap: &owasp-zap OWASP Zed Attack Proxy
+    selenium: &selenium Selenium
+    logstash: &logstash logstash
+    elk: &elk ELK Stack
+    rsyslog: &rsyslog rsyslog
+    fluentd: &fluentd fluentd
 Logging:
   Centralized application logging:
     risk: Local stored logs can be unauthorized manipulated by attackers with system
@@ -30,7 +45,11 @@ Logging:
       resources: 1
     usefulness: 1
     level: 1
-    implementation: rsyslog, logstash, fluentd, bash
+    implementation:
+    - *rsyslog
+    - *logstash
+    - *fluentd
+    - bash
     samm2: o-incident-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
@@ -48,7 +67,7 @@ Logging:
     level: 1
     dependsOn:
     - PII logging concept
-    implementation: rsyslog, logstash, fluentd, bash
+    implementation: [ *rsyslog, *logstash, *fluentd, bash]
     samm2: o-incident-management|A|1
     iso27001-2017:
     - 12.4.1
@@ -64,7 +83,7 @@ Logging:
       resources: 1
     usefulness: 2
     level: 1
-    implementation: rsyslog, Logstash
+    implementation: [*rsyslog, *logstash]
     samm2: o-incident-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
@@ -102,7 +121,8 @@ Logging:
     dependsOn:
     - Centralized system logging
     - Centralized application logging
-    implementation: ELK-Stack
+    implementation:
+    - *elk
     samm2: o-incident-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
