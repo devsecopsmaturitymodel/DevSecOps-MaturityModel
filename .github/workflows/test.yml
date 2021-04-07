@@ -1,0 +1,14 @@
+name: Lint Awesome List
+on: [push, pull_request]
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1.0.0
+      - name: test code
+        run: |
+          chmod +x ./tests.sh
+          sudo apt install -y php
+          ./tests.sh
+
