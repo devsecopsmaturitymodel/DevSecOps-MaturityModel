@@ -1,4 +1,13 @@
 ---
+_yaml_references:
+  tools:
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    httpunit: &httpunit HttpUnit
+    junit: &junit junit
+    karma-runner: &karma https://github.com/karma-runner/karma
+
 Application tests:
   High coverage of security related module and integration tests:
     risk: Vulnerabilities are rising due to code changes in a complex microservice
@@ -27,7 +36,8 @@ Application tests:
       resources: 2
     usefulness: 2
     level: 3
-    implementation: HttpUnit
+    implementation:
+    - *httpunit
     samm: ST2-B
     samm2: v-security-testing|B|3
     iso27001-2017:
@@ -47,8 +57,8 @@ Application tests:
       it highlights vulnerabilities in sub-routines, functions, modules, libraries
       etc. checked.
     implementation:
-    - JUnit
-    - <a href='https://karma-runner.github.io'>Karma</a>
+    - *junit
+    - *karma
     samm: ST2-B
     samm2: v-security-testing|B|3
     iso27001-2017:

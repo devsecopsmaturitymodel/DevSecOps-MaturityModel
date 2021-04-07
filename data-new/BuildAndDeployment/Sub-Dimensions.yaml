@@ -6,7 +6,9 @@ _meta:
     A markdown description of this dimension.
 _yaml_references:
   tools:
-    ci-cd: &ci-cd CI/CD tools, eg. Jenkins 
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
 
 Build:
   Building and testing of artifacts in virtual environments:
@@ -32,7 +34,7 @@ Build:
     usefulness: 2
     level: 2
     implementation:
-    - Container technologies and orchestration like Docker, Kubernetes
+    - *containers
     - *ci-cd
     references:
       samm2:
@@ -56,7 +58,7 @@ Build:
     level: 1
     implementation:
     - *ci-cd
-    - Container technologies and orchestration like Docker, Kubernetes
+    - *containers
     references:
       samm2:
       - i-secure-build|A|1
@@ -164,7 +166,9 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 1
-    implementation: Jenkins, Docker
+    implementation:
+    - *ci-cd
+    - *containers
     references:
       samm2: i-secure-deployment|A|1
       iso27001-2017:
@@ -227,7 +231,9 @@ Deployment:
       resources: 2
     usefulness: 2
     level: 3
-    implementation: Docker, Webserver, rolling update
+    implementation:
+    - *ci-cd
+    - Webserver, rolling update
     dependsOn:
     - Defined deployment process
     samm2: i-secure-deployment|A|1
@@ -246,7 +252,8 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 3
-    implementation: Docker
+    implementation:
+    - *containers
     dependsOn:
     - Defined build process
     samm: OE2-A
@@ -267,7 +274,8 @@ Deployment:
       resources: 1
     usefulness: 2
     level: 3
-    implementation: Docker
+    implementation:
+    - *containers
     dependsOn:
     - Same artifact for environments
     samm: EG1-B
@@ -361,8 +369,8 @@ Patch Management:
     - 12.6.1
     - 14.2.5
     implementation:
-    - <a href="https://dependabot.com/">dependabot</a>
-    - Jenkins
+    - *dependabot
+    - *containers
   Usage of a maximum lifetime for images:
     risk: Vulnerabilities in images of running containers stay for too long and
       might get exploited. Long running containers have potential memory leaks.
