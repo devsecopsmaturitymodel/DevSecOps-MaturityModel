@@ -78,20 +78,8 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
     echo $element['md-description'];
     echo "</div>";
   }
-  if (array_key_exists("implementation", $element) && !empty($element['implementation'])) {
-    $implementation = $element['implementation'];
-    echo "<div><b>Implementation hints:</b> ";
-    if (is_array($implementation)) {
-      echo "<ul>";
-      foreach ($implementation as $implementationElement) {
-        echo "<li>$implementationElement</li>";
-      }
-      echo "</ul>";
-    }else {
-      echo $implementation;
-    }
-    echo "</div>";
-  }
+
+  echo get_implementation($element);
 
   if (array_key_exists("comment", $element) && !empty($element['comment'])) {
     $comment = $element['comment'];
@@ -101,7 +89,15 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
   printReferences($element);
 }
 
+function get_implementation($activity){
+  $implementation = $activity['implementation'] ?? [];
+  $items = as_list($implementation);
+  $ret = ul($items, callback=function($str){
+    return $str;
+  });
 
+  echo "<div><b>Implementation hints:</b>$ret</div>";
+}
 /**
  *
  * @param unknown $element
