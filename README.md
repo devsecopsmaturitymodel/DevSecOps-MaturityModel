@@ -1,4 +1,5 @@
 # Introduction
+
 From a startup to a multinational corporation the software development industry is currently dominated by agile frameworks and product teams and as part of it DevOps strategies. It has been observed that during the implementation, security aspects are usually neglected or are at least not sufficient taken account of. It is often the case that standard safety requirements of the production environment are not utilized or applied to the build pipeline in the continuous integration environment with containerization or concrete docker. Therefore, the docker registry is often not secured which might result in the theft of the entire company’s source code.
 
 The OWASP DevSecOps Maturity Model provides opportunities to harden DevOps strategies and shows how these can be prioritized.
@@ -8,7 +9,9 @@ With the help of DevOps strategies security can also be enhanced. For example, e
 Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking DevSecOps Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
 
 # Usage
+
 Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/wurstbrot/DevSecOps-MaturityModel/) and run `startDocker.bash`.
+
 * _matrix_ shows the dimensions, subdimensions and activities are described.
 * _Implementation Levels_ can be used to measure the current implementation level by clicking on the specific activities which have been performed.
 * _Ease and Value of Implementation_ is used for the maturity model development to see the ease and value of each activity to be able to compare it with activities within the subdimension and activities from other subdimensions.
@@ -22,10 +25,12 @@ In case you have evidence or review questions to gather evidence, you can add th
 You can switch on to show open TODO's for evidence by changing IS_SHOW_EVIDENCE_TODO to true 'bib.php' `define(IS_SHOW_EVIDENCE_TODO, true);`
 
 # Community
+
 Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw#/).
 Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
 
 # Slides and talks
+
 * [Talk: Strategic Usage of the OWASP Software Assurance Maturity Model and the OWASP DevSecOps Maturity Model, OWASP Jakarta](https://m.youtube.com/watch?v=lLMLGIzl56M)
 * [Slides: DSOMM Overview](https://docs.google.com/presentation/d/1eQcE_AsR1g6uOVf3B2Ehh1g0cHvPknkdLY4BzMYatSw/edit?usp=sharing)
 * [Video: GitHub practical DSOMM snippet on twitch](https://www.twitch.tv/githubenterprise/clip/EsteemedTriumphantMinkFailFish)
@@ -39,20 +44,24 @@ Create issues or even better Pull Requests in [github](https://github.com/wurstb
 * [DevSecOps Maturity Model](https://docs.google.com/presentation/d/1rrbyXqxy3LXAJNPFrVH99mj_BNaJKymMsXZItYArWEM/edit?usp=sharing), 2017
 
 # Assessment
+
 In case you would like to perform a DevSecOps assessment, the following tools are available:
+
 * Usage of the applicaton in a `container`.
 * Development of an export to [OWASP Maturity Models](https://github.com/OWASP/Maturity-Models) (recommended for assessments with a lot of teams)
 * Creation of your excel sheet (not recommended, you want to use DevOps, don't even try!)
 
 ## Container
+
 1. Install [Docker](https://www.docker.com)
-2. Run `docker run --rm -p 8080:80 wurstbrot/dsomm:latest 
+2. Run `docker run --rm -p 8080:80 wurstbrot/dsomm:latest
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
 In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
 In case the application should be visible, but the "Implementation Level" shouldn't be changeable, consider the following code:
-```
+
+```bash
 #!/bin/bash
 set -xe
 
@@ -67,6 +76,7 @@ cd DevSecOps-MaturityModel
 docker build -t $IMAGE_NAME .
 docker push $IMAGE_NAME
 ```
+
 This approach also allows teams to perform self assessment with changes tracked in a repository.
 
 ## Amazon EC2 Instance
@@ -81,7 +91,7 @@ This approach also allows teams to perform self assessment with changes tracked 
 5. Launch your instance
 6. Browse to your instance's public DNS
 
-```
+```bash
 #!/bin/bash
 yum update -y
 yum install -y docker
@@ -90,6 +100,7 @@ docker run -d -p 80:80 wurstbrot/dsomm:latest
 ```
 
 # Credits
+
 * The dimension _Test and Verification_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
 * The sub-dimension <i>Process</i> has been added after a discussion with [Francois Raynaud](https://www.linkedin.com/in/francoisraynaud/) that reactive activities are missing.
 * Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
@@ -99,11 +110,13 @@ docker run -d -p 80:80 wurstbrot/dsomm:latest
 * The requirements from [level 0](https://github.com/AppSecure-nrw/security-belts/blob/master/white/) are based on/copied from [AppSecure NRW](https://appsecure.nrw/)
 
 # Back link
+
 - [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
 - [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
 - [OWASP](https://owasp.org)
 
 # Your help is needed to perform
+
 * Adding a manual on how to use DSOMM
 * Integration of Incident Response
 * DevSecOps Toolchain Categorization
@@ -112,12 +125,15 @@ docker run -d -p 80:80 wurstbrot/dsomm:latest
 * Addinng of evidence
 
 # Sponsors
+
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro) (Time, Logo, Icons)
 
 # Donations
+
 You are using the model or you are inspired by it, want to help but don't want to create pull requests? You can donate at the [OWASP Project Wiki Page](https://owasp.org/donate/?reponame=www-project-devsecops-maturity-model&title=OWASP+Devsecops+Maturity+Model). Donations might be used for the design of logos/images/design or travels.
 
 # License
+
 This program is free software: you can redistribute it and/or modify it under the terms of the [GPL 3](https://www.gnu.org/licenses/) license.
 
 The intellectual property (content in the _data_ folder) is licensed under Attribution-ShareAlike.
