@@ -22,12 +22,14 @@ circumstance or event, and typically is a function of:
 > 2. the likelihood of occurrence.
 
 In information security, risks arise from the loss of:
+
 - confidentiality,
 - integrity,
 - or availability
 
 of information or information systems and reflect the
 potential adverse impacts to:
+
 - organizational operations
   (including: - mission, - functions, - image, - or reputation),
 - organizational assets,
@@ -40,7 +42,6 @@ A risk then tied to a **threat**, its **probability** and its **impacts**.
 If you are interested in Risk Management frameworks and
 strategies, you can start from
 [FISMA](https://csrc.nist.gov/Projects/risk-management/).
-
 
 ## Onboard Product Owner and other Managers
 
@@ -181,7 +182,6 @@ The response was to bring the system down, very little information about
 the attack was found apart from the fact that someone
 was mining cryptocurrencies on the server.
 
-
 **Example Low Maturity Scenario:**
 
 The team attempted to build the requested features using vanilla NodeJS,
@@ -313,12 +313,14 @@ on Heroku with one click, it offers both CTF functionality and a self-service
 ![Juice Shop](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/juiceshop.png "Juice Shop")
 
 ### Process
+
 **Example High Maturity Scenario:**
 
 Business continuity and Security teams run incident management drills
  periodically to refresh incident playbook knowledge.
 
 # Test and Verification
+
 At any maturity level, linters can be introduced to ensure that consistent
  code is being added.
 For most linters, there are IDE integrations providing software engineers
@@ -414,4 +416,3 @@ Logging from all components gets aggregated in dashboards and alerts
 are raised based on several Thresholds and events.
 There are canary values and events fired against monitoring
 from time to time to validate it works.
-
