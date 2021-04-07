@@ -79,6 +79,7 @@ docker push $IMAGE_NAME
 
 This approach also allows teams to perform self assessment with changes tracked in a repository.
 
+
 ## Amazon EC2 Instance
 
 1. In the _EC2_ sidenav select _Instances_ and click _Launch Instance_
@@ -97,6 +98,14 @@ yum update -y
 yum install -y docker
 service docker start
 docker run -d -p 80:80 wurstbrot/dsomm:latest
+```
+
+## Tests
+
+To run basic tests just
+
+```bash
+docker-compose -f docker-compose.dev.yaml up test-php
 ```
 
 # Credits

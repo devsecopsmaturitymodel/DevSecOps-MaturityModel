@@ -1,9 +1,15 @@
 version: "3.0"
 services:
-  dsomm:
+  dsomm: &dsomm
     build: .
     volumes:
     - .:/var/www/html
+    working_dir: /var/www/html
     ports:
     - "8080:80"
-
+  test-php:
+    <<: *dsomm
+    volumes:
+    - .:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ["/var/www/html/tests.sh"]
