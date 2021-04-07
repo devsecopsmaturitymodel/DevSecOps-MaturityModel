@@ -1,4 +1,21 @@
 ---
+_yaml_references:
+  tools:
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    httpunit: &httpunit HttpUnit
+    junit: &junit junit
+    karma-runner: &karma https://github.com/karma-runner/karma
+    curl: &curl cURL
+    owasp-zap: &owasp-zap OWASP Zed Attack Proxy
+    selenium: &selenium Selenium
+    eslint: &eslint eslint, pylint, black, google-java-format
+    find-sec-bugs: &find-sec-bugs https://find-sec-bugs.github.io/
+    bandit: &bandit https://github.com/PyCQA/bandit
+    owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins Plugin
+    npm-audit: &npm-audit <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
+    retire-js: &retire-js <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
 Static depth for applications:
   Exclusion of source code duplicates:
     risk: Duplicates in source code might influence the stability of the application.
@@ -9,7 +26,8 @@ Static depth for applications:
       resources: 1
     usefulness: 1
     level: 4
-    implementation: PMD
+    implementation:
+    - PMD
     dependsOn:
     - Defined build process
     samm2: v-security-testing|A|2
@@ -43,7 +61,11 @@ Static depth for applications:
       resources: 1
     usefulness: 4
     level: 4
-    implementation: eslint, FindSecurityBugs, jsprime
+    implementation:
+    - *eslint
+    - *find-sec-bugs
+    - jsprime
+    - *bandit
     dependsOn:
     - Static analysis for important client side components
     - Static analysis for important server side components
@@ -62,10 +84,10 @@ Static depth for applications:
     usefulness: 3
     level: 3
     implementation:
-    - eslint
-    - FindSecurityBugs
+    - *eslint
+    - *find-sec-bugs
     - jsprime
-    - <a href='https://github.com/ing-bank/bdd-mobile-security-automation-framework'>bdd-mobile-security-automation-framework</a>
+    - <a href='https://github.com/ing-bank/bdd-mobile-security-automation-framework'>bdd-mobile-security-automation-framework</a> (Archived gh repo)
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
@@ -98,7 +120,8 @@ Static depth for applications:
       resources: 1
     usefulness: 1
     level: 4
-    implementation: PMD
+    implementation:
+    - PMD
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
@@ -116,8 +139,8 @@ Static depth for applications:
     dependsOn:
     - Defined build process
     implementation:
-    - <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
-    - <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
+    - *npm-audit
+    - *retire-js
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
@@ -133,7 +156,8 @@ Static depth for applications:
     level: 1
     dependsOn:
     - Defined build process
-    implementation: OWASP Dependency Check
+    implementation:
+    - *owasp-dependency-check
     samm: SA
     samm2: v-security-testing|A|2
     iso27001-2017:

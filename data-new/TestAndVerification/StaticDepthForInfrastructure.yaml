@@ -1,4 +1,19 @@
 ---
+_yaml_references:
+  tools:
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    httpunit: &httpunit HttpUnit
+    junit: &junit junit
+    karma-runner: &karma https://github.com/karma-runner/karma
+    curl: &curl cURL
+    owasp-zap: &owasp-zap OWASP Zed Attack Proxy
+    selenium: &selenium Selenium
+    wagoodman-dive: &wagoodman-dive  <a href="https://github.com/wagoodman/dive">Dive to inspect a container images</a>
+    hadolint: &hadolint <a href="https://github.com/hadolint/hadolint">Lint Dockerfile with hadolint</a>
+    kube-score: &kube-score <a href="https://github.com/zegl/kube-score">Deployment with kube-score</a>
+    github-super-linter: &github-super-linter https://github.com/github/super-linter
 Static depth for infrastructure:
   Analyse logs:
     risk: Not getting are of happend attacks.
@@ -22,7 +37,7 @@ Static depth for infrastructure:
     usefulness: 3
     level: 2
     implementation:
-    - <a href="https://github.com/wagoodman/dive">Dive to inspect a container images</a>
+    - *wagoodman-dive
     - Cluster Scanner (will be open sourced soon) to check different aspects
     samm2: v-security-testing|A|1
   Test the definition of virtualized environments:
@@ -36,8 +51,8 @@ Static depth for infrastructure:
     usefulness: 3
     level: 2
     implementation:
-    - <a href="https://github.com/hadolint/hadolint">Dockerfile with hadolint</a>
-    - <a href="https://github.com/zegl/kube-score">Deployment with kube-score</a>
+    - *hadolint
+    - *kube-score
     samm2: v-security-testing|A|1
     iso27001-2017:
     - system hardening, virtual environments are not explicitly covered by ISO 27001

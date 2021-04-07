@@ -1,4 +1,14 @@
 ---
+_yaml_references:
+  tools:
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    defect-dojo: &defect-dojo <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
+    purify: &purify <a href="https://github.com/faloker/purify/">Purify</a>
+    owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins Plugin
+    logparser-jenkins: &logparser-jenkins LogParser Jenkins Plugins
+    mozilla-zest: &mozilla-zest  <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
 Consolidation:
   Advanced visualization of defects:
     risk: Correlation of the vulnerabilities of different tools to have an overview
@@ -11,8 +21,8 @@ Consolidation:
     usefulness: 2
     level: 4
     implementation:
-    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
-    - <a href="https://github.com/faloker/purify/">Purify</a>
+    - *defect-dojo
+    - *purify
     samm2: defect-management|B|1
     iso27001-2017:
     - 16.1.4
@@ -21,9 +31,11 @@ Consolidation:
     - 8.2.3
   Definition of quality gates:
     risk: Improper examination of vulnerabilities leads to no visibility at all.
-    measure: Quality gates for found vulnerabilities are defined. In the start it
-      is important to not overload the security analyst, therefore the recommendation
-      is to start with alerting of high cirital vulnerabilities.
+    measure: |-
+      Quality gates for found vulnerabilities are defined.
+      
+      At the beginning it is important to not overload the security analyst, 
+      therefore the recommendation is to start with alerting of high critical vulnerabilities.
     difficultyOfImplementation:
       knowledge: 1
       time: 1
@@ -38,21 +50,26 @@ Consolidation:
     - 16.1.4
     implementation: See other actions, e.g. "Treatment of defects with severity high".
   Integration of vulnerability issues into the development process:
-    risk: To read console output of the build server to search for vulnerabilities
+    risk: |-
+      To read console output of the build server to search for vulnerabilities
       might be difficult. Also, to check a vulnerability management system might not
       be a daily task for a developer.
-    measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
+    measure: Vulnerabilities are tracked in the teams issue tracker system (e.g. jira).
     difficultyOfImplementation:
       knowledge: 2
       time: 2
       resources: 1
     usefulness: 2
     level: 3
-    implementation: 'At SAST (Static Application Security Testing): Server-side /
-      client-side teams can easily be recorded. With microservice architecture, individual
-      microservices can be used usually Teams. At DAST (Dynamic Application Security
-      Testing): vulnerabilities are classified and can be assigned to server-side
-      and client-side teams.'
+    implementation: |-
+      At SAST (Static Application Security Testing):
+        Server-side /
+        client-side teams can easily be recorded. With microservice architecture, individual
+        microservices can be used usually Teams. 
+      
+      At DAST (Dynamic Application Security Testing): 
+        vulnerabilities are classified and can be assigned to server-side
+        and client-side teams.
     samm2: i-defect-management|B|2
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
@@ -71,7 +88,8 @@ Consolidation:
       resources: 2
     usefulness: 2
     level: 4
-    implementation: <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
+    implementation:
+    - *mozilla-zest
     samm2: i-defect-management|B|2
     iso27001-2017:
     - 16.1.4
@@ -91,8 +109,8 @@ Consolidation:
     usefulness: 4
     level: 1
     implementation:
-    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
-    - <a href="https://github.com/faloker/purify/">Purify</a>
+    - *defect-dojo
+    - *purify
     samm: IR2-A
     samm2: i-defect-management|A|2
     iso27001-2017:
@@ -109,10 +127,10 @@ Consolidation:
     usefulness: 3
     level: 2
     implementation:
-    - OWASP Dependency Check Jenkins Plugin
-    - LogParser Jenkins Plugins
-    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
-    - <a href="https://github.com/faloker/purify/">Purify</a>
+    - *owasp-dependency-check
+    - *logparser-jenkins
+    - *defect-dojo
+    - *purify
     samm2: i-defect-management|B|1
     iso27001-2017:
     - 16.1.4
@@ -173,8 +191,8 @@ Consolidation:
     usefulness: 2
     level: 4
     implementation:
-    - <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
-    - <a href="https://github.com/faloker/purify/">Purify</a>
+    - *defect-dojo
+    - *purify
     samm2: i-defect-management|B|1
     iso27001-2017:
     - 12.6.1

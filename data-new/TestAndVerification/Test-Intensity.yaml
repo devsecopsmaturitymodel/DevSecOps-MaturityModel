@@ -1,4 +1,16 @@
 ---
+_yaml_references:
+  tools:
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    httpunit: &httpunit HttpUnit
+    junit: &junit junit
+    karma-runner: &karma https://github.com/karma-runner/karma
+    curl: &curl cURL
+    owasp-zap: &owasp-zap OWASP Zed Attack Proxy
+    selenium: &selenium Selenium
+
 Test-Intensity:
   Regular tests:
     risk: After pushing source code to the version control system, any delay in receiving

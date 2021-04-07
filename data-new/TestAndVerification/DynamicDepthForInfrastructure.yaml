@@ -1,4 +1,20 @@
 ---
+_yaml_references:
+  tools:
+    ci-cd: &ci-cd CI/CD tools, eg. Jenkins
+    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    httpunit: &httpunit HttpUnit
+    junit: &junit junit
+    karma-runner: &karma https://github.com/karma-runner/karma
+    curl: &curl cURL
+    owasp-zap: &owasp-zap OWASP Zed Attack Proxy
+    selenium: &selenium Selenium
+    kube-hunter: &kube-hunter <a href='https://github.com/aquasecurity/kube-hunter'>kube-hunter</a>
+    openvas: &openvas OpenVAS
+    netassert: &netassert <a href="https://github.com/controlplaneio/netassert">netassert</a>
+    nmap: &nmap nmap
+    owasp-amass: &owasp-amass <a href="https://github.com/OWASP/Amass">OWASP Amass</a>
 Dynamic depth for infrastructure:
   Load tests:
     risk: As it is unknown how many requests the systems and applications can serve,
@@ -28,8 +44,8 @@ Dynamic depth for infrastructure:
     usefulness: 4
     level: 2
     implementation:
-    - <a href='https://github.com/aquasecurity/kube-hunter'>kube-hunter</a>
-    - openVAS
+    - *kube-hunter
+    - *openvas
     samm: EH2-B
     iso27001-2017:
     - system hardening is not explicitly covered by ISO 27001 - too specific
@@ -62,7 +78,8 @@ Dynamic depth for infrastructure:
       resources: 1
     usefulness: 3
     level: 2
-    implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
+    implementation:
+    - *netassert
     dependendsOn: Segmented networks for virtual environments
     samm2: v-security-testing|A|2
     iso27001-2017:
@@ -82,8 +99,8 @@ Dynamic depth for infrastructure:
     usefulness: 3
     level: 1
     implementation:
-    - nmap
-    - <a href="https://github.com/OWASP/Amass">OWASP Amass</a>
+    - *nmap
+    - *owasp-amass
     samm: EH2-B
     samm2: v-security-testing|A|1
     iso27001-2017:
