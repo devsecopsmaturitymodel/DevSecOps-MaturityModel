@@ -25,7 +25,8 @@ Build:
       a separate virtual environments, which is destroyed afterward.
     meta:
       implementationGuide: Depending on your envirnoment, usage of virtual machines
-        or container technoligy is a good way. After the build, the filesystem should
+        or container technology is a good way.
+        After the build, the filesystem should
         not be used again in other builds.
     difficultyOfImplementation:
       knowledge: 2
