@@ -6,7 +6,7 @@ _yaml_references:
     dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
     ASVS: &ASVS <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP ASVS</a>
     MASVS: &MASVS <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
-    
+
 Application Hardening:
   Application Hardening Level 1:
     risk: Using an insecure application might lead to a compromised application. This

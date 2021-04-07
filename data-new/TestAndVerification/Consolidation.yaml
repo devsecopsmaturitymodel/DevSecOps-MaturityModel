@@ -33,8 +33,8 @@ Consolidation:
     risk: Improper examination of vulnerabilities leads to no visibility at all.
     measure: |-
       Quality gates for found vulnerabilities are defined.
-      
-      At the beginning it is important to not overload the security analyst, 
+
+      At the beginning it is important to not overload the security analyst,
       therefore the recommendation is to start with alerting of high critical vulnerabilities.
     difficultyOfImplementation:
       knowledge: 1
@@ -65,9 +65,9 @@ Consolidation:
       At SAST (Static Application Security Testing):
         Server-side /
         client-side teams can easily be recorded. With microservice architecture, individual
-        microservices can be used usually Teams. 
-      
-      At DAST (Dynamic Application Security Testing): 
+        microservices can be used usually Teams.
+
+      At DAST (Dynamic Application Security Testing):
         vulnerabilities are classified and can be assigned to server-side
         and client-side teams.
     samm2: i-defect-management|B|2
