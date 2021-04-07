@@ -21,7 +21,7 @@ $noMappingExists = array();
 $old_dimension = null;
 
 
-foreach (getActions($dimensions) as list($dimension, $subdimensions, $element) {
+foreach (getActions($dimensions) as list($dimension, $subdimensions, $element)) {
     if ($dimension != $old_dimension) {
       echo "<h1>Dimension $dimension</h1>";
       $old_dimension = $dimension;
