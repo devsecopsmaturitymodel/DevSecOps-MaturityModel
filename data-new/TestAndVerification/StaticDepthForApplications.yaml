@@ -3,7 +3,8 @@ _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
     containers: &containers Container technologies and orchestration like Docker, Kubernetes
-    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    dependabot: &dependabot >-
+      [dependabot](https://dependabot.com)
     httpunit: &httpunit HttpUnit
     junit: &junit junit
     karma-runner: &karma https://github.com/karma-runner/karma
@@ -14,8 +15,9 @@ _yaml_references:
     find-sec-bugs: &find-sec-bugs https://find-sec-bugs.github.io/
     bandit: &bandit https://github.com/PyCQA/bandit
     owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins Plugin
-    npm-audit: &npm-audit <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
-    retire-js: &retire-js <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
+    npm-audit: &npm-audit >-
+      [npm audit](https://docs.npmjs.com/cli/audit)
+    retire-js: &retire-js https://github.com/RetireJS/retire.js
 Static depth for applications:
   Exclusion of source code duplicates:
     risk: Duplicates in source code might influence the stability of the application.

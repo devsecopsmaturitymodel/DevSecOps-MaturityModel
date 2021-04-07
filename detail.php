@@ -89,15 +89,24 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
   printReferences($element);
 }
 
-function get_implementation($activity){
-  $implementation = $activity['implementation'] ?? [];
-  $items = as_list($implementation);
-  $ret = ul($items, callback=function($str){
-    return $str;
-  });
+
+/**
+ *
+ * @param unknown $activity
+ * @return unknown
+ */
+function get_implementation($activity) {
+  $implementation = $activity['implementation'] ?? array();
+  $items = iterator_to_array(as_list($implementation));
+  $ret = ul($items, function($str) {
+      $md = new Parsedown();
+      return $md->text($str);
+    });
 
   echo "<div><b>Implementation hints:</b>$ret</div>";
 }
+
+
 /**
  *
  * @param unknown $element

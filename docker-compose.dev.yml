@@ -11,5 +11,6 @@ services:
     <<: *dsomm
     volumes:
     - .:/var/www/html
+    ports: []
     working_dir: /var/www/html
     entrypoint: ["/var/www/html/tests.sh"]

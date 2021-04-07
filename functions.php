@@ -162,17 +162,17 @@ function as_list($items) {
 
 /**
  *
- * @param unknown $samm_references
- * @param unknown $callback        (optional)
+ * @param unknown $items
+ * @param unknown $callback (optional)
  * @return unknown
  */
-function ul($samm_references, $callback='renderSamm') {
-  if ( ! is_array($samm_references) ) {
-    return ($callback)($samm_references);
+function ul($items, $callback='renderSamm') {
+  if ( ! is_iterable($items) ) {
+    return ($callback)($items);
   }
 
   $ret = "<ul><li>"
-    . implode("</li><li>", array_map($callback, $samm_references))
+    . implode("</li><li>", array_map($callback, $items))
     ."</li></ul>";
   return $ret;
 }
