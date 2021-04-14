@@ -18,7 +18,7 @@ Infrastructure Hardening:
     - <a href='https://www.cisecurity.org/cis-benchmarks/'>CIS Docker Bench for Security</a>
     - 'For example for Containers: Deny running containers as root, deny using advanced
       privileges, deny mounting of the hole filesystem, ...'
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - system hardening is not explicitly covered by ISO 27001 - too specific
     - 13.1.3
@@ -32,7 +32,7 @@ Infrastructure Hardening:
       resources: 5
     usefulness: 3
     level: 2
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - virtual environments are not explicitly covered by ISO 27001 - too specific
     - 13.1.3
@@ -47,7 +47,7 @@ Infrastructure Hardening:
     usefulness: 3
     level: 2
     samm: SA1-A
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 14.2.1
@@ -69,7 +69,7 @@ Infrastructure Hardening:
     - istio
     - bridges
     - firewalls
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - virtual environments are not explicitly covered by ISO 27001 - too specific
     - 13.1.3
@@ -87,7 +87,7 @@ Infrastructure Hardening:
     implementation:
     - Open Policy Agent
     - firewalls
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - virtual environments are not explicitly covered by ISO 27001 - too specific
     - 13.1.3
@@ -104,7 +104,7 @@ Infrastructure Hardening:
     usefulness: 4
     level: 3
     implementation: GitOps, Ansible, Chef, Puppet, Jenkinsfile
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.1.1
@@ -121,7 +121,7 @@ Infrastructure Hardening:
     dependsOn:
     - Applications are running in virtualized environments
     implementation: seccomp, strace
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - system hardenong is not explicitly covered by ISO 27001 - too specific
   Immutable Infrastructure:
@@ -138,7 +138,7 @@ Infrastructure Hardening:
     - Usage of <a href="https://semver.org/">Semantic Versioning</a> for components
       like project images
     implementation: Remove direct access to infrastructure
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 17.2.1
@@ -153,7 +153,7 @@ Infrastructure Hardening:
     usefulness: 3
     level: 4
     samm: SA2
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001
   Production near environments are used by developers:
@@ -174,7 +174,7 @@ Infrastructure Hardening:
     - Defined deployment process
     - Infrastructure as Code
     samm: SA1
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - 12.1.4
     - 17.2.1
@@ -193,7 +193,7 @@ Infrastructure Hardening:
     dependsOn:
     - Defined deployment process
     - Defined build process
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - 9.4.1
   2FA:
@@ -227,7 +227,7 @@ Infrastructure Hardening:
     - Defined deployment process
     implementation: HTTP-Basic Authentication, TLS, VPN
     samm: EH1-B
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - 9.4.1
   Usage of a chaos monkey:
@@ -242,7 +242,7 @@ Infrastructure Hardening:
       resources: 5
     usefulness: 3
     level: 4
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 17.1.3
@@ -261,7 +261,7 @@ Infrastructure Hardening:
       authentication'
     dependsOn:
     - Defined build process
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
   Usage of test and production environments:
@@ -275,7 +275,7 @@ Infrastructure Hardening:
     level: 1
     dependsOn:
     - Defined deployment process
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.1.4
@@ -292,7 +292,7 @@ Infrastructure Hardening:
     level: 3
     dependsOn:
     - Defined deployment process
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.1.1
@@ -311,7 +311,7 @@ Infrastructure Hardening:
     level: 2
     dependsOn:
     - Applications are running in virtualized environments
-    samm2: o-environment-management|A|1
+    samm2: O-EM-1-A
     iso27001-2017:
     - virtual environments are not explicitly covered by ISO 27001 - too specific
     - 12.1.3

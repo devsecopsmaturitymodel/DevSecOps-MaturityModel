@@ -31,7 +31,7 @@ Logging:
     - Visualized logging
     - Alerting
     samm: SA2-B
-    samm2: o-incident-management|A|1
+    samm2: O-IM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.4.1
@@ -50,7 +50,7 @@ Logging:
     - *logstash
     - *fluentd
     - bash
-    samm2: o-incident-management|A|1
+    samm2: O-IM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.4.1
@@ -68,7 +68,7 @@ Logging:
     dependsOn:
     - PII logging concept
     implementation: [ *rsyslog, *logstash, *fluentd, bash]
-    samm2: o-incident-management|A|1
+    samm2: O-IM-1-A
     iso27001-2017:
     - 12.4.1
   Centralized system logging:
@@ -84,7 +84,7 @@ Logging:
     usefulness: 2
     level: 1
     implementation: [*rsyslog, *logstash]
-    samm2: o-incident-management|A|1
+    samm2: O-IM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.4.1
@@ -102,7 +102,7 @@ Logging:
     dependsOn:
     - Visualized logging
     - Alerting
-    samm2: o-incident-management|A|2
+    samm2: O-IM-2-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.4.1
@@ -123,7 +123,7 @@ Logging:
     - Centralized application logging
     implementation:
     - *elk
-    samm2: o-incident-management|A|1
+    samm2: O-IM-1-A
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.4.1

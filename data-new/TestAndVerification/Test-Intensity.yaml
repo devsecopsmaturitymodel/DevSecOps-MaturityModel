@@ -23,7 +23,7 @@ Test-Intensity:
     usefulness: 2
     level: 2
     implementation: []
-    samm2: i-secure-build|A|3
+    samm2: I-SB-3-A
     iso27001-2017:
     - 14.2.3
     - 14.2.8
