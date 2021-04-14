@@ -1,8 +1,8 @@
----
 _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
-    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    containers: &containers Container technologies and orchestration like Docker,
+      Kubernetes
     dependabot: &dependabot >-
       [dependabot](https://dependabot.com/)
     httpunit: &httpunit HttpUnit
@@ -27,10 +27,10 @@ Dynamic depth for applications:
     level: 4
     implementation:
     - *owasp-code-pulse
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
-    - part of periodic review, PDCA
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
+    - iso27001-2017:part of periodic review, PDCA
   Coverage of client side dynamic components:
     risk: Parts of the service are not covered during the scan, because JavaScript
       is not getting executed. Therefore, the co
@@ -44,14 +44,14 @@ Dynamic depth for applications:
     level: 2
     dependsOn:
     - Usage of different roles
-    samm: ST-2
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
     implementation:
     - Ajax Spider
     - *selenium
+    references:
+    - samm:ST-2
+    - samm2:V-ST-2-A
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
   Coverage of hidden endpoints:
     risk: Hidden endpoints of the service are not getting tracked.
     measure: Hidden endpoints are getting detected and included in the vulnerability
@@ -67,9 +67,9 @@ Dynamic depth for applications:
     - OpenAPI
     dependsOn:
     - Usage of different roles
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
   Coverage of more input vectors:
     risk: Parts of the service are not covered. For example specially formatted or
       coded parameters are not getting detected as parameter (e.g. parameters in REST-like
@@ -84,9 +84,9 @@ Dynamic depth for applications:
     level: 3
     dependsOn:
     - Usage of different roles
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
   Coverage of sequential operations:
     risk: Sequential operations like workflows (e.g. login -> put products in the
       basket
@@ -102,10 +102,10 @@ Dynamic depth for applications:
     - *curl
     dependsOn:
     - Usage of different roles
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 14.2.8
-    - 14.2.3
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:14.2.8
+    - iso27001-2017:14.2.3
   Coverage of service to service communication:
     risk: Service to service communication is not covered.
     measure: Service to service communication is dumped and checked.
@@ -117,10 +117,10 @@ Dynamic depth for applications:
     level: 4
     dependsOn:
     - Simple Scan
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
   Simple Scan:
     risk: Deficient security tests are performed. Simple vulnerabilities are not detected
       and missing security configurations (e.g. headers) are not set. Fast feedback
@@ -135,14 +135,14 @@ Dynamic depth for applications:
     level: 1
     dependsOn:
     - Defined build process
-    samm: ST2
     implementation:
     - *owasp-zap
     - *arachni
-    samm2: V-ST-1-A
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
+    references:
+    - samm:ST2
+    - samm2:V-ST-1-A
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
   Usage of different roles:
     risk: Parts of the service are not covered during the scan, because a login is
       not performed.
@@ -155,11 +155,11 @@ Dynamic depth for applications:
     level: 2
     dependsOn:
     - Simple Scan
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
-    - 14.2.3
-    - 14.2.8
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
   Usage of multiple scanners:
     risk: Each vulnerability scanner has different opportunities. By using just one
       scanner, some vulnerabilities might not be found.
@@ -173,8 +173,7 @@ Dynamic depth for applications:
     dependsOn:
     - Usage of different roles
     implementation: SecureCodeBox
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
-    - 14.2.5
-...
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
+    - iso27001-2017:14.2.5
