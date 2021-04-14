@@ -3,7 +3,7 @@ _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
     containers: &containers Container technologies and orchestration like Docker, Kubernetes
-    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    dependabot: &dependabot https://dependabot.com
     httpunit: &httpunit HttpUnit
     junit: &junit junit
     karma-runner: &karma https://github.com/karma-runner/karma
@@ -75,7 +75,7 @@ Application tests:
       resources: 2
     usefulness: 2
     level: 4
-    implementation: ""
+    implementation: []
     dependsOn:
     - Defined deployment process
     samm: ST2-B

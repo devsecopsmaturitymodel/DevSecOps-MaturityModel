@@ -3,12 +3,14 @@ _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
     containers: &containers Container technologies and orchestration like Docker, Kubernetes
-    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
-    defect-dojo: &defect-dojo <a href="https://github.com/DefectDojo/django-DefectDojo">OWASP Defect Dojo</a>
-    purify: &purify <a href="https://github.com/faloker/purify/">Purify</a>
+    dependabot: &dependabot >-
+      [dependabot](https://dependabot.com/)
+    defect-dojo: &defect-dojo >-
+      [OWASP Defect Dojo](https://github.com/DefectDojo/django-DefectDojo)
+    purify: &purify https://github.com/faloker/purify
     owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins Plugin
     logparser-jenkins: &logparser-jenkins LogParser Jenkins Plugins
-    mozilla-zest: &mozilla-zest  <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
+    mozilla-zest: &mozilla-zest   https://github.com/mozilla/zest
 Consolidation:
   Advanced visualization of defects:
     risk: Correlation of the vulnerabilities of different tools to have an overview

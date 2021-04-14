@@ -3,18 +3,22 @@ _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
     containers: &containers Container technologies and orchestration like Docker, Kubernetes
-    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    dependabot: &dependabot >-
+      https://dependabot.com
     httpunit: &httpunit HttpUnit
     junit: &junit junit
     karma-runner: &karma https://github.com/karma-runner/karma
     curl: &curl cURL
     owasp-zap: &owasp-zap OWASP Zed Attack Proxy
     selenium: &selenium Selenium
-    kube-hunter: &kube-hunter <a href='https://github.com/aquasecurity/kube-hunter'>kube-hunter</a>
+    kube-hunter: &kube-hunter >-
+      [kube-hunter](https://github.com/aquasecurity/kube-hunter)
     openvas: &openvas OpenVAS
-    netassert: &netassert <a href="https://github.com/controlplaneio/netassert">netassert</a>
+    netassert: &netassert >-
+      https://github.com/controlplaneio/netassert
     nmap: &nmap nmap
-    owasp-amass: &owasp-amass <a href="https://github.com/OWASP/Amass">OWASP Amass</a>
+    owasp-amass: &owasp-amass >-
+      [OWASP Amass](https://github.com/OWASP/Amass)
 Dynamic depth for infrastructure:
   Load tests:
     risk: As it is unknown how many requests the systems and applications can serve,

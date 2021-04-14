@@ -3,7 +3,8 @@ _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
     containers: &containers Container technologies and orchestration like Docker, Kubernetes
-    dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
+    dependabot: &dependabot >-
+      [dependabot](https://dependabot.com/)
     httpunit: &httpunit HttpUnit
     junit: &junit junit
     karma-runner: &karma https://github.com/karma-runner/karma
@@ -15,7 +16,9 @@ _yaml_references:
 Dynamic depth for applications:
   Coverage analysis:
     risk: Parts of the service are not still covered.
-    measure: Check that there are no missing paths in the application with coverage-tools.
+    measure: >-
+      Check that there are no missing paths
+      in the application with coverage-tools.
     difficultyOfImplementation:
       knowledge: 4
       time: 5
