@@ -9,7 +9,10 @@ _yaml_references:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
     containers: &containers Container technologies and orchestration like Docker, Kubernetes
     dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
-
+    coreos: &coreos https://getfedora.org/coreos
+    distroless: &distroless "https://github.com/GoogleContainerTools/distroless"
+    notary: &notary "[Docker Content Trust](https://docs.docker.com/notary/getting_started)"
+    in-toto: &in-toto https://in-toto.github.io/
 Build:
   Building and testing of artifacts in virtual environments:
     description: |-
@@ -96,8 +99,8 @@ Build:
     usefulness: 4
     level: 3
     implementation:
-    - <a href="https://docs.docker.com/notary/getting_started/">Docker Content Trust</a>
-    - <a href="https://in-toto.github.io/">in-toto</a>
+    - *notary
+    - *in-toto
     dependsOn:
     - Defined build process
     references:
@@ -429,6 +432,6 @@ Patch Management:
     - hardening is missing in ISO 27001
     - 14.2.1
     implementation:
-    - <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
-    - <a href="https://getfedora.org/coreos?stream=stable">Fedora CoreOS</a>
+    - *distroless
+    - *coreos
 ...
