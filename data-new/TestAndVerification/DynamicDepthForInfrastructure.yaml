@@ -31,7 +31,7 @@ Dynamic depth for infrastructure:
       resources: 5
     usefulness: 3
     level: 4
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - 12.1.3
     - 14.2.3
@@ -68,7 +68,7 @@ Dynamic depth for infrastructure:
     usefulness: 1
     level: 3
     implementation: HTC Hydra
-    samm2: v-security-testing|A|2
+    samm2: V-ST-2-A
     iso27001-2017:
     - 9.4.3
   Test network segmentation:
@@ -85,7 +85,7 @@ Dynamic depth for infrastructure:
     implementation:
     - *netassert
     dependendsOn: Segmented networks for virtual environments
-    samm2: v-security-testing|A|2
+    samm2: V-ST-2-A
     iso27001-2017:
     - 13.1.3
     - 14.2.3
@@ -106,7 +106,7 @@ Dynamic depth for infrastructure:
     - *nmap
     - *owasp-amass
     samm: EH2-B
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - 13.1.3
     - 14.2.3

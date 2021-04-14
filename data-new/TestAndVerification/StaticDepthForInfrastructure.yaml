@@ -57,7 +57,7 @@ Static depth for infrastructure:
     implementation:
     - *wagoodman-dive
     - Cluster Scanner (will be open sourced soon) to check different aspects
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
   Test the definition of virtualized environments:
     risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>)
       might contains unsecure configurations.
@@ -71,7 +71,7 @@ Static depth for infrastructure:
     implementation:
     - *hadolint
     - *kube-score
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - system hardening, virtual environments are not explicitly covered by ISO 27001
       - too specific
@@ -92,7 +92,7 @@ Static depth for infrastructure:
     level: 2
     implementation:
     - *kube-sec
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - system hardening is not explicitly covered by ISO 27001 - too specific
     - 12.6.1
@@ -118,7 +118,7 @@ Static depth for infrastructure:
     - *Clair
     - *OpenSCAP
     - *vuls
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - 12.6.1
     - 14.2.1
@@ -138,7 +138,7 @@ Static depth for infrastructure:
     - *Clair
     - *OpenSCAP
     - *vuls
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - 12.6.1
     - 14.2.1
@@ -156,7 +156,7 @@ Static depth for infrastructure:
     implementation:
     - *kube-bench
     samm: EH2-B
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - system hardening is not explicitly covered by ISO 27001 - too specific
     - 12.6.1
@@ -175,7 +175,7 @@ Static depth for infrastructure:
     implementation:
     - *trufflehog
     - *go-pillage-registries
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - vcs usage is not explicitly covered by ISO 27001 - too specific
     - 9.4.3
@@ -191,7 +191,7 @@ Static depth for infrastructure:
     usefulness: 2
     level: 3
     implementation: ~
-    samm2: v-security-testing|A|1
+    samm2: V-ST-1-A
     iso27001-2017:
     - 12.6.1
     - 14.2.5
@@ -209,7 +209,7 @@ Static depth for infrastructure:
     - *trivy
     - Registries like quay, dockerhub provide (commercial) offerings, often not suitable
       for distroless images
-    samm2: v-security-testing|A|2
+    samm2: V-ST-2-A
     iso27001-2017:
     - 12.6.1
   Check for new image version:
@@ -222,7 +222,7 @@ Static depth for infrastructure:
     usefulness: 2
     level: 3
     implementation: ~
-    samm2: v-security-testing|A|2
+    samm2: V-ST-2-A
     iso27001-2017:
     - 12.6.1
     - 14.2.5
@@ -240,7 +240,7 @@ Static depth for infrastructure:
     usefulness: 3
     level: 3
     implementation: ~
-    samm2: v-security-testing|A|2
+    samm2: V-ST-2-A
     iso27001-2017:
     - 12.2.1
 ...

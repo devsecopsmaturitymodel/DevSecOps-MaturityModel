@@ -21,7 +21,7 @@ Application tests:
     usefulness: 3
     level: 4
     samm: ST2-B
-    samm2: v-security-testing|B|3
+    samm2: V-ST-3-B
     iso27001-2017:
     - 14.2.3
     - 14.2.8
@@ -39,7 +39,7 @@ Application tests:
     implementation:
     - *httpunit
     samm: ST2-B
-    samm2: v-security-testing|B|3
+    samm2: V-ST-3-B
     iso27001-2017:
     - 14.2.3
     - 14.2.8
@@ -60,7 +60,7 @@ Application tests:
     - *junit
     - *karma
     samm: ST2-B
-    samm2: v-security-testing|B|3
+    samm2: V-ST-3-B
     iso27001-2017:
     - 14.2.3
     - 14.2.8
@@ -79,7 +79,7 @@ Application tests:
     dependsOn:
     - Defined deployment process
     samm: ST2-B
-    samm2: v-security-testing|B|3
+    samm2: V-ST-3-B
     iso27001-2017:
     - 14.2.3
     - 14.2.8
