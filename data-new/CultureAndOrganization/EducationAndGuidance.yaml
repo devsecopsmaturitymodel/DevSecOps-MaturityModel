@@ -138,7 +138,7 @@ Education and Guidance:
     - 12.7.1
   Conduction of collaborative team security checks:
     risk: Development teams limited insight over security practices.
-    measure: Mutual security testing the security of other teams' project enhances
+    measure: Mutual security testing the security of other teams project enhances
       security awareness and knowledge.
     difficultyOfImplementation:
       resources: 2
