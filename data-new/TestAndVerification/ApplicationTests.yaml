@@ -1,8 +1,8 @@
----
 _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
-    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    containers: &containers Container technologies and orchestration like Docker,
+      Kubernetes
     dependabot: &dependabot https://dependabot.com
     httpunit: &httpunit HttpUnit
     junit: &junit junit
@@ -20,11 +20,11 @@ Application tests:
       resources: 3
     usefulness: 3
     level: 4
-    samm: ST2-B
-    samm2: V-ST-3-B
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
+    references:
+    - samm:ST2-B
+    - samm2:V-ST-3-B
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
   Security integration tests for important components:
     risk: Vulnerabilities are rising due to code changes in a complex microservice
       environment.
@@ -38,11 +38,11 @@ Application tests:
     level: 3
     implementation:
     - *httpunit
-    samm: ST2-B
-    samm2: V-ST-3-B
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
+    references:
+    - samm:ST2-B
+    - samm2:V-ST-3-B
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
   Security unit tests for important components:
     risk: Vulnerabilities are rising due to code changes.
     measure: Usage of unit tests to test important security related features like
@@ -59,11 +59,11 @@ Application tests:
     implementation:
     - *junit
     - *karma
-    samm: ST2-B
-    samm2: V-ST-3-B
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
+    references:
+    - samm:ST2-B
+    - samm2:V-ST-3-B
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
   Smoke Test:
     risk: During a deployment an error might happen which leads to non-availability
       of the system, a part of the system or a feature.
@@ -78,9 +78,8 @@ Application tests:
     implementation: []
     dependsOn:
     - Defined deployment process
-    samm: ST2-B
-    samm2: V-ST-3-B
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
-...
+    references:
+    - samm:ST2-B
+    - samm2:V-ST-3-B
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8

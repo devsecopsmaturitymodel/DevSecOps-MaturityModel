@@ -1,8 +1,8 @@
----
 _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
-    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    containers: &containers Container technologies and orchestration like Docker,
+      Kubernetes
     dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
     httpunit: &httpunit HttpUnit
     junit: &junit junit
@@ -23,11 +23,11 @@ Test-Intensity:
     usefulness: 2
     level: 2
     implementation: []
-    samm2: I-SB-3-A
-    iso27001-2017:
-    - 14.2.3
-    - 14.2.8
-    - 14.2.9
+    references:
+    - samm2:I-SB-3-A
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.8
+    - iso27001-2017:14.2.9
   Creation and application of a testing concept:
     risk: Scans might use a too small or too high test intensity.
     measure: A testing concept considering the amount of time per scan/intensity is
@@ -40,13 +40,13 @@ Test-Intensity:
       resources: 3
     usefulness: 2
     level: 3
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 14.2.2
-    - 14.2.3
-    - 14.2.1
-    - 14.2.5
-    - 12.6.1
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:14.2.2
+    - iso27001-2017:14.2.3
+    - iso27001-2017:14.2.1
+    - iso27001-2017:14.2.5
+    - iso27001-2017:12.6.1
   Deactivating of unneeded tests:
     risk: As tools cover a wide range of different vulnerability tests, they might
       not match the used components. Therefore, they need more time and resources
@@ -60,11 +60,11 @@ Test-Intensity:
       resources: 1
     usefulness: 1
     level: 2
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
-    - 14.2.1
-    - 14.2.5
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
+    - iso27001-2017:14.2.1
+    - iso27001-2017:14.2.5
   Default settings for intensity:
     risk: Time pressure and ignorance might lead to false predictions for the test
       intensity.
@@ -75,11 +75,11 @@ Test-Intensity:
       resources: 1
     usefulness: 1
     level: 1
-    samm2: V-ST-1-A
-    iso27001-2017:
-    - 12.6.1
-    - 14.2.1
-    - 14.2.5
+    references:
+    - samm2:V-ST-1-A
+    - iso27001-2017:12.6.1
+    - iso27001-2017:14.2.1
+    - iso27001-2017:14.2.5
   High test intensity:
     risk: A too small intensity or a too high confidence might lead to not visible
       vulnerabilities.
@@ -91,9 +91,8 @@ Test-Intensity:
       resources: 5
     usefulness: 3
     level: 1
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
-    - 14.2.1
-    - 14.2.5
-...
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
+    - iso27001-2017:14.2.1
+    - iso27001-2017:14.2.5

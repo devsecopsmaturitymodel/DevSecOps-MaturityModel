@@ -1,16 +1,17 @@
----
 _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
-    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    containers: &containers Container technologies and orchestration like Docker,
+      Kubernetes
     dependabot: &dependabot >-
       [dependabot](https://dependabot.com/)
     defect-dojo: &defect-dojo >-
       [OWASP Defect Dojo](https://github.com/DefectDojo/django-DefectDojo)
     purify: &purify https://github.com/faloker/purify
-    owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins Plugin
+    owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins
+      Plugin
     logparser-jenkins: &logparser-jenkins LogParser Jenkins Plugins
-    mozilla-zest: &mozilla-zest   https://github.com/mozilla/zest
+    mozilla-zest: &mozilla-zest https://github.com/mozilla/zest
 Consolidation:
   Advanced visualization of defects:
     risk: Correlation of the vulnerabilities of different tools to have an overview
@@ -25,12 +26,12 @@ Consolidation:
     implementation:
     - *defect-dojo
     - *purify
-    samm2: defect-management|B|1
-    iso27001-2017:
-    - 16.1.4
-    - 8.2.1
-    - 8.2.2
-    - 8.2.3
+    references:
+    - samm2:defect-management|B|1
+    - iso27001-2017:16.1.4
+    - iso27001-2017:8.2.1
+    - iso27001-2017:8.2.2
+    - iso27001-2017:8.2.3
   Definition of quality gates:
     risk: Improper examination of vulnerabilities leads to no visibility at all.
     measure: |-
@@ -44,13 +45,13 @@ Consolidation:
       resources: 1
     usefulness: 4
     level: 1
-    samm: IR2-A
-    samm2: I-DM-2-A
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
-    - 12.6.1
-    - 16.1.4
     implementation: See other actions, e.g. "Treatment of defects with severity high".
+    references:
+    - samm:IR2-A
+    - samm2:I-DM-2-A
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
+    - iso27001-2017:12.6.1
+    - iso27001-2017:16.1.4
   Integration of vulnerability issues into the development process:
     risk: |-
       To read console output of the build server to search for vulnerabilities
@@ -72,12 +73,12 @@ Consolidation:
       At DAST (Dynamic Application Security Testing):
         vulnerabilities are classified and can be assigned to server-side
         and client-side teams.
-    samm2: I-DM-2-B
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
-    - 16.1.4
-    - 16.1.5
-    - 16.1.6
+    references:
+    - samm2:I-DM-2-B
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
+    - iso27001-2017:16.1.4
+    - iso27001-2017:16.1.5
+    - iso27001-2017:16.1.6
   Reproducible defect tickets:
     risk: Vulnerability descriptions are hard to understand by staff from operations
       and development.
@@ -92,12 +93,12 @@ Consolidation:
     level: 4
     implementation:
     - *mozilla-zest
-    samm2: I-DM-2-B
-    iso27001-2017:
-    - 16.1.4
-    - 8.2.1
-    - 8.2.2
-    - 8.2.3
+    references:
+    - samm2:I-DM-2-B
+    - iso27001-2017:16.1.4
+    - iso27001-2017:8.2.1
+    - iso27001-2017:8.2.2
+    - iso27001-2017:8.2.3
   Simple false positive treatment:
     risk: As false positive occure during each test, all vulnerabilities might be
       ignored.
@@ -113,11 +114,11 @@ Consolidation:
     implementation:
     - *defect-dojo
     - *purify
-    samm: IR2-A
-    samm2: I-DM-2-A
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
-    - 16.1.6
+    references:
+    - samm:IR2-A
+    - samm2:I-DM-2-A
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
+    - iso27001-2017:16.1.6
   Simple visualization of defects:
     risk: The security level of a component is not visible. Therefore, the motivation
       to enhance the security is not give.
@@ -133,12 +134,12 @@ Consolidation:
     - *logparser-jenkins
     - *defect-dojo
     - *purify
-    samm2: I-DM-1-B
-    iso27001-2017:
-    - 16.1.4
-    - 8.2.1
-    - 8.2.2
-    - 8.2.3
+    references:
+    - samm2:I-DM-1-B
+    - iso27001-2017:16.1.4
+    - iso27001-2017:8.2.1
+    - iso27001-2017:8.2.2
+    - iso27001-2017:8.2.3
   Treatment of all defects:
     risk: Vulnerabilities with severity low are not visible.
     measure: All vulnerabilities are added to the quality gate.
@@ -148,10 +149,10 @@ Consolidation:
       resources: 1
     usefulness: 2
     level: 4
-    samm2: I-DM-2-B
-    iso27001-2017:
-    - 16.1.4
-    - 12.6.1
+    references:
+    - samm2:I-DM-2-B
+    - iso27001-2017:16.1.4
+    - iso27001-2017:12.6.1
   Treatment of defects with severity high or higher:
     risk: Vulnerabilities with severity high or higher are not visible.
     measure: Vulnerabilities with severity high or higher are added to the quality
@@ -163,10 +164,10 @@ Consolidation:
     usefulness: 4
     level: 1
     comment: False positive analysis, specially for static analysis, is time consuming.
-    samm2: I-DM-2-B
-    iso27001-2017:
-    - 16.1.4
-    - 12.6.1
+    references:
+    - samm2:I-DM-2-B
+    - iso27001-2017:16.1.4
+    - iso27001-2017:12.6.1
   Treatment of defects with severity middle:
     risk: Vulnerabilities with severity middle are not visible.
     measure: Vulnerabilities with severity middle are added to the quality gate.
@@ -177,10 +178,10 @@ Consolidation:
     usefulness: 3
     level: 3
     comment: False positive analysis, specially for static analysis, is time consuming.
-    samm2: I-DM-2-B
-    iso27001-2017:
-    - 16.1.4
-    - 12.6.1
+    references:
+    - samm2:I-DM-2-B
+    - iso27001-2017:16.1.4
+    - iso27001-2017:12.6.1
   Usage of a vulnerability management system:
     risk: Maintenance of false positives in each tool enforces a high workload. In
       addition a correlation of the same finding from different tools is not possible.
@@ -195,11 +196,10 @@ Consolidation:
     implementation:
     - *defect-dojo
     - *purify
-    samm2: I-DM-1-B
-    iso27001-2017:
-    - 12.6.1
-    - 16.1.3
-    - 16.1.4
-    - 16.1.5
-    - 16.1.6
-...
+    references:
+    - samm2:I-DM-1-B
+    - iso27001-2017:12.6.1
+    - iso27001-2017:16.1.3
+    - iso27001-2017:16.1.4
+    - iso27001-2017:16.1.5
+    - iso27001-2017:16.1.6

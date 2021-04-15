@@ -1,7 +1,7 @@
 import pandas as pd
 from yaml import safe_load, safe_dump
 from pathlib import Path
-
+import sys
 
 def as_list(risk):
     if isinstance(risk, str):
@@ -36,15 +36,17 @@ def format_references(fpath = "data/dimensions.yaml"):
           for s in as_list(data["references"].get(refid, [])):
             references.append(f"{refid}:{s}")
         data["references"] = references
-  y.dump(dimensions, stream=Path(fpath + ".new"))
+  y.dump(dimensions, stream=Path(fpath))
   return dimensions
 
 
 def test_format():
   format_references("data-new/BuildAndDeployment/Sub-Dimensions.yaml")
 
-
 if __name__ == '__main__':
+  format_references(sys.argv[1])
+
+if __name__ == 'main__':
 
   columns = ["dimension", "subdimension", "activity", "risk",
   #"implementation"

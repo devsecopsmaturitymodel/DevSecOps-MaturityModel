@@ -1,8 +1,8 @@
----
 _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
-    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    containers: &containers Container technologies and orchestration like Docker,
+      Kubernetes
     dependabot: &dependabot >-
       [dependabot](https://dependabot.com)
     httpunit: &httpunit HttpUnit
@@ -14,12 +14,14 @@ _yaml_references:
     eslint: &eslint eslint, pylint, black, google-java-format
     find-sec-bugs: &find-sec-bugs https://find-sec-bugs.github.io/
     bandit: &bandit https://github.com/PyCQA/bandit
-    owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins Plugin
+    owasp-dependency-check: &owasp-dependency-check OWASP Dependency Check Jenkins
+      Plugin
     npm-audit: &npm-audit >-
       [npm audit](https://docs.npmjs.com/cli/audit)
     retire-js: &retire-js https://github.com/RetireJS/retire.js
     bdd-mobile-security-automation-framework: &bdd-mobile-security-automation-framework >-
-      https://github.com/ing-bank/bdd-mobile-security-automation-framework (Archived gh repo)
+      https://github.com/ing-bank/bdd-mobile-security-automation-framework (Archived
+      gh repo)
     jsprime: &jsprime jsprime
 Static depth for applications:
   Exclusion of source code duplicates:
@@ -35,11 +37,11 @@ Static depth for applications:
     - PMD
     dependsOn:
     - Defined build process
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - not explicitly covered by ISO 27001 - too specific
-    - 14.2.1
-    - 14.2.5
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:not explicitly covered by ISO 27001 - too specific
+    - iso27001-2017:14.2.1
+    - iso27001-2017:14.2.5
   Static analysis for all components/libraries:
     risk: Used components like libraries and legacy applications might have vulnerabilities
     measure: Usage of a static analysis for all used components.
@@ -52,9 +54,9 @@ Static depth for applications:
     dependsOn:
     - Static analysis for important client side components
     - Static analysis for important server side components
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
   Static analysis for all self written components:
     risk: Parts in the source code of the frontend or middleware have vulnerabilities.
     measure: Usage of static analysis tools for all parts of the middleware and frontend.
@@ -74,9 +76,9 @@ Static depth for applications:
     dependsOn:
     - Static analysis for important client side components
     - Static analysis for important server side components
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
   Static analysis for important client side components:
     risk: Important parts in the source code of the frontend have vulnerabilities.
     measure: Usage of static analysis tools for important parts of the frontend are
@@ -93,11 +95,11 @@ Static depth for applications:
     - *find-sec-bugs
     - jsprime
     - *bdd-mobile-security-automation-framework
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
     dependsOn:
     - Defined build process
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
   Static analysis for important server side components:
     risk: Important parts in the source code of the middleware have vulnerabilities.
     measure: Usage of static analysis tools for important parts of the middleware
@@ -115,9 +117,9 @@ Static depth for applications:
     - *jsprime
     dependsOn:
     - Defined build process
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
   Stylistic analysis:
     risk: False source code indenting might lead to vulnerabilities.
     measure: Analysis of compliance to style guides of the source code ensures that
@@ -130,11 +132,11 @@ Static depth for applications:
     level: 4
     implementation:
     - PMD
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
-    - 14.2.1
-    - 14.2.5
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
+    - iso27001-2017:14.2.1
+    - iso27001-2017:14.2.5
   Test of client side components with known vulnerabilities:
     risk: Client side components might have vulnerabilities.
     measure: Tests for known vulnerabilities in components of the frontend are performed.
@@ -149,9 +151,9 @@ Static depth for applications:
     implementation:
     - *npm-audit
     - *retire-js
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
+    references:
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
   Test of server side components with known vulnerabilities:
     risk: Server side components might have vulnerabilities.
     measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware)
@@ -166,10 +168,10 @@ Static depth for applications:
     - Defined build process
     implementation:
     - *owasp-dependency-check
-    samm: SA
-    samm2: V-ST-2-A
-    iso27001-2017:
-    - 12.6.1
+    references:
+    - samm:SA
+    - samm2:V-ST-2-A
+    - iso27001-2017:12.6.1
   Usage of multiple analysers:
     risk: Each vulnerability analyser has different opportunities. By using just one
       analyser, some vulnerabilities might not be found.
@@ -180,13 +182,12 @@ Static depth for applications:
       resources: 5
     usefulness: 1
     level: 4
-    samm2: V-ST-3-A
-    iso27001-2017:
-    - 12.6.1
-    - 14.2.1
-    - 14.2.5
     dependsOn:
     - Test of server side components with known vulnerabilities
     - Test of client side components with known vulnerabilities
     - Static analysis for all self written components
-...
+    references:
+    - samm2:V-ST-3-A
+    - iso27001-2017:12.6.1
+    - iso27001-2017:14.2.1
+    - iso27001-2017:14.2.5
