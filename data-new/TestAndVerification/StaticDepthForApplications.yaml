@@ -138,9 +138,9 @@ Static depth for applications:
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
-  Usage of multiple analysers:
-    risk: Each vulnerability analyser has different opportunities. By using just one
-      analyser, some vulnerabilities might not be found.
+  Usage of multiple analyzers:
+    risk: Each vulnerability analyzer has different opportunities. By using just one
+      analyzer, some vulnerabilities might not be found.
     measure: Usage of multiple static tools to find more vulnerabilities.
     difficultyOfImplementation:
       knowledge: 3

@@ -83,7 +83,7 @@ Education and Guidance:
     samm: EG2-B
     iso27001-2017:
     - 7.2.2
-    implementation: Often, external employees are not invited for interal trainings.
+    implementation: Often, external employees are not invited for internal trainings.
       This activity focuses on providing security trainings to internal as well as
       external employees. It is conducted every two weeks for around one hour.
   Each team has a security champion:
@@ -138,7 +138,7 @@ Education and Guidance:
     - 12.7.1
   Conduction of collaborative team security checks:
     risk: Development teams limited insight over security practices.
-    measure: Mutual security testing the security of other teams's project enhances
+    measure: Mutual security testing the security of other teams' project enhances
       security awareness and knowledge.
     difficultyOfImplementation:
       resources: 2
@@ -148,7 +148,7 @@ Education and Guidance:
     level: 4
     samm: EG2-A
     iso27001-2017:
-    - Mutual scurity testing is not explicitly required in ISO 27001 may be
+    - Mutual security testing is not explicitly required in ISO 27001 may be
     - 7.2.2
   Conduction of build-it, break-it, fix-it contests:
     risk: Understanding security is hard, even for security champions and the conduction
@@ -184,7 +184,7 @@ Education and Guidance:
     - 16.1.5
   Reward of good communication:
     risk: Employees are not getting excited about security.
-    measure: Good communication and transparency encourages cross-organisational support.
+    measure: Good communication and transparency encourages cross-organizational support.
       Gamification of security is also known to help, examples include T-Shirts, mugs,
       cups, giftcards and 'High-Fives'.
     difficultyOfImplementation:
