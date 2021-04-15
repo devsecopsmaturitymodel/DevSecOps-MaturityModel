@@ -1,17 +1,17 @@
----
 _meta:
-  label: "Build and deployment"
-  icon: "Build and Deployment.png"
+  label: Build and deployment
+  icon: Build and Deployment.png
   description: |-
     A markdown description of this dimension.
 _yaml_references:
   tools:
     ci-cd: &ci-cd CI/CD tools, eg. Jenkins
-    containers: &containers Container technologies and orchestration like Docker, Kubernetes
+    containers: &containers Container technologies and orchestration like Docker,
+      Kubernetes
     dependabot: &dependabot <a href="https://dependabot.com/">dependabot</a>
     coreos: &coreos https://getfedora.org/coreos
-    distroless: &distroless "https://github.com/GoogleContainerTools/distroless"
-    notary: &notary "[Docker Content Trust](https://docs.docker.com/notary/getting_started)"
+    distroless: &distroless https://github.com/GoogleContainerTools/distroless
+    notary: &notary '[Docker Content Trust](https://docs.docker.com/notary/getting_started)'
     in-toto: &in-toto https://in-toto.github.io/
 Build:
   Building and testing of artifacts in virtual environments:
@@ -20,16 +20,15 @@ Build:
       and 3rd party libraries are used. These might be malicious as a result of
       vulnerable libraries or because they are altered during the delivery phase.
     risk:
-      - |-
-        While building and testing artifacts, third party systems, application frameworks
-        and 3rd party libraries are used. These might be malicious as a result of
-        vulnerable libraries or because they are altered during the delivery phase.
-    measure: Each step during within the build and testing phase is performed in
-      a separate virtual environments, which is destroyed afterward.
+    - |-
+      While building and testing artifacts, third party systems, application frameworks
+      and 3rd party libraries are used. These might be malicious as a result of
+      vulnerable libraries or because they are altered during the delivery phase.
+    measure: Each step during within the build and testing phase is performed in a
+      separate virtual environments, which is destroyed afterward.
     meta:
       implementationGuide: Depending on your envirnoment, usage of virtual machines
-        or container technology is a good way.
-        After the build, the filesystem should
+        or container technology is a good way. After the build, the filesystem should
         not be used again in other builds.
     difficultyOfImplementation:
       knowledge: 2
@@ -41,10 +40,8 @@ Build:
     - *containers
     - *ci-cd
     references:
-      samm2:
-      - "samm2:I-SB-2-A"
-      iso27001-2017:
-      - "iso27001-2017:14.2.6"
+    - samm2:samm2:I-SB-2-A
+    - iso27001-2017:iso27001-2017:14.2.6
   Defined build process:
     risk:
     - Performing builds without a defined process is error prone; for example, as
@@ -64,11 +61,9 @@ Build:
     - *ci-cd
     - *containers
     references:
-      samm2:
-      - I-SB-1-A
-      iso27001-2017:
-      - 12.1.1
-      - 14.2.2
+    - samm2:I-SB-1-A
+    - iso27001-2017:12.1.1
+    - iso27001-2017:14.2.2
   Signing of code:
     risk: Unauthorized manipulation of source code might be difficult to spot.
     measure: Digitally signing commits helps to prevent unauthorized manipulation
@@ -79,17 +74,16 @@ Build:
       resources: 2
     usefulness: 3
     level: 3
-    implementation: ~
+    implementation:
     dependsOn:
     - Defined build process
     references:
-      samm: OA3-B
-      samm2: I-SB-2-A
-      iso27001-2017:
-      - 14.2.6
+    - samm:OA3-B
+    - samm2:I-SB-2-A
+    - iso27001-2017:14.2.6
   Signing of artifacts:
-    risk: Unauthorized manipulation of artifacts might be difficult to spot. For
-      example, this may result in images with malicious code in the Docker registry.
+    risk: Unauthorized manipulation of artifacts might be difficult to spot. For example,
+      this may result in images with malicious code in the Docker registry.
     measure: Digitally signing artifacts for all steps during the build and especially
       docker images, helps to ensure their integrity.
     difficultyOfImplementation:
@@ -104,18 +98,15 @@ Build:
     dependsOn:
     - Defined build process
     references:
-      samm:
-      - OA3-B
-      samm2:
-      - I-SB-1-A
-      iso27001-2017:
-      - 14.2.6
+    - samm:OA3-B
+    - samm2:I-SB-1-A
+    - iso27001-2017:14.2.6
 Deployment:
   Backup before deployment:
     risk: If errors are experienced during the deployment process you want to deploy
       an old release. However, due to changes in the database this is often unfeasible.
-    measure: Performing automated backups before deployment can help facilitate
-      deployments whilst testing the backup restore processes.
+    measure: Performing automated backups before deployment can help facilitate deployments
+      whilst testing the backup restore processes.
     difficultyOfImplementation:
       knowledge: 1
       time: 2
@@ -127,18 +118,15 @@ Deployment:
     dependsOn:
     - Defined deployment process
     references:
-      samm:
-      - OE2-A
-      samm2:
-        - TODO
-      iso27001-2017:
-      - "12.3"
-      - 14.2.6
+    - samm:OE2-A
+    - samm2:TODO
+    - iso27001-2017:12.3
+    - iso27001-2017:14.2.6
   Blue/Green Deployment:
     risk: A new artifacts version can have unknown defects.
     measure: By having multiple production environments, a deployment can be performant
-      on the first environment to spot possible defects before it is deployment
-      in the production environment(s)
+      on the first environment to spot possible defects before it is deployment in
+      the production environment(s)
     difficultyOfImplementation:
       knowledge: 1
       time: 2
@@ -150,20 +138,18 @@ Deployment:
     dependsOn:
     - Smoke Test
     references:
-      samm2:
-      - TODO
-      iso27001-2017:
-      - 17.2.1
-      - 12.1.1
-      - 12.1.2
-      - 12.1.4
-      - 12.5.1
-      - 14.2.9
+    - samm2:TODO
+    - iso27001-2017:17.2.1
+    - iso27001-2017:12.1.1
+    - iso27001-2017:12.1.2
+    - iso27001-2017:12.1.4
+    - iso27001-2017:12.5.1
+    - iso27001-2017:14.2.9
   Defined deployment process:
     risk: Deployments without a defined process are error prone thus allowing old
       or untested artifact to be deployed.
-    measure: A defined deployment process significantly lowers the likelihood of
-      errors during the deployment phase.
+    measure: A defined deployment process significantly lowers the likelihood of errors
+      during the deployment phase.
     difficultyOfImplementation:
       knowledge: 2
       time: 2
@@ -174,10 +160,9 @@ Deployment:
     - *ci-cd
     - *containers
     references:
-      samm2: I-SD-1-A
-      iso27001-2017:
-      - 12.1.1
-      - 14.2.2
+    - samm2:I-SD-1-A
+    - iso27001-2017:12.1.1
+    - iso27001-2017:14.2.2
   Environment depending configuration parameters:
     risk: Attackers who compromise source code can see confidential access information
       like database credentials.
@@ -189,19 +174,16 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 2
-    implementation: ""
+    implementation: ''
     references:
-      samm:
-      - SA2-A
-      samm2:
-      - I-SD-1-B
-      iso27001-2017:
-      - 9.4.5
-      - 14.2.6
+    - samm:SA2-A
+    - samm2:I-SD-1-B
+    - iso27001-2017:9.4.5
+    - iso27001-2017:14.2.6
   Handover of confidential parameters:
     risk:
-    - Attackers who compromise a system can see confidential access information
-      like database credentials.
+    - Attackers who compromise a system can see confidential access information like
+      database credentials.
     - Parameters are often used to set credentials, for example by starting containers
       or applications; these parameters can often be seen by any one listing running
       processes on the target system.
@@ -214,18 +196,17 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 3
-    implementation: ""
+    implementation: ''
     dependsOn:
     - Environment depending configuration parameters
     references:
-      samm: SA2-A
-      samm2: I-SD-2-B TODO might be 1
-      iso27001-2017:
-      - 14.1.3
-      - 13.1.3
-      - 9.4.3
-      - 9.4.1
-      - 10.1.2
+    - samm:SA2-A
+    - samm2:I-SD-2-B TODO might be 1
+    - iso27001-2017:14.1.3
+    - iso27001-2017:13.1.3
+    - iso27001-2017:9.4.3
+    - iso27001-2017:9.4.1
+    - iso27001-2017:10.1.2
   Rolling update on deployment:
     risk: While a deployment is performed, the application can not be reached.
     measure: A deployment without downtime is performed*.
@@ -240,11 +221,11 @@ Deployment:
     - Webserver, rolling update
     dependsOn:
     - Defined deployment process
-    samm2: I-SD-1-A
-    iso27001-2017:
-    - 12.5.1
-    - 14.2.2
-    - 17.2.1
+    references:
+    - samm2:I-SD-1-A
+    - iso27001-2017:12.5.1
+    - iso27001-2017:14.2.2
+    - iso27001-2017:17.2.1
   Same artifact for environments:
     risk: Building of an artifact for different environments means that an untested
       artifact might reach the production environment.
@@ -260,15 +241,15 @@ Deployment:
     - *containers
     dependsOn:
     - Defined build process
-    samm: OE2-A
-    samm2: I-SD-2-A
-    iso27001-2017:
-    - 14.3.1
-    - 14.2.8
-    - 12.1.4
+    references:
+    - samm:OE2-A
+    - samm2:I-SD-2-A
+    - iso27001-2017:14.3.1
+    - iso27001-2017:14.2.8
+    - iso27001-2017:12.1.4
   Usage of feature toggles:
-    risk: By using environment dependent configuration, some parameters will not
-      be tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
+    risk: By using environment dependent configuration, some parameters will not be
+      tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
     measure: Usage of environment independent configuration parameter, called feature
       toggles, helps to enhance the test coverage. Only what has been tested, goes
       to production.
@@ -282,12 +263,12 @@ Deployment:
     - *containers
     dependsOn:
     - Same artifact for environments
-    samm: EG1-B
-    iso27001-2017:
-    - 14.3.1
-    - 14.2.8
-    - 14.2.9
-    - 12.1.4
+    references:
+    - samm:EG1-B
+    - iso27001-2017:14.3.1
+    - iso27001-2017:14.2.8
+    - iso27001-2017:14.2.9
+    - iso27001-2017:12.1.4
   Usage of trusted images:
     risk: Developers or operations might start random images in the production cluster
       which have malicous code or known vulnerabilities.
@@ -301,19 +282,18 @@ Deployment:
       resources: 1
     usefulness: 3
     level: 2
-    samm2: samm2:I-SD-2-A
-    iso27001-2017:
-    - 15.1.1
-    - 15.1.2
-    - 15.1.3
-    - 14.1.3
+    references:
+    - samm2:samm2:I-SD-2-A
+    - iso27001-2017:15.1.1
+    - iso27001-2017:15.1.2
+    - iso27001-2017:15.1.3
+    - iso27001-2017:14.1.3
   Inventory of running artifacts:
-    risk: In case a vulnerability of severity high or critical exists, it needs
-      to be known where an artifacts with that vulnerability is deployed with which
-      dependencies.
+    risk: In case a vulnerability of severity high or critical exists, it needs to
+      be known where an artifacts with that vulnerability is deployed with which dependencies.
     measure: A documented inventory or a possibility to gather the needed information
-      (e.g. the documentation of which script needs to be run by whoom) must be
-      in place.
+      (e.g. the documentation of which script needs to be run by whoom) must be in
+      place.
     dependsOn:
     - Defined deployment process
     difficultyOfImplementation:
@@ -322,10 +302,10 @@ Deployment:
       resources: 3
     usefulness: 3
     level: 3
-    samm2: o-incident-management|TODO
-    iso27001-2017:
-    - "8.1"
-    - "8.2"
+    references:
+    - samm2:o-incident-management|TODO
+    - iso27001-2017:8.1
+    - iso27001-2017:8.2
 Patch Management:
   A patch policy is defined:
     risk: Vulnerabilities in running containers stay for long and might get exploited.
@@ -337,14 +317,13 @@ Patch Management:
       resources: 2
     usefulness: 4
     level: 1
-    samm2: O-EM-1-B
-    iso27001-2017:
-    - 12.6.1
-    - 12.5.1
-    - 14.2.5
+    references:
+    - samm2:O-EM-1-B
+    - iso27001-2017:12.6.1
+    - iso27001-2017:12.5.1
+    - iso27001-2017:14.2.5
   Nightly build of images:
-    risk: Vulnerabilities in running containers stay for too long and might get
-      exploited.
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
     measure: Images are built at least nightly.
     difficultyOfImplementation:
       knowledge: 3
@@ -352,14 +331,14 @@ Patch Management:
       resources: 2
     usefulness: 3
     level: 2
-    samm2: O-EM-1-B
-    iso27001-2017:
-    - 12.6.1
+    references:
+    - samm2:O-EM-1-B
+    - iso27001-2017:12.6.1
   Automated PRs for patches:
     risk: Known vulnerabilities components might stay for long and get exploited,
       even when a patch is available.
-    measure: Fast patching of third party component is needed. The DevOps way is
-      to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virutalized
+    measure: Fast patching of third party component is needed. The DevOps way is to
+      have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virutalized
       operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
       as Code/GitOps (e.g. argocd)</li> </ul>
     difficultyOfImplementation:
@@ -368,18 +347,18 @@ Patch Management:
       resources: 2
     usefulness: 5
     level: 1
-    samm2: O-EM-1-B
-    iso27001-2017:
-    - 12.6.1
-    - 14.2.5
     implementation:
     - *dependabot
     - *containers
+    references:
+    - samm2:O-EM-1-B
+    - iso27001-2017:12.6.1
+    - iso27001-2017:14.2.5
   Usage of a maximum lifetime for images:
-    risk: Vulnerabilities in images of running containers stay for too long and
-      might get exploited. Long running containers have potential memory leaks.
-      A compromised container might get killed by restarting the container (e.g.
-      in case the attacker has not reached the persistence layer).
+    risk: Vulnerabilities in images of running containers stay for too long and might
+      get exploited. Long running containers have potential memory leaks. A compromised
+      container might get killed by restarting the container (e.g. in case the attacker
+      has not reached the persistence layer).
     measure: The periodically built images are deployed minimum every 30 days (better
       hourly/daily/weekly). Meaning an image is not in production for longer than
       30 days.
@@ -389,12 +368,11 @@ Patch Management:
       resources: 2
     usefulness: 3
     level: 2
-    samm2: O-EM-1-B
-    iso27001-2017:
-    - 12.6.1
+    references:
+    - samm2:O-EM-1-B
+    - iso27001-2017:12.6.1
   Usage of a short maximum lifetime for images:
-    risk: Vulnerabilities in running containers stay for too long and might get
-      exploited.
+    risk: Vulnerabilities in running containers stay for too long and might get exploited.
     measure: Nightly built images are deployed at minimum every 1 day.
     difficultyOfImplementation:
       knowledge: 3
@@ -402,36 +380,35 @@ Patch Management:
       resources: 2
     usefulness: 3
     level: 4
-    samm2: O-EM-1-B
-    iso27001-2017:
-    - 12.6.1
     implementation:
-    - Sample concept:<br/>(1) each container has a set lifetime and is killed /
-      replaced with a new container multiple times a day where you have some form
-      of a graceful replacement to ensure no (short) service outage will occur to
-      the end users.<br/>(2) twice a day a rebuild of images is done. The rebuilds
-      are put into a automated testing pipeline. If the testing has no blocking
-      issues the new images will be released for deployment during the next "restart"
-      of a container. What has to be done, is to ensure the new containers are deployed
-      in some canary deployment manner, this will ensure that if (and only if) something
-      buggy has been introduced which breaks functionality the canary deployment
-      will make sure the "older version" is being used and not the buggy newer one.
+    - Sample concept:<br/>(1) each container has a set lifetime and is killed / replaced
+      with a new container multiple times a day where you have some form of a graceful
+      replacement to ensure no (short) service outage will occur to the end users.<br/>(2)
+      twice a day a rebuild of images is done. The rebuilds are put into a automated
+      testing pipeline. If the testing has no blocking issues the new images will
+      be released for deployment during the next "restart" of a container. What has
+      to be done, is to ensure the new containers are deployed in some canary deployment
+      manner, this will ensure that if (and only if) something buggy has been introduced
+      which breaks functionality the canary deployment will make sure the "older version"
+      is being used and not the buggy newer one.
+    references:
+    - samm2:O-EM-1-B
+    - iso27001-2017:12.6.1
   Reduction of the attack surface:
     risk: Components, dependencies, files or file access rights might have vulnerabilities,
       but the they are not needed.
-    measure: Removal of unneeded components, dependencies, files or file access
-      rights. For container images the usage of distroless images is recommended.
+    measure: Removal of unneeded components, dependencies, files or file access rights.
+      For container images the usage of distroless images is recommended.
     difficultyOfImplementation:
       knowledge: 3
       time: 3
       resources: 2
     usefulness: 3
     level: 2
-    samm2: O-EM-1-B
-    iso27001-2017:
-    - hardening is missing in ISO 27001
-    - 14.2.1
     implementation:
     - *distroless
     - *coreos
-...
+    references:
+    - samm2:O-EM-1-B
+    - iso27001-2017:hardening is missing in ISO 27001
+    - iso27001-2017:14.2.1
