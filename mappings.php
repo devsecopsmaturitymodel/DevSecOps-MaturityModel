@@ -99,14 +99,7 @@ if ($sort == "activity") {
 
       foreach ($referenceLabels as $r => $rLabel) {
 
-        $rlist = array_filter($activity["references"], function ($item) use ($r) {
-            if ((boolean)$item == false) {
-              return false;
-            }
-            if (is_array($item)) {
-              echo var_dump($item);
-            }
-            return substr($item, 0, strlen($r . ":")) == $r . ":";});
+        $rlist = getReferencesByType($activity["references"], $r);
         echo "<td>". ul($rlist) ."</td>";
       }
     }
@@ -120,7 +113,7 @@ if ($sort == "activity") {
       $activity["dimension"] = $dimension;
       $activity["subdimension"] = $subdimension;
 
-      $references = $activity["references"][$sort] ?? array();
+      $references = getReferencesByType($activity["references"] ?? array(), $sort);
       foreach (as_list($references) as $mappingContent) {
         $mapping[$mappingContent][$activityName] = $activity;
       }
@@ -154,7 +147,7 @@ if ($sort == "activity") {
         ."</a></td>";
 
       foreach ($referenceLabels as $r => $rLabel) {
-        $rlist = $activity["references"][$r] ?? array();
+        $rlist = getReferencesByType($activity["references"], $r);
         echo "<td>". ul($rlist) ."</td>";
       }
     }

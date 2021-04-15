@@ -190,6 +190,29 @@ function getReferences($references) {
 }
 
 
+/**
+ *
+ * @param unknown $references
+ * @param unknown $type
+ * @return unknown
+ */
+function getReferencesByType($references, $type) {
+  $ret = array_filter($references, function ($item) use ($type) {
+      $type = $type . ":";
+      $ltype = strlen($type);
+
+      if ((boolean)$item == false) {
+        return false;
+      }
+      return substr($item, 0, $ltype) == $type;}
+
+
+  );
+  return $ret;
+
+}
+
+
 // TODO create testcases
 
 
