@@ -27,11 +27,11 @@ Application Hardening:
 
       ![SAMM Requirements](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/OWASP-in0.png)
 
-      Organisations can use these to add solid security considerations at the start of the Software Development or Procurement process.
+      Organizations can use these to add solid security considerations at the start of the Software Development or Procurement process.
 
       These general security considerations can be audited by using a subsection of the ASVS controls in section V1 as a questionnaire. This process attempts to ensure that every feature has concrete security considerations.
 
-      In case of internal development and if the organisation maps Features to Epics, the [Security Knowledge Framework](https://securityknowledgeframework.org/) can be used to facilitate this process by leveraging its questionnaire function, shown below.
+      In case of internal development and if the organization maps Features to Epics, the [Security Knowledge Framework](https://securityknowledgeframework.org/) can be used to facilitate this process by leveraging its questionnaire function, shown below.
 
       Source: [OWASP Project Integration](https://raw.githubusercontent.com/OWASP/www-project-integration-standards/master/writeups/owasp_in_sdlc/index.md)
     implementation:

@@ -37,7 +37,7 @@ Logging:
     - 12.4.1
     - 18.1.1
   Logging of security events:
-    risk: No track of security-relevant events makes it harder to analyse an incident.
+    risk: No track of security-relevant events makes it harder to analyze an incident.
     measure: Security-relevant events like login/logout or creation, change, deletion
       of users should be logged.
     difficultyOfImplementation:
@@ -73,7 +73,7 @@ Logging:
     risk: Detection of security related events with hints on different systems/tools/metrics
       is not possible.
     measure: Events are correlated on one system. For example the correlation and
-      visualisation of failed login attempts combined with successful login attempts.
+      visualization of failed login attempts combined with successful login attempts.
     difficultyOfImplementation:
       knowledge: 4
       time: 4

@@ -23,7 +23,7 @@ Consolidation:
     risk: Improper examination of vulnerabilities leads to no visibility at all.
     measure: Quality gates for found vulnerabilities are defined. In the start it
       is important to not overload the security analyst, therefore the recommendation
-      is to start with alerting of high cirital vulnerabilities.
+      is to start with alerting of high critical vulnerabilities.
     difficultyOfImplementation:
       knowledge: 1
       time: 1
@@ -79,7 +79,7 @@ Consolidation:
     - 8.2.2
     - 8.2.3
   Simple false positive treatment:
-    risk: As false positive occure during each test, all vulnerabilities might be
+    risk: As false positive occur during each test, all vulnerabilities might be
       ignored.
     measure: False positives are suppressed so they will not show up on the next tests
       again. Most security tools have the possibility to suppress false positives.

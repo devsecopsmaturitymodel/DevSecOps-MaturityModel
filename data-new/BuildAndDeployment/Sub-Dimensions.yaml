@@ -22,8 +22,8 @@ Build:
     measure: Each step during within the build and testing phase is performed in
       a separate virtual environments, which is destroyed afterward.
     meta:
-      implementationGuide: Depending on your envirnoment, usage of virtual machines
-        or container technoligy is a good way. After the build, the filesystem should
+      implementationGuide: Depending on your environment, usage of virtual machines
+        or container technology is a good way. After the build, the filesystem should
         not be used again in other builds.
     difficultyOfImplementation:
       knowledge: 2
@@ -278,7 +278,7 @@ Deployment:
     - 12.1.4
   Usage of trusted images:
     risk: Developers or operations might start random images in the production cluster
-      which have malicous code or known vulnerabilities.
+      which have malicious code or known vulnerabilities.
     measure: Create image assessment criteria, perform an evaluation of images and
       create a whitelist of artifacts/container images/virtual machine images.
     implementation: Kubernetes Admission Controller can whitelist registries and/or
@@ -300,7 +300,7 @@ Deployment:
       to be known where an artifacts with that vulnerability is deployed with which
       dependencies.
     measure: A documented inventory or a possibility to gather the needed information
-      (e.g. the documentation of which script needs to be run by whoom) must be
+      (e.g. the documentation of which script needs to be run by whom) must be
       in place.
     dependsOn:
     - Defined deployment process
@@ -347,7 +347,7 @@ Patch Management:
     risk: Known vulnerabilities components might stay for long and get exploited,
       even when a patch is available.
     measure: Fast patching of third party component is needed. The DevOps way is
-      to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virutalized
+      to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virtualized
       operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
       as Code/GitOps (e.g. argocd)</li> </ul>
     difficultyOfImplementation:

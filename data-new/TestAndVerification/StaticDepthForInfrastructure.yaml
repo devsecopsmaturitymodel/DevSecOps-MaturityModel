@@ -1,7 +1,7 @@
 ---
 Static depth for infrastructure:
-  Analyse logs:
-    risk: Not getting are of happend attacks.
+  Analyze logs:
+    risk: Not getting are of happened attacks.
     measure: Check logs for keywords.
     difficultyOfImplementation:
       knowledge: 2
@@ -109,7 +109,7 @@ Static depth for infrastructure:
     iso27001-2017:
     - 12.6.1
     - 14.2.1
-  Test the clould configuration:
+  Test the cloud configuration:
     risk: Standard hardening practices for cloud environments are not performed leading
       to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
@@ -174,7 +174,7 @@ Static depth for infrastructure:
     level: 4
     implementation:
     - https://github.com/aquasecurity/trivy
-    - Registries like quay, dockerhub provide (commercial) offerings, often not suiteable
+    - Registries like quay, dockerhub provide (commercial) offerings, often not suitable
       for distroless images
     samm2: v-security-testing|A|2
     iso27001-2017:
@@ -199,7 +199,7 @@ Static depth for infrastructure:
       squatting of an image name and using the wrong image) or by an attacker on behalf
       of the maintainer with stolen credentials.
     measure: Check for malware in components (e.g. container images, VM baseline images,
-      libaries).
+      libraries).
     difficultyOfImplementation:
       knowledge: 2
       time: 2
