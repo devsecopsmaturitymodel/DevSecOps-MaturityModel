@@ -114,7 +114,9 @@ Education and Guidance:
     usefulness: 3
     level: 3
     references:
-    - samm:IM-3, ST-3, SR2-B
+    - samm:IM-3
+    - samm:ST-3
+    - samm:SR2-B
     - iso27001-2017:16.1.6
   Conduction of collaborative security checks with developers and system administrators:
     risk: Security checks by external companies do not increase the understanding
