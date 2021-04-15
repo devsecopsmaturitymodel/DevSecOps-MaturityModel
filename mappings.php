@@ -98,7 +98,15 @@ if ($sort == "activity") {
         ."</a></td>";
 
       foreach ($referenceLabels as $r => $rLabel) {
-        $rlist = $activity["references"][$r] ?? array();
+
+        $rlist = array_filter($activity["references"], function ($item) use ($r) {
+            if ((boolean)$item == false) {
+              return false;
+            }
+            if (is_array($item)) {
+              echo var_dump($item);
+            }
+            return substr($item, 0, strlen($r . ":")) == $r . ":";});
         echo "<td>". ul($rlist) ."</td>";
       }
     }
@@ -152,6 +160,7 @@ if ($sort == "activity") {
     }
   }
 }
+
 
 echo "</table>";
 //var_dump($noMappingExists);

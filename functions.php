@@ -52,9 +52,9 @@ function getDimensions() {
         if ($content["references"] ?? null) // ignore new lines
           continue;
 
-        $content["references"]["samm2"] = $content["samm2"] ?? array();
+        array_push($content["references"], $content["samm2"] ?? array());
         unset($content["samm2"]);
-        $content["references"]["iso27001-2017"] = $content["iso27001-2017"] ?? array();
+        array_push($content["references"], $content["iso27001-2017"] ?? array());
         unset($content["iso27001-2017"]);
         //echo var_dump($elements[$activityName]);
         //echo "<hr>";

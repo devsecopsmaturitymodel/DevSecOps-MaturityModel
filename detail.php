@@ -118,13 +118,18 @@ function printReferences($element) {
   $actionLabels = readYaml("data/strings.yml#/actionLabels");
 
   $references = $element['references'];
-  foreach ($references as $r => $values) {
-    // if it's not an array, array-ze it. Remove after fixing all yamls.
-    $values = is_array($values) ? $values : array($values);
+  asort($references);
+  $r_old = null;
+  foreach ($references as $ref) {
+    list($r, $value) = explode(":", $ref, 2);
 
-    $label = getReferenceLabel($r);
-    echo "<div><h3>$label</h3></div>";
-    echo "<ul><li>".  implode("</li><li>", $values) ."</li></ul>";
+    if ($r_old != $r) {
+      if ($r_old != null) {echo "</ul>";}
+      $label = getReferenceLabel($r);
+      echo "<h3>$label</h3><ul>";
+    }
+    echo "<li>$value</li>";
+    $r_old = $r;
   }
 
 
