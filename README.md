@@ -30,7 +30,7 @@ Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398h
 Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
 
 # Slides and talks
-
+* [DSOMM Enhancement Workshop at Open Security Summit, 2021-04-16](https://youtu.be/H2BA6gaeKBE)
 * [Talk: Strategic Usage of the OWASP Software Assurance Maturity Model and the OWASP DevSecOps Maturity Model, OWASP Jakarta](https://m.youtube.com/watch?v=lLMLGIzl56M)
 * [Slides: DSOMM Overview](https://docs.google.com/presentation/d/1eQcE_AsR1g6uOVf3B2Ehh1g0cHvPknkdLY4BzMYatSw/edit?usp=sharing)
 * [Video: GitHub practical DSOMM snippet on twitch](https://www.twitch.tv/githubenterprise/clip/EsteemedTriumphantMinkFailFish)
