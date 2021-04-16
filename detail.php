@@ -115,23 +115,17 @@ function printReferences($element) {
   if (!array_key_exists("references", $element)) {
     return;
   }
-  $actionLabels = readYaml("data/strings.yml#/actionLabels");
-
   $references = $element['references'];
   asort($references);
-  $r_old = null;
-  foreach ($references as $ref) {
-    list($r, $value) = explode(":", $ref, 2);
 
-    if ($r_old != $r) {
-      if ($r_old != null) {echo "</ul>";}
-      $label = getReferenceLabel($r);
-      echo "<h3>$label</h3><ul>";
-    }
-    echo "<li>$value</li>";
-    $r_old = $r;
+  foreach (getReferenceLabels() as $r => $rLabel) {
+    echo var_dump($rLabel);
+    $rlist = getReferencesByType($references, $r);
+
+    $label = getReferenceLabel($rLabel);
+    echo "<div><h3>$label</h3></div>";
+    echo ul($rlist);
   }
-
 
 }
 

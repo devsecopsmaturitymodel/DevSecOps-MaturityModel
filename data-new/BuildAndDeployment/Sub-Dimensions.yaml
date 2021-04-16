@@ -113,7 +113,8 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 2
-    implementation: A complete database backup might be performed*. For large and
+    implementation:
+    - A complete database backup might be performed*. For large and
       complex environments, a Point in Time Recovery for databases should be implemented.
     dependsOn:
     - Defined deployment process
@@ -133,7 +134,8 @@ Deployment:
       resources: 1
     usefulness: 2
     level: 4
-    implementation: <a href='https://martinfowler.com/bliki/BlueGreenDeployment.html'>Blue/Green
+    implementation:
+    - <a href='https://martinfowler.com/bliki/BlueGreenDeployment.html'>Blue/Green
       Deployments</a>
     dependsOn:
     - Smoke Test
@@ -174,7 +176,7 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 2
-    implementation: ''
+    implementation: []
     references:
     - samm:SA2-A
     - samm2:I-SD-1-B
@@ -196,7 +198,7 @@ Deployment:
       resources: 1
     usefulness: 4
     level: 3
-    implementation: ''
+    implementation: []
     dependsOn:
     - Environment depending configuration parameters
     references:
@@ -274,7 +276,8 @@ Deployment:
       which have malicous code or known vulnerabilities.
     measure: Create image assessment criteria, perform an evaluation of images and
       create a whitelist of artifacts/container images/virtual machine images.
-    implementation: Kubernetes Admission Controller can whitelist registries and/or
+    implementation:
+    - Kubernetes Admission Controller can whitelist registries and/or
       whitelist a signing key.
     difficultyOfImplementation:
       knowledge: 1
