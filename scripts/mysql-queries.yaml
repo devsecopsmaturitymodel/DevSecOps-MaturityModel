@@ -1,9 +1,13 @@
 ---
 
-overview: |-
+overview-human: |-
   SELECT dimension, subdimension, level, group_concat(name separator "\n")
   FROM activity
-  GROUP BY dimension, subdimension, level \G
+  GROUP BY dimension, subdimension, level;
+
+overview: |-
+  SELECT dimension, subdimension, level, name
+  FROM activity;
 
 activities-per-dimension: |-
   SELECT distinct dimension, subdimension, count(*)
@@ -29,7 +33,7 @@ activity-references-unique: |-
     "$[*]" COLUMNS(rid VARCHAR(32) PATH '$')
   ) as r;
 
-samm-unused entries: |-
+samm-unused-entries: |-
   SELECT DISTINCT s.* from samm as s, activity as a
   WHERE   JSON_SEARCH(a.references, 'one', s.id) IS NULL;
 

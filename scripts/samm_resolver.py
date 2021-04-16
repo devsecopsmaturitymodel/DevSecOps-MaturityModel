@@ -81,61 +81,67 @@ def test_samm_to_csv():
 
 import pytest
 
-from orm import db as ormdb, Activity, Implementation, load_dsom_activities
+from orm import db as ormdb, Activity, Implementation, create_database
 from pony.orm import db_session, ObjectNotFound
 from orm import Reference
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def db():
     ormdb.bind(provider="mysql", host="", user="root", passwd="root", db="dsomm")
     return ormdb
 
 
-def test_pony_create_drop(db):
-    class Test(db.Entity):
-        name = Required(str)
-        references = Optional(Json)
+@pytest.fixture(autouse=True, scope="session")
+def setup(db):
+    create_database()
 
-    db.generate_mapping(create_tables=True)
-    db.drop_table(Test)
-
-
-@pytest.fixture
-def dsomm_activities():
-    return load_dsom_activities()
-
-
-def test_pony_populate_activities(db, dsomm_activities):
-
-    for t in ("Activity", "Reference", "Implementation"):
-        db.drop_table(t, if_exists=True)
-    db.generate_mapping(create_tables=True)
+def test_pony_populate_activities(db):
     with db_session:
-        for a in dsomm_activities:
-            dimension, subdimension, name, data = a
-            references = data.pop("references", [])
-            level = data.pop("level")
-            implementation = data.pop("implementation", None) or []
-            implementation = [x.strip() for x in implementation]
-            t = Activity(
-                dimension=dimension,
-                subdimension=subdimension,
-                name=name,
-                implementation=implementation,
-                level=level,
-                references=references,
-                data=data,
-            )
-            for i in references:
-                if ":" not in i:
-                    continue
-                reference = i.split(":")[0]
-                Reference.get(name=reference) or Reference(name=reference)
-            for i in implementation:
-                if not i:
-                    continue
-                i = str(i)
-                if len(i) > 64:
-                    i=i[:64]
-                Implementation.get(name=i) or Implementation(name=i)
+        tables = db.execute("SHOW TABLES;")
+        assert ('activity',) in tables.fetchall()
+
+queries = yaml.safe_load(Path("scripts/mysql-queries.yaml").read_text())
+
+def test_overview(db):
+    with db_session:
+        overview = db.execute(queries['overview'])
+        from collections import defaultdict
+        ret = defaultdict(dict)
+        for dimension, subdimension, level, activity in overview:
+            k = dimension+"-"+subdimension
+            if level not in ret[k]:
+                l = ret[k][level] = []
+            l.append(activity)
+    assert "Building and testing of artifacts in virtual environments" in ret["BuildAndDeployment-Build"][2]
+
+def test_overview_count(db):
+    with db_session:
+        overview = db.execute(queries['activities-per-dimension'])
+        assert ('BuildAndDeployment', 'Build', 4) in overview
+
+
+def test_mapping_samm2(db):
+    with db_session:
+        overview = db.execute(queries['overview'])
+        raise NotImplementedError
+
+def test_mapping_iso(db):
+    with db_session:
+        overview = db.execute(queries['overview'])
+        raise NotImplementedError
+
+def test_references_1(db):
+    with db_session:
+        overview = db.execute(queries['activity-references-unique'])
+        raise NotImplementedError
+
+def test_samm2_dive_1(db):
+    with db_session:
+        overview = db.execute(queries['activity-samm'])
+        raise NotImplementedError
+
+def test_samm2_dive_2(db):
+    with db_session:
+        overview = db.execute(queries['samm-unused-entries'])
+        raise NotImplementedError
