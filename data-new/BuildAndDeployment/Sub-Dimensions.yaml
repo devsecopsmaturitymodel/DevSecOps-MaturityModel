@@ -407,6 +407,7 @@ Patch Management:
   Reduction of the attack surface:
     risk: Components, dependencies, files or file access rights might have vulnerabilities,
       but the they are not needed.
+    abusestory: As an evil competitor ...
     measure: Removal of unneeded components, dependencies, files or file access
       rights. For container images the usage of distroless images is recommended.
     difficultyOfImplementation:
@@ -419,6 +420,25 @@ Patch Management:
     iso27001-2017:
     - hardening is missing in ISO 27001
     - 14.2.1
+    references:
+      - samm2://I-SM-02
+      - "oisru-sources://External Hacktivists"
+    risks:
+      - enisa:whateve-1
+
+        - "Competitor"
+        - "State-Sponsored"
+        - "Internal Accidental"
+      events:
+        - "Fraud"
+        - "Avilability Interruption"
+        - "..."
+      consequences:
+        - "Non-Compliance"
+        - "Damaged Reputaion"
+        - "Business Disruption"
+        - "Unplanned Costs"
+        - "..."
     implementation:
     - <a href="https://github.com/GoogleContainerTools/distroless">Distroless</a>
     - <a href="https://getfedora.org/coreos?stream=stable">Fedora CoreOS</a>
