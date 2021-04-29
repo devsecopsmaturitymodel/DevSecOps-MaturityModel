@@ -1,8 +1,8 @@
----
 Dynamic depth for infrastructure:
   Load tests:
-    risk: As it is unknown how many requests the systems and applications can serve,
-      due to an unexpected load the availability is disturbed.
+    risk:
+    - As it is unknown how many requests the systems and applications can serve, due
+      to an unexpected load the availability is disturbed.
     measure: Load test against the production system or a production near system is
       performed.
     difficultyOfImplementation:
@@ -16,8 +16,10 @@ Dynamic depth for infrastructure:
     - 12.1.3
     - 14.2.3
     - 14.2.8
+    implementation: []
   Test of the configuration of cloud environments:
-    risk: Standard hardening practices for cloud environments are not performed leading
+    risk:
+    - Standard hardening practices for cloud environments are not performed leading
       to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
       tested.
@@ -37,8 +39,9 @@ Dynamic depth for infrastructure:
     - 14.2.3
     - 14.2.8
   Weak password test:
-    risk: Weak passwords in components like applications or systems, specially for
-      privileged accounts, lead to take over of that account.
+    risk:
+    - Weak passwords in components like applications or systems, specially for privileged
+      accounts, lead to take over of that account.
     measure: Automatic brute force attacks are performed. Specially the usage of standard
       accounts like 'admin' and employee user-ids is recommended.
     difficultyOfImplementation:
@@ -47,13 +50,15 @@ Dynamic depth for infrastructure:
       resources: 1
     usefulness: 1
     level: 3
-    implementation: HTC Hydra
+    implementation:
+    - HTC Hydra
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 9.4.3
   Test network segmentation:
-    risk: Wrong or no network segmentation of pods makes it easier for an attacker
-      to access a database and extract or modify data.
+    risk:
+    - Wrong or no network segmentation of pods makes it easier for an attacker to
+      access a database and extract or modify data.
     measure: Cluster internal test needs to be performed. Integration of fine granulated
       network segmentation (also between pods in the same namespace).
     difficultyOfImplementation:
@@ -62,7 +67,8 @@ Dynamic depth for infrastructure:
       resources: 1
     usefulness: 3
     level: 2
-    implementation: <a href="https://github.com/controlplaneio/netassert">netassert</a>
+    implementation:
+    - <a href="https://github.com/controlplaneio/netassert">netassert</a>
     dependsOn: Segmented networks for virtual environments
     samm2: v-security-testing|A|2
     iso27001-2017:
@@ -70,7 +76,8 @@ Dynamic depth for infrastructure:
     - 14.2.3
     - 14.2.8
   Test for exposed services:
-    risk: Standard network segmentation and firewalling has not been performed, leading
+    risk:
+    - Standard network segmentation and firewalling has not been performed, leading
       to world open cluster management ports.
     measure: With the help of tools the network configuration of unintentional exposed
       cluster(s) are tested. To identify clusters, all subdomains might need to be
@@ -90,4 +97,3 @@ Dynamic depth for infrastructure:
     - 13.1.3
     - 14.2.3
     - 14.2.8
-...

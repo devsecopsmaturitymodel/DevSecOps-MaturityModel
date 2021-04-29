@@ -1,7 +1,7 @@
----
 Application Hardening:
   Application Hardening Level 1:
-    risk: Using an insecure application might lead to a compromised application. This
+    risk:
+    - Using an insecure application might lead to a compromised application. This
       might lead to total data theft or data modification.
     measure: |
       Following frameworks like the
@@ -43,7 +43,8 @@ Application Hardening:
     - hardening is not explicitly covered by ISO 27001 - too specific
     - 13.1.3
   App. Hardening Level 2:
-    risk: Using an insecure application might lead to a compromised application. This
+    risk:
+    - Using an insecure application might lead to a compromised application. This
       might lead to total data theft or data modification.
     measure: |
       Following frameworks like the
@@ -66,7 +67,8 @@ Application Hardening:
     - hardening is not explicitly covered by ISO 27001 - too specific
     - 13.1.3
   App. Hardening Level 3:
-    risk: Using an insecure application might lead to a compromised application. This
+    risk:
+    - Using an insecure application might lead to a compromised application. This
       might lead to total data theft or data modification.
     measure: |
       Following frameworks like the
@@ -90,7 +92,8 @@ Application Hardening:
     - hardening is not explicitly covered by ISO 27001 - too specific
     - 13.1.3
   Full Coverage of App. Hardening Level 3:
-    risk: Using an insecure application might lead to a compromised application. This
+    risk:
+    - Using an insecure application might lead to a compromised application. This
       might lead to total data theft or data modification.
     measure: |
       Following frameworks like the
@@ -113,4 +116,3 @@ Application Hardening:
     iso27001-2017:
     - hardening is not explicitly covered by ISO 27001 - too specific
     - 13.1.3
-...

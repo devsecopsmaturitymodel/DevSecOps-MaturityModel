@@ -1,8 +1,8 @@
----
 Consolidation:
   Advanced visualization of defects:
-    risk: Correlation of the vulnerabilities of different tools to have an overview
-      of the the overall security level per component/project/team is not given.
+    risk:
+    - Correlation of the vulnerabilities of different tools to have an overview of
+      the the overall security level per component/project/team is not given.
     measure: Findings are visualized per component/project/team.
     difficultyOfImplementation:
       knowledge: 2
@@ -20,7 +20,8 @@ Consolidation:
     - 8.2.2
     - 8.2.3
   Definition of quality gates:
-    risk: Improper examination of vulnerabilities leads to no visibility at all.
+    risk:
+    - Improper examination of vulnerabilities leads to no visibility at all.
     measure: Quality gates for found vulnerabilities are defined. In the start it
       is important to not overload the security analyst, therefore the recommendation
       is to start with alerting of high critical vulnerabilities.
@@ -36,11 +37,14 @@ Consolidation:
     - not explicitly covered by ISO 27001 - too specific
     - 12.6.1
     - 16.1.4
-    implementation: See other actions, e.g. "Treatment of defects with severity high".
+    implementation:
+    - See other actions
+    - ' e.g. "Treatment of defects with severity high".'
   Integration of vulnerability issues into the development process:
-    risk: To read console output of the build server to search for vulnerabilities
-      might be difficult. Also, to check a vulnerability management system might not
-      be a daily task for a developer.
+    risk:
+    - To read console output of the build server to search for vulnerabilities might
+      be difficult. Also, to check a vulnerability management system might not be
+      a daily task for a developer.
     measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
     difficultyOfImplementation:
       knowledge: 2
@@ -48,10 +52,11 @@ Consolidation:
       resources: 1
     usefulness: 2
     level: 3
-    implementation: 'At SAST (Static Application Security Testing): Server-side /
-      client-side teams can easily be recorded. With microservice architecture, individual
-      microservices can be used usually Teams. At DAST (Dynamic Application Security
-      Testing): vulnerabilities are classified and can be assigned to server-side
+    implementation:
+    - 'At SAST (Static Application Security Testing): Server-side / client-side teams
+      can easily be recorded. With microservice architecture'
+    - ' individual microservices can be used usually Teams. At DAST (Dynamic Application
+      Security Testing): vulnerabilities are classified and can be assigned to server-side
       and client-side teams.'
     samm2: i-defect-management|B|2
     iso27001-2017:
@@ -60,8 +65,9 @@ Consolidation:
     - 16.1.5
     - 16.1.6
   Reproducible defect tickets:
-    risk: Vulnerability descriptions are hard to understand by staff from operations
-      and development.
+    risk:
+    - Vulnerability descriptions are hard to understand by staff from operations and
+      development.
     measure: Vulnerabilities include the test procedure to give the staff from operations
       and development the ability to reproduce vulnerabilities. This enhances the
       understanding of vulnerabilities and therefore the fix have a higher quality.
@@ -71,7 +77,8 @@ Consolidation:
       resources: 2
     usefulness: 2
     level: 4
-    implementation: <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
+    implementation:
+    - <a href='https://github.com/mozilla/zest'>Mozilla Zest</a>
     samm2: i-defect-management|B|2
     iso27001-2017:
     - 16.1.4
@@ -79,8 +86,8 @@ Consolidation:
     - 8.2.2
     - 8.2.3
   Simple false positive treatment:
-    risk: As false positive occur during each test, all vulnerabilities might be
-      ignored.
+    risk:
+    - As false positive occur during each test, all vulnerabilities might be ignored.
     measure: False positives are suppressed so they will not show up on the next tests
       again. Most security tools have the possibility to suppress false positives.
       A Vulnerability Management System might be used.
@@ -99,7 +106,8 @@ Consolidation:
     - not explicitly covered by ISO 27001 - too specific
     - 16.1.6
   Simple visualization of defects:
-    risk: The security level of a component is not visible. Therefore, the motivation
+    risk:
+    - The security level of a component is not visible. Therefore, the motivation
       to enhance the security is not give.
     measure: Vulnerabilities are simple visualized.
     difficultyOfImplementation:
@@ -120,7 +128,8 @@ Consolidation:
     - 8.2.2
     - 8.2.3
   Treatment of all defects:
-    risk: Vulnerabilities with severity low are not visible.
+    risk:
+    - Vulnerabilities with severity low are not visible.
     measure: All vulnerabilities are added to the quality gate.
     difficultyOfImplementation:
       knowledge: 3
@@ -132,8 +141,10 @@ Consolidation:
     iso27001-2017:
     - 16.1.4
     - 12.6.1
+    implementation: []
   Treatment of defects with severity high or higher:
-    risk: Vulnerabilities with severity high or higher are not visible.
+    risk:
+    - Vulnerabilities with severity high or higher are not visible.
     measure: Vulnerabilities with severity high or higher are added to the quality
       gate.
     difficultyOfImplementation:
@@ -147,8 +158,10 @@ Consolidation:
     iso27001-2017:
     - 16.1.4
     - 12.6.1
+    implementation: []
   Treatment of defects with severity middle:
-    risk: Vulnerabilities with severity middle are not visible.
+    risk:
+    - Vulnerabilities with severity middle are not visible.
     measure: Vulnerabilities with severity middle are added to the quality gate.
     difficultyOfImplementation:
       knowledge: 2
@@ -161,9 +174,11 @@ Consolidation:
     iso27001-2017:
     - 16.1.4
     - 12.6.1
+    implementation: []
   Usage of a vulnerability management system:
-    risk: Maintenance of false positives in each tool enforces a high workload. In
-      addition a correlation of the same finding from different tools is not possible.
+    risk:
+    - Maintenance of false positives in each tool enforces a high workload. In addition
+      a correlation of the same finding from different tools is not possible.
     measure: Aggregation of vulnerabilities in one tool reduce the workload to mark
       false positives.
     difficultyOfImplementation:
@@ -182,4 +197,3 @@ Consolidation:
     - 16.1.4
     - 16.1.5
     - 16.1.6
-...
