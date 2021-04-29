@@ -68,7 +68,8 @@ Dynamic depth for infrastructure:
       resources: 1
     usefulness: 1
     level: 3
-    implementation: HTC Hydra
+    implementation:
+    - HTC Hydra
     references:
     - samm2:V-ST-2-A
     - iso27001-2017:9.4.3

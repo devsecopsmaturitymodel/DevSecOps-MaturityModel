@@ -1,0 +1,77 @@
+---
+
+overview-human: |-
+  SELECT dimension, subdimension, level, group_concat(name separator "\n")
+  FROM activity
+  GROUP BY dimension, subdimension, level;
+
+overview: |-
+  SELECT dimension, subdimension, level, name
+  FROM activity;
+
+activities-per-dimension: |-
+  SELECT distinct dimension, subdimension, count(*)
+  FROM activity
+  GROUP BY dimension, subdimension;
+
+
+activity-samm: |-
+  SELECT a.dimension,a.subdimension,a.name,a.references
+  FROM
+    activity as a,
+    samm as s
+  WHERE
+    JSON_SEARCH(a.references, 'one',
+      CONCAT("samm2:", s.id)
+    );
+
+activity-references-unique: |-
+  SELECT DISTINCT  r.rid, a.dimension, a.subdimension, a.name, a.references
+  FROM activity AS a,
+  JSON_TABLE(
+    a.references,
+    "$[*]" COLUMNS(rid VARCHAR(32) PATH '$')
+  ) as r;
+
+samm-unused-entries: |-
+  SELECT DISTINCT s.* from samm as s, activity as a
+  WHERE   JSON_SEARCH(a.references, 'one', s.id) IS NULL;
+
+implementation-references-unique: |-
+  SELECT DISTINCT i.iid, r.rid,  a.name
+  FROM activity AS a,
+     JSON_TABLE(
+    a.references,
+    "$[*]" COLUMNS(rid VARCHAR(32) PATH '$')
+  ) AS r,
+    JSON_TABLE(
+    a.implementation,
+    "$[*]" COLUMNS(iid VARCHAR(32) PATH '$')
+  ) AS i
+  WHERE i.iid is not NULL
+  ORDER BY i.iid;
+
+
+#
+# trashbin
+#
+
+activity-samm-1: |-
+    SELECT *
+    FROM activity as a, samm as s
+    WHERE JSON_CONTAINS(
+      a.refs,
+      CONCAT ('"', s.id, '"'),
+      '$');
+
+activity-samm-table: |-
+    SELECT *
+    FROM
+      activity as a,
+      samm as s,
+      JSON_TABLE(
+        a.refs,
+        "$[*]" COLUMNS(rid VARCHAR(32) PATH '$')
+      ) as r
+    WHERE
+      r.rid like 'V%' AND r.rid = s.id;
