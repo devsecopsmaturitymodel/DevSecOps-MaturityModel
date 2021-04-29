@@ -16,10 +16,10 @@ WORKDIR /app
 RUN pip install pyyaml 
 RUN python3 ./scripts/merge-dimensions.py
 
-FROM php:7.2-apache
-RUN apt-get update && apt-get -y install apt-utils libyaml-dev
+FROM php:8.0.3-apache
+RUN apt-get update && apt-get -y dist-upgrade && apt-get -y install apt-utils libyaml-dev wget
 RUN docker-php-ext-install gettext
-RUN pecl channel-update pecl.php.net && pecl install yaml-2.0.0 && docker-php-ext-enable yaml
+RUN pecl channel-update pecl.php.net && pecl install yaml-2.2.1 && docker-php-ext-enable yaml
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 COPY . /var/www/html/
 RUN chmod 777 /var/www/html/selectedData.csv
