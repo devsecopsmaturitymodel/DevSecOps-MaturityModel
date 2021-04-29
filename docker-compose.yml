@@ -4,4 +4,9 @@ services:
     build: .
     ports:
     - "8080:80"
-
+  test:
+    build: .
+    volumes:
+    - .:/code
+    working_dir: /code
+    command: bash tests.sh
