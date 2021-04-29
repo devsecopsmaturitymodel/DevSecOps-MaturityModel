@@ -1,3 +1,4 @@
 .idea
 data/dimensions.yaml
 *~
+/vendor
