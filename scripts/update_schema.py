@@ -1,3 +1,4 @@
+# This script is used for temporary schema changes and will not last long
 import sys
 from pathlib import Path
 
