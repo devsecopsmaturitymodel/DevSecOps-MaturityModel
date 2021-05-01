@@ -90,10 +90,9 @@ Education and Guidance:
     iso27001-2017:
     - 7.2.2
     implementation:
-    - Often
-    - ' external employees are not invited for internal trainings. This activity focuses
+    - Often, external employees are not invited for internal trainings. This activity focuses
       on providing security trainings to internal as well as external employees. It
-      is conducted every two weeks for around one hour.'
+      is conducted every two weeks for around one hour.
   Each team has a security champion:
     risk:
     - No one feels directly responsible for security and the security champion does
