@@ -233,8 +233,7 @@ Education and Guidance:
       time: 5
       resources: 1
     implementation:
-    - Security SME are involved in discussion for requirements analysis
-    - ' software design and sprint planning to provide guidance and suggestions.'
+    - Security SME are involved in discussion for requirements analysis, software design and sprint planning to provide guidance and suggestions.
     usefulness: 5
     level: 4
     samm: EG2-B
