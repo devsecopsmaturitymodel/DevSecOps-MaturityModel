@@ -1,8 +1,7 @@
----
 Infrastructure Hardening:
   The cluster is hardened:
-    risk: Using default configurations for a cluster environment leads to potential
-      risks.
+    risk:
+    - Using default configurations for a cluster environment leads to potential risks.
     measure: Harden cluster environments according to best practices. Level 1 and
       partially level 2 from hardening practices like 'CIS Kubernetes Bench for Security'
       should considered.
@@ -23,7 +22,8 @@ Infrastructure Hardening:
     - system hardening is not explicitly covered by ISO 27001 - too specific
     - 13.1.3
   Applications are running in virtualized environments:
-    risk: Through a vulnerability in one service on a server, the attacker gains access
+    risk:
+    - Through a vulnerability in one service on a server, the attacker gains access
       to other services running on the same server.
     measure: Applications are running in a dedicated and isolated virtualized environments.
     difficultyOfImplementation:
@@ -36,8 +36,10 @@ Infrastructure Hardening:
     iso27001-2017:
     - virtual environments are not explicitly covered by ISO 27001 - too specific
     - 13.1.3
+    implementation: []
   Checking the sources of used libraries:
-    risk: Application and system libraries can have implementation flaws or deployment
+    risk:
+    - Application and system libraries can have implementation flaws or deployment
       flaws.
     measure: Each libraries source is checked to have a trusted source.
     difficultyOfImplementation:
@@ -52,11 +54,13 @@ Infrastructure Hardening:
     - not explicitly covered by ISO 27001 - too specific
     - 14.2.1
     - 14.2.5
+    implementation: []
   Isolated networks for virtual environments:
-    risk: Virtual environments in default settings are able to access other virtual
-      environments on the network stack. By using virtual machines, it is often possible
-      to connect to other virtual machines. By using docker, one bridge is used by
-      default so that all containers on one host can communicate with each other.
+    risk:
+    - Virtual environments in default settings are able to access other virtual environments
+      on the network stack. By using virtual machines, it is often possible to connect
+      to other virtual machines. By using docker, one bridge is used by default so
+      that all containers on one host can communicate with each other.
     measure: The communication between virtual environments is controlled and regulated.
     difficultyOfImplementation:
       knowledge: 3
@@ -74,7 +78,8 @@ Infrastructure Hardening:
     - virtual environments are not explicitly covered by ISO 27001 - too specific
     - 13.1.3
   Filter outgoing traffic:
-    risk: A compromised infrastructure component might try to send out stolen data.
+    risk:
+    - A compromised infrastructure component might try to send out stolen data.
     measure: Having a whitelist and explicitly allowing egress traffic provides the
       ability to stop unauthorized data leakage.
     difficultyOfImplementation:
@@ -92,7 +97,8 @@ Infrastructure Hardening:
     - virtual environments are not explicitly covered by ISO 27001 - too specific
     - 13.1.3
   Infrastructure as Code:
-    risk: No tracking of changes in systems might lead to errors in the configuration.
+    risk:
+    - No tracking of changes in systems might lead to errors in the configuration.
       In additions, it might lead to unauthorized changes. An examples is jenkins.
     measure: Systems are setup by code. A full environment can be provisioned. In
       addition, software like Jenkins 2 can be setup and configured in in code too.
@@ -103,14 +109,20 @@ Infrastructure Hardening:
       resources: 4
     usefulness: 4
     level: 3
-    implementation: GitOps, Ansible, Chef, Puppet, Jenkinsfile
+    implementation:
+    - GitOps
+    - Ansible
+    - Chef
+    - Puppet
+    - Jenkinsfile
     samm2: o-environment-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 12.1.1
     - 12.1.2
   Limitation of system calls in virtual environments:
-    risk: System calls in virtual environments like docker can lead to privilege escalation.
+    risk:
+    - System calls in virtual environments like docker can lead to privilege escalation.
     measure: System calls in virtual environments like docker are audited and limited.
     difficultyOfImplementation:
       knowledge: 3
@@ -120,12 +132,15 @@ Infrastructure Hardening:
     level: 4
     dependsOn:
     - Applications are running in virtualized environments
-    implementation: seccomp, strace
+    implementation:
+    - seccomp
+    - strace
     samm2: o-environment-management|A|1
     iso27001-2017:
     - system hardening is not explicitly covered by ISO 27001 - too specific
   Immutable Infrastructure:
-    risk: The availability of IT systems might be disturbed due to components failures
+    risk:
+    - The availability of IT systems might be disturbed due to components failures
     measure: Redundancies in the IT systems
     difficultyOfImplementation:
       knowledge: 2
@@ -137,13 +152,15 @@ Infrastructure Hardening:
     - Infrastructure as Code
     - Usage of <a href="https://semver.org/">Semantic Versioning</a> for components
       like project images
-    implementation: Remove direct access to infrastructure
+    implementation:
+    - Remove direct access to infrastructure
     samm2: o-environment-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 17.2.1
   Microservice-Architecture:
-    risk: Monolithic applications are hard to test.
+    risk:
+    - Monolithic applications are hard to test.
     measure: A microservice-architecture helps to have small components, which are
       more easy to test.
     difficultyOfImplementation:
@@ -156,9 +173,11 @@ Infrastructure Hardening:
     samm2: o-environment-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001
+    implementation: []
   Production near environments are used by developers:
-    risk: In case an errors occurs in production, the developer need to be able to
-      create a production near environment on a local development environment.
+    risk:
+    - In case an errors occurs in production, the developer need to be able to create
+      a production near environment on a local development environment.
     measure: Usage of infrastructure as code helps to create a production near environment.
       The developer needs to be trained in order to setup a local development environment.
       In addition, it should be possible to create production like test data. Often
@@ -178,9 +197,11 @@ Infrastructure Hardening:
     iso27001-2017:
     - 12.1.4
     - 17.2.1
+    implementation: []
   Role based authentication and authorization:
-    risk: Everyone is able to get unauthorized access to information on systems or
-      to modify information unauthorized on systems.
+    risk:
+    - Everyone is able to get unauthorized access to information on systems or to
+      modify information unauthorized on systems.
     measure: The usage of a (role based) access control helps to restrict system access
       to authorized users.
     difficultyOfImplementation:
@@ -189,7 +210,9 @@ Infrastructure Hardening:
       resources: 1
     usefulness: 3
     level: 3
-    implementation: Directory Service, Plugins
+    implementation:
+    - Directory Service
+    - Plugins
     dependsOn:
     - Defined deployment process
     - Defined build process
@@ -197,8 +220,9 @@ Infrastructure Hardening:
     iso27001-2017:
     - 9.4.1
   2FA:
-    risk: One factor authentication is more vulnerable to brute force attacks and
-      is considered less secure.
+    risk:
+    - One factor authentication is more vulnerable to brute force attacks and is considered
+      less secure.
     measure: Two factor authentication for all privileged accounts on systems and
       applications
     difficultyOfImplementation:
@@ -207,7 +231,11 @@ Infrastructure Hardening:
       resources: 3
     usefulness: 4
     level: 3
-    implementation: Smartcard, YubiKey, SMS, TOTP
+    implementation:
+    - Smartcard
+    - YubiKey
+    - SMS
+    - TOTP
     samm2: TODO
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
@@ -215,7 +243,8 @@ Infrastructure Hardening:
     - 9.4.2
     - 14.2.5
   Simple access control for systems:
-    risk: Attackers a gaining access to internal systems and application interfaces
+    risk:
+    - Attackers a gaining access to internal systems and application interfaces
     measure: All internal systems are using simple authentication
     difficultyOfImplementation:
       knowledge: 3
@@ -225,15 +254,18 @@ Infrastructure Hardening:
     level: 1
     dependsOn:
     - Defined deployment process
-    implementation: HTTP-Basic Authentication, TLS, VPN
+    implementation:
+    - HTTP-Basic Authentication
+    - VPN
     samm: EH1-B
     samm2: o-environment-management|A|1
     iso27001-2017:
     - 9.4.1
   Usage of a chaos monkey:
-    risk: Due to manual changes on a system, they are not replaceable anymore. In
-      case of a crash it might happen that a planned redundant system is unavailable.
-      In addition, it is hard to replay manual changes.
+    risk:
+    - Due to manual changes on a system, they are not replaceable anymore. In case
+      of a crash it might happen that a planned redundant system is unavailable. In
+      addition, it is hard to replay manual changes.
     measure: A randomized periodically shutdown of systems makes sure, that nobody
       will perform manual changes to a system.
     difficultyOfImplementation:
@@ -246,8 +278,10 @@ Infrastructure Hardening:
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
     - 17.1.3
+    implementation: []
   Usage of security by default for components:
-    risk: Components (images, libraries, applications) are not hardened.
+    risk:
+    - Components (images, libraries, applications) are not hardened.
     measure: Hardening of components is important, specially for image on which other
       teams base on. Hardening should be performed on the operation system and on
       the services inside (e.g. Nginx or a Java-Application).
@@ -257,15 +291,19 @@ Infrastructure Hardening:
       resources: 1
     usefulness: 3
     level: 2
-    implementation: 'For applications: Check default encoding, managing secrets, crypto,
-      authentication'
+    implementation:
+    - For applications: Check default encoding
+    - managing secrets
+    - crypto
+    - authentication
     dependsOn:
     - Defined build process
     samm2: o-environment-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
   Usage of test and production environments:
-    risk: Security tests are not running regularly because test environments are missing
+    risk:
+    - Security tests are not running regularly because test environments are missing
     measure: A production and a production like environment is used
     difficultyOfImplementation:
       knowledge: 3
@@ -280,8 +318,10 @@ Infrastructure Hardening:
     - not explicitly covered by ISO 27001 - too specific
     - 12.1.4
     - 17.2.1
+    implementation: []
   versioning:
-    risk: Changes to production systems can not be undone.
+    risk:
+    - Changes to production systems can not be undone.
     measure: versioning of artifacts related to production environments. For example
       Jenkins configuration, docker images, system provisioning code.
     difficultyOfImplementation:
@@ -298,9 +338,11 @@ Infrastructure Hardening:
     - 12.1.1
     - 12.1.2
     - 14.2.2
+    implementation: []
   Virtual environments are limited:
-    risk: Denial of service (internally by an attacker or unintentionally by a bug)
-      on one service effects other services
+    risk:
+    - Denial of service (internally by an attacker or unintentionally by a bug) on
+      one service effects other services
     measure: All virtual environments are using resource limits on hard disks, memory
       and CPU
     difficultyOfImplementation:
@@ -317,4 +359,4 @@ Infrastructure Hardening:
     - 12.1.3
     - 13.1.3
     - 17.2.1
-...
+    implementation: []

@@ -1,9 +1,9 @@
----
 Education and Guidance:
   Ad-Hoc Security trainings for software developers:
-    risk: Understanding security is hard and personnel needs to be trained on it.
-      Otherwise, flaws like an SQL Injection might be introduced into the software
-      which might get exploited.
+    risk:
+    - Understanding security is hard and personnel needs to be trained on it. Otherwise,
+      flaws like an SQL Injection might be introduced into the software which might
+      get exploited.
     measure: Provide security awareness training for all personnel involved in software
       development Ad-Hoc.
     difficultyOfImplementation:
@@ -21,7 +21,8 @@ Education and Guidance:
     iso27001-2017:
     - 7.2.2
   Regular security training for all:
-    risk: Understanding security is hard.
+    risk:
+    - Understanding security is hard.
     measure: Provide security awareness training for all personnel involved in software
       development on a regular basis like twice in a year for 1-3 days.
     difficultyOfImplementation:
@@ -39,7 +40,8 @@ Education and Guidance:
       Shop</a> on a "hacking Friday"
     - https://cheatsheetseries.owasp.org/
   Security consulting on request:
-    risk: Not asking a security expert when questions regarding security appear might
+    risk:
+    - Not asking a security expert when questions regarding security appear might
       lead to flaws.
     measure: Security consulting to teams is given on request. The security consultants
       can be internal or external.
@@ -55,8 +57,10 @@ Education and Guidance:
     - 6.1.1
     - 6.1.4
     - 6.1.5
+    implementation: []
   Regular security training of security champions:
-    risk: Understanding security is hard, even for security champions.
+    risk:
+    - Understanding security is hard, even for security champions.
     measure: Regular security training of security champions.
     evidence: |
       - Process Documentation: TODO
@@ -71,8 +75,10 @@ Education and Guidance:
     iso27001-2017:
     - security champions are missing in ISO 27001
     - 7.2.2
+    implementation: []
   Regular security training for everyone:
-    risk: Understanding security is hard, for internal as well as external employees.
+    risk:
+    - Understanding security is hard, for internal as well as external employees.
     measure: Regular security training for everyone.
     difficultyOfImplementation:
       knowledge: 3
@@ -83,12 +89,14 @@ Education and Guidance:
     samm: EG2-B
     iso27001-2017:
     - 7.2.2
-    implementation: Often, external employees are not invited for internal trainings.
-      This activity focuses on providing security trainings to internal as well as
-      external employees. It is conducted every two weeks for around one hour.
+    implementation:
+    - Often, external employees are not invited for internal trainings. This activity focuses
+      on providing security trainings to internal as well as external employees. It
+      is conducted every two weeks for around one hour.
   Each team has a security champion:
-    risk: No one feels directly responsible for security and the security champion
-      does not have enough time to allocate to each team.
+    risk:
+    - No one feels directly responsible for security and the security champion does
+      not have enough time to allocate to each team.
     measure: Each team defines an individual to be responsible for security. These
       individuals are often referred to as 'security champions'
     difficultyOfImplementation:
@@ -102,10 +110,11 @@ Education and Guidance:
     - security champions are missing in ISO 27001 most likely
     - 7.2.1
     - 7.2.2
-    implementation: 
+    implementation:
     - OWASP Security Champions Playbook: https://github.com/c0rdis/security-champions-playbook
   Security-Lessoned-Learned:
-    risk: After an incident, a similar incident might reoccur.
+    risk:
+    - After an incident, a similar incident might reoccur.
     measure: Running a 'lessons learned' session after an incident helps drive continuous
       improvement. Regular meetings with security champions are a good place to share
       and discuss lessons learned.
@@ -118,9 +127,11 @@ Education and Guidance:
     samm: IM-3, ST-3, SR2-B
     iso27001-2017:
     - 16.1.6
+    implementation: []
   Conduction of collaborative security checks with developers and system administrators:
-    risk: Security checks by external companies do not increase the understanding
-      of an application/system for internal employees.
+    risk:
+    - Security checks by external companies do not increase the understanding of an
+      application/system for internal employees.
     measure: Periodically security reviews of source code (SCA), in which security
       SME, developers and operations are involved, are effective at increasing the
       robustness of software and the security knowledge of the teams involved.
@@ -136,8 +147,10 @@ Education and Guidance:
     - 7.2.2
     - 12.6.1
     - 12.7.1
+    implementation: []
   Conduction of collaborative team security checks:
-    risk: Development teams limited insight over security practices.
+    risk:
+    - Development teams limited insight over security practices.
     measure: Mutual security testing the security of other teams project enhances
       security awareness and knowledge.
     difficultyOfImplementation:
@@ -150,8 +163,10 @@ Education and Guidance:
     iso27001-2017:
     - Mutual security testing is not explicitly required in ISO 27001 may be
     - 7.2.2
+    implementation: []
   Conduction of build-it, break-it, fix-it contests:
-    risk: Understanding security is hard, even for security champions and the conduction
+    risk:
+    - Understanding security is hard, even for security champions and the conduction
       of security training often focuses on breaking a component instead of building
       a component secure.
     measure: The build-it, break-it, fix-it contest allows to train people with security
@@ -165,9 +180,11 @@ Education and Guidance:
     level: 3
     iso27001-2017:
     - 7.2.2
-    implementation: https://builditbreakit.org/
+    implementation:
+    - https://builditbreakit.org/
   Conduction of war games:
-    risk: Understanding incident response plans during an incident is hard and ineffective.
+    risk:
+    - Understanding incident response plans during an incident is hard and ineffective.
     measure: War Games like activities help train for incidents. Security SMEs create
       attack scenarios in a testing environment enabling the trainees to learn how
       to react in case of an incident.
@@ -180,10 +197,12 @@ Education and Guidance:
     iso27001-2017:
     - ware games are not explicitly required in ISO 27001 may be
     - 7.2.2
-    - "16.1"
+    - '16.1'
     - 16.1.5
+    implementation: []
   Reward of good communication:
-    risk: Employees are not getting excited about security.
+    risk:
+    - Employees are not getting excited about security.
     measure: Good communication and transparency encourages cross-organizational support.
       Gamification of security is also known to help, examples include T-Shirts, mugs,
       cups, giftcards and 'High-Fives'.
@@ -203,7 +222,8 @@ Education and Guidance:
       Project</a>
     - https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
   Aligning security in teams:
-    risk: The concept of Security Champions might suggest that only he/she is responsible
+    risk:
+    - The concept of Security Champions might suggest that only he/she is responsible
       for security. However, everyone in the project team should be responsible for
       security.
     measure: By aligning security SME with project teams, a higher security standard
@@ -212,11 +232,10 @@ Education and Guidance:
       knowledge: 4
       time: 5
       resources: 1
-    implementation: Security SME are involved in discussion for requirements analysis,
-      software design and sprint planning to provide guidance and suggestions.
+    implementation:
+    - Security SME are involved in discussion for requirements analysis, software design and sprint planning to provide guidance and suggestions.
     usefulness: 5
     level: 4
     samm: EG2-B
     iso27001-2017:
     - 7.1.1
-...

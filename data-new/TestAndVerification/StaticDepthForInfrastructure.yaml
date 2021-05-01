@@ -1,7 +1,7 @@
----
 Static depth for infrastructure:
   Analyze logs:
-    risk: Not getting are of happened attacks.
+    risk:
+    - Not getting are of happened attacks.
     measure: Check logs for keywords.
     difficultyOfImplementation:
       knowledge: 2
@@ -12,8 +12,9 @@ Static depth for infrastructure:
     implementation:
     - https://github.com/Neo23x0/sigma
   Test of virtualized environments:
-    risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains
-      unsecure configurations.
+    risk:
+    - Virtualized environments (e.g. via <i>Container Images</i>) might contains unsecure
+      configurations.
     measure: Test virtualized environments for unsecured configurations.
     difficultyOfImplementation:
       knowledge: 2
@@ -26,8 +27,9 @@ Static depth for infrastructure:
     - Cluster Scanner (will be open sourced soon) to check different aspects
     samm2: v-security-testing|A|1
   Test the definition of virtualized environments:
-    risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>)
-      might contains unsecure configurations.
+    risk:
+    - The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might
+      contains unsecure configurations.
     measure: Test the definition of virtualized environments for unsecured configurations.
     difficultyOfImplementation:
       knowledge: 2
@@ -47,8 +49,9 @@ Static depth for infrastructure:
     - 14.2.8
     - 14.2.1
   Test cluster deployment resources:
-    risk: The deployment configuration (e.g. kubernetes deployment resources) might
-      contain unsecured configurations.
+    risk:
+    - The deployment configuration (e.g. kubernetes deployment resources) might contain
+      unsecured configurations.
     measure: Test the deployment configuration for virtualized environments for unsecured
       configurations.
     difficultyOfImplementation:
@@ -66,7 +69,8 @@ Static depth for infrastructure:
     - 14.2.3
     - 14.2.8
   Test of infrastructure components for known vulnerabilities:
-    risk: Infrastructure components might have vulnerabilities.
+    risk:
+    - Infrastructure components might have vulnerabilities.
     measure: Test for known vulnerabilities in infrastructure components. Often, the
       only way to respond to known vulnerabilities in operating system packages is
       to accept the risk and wait for a patch. As the patch needs to be applied fast
@@ -90,7 +94,8 @@ Static depth for infrastructure:
     - 12.6.1
     - 14.2.1
   Correlate known vulnerabilities in infrastructure with new image versions:
-    risk: TODO.
+    risk:
+    - TODO.
     measure: TODO
     difficultyOfImplementation:
       knowledge: 2
@@ -110,7 +115,8 @@ Static depth for infrastructure:
     - 12.6.1
     - 14.2.1
   Test the cloud configuration:
-    risk: Standard hardening practices for cloud environments are not performed leading
+    risk:
+    - Standard hardening practices for cloud environments are not performed leading
       to vulnerabilities.
     measure: With the help of tools the configuration of virtual environments are
       tested.
@@ -130,7 +136,8 @@ Static depth for infrastructure:
     - 14.2.3
     - 14.2.8
   Stored Secrets:
-    risk: Stored secrets in git history, in container images or directly in code shouldn't
+    risk:
+    - Stored secrets in git history, in container images or directly in code shouldn't
       exists because they might be read unauthorized.
     measure: Test for secrets in code, container images and history
     difficultyOfImplementation:
@@ -148,8 +155,9 @@ Static depth for infrastructure:
     - 9.4.3
     - 10.1.2
   Check for image lifetime:
-    risk: Old container images in production indicate that patch management is not
-      performed and therefore vulnerabilities might exists.
+    risk:
+    - Old container images in production indicate that patch management is not performed
+      and therefore vulnerabilities might exists.
     measure: Check the image age of containers in production.
     difficultyOfImplementation:
       knowledge: 2
@@ -157,14 +165,15 @@ Static depth for infrastructure:
       resources: 1
     usefulness: 2
     level: 3
-    implementation: ~
+    implementation: []
     samm2: v-security-testing|A|1
     iso27001-2017:
     - 12.6.1
     - 14.2.5
   Check for known vulnerabilities:
-    risk: Known vulnerabilities in infrastructure components like container images
-      might get exploited.
+    risk:
+    - Known vulnerabilities in infrastructure components like container images might
+      get exploited.
     measure: Check for known vulnerabilities
     difficultyOfImplementation:
       knowledge: 2
@@ -180,7 +189,8 @@ Static depth for infrastructure:
     iso27001-2017:
     - 12.6.1
   Check for new image version:
-    risk: When a new version of an image is available, it might fixes security vulnerabilities.
+    risk:
+    - When a new version of an image is available, it might fixes security vulnerabilities.
     measure: Check for new images of containers in production.
     difficultyOfImplementation:
       knowledge: 3
@@ -188,16 +198,17 @@ Static depth for infrastructure:
       resources: 1
     usefulness: 2
     level: 3
-    implementation: ~
+    implementation: []
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
     - 14.2.5
     - 12.2.1
   Check for malware:
-    risk: Third party might include  malware. Ether due to the maintainer (e.g. typo
-      squatting of an image name and using the wrong image) or by an attacker on behalf
-      of the maintainer with stolen credentials.
+    risk:
+    - Third party might include  malware. Ether due to the maintainer (e.g. typo squatting
+      of an image name and using the wrong image) or by an attacker on behalf of the
+      maintainer with stolen credentials.
     measure: Check for malware in components (e.g. container images, VM baseline images,
       libraries).
     difficultyOfImplementation:
@@ -206,8 +217,7 @@ Static depth for infrastructure:
       resources: 2
     usefulness: 3
     level: 3
-    implementation: ~
+    implementation: []
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.2.1
-...
