@@ -14,10 +14,15 @@ Education and Guidance:
     level: 1
     samm: EG1-A
     implementation:
-    - In case you do not have the budget to hire an external security expert, an option
-      is to use the <a href="https://github.com/bkimminich/juice-shop">OWASP Juice
-      Shop</a> on a "hacking Friday"
-    - https://cheatsheetseries.owasp.org/
+    - name: OWASP JuiceShop
+      tags: []
+      url: https://github.com/bkimminich/juice-shop
+      description: "In case you do not have the budget to hire an external security\
+        \ expert, an option\nis to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop)\
+        \ on a \"hacking Friday\""
+    - name: https://cheatsheetseries.owasp.org/
+      tags: []
+      url: https://cheatsheetseries.owasp.org/
     iso27001-2017:
     - 7.2.2
   Regular security training for all:
@@ -35,10 +40,15 @@ Education and Guidance:
     iso27001-2017:
     - 7.2.2
     implementation:
-    - In case you do not have the budget to hire an external security expert, an option
-      is to use the <a href="https://github.com/bkimminich/juice-shop">OWASP Juice
-      Shop</a> on a "hacking Friday"
-    - https://cheatsheetseries.owasp.org/
+    - name: OWASP JuiceShop
+      tags: []
+      url: https://github.com/bkimminich/juice-shop
+      description: "In case you do not have the budget to hire an external security\
+        \ expert, an option\nis to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop)\
+        \ on a \"hacking Friday\""
+    - name: https://cheatsheetseries.owasp.org/
+      tags: []
+      url: https://cheatsheetseries.owasp.org/
   Security consulting on request:
     risk:
     - Not asking a security expert when questions regarding security appear might
@@ -90,9 +100,11 @@ Education and Guidance:
     iso27001-2017:
     - 7.2.2
     implementation:
-    - Often, external employees are not invited for internal trainings. This activity focuses
-      on providing security trainings to internal as well as external employees. It
-      is conducted every two weeks for around one hour.
+    - name: Train internal and external resources
+      tags: []
+      description: Often, external employees are not invited for internal trainings.
+        This activity focuses on providing security trainings to internal as well
+        as external employees. It is conducted every two weeks for around one hour.
   Each team has a security champion:
     risk:
     - No one feels directly responsible for security and the security champion does
@@ -111,7 +123,9 @@ Education and Guidance:
     - 7.2.1
     - 7.2.2
     implementation:
-    - OWASP Security Champions Playbook: https://github.com/c0rdis/security-champions-playbook
+    - name: 'OWASP Security Champions Playbook'
+      tags: []
+      url: https://github.com/c0rdis/security-champions-playbook
   Security-Lessoned-Learned:
     risk:
     - After an incident, a similar incident might reoccur.
@@ -181,7 +195,9 @@ Education and Guidance:
     iso27001-2017:
     - 7.2.2
     implementation:
-    - https://builditbreakit.org/
+    - name: https://builditbreakit.org/
+      tags: []
+      url: https://builditbreakit.org/
   Conduction of war games:
     risk:
     - Understanding incident response plans during an incident is hard and ineffective.
@@ -217,10 +233,15 @@ Education and Guidance:
     - interestingly enough A7.2.3 is requiring a process to handle misconduct but
       nothing to promote good behavior.
     implementation:
-    - Enhance motivation can be performed with the distribution of pins as a reward,
-      see <a href='https://github.com/wurstbrot/security-pins'>OWASP Security Pins
-      Project</a>
-    - https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
+    - name: Motivate people
+      tags: []
+      url: https://github.com/wurstbrot/security-pins
+      description: |-
+        Enhance motivation can be performed with the distribution of pins
+        as a reward, see [OWASP Security Pins Project](https://github.com/wurstbrot/security-pins)
+    - name: OWASP_Top_10_Maturity_Categories_for_Security_Champions
+      tags: []
+      url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
   Aligning security in teams:
     risk:
     - The concept of Security Champions might suggest that only he/she is responsible
@@ -233,7 +254,10 @@ Education and Guidance:
       time: 5
       resources: 1
     implementation:
-    - Security SME are involved in discussion for requirements analysis, software design and sprint planning to provide guidance and suggestions.
+    - name: Involve Security SME
+      tags: []
+      description: Security SME are involved in discussion for requirements analysis,
+        software design and sprint planning to provide guidance and suggestions.
     usefulness: 5
     level: 4
     samm: EG2-B
