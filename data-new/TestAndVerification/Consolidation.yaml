@@ -62,13 +62,12 @@ Consolidation:
     - name: SAST
       tags: []
       description: 'At SAST (Static Application Security Testing): Server-side / client-side
-        teams can easily be recorded.
-        With microservice architecture individual microservices can be used usually Teams.'
+        teams can easily be recorded. With microservice architecture individual microservices
+        can be used usually Teams.'
     - name: DAST
       tags: []
-      description: 'At DAST (Dynamic
-        Application Security Testing): vulnerabilities are classified and can be assigned
-        to server-side and client-side teams.'
+      description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
+        are classified and can be assigned to server-side and client-side teams.'
     samm2: i-defect-management|B|2
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
