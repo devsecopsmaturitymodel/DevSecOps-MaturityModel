@@ -30,8 +30,11 @@ Dynamic depth for infrastructure:
     usefulness: 4
     level: 2
     implementation:
-    - <a href='https://github.com/aquasecurity/kube-hunter'>kube-hunter</a>
-    - openVAS
+    - name: kube-hunter
+      tags: []
+      url: https://github.com/aquasecurity/kube-hunter
+    - name: openVAS
+      tags: []
     samm: EH2-B
     iso27001-2017:
     - system hardening is not explicitly covered by ISO 27001 - too specific
@@ -51,7 +54,8 @@ Dynamic depth for infrastructure:
     usefulness: 1
     level: 3
     implementation:
-    - HTC Hydra
+    - name: HTC Hydra
+      tags: []
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 9.4.3
@@ -68,7 +72,9 @@ Dynamic depth for infrastructure:
     usefulness: 3
     level: 2
     implementation:
-    - <a href="https://github.com/controlplaneio/netassert">netassert</a>
+    - name: netassert
+      tags: []
+      url: https://github.com/controlplaneio/netassert
     dependsOn: Segmented networks for virtual environments
     samm2: v-security-testing|A|2
     iso27001-2017:
@@ -89,8 +95,11 @@ Dynamic depth for infrastructure:
     usefulness: 3
     level: 1
     implementation:
-    - nmap
-    - <a href="https://github.com/OWASP/Amass">OWASP Amass</a>
+    - name: nmap
+      tags: []
+    - name: OWASP Amass
+      tags: []
+      url: https://github.com/OWASP/Amass
     samm: EH2-B
     samm2: v-security-testing|A|1
     iso27001-2017:

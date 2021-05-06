@@ -10,7 +10,8 @@ Static depth for applications:
     usefulness: 1
     level: 4
     implementation:
-    - PMD
+    - name: PMD
+      tags: []
     dependsOn:
     - Defined build process
     samm2: v-security-testing|A|2
@@ -48,9 +49,12 @@ Static depth for applications:
     usefulness: 4
     level: 4
     implementation:
-    - eslint
-    - ' FindSecurityBugs'
-    - ' jsprime'
+    - name: eslint
+      tags: []
+    - name: FindSecurityBugs
+      tags: []
+    - name: jsprime
+      tags: []
     dependsOn:
     - Static analysis for important client side components
     - Static analysis for important server side components
@@ -70,10 +74,16 @@ Static depth for applications:
     usefulness: 3
     level: 3
     implementation:
-    - eslint
-    - FindSecurityBugs
-    - jsprime
-    - <a href='https://github.com/ing-bank/bdd-mobile-security-automation-framework'>bdd-mobile-security-automation-framework</a>
+    - name: eslint
+      tags: []
+    - name: FindSecurityBugs
+      tags: []
+    - name: jsprime
+      tags: []
+    - name: '[bdd-mobile-security'
+      tags: []
+      url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
+      description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
@@ -92,9 +102,12 @@ Static depth for applications:
     usefulness: 4
     level: 2
     implementation:
-    - eslint
-    - ' FindSecurityBugs'
-    - ' jsprime'
+    - name: eslint
+      tags: []
+    - name: FindSecurityBugs
+      tags: []
+    - name: jsprime
+      tags: []
     dependsOn:
     - Defined build process
     samm2: v-security-testing|A|2
@@ -112,7 +125,8 @@ Static depth for applications:
     usefulness: 1
     level: 4
     implementation:
-    - PMD
+    - name: PMD
+      tags: []
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
@@ -131,8 +145,12 @@ Static depth for applications:
     dependsOn:
     - Defined build process
     implementation:
-    - <a href="https://github.com/RetireJS/retire.js/">retire.js</a>
-    - <a href="https://docs.npmjs.com/cli/audit">npm audit</a>
+    - name: retire.js
+      tags: []
+      url: https://github.com/RetireJS/retire.js/
+    - name: npm audit
+      tags: []
+      url: https://docs.npmjs.com/cli/audit
     samm2: v-security-testing|A|2
     iso27001-2017:
     - 12.6.1
@@ -150,7 +168,8 @@ Static depth for applications:
     dependsOn:
     - Defined build process
     implementation:
-    - OWASP Dependency Check
+    - name: OWASP Dependency Check
+      tags: []
     samm: SA
     samm2: v-security-testing|A|2
     iso27001-2017:

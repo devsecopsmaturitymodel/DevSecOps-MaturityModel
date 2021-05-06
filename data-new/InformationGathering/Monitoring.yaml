@@ -73,7 +73,10 @@ Monitoring:
     dependsOn:
     - Visualized metrics
     implementation:
-    - https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+    - name: https://ht.transpare
+      tags: []
+      url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
+      description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
     samm2: o-incident-management|A|2
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
@@ -176,7 +179,8 @@ Monitoring:
     usefulness: 5
     level: 1
     implementation:
-    - Prometheus
+    - name: Prometheus
+      tags: []
     samm2: o-incident-management|A|1
     iso27001-2017:
     - 12.4.1
@@ -194,7 +198,8 @@ Monitoring:
     usefulness: 5
     level: 1
     implementation:
-    - collected
+    - name: collected
+      tags: []
     samm2: o-incident-management|A|1
     iso27001-2017:
     - 12.1.3

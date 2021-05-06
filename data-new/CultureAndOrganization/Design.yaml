@@ -62,7 +62,9 @@ Design:
     usefulness: 3
     level: 1
     implementation:
-    - <a href="https://github.com/Toreon/threat-model-playbook">Threat modeling Playbook</a>
+    - name: Threat modeling Playbook
+      tags: []
+      url: https://github.com/Toreon/threat-model-playbook
     md-description: |2
 
       Once requirements are gathered and analysis is performed, implementation specifics need to be defined. The outcome of this stage is usually a diagram outlining data flows and a general system architecture. This presents an opportunity for both threat modeling and attaching security considerations to every ticket and epic that is the outcome of this stage.
@@ -126,9 +128,12 @@ Design:
     - may be part of risk assessment
     - 8.1.2
     implementation:
-    - <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't
-      Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
-      Security Stories and Security Tasks for Agile Development Environments</a>
+    - name: "[Don't Forget EVIL U"
+      tags: []
+      url: https://www.owasp.org/index.php/Agile_Software_Development
+      description: "[Don't Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
+        \ and [Practical Security Stories and Security Tasks for Agile Development\
+        \ Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   Creation of simple abuse stories:
     risk:
     - User stories mostly don't consider security implications. Security flaws are
@@ -148,9 +153,12 @@ Design:
     - may be part of risk assessment
     - 8.1.2
     implementation:
-    - <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't
-      Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
-      Security Stories and Security Tasks for Agile Development Environments</a>
+    - name: "[Don't Forget EVIL U"
+      tags: []
+      url: https://www.owasp.org/index.php/Agile_Software_Development
+      description: "[Don't Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
+        \ and [Practical Security Stories and Security Tasks for Agile Development\
+        \ Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   Information security targets are communicated:
     risk:
     - Employees don't known their organizations security targets. Therefore security
