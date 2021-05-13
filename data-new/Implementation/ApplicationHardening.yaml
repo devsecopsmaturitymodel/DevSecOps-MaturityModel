@@ -35,9 +35,12 @@ Application Hardening:
 
       Source: [OWASP Project Integration](https://raw.githubusercontent.com/OWASP/www-project-integration-standards/master/writeups/owasp_in_sdlc/index.md)
     implementation:
-    - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP
-      ASVS</a>
-    - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
+    - name: OWASP ASVS
+      tags: []
+      url: https://owasp.org/www-project-application-security-verification-standard/
+    - name: OWASP MASVS
+      tags: []
+      url: https://github.com/OWASP/owasp-masvs
     samm2: software-requirements|A|1
     iso27001-2017:
     - hardening is not explicitly covered by ISO 27001 - too specific
@@ -59,9 +62,12 @@ Application Hardening:
     usefulness: 4
     level: 2
     implementation:
-    - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP
-      ASVS</a>
-    - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
+    - name: OWASP ASVS
+      tags: []
+      url: https://owasp.org/www-project-application-security-verification-standard/
+    - name: OWASP MASVS
+      tags: []
+      url: https://github.com/OWASP/owasp-masvs
     samm2: software-requirements|A|2
     iso27001-2017:
     - hardening is not explicitly covered by ISO 27001 - too specific
@@ -84,9 +90,12 @@ Application Hardening:
     usefulness: 4
     level: 3
     implementation:
-    - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP
-      ASVS</a>
-    - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
+    - name: OWASP ASVS
+      tags: []
+      url: https://owasp.org/www-project-application-security-verification-standard/
+    - name: OWASP MASVS
+      tags: []
+      url: https://github.com/OWASP/owasp-masvs
     samm2: software-requirements|A|3
     iso27001-2017:
     - hardening is not explicitly covered by ISO 27001 - too specific
@@ -109,9 +118,12 @@ Application Hardening:
     usefulness: 4
     level: 4
     implementation:
-    - <a href='https://owasp.org/www-project-application-security-verification-standard/'>OWASP
-      ASVS</a>
-    - <a href="https://github.com/OWASP/owasp-masvs">OWASP MASVS</a>
+    - name: OWASP ASVS
+      tags: []
+      url: https://owasp.org/www-project-application-security-verification-standard/
+    - name: OWASP MASVS
+      tags: []
+      url: https://github.com/OWASP/owasp-masvs
     samm2: software-requirements|A|3
     iso27001-2017:
     - hardening is not explicitly covered by ISO 27001 - too specific

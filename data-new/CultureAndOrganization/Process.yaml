@@ -67,6 +67,8 @@ Process:
     - 12.5.1
     - 12.6.1
     implementation:
-    - 'Example: All docker images used by teams need to be based on standard images.'
+    - name: 'Example: All docker images used by teams need to be based on standard
+        images.'
+      tags: []
     comment: By preventing teams from trying out new components, innovation might
       be hampered

@@ -33,10 +33,14 @@ Logging:
     usefulness: 1
     level: 1
     implementation:
-    - rsyslog
-    - logstash
-    - fluentd
-    - bash
+    - name: rsyslog
+      tags: []
+    - name: logstash
+      tags: []
+    - name: fluentd
+      tags: []
+    - name: bash
+      tags: []
     samm2: o-incident-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
@@ -56,10 +60,14 @@ Logging:
     dependsOn:
     - PII logging concept
     implementation:
-    - rsyslog
-    - logstash
-    - fluentd
-    - bash
+    - name: rsyslog
+      tags: []
+    - name: logstash
+      tags: []
+    - name: fluentd
+      tags: []
+    - name: bash
+      tags: []
     samm2: o-incident-management|A|1
     iso27001-2017:
     - 12.4.1
@@ -77,8 +85,10 @@ Logging:
     usefulness: 2
     level: 1
     implementation:
-    - rsyslog
-    - ' Logstash'
+    - name: rsyslog
+      tags: []
+    - name: Logstash
+      tags: []
     samm2: o-incident-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
@@ -120,7 +130,8 @@ Logging:
     - Centralized system logging
     - Centralized application logging
     implementation:
-    - ELK-Stack
+    - name: ELK-Stack
+      tags: []
     samm2: o-incident-management|A|1
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific
