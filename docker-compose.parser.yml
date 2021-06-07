@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  parser:
+    build:
+      context: .
+      dockerfile: Dockerfile.parser
+    volumes:
+    - ./data-new/:/app/data-new
+    - ./data/:/app/data
+    - ./scripts/merge-dimensions.py:/app/scripts/merge-dimensions.py
