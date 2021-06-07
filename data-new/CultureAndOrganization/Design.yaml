@@ -1,7 +1,7 @@
----
 Design:
   Conduction of advanced threat modeling:
-    risk: Inadequate identification of business and technical risks.
+    risk:
+    - Inadequate identification of business and technical risks.
     measure: Threat modeling is performed by using reviewing user stories and producing
       security driven data flow diagrams.
     difficultyOfImplementation:
@@ -29,9 +29,11 @@ Design:
     - may be part of risk assessment
     - 8.2.1
     - 14.2.1
+    implementation: []
   Conduction of simple threat modeling on business level:
-    risk: Business related threats are discovered too late in the development and
-      deployment process.
+    risk:
+    - Business related threats are discovered too late in the development and deployment
+      process.
     measure: Threat modeling of business functionality is performed during the product
       backlog creation to facilitate early detection of security defects.
     difficultyOfImplementation:
@@ -46,9 +48,11 @@ Design:
     - may be part of risk assessment
     - 8.2.1
     - 14.2.1
+    implementation: []
   Conduction of simple threat modeling on technical level:
-    risk: Technical related threats are discovered too late in the development and
-      deployment process.
+    risk:
+    - Technical related threats are discovered too late in the development and deployment
+      process.
     measure: Threat modeling of technical features is performed during the product
       sprint planning.
     difficultyOfImplementation:
@@ -58,7 +62,9 @@ Design:
     usefulness: 3
     level: 1
     implementation:
-    - <a href="https://github.com/Toreon/threat-model-playbook">Threat modeling Playbook</a>
+    - name: Threat modeling Playbook
+      tags: []
+      url: https://github.com/Toreon/threat-model-playbook
     md-description: |2
 
       Once requirements are gathered and analysis is performed, implementation specifics need to be defined. The outcome of this stage is usually a diagram outlining data flows and a general system architecture. This presents an opportunity for both threat modeling and attaching security considerations to every ticket and epic that is the outcome of this stage.
@@ -101,7 +107,8 @@ Design:
     - 8.2.1
     - 14.2.1
   Creation of advanced abuse stories:
-    risk: Simple user stories are not going deep enough. Relevant security considerations
+    risk:
+    - Simple user stories are not going deep enough. Relevant security considerations
       are performed. Security flaws are discovered too late in the development and
       deployment process
     measure: Advanced abuse stories are created as part of threat modeling activities.
@@ -120,12 +127,17 @@ Design:
     - 6.1.5
     - may be part of risk assessment
     - 8.1.2
-    implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't
-      Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
-      Security Stories and Security Tasks for Agile Development Environments</a>
+    implementation:
+    - name: "[Don't Forget EVIL U"
+      tags: []
+      url: https://www.owasp.org/index.php/Agile_Software_Development
+      description: "[Don't Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
+        \ and [Practical Security Stories and Security Tasks for Agile Development\
+        \ Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   Creation of simple abuse stories:
-    risk: User stories mostly don't consider security implications. Security flaws
-      are discovered too late in the development and deployment process.
+    risk:
+    - User stories mostly don't consider security implications. Security flaws are
+      discovered too late in the development and deployment process.
     measure: Abuse stories are created during the creation of user stories.
     difficultyOfImplementation:
       knowledge: 2
@@ -140,11 +152,16 @@ Design:
     - 6.1.5
     - may be part of risk assessment
     - 8.1.2
-    implementation: <a href='https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories'>Don't
-      Forget EVIL User Stories</a> and <a href='http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf'>Practical
-      Security Stories and Security Tasks for Agile Development Environments</a>
+    implementation:
+    - name: "[Don't Forget EVIL U"
+      tags: []
+      url: https://www.owasp.org/index.php/Agile_Software_Development
+      description: "[Don't Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
+        \ and [Practical Security Stories and Security Tasks for Agile Development\
+        \ Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   Information security targets are communicated:
-    risk: Employees don't known their organizations security targets. Therefore security
+    risk:
+    - Employees don't known their organizations security targets. Therefore security
       is not considered during development and administration as much as it should
       be.
     measure: Transparent and timely communication of the security targets by senior
@@ -159,4 +176,4 @@ Design:
     iso27001-2017:
     - 5.1.1
     - 7.2.1
-...
+    implementation: []
