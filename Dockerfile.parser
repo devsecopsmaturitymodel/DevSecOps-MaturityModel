@@ -1,0 +1,7 @@
+FROM python:3 AS parser
+RUN mkdir /app/data -p
+ADD data-new/  /app/data-new
+ADD scripts/merge-dimensions.py   /app/scripts/merge-dimensions.py
+WORKDIR /app
+RUN pip install pyyaml 
+CMD ["python3", "/app/scripts/merge-dimensions.py"]

@@ -19,7 +19,9 @@ function readYaml($file) {
   );
   if ($fragment) {
     foreach (explode("/", $fragment) as $key) {
-      $ret = $ret[$key];
+      if(array_key_exists($key, $ret)) {
+        $ret = $ret[$key];
+      }
     }
 
   }
