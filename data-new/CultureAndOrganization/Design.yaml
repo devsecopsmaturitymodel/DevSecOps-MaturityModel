@@ -1,4 +1,30 @@
 Design:
+  Creation of threat modeling processes and standards:
+    risk:
+      - Inadequate identification of business and technical risks.
+    measure: Creation of threat modeling processes and standards through the organization helps to enhance the security culture and provide more structure to the threat modelings.
+    difficultyOfImplementation:
+      knowledge: 4
+      time: 3
+      resources: 2
+    usefulness: 3
+    level: 3
+    md-description: |
+    samm2: threat-assessment|B|3
+    iso27001-2017:
+      - not explicitly covered by ISO 27001
+      - may be part of risk assessment
+      - 8.2.1
+      - 14.2.1
+    implementation:
+      - name: Threat Modeling Playbook
+        tags: ["owasp", "defender", "threat-modeling", "whiteboard"]
+        url: https://github.com/Toreon/threat-model-playbook
+      - name: OWASP SAMM
+        tags: ["threat-modeling", "owasp", "defender"]
+        url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+    dependsOn:
+      - "Conduction of simple threat modeling on technical level"
   Conduction of advanced threat modeling:
     risk:
     - Inadequate identification of business and technical risks.
@@ -10,6 +36,9 @@ Design:
       resources: 2
     usefulness: 3
     level: 3
+    dependsOn:
+      - "Conduction of simple threat modeling on technical level"
+      - "Creation of threat modeling processes and standards"
     md-description: |
       **Example High Maturity Scenario:**
 
@@ -23,13 +52,31 @@ Design:
       * Input is escaped output is encoded appropriately using well established libraries.
 
       Source: OWASP Project Integration Project
-    samm: TA2-B
+    samm2: threat-assessment|B|2
     iso27001-2017:
     - not explicitly covered by ISO 27001
     - may be part of risk assessment
     - 8.2.1
     - 14.2.1
-    implementation: []
+    implementation:
+      - name: Whiteboard
+        tags: ["defender", "threat-modeling", "collaboration", "whiteboard"]
+        url: https://en.wikipedia.org/wiki/Whiteboard
+      - name: Miro (or any other collaborative board)
+        tags: ["defender", "threat-modeling", "collaboration", "whiteboard"]
+        url: https://miro.com/
+      - name: Draw.io
+        tags: ["defender", "threat-modeling", "whiteboard"]
+        url: https://github.com/jgraph/drawio-desktop
+      - name: Threat Modeling Playbook
+        tags: ["owasp", "defender", "threat-modeling", "whiteboard"]
+        url: https://github.com/Toreon/threat-model-playbook
+      - name: OWASP SAMM
+        tags: ["threat-modeling", "owasp", "defender"]
+        url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+      - name: Threagile
+        tags: ["threat-modeling"]
+        url: https://github.com/Threagile/threagile
   Conduction of simple threat modeling on business level:
     risk:
     - Business related threats are discovered too late in the development and deployment
@@ -42,7 +89,7 @@ Design:
       resources: 1
     usefulness: 3
     level: 2
-    samm: TA1-A
+    samm2: threat-assessment|B|2
     iso27001-2017:
     - not explicitly covered by ISO 27001
     - may be part of risk assessment
@@ -62,13 +109,33 @@ Design:
     usefulness: 3
     level: 1
     implementation:
-    - name: Threat modeling Playbook
-      tags: []
+    - name: Whiteboard
+      tags: ["defender", "threat-modeling", "collaboration", "whiteboard"]
+      url: https://en.wikipedia.org/wiki/Whiteboard
+    - name: Miro (or any other collaborative board)
+      tags: ["defender", "threat-modeling", "collaboration", "whiteboard"]
+      url: https://miro.com/
+    - name: Draw.io
+      tags: ["defender", "threat-modeling", "whiteboard"]
+      url: https://github.com/jgraph/drawio-desktop
+    - name: Threat Modeling Playbook
+      tags: ["owasp", "defender", "threat-modeling", "whiteboard"]
       url: https://github.com/Toreon/threat-model-playbook
-    md-description: |2
+    - name: OWASP SAMM
+      tags: ["threat-modeling", "owasp", "defender"]
+      url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+    md-description: |
+        # OWASP SAMM Description
+        Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
 
-      Once requirements are gathered and analysis is performed, implementation specifics need to be defined. The outcome of this stage is usually a diagram outlining data flows and a general system architecture. This presents an opportunity for both threat modeling and attaching security considerations to every ticket and epic that is the outcome of this stage.
+        Threat modeling is a team exercise, including product owners, architects, security champions, and security testers. At this maturity level, expose teams and stakeholders to threat modeling to increase security awareness and to create a shared vision on the security of the system.
 
+        At maturity level 1, you perform threat modeling ad-hoc for high-risk applications and use simple threat checklists, such as STRIDE. Avoid lengthy workshops and overly detailed lists of low-relevant threats. Perform threat modeling iteratively to align to more iterative development paradigms. If you add new functionality to an existing application, look only into the newly added functions instead of trying to cover the entire scope. A good starting point is the existing diagrams that you annotate during discussion workshops. Always make sure to persist the outcome of a threat modeling discussion for later use.
+
+        Your most important tool to start threat modeling is a whiteboard, smartboard, or a piece of paper. Aim for security awareness, a simple process, and actionable outcomes that you agree upon with your team.      Once requirements are gathered and analysis is performed, implementation specifics need to be defined. The outcome of this stage is usually a diagram outlining data flows and a general system architecture. This presents an opportunity for both threat modeling and attaching security considerations to every ticket and epic that is the outcome of this stage.
+
+        Source: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+        # OWASP Project Integration Description
         There is some great advice on threat modeling out there *e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/) article or [this](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) one.
 
         A bite sized primer by Adam Shostack himself can be found [here](https://adam.shostack.org/blog/2018/03/threat-modeling-panel-at-appsec-cali-2018/).
@@ -100,7 +167,7 @@ Design:
         GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries. Access to data is protected with basic auth set to _1234:1234_ for development purposes.
 
         Source: OWASP Project Integration Project
-    samm: TA1-A
+    samm2: threat-assessment|B|2
     iso27001-2017:
     - not explicitly covered by ISO 27001
     - may be part of risk assessment
@@ -120,7 +187,7 @@ Design:
     level: 4
     dependsOn:
     - Creation of simple abuse stories
-    samm: TA2-A
+    samm2: threat-assessment|B|2
     iso27001-2017:
     - not explicitly covered by ISO 27001
     - may be part of project management
@@ -144,8 +211,8 @@ Design:
       time: 2
       resources: 1
     usefulness: 4
-    level: 2
-    samm: TA2-A
+    level: 3
+    samm2: threat-assessment|B|2
     iso27001-2017:
     - not explicitly covered by ISO 27001
     - may be part of project management
@@ -159,6 +226,9 @@ Design:
       description: "[Don't Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
         \ and [Practical Security Stories and Security Tasks for Agile Development\
         \ Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+    dependsOn:
+      - "Conduction of simple threat modeling on technical level"
+      - "Creation of threat modeling processes and standards"
   Information security targets are communicated:
     risk:
     - Employees don't known their organizations security targets. Therefore security
