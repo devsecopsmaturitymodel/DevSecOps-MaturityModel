@@ -37,7 +37,7 @@ function getJson($dimensions) {
         "series" => 0,
         "shape" => $shapes[$shape] ?? "square",
         "size" => 3000,
-        "x" => getDifficultyOfImplementation($dimensions, $content),
+        "x" => 5-getDifficultyOfImplementation($dimensions, $content),
         "y" => $content["usefulness"],
         "key" => $activityName
       );
@@ -69,13 +69,8 @@ function getJson($dimensions) {
 <form action="?" method="get">
 <?php
 $aggregated = $_GET['aggregated'] ?? null;
-if ($aggregated == "true") {
-  echo "value='false'";
-}else {
-  echo "value='true'";
-}
-?>">
-    <button id="">
+?>
+<button id="">
 <?php
 echo ($aggregated == "true") ?  "Show specific values" : "Show total values";
 ?>
