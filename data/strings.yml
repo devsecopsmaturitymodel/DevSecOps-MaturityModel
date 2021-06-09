@@ -8,18 +8,15 @@ strings:
       samm2:
         label: OWASP SAMM VERSION 2
         description: |-
+          Software Assurance Maturity Model
+          The Software Assurance Maturity Model (SAMM) is an open framework to help organizations formulate
+          and implement a strategy for software security that is tailored
+          to the specific risks facing the organization.
           https://owaspsamm.org/blog/2020/01/31/samm2-release/
       iso27001-2017:
         label: ISO27001 2017
         description: |-
           ISO 27001 / 2017
-      samm:
-        label: OWASP SAMM (Software Assurance Maturity Model)
-        description: |-
-          Software Assurance Maturity Model
-          The Software Assurance Maturity Model (SAMM) is an open framework to help organizations formulate
-          and implement a strategy for software security that is tailored
-          to the specific risks facing the organization.
 
     labels: ["Very Low", "Low", "Medium", "High", "Very High"]
     hardness: ["Very soft", "Soft", "Medium", "High", "Very high"]
@@ -27,6 +24,3 @@ strings:
              "Level 2: Adoption of basic security practices",
              "Level 3: High adoption of security practices",
              "Level 4: Advanced deployment of security practices at scale"]
-  de:
-    <<: *en
-    hardness: ["Sehr gering", "Gering", "Mittel", "Hoch", "Sehr hoch"]

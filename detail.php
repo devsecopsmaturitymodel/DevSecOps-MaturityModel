@@ -86,6 +86,7 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
         if (is_array($implementation)) {
             echo "<ul>";
             foreach ($implementation as $implementationElement) {
+                echo "<li>";
                 if (is_array($implementationElement)) {
                     echo $implementationElement['name'] . ', ';
                     if (!empty($implementationElement['url'])) {
@@ -98,7 +99,7 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
                 } else {
                     echo "<li>$implementationElement</li>";
                 }
-
+                echo "</li>";
             }
             echo "</ul>";
         } else {

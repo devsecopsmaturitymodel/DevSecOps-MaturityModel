@@ -58,7 +58,7 @@ var _d3;
             .tickFormat(function (d) {
                 return getLabelForAxis(d);
             })
-            .axisLabel("Difficulty of Implementation");
+            .axisLabel("Ease of Implementation");
         chart.yAxis
             .tickFormat(function (d) {
                 return getLabelForAxis(d);
