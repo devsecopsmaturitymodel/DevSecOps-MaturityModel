@@ -1,7 +1,7 @@
 Static depth for infrastructure:
   Analyze logs:
     risk:
-    - Not getting are of happened attacks.
+    - Not aware of attacks happening.
     measure: Check logs for keywords.
     difficultyOfImplementation:
       knowledge: 2
@@ -34,7 +34,7 @@ Static depth for infrastructure:
   Test the definition of virtualized environments:
     risk:
     - The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might
-      contains unsecure configurations.
+      contain unsecure configurations.
     measure: Test the definition of virtualized environments for unsecured configurations.
     difficultyOfImplementation:
       knowledge: 2
@@ -139,7 +139,7 @@ Static depth for infrastructure:
     risk:
     - Standard hardening practices for cloud environments are not performed leading
       to vulnerabilities.
-    measure: With the help of tools the configuration of virtual environments are
+    measure: With the help of tools, the configuration of virtual environments are
       tested.
     difficultyOfImplementation:
       knowledge: 2
@@ -161,7 +161,7 @@ Static depth for infrastructure:
   Stored Secrets:
     risk:
     - Stored secrets in git history, in container images or directly in code shouldn't
-      exists because they might be read unauthorized.
+      exists because they might be exposed to unauthorized parties.
     measure: Test for secrets in code, container images and history
     difficultyOfImplementation:
       knowledge: 2
@@ -221,7 +221,7 @@ Static depth for infrastructure:
     - 12.6.1
   Check for new image version:
     risk:
-    - When a new version of an image is available, it might fixes security vulnerabilities.
+    - When a new version of an image is available, it might fix security vulnerabilities.
     measure: Check for new images of containers in production.
     difficultyOfImplementation:
       knowledge: 3
