@@ -31,8 +31,8 @@ jobs:
       - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
-        with: registry.hub.docker.com
-          registry:
+        with:
+          registry: registry.hub.docker.com
           username: ${{ secrets.HUB_USERNAME }}
           password: ${{ secrets.HUB_TOKEN }}
       - name: create and push an image
