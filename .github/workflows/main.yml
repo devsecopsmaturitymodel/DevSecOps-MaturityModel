@@ -24,7 +24,6 @@ jobs:
           pattern: "*.*sh"
           exclude: "./.git/*"
           shellcheck_flags: "--external-sources --exclude=SC1090,SC1091,SC2116,SC2015"
-
   build:
     needs: shellcheck
     runs-on: ubuntu-latest
