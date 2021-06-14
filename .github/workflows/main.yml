@@ -44,4 +44,4 @@ jobs:
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
           fi
-          sudo ./build.sh "registry.hub.docker.com" "wurstbrot" "dsomm" "${VERSION}"
+          sudo ./build.sh "registry.hub.docker.com" "wurstbrot" "dsomm" "${VERSION}" "${{ secrets.HUB_USERNAME }}" "${{ secrets.HUB_TOKEN }}"

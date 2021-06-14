@@ -5,6 +5,10 @@ REGISTRY=$1
 ORGANIZATION=$2
 IMAGE_NAME=$3
 VERSION=$4
+REGISTRY_USER=$5
+REGISTRY_TOKEN=$6
+
+docker login --password "${REGISTRY_TOKEN}" --user "${REGISTRY_USER}" ${REGISTRY}
 
 MAJOR=$(echo $VERSION | tr  '.' "\n" | sed -n 1p)
 MINOR=$(echo $VERSION | tr  '.' "\n" | sed -n 2p)
