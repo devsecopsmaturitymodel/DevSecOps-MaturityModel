@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 7 * * *"
+
+jobs:
+  build:
+    needs: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.HUB_USERNAME }}
+          password: ${{ secrets.HUB_TOKEN }}
+      - name: create and push an image
+        run: |
+          chmod +x ./build.sh
+          if [ "${GITHUB_REF##*/}" == "master" ]; then
+            VERSION="2.5.${GITHUB_RUN_NUMBER}"
+          else
+            BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
+            VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
+          fi
+          sudo ./build.sh "registry.hub.docker.com" "wurstbrot" "dsomm" "${VERSION}"
