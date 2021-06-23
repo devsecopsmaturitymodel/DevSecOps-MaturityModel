@@ -35,9 +35,8 @@ Build:
     usefulness: 2
     level: 2
     implementation:
+    - *ci-cd
     - name: Container technologies and orchestration like Docker, Kubernetes
-      tags: []
-    - name: CI/CD tools, eg. Jenkins
       tags: []
     references:
       samm2:
