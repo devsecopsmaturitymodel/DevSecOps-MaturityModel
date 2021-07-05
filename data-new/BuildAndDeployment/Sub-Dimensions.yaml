@@ -83,7 +83,6 @@ Build:
     dependsOn:
     - Defined build process
     references:
-      samm: OA3-B
       samm2: i-secure-build|A|2
       iso27001-2017:
       - 14.2.6
@@ -234,7 +233,6 @@ Deployment:
     dependsOn:
     - Environment depending configuration parameters
     references:
-      samm: SA2-A
       samm2: i-secure-deployment|B|2 TODO might be 1
       iso27001-2017:
       - 14.1.3
@@ -283,7 +281,6 @@ Deployment:
       tags: []
     dependsOn:
     - Defined build process
-    samm: OE2-A
     samm2: i-secure-deployment|A|2
     iso27001-2017:
     - 14.3.1
@@ -307,7 +304,6 @@ Deployment:
       tags: []
     dependsOn:
     - Same artifact for environments
-    samm: EG1-B
     iso27001-2017:
     - 14.3.1
     - 14.2.8

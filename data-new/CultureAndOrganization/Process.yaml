@@ -45,7 +45,6 @@ Process:
       resources: 1
     usefulness: 3
     level: 3
-    samm: IR1-B
     iso27001-2017:
     - peer review - four eyes principle is not explicitly required by ISO 27001
     - 6.1.2

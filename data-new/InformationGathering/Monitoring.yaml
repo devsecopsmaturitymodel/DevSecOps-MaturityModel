@@ -49,7 +49,6 @@ Monitoring:
     dependsOn:
     - Visualized metrics
     samm2: o-operational-management|B|3
-    samm: OE1-B
     iso27001-2017:
     - 16.1.2
     - 16.1.4
@@ -217,7 +216,6 @@ Monitoring:
     level: 3
     dependsOn:
     - Alerting
-    samm: OE1-B
     samm2: o-operational-management|B|3
     iso27001-2017:
     - not explicitly covered by ISO 27001 - too specific

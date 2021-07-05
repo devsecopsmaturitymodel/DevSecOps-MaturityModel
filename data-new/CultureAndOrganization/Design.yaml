@@ -242,7 +242,6 @@ Design:
       resources: 1
     usefulness: 4
     level: 0
-    samm: SM1-B
     iso27001-2017:
     - 5.1.1
     - 7.2.1

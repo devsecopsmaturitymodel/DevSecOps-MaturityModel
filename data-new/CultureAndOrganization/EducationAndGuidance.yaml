@@ -199,7 +199,6 @@ Education and Guidance:
       resources: 1
     usefulness: 3
     level: 3
-    samm: IR1-B
     iso27001-2017:
     - Mutual review of source code is not explicitly required in ISO 27001 may be
     - 7.2.2
