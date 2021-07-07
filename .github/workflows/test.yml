@@ -1,8 +1,8 @@
-name: Lint Awesome List
+name: Test
 on: [push, pull_request]
 jobs:
-  lint:
-    name: Lint Code
+  test:
+    name: Test Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1.0.0

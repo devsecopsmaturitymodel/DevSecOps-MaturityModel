@@ -7,6 +7,7 @@
  * @see graph.php
  * @see index.php
  * @see mappings.php
+ * @see md.php
  * @see report-samm.php
  * @see report.php
  * @see scutter.php
@@ -210,6 +211,7 @@ function render_risk($risk) {
  * @return unknown
  */
 function build_table_tooltip($array, $headerWeight = 2) {
+  $Parsedown = new Parsedown();
   $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
   $mapTime = array("Very Low", "Low", "Medium", "High", "Very High");
   $mapResources = $mapTime;
@@ -223,7 +225,15 @@ function build_table_tooltip($array, $headerWeight = 2) {
 
   $html = "";
   $html .= "<h" . $headerWeight . ">Risk and Opportunity</h$headerWeight>";
-  $html .= "<div><b>" . "Risk" . ":</b> " . render_risk($array['risk']) . "</div>";
+  if (array_key_exists("risk", $array)) {
+    $risk = render_risk($array['risk']);
+  }elseif (array_key_exists("risk-md", $array)) {
+    $risk = $Parsedown->text($array['risk-md']);
+  }else {
+    echo "Error, no risk";
+    exit;
+  }
+  $html .= "<div><b>" . "Risk" . ":</b> " . $risk . "</div>";
   $html .= "<div><b>" . "Opportunity" . ":</b> " . $array['measure'] . "</div>";
   if (IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
     $html .= "<div><b>" . "Evidence" . ":</b> " . $evidenceContent . "</div>";

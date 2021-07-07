@@ -3,6 +3,7 @@
  * bib.php
  *
  * @package default
+ * @see functions.php
  * @see head.php
  * @see spiderwebData.php
  */
@@ -14,6 +15,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 define('NUMBER_LEVELS', 4);
 define('IS_SHOW_EVIDENCE_TODO', false);
+if (isset($_ENV["ENFORCE_DATA_GENERATION_DURING_RUNTIME"])) {
+  $enforce=boolval($_ENV["ENFORCE_DATA_GENERATION_DURING_RUNTIME"]);
+  define('ENFORCE_DATA_GENERATION_DURING_RUNTIME', $enforce);
+}else {
+  define('ENFORCE_DATA_GENERATION_DURING_RUNTIME', false);
+}
 
 
 /**
@@ -23,21 +30,41 @@ define('IS_SHOW_EVIDENCE_TODO', false);
  * @return unknown
  */
 function readCSV($filename, $delimiter) {
+  static $csvContent = [];
   if (!file_exists($filename) || !is_readable($filename))
     return FALSE;
-
-  $header = NULL;
-  $data = array();
-  if (($handle = fopen($filename, 'r')) !== FALSE) {
-    while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
-      if (!$header)
-        $header = $row;
-      else
-        $data[] = array_combine($header, $row);
+  if (!array_key_exists($filename, $csvContent)) {
+    $header = NULL;
+    $csvContent[$filename] = array();
+    if (($handle = fopen($filename, 'r')) !== FALSE) {
+      while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+        if (!$header)
+          $header = $row;
+        else
+          $csvContent[$filename][] = array_combine($header, $row);
+      }
+      fclose($handle);
     }
-    fclose($handle);
   }
-  return $data;
+
+  return $csvContent[$filename];
+}
+
+
+/**
+ *
+ * @param unknown $csvFile
+ * @param unknown $givenActivityName
+ * @return unknown
+ */
+function isElement($csvFile, $givenActivityName) {
+  $csv = readCSV($csvFile, ",");
+  foreach ($csv as $activityName) {
+    if ($activityName["element"] == $givenActivityName) {
+      return true;
+    }
+  }
+  return false;
 }
 
 
@@ -47,27 +74,23 @@ function readCSV($filename, $delimiter) {
  * @return unknown
  */
 function elementIsSelected($activityName) {
-  foreach (getCsv() as $element) {
-    if ($activityName == $element["element"]) {
-      return true;
-    }
-  }
-  return false;
+  $csvFile = 'selectedData.csv';
+  return isElement( $csvFile, $activityName);
 }
-
-
-$csvFile = 'selectedData.csv';
 
 
 /**
  *
+ * @param unknown $activityName
  * @return unknown
  */
-function getCsv() {
-  $csvFile = 'selectedData.csv';
-  $csv= readCSV($csvFile, ",");
-  return $csv;
+function elementIsShown($activityName) {
+  $csvFile = 'shownData.csv';
+  return isElement( $csvFile, $activityName);
 }
+
+
+
 
 
 /**
@@ -89,7 +112,7 @@ function getFlattenedArray($array, $index) {
       $return .= "<li>$content</li>";
     }
     $return .= "</ul>";
-  }else {
+  } else {
     $return .= $potentialArray;
   }
   return $return;

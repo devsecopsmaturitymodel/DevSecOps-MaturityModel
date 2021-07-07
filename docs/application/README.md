@@ -1,1 +1,1 @@
-After restructuring the _data_-folder _data-new_ has to be used
+The data folder contains the actual data being parsed.

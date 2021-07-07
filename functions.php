@@ -3,23 +3,39 @@
  * functions.php
  *
  * @package default
- * @param unknown $file
- * @return unknown
+ * @see data.php
+ * @see mappings.php
+ * @see newFolder-Migration-2021.php
+ * @see scutter.php
+ * @see test-yaml.php
  */
 
 
+include_once "bib.php";
+require_once "data/generateDimensions.php";
+
+
+/**
+ *
+ * @param unknown $file
+ * @return unknown
+ */
 function readYaml($file) {
   $fragment = null;
   if (strpos($file, "#") != false) {
     list($file, $fragment) = explode("#", $file,  2);
     $fragment = trim($fragment, "/ ");
   }
+  if (!file_exists($file)) {
+    echo "$file doesn't exists or can not be accessed";
+    exit;
+  }
   $ret = yaml_parse(
     file_get_contents($file)
   );
   if ($fragment) {
     foreach (explode("/", $fragment) as $key) {
-      if(array_key_exists($key, $ret)) {
+      if (array_key_exists($key, $ret)) {
         $ret = $ret[$key];
       }
     }
@@ -32,17 +48,17 @@ function readYaml($file) {
 /**
  * Get dimensions from yaml file.
  *
- * @return unknown
+ * @param unknown $filename (optional)
+ * @return array
  */
-function getDimensions() {
-  $dimensions = readYaml("data/dimensions.yaml");
+function getDimensions($filename = "data/generated/dimensions.yaml") {
+  $dimensions = readYaml($filename);
 
   // reorder in-place $dimensions. This should wrap readYaml(data/dimensions.yaml)
   ksort($dimensions);
   foreach ($dimensions as $dimensionName => $subDimension) {
     ksort($subDimension);
     foreach ($subDimension as $subDimensionName => $elements) {
-
       // Q: should I retain this?
       if (substr($subDimensionName, 0, 1) == "_")
         continue;
@@ -50,10 +66,8 @@ function getDimensions() {
       // Upgrade old configuration to `references:`
       //   this code can be modified to other models.
       foreach ($elements as $activityName => $content) {
-
         if ($content["references"] ?? null) // ignore new lines
           continue;
-
         $content["references"]["samm2"] = $content["samm2"] ?? array();
         unset($content["samm2"]);
         $content["references"]["iso27001-2017"] = $content["iso27001-2017"] ?? array();
@@ -82,10 +96,11 @@ function getActions($dimensions) {
   foreach ($dimensions as $dimension => $subdimensions) {
     ksort($subdimensions);
 
-    foreach ($subdimensions as $subdimension => $element) {
+    foreach ($subdimensions as $subdimension => $elements) {
       if (substr($subdimension, 0, 1) == "_")
         continue;
-      yield array($dimension, $subdimension, $element);
+
+      yield array($dimension, $subdimension, $elements);
     }
   }
 }
@@ -199,7 +214,7 @@ function getReferences($references) {
  *
  */
 function test_getActions() {
-  $dimensions = readYaml("data/dimensions.yaml");
+  $dimensions = readYaml("data/generated/dimensions.yaml");
   echo var_dump(getActions($dimensions));
 }
 

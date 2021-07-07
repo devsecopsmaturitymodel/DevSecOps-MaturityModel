@@ -6,7 +6,9 @@ services:
     - .:/var/www/html
     working_dir: /var/www/html
     ports:
-    - "8080:80"
+    - "8082:80"
+    environment:
+      - ENFORCE_DATA_GENERATION_DURING_RUNTIME="true" 
   test-php:
     <<: *dsomm
     volumes:

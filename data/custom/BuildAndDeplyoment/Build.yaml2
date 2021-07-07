@@ -1,0 +1,3 @@
+BuildAndDeployment:
+  Build:
+    Building and testing of artifacts in virtual environments:

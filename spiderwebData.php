@@ -147,7 +147,6 @@ if ($elementParam == null) {
 }
 
 {
-  $csvFile = 'selectedData.csv';
   $csv = getCsv();
   $element = $elementParam;
 
