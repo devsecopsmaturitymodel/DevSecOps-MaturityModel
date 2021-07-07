@@ -16,5 +16,4 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 COPY . /var/www/html/
 RUN chmod 777 /var/www/html/selectedData.csv
 COPY --from=vendor /app/vendor/ /var/www/html/vendor/
-COPY --from=parser /app/data/dimensions.yaml /var/www/html/data/dimensions.yaml
 RUN ENFORCE_DATA_GENERATION_DURING_RUNTIME=true php data/generateDimensions.php

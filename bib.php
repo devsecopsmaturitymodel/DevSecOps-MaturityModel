@@ -89,7 +89,16 @@ function elementIsShown($activityName) {
   return isElement( $csvFile, $activityName);
 }
 
-
+$csvFile = 'selectedData.csv';
+/**
+ *
+ * @return unknown
+ */
+function getCsv() {
+    $csvFile = 'selectedData.csv';
+    $csv= readCSV($csvFile, ",");
+    return $csv;
+}
 
 
 
