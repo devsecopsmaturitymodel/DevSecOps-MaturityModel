@@ -200,11 +200,6 @@ function getTable($dimensions) {
  * @return unknown
  */
 function getContentForLevelFromSubdimensions($level, $subdimension, $activityName) {
-  if (!array_key_exists("level", $subdimension)) {
-    echo "<pre>";
-    var_dump($subdimension);
-    echo "</pre>";
-  }
   if ($level != $subdimension ["level"]) {
     return "";
   }

@@ -23,7 +23,7 @@ if(ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
         $dimensionsCustom = array_merge_recursive($dimensionsCustom, $dimensionCustom);
     }
     if(sizeof($files) > 0) {
-        $dimensions = array_merge_recursive($dimensions, $dimensionsCustom);
+        $dimensions = array_merge_recursive_ex($dimensions, $dimensionsCustom);
         $dimensionsAggregated = array();
         foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
             foreach ($activities as $activityName => $activity) {
@@ -38,6 +38,25 @@ if(ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
         $dimensionsAggregated=$dimensions;
     }
 
+    foreach ($dimensions as $dimension => $subdimensions) {
+        ksort($subdimensions);
+
+        foreach ($subdimensions as $subdimension => $elements) {
+            if (substr($subdimension, 0, 1) == "_")
+                continue;
+            foreach($elements as $activityName => $activity)
+            if (!array_key_exists("level", $activity)) {
+                echo "'$activityName' is not complete!";
+                echo "<pre>";
+                var_dump($activity);
+                echo "</pre>";
+                exit;
+            }
+        }
+    }
+
+
+
     $dimensionsString = yaml_emit($dimensionsAggregated);
     file_put_contents("data/generated/dimensions.yaml", $dimensionsString);
 }
@@ -50,4 +69,23 @@ function isActivityExisting($dimensions, $activityName) {
         }
     }
     return false;
+}
+
+function array_merge_recursive_ex(array $array1, array $array2)
+{
+    $merged = $array1;
+
+    foreach ($array2 as $key => & $value) {
+        if (is_array($value) && isset($merged[$key]) && is_array($merged[$key])) {
+            $merged[$key] = array_merge_recursive_ex($merged[$key], $value);
+        } else if (is_numeric($key)) {
+            if (!in_array($value, $merged)) {
+                $merged[] = $value;
+            }
+        } else {
+            $merged[$key] = $value;
+        }
+    }
+
+    return $merged;
 }

@@ -60,7 +60,14 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
 
   echo "<h$headerWeight>$pageH1</h$headerWeight>";
   echo build_table_tooltip($element, $headerWeight + 1);
-  echo "<hr/>";
+  $evidenceContent = getElementContentAndCheckExistence($element, "evidence", true);
+  if ($evidenceContent == "") {
+      $evidenceContent = "TODO";
+  }
+  if (IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
+    echo "<h" .($headerWeight + 2) . ">" . "Evidence" . "</h" .($headerWeight + 2) . ">"  . $evidenceContent;
+
+    echo "<hr/>";
 
   if (array_key_exists("assessment", $element)) {
     $Parsedown = new Parsedown();
@@ -113,6 +120,17 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
     $comment = $element['comment'];
     echo "<div><b>Comments:</b> $comment</div>";
   }
+
+    $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
+    $mapTime = array("Very Low", "Low", "Medium", "High", "Very High");
+    $mapResources = $mapTime;
+    $mapUsefulness = $mapTime;
+    $html = "<h" . ($headerWeight + 2) . ">Usefulness and Requirements of this Activity</h" . ($headerWeight + 2) . ">";
+    $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$element['usefulness'] - 1]) . "</div>";
+    $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$element['difficultyOfImplementation']['knowledge'] - 1]) . "</div>";
+    $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$element['difficultyOfImplementation']['time'] - 1]) . "</div>";
+    $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$element['difficultyOfImplementation']['resources'] - 1]) . "</div>";
+    echo $html;
 
   printReferences($element);
   if (array_key_exists("credits", $element) && !empty($element['credits'])) {

@@ -133,9 +133,9 @@ function getKnowledge($elementImplementation) {
  * @param unknown $name
  * @return unknown
  */
-function getElementContentAndCheckExistence($parent, $name) {
+function getElementContentAndCheckExistence($parent, $name, $isMarkdown=false) {
   if (array_key_exists($name, $parent)) {
-    return getElementContent($parent[$name]);
+    return getElementContent($parent[$name], $isMarkdown);
   }
   return "";
 }
@@ -146,10 +146,15 @@ function getElementContentAndCheckExistence($parent, $name) {
  * @param unknown $element
  * @return unknown
  */
-function getElementContent($element) {
+function getElementContent($element, $isMarkdown=false) {
   $Extra = new ParsedownExtra();
+  $Parsedown = new Parsedown();
   if (!is_array($element)) {
-    return str_replace("\"", "'", $element);
+      if($isMarkdown) {
+          return "<div>" . $Parsedown->text($element) . "</div>";
+      }else {
+          return str_replace("\"", "'", $element);
+      }
   }
   if (isAssoc($element)) {
     $contentString = "";
@@ -170,7 +175,7 @@ function getElementContent($element) {
   // default
   $contentString = "<ul>";
   foreach ($element as $content) {
-    $contentString .= "<li>" . $Extra->text($content) . "</li>";
+      $contentString .= "<li>" . $content . "</li>";
   }
   $contentString .= "</ul>";
 
@@ -212,16 +217,9 @@ function render_risk($risk) {
  */
 function build_table_tooltip($array, $headerWeight = 2) {
   $Parsedown = new Parsedown();
-  $mapKnowLedge = array("Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)");
-  $mapTime = array("Very Low", "Low", "Medium", "High", "Very High");
-  $mapResources = $mapTime;
-  $mapUsefulness = $mapTime;
+
 
   getElementContentAndCheckExistence($array, "meta");
-  $evidenceContent = getElementContentAndCheckExistence($array, "evidence");
-  if ($evidenceContent == "") {
-    $evidenceContent = "TODO";
-  }
 
   $html = "";
   $html .= "<h" . $headerWeight . ">Risk and Opportunity</h$headerWeight>";
@@ -235,14 +233,6 @@ function build_table_tooltip($array, $headerWeight = 2) {
   }
   $html .= "<div><b>" . "Risk" . ":</b> " . $risk . "</div>";
   $html .= "<div><b>" . "Opportunity" . ":</b> " . $array['measure'] . "</div>";
-  if (IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
-    $html .= "<div><b>" . "Evidence" . ":</b> " . $evidenceContent . "</div>";
-  $html .= "<hr />";
-  $html .= "<h$headerWeight>Usefulness and Requirements of this Activitiy</h$headerWeight>";
-  $html .= "<div><b>Usefullness:</b> " . ucfirst($mapUsefulness[$array['usefulness'] - 1]) . "</div>";
-  $html .= "<div><b>Required knowledge:</b> " . ucfirst($mapKnowLedge[$array['difficultyOfImplementation']['knowledge'] - 1]) . "</div>";
-  $html .= "<div><b>Required time:</b> " . ucfirst($mapTime[$array['difficultyOfImplementation']['time'] - 1]) . "</div>";
-  $html .= "<div><b>Required resources (systems):</b> " . ucfirst($mapResources[$array['difficultyOfImplementation']['resources'] - 1]) . "</div>";
   return $html;
 }
 
