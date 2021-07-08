@@ -6,7 +6,7 @@ if(ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
     $files = glob("data/dimensions-subdimensions-activties/*/*.yaml");
     $dimensions=array();
     foreach ($files as $filename) {
-        echo "Found $filename";
+        //echo "Found $filename";
         if(preg_match("/_meta.yaml/", $filename)) continue;
         $dimension = getDimensions($filename);
         if(array_key_exists("_yaml_references", $dimension)) {
@@ -18,11 +18,12 @@ if(ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
     $files = glob("data/custom/*/*.yaml");
     $dimensionsCustom=array();
     foreach ($files as $filename) {
-        echo "Found $filename";
+        //echo "Found $filename";
         $dimensionCustom = getDimensions($filename);
         $dimensionsCustom = array_merge_recursive($dimensionsCustom, $dimensionCustom);
     }
     if(sizeof($files) > 0) {
+        $dimensions = array_merge_recursive($dimensions, $dimensionsCustom);
         $dimensionsAggregated = array();
         foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
             foreach ($activities as $activityName => $activity) {

@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 docker build -t wurstbrot/dsomm:latest .
 docker rm -f dsomm || true
 
