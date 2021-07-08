@@ -43,9 +43,9 @@ Implementation:
         tags: []
         description: 'For example for Containers: Deny running containers as root, deny
           using advanced privileges, deny mounting of the hole filesystem, ...'
-      - name: *cloud-attack-matrix
-      - name: *container-attack-matrix
-      - name: *kubernetes-attack-matrix
+      - <<: *cloud-attack-matrix
+      - <<: *container-attack-matrix
+      - <<: *kubernetes-attack-matrix
       samm2: o-environment-management|A|1
       iso27001-2017:
       - system hardening is not explicitly covered by ISO 27001 - too specific
