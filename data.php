@@ -131,6 +131,7 @@ function getKnowledge($elementImplementation) {
  *
  * @param unknown $parent
  * @param unknown $name
+ * @param unknown $isMarkdown (optional)
  * @return unknown
  */
 function getElementContentAndCheckExistence($parent, $name, $isMarkdown=false) {
@@ -144,17 +145,18 @@ function getElementContentAndCheckExistence($parent, $name, $isMarkdown=false) {
 /**
  *
  * @param unknown $element
+ * @param unknown $isMarkdown (optional)
  * @return unknown
  */
 function getElementContent($element, $isMarkdown=false) {
   $Extra = new ParsedownExtra();
   $Parsedown = new Parsedown();
   if (!is_array($element)) {
-      if($isMarkdown) {
-          return "<div>" . $Parsedown->text($element) . "</div>";
-      }else {
-          return str_replace("\"", "'", $element);
-      }
+    if ($isMarkdown) {
+      return "<div>" . $Parsedown->text($element) . "</div>";
+    }else {
+      return str_replace("\"", "'", $element);
+    }
   }
   if (isAssoc($element)) {
     $contentString = "";
@@ -175,7 +177,7 @@ function getElementContent($element, $isMarkdown=false) {
   // default
   $contentString = "<ul>";
   foreach ($element as $content) {
-      $contentString .= "<li>" . $content . "</li>";
+    $contentString .= "<li>" . $content . "</li>";
   }
   $contentString .= "</ul>";
 
