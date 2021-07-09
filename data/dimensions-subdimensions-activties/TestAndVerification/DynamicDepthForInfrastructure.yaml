@@ -1,3 +1,11 @@
+_yaml_references:
+  tools:
+    K8sPurger: &K8sPurger
+      name: K8sPurger
+      tags: [vulnerability, scanner, dast, infrastrcture]
+      url: https://github.com/yogeshkk/K8sPurger
+      description: |
+        Hunt Unused Resources In Kubernetes.
 Test and Verification:
   Dynamic depth for infrastructure:
     Load tests:
@@ -105,3 +113,21 @@ Test and Verification:
       - 13.1.3
       - 14.2.3
       - 14.2.8
+    Test for unused Resources:
+      risk:
+        - Unused resources, specially secrets, might be still valid, but are exposing information. As an attacker, I compromise a system, gather credentials and try to use them.
+      measure: Test for unused resources helps to identify unused resources.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 2
+      level: 4
+      implementation:
+        - *K8sPurger
+      samm2: v-security-testing|A|1
+      iso27001-2017:
+        - 13.1.3
+        - 14.2.3
+        - 14.2.8
+
