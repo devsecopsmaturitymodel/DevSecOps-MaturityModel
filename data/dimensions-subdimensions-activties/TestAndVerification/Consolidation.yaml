@@ -1,3 +1,21 @@
+_yaml_references:
+  tools:
+    defectdojo: &defectdojo
+      name: OWASP DefectDojo
+      tags: ["vulnerability management system", owasp]
+      url: https://github.com/DefectDojo/django-DefectDojo
+      description: |
+        DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+    purify: &purify
+      name: Purify
+      tags: ["vulnerability management system"]
+      url: https://github.com/faloker/purify/
+      description: |
+        The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+    zest: &test
+      name: Mozilla Zest
+      tags: []
+      url: https://github.com/mozilla/zest
 Test and Verification:
   Consolidation:
     Advanced visualization of defects:
@@ -12,18 +30,15 @@ Test and Verification:
       usefulness: 2
       level: 4
       implementation:
-      - name: OWASP Defect Dojo
-        tags: []
-        url: https://github.com/DefectDojo/django-DefectDojo
-      - name: Purify
-        tags: []
-        url: https://github.com/faloker/purify/
-      samm2: defect-management|B|1
-      iso27001-2017:
-      - 16.1.4
-      - 8.2.1
-      - 8.2.2
-      - 8.2.3
+        - *defectdojo
+        - *purify
+      references:
+        samm2: defect-management|B|1
+        iso27001-2017:
+        - 16.1.4
+        - 8.2.1
+        - 8.2.2
+        - 8.2.3
     Definition of quality gates:
       risk:
       - Improper examination of vulnerabilities leads to no visibility at all.
@@ -38,11 +53,12 @@ Test and Verification:
         resources: 1
       usefulness: 4
       level: 1
-      samm2: i-defect-management|A|2
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - 12.6.1
-      - 16.1.4
+      references:
+        samm2: i-defect-management|A|2
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 12.6.1
+        - 16.1.4
       implementation:
       - name: See other actions, e.g. "Treatment of defects with severity high".
         tags: []
@@ -68,12 +84,13 @@ Test and Verification:
         tags: []
         description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
           are classified and can be assigned to server-side and client-side teams.'
-      samm2: i-defect-management|B|2
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - 16.1.4
-      - 16.1.5
-      - 16.1.6
+      references:
+        samm2: i-defect-management|B|2
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 16.1.4
+        - 16.1.5
+        - 16.1.6
     Reproducible defect tickets:
       risk:
       - Vulnerability descriptions are hard to understand by staff from operations and
@@ -88,9 +105,7 @@ Test and Verification:
       usefulness: 2
       level: 4
       implementation:
-      - name: Mozilla Zest
-        tags: []
-        url: https://github.com/mozilla/zest
+        - *zest
       samm2: i-defect-management|B|2
       iso27001-2017:
       - 16.1.4
@@ -136,18 +151,15 @@ Test and Verification:
         tags: []
       - name: LogParser Jenkins Plugins
         tags: []
-      - name: OWASP Defect Dojo
-        tags: []
-        url: https://github.com/DefectDojo/django-DefectDojo
-      - name: Purify
-        tags: []
-        url: https://github.com/faloker/purify/
-      samm2: i-defect-management|B|1
-      iso27001-2017:
-      - 16.1.4
-      - 8.2.1
-      - 8.2.2
-      - 8.2.3
+      - *defectdojo
+      - *purify
+      references:
+        samm2: i-defect-management|B|1
+        iso27001-2017:
+        - 16.1.4
+        - 8.2.1
+        - 8.2.2
+        - 8.2.3
     Treatment of all defects:
       risk:
       - Vulnerabilities with severity low are not visible.
@@ -175,10 +187,11 @@ Test and Verification:
       usefulness: 4
       level: 1
       comment: False positive analysis, specially for static analysis, is time consuming.
-      samm2: i-defect-management|B|2
-      iso27001-2017:
-      - 16.1.4
-      - 12.6.1
+      references:
+        samm2: i-defect-management|B|2
+        iso27001-2017:
+        - 16.1.4
+        - 12.6.1
       implementation: []
     Treatment of defects with severity middle:
       risk:
@@ -191,11 +204,12 @@ Test and Verification:
       usefulness: 3
       level: 3
       comment: False positive analysis, specially for static analysis, is time consuming.
-      samm2: i-defect-management|B|2
-      iso27001-2017:
-      - 16.1.4
-      - 12.6.1
-      implementation: []
+      references:
+        samm2: i-defect-management|B|2
+        iso27001-2017:
+        - 16.1.4
+        - 12.6.1
+      implementation:
     Usage of a vulnerability management system:
       risk:
       - Maintenance of false positives in each tool enforces a high workload. In addition
@@ -207,18 +221,15 @@ Test and Verification:
         time: 3
         resources: 2
       usefulness: 2
-      level: 4
+      level: 3
       implementation:
-      - name: OWASP Defect Dojo
-        tags: []
-        url: https://github.com/DefectDojo/django-DefectDojo
-      - name: Purify
-        tags: []
-        url: https://github.com/faloker/purify/
-      samm2: i-defect-management|B|1
-      iso27001-2017:
-      - 12.6.1
-      - 16.1.3
-      - 16.1.4
-      - 16.1.5
-      - 16.1.6
+        - *defectdojo
+        - *purify
+        references:
+        samm2: i-defect-management|B|1
+        iso27001-2017:
+        - 12.6.1
+        - 16.1.3
+        - 16.1.4
+        - 16.1.5
+        - 16.1.6

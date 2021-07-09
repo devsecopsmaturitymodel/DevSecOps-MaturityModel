@@ -20,6 +20,9 @@ if(ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
     foreach ($files as $filename) {
         //echo "Found $filename";
         $dimensionCustom = getDimensions($filename);
+        if(array_key_exists("_yaml_references", $dimensionCustom)) {
+            unset($dimensionCustom['_yaml_references']);
+        }
         $dimensionsCustom = array_merge_recursive($dimensionsCustom, $dimensionCustom);
     }
     if(sizeof($files) > 0) {

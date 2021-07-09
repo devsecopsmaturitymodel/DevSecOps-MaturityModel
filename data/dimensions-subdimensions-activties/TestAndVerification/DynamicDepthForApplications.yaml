@@ -1,3 +1,18 @@
+_yaml_references:
+  tools:
+    zap: &zap
+      name: OWASP Zap
+      tags: [vulnerability, scanner]
+      url: https://github.com/zaproxy/zaproxy
+      description: |-
+        The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+    secureCodeBox: &secureCodeBox
+      name: OWASP secureCodeBox
+      tags: [vulnerability, scanner-orchestration]
+      url: https://github.com/secureCodeBox/secureCodeBox
+      description: |-
+        secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+
 Test and Verification:
   Dynamic depth for applications:
     Coverage analysis:
@@ -13,10 +28,11 @@ Test and Verification:
       implementation:
       - name: OWASP Code Pulse
         tags: []
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - part of periodic review, PDCA
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - part of periodic review, PDCA
     Coverage of client side dynamic components:
       risk:
       - Parts of the service are not covered during the scan, because JavaScript is
@@ -31,10 +47,11 @@ Test and Verification:
       level: 2
       dependsOn:
       - Usage of different roles
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - 14.2.3
-      - 14.2.8
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - 14.2.3
+        - 14.2.8
       implementation:
       - name: Ajax Spider
         tags: []
@@ -56,9 +73,10 @@ Test and Verification:
         tags: []
       dependsOn:
       - Usage of different roles
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
     Coverage of more input vectors:
       risk:
       - Parts of the service are not covered. For example specially formatted or coded
@@ -74,9 +92,10 @@ Test and Verification:
       level: 3
       dependsOn:
       - Usage of different roles
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
       implementation: []
     Coverage of sequential operations:
       risk:
@@ -94,10 +113,11 @@ Test and Verification:
         tags: []
       dependsOn:
       - Usage of different roles
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - 14.2.8
-      - 14.2.3
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - 14.2.8
+        - 14.2.3
     Coverage of service to service communication:
       risk:
       - Service to service communication is not covered.
@@ -110,10 +130,11 @@ Test and Verification:
       level: 4
       dependsOn:
       - Simple Scan
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - 14.2.3
-      - 14.2.8
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - 14.2.3
+        - 14.2.8
       implementation: []
     Simple Scan:
       risk:
@@ -131,14 +152,13 @@ Test and Verification:
       dependsOn:
       - Defined build process
       implementation:
-      - name: OWASP Zap
-        tags: []
+      - *zap
       - name: Arachni
-        tags: []
-      samm2: v-security-testing|A|1
-      iso27001-2017:
-      - 14.2.3
-      - 14.2.8
+      references:
+        samm2: v-security-testing|A|1
+        iso27001-2017:
+        - 14.2.3
+        - 14.2.8
     Usage of different roles:
       risk:
       - Parts of the service are not covered during the scan, because a login is not
@@ -152,12 +172,16 @@ Test and Verification:
       level: 2
       dependsOn:
       - Simple Scan
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - 14.2.3
-      - 14.2.8
-      implementation: []
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 14.2.3
+        - 14.2.8
+      implementation:
+        - name: Zest
+          url: https://www.zaproxy.org/docs/desktop/addons/zest/
+          tags: [zap]
     Usage of multiple scanners:
       risk:
       - Each vulnerability scanner has different opportunities. By using just one scanner,
@@ -172,9 +196,9 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       implementation:
-      - name: SecureCodeBox
-        tags: []
-      samm2: v-security-testing|A|2
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.5
+      - *secureCodeBox
+      references:
+        samm2: v-security-testing|A|2
+        iso27001-2017:
+        - 12.6.1
+        - 14.2.5
