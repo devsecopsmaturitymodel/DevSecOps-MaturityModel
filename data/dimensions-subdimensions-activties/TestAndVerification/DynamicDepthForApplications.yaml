@@ -4,15 +4,20 @@ _yaml_references:
       name: OWASP Zap
       tags: [vulnerability, scanner]
       url: https://github.com/zaproxy/zaproxy
-      description: |-
+      description: |
         The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
     secureCodeBox: &secureCodeBox
       name: OWASP secureCodeBox
       tags: [vulnerability, scanner-orchestration]
       url: https://github.com/secureCodeBox/secureCodeBox
-      description: |-
+      description: |
         secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
-
+    zest: &zest
+      name: Zest
+      url: https://www.zaproxy.org/docs/desktop/addons/zest/
+      tags: [zap]
+      description: |
+        Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
 Test and Verification:
   Dynamic depth for applications:
     Coverage analysis:
@@ -179,9 +184,7 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
       implementation:
-        - name: Zest
-          url: https://www.zaproxy.org/docs/desktop/addons/zest/
-          tags: [zap]
+        - *zest
     Usage of multiple scanners:
       risk:
       - Each vulnerability scanner has different opportunities. By using just one scanner,
