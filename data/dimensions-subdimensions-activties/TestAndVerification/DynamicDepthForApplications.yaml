@@ -184,7 +184,7 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
       implementation:
-        - *zest
+       - *zest
     Usage of multiple scanners:
       risk:
       - Each vulnerability scanner has different opportunities. By using just one scanner,
