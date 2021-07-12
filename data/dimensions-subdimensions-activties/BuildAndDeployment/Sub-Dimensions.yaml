@@ -109,11 +109,11 @@ Build and Deployment:
         iso27001-2017:
         - 14.2.6
   Deployment:
-    Backup before deployment:
+    Backup:
       risk:
       - If errors are experienced during the deployment process you want to deploy an
         old release. However, due to changes in the database this is often unfeasible.
-      measure: Performing automated backups before deployment can help facilitate deployments
+      measure: Performing automated periodical backups are used. Backup before deployment can help facilitate deployments
         whilst testing the backup restore processes.
       difficultyOfImplementation:
         knowledge: 1
@@ -122,10 +122,9 @@ Build and Deployment:
       usefulness: 4
       level: 2
       implementation:
-      - name: A complete database backup might be performed*. For large and complex
-          environments
+      - name: A complete backup of persisted data might be performed*.
         tags: []
-      - name: a Point in Time Recovery for databases should be implemented.
+      - name: A Point in Time Recovery for databases should be implemented.
         tags: []
       dependsOn:
       - Defined deployment process
