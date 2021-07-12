@@ -29,7 +29,7 @@ Test and Verification:
         - *defectdojo
         - *purify
       references:
-        samm2: defect-management|B|1
+        samm2: i-defect-management|B|1
         iso27001-2017:
         - 16.1.4
         - 8.2.1
