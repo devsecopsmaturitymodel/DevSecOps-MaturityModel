@@ -30,7 +30,7 @@ Information Gathering:
       dependsOn:
         - Visualized logging
         - Alerting
-      samm2: o-incident-management|A|1
+      samm2: O-IM-1-A
       iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -53,7 +53,7 @@ Information Gathering:
           tags: []
         - name: bash
           tags: []
-      samm2: o-incident-management|A|1
+      samm2: O-IM-1-A
       iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -90,7 +90,7 @@ Information Gathering:
         - name: bash
           tags: ["tool"]
         - *loggingCheatSheet
-      samm2: o-incident-management|A|1
+      samm2: O-IM-1-A
       iso27001-2017:
         - 12.4.1
     Centralized system logging:
@@ -109,7 +109,7 @@ Information Gathering:
       implementation:
         - *rsyslog
         - *logstash
-      samm2: o-incident-management|A|1
+      samm2: O-IM-1-A
       iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -128,7 +128,7 @@ Information Gathering:
       dependsOn:
         - Visualized logging
         - Alerting
-      samm2: o-incident-management|A|2
+      samm2: O-IM-2-A
       iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -152,7 +152,7 @@ Information Gathering:
       implementation:
         - name: ELK-Stack
           tags: []
-      samm2: o-incident-management|A|1
+      samm2: O-IM-1-A
       iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1

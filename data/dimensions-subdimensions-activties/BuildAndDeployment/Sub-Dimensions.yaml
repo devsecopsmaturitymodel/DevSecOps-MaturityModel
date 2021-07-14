@@ -36,7 +36,7 @@ Build and Deployment:
         tags: []
       references:
         samm2:
-        - i-secure-build|A|2
+        - I-SB-2-A
         iso27001-2017:
         - iso27001-2017:14.2.6
     Defined build process:
@@ -60,7 +60,7 @@ Build and Deployment:
         tags: []
       references:
         samm2:
-        - i-secure-build|A|1
+        - I-SB-1-A
         iso27001-2017:
         - 12.1.1
         - 14.2.2
@@ -79,7 +79,7 @@ Build and Deployment:
       dependsOn:
       - Defined build process
       references:
-        samm2: i-secure-build|A|2
+        samm2: I-SB-2-A
         iso27001-2017:
         - 14.2.6
     Signing of artifacts:
@@ -105,7 +105,7 @@ Build and Deployment:
       - Defined build process
       references:
         samm2:
-        - i-secure-build|A|1
+        - I-SB-1-A
         iso27001-2017:
         - 14.2.6
   Deployment:
@@ -179,7 +179,7 @@ Build and Deployment:
       - name: Docker
         tags: []
       references:
-        samm2: i-secure-deployment|A|1
+        samm2: I-SD-1-A
         iso27001-2017:
         - 12.1.1
         - 14.2.2
@@ -202,7 +202,7 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-        - i-secure-deployment|B|1
+        - I-SD-1-B
         iso27001-2017:
         - 9.4.5
         - 14.2.6
@@ -225,7 +225,7 @@ Build and Deployment:
         tags: []
       dependsOn:
       - Defined deployment process
-      samm2: i-secure-deployment|A|1
+      samm2: I-SD-1-A
       iso27001-2017:
       - 12.5.1
       - 14.2.2
@@ -247,7 +247,7 @@ Build and Deployment:
         tags: []
       dependsOn:
       - Defined build process
-      samm2: i-secure-deployment|A|2
+      samm2: I-SD-2-A
       iso27001-2017:
       - 14.3.1
       - 14.2.8
@@ -272,7 +272,7 @@ Build and Deployment:
       dependsOn:
         - Environment depending configuration parameters (secrets)
       references:
-        samm2: i-secure-deployment|B|2
+        samm2: I-SD-2-B
         iso27001-2017:
           - 14.1.3
           - 13.1.3
@@ -318,7 +318,7 @@ Build and Deployment:
         resources: 1
       usefulness: 3
       level: 2
-      samm2: i-secure-deployment|A|2
+      samm2: I-SD-2-A
       iso27001-2017:
       - 15.1.1
       - 15.1.2
@@ -356,7 +356,7 @@ Build and Deployment:
         resources: 2
       usefulness: 4
       level: 1
-      samm2: o-environment-management|B|1
+      samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
       - 12.5.1
@@ -372,7 +372,7 @@ Build and Deployment:
         resources: 2
       usefulness: 3
       level: 2
-      samm2: o-environment-management|B|1
+      samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
       implementation: []
@@ -390,7 +390,7 @@ Build and Deployment:
         resources: 2
       usefulness: 5
       level: 1
-      samm2: o-environment-management|B|1
+      samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
       - 14.2.5
@@ -415,7 +415,7 @@ Build and Deployment:
         resources: 2
       usefulness: 3
       level: 2
-      samm2: o-environment-management|B|1
+      samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
       implementation: []
@@ -430,7 +430,7 @@ Build and Deployment:
         resources: 2
       usefulness: 3
       level: 4
-      samm2: o-environment-management|B|1
+      samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
       implementation:
@@ -459,7 +459,7 @@ Build and Deployment:
         resources: 2
       usefulness: 3
       level: 2
-      samm2: o-environment-management|B|1
+      samm2: O-EM-1-B
       iso27001-2017:
       - hardening is missing in ISO 27001
       - 14.2.1

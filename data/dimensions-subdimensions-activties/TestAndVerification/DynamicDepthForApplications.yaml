@@ -34,7 +34,7 @@ Test and Verification:
       - name: OWASP Code Pulse
         tags: []
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - part of periodic review, PDCA
@@ -53,7 +53,7 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -79,7 +79,7 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
     Coverage of more input vectors:
@@ -98,7 +98,7 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
       implementation: []
@@ -119,7 +119,7 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - 14.2.8
         - 14.2.3
@@ -136,7 +136,7 @@ Test and Verification:
       dependsOn:
       - Simple Scan
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -160,7 +160,7 @@ Test and Verification:
       - *zap
       - name: Arachni
       references:
-        samm2: v-security-testing|A|1
+        samm2: V-ST-1-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -178,7 +178,7 @@ Test and Verification:
       dependsOn:
       - Simple Scan
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.3
@@ -201,7 +201,7 @@ Test and Verification:
       implementation:
       - *secureCodeBox
       references:
-        samm2: v-security-testing|A|2
+        samm2: V-ST-2-A
         iso27001-2017:
         - 12.6.1
         - 14.2.5
