@@ -3,12 +3,12 @@ services:
   dsomm: &dsomm
     build: .
     volumes:
-    - .:/var/www/html
+    - .:/code
     working_dir: /var/www/html
     ports:
     - "8082:80"
     environment:
-      - ENFORCE_DATA_GENERATION_DURING_RUNTIME="true" 
+      - ENFORCE_DATA_GENERATION_DURING_RUNTIME="true"
   test-php:
     <<: *dsomm
     volumes:

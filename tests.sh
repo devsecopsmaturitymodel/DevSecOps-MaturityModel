@@ -6,7 +6,7 @@ echo "
 Reformat code according to .phptidy-config.php
 in order do minimize patch differences.
 "
-php ./phptidy.php replace *.php
+php ./phptidy.php replace *.php data/*.php
 
 echo "
 Checking php syntax.
@@ -14,4 +14,3 @@ Checking php syntax.
 find  > /tmp/php-check.out 2>&1 . -type f -name \*.php -exec php -l {} \;
 cat /tmp/php-check.out
 grep 'Errors parsing' /tmp/php-check.out && exit 1 || exit 0
-

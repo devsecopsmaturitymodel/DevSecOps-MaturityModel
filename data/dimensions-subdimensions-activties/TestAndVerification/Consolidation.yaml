@@ -1,14 +1,14 @@
 _yaml_references:
   tools:
-    defectdojo: &defectdojo
+    defectdojo:
       name: OWASP DefectDojo
-      tags: ["vulnerability management system", owasp]
+      tags: [vulnerability management system, owasp]
       url: https://github.com/DefectDojo/django-DefectDojo
       description: |
         DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
-    purify: &purify
+    purify:
       name: Purify
-      tags: ["vulnerability management system"]
+      tags: [vulnerability management system]
       url: https://github.com/faloker/purify/
       description: |
         The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
@@ -16,8 +16,8 @@ Test and Verification:
   Consolidation:
     Advanced visualization of defects:
       risk:
-      - Correlation of the vulnerabilities of different tools to have an overview of
-        the the overall security level per component/project/team is not given.
+      - Correlation of the vulnerabilities of different tools to have an overview
+        of the the overall security level per component/project/team is not given.
       measure: Findings are visualized per component/project/team.
       difficultyOfImplementation:
         knowledge: 2
@@ -26,8 +26,8 @@ Test and Verification:
       usefulness: 2
       level: 4
       implementation:
-        - *defectdojo
-        - *purify
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-defectdojo
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/purify
       references:
         samm2: I-DM-1-B
         iso27001-2017:
@@ -56,8 +56,7 @@ Test and Verification:
         - 12.6.1
         - 16.1.4
       implementation:
-      - name: See other actions, e.g. "Treatment of defects with severity high".
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/see-other-actions-e
     Integration of vulnerability issues into the development process:
       risk:
       - To read console output of the build server to search for vulnerabilities might
@@ -71,15 +70,8 @@ Test and Verification:
       usefulness: 2
       level: 3
       implementation:
-      - name: SAST
-        tags: []
-        description: 'At SAST (Static Application Security Testing): Server-side / client-side
-          teams can easily be recorded. With microservice architecture individual microservices
-          can be used usually Teams.'
-      - name: DAST
-        tags: []
-        description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
-          are classified and can be assigned to server-side and client-side teams.'
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/sast
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/dast
       references:
         samm2: I-DM-2-B
         iso27001-2017:
@@ -89,8 +81,8 @@ Test and Verification:
         - 16.1.6
     Reproducible defect tickets:
       risk:
-      - Vulnerability descriptions are hard to understand by staff from operations and
-        development.
+      - Vulnerability descriptions are hard to understand by staff from operations
+        and development.
       measure: Vulnerabilities include the test procedure to give the staff from operations
         and development the ability to reproduce vulnerabilities. This enhances the
         understanding of vulnerabilities and therefore the fix have a higher quality.
@@ -110,8 +102,8 @@ Test and Verification:
     Simple false positive treatment:
       risk:
       - As false positive occur during each test, all vulnerabilities might be ignored.
-      measure: False positives are suppressed so they will not show up on the next tests
-        again. Most security tools have the possibility to suppress false positives.
+      measure: False positives are suppressed so they will not show up on the next
+        tests again. Most security tools have the possibility to suppress false positives.
         A Vulnerability Management System might be used.
       difficultyOfImplementation:
         knowledge: 1
@@ -120,12 +112,8 @@ Test and Verification:
       usefulness: 4
       level: 1
       implementation:
-      - name: OWASP Defect Dojo
-        tags: []
-        url: https://github.com/DefectDojo/django-DefectDojo
-      - name: Purify
-        tags: []
-        url: https://github.com/faloker/purify/
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-defect-dojo
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/purify
       samm2: I-DM-2-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
@@ -142,12 +130,10 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - name: OWASP Dependency Check Jenkins Plugin
-        tags: []
-      - name: LogParser Jenkins Plugins
-        tags: []
-      - *defectdojo
-      - *purify
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-dependency-che
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/logparser-jenkins-pl
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-defectdojo
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/purify
       references:
         samm2: I-DM-1-B
         iso27001-2017:
@@ -218,8 +204,8 @@ Test and Verification:
       usefulness: 2
       level: 3
       implementation:
-        - *defectdojo
-        - *purify
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-defectdojo
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/purify
       references:
         samm2: I-DM-1-B
         iso27001-2017:
