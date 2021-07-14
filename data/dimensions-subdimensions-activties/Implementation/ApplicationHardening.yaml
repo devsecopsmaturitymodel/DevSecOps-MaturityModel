@@ -42,7 +42,7 @@ Implementation:
       - name: OWASP MASVS
         tags: []
         url: https://github.com/OWASP/owasp-masvs
-      samm2: software-requirements|A|1
+      samm2: D-SR-1-A
       iso27001-2017:
       - hardening is not explicitly covered by ISO 27001 - too specific
       - 13.1.3
@@ -69,7 +69,7 @@ Implementation:
       - name: OWASP MASVS
         tags: []
         url: https://github.com/OWASP/owasp-masvs
-      samm2: software-requirements|A|2
+      samm2: D-SR-2-A
       iso27001-2017:
       - hardening is not explicitly covered by ISO 27001 - too specific
       - 13.1.3
@@ -97,7 +97,7 @@ Implementation:
       - name: OWASP MASVS
         tags: []
         url: https://github.com/OWASP/owasp-masvs
-      samm2: software-requirements|A|3
+      samm2: D-SR-3-A
       iso27001-2017:
       - hardening is not explicitly covered by ISO 27001 - too specific
       - 13.1.3
@@ -125,7 +125,7 @@ Implementation:
       - name: OWASP MASVS
         tags: []
         url: https://github.com/OWASP/owasp-masvs
-      samm2: software-requirements|A|3
+      samm2: D-SR-3-A
       iso27001-2017:
       - hardening is not explicitly covered by ISO 27001 - too specific
       - 13.1.3

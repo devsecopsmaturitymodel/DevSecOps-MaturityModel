@@ -31,7 +31,7 @@ Test and Verification:
         url: https://github.com/wagoodman/dive
       - name: Cluster Scanner (will be open sourced soon) to check different aspects
         tags: []
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
     Test the definition of virtualized environments:
       risk:
       - The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might
@@ -50,7 +50,7 @@ Test and Verification:
       - name: Deployment with kube-score
         tags: []
         url: https://github.com/zegl/kube-score
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - system hardening, virtual environments are not explicitly covered by ISO 27001
         - too specific
@@ -74,7 +74,7 @@ Test and Verification:
       - name: kubesec
         tags: []
         url: https://kubesec.io/
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - system hardening is not explicitly covered by ISO 27001 - too specific
       - 12.6.1
@@ -106,7 +106,7 @@ Test and Verification:
       - name: Vuls
         tags: []
         url: https://github.com/future-architect/vuls
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
       - 14.2.1
@@ -132,7 +132,7 @@ Test and Verification:
       - name: Vuls
         tags: []
         url: https://github.com/future-architect/vuls
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
       - 14.2.1
@@ -152,7 +152,7 @@ Test and Verification:
       - name: kube-bench
         tags: []
         url: https://github.com/aquasecurity/kube-bench
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - system hardening is not explicitly covered by ISO 27001 - too specific
       - 12.6.1
@@ -176,7 +176,7 @@ Test and Verification:
       - name: go-pillage-registries
         tags: []
         url: https://github.com/nccgroup/go-pillage-registries
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - vcs usage is not explicitly covered by ISO 27001 - too specific
       - 9.4.3
@@ -193,7 +193,7 @@ Test and Verification:
       usefulness: 2
       level: 3
       implementation: []
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
       - 14.2.5
@@ -216,7 +216,7 @@ Test and Verification:
         tags: []
         description: Registries like quay, dockerhub provide (commercial) offerings,
           often not suitable for distroless images
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
     Check for new image version:
@@ -230,7 +230,7 @@ Test and Verification:
       usefulness: 2
       level: 3
       implementation: []
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
       - 14.2.5
@@ -249,6 +249,6 @@ Test and Verification:
       usefulness: 3
       level: 3
       implementation: []
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.2.1

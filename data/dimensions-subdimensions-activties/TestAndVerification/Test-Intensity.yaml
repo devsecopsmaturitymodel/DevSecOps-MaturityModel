@@ -12,7 +12,7 @@ Test and Verification:
       usefulness: 2
       level: 2
       implementation: []
-      samm2: i-secure-build|A|3
+      samm2: I-SB-3-A
       iso27001-2017:
       - 14.2.3
       - 14.2.8
@@ -30,7 +30,7 @@ Test and Verification:
         resources: 3
       usefulness: 2
       level: 3
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 14.2.2
       - 14.2.3
@@ -52,7 +52,7 @@ Test and Verification:
         resources: 1
       usefulness: 1
       level: 2
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
       - 14.2.1
@@ -68,7 +68,7 @@ Test and Verification:
         resources: 1
       usefulness: 1
       level: 1
-      samm2: v-security-testing|A|1
+      samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
       - 14.2.1
@@ -85,7 +85,7 @@ Test and Verification:
         resources: 5
       usefulness: 3
       level: 1
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
       - 14.2.1

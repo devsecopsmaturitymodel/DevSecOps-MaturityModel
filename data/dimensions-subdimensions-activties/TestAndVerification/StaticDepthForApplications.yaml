@@ -15,7 +15,7 @@ Test and Verification:
         tags: []
       dependsOn:
       - Defined build process
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
       - 14.2.1
@@ -33,7 +33,7 @@ Test and Verification:
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
       implementation: []
@@ -59,7 +59,7 @@ Test and Verification:
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
     Static analysis for important client side components:
@@ -85,7 +85,7 @@ Test and Verification:
         tags: []
         url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
         description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
       dependsOn:
@@ -111,7 +111,7 @@ Test and Verification:
         tags: []
       dependsOn:
       - Defined build process
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
     Stylistic analysis:
@@ -128,7 +128,7 @@ Test and Verification:
       implementation:
       - name: PMD
         tags: []
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
       - 14.2.1
@@ -152,7 +152,7 @@ Test and Verification:
       - name: npm audit
         tags: []
         url: https://docs.npmjs.com/cli/audit
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
     Test of server side components with known vulnerabilities:
@@ -171,7 +171,7 @@ Test and Verification:
       implementation:
       - name: OWASP Dependency Check
         tags: []
-      samm2: v-security-testing|A|2
+      samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
     Usage of multiple analyzers:
@@ -185,7 +185,7 @@ Test and Verification:
         resources: 5
       usefulness: 1
       level: 4
-      samm2: v-security-testing|A|3
+      samm2: V-ST-3-A
       iso27001-2017:
       - 12.6.1
       - 14.2.1
