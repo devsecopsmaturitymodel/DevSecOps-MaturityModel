@@ -8,7 +8,7 @@ _yaml_references:
 
 Build and Deployment:
   Build:
-    Continuous Integration:
+    Continuous integration:
       risk: Quality is not visible to everyone, quality checks are distributed or manually and not deterministic.
       measure: Use continuous automated building and testing of the software.
       md-description: |

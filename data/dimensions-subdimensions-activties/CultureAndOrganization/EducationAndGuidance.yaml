@@ -317,7 +317,7 @@ Culture and Organization:
       - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/damn-vulnerable-web
       samm2:
       - G-EG-1-A
-    Security Code Review:
+    Security code review:
       risk: Understanding security is hard.
       measure: |
         The following areas of code tend to have a high-risk of containing security vulnerabilities:
@@ -341,7 +341,7 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-        - *cwe25
+        - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/cwe25
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       samm2:

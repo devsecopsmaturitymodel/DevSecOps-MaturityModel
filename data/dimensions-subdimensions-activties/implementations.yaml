@@ -10,7 +10,7 @@ implementations:
     tags: []
   cwe25:
     name: CWE Top 25 Most Dangerous Software Weaknesses
-    tags: [documentation, threat]
+    tags: ["documentation", "threat"]
     url: https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html
   docker-content-trust:
     name: Docker Content Trust
