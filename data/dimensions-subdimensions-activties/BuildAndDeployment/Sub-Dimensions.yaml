@@ -8,6 +8,33 @@ _yaml_references:
 
 Build and Deployment:
   Build:
+    Continuous Integration:
+      risk: Quality is not visible to everyone, quality checks are distributed or manually and not deterministic.
+      measure: Use continuous automated building and testing of the software.
+      md-description: |
+        ## Benefits:
+        Quality is visible to everyone
+        There is a single instance deciding whether the code meets its quality (single ground of truth).
+        Deterministic and reproducible builds
+      assessment: |
+        - Show your build pipeline and an exemplary job (build + test).
+        - Show that every team member has access.
+        - Show that failed jobs are fixed.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 2
+      level: 1
+      implementation:
+        - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/ci-cd-tools
+      references:
+        samm2:
+          - I-SB-1-A
+        iso27001-2017:
+          - iso27001-2017:14.2.6
+      credits: |
+        AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
     Building and testing of artifacts in virtual environments:
       description: |-
         While building and testing artifacts, third party systems, application frameworks
