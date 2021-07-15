@@ -11,8 +11,7 @@ Test and Verification:
       usefulness: 1
       level: 4
       implementation:
-      - name: PMD
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/pmd
       dependsOn:
       - Defined build process
       samm2: V-ST-2-A
@@ -40,9 +39,9 @@ Test and Verification:
     Static analysis for all self written components:
       risk:
       - Parts in the source code of the frontend or middleware have vulnerabilities.
-      measure: Usage of static analysis tools for all parts of the middleware and frontend.
-        Static analysis uses for example string matching algorithms and/or dataflow
-        analysis.
+      measure: Usage of static analysis tools for all parts of the middleware and
+        frontend. Static analysis uses for example string matching algorithms and/or
+        dataflow analysis.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -50,12 +49,9 @@ Test and Verification:
       usefulness: 4
       level: 4
       implementation:
-      - name: eslint
-        tags: []
-      - name: FindSecurityBugs
-        tags: []
-      - name: jsprime
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/jsprime
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
@@ -65,9 +61,9 @@ Test and Verification:
     Static analysis for important client side components:
       risk:
       - Important parts in the source code of the frontend have vulnerabilities.
-      measure: Usage of static analysis tools for important parts of the frontend are
-        used. Static analysis uses for example string matching algorithms and/or dataflow
-        analysis.
+      measure: Usage of static analysis tools for important parts of the frontend
+        are used. Static analysis uses for example string matching algorithms and/or
+        dataflow analysis.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -75,16 +71,10 @@ Test and Verification:
       usefulness: 3
       level: 3
       implementation:
-      - name: eslint
-        tags: []
-      - name: FindSecurityBugs
-        tags: []
-      - name: jsprime
-        tags: []
-      - name: '[bdd-mobile-security'
-        tags: []
-        url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-        description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/jsprime
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/bdd-mobile-security
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
@@ -103,12 +93,9 @@ Test and Verification:
       usefulness: 4
       level: 2
       implementation:
-      - name: eslint
-        tags: []
-      - name: FindSecurityBugs
-        tags: []
-      - name: jsprime
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/jsprime
       dependsOn:
       - Defined build process
       samm2: V-ST-2-A
@@ -126,8 +113,7 @@ Test and Verification:
       usefulness: 1
       level: 4
       implementation:
-      - name: PMD
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/pmd
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
@@ -146,12 +132,8 @@ Test and Verification:
       dependsOn:
       - Defined build process
       implementation:
-      - name: retire.js
-        tags: []
-        url: https://github.com/RetireJS/retire.js/
-      - name: npm audit
-        tags: []
-        url: https://docs.npmjs.com/cli/audit
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/retire-js
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/npm-audit
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
@@ -169,15 +151,14 @@ Test and Verification:
       dependsOn:
       - Defined build process
       implementation:
-      - name: OWASP Dependency Check
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-dependency-che
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
     Usage of multiple analyzers:
       risk:
-      - Each vulnerability analyzer has different opportunities. By using just one analyzer,
-        some vulnerabilities might not be found.
+      - Each vulnerability analyzer has different opportunities. By using just one
+        analyzer, some vulnerabilities might not be found.
       measure: Usage of multiple static tools to find more vulnerabilities.
       difficultyOfImplementation:
         knowledge: 3

@@ -1,18 +1,18 @@
 _yaml_references:
   tools:
-    zap: &zap
+    zap:
       name: OWASP Zap
       tags: [vulnerability, scanner]
       url: https://github.com/zaproxy/zaproxy
       description: |
         The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
-    secureCodeBox: &secureCodeBox
+    secureCodeBox:
       name: OWASP secureCodeBox
       tags: [vulnerability, scanner-orchestration]
       url: https://github.com/secureCodeBox/secureCodeBox
       description: |
         secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
-    zest: &zest
+    zest:
       name: Zest
       url: https://www.zaproxy.org/docs/desktop/addons/zest/
       tags: [zap]
@@ -31,8 +31,7 @@ Test and Verification:
       usefulness: 4
       level: 4
       implementation:
-      - name: OWASP Code Pulse
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-code-pulse
       references:
         samm2: V-ST-2-A
         iso27001-2017:
@@ -58,8 +57,7 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
       implementation:
-      - name: Ajax Spider
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/ajax-spider
     Coverage of hidden endpoints:
       risk:
       - Hidden endpoints of the service are not getting tracked.
@@ -72,10 +70,8 @@ Test and Verification:
       usefulness: 5
       level: 3
       implementation:
-      - name: cURL
-        tags: []
-      - name: OpenAPI
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/curl
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/openapi
       dependsOn:
       - Usage of different roles
       references:
@@ -105,8 +101,8 @@ Test and Verification:
     Coverage of sequential operations:
       risk:
       - Sequential operations like workflows (e.g. login -> put products in the basket
-      measure: Sequential operations are defined and checked by the vulnerability scanner
-        in the defined order.
+      measure: Sequential operations are defined and checked by the vulnerability
+        scanner in the defined order.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
@@ -114,8 +110,7 @@ Test and Verification:
       usefulness: 5
       level: 3
       implementation:
-      - name: cURL
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/curl
       dependsOn:
       - Usage of different roles
       references:
@@ -146,8 +141,9 @@ Test and Verification:
       - Deficient security tests are performed. Simple vulnerabilities are not detected
         and missing security configurations (e.g. headers) are not set. Fast feedback
         is not given.
-      measure: A simple scan is performed to get a security baseline. In case the test
-        is done in under 10 minutes, it should be part of the build and deployment process.
+      measure: A simple scan is performed to get a security baseline. In case the
+        test is done in under 10 minutes, it should be part of the build and deployment
+        process.
       difficultyOfImplementation:
         knowledge: 2
         time: 3
@@ -157,8 +153,8 @@ Test and Verification:
       dependsOn:
       - Defined build process
       implementation:
-      - *zap
-      - name: Arachni
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-zap
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/arachni
       references:
         samm2: V-ST-1-A
         iso27001-2017:
@@ -184,12 +180,13 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
       implementation:
-       - *zest
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/zest
     Usage of multiple scanners:
       risk:
-      - Each vulnerability scanner has different opportunities. By using just one scanner,
-        some vulnerabilities might not be found.
-      measure: Usage of multiple spiders and scanner enhance the coverage and the vulnerabilities.
+      - Each vulnerability scanner has different opportunities. By using just one
+        scanner, some vulnerabilities might not be found.
+      measure: Usage of multiple spiders and scanner enhance the coverage and the
+        vulnerabilities.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
@@ -199,7 +196,7 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       implementation:
-      - *secureCodeBox
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-securecodebox
       references:
         samm2: V-ST-2-A
         iso27001-2017:

@@ -4,11 +4,11 @@ Culture and Organization:
       risk:
       - In case of an emergency, like a power outage, DR actions to perform are not
         clear. This leads to reaction and remediation delays.
-      measure: By understanding and documenting a business continuity and disaster recovery
-        (BCDR) plan, the overall availability of systems and applications is increased.
-        Success factors like responsibilities, Service Level Agreements, Recovery Point
-        Objectives, Recovery Time Objectives or Failover must be fully documented and
-        understood.
+      measure: By understanding and documenting a business continuity and disaster
+        recovery (BCDR) plan, the overall availability of systems and applications
+        is increased. Success factors like responsibilities, Service Level Agreements,
+        Recovery Point Objectives, Recovery Time Objectives or Failover must be fully
+        documented and understood.
       difficultyOfImplementation:
         knowledge: 4
         time: 3
@@ -20,7 +20,8 @@ Culture and Organization:
       implementation: []
     Definition of a change management process:
       risk:
-      - The impact of a change is not controlled because these are not recorded or documented.
+      - The impact of a change is not controlled because these are not recorded or
+        documented.
       measure: Each change of a system is automatically recorded and adequately logged.
       difficultyOfImplementation:
         knowledge: 4
@@ -55,8 +56,8 @@ Culture and Organization:
       risk:
       - Unapproved components are used.
       measure: Components must be whitelisted. Regular scans on the docker infrastructure
-        (e.g. cluster) need to be performed, to verify that only standardized base images
-        are used.
+        (e.g. cluster) need to be performed, to verify that only standardized base
+        images are used.
       difficultyOfImplementation:
         knowledge: 2
         time: 1
@@ -67,8 +68,6 @@ Culture and Organization:
       - 12.5.1
       - 12.6.1
       implementation:
-      - name: 'Example: All docker images used by teams need to be based on standard
-          images.'
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/example-all-docker
       comment: By preventing teams from trying out new components, innovation might
         be hampered

@@ -20,8 +20,8 @@ Test and Verification:
     Security integration tests for important components:
       risk:
       - Vulnerabilities are rising due to code changes in a complex microservice environment.
-      measure: Implementation of essential security related integration tests. For example
-        for authentication and authorization.
+      measure: Implementation of essential security related integration tests. For
+        example for authentication and authorization.
       difficultyOfImplementation:
         knowledge: 3
         time: 4
@@ -29,8 +29,7 @@ Test and Verification:
       usefulness: 2
       level: 3
       implementation:
-      - name: HttpUnit
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/httpunit
       samm2: V-ST-3-B
       iso27001-2017:
       - 14.2.3
@@ -50,21 +49,18 @@ Test and Verification:
         it highlights vulnerabilities in sub-routines, functions, modules, libraries
         etc. checked.
       implementation:
-      - name: JUnit
-        tags: [unittest]
-      - name: Karma
-        tags: []
-        url: https://karma-runner.github.io
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/junit
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/karma
       samm2: V-ST-3-B
       iso27001-2017:
       - 14.2.3
       - 14.2.8
     Smoke Test:
       risk:
-      - During a deployment an error might happen which leads to non-availability of
-        the system, a part of the system or a feature.
-      measure: Integration tests are performed against the production environment after
-        each deployment.
+      - During a deployment an error might happen which leads to non-availability
+        of the system, a part of the system or a feature.
+      measure: Integration tests are performed against the production environment
+        after each deployment.
       difficultyOfImplementation:
         knowledge: 2
         time: 2

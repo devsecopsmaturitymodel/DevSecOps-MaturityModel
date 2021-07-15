@@ -1,12 +1,12 @@
 _yaml_references:
   tools:
-    juice-shop: &juice-shop
+    juice-shop:
       name: OWASP Juice Shop
       tags: [training]
       url: https://github.com/bkimminich/juice-shop
       description: |-
         In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
-    dvwa: &dvwa
+    dvwa:
       name: Damn Vulnerable Web Application
       tags: [training]
       description: |-
@@ -27,19 +27,17 @@ Culture and Organization:
       usefulness: 3
       level: 1
       samm2:
-        - G-EG-1-A
+      - G-EG-1-A
       implementation:
-      - *juice-shop
-      - name: OWASP Cheatsheet Series
-        tags: ["secure coding"]
-        url: https://cheatsheetseries.owasp.org/
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juice-shop
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
       iso27001-2017:
       - 7.2.2
     Regular security training for externals:
       risk:
-        - Understanding security is hard.
-      measure: Provide security awareness training for all personnel including externals involved in software
-        development on a regular basis.
+      - Understanding security is hard.
+      measure: Provide security awareness training for all personnel including externals
+        involved in software development on a regular basis.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
@@ -47,24 +45,17 @@ Culture and Organization:
       usefulness: 4
       level: 4
       samm2:
-        - G-EG-3-A
+      - G-EG-3-A
       iso27001-2017:
-        - 7.2.2
+      - 7.2.2
       implementation:
-        - name: OWASP JuiceShop
-          tags: ["training"]
-          url: https://github.com/bkimminich/juice-shop
-          description: "In case you do not have the budget to hire an external security\
-          \ expert, an option\nis to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop)\
-          \ on a \"hacking Friday\""
-        - name: https://cheatsheetseries.owasp.org/
-          tags: ["training", "secure coding"]
-          url: https://cheatsheetseries.owasp.org/
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juiceshop
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/https-cheatsheetse
     Regular security training for all:
       risk:
       - Understanding security is hard.
-      measure: Provide security awareness training for all internal personnel involved in software
-        development on a regular basis like twice in a year for 1-3 days.
+      measure: Provide security awareness training for all internal personnel involved
+        in software development on a regular basis like twice in a year for 1-3 days.
       difficultyOfImplementation:
         knowledge: 3
         time: 4
@@ -72,7 +63,7 @@ Culture and Organization:
       usefulness: 4
       level: 2
       samm2:
-        - G-EG-1-A
+      - G-EG-1-A
       iso27001-2017:
       - 7.2.2
       md-description: |
@@ -84,18 +75,12 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-      - name: OWASP JuiceShop
-        tags: []
-        url: https://github.com/bkimminich/juice-shop
-        description: "In case you do not have the budget to hire an external security\
-          \ expert, an option\nis to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop)\
-          \ on a \"hacking Friday\""
-      - name: OWASP Cheatsheet Series
-        tags: ["secure coding"]
-        url: https://cheatsheetseries.owasp.org/
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juiceshop
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
     Security consulting on request:
       risk:
-      - Not asking a security expert when questions regarding security appear might lead to flaws.
+      - Not asking a security expert when questions regarding security appear might
+        lead to flaws.
       measure: Security consulting to teams is given on request. The security consultants
         can be internal or external.
       difficultyOfImplementation:
@@ -105,16 +90,14 @@ Culture and Organization:
       usefulness: 3
       level: 1
       samm2:
-        - G-EG-1-A
+      - G-EG-1-A
       iso27001-2017:
       - security consulting is missing in ISO 27001 may be
       - 6.1.1
       - 6.1.4
       - 6.1.5
       implementation:
-        - name: OWASP Cheatsheet Series
-          tags: ["secure coding"]
-          url: https://cheatsheetseries.owasp.org/
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
     Regular security training of security champions:
       risk:
       - Understanding security is hard, even for security champions.
@@ -129,17 +112,15 @@ Culture and Organization:
       usefulness: 5
       level: 2
       samm2:
-        - D-TA-2-B
-        - G-EG-1-A
+      - D-TA-2-B
+      - G-EG-1-A
       iso27001-2017:
       - security champions are missing in ISO 27001
       - 7.2.2
       implementation:
-        - name: OWASP Cheatsheet Series
-          tags: ["secure coding"]
-          url: https://cheatsheetseries.owasp.org/
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
       dependsOn:
-        - Each team has a security champion
+      - Each team has a security champion
     Each team has a security champion:
       risk:
       - No one feels directly responsible for security and the security champion does
@@ -158,23 +139,21 @@ Culture and Organization:
         The goals of the position are to increase effectiveness and efficiency of application security and compliance and to strengthen the relationship between various teams and Information Security. To achieve these objectives, “Security Champions” assist with researching, verifying, and prioritizing security and compliance related software defects. They are involved in all Risk Assessments, Threat Assessments, and Architectural Reviews to help identify opportunities to remediate security defects by making the architecture of the application more resilient and reducing the attack threat surface.
         Source: [OWASP SAMM](https://owaspsamm.org/model/governance/education-and-guidance/stream-b/)
       samm2:
-        - G-EG-1-B
-        - G-EG-2-B
-        - G-EG-3-B
+      - G-EG-1-B
+      - G-EG-2-B
+      - G-EG-3-B
       iso27001-2017:
       - security champions are missing in ISO 27001 most likely
       - 7.2.1
       - 7.2.2
       implementation:
-      - name: 'OWASP Security Champions Playbook'
-        tags: ["security champions"]
-        url: https://github.com/c0rdis/security-champions-playbook
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-security-champ
     Security-Lessoned-Learned:
       risk:
       - After an incident, a similar incident might reoccur.
       measure: Running a 'lessons learned' session after an incident helps drive continuous
-        improvement. Regular meetings with security champions are a good place to share
-        and discuss lessons learned.
+        improvement. Regular meetings with security champions are a good place to
+        share and discuss lessons learned.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
@@ -182,14 +161,14 @@ Culture and Organization:
       usefulness: 3
       level: 3
       samm2:
-        - strategy-and-metrics|B|1
+      - strategy-and-metrics|B|1
       iso27001-2017:
       - 16.1.6
       implementation: []
     Conduction of collaborative security checks with developers and system administrators:
       risk:
-      - Security checks by external companies do not increase the understanding of an
-        application/system for internal employees.
+      - Security checks by external companies do not increase the understanding of
+        an application/system for internal employees.
       measure: Periodically security reviews of source code (SCA), in which security
         SME, developers and operations are involved, are effective at increasing the
         robustness of software and the security knowledge of the teams involved.
@@ -206,7 +185,7 @@ Culture and Organization:
       - 12.7.1
       implementation: []
       samm2:
-        - G-EG-2-A
+      - G-EG-2-A
     Conduction of collaborative team security checks:
       risk:
       - Development teams limited insight over security practices.
@@ -219,8 +198,8 @@ Culture and Organization:
       usefulness: 2
       level: 4
       samm2:
-        - G-EG-1-A
-        - G-EG-2-A
+      - G-EG-1-A
+      - G-EG-2-A
       iso27001-2017:
       - Mutual security testing is not explicitly required in ISO 27001 may be
       - 7.2.2
@@ -230,9 +209,9 @@ Culture and Organization:
       - Understanding security is hard, even for security champions and the conduction
         of security training often focuses on breaking a component instead of building
         a component secure.
-      measure: The build-it, break-it, fix-it contest allows to train people with security
-        related roles like security champions the build, break and fix part of a secure
-        application. This increases the learning of building secure components.
+      measure: The build-it, break-it, fix-it contest allows to train people with
+        security related roles like security champions the build, break and fix part
+        of a secure application. This increases the learning of building secure components.
       difficultyOfImplementation:
         knowledge: 5
         time: 3
@@ -242,11 +221,9 @@ Culture and Organization:
       iso27001-2017:
       - 7.2.2
       implementation:
-      - name: Build it Break it Fix it Contest
-        tags: []
-        url: https://builditbreakit.org/
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/build-it-break-it-fi
       samm2:
-        - G-EG-2-A
+      - G-EG-2-A
     Conduction of war games:
       risk:
       - Understanding incident response plans during an incident is hard and ineffective.
@@ -266,13 +243,13 @@ Culture and Organization:
       - 16.1.5
       implementation: []
       samm2:
-        - G-EG-2-A
+      - G-EG-2-A
     Reward of good communication:
       risk:
       - Employees are not getting excited about security.
-      measure: Good communication and transparency encourages cross-organizational support.
-        Gamification of security is also known to help, examples include T-Shirts, mugs,
-        cups, giftcards and 'High-Fives'.
+      measure: Good communication and transparency encourages cross-organizational
+        support. Gamification of security is also known to help, examples include
+        T-Shirts, mugs, cups, giftcards and 'High-Fives'.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
@@ -285,20 +262,13 @@ Culture and Organization:
       - interestingly enough A7.2.3 is requiring a process to handle misconduct but
         nothing to promote good behavior.
       implementation:
-      - name: Motivate people
-        tags: ["security champions", "gamification", "nudging"]
-        url: https://github.com/wurstbrot/security-pins
-        description: |-
-          Enhance motivation can be performed with the distribution of pins
-          as a reward, see [OWASP Security Pins Project](https://github.com/wurstbrot/security-pins)
-      - name: OWASP Top 10 Maturity Categories for Security Champions
-        tags: ["security champions"]
-        url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/motivate-people
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-top-10-maturit
     Aligning security in teams:
       risk:
       - The concept of Security Champions might suggest that only he/she is responsible
-        for security. However, everyone in the project team should be responsible for
-        security.
+        for security. However, everyone in the project team should be responsible
+        for security.
       measure: By aligning security SME with project teams, a higher security standard
         can be achieved.
       difficultyOfImplementation:
@@ -307,13 +277,10 @@ Culture and Organization:
         resources: 1
       usefulness: 5
       implementation:
-      - name: Involve Security SME
-        tags: []
-        description: Security SME are involved in discussion for requirements analysis,
-          software design and sprint planning to provide guidance and suggestions.
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/involve-security-sme
       level: 4
       samm2:
-        - G-EG-3-B
+      - G-EG-3-B
       iso27001-2017:
       - 7.1.1
     Simple Mob Hacking:
@@ -344,9 +311,9 @@ Culture and Organization:
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       iso27001-2017:
-        - 7.2.2
+      - 7.2.2
       implementation:
-        - *juice-shop
-        - *dvwa
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juice-shop
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/damn-vulnerable-web
       samm2:
-        - G-EG-1-A
+      - G-EG-1-A

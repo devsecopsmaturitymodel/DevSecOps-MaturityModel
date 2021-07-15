@@ -57,13 +57,15 @@ Information Gathering:
       implementation: []
     Coverage and control metrics:
       risk:
-      - The effectiveness of configuration, patch and vulnerability management is unknown.
+      - The effectiveness of configuration, patch and vulnerability management is
+        unknown.
       measure: "Usage of Coverage- and control-metrics to show the effectiveness of\
         \ the security program. Coverage is the degree in \n        which a specific\
         \ security control for a specific target group is applied with all resources.\n\
         \        The control degree shows the actual application of security standards\
         \ and security-guidelines. Examples are gathering information on anti-virus,\
-        \ anti-rootkits, patch management, server configuration and vulnerability management."
+        \ anti-rootkits, patch management, server configuration and vulnerability\
+        \ management."
       difficultyOfImplementation:
         knowledge: 3
         time: 5
@@ -73,10 +75,7 @@ Information Gathering:
       dependsOn:
       - Visualized metrics
       implementation:
-      - name: https://ht.transpare
-        tags: []
-        url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
-        description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/https-ht-transpare
       samm2: O-IM-2-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
@@ -179,8 +178,7 @@ Information Gathering:
       usefulness: 5
       level: 1
       implementation:
-      - name: Prometheus
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/prometheus
       samm2: O-IM-1-A
       iso27001-2017:
       - 12.4.1
@@ -198,8 +196,7 @@ Information Gathering:
       usefulness: 5
       level: 1
       implementation:
-      - name: collected
-        tags: []
+      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/collected
       samm2: O-IM-1-A
       iso27001-2017:
       - 12.1.3
