@@ -317,3 +317,32 @@ Culture and Organization:
       - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/damn-vulnerable-web
       samm2:
       - G-EG-1-A
+    Security Code Review:
+      risk: Understanding security is hard.
+      measure: |
+        The following areas of code tend to have a high-risk of containing security vulnerabilities:
+          - Crypto implementations / usage
+          - Parser, unparser
+          - System configuration
+          - Authentication, authorization
+          - Session management
+          - Request throttling
+          - :unicorn: (self-developed code, only used in that one software)
+      md-description: |
+        ### Benefits
+        - New vulnerabilities may be found before reaching production.
+        - Old vulnerabilities are found and fixed.
+      assessment:
+        - Present the performed reviews (including participants, findings, consequences) and assess whether it is reasonable.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 1
+      implementation:
+        - *cwe25
+      credits: |
+        AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
+      samm2:
+        - V-ST-B-1
