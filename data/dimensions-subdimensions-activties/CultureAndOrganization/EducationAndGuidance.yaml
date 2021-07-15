@@ -332,7 +332,7 @@ Culture and Organization:
         ### Benefits
         - New vulnerabilities may be found before reaching production.
         - Old vulnerabilities are found and fixed.
-      assessment:
+      assessment: |
         - Present the performed reviews (including participants, findings, consequences) and assess whether it is reasonable.
       difficultyOfImplementation:
         knowledge: 3
