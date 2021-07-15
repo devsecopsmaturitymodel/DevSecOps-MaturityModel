@@ -283,7 +283,7 @@ Culture and Organization:
       - G-EG-3-B
       iso27001-2017:
       - 7.1.1
-    Simple Mob Hacking:
+    Simple mob hacking:
       risk: Understanding security is hard.
       measure: |
         Participate with your whole team in a simple mob hacking session organized by the Security Champion Guild.
