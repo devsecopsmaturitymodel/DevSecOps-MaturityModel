@@ -80,6 +80,8 @@ Build and Deployment:
         resources: 2
       usefulness: 4
       level: 1
+      dependsOn:
+        - Continuous Integration
       implementation:
       - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/ci-cd-tools
       - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/container-technologi
@@ -191,6 +193,8 @@ Build and Deployment:
         resources: 1
       usefulness: 4
       level: 1
+      dependsOn:
+        - Continuous Integration
       implementation:
       - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/ci-cd-tools
       - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/docker
