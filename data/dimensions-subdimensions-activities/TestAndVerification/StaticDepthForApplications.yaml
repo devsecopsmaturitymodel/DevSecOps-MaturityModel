@@ -11,7 +11,7 @@ Test and Verification:
       usefulness: 1
       level: 4
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/pmd
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/pmd
       dependsOn:
       - Defined build process
       samm2: V-ST-2-A
@@ -49,9 +49,9 @@ Test and Verification:
       usefulness: 4
       level: 4
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/eslint
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/findsecuritybugs
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/jsprime
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jsprime
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
@@ -71,10 +71,10 @@ Test and Verification:
       usefulness: 3
       level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/eslint
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/findsecuritybugs
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/jsprime
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/bdd-mobile-security
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jsprime
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/bdd-mobile-security
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
@@ -93,9 +93,9 @@ Test and Verification:
       usefulness: 4
       level: 2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/eslint
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/findsecuritybugs
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/jsprime
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jsprime
       dependsOn:
       - Defined build process
       samm2: V-ST-2-A
@@ -113,7 +113,7 @@ Test and Verification:
       usefulness: 1
       level: 4
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/pmd
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/pmd
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
@@ -132,8 +132,8 @@ Test and Verification:
       dependsOn:
       - Defined build process
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/retire-js
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/npm-audit
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/retire-js
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/npm-audit
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
@@ -151,7 +151,7 @@ Test and Verification:
       dependsOn:
       - Defined build process
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-dependency-che
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-dependency-che
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1

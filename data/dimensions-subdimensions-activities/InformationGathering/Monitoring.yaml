@@ -75,7 +75,7 @@ Information Gathering:
       dependsOn:
       - Visualized metrics
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/https-ht-transpare
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-ht-transpare
       samm2: O-IM-2-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
@@ -178,7 +178,7 @@ Information Gathering:
       usefulness: 5
       level: 1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/prometheus
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/prometheus
       samm2: O-IM-1-A
       iso27001-2017:
       - 12.4.1
@@ -196,7 +196,7 @@ Information Gathering:
       usefulness: 5
       level: 1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/collected
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/collected
       samm2: O-IM-1-A
       iso27001-2017:
       - 12.1.3

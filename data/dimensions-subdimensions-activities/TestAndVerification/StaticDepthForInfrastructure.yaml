@@ -11,7 +11,7 @@ Test and Verification:
       usefulness: 3
       level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/sigmahq
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sigmahq
     Test of virtualized environments:
       risk:
       - Virtualized environments (e.g. via <i>Container Images</i>) might contains
@@ -24,8 +24,8 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/dive-to-inspect-a-co
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/cluster-scanner-wil
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dive-to-inspect-a-co
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/cluster-scanner-wil
       samm2: V-ST-1-A
     Test the definition of virtualized environments:
       risk:
@@ -39,8 +39,8 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/dockerfile-with-hado
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/deployment-with-kube
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dockerfile-with-hado
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/deployment-with-kube
       samm2: V-ST-1-A
       iso27001-2017:
       - system hardening, virtual environments are not explicitly covered by ISO 27001
@@ -62,7 +62,7 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/kubesec
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kubesec
       samm2: V-ST-1-A
       iso27001-2017:
       - system hardening is not explicitly covered by ISO 27001 - too specific
@@ -86,10 +86,10 @@ Test and Verification:
       dependsOn:
       - Usage of a maximum lifetime for images
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/anchore-io
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/clair
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/openscap
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/vuls
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/anchore-io
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clair
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openscap
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/vuls
       samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
@@ -107,10 +107,10 @@ Test and Verification:
       dependsOn:
       - Usage of a maximum lifetime for images
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/anchore-io
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/clair
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/openscap
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/vuls
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/anchore-io
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clair
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openscap
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/vuls
       samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
@@ -128,7 +128,7 @@ Test and Verification:
       usefulness: 4
       level: 2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/kube-bench
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kube-bench
       samm2: V-ST-1-A
       iso27001-2017:
       - system hardening is not explicitly covered by ISO 27001 - too specific
@@ -147,8 +147,8 @@ Test and Verification:
       usefulness: 2
       level: 1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/trufflehog
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/go-pillage-registrie
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/trufflehog
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/go-pillage-registrie
       samm2: V-ST-1-A
       iso27001-2017:
       - vcs usage is not explicitly covered by ISO 27001 - too specific
@@ -182,8 +182,8 @@ Test and Verification:
       usefulness: 4
       level: 4
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/https-github-com-a
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/registries-like-quay
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-github-com-a
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/registries-like-quay
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1

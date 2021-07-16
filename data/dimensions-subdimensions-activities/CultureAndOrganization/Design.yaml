@@ -20,8 +20,8 @@ Culture and Organization:
       - 8.2.1
       - 14.2.1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/threat-modeling-play
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-samm
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
       dependsOn:
       - Conduction of simple threat modeling on technical level
     Conduction of advanced threat modeling:
@@ -58,12 +58,12 @@ Culture and Organization:
       - 8.2.1
       - 14.2.1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/whiteboard
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/miro-or-any-other-c
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/draw-io
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/threat-modeling-play
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-samm
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/threagile
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/whiteboard
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/miro-or-any-other-c
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/draw-io
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threagile
     Conduction of simple threat modeling on business level:
       risk:
       - Business related threats are discovered too late in the development and deployment
@@ -96,11 +96,11 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/whiteboard
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/miro-or-any-other-c
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/draw-io
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/threat-modeling-play
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-samm
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/whiteboard
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/miro-or-any-other-c
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/draw-io
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
       md-description: |
         # OWASP SAMM Description
         Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
@@ -172,7 +172,7 @@ Culture and Organization:
       - may be part of risk assessment
       - 8.1.2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/don-t-forget-evil-u
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/don-t-forget-evil-u
     Creation of simple abuse stories:
       risk:
       - User stories mostly don't consider security implications. Security flaws are
@@ -192,7 +192,7 @@ Culture and Organization:
       - may be part of risk assessment
       - 8.1.2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/don-t-forget-evil-u
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/don-t-forget-evil-u
       dependsOn:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards

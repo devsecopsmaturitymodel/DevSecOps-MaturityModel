@@ -29,7 +29,7 @@ Test and Verification:
       usefulness: 2
       level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/httpunit
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/httpunit
       samm2: V-ST-3-B
       iso27001-2017:
       - 14.2.3
@@ -49,8 +49,8 @@ Test and Verification:
         it highlights vulnerabilities in sub-routines, functions, modules, libraries
         etc. checked.
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/junit
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/karma
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/junit
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/karma
       samm2: V-ST-3-B
       iso27001-2017:
       - 14.2.3

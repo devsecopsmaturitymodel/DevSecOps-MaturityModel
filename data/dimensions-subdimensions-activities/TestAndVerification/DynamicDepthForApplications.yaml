@@ -31,7 +31,7 @@ Test and Verification:
       usefulness: 4
       level: 4
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-code-pulse
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-code-pulse
       references:
         samm2: V-ST-2-A
         iso27001-2017:
@@ -57,7 +57,7 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/ajax-spider
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ajax-spider
     Coverage of hidden endpoints:
       risk:
       - Hidden endpoints of the service are not getting tracked.
@@ -70,8 +70,8 @@ Test and Verification:
       usefulness: 5
       level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/curl
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/openapi
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/curl
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openapi
       dependsOn:
       - Usage of different roles
       references:
@@ -110,7 +110,7 @@ Test and Verification:
       usefulness: 5
       level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/curl
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/curl
       dependsOn:
       - Usage of different roles
       references:
@@ -153,8 +153,8 @@ Test and Verification:
       dependsOn:
       - Defined build process
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-zap
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/arachni
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-zap
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/arachni
       references:
         samm2: V-ST-1-A
         iso27001-2017:
@@ -180,7 +180,7 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/zest
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/zest
     Usage of multiple scanners:
       risk:
       - Each vulnerability scanner has different opportunities. By using just one
@@ -196,7 +196,7 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-securecodebox
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-securecodebox
       references:
         samm2: V-ST-2-A
         iso27001-2017:

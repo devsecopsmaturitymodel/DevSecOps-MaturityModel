@@ -29,8 +29,8 @@ Culture and Organization:
       samm2:
       - G-EG-1-A
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juice-shop
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juice-shop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
       iso27001-2017:
       - 7.2.2
     Regular security training for externals:
@@ -49,8 +49,8 @@ Culture and Organization:
       iso27001-2017:
       - 7.2.2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juiceshop
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/https-cheatsheetse
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juiceshop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-cheatsheetse
     Regular security training for all:
       risk:
       - Understanding security is hard.
@@ -75,8 +75,8 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juiceshop
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juiceshop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
     Security consulting on request:
       risk:
       - Not asking a security expert when questions regarding security appear might
@@ -97,7 +97,7 @@ Culture and Organization:
       - 6.1.4
       - 6.1.5
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
     Regular security training of security champions:
       risk:
       - Understanding security is hard, even for security champions.
@@ -118,7 +118,7 @@ Culture and Organization:
       - security champions are missing in ISO 27001
       - 7.2.2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-cheatsheet-ser
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
       dependsOn:
       - Each team has a security champion
     Each team has a security champion:
@@ -147,7 +147,7 @@ Culture and Organization:
       - 7.2.1
       - 7.2.2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-security-champ
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-security-champ
     Security-Lessoned-Learned:
       risk:
       - After an incident, a similar incident might reoccur.
@@ -221,7 +221,7 @@ Culture and Organization:
       iso27001-2017:
       - 7.2.2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/build-it-break-it-fi
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/build-it-break-it-fi
       samm2:
       - G-EG-2-A
     Conduction of war games:
@@ -262,8 +262,8 @@ Culture and Organization:
       - interestingly enough A7.2.3 is requiring a process to handle misconduct but
         nothing to promote good behavior.
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/motivate-people
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-top-10-maturit
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/motivate-people
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-top-10-maturit
     Aligning security in teams:
       risk:
       - The concept of Security Champions might suggest that only he/she is responsible
@@ -277,7 +277,7 @@ Culture and Organization:
         resources: 1
       usefulness: 5
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/involve-security-sme
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/involve-security-sme
       level: 4
       samm2:
       - G-EG-3-B
@@ -313,8 +313,8 @@ Culture and Organization:
       iso27001-2017:
       - 7.2.2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-juice-shop
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/damn-vulnerable-web
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juice-shop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/damn-vulnerable-web
       samm2:
       - G-EG-1-A
     Security code review:
@@ -341,7 +341,7 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-        - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/cwe25
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/cwe25
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       samm2:

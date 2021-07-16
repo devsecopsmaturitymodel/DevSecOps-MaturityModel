@@ -68,6 +68,6 @@ Culture and Organization:
       - 12.5.1
       - 12.6.1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/example-all-docker
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/example-all-docker
       comment: By preventing teams from trying out new components, innovation might
         be hampered

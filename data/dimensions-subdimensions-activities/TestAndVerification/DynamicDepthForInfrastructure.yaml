@@ -39,8 +39,8 @@ Test and Verification:
       usefulness: 4
       level: 2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/kube-hunter
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/openvas
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kube-hunter
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openvas
       iso27001-2017:
       - system hardening is not explicitly covered by ISO 27001 - too specific
       - 12.6.1
@@ -59,7 +59,7 @@ Test and Verification:
       usefulness: 1
       level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/htc-hydra
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/htc-hydra
       samm2: V-ST-2-A
       iso27001-2017:
       - 9.4.3
@@ -76,7 +76,7 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/netassert
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/netassert
       dependsOn: Segmented networks for virtual environments
       samm2: V-ST-2-A
       iso27001-2017:
@@ -98,8 +98,8 @@ Test and Verification:
       usefulness: 3
       level: 1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/nmap
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-amass
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/nmap
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-amass
       samm2: V-ST-1-A
       iso27001-2017:
       - 13.1.3
@@ -118,7 +118,7 @@ Test and Verification:
       usefulness: 2
       level: 4
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/k8spurger
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/k8spurger
       samm2: V-ST-1-A
       iso27001-2017:
       - 13.1.3

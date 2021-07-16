@@ -28,7 +28,7 @@ def yd(fpath, data):
 
 def test_jpath():
     fpath = (
-        "data/dimensions-subdimensions-activties/BuildAndDeployment/Sub-Dimensions.yaml"
+        "data/dimensions-subdimensions-activities/BuildAndDeployment/Sub-Dimensions.yaml"
     )
     d = yl()
     t = [x for x in parse("$..implementation").find(d)]

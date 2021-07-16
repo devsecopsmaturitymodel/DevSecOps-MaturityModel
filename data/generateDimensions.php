@@ -10,7 +10,7 @@
 require_once "functions.php";
 
 if (ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
-  $files = glob("data/dimensions-subdimensions-activties/*/*.yaml");
+  $files = glob("data/dimensions-subdimensions-activities/*/*.yaml");
   $dimensions=array();
   foreach ($files as $filename) {
     //echo "Found $filename";

@@ -47,10 +47,10 @@ Information Gathering:
       usefulness: 1
       level: 1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/rsyslog
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/logstash
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/fluentd
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/bash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rsyslog
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fluentd
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/bash
       samm2: O-IM-1-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
@@ -82,10 +82,10 @@ Information Gathering:
       credits: |
         [AppSecure-nrw](https://github.com/AppSecure-nrw/security-belts/blob/master/orange/logging-of-security-events.md)
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/logstash
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/fluentd
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/bash
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/owasp-logging-cheats
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fluentd
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/bash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-logging-cheats
       samm2: O-IM-1-A
       iso27001-2017:
       - 12.4.1
@@ -103,8 +103,8 @@ Information Gathering:
       usefulness: 2
       level: 1
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/rsyslog
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/logstash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rsyslog
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
       samm2: O-IM-1-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
@@ -146,7 +146,7 @@ Information Gathering:
       - Centralized system logging
       - Centralized application logging
       implementation:
-      - $ref: data/dimensions-subdimensions-activties/implementations.yaml#/implementations/elk-stack
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/elk-stack
       samm2: O-IM-1-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
