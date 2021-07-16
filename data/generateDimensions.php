@@ -24,6 +24,7 @@ if (ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
 
   $files = glob("data/custom/*/*.yaml");
   $dimensionsCustom=array();
+  $dimensionsAggregated=array();
   foreach ($files as $filename) {
     //echo "Found $filename";
     $dimensionCustom = getDimensions($filename);
@@ -31,12 +32,11 @@ if (ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
   }
   if (sizeof($files) > 0) {
     $dimensions = array_merge_recursive_ex($dimensions, $dimensionsCustom);
-    $dimensionsAggregated = array();
     foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
+      if (!array_key_exists($dimension, $dimensionsAggregated)) $dimensionsAggregated[$dimension] = array();
+      if (!array_key_exists($subdimension, $dimensionsAggregated[$dimension])) $dimensionsAggregated[$dimension][$subdimension] = array();
       foreach ($activities as $activityName => $activity) {
         if (isActivityExisting($dimensionsCustom, $activityName)) {
-          if (!array_key_exists($dimension, $dimensionsAggregated)) $dimensionsAggregated[$dimension] = array();
-          if (!array_key_exists($subdimension, $dimensionsAggregated[$dimension])) $dimensionsAggregated[$dimension][$subdimension] = array();
           $dimensionsAggregated[$dimension][$subdimension][$activityName] = $activity;
         }
       }
