@@ -494,5 +494,9 @@ implementations:
   threat-matrix-for-storage:
     name: Threat Matrix for Storage
     url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
-    tags: [documentation]
+    tags: [documentation, storage, cluster, kubernetes]
+  defend-the-core-kubernetes:
+    name: Threat Matrix for Storage
+    url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
+    tags: [documentation, cluster, kubernetes]
 
