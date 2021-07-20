@@ -491,3 +491,8 @@ implementations:
     tags: [sast, docker, dockerfile]
     url: https://github.com/replicatedhq/dockerfilelint
     description: dockerfilelint is an node module that analyzes a Dockerfile and looks for common traps, mistakes and helps enforce best practices.
+  threat-matrix-for-storage:
+    name: Threat Matrix for Storage
+    url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
+    tags: [documentation]
+

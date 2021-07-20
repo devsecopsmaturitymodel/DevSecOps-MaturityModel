@@ -64,6 +64,7 @@ Culture and Organization:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threagile
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-matrix-for-storage
     Conduction of simple threat modeling on business level:
       risk:
       - Business related threats are discovered too late in the development and deployment
@@ -101,6 +102,7 @@ Culture and Organization:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/draw-io
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-matrix-for-storage
       md-description: |
         # OWASP SAMM Description
         Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
