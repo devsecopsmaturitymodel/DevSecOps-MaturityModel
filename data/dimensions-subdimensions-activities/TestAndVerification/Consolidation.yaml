@@ -1,17 +1,3 @@
-_yaml_references:
-  tools:
-    defectdojo:
-      name: OWASP DefectDojo
-      tags: [vulnerability management system, owasp]
-      url: https://github.com/DefectDojo/django-DefectDojo
-      description: |
-        DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
-    purify:
-      name: Purify
-      tags: [vulnerability management system]
-      url: https://github.com/faloker/purify/
-      description: |
-        The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
 Test and Verification:
   Consolidation:
     Advanced visualization of defects:
@@ -28,6 +14,7 @@ Test and Verification:
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defectdojo
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
       references:
         samm2: I-DM-1-B
         iso27001-2017:

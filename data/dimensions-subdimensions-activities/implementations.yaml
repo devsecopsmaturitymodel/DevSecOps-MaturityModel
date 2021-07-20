@@ -496,7 +496,10 @@ implementations:
     url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
     tags: [documentation, storage, cluster, kubernetes]
   defend-the-core-kubernetes:
-    name: Threat Matrix for Storage
+    name: Defend the core kubernetes security at every layer
     url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
     tags: [documentation, cluster, kubernetes]
-
+  business-friendly-vulnerability-metrics:
+    name: Business friendly vulnerability management metrics
+    url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
+    tags: [documentation, vulnerability, vulnerability management system]
