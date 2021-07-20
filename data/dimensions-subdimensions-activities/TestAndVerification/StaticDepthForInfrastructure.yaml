@@ -41,6 +41,7 @@ Test and Verification:
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dockerfile-with-hado
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/deployment-with-kube
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dockerfilelint
       samm2: V-ST-1-A
       iso27001-2017:
       - system hardening, virtual environments are not explicitly covered by ISO 27001

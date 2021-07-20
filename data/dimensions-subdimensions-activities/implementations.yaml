@@ -486,3 +486,8 @@ implementations:
     tags: []
     description: Registries like quay, dockerhub provide (commercial) offerings, often
       not suitable for distroless images
+  dockerfilelint:
+    name: dockerfilelint
+    tags: [sast, docker, dockerfile]
+    url: https://github.com/replicatedhq/dockerfilelint
+    description: dockerfilelint is an node module that analyzes a Dockerfile and looks for common traps, mistakes and helps enforce best practices.

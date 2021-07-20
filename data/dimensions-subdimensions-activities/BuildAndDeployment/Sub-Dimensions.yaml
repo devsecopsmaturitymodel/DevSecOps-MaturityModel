@@ -1,11 +1,3 @@
-_yaml_references:
-  tools:
-    ci-cd:
-      name: CI/CD tools
-      tags: [ci-cd]
-      description: |-
-        CI/CD tools such as jenkins, gitlab-ci or github-actions
-
 Build and Deployment:
   Build:
     Continuous integration:
