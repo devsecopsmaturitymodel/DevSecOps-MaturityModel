@@ -25,7 +25,7 @@ Test and Verification:
       level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dive-to-inspect-a-co
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/cluster-scanner-wil
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
       samm2: V-ST-1-A
     Test the definition of virtualized environments:
       risk:
@@ -38,6 +38,8 @@ Test and Verification:
         resources: 2
       usefulness: 3
       level: 2
+      meta:
+        implementationGuide: For containier (images), test that the images are following best practices like distroless or non-root.
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dockerfile-with-hado
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/deployment-with-kube
@@ -165,8 +167,9 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 2
-      level: 3
-      implementation: []
+      level: 2
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
       samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
@@ -217,7 +220,8 @@ Test and Verification:
         resources: 2
       usefulness: 3
       level: 3
-      implementation: []
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.2.1
