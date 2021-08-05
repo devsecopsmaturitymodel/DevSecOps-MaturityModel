@@ -29,11 +29,11 @@ $dimensions = getDimensions();
 $filteredDimensions = array();
 foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
   foreach ($activities as $activityName => $activity) {
-    if (elementIsSelected($activityName) && !$showPerformed) {
+    if (elementIsSelected($activityName, $activity) && !$showPerformed) {
       continue;
     }
 
-    if (!elementIsSelected($activityName) && !$showPlanned) {
+    if (!elementIsSelected($activityName, $activity) && !$showPlanned) {
       continue;
     }
     $filteredDimensions[$dimension][$subdimension][$activityName] = $activity;

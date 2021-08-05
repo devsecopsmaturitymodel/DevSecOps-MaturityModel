@@ -169,12 +169,12 @@ function getTable($dimensions) {
 
     for ($i = 1; $i <= NUMBER_LEVELS; $i ++) {
       $tableContent .= "<td><ul>";
-      foreach ( $element as $activityName => $content ) {
-        $content = getContentForLevelFromSubdimensions ( $i, $content, $activityName );
+      foreach ( $element as $activityName => $activityContent ) {
+        $content = getContentForLevelFromSubdimensions ( $i, $activityContent, $activityName );
         if ($content != "") {
           $activityLink = "detail.php?dimension=" . urlencode( $dimension ) . "&subdimension=" . urlencode( $subdimension ) . "&element=" . urlencode( $activityName );
           $tableContent .= "<a href='$activityLink' data-dimension='$dimension' data-subdimension='$subdimension' data-element='$activityName'";
-          if (elementIsSelected ( $activityName )) {
+          if (elementIsSelected ( $activityName, $activityContent )) {
             $tableContent .= "class='selected'";
           }
           $tableContent .= "><li>" . $content . "</li></a>";

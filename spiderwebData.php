@@ -29,7 +29,7 @@ function getSpiderWebData($dimensions) {
       foreach ($activities as $activityName => $activity) {
         if ($level == $activity["level"]) {
           $data[$level][$dimension][$subdimension]['count']++;
-          if (elementIsSelected($activityName)) {
+          if (elementIsSelected($activityName, $activity)) {
             $data[$level][$dimension][$subdimension]['selected']++;
           }
         }
@@ -149,8 +149,8 @@ if ($elementParam == null) {
 {
   $csv = getCsv();
   $element = $elementParam;
-
-  if (elementIsSelected($element)) {
+  $csvFile = 'selectedData.csv';
+  if (isElement( $csvFile, $element)) {
     deleteElement($csv, $element);
   } else {
     if (!isElementExisting($dimensions, $element)) {

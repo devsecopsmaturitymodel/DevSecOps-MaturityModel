@@ -73,9 +73,11 @@ function isElement($csvFile, $givenActivityName) {
  * @param unknown $activityName
  * @return unknown
  */
-function elementIsSelected($activityName) {
+function elementIsSelected($activityName, $activity) {
   $csvFile = 'selectedData.csv';
-  return isElement( $csvFile, $activityName);
+  $isElement = isElement( $csvFile, $activityName);
+  if ($isElement) return true;
+  return array_key_exists("evidence", $activity);
 }
 
 
@@ -89,15 +91,18 @@ function elementIsShown($activityName) {
   return isElement( $csvFile, $activityName);
 }
 
+
 $csvFile = 'selectedData.csv';
+
+
 /**
  *
  * @return unknown
  */
 function getCsv() {
-    $csvFile = 'selectedData.csv';
-    $csv= readCSV($csvFile, ",");
-    return $csv;
+  $csvFile = 'selectedData.csv';
+  $csv= readCSV($csvFile, ",");
+  return $csv;
 }
 
 
