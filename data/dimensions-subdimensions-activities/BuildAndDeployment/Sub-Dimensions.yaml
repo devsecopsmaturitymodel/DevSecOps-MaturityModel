@@ -101,6 +101,29 @@ Build and Deployment:
         samm2: I-SB-2-A
         iso27001-2017:
         - 14.2.6
+    Pinning of artifacts:
+      risk:
+      - Unauthorized manipulation of artifacts might be difficult to spot. For example,
+        this may result in using images with malicious code. 
+        Also, intendend major changes, which are automatically used in an image used might break the functionality.
+      measure: Pinning of artifacts ensure that changes are performed only when intended.
+      comment: The usage of pinning requires a good processes for patching. Therefore, choose this activity wisly.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 2
+      implementation:
+      - Container technology automatically creates a hash for images, which can be used.
+      - Immutable images are an other way, e.g. by using a registry, which doesn't allow overriding of images.
+      dependsOn:
+      - Defined build process
+      references:
+        samm2:
+        - I-SB-1-A
+        iso27001-2017:
+        - 14.2.6
     Signing of artifacts:
       risk:
       - Unauthorized manipulation of artifacts might be difficult to spot. For example,
@@ -118,6 +141,7 @@ Build and Deployment:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/in-toto
       dependsOn:
       - Defined build process
+      - Pinning of artifacts
       references:
         samm2:
         - I-SB-1-A
