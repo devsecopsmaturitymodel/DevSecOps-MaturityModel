@@ -62,12 +62,12 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
   echo build_table_tooltip($element, $headerWeight + 1);
   $evidenceContent = getElementContentAndCheckExistence($element, "evidence", true);
   if ($evidenceContent == "") {
-      $evidenceContent = "TODO";
+    $evidenceContent = "TODO";
   }
   if (IS_SHOW_EVIDENCE_TODO || $evidenceContent != "TODO")
     echo "<h" .($headerWeight + 2) . ">" . "Evidence" . "</h" .($headerWeight + 2) . ">"  . $evidenceContent;
 
-    echo "<hr/>";
+  echo "<hr/>";
 
   if (array_key_exists("assessment", $element)) {
     $Parsedown = new Parsedown();
@@ -106,7 +106,7 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
             echo $tag . " ";
           }
         } else {
-          echo "<li>$implementationElement</li>";
+          echo "$implementationElement";
         }
         echo "</li>";
       }
