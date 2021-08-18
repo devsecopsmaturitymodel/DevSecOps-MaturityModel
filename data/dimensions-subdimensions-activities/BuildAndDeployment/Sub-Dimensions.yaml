@@ -124,29 +124,6 @@ Build and Deployment:
         iso27001-2017:
         - 14.2.6
   Deployment:
-    Backup:
-      risk:
-      - If errors are experienced during the deployment process you want to deploy
-        an old release. However, due to changes in the database this is often unfeasible.
-      measure: Performing automated periodical backups are used. Backup before deployment
-        can help facilitate deployments whilst testing the backup restore processes.
-      difficultyOfImplementation:
-        knowledge: 1
-        time: 2
-        resources: 1
-      usefulness: 4
-      level: 2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/a-complete-backup-of
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/a-point-in-time-reco
-      dependsOn:
-      - Defined deployment process
-      references:
-        samm2:
-        - TODO
-        iso27001-2017:
-        - '12.3'
-        - 14.2.6
     Blue/Green Deployment:
       risk:
       - A new artifacts version can have unknown defects.
