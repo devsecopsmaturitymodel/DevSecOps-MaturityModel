@@ -54,13 +54,12 @@ foreach ($dimensions as $dimension => $subdimensions) {
     echo "<h2>Sub-Dimension $subdimension</h2>";
 
     for ($i = 1; $i <= 4; $i++) {
-      $tableContent .= "<td><ul>";
       foreach ($activity as $activityName => $content) {
-        if (elementIsSelected($activityName) && !$showPerformed) {
+        if (elementIsSelected($activityName, $activity) && !$showPerformed) {
           continue;
         }
 
-        if (!elementIsSelected($activityName) && !$showPlanned) {
+        if (!elementIsSelected($activityName, $activity) && !$showPlanned) {
           continue;
         }
         $content = getContentForLevelFromSubdimensions($i, $content, $activityName);
