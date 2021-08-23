@@ -39,6 +39,7 @@ Test and Verification:
       usefulness: 4
       level: 2
       implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kubescape
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kube-hunter
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openvas
       iso27001-2017:

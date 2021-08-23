@@ -386,7 +386,7 @@ implementations:
     tags: []
   htc-hydra:
     name: HTC Hydra
-    tags: []
+    tags: [password]
   netassert:
     name: netassert
     tags: []
@@ -505,3 +505,8 @@ implementations:
     name: Business friendly vulnerability management metrics
     url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
     tags: [documentation, vulnerability, vulnerability management system]
+  kubescape:
+    name: kubescape
+    url: https://github.com/armosec/kubescape
+    tags: [kubernetes, vulnerability, misconfiguration]
+    description: _Testing if Kubernetes is deployed securely as defined in Kubernetes Hardening Guidance by to NSA and CISA_
