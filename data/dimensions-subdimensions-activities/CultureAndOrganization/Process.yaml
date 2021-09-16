@@ -1,5 +1,22 @@
 Culture and Organization:
   Process:
+    Source Control Protection:
+      risk: Unaproved code in important branches like master.
+      measure: Enabled protections on the source code management system preventing commited directly to an important branch.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 4
+      level: 1
+      iso27001-2017:
+        - peer review - four eyes principle is not explicitly required by ISO 27001
+        - 6.1.2
+        - 14.2.1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/azuredevops
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/github-policies
+      samm2: O-EM-1-C
     Definition of simple BCDR practices for critical components:
       risk:
       - In case of an emergency, like a power outage, DR actions to perform are not

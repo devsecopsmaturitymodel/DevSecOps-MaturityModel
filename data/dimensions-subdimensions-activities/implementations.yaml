@@ -510,3 +510,11 @@ implementations:
     url: https://github.com/armosec/kubescape
     tags: [kubernetes, vulnerability, misconfiguration]
     description: _Testing if Kubernetes is deployed securely as defined in Kubernetes Hardening Guidance by to NSA and CISA_
+  azuredevops:
+    name: Improve code quality with branch policies
+    url: https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
+    tags: [source-code-protection, scm]
+  github-policies:
+    name: About protected branches
+    url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
+    tags: [source-code-protection, scm]
