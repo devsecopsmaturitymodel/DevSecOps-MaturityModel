@@ -26,7 +26,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 5
-      level: 3
+      level: 4
       dependsOn:
       - Visualized logging
       - Alerting
@@ -45,7 +45,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 1
-      level: 1
+      level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rsyslog
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
@@ -78,7 +78,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       credits: |
         [AppSecure-nrw](https://github.com/AppSecure-nrw/security-belts/blob/master/orange/logging-of-security-events.md)
       implementation:
@@ -101,7 +101,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 2
-      level: 1
+      level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rsyslog
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
@@ -120,7 +120,7 @@ Information Gathering:
         time: 4
         resources: 4
       usefulness: 3
-      level: 4
+      level: 5
       dependsOn:
       - Visualized logging
       - Alerting
@@ -141,7 +141,7 @@ Information Gathering:
         time: 3
         resources: 3
       usefulness: 4
-      level: 2
+      level: 3
       dependsOn:
       - Centralized system logging
       - Centralized application logging

@@ -17,7 +17,7 @@ Implementation:
         time: 4
         resources: 2
       usefulness: 4
-      level: 1
+      level: 2
       md-description: |
         To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jumpstart the development process, but also do so securely.
 
@@ -57,7 +57,7 @@ Implementation:
         time: 4
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
@@ -81,7 +81,7 @@ Implementation:
         time: 4
         resources: 2
       usefulness: 4
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
@@ -105,7 +105,7 @@ Implementation:
         time: 4
         resources: 2
       usefulness: 4
-      level: 4
+      level: 5
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs

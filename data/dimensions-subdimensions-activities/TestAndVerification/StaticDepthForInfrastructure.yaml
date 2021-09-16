@@ -9,7 +9,7 @@ Test and Verification:
         time: 2
         resources: 2
       usefulness: 3
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sigmahq
     Test of virtualized environments:
@@ -22,7 +22,7 @@ Test and Verification:
         time: 1
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dive-to-inspect-a-co
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
@@ -37,7 +37,7 @@ Test and Verification:
         time: 1
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       meta:
         implementationGuide: For containier (images), test that the images are following best practices like distroless or non-root.
       implementation:
@@ -63,7 +63,7 @@ Test and Verification:
         time: 1
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kubesec
       samm2: V-ST-1-A
@@ -85,7 +85,7 @@ Test and Verification:
         time: 5
         resources: 2
       usefulness: 1
-      level: 4
+      level: 5
       dependsOn:
       - Usage of a maximum lifetime for images
       implementation:
@@ -106,7 +106,7 @@ Test and Verification:
         time: 5
         resources: 4
       usefulness: 1
-      level: 4
+      level: 5
       dependsOn:
       - Usage of a maximum lifetime for images
       implementation:
@@ -129,7 +129,7 @@ Test and Verification:
         time: 2
         resources: 1
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kube-bench
       samm2: V-ST-1-A
@@ -148,7 +148,7 @@ Test and Verification:
         time: 1
         resources: 2
       usefulness: 2
-      level: 1
+      level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/trufflehog
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/go-pillage-registrie
@@ -167,7 +167,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 2
-      level: 2
+      level: 3
       implementation:
         - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
       samm2: V-ST-1-A
@@ -184,7 +184,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 4
-      level: 4
+      level: 5
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-github-com-a
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/registries-like-quay
@@ -200,7 +200,7 @@ Test and Verification:
         time: 3
         resources: 1
       usefulness: 2
-      level: 3
+      level: 4
       implementation: []
       samm2: V-ST-2-A
       iso27001-2017:
@@ -219,7 +219,7 @@ Test and Verification:
         time: 2
         resources: 2
       usefulness: 3
-      level: 3
+      level: 4
       implementation:
         - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
       samm2: V-ST-2-A

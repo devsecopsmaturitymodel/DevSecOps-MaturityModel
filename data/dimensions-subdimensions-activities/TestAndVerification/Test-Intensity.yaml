@@ -11,7 +11,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 2
-      level: 2
+      level: 3
       implementation: []
       samm2: I-SB-3-A
       iso27001-2017:
@@ -30,7 +30,7 @@ Test and Verification:
         time: 3
         resources: 3
       usefulness: 2
-      level: 3
+      level: 4
       samm2: V-ST-2-A
       iso27001-2017:
       - 14.2.2
@@ -52,7 +52,7 @@ Test and Verification:
         time: 3
         resources: 1
       usefulness: 1
-      level: 2
+      level: 3
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1
@@ -68,7 +68,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 1
-      level: 1
+      level: 2
       samm2: V-ST-1-A
       iso27001-2017:
       - 12.6.1
@@ -85,7 +85,7 @@ Test and Verification:
         time: 3
         resources: 5
       usefulness: 3
-      level: 1
+      level: 2
       samm2: V-ST-2-A
       iso27001-2017:
       - 12.6.1

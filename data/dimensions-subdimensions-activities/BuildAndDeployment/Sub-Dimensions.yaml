@@ -17,7 +17,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 2
-      level: 1
+      level: 2
       implementation:
         - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
       references:
@@ -48,7 +48,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 2
-      level: 2
+      level: 3
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/container-technologi
@@ -71,7 +71,7 @@ Build and Deployment:
         time: 3
         resources: 2
       usefulness: 4
-      level: 1
+      level: 2
       dependsOn:
         - Continuous Integration
       implementation:
@@ -93,7 +93,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 3
-      level: 3
+      level: 4
       implementation: []
       dependsOn:
       - Defined build process
@@ -104,7 +104,7 @@ Build and Deployment:
     Pinning of artifacts:
       risk:
       - Unauthorized manipulation of artifacts might be difficult to spot. For example,
-        this may result in using images with malicious code. 
+        this may result in using images with malicious code.
         Also, intendend major changes, which are automatically used in an image used might break the functionality.
       measure: Pinning of artifacts ensure that changes are performed only when intended.
       comment: The usage of pinning requires a good processes for patching. Therefore, choose this activity wisly.
@@ -113,7 +113,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       implementation:
       - Container technology automatically creates a hash for images, which can be used.
       - Immutable images are an other way, e.g. by using a registry, which doesn't allow overriding of images.
@@ -135,7 +135,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 4
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker-content-trust
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/in-toto
@@ -159,7 +159,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/blue-green-deploymen
       dependsOn:
@@ -185,7 +185,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       dependsOn:
         - Continuous Integration
       implementation:
@@ -211,7 +211,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 4
-      level: 2
+      level: 3
       implementation: []
       references:
         samm2:
@@ -228,7 +228,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/webserver
@@ -251,7 +251,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 4
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
       dependsOn:
@@ -276,7 +276,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 4
-      level: 3
+      level: 4
       implementation: ''
       dependsOn:
       - Environment depending configuration parameters (secrets)
@@ -300,7 +300,7 @@ Build and Deployment:
         time: 1
         resources: 1
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
       dependsOn:
@@ -323,7 +323,7 @@ Build and Deployment:
         time: 1
         resources: 1
       usefulness: 3
-      level: 2
+      level: 3
       samm2: I-SD-2-A
       iso27001-2017:
       - 15.1.1
@@ -344,7 +344,7 @@ Build and Deployment:
         time: 2
         resources: 3
       usefulness: 3
-      level: 3
+      level: 4
       samm2: o-incident-management|TODO
       iso27001-2017:
       - '8.1'
@@ -361,7 +361,7 @@ Build and Deployment:
         time: 1
         resources: 2
       usefulness: 4
-      level: 1
+      level: 2
       samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
@@ -379,7 +379,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
@@ -397,7 +397,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 5
-      level: 1
+      level: 2
       samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
@@ -420,7 +420,7 @@ Build and Deployment:
         time: 4
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
@@ -435,7 +435,7 @@ Build and Deployment:
         time: 4
         resources: 2
       usefulness: 3
-      level: 4
+      level: 5
       samm2: O-EM-1-B
       iso27001-2017:
       - 12.6.1
@@ -452,7 +452,7 @@ Build and Deployment:
         time: 3
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       samm2: O-EM-1-B
       iso27001-2017:
       - hardening is missing in ISO 27001

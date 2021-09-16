@@ -11,7 +11,7 @@ Test and Verification:
         time: 5
         resources: 3
       usefulness: 3
-      level: 4
+      level: 5
       samm2: V-ST-3-B
       iso27001-2017:
       - 14.2.3
@@ -27,7 +27,7 @@ Test and Verification:
         time: 4
         resources: 2
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/httpunit
       samm2: V-ST-3-B
@@ -44,7 +44,7 @@ Test and Verification:
         time: 4
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       comment: |
         The integration of module tests takes place during development instead, it highlights vulnerabilities in sub-routines, functions, modules, libraries etc. checked.
         A sample implementation of unit tests are explained in the video [Shift-Left-Security with the Security Test Pyramid - Andreas Falk](https://www.youtube.com/watch?v=TzFZy3f7d8E) starting with minute 9.
@@ -66,7 +66,7 @@ Test and Verification:
         time: 2
         resources: 2
       usefulness: 2
-      level: 4
+      level: 5
       implementation: []
       dependsOn:
       - Defined deployment process

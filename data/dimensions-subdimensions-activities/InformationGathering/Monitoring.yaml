@@ -10,7 +10,7 @@ Information Gathering:
         time: 3
         resources: 2
       usefulness: 4
-      level: 3
+      level: 4
       dependsOn:
       - Simple application metrics
       - Visualized metrics
@@ -28,7 +28,7 @@ Information Gathering:
         time: 3
         resources: 2
       usefulness: 4
-      level: 3
+      level: 4
       dependsOn:
       - Simple application metrics
       - Visualized metrics
@@ -46,7 +46,7 @@ Information Gathering:
         time: 5
         resources: 5
       usefulness: 5
-      level: 2
+      level: 3
       dependsOn:
       - Visualized metrics
       samm2: O-DM-3-B
@@ -71,7 +71,7 @@ Information Gathering:
         time: 5
         resources: 2
       usefulness: 4
-      level: 4
+      level: 5
       dependsOn:
       - Visualized metrics
       implementation:
@@ -88,7 +88,7 @@ Information Gathering:
         time: 5
         resources: 5
       usefulness: 5
-      level: 3
+      level: 4
       dependsOn:
       - Visualized metrics
       samm2: O-IM-1-A
@@ -108,7 +108,7 @@ Information Gathering:
         time: 5
         resources: 2
       usefulness: 4
-      level: 4
+      level: 5
       dependsOn:
       - Visualized metrics
       - Filter outgoing traffic
@@ -126,7 +126,7 @@ Information Gathering:
         time: 4
         resources: 2
       usefulness: 2
-      level: 3
+      level: 4
       samm2: O-IM-2-A
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
@@ -141,7 +141,7 @@ Information Gathering:
         time: 3
         resources: 2
       usefulness: 5
-      level: 4
+      level: 5
       dependsOn:
       - Grouping of metrics
       samm2: O-IM-2-A
@@ -158,7 +158,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 5
-      level: 4
+      level: 5
       dependsOn:
       - Grouping of metrics
       samm2: O-IM-2-A
@@ -176,7 +176,7 @@ Information Gathering:
         time: 2
         resources: 2
       usefulness: 5
-      level: 1
+      level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/prometheus
       samm2: O-IM-1-A
@@ -194,7 +194,7 @@ Information Gathering:
         time: 2
         resources: 2
       usefulness: 5
-      level: 1
+      level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/collected
       samm2: O-IM-1-A
@@ -211,7 +211,7 @@ Information Gathering:
         time: 5
         resources: 5
       usefulness: 5
-      level: 3
+      level: 4
       dependsOn:
       - Alerting
       samm2: O-DM-3-B
@@ -228,7 +228,7 @@ Information Gathering:
         time: 2
         resources: 2
       usefulness: 3
-      level: 2
+      level: 3
       dependsOn:
       - Simple application metrics
       - Simple system metrics

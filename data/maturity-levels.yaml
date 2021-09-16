@@ -16,6 +16,11 @@ maturity-levels:
       An extensive description of this level in markdown format.
   level-4:
     level: 4
-    label:  "Advanced deployment of security practices at scale"
+    label:  "Advanced deployment of security practices"
+    description: |-
+      An extensive description of this level in markdown format.
+  level-5:
+    level: 5
+    label: "Very advanced deployment of security practices at scale"
     description: |-
       An extensive description of this level in markdown format.

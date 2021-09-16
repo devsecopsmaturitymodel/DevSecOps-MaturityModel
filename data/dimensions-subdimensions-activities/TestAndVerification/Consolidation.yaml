@@ -10,7 +10,7 @@ Test and Verification:
         time: 4
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defectdojo
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
@@ -35,7 +35,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       references:
         samm2: I-DM-2-A
         iso27001-2017:
@@ -55,7 +55,7 @@ Test and Verification:
         time: 2
         resources: 1
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sast
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dast
@@ -78,7 +78,7 @@ Test and Verification:
         time: 2
         resources: 2
       usefulness: 2
-      level: 4
+      level: 5
       implementation: []
       samm2: I-DM-2-B
       iso27001-2017:
@@ -97,7 +97,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defect-dojo
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
@@ -115,7 +115,7 @@ Test and Verification:
         time: 2
         resources: 1
       usefulness: 3
-      level: 2
+      level: 3
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-dependency-che
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logparser-jenkins-pl
@@ -137,7 +137,7 @@ Test and Verification:
         time: 2
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       samm2: I-DM-2-B
       iso27001-2017:
       - 16.1.4
@@ -153,7 +153,7 @@ Test and Verification:
         time: 2
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       comment: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2: I-DM-2-B
@@ -170,7 +170,7 @@ Test and Verification:
         time: 2
         resources: 1
       usefulness: 3
-      level: 3
+      level: 4
       comment: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2: I-DM-2-B
@@ -189,7 +189,7 @@ Test and Verification:
         time: 3
         resources: 2
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defectdojo
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
