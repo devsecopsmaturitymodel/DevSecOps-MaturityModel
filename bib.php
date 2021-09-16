@@ -13,7 +13,7 @@ require __DIR__ . '/vendor/autoload.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-define('NUMBER_LEVELS', 4);
+define('NUMBER_LEVELS', 5);
 define('IS_SHOW_EVIDENCE_TODO', false);
 if (isset($_ENV["ENFORCE_DATA_GENERATION_DURING_RUNTIME"])) {
   $enforce=boolval($_ENV["ENFORCE_DATA_GENERATION_DURING_RUNTIME"]);
@@ -71,6 +71,7 @@ function isElement($csvFile, $givenActivityName) {
 /**
  *
  * @param unknown $activityName
+ * @param unknown $activity
  * @return unknown
  */
 function elementIsSelected($activityName, $activity) {

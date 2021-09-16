@@ -20,7 +20,7 @@ include_once "data.php";
 function getSpiderWebData($dimensions) {
   $data = array();
   foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
-    for ($level = 1; $level <= 4; $level++) {
+    for ($level = 1; $level <= NUMBER_LEVELS; $level++) {
       // initialize $data cells
       if (! ($data[$level][$dimension][$subdimension] ?? null)) {
         $data[$level][$dimension][$subdimension]['count'] = 0;
