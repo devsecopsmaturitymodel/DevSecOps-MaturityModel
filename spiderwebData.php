@@ -151,7 +151,8 @@ if ($elementParam == null) {
   $element = $elementParam;
   $csvFile = 'selectedData.csv';
   if (isElement( $csvFile, $element)) {
-    deleteElement($csv, $element);
+      echo "Deleted element";
+      deleteElement($csv, $element);
   } else {
     if (!isElementExisting($dimensions, $element)) {
       echo "Could not find element";
@@ -160,8 +161,14 @@ if ($elementParam == null) {
     $newEntry['element'] = $element;
     $csv[] = $newEntry;
   }
+  if(array_key_exists(0, $csv)) {
+      $keys = array_keys($csv[0]);
+  } else if (array_key_exists(1, $csv)) {
+      $keys = array_keys($csv[1]);
+  } else {
+      $keys = array("element");
+  }
 
-  $keys = array_keys($csv[0]);
   $csv = array_merge(array($keys), $csv);
   $fp = fopen($csvFile, 'w');
   fwritecsv2($fp, $csv, ",");
