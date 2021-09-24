@@ -102,7 +102,7 @@ Culture and Organization:
       risk:
       - Understanding security is hard, even for security champions.
       measure: Regular security training of security champions.
-      evidence: |
+      assessment: |
         - Process Documentation: TODO
         - Training Content: TOODO
       difficultyOfImplementation:

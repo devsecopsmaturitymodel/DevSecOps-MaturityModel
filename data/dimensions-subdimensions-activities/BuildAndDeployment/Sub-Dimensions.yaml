@@ -63,7 +63,8 @@ Build and Deployment:
         a result of incorrect security related configuration.
       measure: A well defined build process lowers the possibility of errors during
         the build process.
-      evidence: The build process is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a>
+      description-md: |
+        Sample evidence as an attribute in the yaml: The build process is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a>
         in the folder <i>vars</>. Projects are using a <i>Jenkinsfile</i> to use the
         defined process.
       difficultyOfImplementation:
@@ -104,7 +105,7 @@ Build and Deployment:
     Pinning of artifacts:
       risk:
       - Unauthorized manipulation of artifacts might be difficult to spot. For example,
-        this may result in using images with malicious code. 
+        this may result in using images with malicious code.
         Also, intendend major changes, which are automatically used in an image used might break the functionality.
       measure: Pinning of artifacts ensure that changes are performed only when intended.
       comment: The usage of pinning requires a good processes for patching. Therefore, choose this activity wisly.
