@@ -5,7 +5,7 @@ Culture and Organization:
       - Inadequate identification of business and technical risks.
       measure: Creation of threat modeling processes and standards through the organization
         helps to enhance the security culture and provide more structure to the threat
-        modelings.
+        model exercises.
       difficultyOfImplementation:
         knowledge: 4
         time: 3
