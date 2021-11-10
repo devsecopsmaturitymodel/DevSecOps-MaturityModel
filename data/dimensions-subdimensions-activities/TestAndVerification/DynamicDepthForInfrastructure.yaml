@@ -78,7 +78,8 @@ Test and Verification:
       level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/netassert
-      dependsOn: Segmented networks for virtual environments
+      dependsOn:
+      - Segmented networks for virtual environments
       samm2: V-ST-2-A
       iso27001-2017:
       - 13.1.3
