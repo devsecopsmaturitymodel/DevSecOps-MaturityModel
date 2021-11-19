@@ -51,8 +51,7 @@ msgstr ""
 
 #: data/culture.php:83
 msgid ""
-"Conduction of collaborative security checks with develoeprs and system "
-"administrators"
+"Conduction of collaborative security checks with developers and system administrators"
 msgstr ""
 
 #: data/culture.php:94
