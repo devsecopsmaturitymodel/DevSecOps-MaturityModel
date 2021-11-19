@@ -26,7 +26,7 @@ msgid "Review by any new Version"
 msgstr ""
 
 #: data/culture.php:14
-msgid "Information security tragets are communicated"
+msgid "Information security targets are communicated"
 msgstr ""
 
 #: data/culture.php:25
