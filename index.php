@@ -6,7 +6,7 @@
  */
 
 
-$title = gettext("Activities Overview");
+$title = "Activities Overview";
 include_once "head.php";
 ?>
 <body>
