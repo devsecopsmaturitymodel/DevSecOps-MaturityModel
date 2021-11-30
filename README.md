@@ -132,7 +132,10 @@ docker-compose -f docker-compose.dev.yaml up test-php
 * DevSecOps Toolchain Categorization
 * App Sec Maturity Models Mapping
 * CAMS Categorization
-* Addinng of evidence
+* Adding assessment questions
+
+# Multilanguage support
+Multilanguage support is not given currently and not planned.
 
 # Sponsors
 
