@@ -518,3 +518,31 @@ implementations:
     name: About protected branches
     url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
     tags: [source-code-protection, scm]
+  sonarqube:
+    name: In-Depth Linting of Your TypeScript While Coding
+    url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
+    tags: [ide, linting]
+  stylecop:
+    name: How to enforce a consistent coding style in your projects
+    url: https://www.meziantou.net/how-to-enforce-a-consistent-coding-style-in-your-projects.htm
+    tags: [ide, linting]
+  fortify-vscode-extension:
+    name: Fortify Extension for Visual Studio Code
+    url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
+    tags: [ide, sast]
+  appscan-vscode-extension:
+    name: HCL AppScan CodeSweep
+    url: https://marketplace.visualstudio.com/items?itemName=HCLTechnologies.hclappscancodesweep
+    tags: [ide, sast]
+  checkmarx-vscode-extension:
+    name: Setting Up the Visual Studio Code Extension Plugin
+    url: https://checkmarx.atlassian.net/wiki/spaces/SD/pages/1759216424/Setting+Up+the+Visual+Studio+Code+Extension+Plugin
+    tags: [ide, sast]
+  pre-commit-microsoft:
+    name: DevSecOps control Pre-commit
+    url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
+    tags: [pre-commit]
+  pre-commit-synopsis:
+    name: Building your DevSecOps pipeline 5 essential activities
+    url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
+    tags: [pre-commit]
