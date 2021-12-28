@@ -1,0 +1,150 @@
+Build and Deployment:
+  Build:
+    Continuous integration:
+      risk: Quality is not visible to everyone, quality checks are distributed or manually and not deterministic.
+      measure: Use continuous automated building and testing of the software.
+      md-description: |
+        ## Benefits:
+        Quality is visible to everyone
+        There is a single instance deciding whether the code meets its quality (single ground of truth).
+        Deterministic and reproducible builds
+      assessment: |
+        - Show your build pipeline and an exemplary job (build + test).
+        - Show that every team member has access.
+        - Show that failed jobs are fixed.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 2
+      level: 1
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
+      references:
+        samm2:
+          - I-SB-1-A
+        iso27001-2017:
+          - iso27001-2017:14.2.6
+      credits: |
+        AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
+    Building and testing of artifacts in virtual environments:
+      description: |-
+        While building and testing artifacts, third party systems, application frameworks
+        and 3rd party libraries are used. These might be malicious as a result of
+        vulnerable libraries or because they are altered during the delivery phase.
+      risk:
+      - |-
+        While building and testing artifacts, third party systems, application frameworks
+        and 3rd party libraries are used. These might be malicious as a result of
+        vulnerable libraries or because they are altered during the delivery phase.
+      measure: Each step during within the build and testing phase is performed in
+        a separate virtual environments, which is destroyed afterward.
+      meta:
+        implementationGuide: Depending on your environment, usage of virtual machines
+          or container technology is a good way. After the build, the filesystem should
+          not be used again in other builds.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 2
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/container-technologi
+      references:
+        samm2:
+        - I-SB-2-A
+        iso27001-2017:
+        - iso27001-2017:14.2.6
+    Defined build process:
+      risk:
+      - Performing builds without a defined process is error prone; for example, as
+        a result of incorrect security related configuration.
+      measure: A well defined build process lowers the possibility of errors during
+        the build process.
+      description-md: |
+        Sample evidence as an attribute in the yaml: The build process is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a>
+        in the folder <i>vars</>. Projects are using a <i>Jenkinsfile</i> to use the
+        defined process.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 1
+      dependsOn:
+        - Continuous Integration
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/container-technologi
+      references:
+        samm2:
+        - I-SB-1-A
+        iso27001-2017:
+        - 12.1.1
+        - 14.2.2
+    Signing of code:
+      risk:
+      - Unauthorized manipulation of source code might be difficult to spot.
+      measure: Digitally signing commits helps to prevent unauthorized manipulation
+        of source code.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 3
+      implementation: []
+      dependsOn:
+      - Defined build process
+      references:
+        samm2: I-SB-2-A
+        iso27001-2017:
+        - 14.2.6
+    Pinning of artifacts:
+      risk:
+      - Unauthorized manipulation of artifacts might be difficult to spot. For example,
+        this may result in using images with malicious code.
+        Also, intendend major changes, which are automatically used in an image used might break the functionality.
+      measure: Pinning of artifacts ensure that changes are performed only when intended.
+      comment: The usage of pinning requires a good processes for patching. Therefore, choose this activity wisly.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 2
+      implementation:
+      - Container technology automatically creates a hash for images, which can be used.
+      - Immutable images are an other way, e.g. by using a registry, which doesn't allow overriding of images.
+      dependsOn:
+      - Defined build process
+      references:
+        samm2:
+        - I-SB-1-A
+        iso27001-2017:
+        - 14.2.6
+    Signing of artifacts:
+      risk:
+      - Unauthorized manipulation of artifacts might be difficult to spot. For example,
+        this may result in images with malicious code in the Docker registry.
+      measure: Digitally signing artifacts for all steps during the build and especially
+        docker images, helps to ensure their integrity.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker-content-trust
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/in-toto
+      dependsOn:
+      - Defined build process
+      - Pinning of artifacts
+      references:
+        samm2:
+        - I-SB-1-A
+        iso27001-2017:
+        - 14.2.6

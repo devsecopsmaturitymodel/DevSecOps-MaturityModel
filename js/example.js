@@ -14,10 +14,10 @@ function loadDiagramm() {
                 });
             });
         });
-        var countSubdimensions = 17;
+        var countSubdimensions = 18;
         var chart = circularHeatChart()
             .segmentHeight(40)
-            .innerRadius(170)
+            .innerRadius(190)
             .numSegments(countSubdimensions)
             .radialLabels(["Maturity 1", "Maturity 2", "Maturity 3", "Maturity 4"])
             .segmentLabels(labels)

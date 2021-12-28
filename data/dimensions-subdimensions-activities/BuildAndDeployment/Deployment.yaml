@@ -1,0 +1,204 @@
+Build and Deployment:
+  Deployment:
+    Blue/Green Deployment:
+      risk:
+        - A new artifacts version can have unknown defects.
+      measure: By having multiple production environments, a deployment can be performant
+        on the first environment to spot possible defects before it is deployment
+        in the production environment(s)
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 2
+        resources: 1
+      usefulness: 2
+      level: 4
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/blue-green-deploymen
+      dependsOn:
+        - Smoke Test
+      references:
+        samm2:
+          - TODO
+        iso27001-2017:
+          - 17.2.1
+          - 12.1.1
+          - 12.1.2
+          - 12.1.4
+          - 12.5.1
+          - 14.2.9
+    Defined deployment process:
+      risk:
+        - Deployments without a defined process are error prone thus allowing old or
+          untested artifact to be deployed.
+      measure: A defined deployment process significantly lowers the likelihood of
+        errors during the deployment phase.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 1
+      dependsOn:
+        - Continuous Integration
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
+      references:
+        samm2: I-SD-1-A
+        iso27001-2017:
+          - 12.1.1
+          - 14.2.2
+    Environment depending configuration parameters (secrets):
+      risk:
+        - Attackers who compromise a system can see confidential access information
+          like database credentials.
+        - Parameters are often used to set credentials, for example by starting containers
+          or applications; these parameters can often be seen by any one listing running
+          processes on the target system.
+      measure: |
+        Configuration parameters are set for each environment not in the source code.
+        By using encryption, it is harder to read credentials , e.g. from the file system. Also, the usage of a credential management system can help protect credentials.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      implementation: []
+      references:
+        samm2:
+          - I-SD-1-B
+        iso27001-2017:
+          - 9.4.5
+          - 14.2.6
+    Rolling update on deployment:
+      risk:
+        - While a deployment is performed, the application can not be reached.
+      measure: A deployment without downtime is performed*.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 2
+      level: 3
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/webserver
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rolling-update
+      dependsOn:
+        - Defined deployment process
+      samm2: I-SD-1-A
+      iso27001-2017:
+        - 12.5.1
+        - 14.2.2
+        - 17.2.1
+    Same artifact for environments:
+      risk:
+        - Building of an artifact for different environments means that an untested
+          artifact might reach the production environment.
+      measure: Building an artifact once and deploying it to different environments
+        means that only tested artifacts are allowed to reach the production environment
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
+      dependsOn:
+        - Defined build process
+      samm2: I-SD-2-A
+      iso27001-2017:
+        - 14.3.1
+        - 14.2.8
+        - 12.1.4
+    Handover of confidential parameters:
+      risk:
+        - Attackers who compromise a system can see confidential access information
+          like database credentials.
+        - Parameters are often used to set credentials, for example by starting containers
+          or applications; these parameters can often be seen by any one listing running
+          processes on the target system.
+      measure: By using encryption, it is harder to read credentials , e.g. from the
+        file system. Also, the usage of a credential management system can help protect
+        credentials.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      implementation: ''
+      dependsOn:
+        - Environment depending configuration parameters (secrets)
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 14.1.3
+          - 13.1.3
+          - 9.4.3
+          - 9.4.1
+          - 10.1.2
+    Usage of feature toggles:
+      risk:
+        - By using environment dependent configuration, some parameters will not be
+          tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
+      measure: Usage of environment independent configuration parameter, called feature
+        toggles, helps to enhance the test coverage. Only what has been tested, goes
+        to production.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 2
+      level: 3
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
+      dependsOn:
+        - Same artifact for environments
+      iso27001-2017:
+        - 14.3.1
+        - 14.2.8
+        - 14.2.9
+        - 12.1.4
+    Usage of trusted images:
+      risk:
+        - Developers or operations might start random images in the production cluster
+          which have malicious code or known vulnerabilities.
+      measure: Create image assessment criteria, perform an evaluation of images and
+        create a whitelist of artifacts/container images/virtual machine images.
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kubernetes-admission
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 2
+      samm2: I-SD-2-A
+      iso27001-2017:
+        - 15.1.1
+        - 15.1.2
+        - 15.1.3
+        - 14.1.3
+    Inventory of running artifacts:
+      risk:
+        - In case a vulnerability of severity high or critical exists, it needs to be
+          known where an artifacts with that vulnerability is deployed with which dependencies.
+      measure: A documented inventory or a possibility to gather the needed information
+        (e.g. the documentation of which script needs to be run by whom) must be in
+        place.
+      dependsOn:
+        - Defined deployment process
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 3
+      usefulness: 3
+      level: 3
+      samm2: o-incident-management|TODO
+      iso27001-2017:
+        - '8.1'
+        - '8.2'
+      implementation: []
