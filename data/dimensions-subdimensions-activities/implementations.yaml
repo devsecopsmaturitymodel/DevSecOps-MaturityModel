@@ -453,7 +453,7 @@ implementations:
   kubesec:
     name: kubesec
     tags: []
-    url: https://kubesec.io/
+    url: https://kubesec.io
   anchore-io:
     name: Anchore.io
     tags: []
