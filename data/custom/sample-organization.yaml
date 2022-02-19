@@ -1,0 +1,7 @@
+Build and Deployment:
+  Build:
+    Continuous integration:
+      evidence: |
+        at https://build.local the continuous integration process can be seen.
+    Building and testing of artifacts in virtual environments:
+      comments: one jenkins for all builds.
