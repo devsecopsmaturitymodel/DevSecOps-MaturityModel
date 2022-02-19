@@ -8,9 +8,9 @@ RUN composer install \
     --no-scripts \
     --prefer-dist
 
-FROM php:8.0.3-apache
+FROM php:apache-buster
 RUN apt-get update && apt-get -y dist-upgrade && apt-get -y install apt-utils libyaml-dev wget
-RUN pecl channel-update pecl.php.net && pecl install yaml-2.2.1 && docker-php-ext-enable yaml
+RUN pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 COPY . /var/www/html/
 RUN chmod 777 /var/www/html/selectedData.csv
