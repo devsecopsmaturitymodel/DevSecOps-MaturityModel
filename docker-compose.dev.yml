@@ -1,5 +1,11 @@
 version: "3.0"
 services:
+  composer:
+    image: composer
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    command: composer install --ignore-platform-reqs --no-interaction --no-plugins --no-scripts --prefer-dist
   dsomm: &dsomm
     build: .
     volumes:
