@@ -71,6 +71,7 @@ function isElement($csvFile, $givenActivityName) {
 /**
  *
  * @param unknown $activityName
+ * @param unknown $activity
  * @return unknown
  */
 function elementIsSelected($activityName, $activity) {
