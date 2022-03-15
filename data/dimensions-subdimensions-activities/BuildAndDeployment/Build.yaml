@@ -148,3 +148,20 @@ Build and Deployment:
         - I-SB-1-A
         iso27001-2017:
         - 14.2.6
+    SBOM of components:
+      risk:
+        - In case a vulnerability of severity high or critical exists, it needs to be
+          known where an artifacts with that vulnerability is deployed with which dependencies.
+      measure: Creation of an SBOM of components (e.g. application and container image content) during build.
+      dependsOn:
+        - Defined build process
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 3
+      usefulness: 3
+      level: 2
+      iso27001-2017:
+        - '8.1'
+        - '8.2'
+      implementation: []

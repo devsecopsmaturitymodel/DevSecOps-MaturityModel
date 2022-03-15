@@ -546,3 +546,7 @@ implementations:
     name: Building your DevSecOps pipeline 5 essential activities
     url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
     tags: [pre-commit]
+  dependencyTrack:
+    name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
+    url: https://github.com/DependencyTrack/dependency-track
+    tags: [sca, inventory]

@@ -185,10 +185,8 @@ Build and Deployment:
     Inventory of running artifacts:
       risk:
         - In case a vulnerability of severity high or critical exists, it needs to be
-          known where an artifacts with that vulnerability is deployed with which dependencies.
-      measure: A documented inventory or a possibility to gather the needed information
-        (e.g. the documentation of which script needs to be run by whom) must be in
-        place.
+          known where an artifacts (e.g. container image) with that vulnerability is deployed.
+      measure: A documented inventory or a possibility to gather the needed information.
       dependsOn:
         - Defined deployment process
       difficultyOfImplementation:
@@ -202,3 +200,24 @@ Build and Deployment:
         - '8.1'
         - '8.2'
       implementation: []
+    Inventory of dependencies:
+      risk:
+        - In case a vulnerability of severity high or critical is known by the organization, it needs to be
+          known where an artifacts with that vulnerability is deployed with which dependencies.
+      measure: A documented inventory of dependencies used in images and containers exists.
+      dependsOn:
+        - Defined deployment process
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 3
+      usefulness: 3
+      dependesOn:
+        - SBOM of components
+      level: 3
+      samm2: o-incident-management|TODO
+      iso27001-2017:
+        - '8.1'
+        - '8.2'
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dependencyTrack
