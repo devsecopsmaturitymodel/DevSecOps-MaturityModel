@@ -195,7 +195,7 @@ Build and Deployment:
         resources: 3
       usefulness: 3
       level: 3
-      samm2: o-incident-management|TODO
+      samm2: I-SD-2-A
       iso27001-2017:
         - '8.1'
         - '8.2'
@@ -215,7 +215,7 @@ Build and Deployment:
       dependesOn:
         - SBOM of components
       level: 3
-      samm2: o-incident-management|TODO
+      samm2: I-SD-2-A
       iso27001-2017:
         - '8.1'
         - '8.2'
