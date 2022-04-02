@@ -49,7 +49,7 @@ Information Gathering:
       level: 2
       dependsOn:
       - Visualized metrics
-      samm2: O-DM-3-B
+      samm2: I-DM-A 3
       iso27001-2017:
       - 16.1.2
       - 16.1.4
@@ -214,7 +214,7 @@ Information Gathering:
       level: 3
       dependsOn:
       - Alerting
-      samm2: O-DM-3-B
+      samm2: I-DM-A 3
       iso27001-2017:
       - not explicitly covered by ISO 27001 - too specific
       - 16.1.5
