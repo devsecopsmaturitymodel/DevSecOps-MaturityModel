@@ -161,7 +161,7 @@ Culture and Organization:
       usefulness: 3
       level: 3
       samm2:
-      - strategy-and-metrics|B|1
+      - O-IM-3-B
       iso27001-2017:
       - 16.1.6
       implementation: []
