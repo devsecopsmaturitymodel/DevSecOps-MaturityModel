@@ -57,7 +57,7 @@ Implementation:
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/azuredevops
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/github-policies
-      samm2: O-EM-1-C
+      samm2: O-EM-1-A
     Pre-Commit checks & validations:
       risk:
       - Using an insecure application might lead to a compromised application. This
