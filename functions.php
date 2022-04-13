@@ -87,6 +87,7 @@ function getDimensions($filename = "data/generated/dimensions.yaml") {
 }
 
 
+
 /**
  * This function should be a sort of db wrapper.
  *
@@ -104,6 +105,16 @@ function getActions($dimensions) {
       yield array($dimension, $subdimension, $elements);
     }
   }
+}
+
+function getSubdimensionCount($dimensions) {
+  $count=0;
+  foreach ($dimensions as $dimension => $subdimensions) {
+    foreach ($subdimensions as $subdimension => $elements) {
+      $count++;
+    }
+  }
+  return $count;
 }
 
 

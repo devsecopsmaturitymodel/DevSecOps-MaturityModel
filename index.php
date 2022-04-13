@@ -16,7 +16,7 @@ include_once "navi.php";
 
 echo "<h1>Matrix</h1>";
 echo getTable($dimensions);
-
+echo "<hr />";
 echo "<h1>Activities per Dimension</h1>";
 echo '<div class="extra">'.getInfos($dimensions) . '</div>';
 ?>

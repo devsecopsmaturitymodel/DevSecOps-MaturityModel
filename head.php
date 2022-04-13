@@ -115,7 +115,10 @@ function getTableHeader() {
  * @return unknown
  */
 function getInfos($dimensions) {
-  $text = "Activity Count: " . getElementCount ( $dimensions );
+  $text = "Activity count: " . getElementCount ( $dimensions );
+  $text = "$text<br />Dimension count: " . count($dimensions);
+
+  $text = "$text<br />Sub-Dimension count: " . getSubdimensionCount($dimensions) ;
   return $text;
 }
 
