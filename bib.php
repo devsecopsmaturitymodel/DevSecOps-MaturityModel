@@ -14,7 +14,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 define('NUMBER_LEVELS', 4);
-define('IS_SHOW_EVIDENCE_TODO', false);
+if (isset($_ENV["IS_SHOW_EVIDENCE_TODO"])) {
+  $enforce=boolval($_ENV["IS_SHOW_EVIDENCE_TODO"]);
+  define('IS_SHOW_EVIDENCE_TODO', $enforce);
+}else {
+  define('IS_SHOW_EVIDENCE_TODO', false);
+}
+
+
 if (isset($_ENV["ENFORCE_DATA_GENERATION_DURING_RUNTIME"])) {
   $enforce=boolval($_ENV["ENFORCE_DATA_GENERATION_DURING_RUNTIME"]);
   define('ENFORCE_DATA_GENERATION_DURING_RUNTIME', $enforce);
