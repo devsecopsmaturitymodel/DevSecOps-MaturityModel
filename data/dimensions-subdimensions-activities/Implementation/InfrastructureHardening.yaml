@@ -364,3 +364,52 @@ Implementation:
       - 13.1.3
       - 17.2.1
       implementation: []
+    Usage of encryption at rest:
+      risk:
+        - Evil actors might be able to access data and read information, e.g. from physical hard disks.
+      measure: By using encryption at trdt, it is impossible or at least harder to to read information.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 1
+      implementation: ''
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 10.1
+    Usage of edge encryption at transit:
+      risk:
+        - Evil actors might be able to perform a man in the middle attack and sniff confidential information
+          (e.g. authentication factors like passwords)
+      measure: By using encryption at the edge of traffic in transit, it is impossible or at least harder to sniff 
+        credentials beeing outside of the organization.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 1
+      implementation: ''
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 10.1
+    Usage of internal encryption at tansit:
+      risk:
+        - Evil actors within the organization of traffic in transit might be able to perform a man in the middle attack 
+          and sniff confidential information (e.g. authentication factors like passwords)
+      measure: By using encryption internally, e.g. inside of a cluster, it is impossible or at least harder to sniff
+        credentials.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation: ''
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 10.1
