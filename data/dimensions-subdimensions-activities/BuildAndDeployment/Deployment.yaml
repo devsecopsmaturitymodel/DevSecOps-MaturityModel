@@ -235,4 +235,4 @@ Build and Deployment:
         samm2:
           - O-OM-2-B
         iso27001-2017:
-          - 11.2.7
+          - '11.2.7'
