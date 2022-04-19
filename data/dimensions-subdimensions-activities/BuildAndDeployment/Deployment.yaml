@@ -222,9 +222,11 @@ Build and Deployment:
       implementation:
         - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dependencyTrack
     Defined decommissioning process:
-       risk:
-        - Not used applications erode and are not maintained. As an evil actor, I exploit known vulnerabilities in the not maintained applicaitons to perform latteral movement within the organization.
-      measure: By having a clear decommissioning process, applicaitons not used are not running anymore and can therefore not be explointed.
+      risk:
+        - Not used applications erode and are not maintained. As an evil actor, I exploit known vulnerabilities in the 
+          not maintained applicaitons to perform latteral movement within the organization.
+      measure: By having a clear decommissioning process, applicaitons not used are not running anymore and can 
+        therefore not be explointed.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
