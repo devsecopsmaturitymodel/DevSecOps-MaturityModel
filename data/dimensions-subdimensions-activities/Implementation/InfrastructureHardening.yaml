@@ -407,7 +407,7 @@ Implementation:
         time: 3
         resources: 2
       usefulness: 4
-      level: 3
+      level: 2
       implementation: ''
       references:
         samm2: I-SD-2-B
