@@ -255,7 +255,7 @@ Implementation:
         time: 2
         resources: 3
       usefulness: 4
-      level: 3
+      level: 2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/smartcard
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/yubikey
