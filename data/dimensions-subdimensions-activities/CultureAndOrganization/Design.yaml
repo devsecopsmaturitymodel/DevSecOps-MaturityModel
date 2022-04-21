@@ -210,7 +210,7 @@ Culture and Organization:
         time: 1
         resources: 1
       usefulness: 4
-      level: 0
+      level: 1
       iso27001-2017:
       - 5.1.1
       - 7.2.1
