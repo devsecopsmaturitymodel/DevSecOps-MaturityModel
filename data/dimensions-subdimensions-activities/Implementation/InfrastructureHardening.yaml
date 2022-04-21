@@ -413,3 +413,18 @@ Implementation:
         samm2: I-SD-2-B
         iso27001-2017:
           - 10.1
+    Usage of an security account:
+      risk:
+        - Having security auditing in the same account as infrastructure and applications at the cloud provide might cause evil administrators (or threat actors taking over an account of an administrator) to alter evidence like audit logs.
+      measure: Usage of a seperate account dedicated for security activities.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 3
+      usefulness: 4
+      level: 2
+      implementation: ''
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 10.1
