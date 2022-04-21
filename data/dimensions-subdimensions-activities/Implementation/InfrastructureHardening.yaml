@@ -23,7 +23,7 @@ Implementation:
         iso27001-2017:
         - '12.3'
         - 14.2.6
-    The cluster is hardened:
+    The environment is hardened:
       risk:
       - Using default configurations for a cluster environment leads to potential
         risks.
