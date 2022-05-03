@@ -22,12 +22,6 @@ Build and Deployment:
         resources: 2
       usefulness: 2
       level: 2
-      assessment: |
-        - Show your build pipeline and an exemplary job (build + test).
-        - Show that every team member has access.
-        - Show that failed jobs are fixed.
-        
-        Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/container-technologi
@@ -52,7 +46,11 @@ Build and Deployment:
         resources: 2
       usefulness: 4
       level: 1
-      dependsOn:
+      assessment: |
+        - Show your build pipeline and an exemplary job (build + test).
+        - Show that every team member has access.
+        - Show that failed jobs are fixed.
+        Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/container-technologi
