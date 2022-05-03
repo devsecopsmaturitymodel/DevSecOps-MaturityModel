@@ -50,6 +50,7 @@ Build and Deployment:
         - Show your build pipeline and an exemplary job (build + test).
         - Show that every team member has access.
         - Show that failed jobs are fixed.
+
         Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
