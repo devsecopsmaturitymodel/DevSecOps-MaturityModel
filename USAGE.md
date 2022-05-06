@@ -9,8 +9,6 @@ Before you start, there is kind of maturity level 0.
 The pre-requirements are highly based (mostly copied) on
  [AppSecure NRW](https://github.com/AppSecure-nrw/security-belts/tree/master/white).
 
-This model is based on "Security Belts".
-
 ## Risk management
 
 [NIST defines  `risk`](https://csrc.nist.gov/glossary/term/risk) as
