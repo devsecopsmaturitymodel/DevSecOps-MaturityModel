@@ -16,7 +16,7 @@ Test and Verification:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
       references:
-        samm2: I-DM-1-B
+        samm2: I-DM-3-B
         iso27001-2017:
         - 16.1.4
         - 8.2.1
