@@ -5,7 +5,7 @@ implementations:
     url: https://martinfowler.com/articles/continuousIntegration.html
     description: |-
       CI/CD tools such as jenkins, gitlab-ci or github-actions
-apimaturity:
+  apimaturity:
     name: API Security Maturity Model for Authorization
     tags: [api]
     url: https://curity.io/resources/learn/the-api-security-maturity-model/
