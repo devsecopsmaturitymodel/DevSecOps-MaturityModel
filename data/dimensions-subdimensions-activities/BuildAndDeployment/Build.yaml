@@ -72,7 +72,9 @@ Build and Deployment:
         resources: 2
       usefulness: 3
       level: 3
-      implementation: []
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/signing-of-commits
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/signing-of-commits-protection
       dependsOn:
       - Defined build process
       references:

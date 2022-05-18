@@ -1,4 +1,16 @@
 implementations:
+  signing-of-commits-protection:
+    name: Enforcement of commit signing
+    tags: [signing]
+    url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+    description: |-
+      Usage of branch protection rules
+  signing-of-commits:
+    name: Signing of commits
+    tags: [signing]
+    url: https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
+    description: |-
+      Signing of commits in git
   ci-cd-tools:
     name: CI/CD tools
     tags: [ci-cd]
