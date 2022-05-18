@@ -34,6 +34,7 @@ Implementation:
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/azuredevops
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/github-policies
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/signing-of-commits-protection
       samm2: O-EM-1-A
     "Pre-Commit checks & validations":
       risk:
