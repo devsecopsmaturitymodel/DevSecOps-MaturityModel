@@ -1,11 +1,4 @@
 <?php
-/**
- * data/generateDimensions.php
- *
- * @package default
- * @see functions.php
- */
-
 
 require_once "functions.php";
 
