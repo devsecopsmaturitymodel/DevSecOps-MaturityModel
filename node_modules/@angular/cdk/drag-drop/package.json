@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/drag-drop",
+  "fesm2020": "../fesm2020/drag-drop.mjs",
+  "fesm2015": "../fesm2015/drag-drop.mjs",
+  "esm2020": "../esm2020/drag-drop/drag-drop_public_index.mjs",
+  "typings": "./drag-drop_public_index.d.ts",
+  "module": "../fesm2015/drag-drop.mjs",
+  "es2020": "../fesm2020/drag-drop.mjs"
+}

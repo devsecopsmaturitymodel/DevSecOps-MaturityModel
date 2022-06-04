@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/overlay",
+  "fesm2020": "../fesm2020/overlay.mjs",
+  "fesm2015": "../fesm2015/overlay.mjs",
+  "esm2020": "../esm2020/overlay/overlay_public_index.mjs",
+  "typings": "./overlay_public_index.d.ts",
+  "module": "../fesm2015/overlay.mjs",
+  "es2020": "../fesm2020/overlay.mjs"
+}

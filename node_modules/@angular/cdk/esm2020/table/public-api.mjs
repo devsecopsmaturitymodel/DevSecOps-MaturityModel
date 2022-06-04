@@ -1,0 +1,20 @@
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+export * from './table';
+export * from './cell';
+export * from './coalesced-style-scheduler';
+export * from './row';
+export * from './table-module';
+export * from './sticky-styler';
+export * from './sticky-position-listener';
+export * from './can-stick';
+export * from './text-column';
+export * from './tokens';
+/** Re-export DataSource for a more intuitive experience for users of just the table. */
+export { DataSource } from '@angular/cdk/collections';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3NyYy9jZGsvdGFibGUvcHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFFSCxjQUFjLFNBQVMsQ0FBQztBQUN4QixjQUFjLFFBQVEsQ0FBQztBQUN2QixjQUFjLDZCQUE2QixDQUFDO0FBQzVDLGNBQWMsT0FBTyxDQUFDO0FBQ3RCLGNBQWMsZ0JBQWdCLENBQUM7QUFDL0IsY0FBYyxpQkFBaUIsQ0FBQztBQUNoQyxjQUFjLDRCQUE0QixDQUFDO0FBQzNDLGNBQWMsYUFBYSxDQUFDO0FBQzVCLGNBQWMsZUFBZSxDQUFDO0FBQzlCLGNBQWMsVUFBVSxDQUFDO0FBRXpCLHdGQUF3RjtBQUN4RixPQUFPLEVBQUMsVUFBVSxFQUFDLE1BQU0sMEJBQTBCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBDb3B5cmlnaHQgR29vZ2xlIExMQyBBbGwgUmlnaHRzIFJlc2VydmVkLlxuICpcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vYW5ndWxhci5pby9saWNlbnNlXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi90YWJsZSc7XG5leHBvcnQgKiBmcm9tICcuL2NlbGwnO1xuZXhwb3J0ICogZnJvbSAnLi9jb2FsZXNjZWQtc3R5bGUtc2NoZWR1bGVyJztcbmV4cG9ydCAqIGZyb20gJy4vcm93JztcbmV4cG9ydCAqIGZyb20gJy4vdGFibGUtbW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vc3RpY2t5LXN0eWxlcic7XG5leHBvcnQgKiBmcm9tICcuL3N0aWNreS1wb3NpdGlvbi1saXN0ZW5lcic7XG5leHBvcnQgKiBmcm9tICcuL2Nhbi1zdGljayc7XG5leHBvcnQgKiBmcm9tICcuL3RleHQtY29sdW1uJztcbmV4cG9ydCAqIGZyb20gJy4vdG9rZW5zJztcblxuLyoqIFJlLWV4cG9ydCBEYXRhU291cmNlIGZvciBhIG1vcmUgaW50dWl0aXZlIGV4cGVyaWVuY2UgZm9yIHVzZXJzIG9mIGp1c3QgdGhlIHRhYmxlLiAqL1xuZXhwb3J0IHtEYXRhU291cmNlfSBmcm9tICdAYW5ndWxhci9jZGsvY29sbGVjdGlvbnMnO1xuIl19

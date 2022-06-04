@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/stepper",
+  "fesm2020": "../fesm2020/stepper.mjs",
+  "fesm2015": "../fesm2015/stepper.mjs",
+  "esm2020": "../esm2020/stepper/stepper_public_index.mjs",
+  "typings": "./stepper_public_index.d.ts",
+  "module": "../fesm2015/stepper.mjs",
+  "es2020": "../fesm2020/stepper.mjs"
+}

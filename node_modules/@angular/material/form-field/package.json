@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/form-field",
+  "fesm2020": "../fesm2020/form-field.mjs",
+  "fesm2015": "../fesm2015/form-field.mjs",
+  "esm2020": "../esm2020/form-field/form-field_public_index.mjs",
+  "typings": "./form-field_public_index.d.ts",
+  "module": "../fesm2015/form-field.mjs",
+  "es2020": "../fesm2020/form-field.mjs"
+}

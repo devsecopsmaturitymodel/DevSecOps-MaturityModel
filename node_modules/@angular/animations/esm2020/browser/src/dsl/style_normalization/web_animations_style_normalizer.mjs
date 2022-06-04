@@ -1,0 +1,39 @@
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { invalidCssUnitValue } from '../../error_helpers';
+import { dashCaseToCamelCase } from '../../util';
+import { AnimationStyleNormalizer } from './animation_style_normalizer';
+export class WebAnimationsStyleNormalizer extends AnimationStyleNormalizer {
+    normalizePropertyName(propertyName, errors) {
+        return dashCaseToCamelCase(propertyName);
+    }
+    normalizeStyleValue(userProvidedProperty, normalizedProperty, value, errors) {
+        let unit = '';
+        const strVal = value.toString().trim();
+        if (DIMENSIONAL_PROP_MAP[normalizedProperty] && value !== 0 && value !== '0') {
+            if (typeof value === 'number') {
+                unit = 'px';
+            }
+            else {
+                const valAndSuffixMatch = value.match(/^[+-]?[\d\.]+([a-z]*)$/);
+                if (valAndSuffixMatch && valAndSuffixMatch[1].length == 0) {
+                    errors.push(invalidCssUnitValue(userProvidedProperty, value));
+                }
+            }
+        }
+        return strVal + unit;
+    }
+}
+const DIMENSIONAL_PROP_MAP = (() => makeBooleanMap('width,height,minWidth,minHeight,maxWidth,maxHeight,left,top,bottom,right,fontSize,outlineWidth,outlineOffset,paddingTop,paddingLeft,paddingBottom,paddingRight,marginTop,marginLeft,marginBottom,marginRight,borderRadius,borderWidth,borderTopWidth,borderLeftWidth,borderRightWidth,borderBottomWidth,textIndent,perspective'
+    .split(',')))();
+function makeBooleanMap(keys) {
+    const map = {};
+    keys.forEach(key => map[key] = true);
+    return map;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2ViX2FuaW1hdGlvbnNfc3R5bGVfbm9ybWFsaXplci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2FuaW1hdGlvbnMvYnJvd3Nlci9zcmMvZHNsL3N0eWxlX25vcm1hbGl6YXRpb24vd2ViX2FuaW1hdGlvbnNfc3R5bGVfbm9ybWFsaXplci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFDSCxPQUFPLEVBQUMsbUJBQW1CLEVBQUMsTUFBTSxxQkFBcUIsQ0FBQztBQUN4RCxPQUFPLEVBQUMsbUJBQW1CLEVBQUMsTUFBTSxZQUFZLENBQUM7QUFFL0MsT0FBTyxFQUFDLHdCQUF3QixFQUFDLE1BQU0sOEJBQThCLENBQUM7QUFFdEUsTUFBTSxPQUFPLDRCQUE2QixTQUFRLHdCQUF3QjtJQUMvRCxxQkFBcUIsQ0FBQyxZQUFvQixFQUFFLE1BQWU7UUFDbEUsT0FBTyxtQkFBbUIsQ0FBQyxZQUFZLENBQUMsQ0FBQztJQUMzQyxDQUFDO0lBRVEsbUJBQW1CLENBQ3hCLG9CQUE0QixFQUFFLGtCQUEwQixFQUFFLEtBQW9CLEVBQzlFLE1BQWU7UUFDakIsSUFBSSxJQUFJLEdBQVcsRUFBRSxDQUFDO1FBQ3RCLE1BQU0sTUFBTSxHQUFHLEtBQUssQ0FBQyxRQUFRLEVBQUUsQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUV2QyxJQUFJLG9CQUFvQixDQUFDLGtCQUFrQixDQUFDLElBQUksS0FBSyxLQUFLLENBQUMsSUFBSSxLQUFLLEtBQUssR0FBRyxFQUFFO1lBQzVFLElBQUksT0FBTyxLQUFLLEtBQUssUUFBUSxFQUFFO2dCQUM3QixJQUFJLEdBQUcsSUFBSSxDQUFDO2FBQ2I7aUJBQU07Z0JBQ0wsTUFBTSxpQkFBaUIsR0FBRyxLQUFLLENBQUMsS0FBSyxDQUFDLHdCQUF3QixDQUFDLENBQUM7Z0JBQ2hFLElBQUksaUJBQWlCLElBQUksaUJBQWlCLENBQUMsQ0FBQyxDQUFDLENBQUMsTUFBTSxJQUFJLENBQUMsRUFBRTtvQkFDekQsTUFBTSxDQUFDLElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxvQkFBb0IsRUFBRSxLQUFLLENBQUMsQ0FBQyxDQUFDO2lCQUMvRDthQUNGO1NBQ0Y7UUFDRCxPQUFPLE1BQU0sR0FBRyxJQUFJLENBQUM7SUFDdkIsQ0FBQztDQUNGO0FBRUQsTUFBTSxvQkFBb0IsR0FDdEIsQ0FBQyxHQUFHLEVBQUUsQ0FBQyxjQUFjLENBQ2hCLGdVQUFnVTtLQUMzVCxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxFQUFFLENBQUM7QUFFN0IsU0FBUyxjQUFjLENBQUMsSUFBYztJQUNwQyxNQUFNLEdBQUcsR0FBNkIsRUFBRSxDQUFDO0lBQ3pDLElBQUksQ0FBQyxPQUFPLENBQUMsR0FBRyxDQUFDLEVBQUUsQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLEdBQUcsSUFBSSxDQUFDLENBQUM7SUFDckMsT0FBTyxHQUFHLENBQUM7QUFDYixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAbGljZW5zZVxuICogQ29weXJpZ2h0IEdvb2dsZSBMTEMgQWxsIFJpZ2h0cyBSZXNlcnZlZC5cbiAqXG4gKiBVc2Ugb2YgdGhpcyBzb3VyY2UgY29kZSBpcyBnb3Zlcm5lZCBieSBhbiBNSVQtc3R5bGUgbGljZW5zZSB0aGF0IGNhbiBiZVxuICogZm91bmQgaW4gdGhlIExJQ0VOU0UgZmlsZSBhdCBodHRwczovL2FuZ3VsYXIuaW8vbGljZW5zZVxuICovXG5pbXBvcnQge2ludmFsaWRDc3NVbml0VmFsdWV9IGZyb20gJy4uLy4uL2Vycm9yX2hlbHBlcnMnO1xuaW1wb3J0IHtkYXNoQ2FzZVRvQ2FtZWxDYXNlfSBmcm9tICcuLi8uLi91dGlsJztcblxuaW1wb3J0IHtBbmltYXRpb25TdHlsZU5vcm1hbGl6ZXJ9IGZyb20gJy4vYW5pbWF0aW9uX3N0eWxlX25vcm1hbGl6ZXInO1xuXG5leHBvcnQgY2xhc3MgV2ViQW5pbWF0aW9uc1N0eWxlTm9ybWFsaXplciBleHRlbmRzIEFuaW1hdGlvblN0eWxlTm9ybWFsaXplciB7XG4gIG92ZXJyaWRlIG5vcm1hbGl6ZVByb3BlcnR5TmFtZShwcm9wZXJ0eU5hbWU6IHN0cmluZywgZXJyb3JzOiBFcnJvcltdKTogc3RyaW5nIHtcbiAgICByZXR1cm4gZGFzaENhc2VUb0NhbWVsQ2FzZShwcm9wZXJ0eU5hbWUpO1xuICB9XG5cbiAgb3ZlcnJpZGUgbm9ybWFsaXplU3R5bGVWYWx1ZShcbiAgICAgIHVzZXJQcm92aWRlZFByb3BlcnR5OiBzdHJpbmcsIG5vcm1hbGl6ZWRQcm9wZXJ0eTogc3RyaW5nLCB2YWx1ZTogc3RyaW5nfG51bWJlcixcbiAgICAgIGVycm9yczogRXJyb3JbXSk6IHN0cmluZyB7XG4gICAgbGV0IHVuaXQ6IHN0cmluZyA9ICcnO1xuICAgIGNvbnN0IHN0clZhbCA9IHZhbHVlLnRvU3RyaW5nKCkudHJpbSgpO1xuXG4gICAgaWYgKERJTUVOU0lPTkFMX1BST1BfTUFQW25vcm1hbGl6ZWRQcm9wZXJ0eV0gJiYgdmFsdWUgIT09IDAgJiYgdmFsdWUgIT09ICcwJykge1xuICAgICAgaWYgKHR5cGVvZiB2YWx1ZSA9PT0gJ251bWJlcicpIHtcbiAgICAgICAgdW5pdCA9ICdweCc7XG4gICAgICB9IGVsc2Uge1xuICAgICAgICBjb25zdCB2YWxBbmRTdWZmaXhNYXRjaCA9IHZhbHVlLm1hdGNoKC9eWystXT9bXFxkXFwuXSsoW2Etel0qKSQvKTtcbiAgICAgICAgaWYgKHZhbEFuZFN1ZmZpeE1hdGNoICYmIHZhbEFuZFN1ZmZpeE1hdGNoWzFdLmxlbmd0aCA9PSAwKSB7XG4gICAgICAgICAgZXJyb3JzLnB1c2goaW52YWxpZENzc1VuaXRWYWx1ZSh1c2VyUHJvdmlkZWRQcm9wZXJ0eSwgdmFsdWUpKTtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cbiAgICByZXR1cm4gc3RyVmFsICsgdW5pdDtcbiAgfVxufVxuXG5jb25zdCBESU1FTlNJT05BTF9QUk9QX01BUCA9XG4gICAgKCgpID0+IG1ha2VCb29sZWFuTWFwKFxuICAgICAgICAgJ3dpZHRoLGhlaWdodCxtaW5XaWR0aCxtaW5IZWlnaHQsbWF4V2lkdGgsbWF4SGVpZ2h0LGxlZnQsdG9wLGJvdHRvbSxyaWdodCxmb250U2l6ZSxvdXRsaW5lV2lkdGgsb3V0bGluZU9mZnNldCxwYWRkaW5nVG9wLHBhZGRpbmdMZWZ0LHBhZGRpbmdCb3R0b20scGFkZGluZ1JpZ2h0LG1hcmdpblRvcCxtYXJnaW5MZWZ0LG1hcmdpbkJvdHRvbSxtYXJnaW5SaWdodCxib3JkZXJSYWRpdXMsYm9yZGVyV2lkdGgsYm9yZGVyVG9wV2lkdGgsYm9yZGVyTGVmdFdpZHRoLGJvcmRlclJpZ2h0V2lkdGgsYm9yZGVyQm90dG9tV2lkdGgsdGV4dEluZGVudCxwZXJzcGVjdGl2ZSdcbiAgICAgICAgICAgICAuc3BsaXQoJywnKSkpKCk7XG5cbmZ1bmN0aW9uIG1ha2VCb29sZWFuTWFwKGtleXM6IHN0cmluZ1tdKToge1trZXk6IHN0cmluZ106IGJvb2xlYW59IHtcbiAgY29uc3QgbWFwOiB7W2tleTogc3RyaW5nXTogYm9vbGVhbn0gPSB7fTtcbiAga2V5cy5mb3JFYWNoKGtleSA9PiBtYXBba2V5XSA9IHRydWUpO1xuICByZXR1cm4gbWFwO1xufVxuIl19

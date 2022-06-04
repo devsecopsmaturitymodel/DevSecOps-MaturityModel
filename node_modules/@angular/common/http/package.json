@@ -1,0 +1,10 @@
+{
+  "name": "@angular/common/http",
+  "sideEffects": false,
+  "fesm2020": "../fesm2020/http.mjs",
+  "fesm2015": "../fesm2015/http.mjs",
+  "esm2020": "../esm2020/http/http.mjs",
+  "typings": "./http.d.ts",
+  "module": "../fesm2015/http.mjs",
+  "es2020": "../fesm2020/http.mjs"
+}

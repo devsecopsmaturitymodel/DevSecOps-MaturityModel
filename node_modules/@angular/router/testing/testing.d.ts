@@ -1,0 +1,61 @@
+/**
+ * @license Angular v13.3.10
+ * (c) 2010-2022 Google LLC. https://angular.io/
+ * License: MIT
+ */
+
+import { ChildrenOutletContexts } from '@angular/router';
+import { Compiler } from '@angular/core';
+import { ExtraOptions } from '@angular/router';
+import * as i0 from '@angular/core';
+import * as i1 from '@angular/router';
+import { Injector } from '@angular/core';
+import { Location as Location_2 } from '@angular/common';
+import { ModuleWithProviders } from '@angular/core';
+import { Route } from '@angular/router';
+import { Router } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
+import { Routes } from '@angular/router';
+import { UrlHandlingStrategy } from '@angular/router';
+import { UrlSerializer } from '@angular/router';
+
+/**
+ * @description
+ *
+ * Sets up the router to be used for testing.
+ *
+ * The modules sets up the router to be used for testing.
+ * It provides spy implementations of `Location` and `LocationStrategy`.
+ *
+ * @usageNotes
+ * ### Example
+ *
+ * ```
+ * beforeEach(() => {
+ *   TestBed.configureTestingModule({
+ *     imports: [
+ *       RouterTestingModule.withRoutes(
+ *         [{path: '', component: BlankCmp}, {path: 'simple', component: SimpleCmp}]
+ *       )
+ *     ]
+ *   });
+ * });
+ * ```
+ *
+ * @publicApi
+ */
+export declare class RouterTestingModule {
+    static withRoutes(routes: Routes, config?: ExtraOptions): ModuleWithProviders<RouterTestingModule>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<RouterTestingModule, never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<RouterTestingModule, never, never, [typeof i1.RouterModule]>;
+    static ɵinj: i0.ɵɵInjectorDeclaration<RouterTestingModule>;
+}
+
+/**
+ * Router setup factory function used for testing.
+ *
+ * @publicApi
+ */
+export declare function setupTestingRouter(urlSerializer: UrlSerializer, contexts: ChildrenOutletContexts, location: Location_2, compiler: Compiler, injector: Injector, routes: Route[][], opts?: ExtraOptions | UrlHandlingStrategy, urlHandlingStrategy?: UrlHandlingStrategy, routeReuseStrategy?: RouteReuseStrategy): Router;
+
+export { }

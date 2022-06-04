@@ -1,0 +1,23 @@
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+export declare const NodePackageName = "node-package";
+export interface NodePackageTaskFactoryOptions {
+    rootDirectory?: string;
+    packageManager?: string;
+    allowPackageManagerOverride?: boolean;
+    registry?: string;
+    force?: boolean;
+}
+export interface NodePackageTaskOptions {
+    command: string;
+    quiet?: boolean;
+    hideOutput?: boolean;
+    workingDirectory?: string;
+    packageName?: string;
+    packageManager?: string;
+}

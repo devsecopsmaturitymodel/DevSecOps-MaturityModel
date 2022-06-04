@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/tooltip",
+  "fesm2020": "../fesm2020/tooltip.mjs",
+  "fesm2015": "../fesm2015/tooltip.mjs",
+  "esm2020": "../esm2020/tooltip/tooltip_public_index.mjs",
+  "typings": "./tooltip_public_index.d.ts",
+  "module": "../fesm2015/tooltip.mjs",
+  "es2020": "../fesm2020/tooltip.mjs"
+}

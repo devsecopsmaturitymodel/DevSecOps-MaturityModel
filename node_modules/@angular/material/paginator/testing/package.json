@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/paginator/testing",
+  "fesm2020": "../../fesm2020/paginator/testing.mjs",
+  "fesm2015": "../../fesm2015/paginator/testing.mjs",
+  "esm2020": "../../esm2020/paginator/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/paginator/testing.mjs",
+  "es2020": "../../fesm2020/paginator/testing.mjs"
+}

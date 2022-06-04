@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/datepicker/testing",
+  "fesm2020": "../../fesm2020/datepicker/testing.mjs",
+  "fesm2015": "../../fesm2015/datepicker/testing.mjs",
+  "esm2020": "../../esm2020/datepicker/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/datepicker/testing.mjs",
+  "es2020": "../../fesm2020/datepicker/testing.mjs"
+}

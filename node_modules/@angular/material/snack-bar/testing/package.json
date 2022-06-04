@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/snack-bar/testing",
+  "fesm2020": "../../fesm2020/snack-bar/testing.mjs",
+  "fesm2015": "../../fesm2015/snack-bar/testing.mjs",
+  "esm2020": "../../esm2020/snack-bar/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/snack-bar/testing.mjs",
+  "es2020": "../../fesm2020/snack-bar/testing.mjs"
+}

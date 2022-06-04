@@ -1,0 +1,9 @@
+<mat-nav-list >
+    <a mat-list-item  *ngFor="let option of Options; index as i" routerLink={{Routing[i]}}>
+        <mat-icon mat-list-icon color="primary">{{Icons[i]}}</mat-icon>
+        <h3 mat-line>{{Options[i]}}</h3>
+    </a>
+</mat-nav-list>
+  
+ 
+  

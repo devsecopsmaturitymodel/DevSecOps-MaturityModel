@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/autocomplete/testing",
+  "fesm2020": "../../fesm2020/autocomplete/testing.mjs",
+  "fesm2015": "../../fesm2015/autocomplete/testing.mjs",
+  "esm2020": "../../esm2020/autocomplete/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/autocomplete/testing.mjs",
+  "es2020": "../../fesm2020/autocomplete/testing.mjs"
+}

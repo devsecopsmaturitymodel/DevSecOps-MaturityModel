@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/menu",
+  "fesm2020": "../fesm2020/menu.mjs",
+  "fesm2015": "../fesm2015/menu.mjs",
+  "esm2020": "../esm2020/menu/menu_public_index.mjs",
+  "typings": "./menu_public_index.d.ts",
+  "module": "../fesm2015/menu.mjs",
+  "es2020": "../fesm2020/menu.mjs"
+}

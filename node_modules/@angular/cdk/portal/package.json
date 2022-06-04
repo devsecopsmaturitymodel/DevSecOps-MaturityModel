@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/portal",
+  "fesm2020": "../fesm2020/portal.mjs",
+  "fesm2015": "../fesm2015/portal.mjs",
+  "esm2020": "../esm2020/portal/portal_public_index.mjs",
+  "typings": "./portal_public_index.d.ts",
+  "module": "../fesm2015/portal.mjs",
+  "es2020": "../fesm2020/portal.mjs"
+}

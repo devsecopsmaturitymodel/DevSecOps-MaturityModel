@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/platform",
+  "fesm2020": "../fesm2020/platform.mjs",
+  "fesm2015": "../fesm2015/platform.mjs",
+  "esm2020": "../esm2020/platform/platform_public_index.mjs",
+  "typings": "./platform_public_index.d.ts",
+  "module": "../fesm2015/platform.mjs",
+  "es2020": "../fesm2020/platform.mjs"
+}

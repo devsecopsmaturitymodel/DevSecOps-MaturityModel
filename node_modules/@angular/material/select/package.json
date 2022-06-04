@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/select",
+  "fesm2020": "../fesm2020/select.mjs",
+  "fesm2015": "../fesm2015/select.mjs",
+  "esm2020": "../esm2020/select/select_public_index.mjs",
+  "typings": "./select_public_index.d.ts",
+  "module": "../fesm2015/select.mjs",
+  "es2020": "../fesm2020/select.mjs"
+}

@@ -1,0 +1,129 @@
+{
+  "name": "@angular-devkit/build-angular",
+  "version": "13.3.7",
+  "description": "Angular Webpack Build Facade",
+  "main": "src/index.js",
+  "typings": "src/index.d.ts",
+  "builders": "builders.json",
+  "dependencies": {
+    "@ampproject/remapping": "2.2.0",
+    "@angular-devkit/architect": "0.1303.7",
+    "@angular-devkit/build-webpack": "0.1303.7",
+    "@angular-devkit/core": "13.3.7",
+    "@babel/core": "7.16.12",
+    "@babel/generator": "7.16.8",
+    "@babel/helper-annotate-as-pure": "7.16.7",
+    "@babel/plugin-proposal-async-generator-functions": "7.16.8",
+    "@babel/plugin-transform-async-to-generator": "7.16.8",
+    "@babel/plugin-transform-runtime": "7.16.10",
+    "@babel/preset-env": "7.16.11",
+    "@babel/runtime": "7.16.7",
+    "@babel/template": "7.16.7",
+    "@discoveryjs/json-ext": "0.5.6",
+    "@ngtools/webpack": "13.3.7",
+    "ansi-colors": "4.1.1",
+    "babel-loader": "8.2.5",
+    "babel-plugin-istanbul": "6.1.1",
+    "browserslist": "^4.9.1",
+    "cacache": "15.3.0",
+    "circular-dependency-plugin": "5.2.2",
+    "copy-webpack-plugin": "10.2.1",
+    "core-js": "3.20.3",
+    "critters": "0.0.16",
+    "css-loader": "6.5.1",
+    "esbuild-wasm": "0.14.22",
+    "glob": "7.2.0",
+    "https-proxy-agent": "5.0.0",
+    "inquirer": "8.2.0",
+    "jsonc-parser": "3.0.0",
+    "karma-source-map-support": "1.4.0",
+    "less": "4.1.2",
+    "less-loader": "10.2.0",
+    "license-webpack-plugin": "4.0.2",
+    "loader-utils": "3.2.0",
+    "mini-css-extract-plugin": "2.5.3",
+    "minimatch": "3.0.5",
+    "open": "8.4.0",
+    "ora": "5.4.1",
+    "parse5-html-rewriting-stream": "6.0.1",
+    "piscina": "3.2.0",
+    "postcss": "8.4.5",
+    "postcss-import": "14.0.2",
+    "postcss-loader": "6.2.1",
+    "postcss-preset-env": "7.2.3",
+    "regenerator-runtime": "0.13.9",
+    "resolve-url-loader": "5.0.0",
+    "rxjs": "6.6.7",
+    "sass": "1.49.9",
+    "sass-loader": "12.4.0",
+    "semver": "7.3.5",
+    "source-map-loader": "3.0.1",
+    "source-map-support": "0.5.21",
+    "stylus": "0.56.0",
+    "stylus-loader": "6.2.0",
+    "terser": "5.11.0",
+    "text-table": "0.2.0",
+    "tree-kill": "1.2.2",
+    "tslib": "2.3.1",
+    "webpack": "5.70.0",
+    "webpack-dev-middleware": "5.3.0",
+    "webpack-dev-server": "4.7.3",
+    "webpack-merge": "5.8.0",
+    "webpack-subresource-integrity": "5.1.0"
+  },
+  "optionalDependencies": {
+    "esbuild": "0.14.22"
+  },
+  "peerDependencies": {
+    "@angular/compiler-cli": "^13.0.0 || ^13.3.0-rc.0",
+    "@angular/localize": "^13.0.0 || ^13.3.0-rc.0",
+    "@angular/service-worker": "^13.0.0 || ^13.3.0-rc.0",
+    "karma": "^6.3.0",
+    "ng-packagr": "^13.0.0",
+    "protractor": "^7.0.0",
+    "tailwindcss": "^2.0.0 || ^3.0.0",
+    "typescript": ">=4.4.3 <4.7"
+  },
+  "peerDependenciesMeta": {
+    "@angular/localize": {
+      "optional": true
+    },
+    "@angular/service-worker": {
+      "optional": true
+    },
+    "karma": {
+      "optional": true
+    },
+    "ng-packagr": {
+      "optional": true
+    },
+    "protractor": {
+      "optional": true
+    },
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "angular",
+    "Angular CLI",
+    "devkit",
+    "sdk",
+    "Angular DevKit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular-cli.git"
+  },
+  "engines": {
+    "node": "^12.20.0 || ^14.15.0 || >=16.10.0",
+    "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+    "yarn": ">= 1.13.0"
+  },
+  "author": "Angular Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular/angular-cli/issues"
+  },
+  "homepage": "https://github.com/angular/angular-cli"
+}

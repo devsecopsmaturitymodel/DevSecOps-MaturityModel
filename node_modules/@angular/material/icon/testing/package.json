@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/icon/testing",
+  "fesm2020": "../../fesm2020/icon/testing.mjs",
+  "fesm2015": "../../fesm2015/icon/testing.mjs",
+  "esm2020": "../../esm2020/icon/testing/testing_public_index.mjs",
+  "typings": "./testing_public_index.d.ts",
+  "module": "../../fesm2015/icon/testing.mjs",
+  "es2020": "../../fesm2020/icon/testing.mjs"
+}

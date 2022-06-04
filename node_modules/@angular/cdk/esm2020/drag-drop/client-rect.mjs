@@ -1,0 +1,64 @@
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/** Gets a mutable version of an element's bounding `ClientRect`. */
+export function getMutableClientRect(element) {
+    const clientRect = element.getBoundingClientRect();
+    // We need to clone the `clientRect` here, because all the values on it are readonly
+    // and we need to be able to update them. Also we can't use a spread here, because
+    // the values on a `ClientRect` aren't own properties. See:
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect#Notes
+    return {
+        top: clientRect.top,
+        right: clientRect.right,
+        bottom: clientRect.bottom,
+        left: clientRect.left,
+        width: clientRect.width,
+        height: clientRect.height,
+        x: clientRect.x,
+        y: clientRect.y,
+    };
+}
+/**
+ * Checks whether some coordinates are within a `ClientRect`.
+ * @param clientRect ClientRect that is being checked.
+ * @param x Coordinates along the X axis.
+ * @param y Coordinates along the Y axis.
+ */
+export function isInsideClientRect(clientRect, x, y) {
+    const { top, bottom, left, right } = clientRect;
+    return y >= top && y <= bottom && x >= left && x <= right;
+}
+/**
+ * Updates the top/left positions of a `ClientRect`, as well as their bottom/right counterparts.
+ * @param clientRect `ClientRect` that should be updated.
+ * @param top Amount to add to the `top` position.
+ * @param left Amount to add to the `left` position.
+ */
+export function adjustClientRect(clientRect, top, left) {
+    clientRect.top += top;
+    clientRect.bottom = clientRect.top + clientRect.height;
+    clientRect.left += left;
+    clientRect.right = clientRect.left + clientRect.width;
+}
+/**
+ * Checks whether the pointer coordinates are close to a ClientRect.
+ * @param rect ClientRect to check against.
+ * @param threshold Threshold around the ClientRect.
+ * @param pointerX Coordinates along the X axis.
+ * @param pointerY Coordinates along the Y axis.
+ */
+export function isPointerNearClientRect(rect, threshold, pointerX, pointerY) {
+    const { top, right, bottom, left, width, height } = rect;
+    const xThreshold = width * threshold;
+    const yThreshold = height * threshold;
+    return (pointerY > top - yThreshold &&
+        pointerY < bottom + yThreshold &&
+        pointerX > left - xThreshold &&
+        pointerX < right + xThreshold);
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xpZW50LXJlY3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9zcmMvY2RrL2RyYWctZHJvcC9jbGllbnQtcmVjdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFFSCxvRUFBb0U7QUFDcEUsTUFBTSxVQUFVLG9CQUFvQixDQUFDLE9BQWdCO0lBQ25ELE1BQU0sVUFBVSxHQUFHLE9BQU8sQ0FBQyxxQkFBcUIsRUFBRSxDQUFDO0lBRW5ELG9GQUFvRjtJQUNwRixrRkFBa0Y7SUFDbEYsMkRBQTJEO0lBQzNELHVGQUF1RjtJQUN2RixPQUFPO1FBQ0wsR0FBRyxFQUFFLFVBQVUsQ0FBQyxHQUFHO1FBQ25CLEtBQUssRUFBRSxVQUFVLENBQUMsS0FBSztRQUN2QixNQUFNLEVBQUUsVUFBVSxDQUFDLE1BQU07UUFDekIsSUFBSSxFQUFFLFVBQVUsQ0FBQyxJQUFJO1FBQ3JCLEtBQUssRUFBRSxVQUFVLENBQUMsS0FBSztRQUN2QixNQUFNLEVBQUUsVUFBVSxDQUFDLE1BQU07UUFDekIsQ0FBQyxFQUFFLFVBQVUsQ0FBQyxDQUFDO1FBQ2YsQ0FBQyxFQUFFLFVBQVUsQ0FBQyxDQUFDO0tBQ0YsQ0FBQztBQUNsQixDQUFDO0FBRUQ7Ozs7O0dBS0c7QUFDSCxNQUFNLFVBQVUsa0JBQWtCLENBQUMsVUFBc0IsRUFBRSxDQUFTLEVBQUUsQ0FBUztJQUM3RSxNQUFNLEVBQUMsR0FBRyxFQUFFLE1BQU0sRUFBRSxJQUFJLEVBQUUsS0FBSyxFQUFDLEdBQUcsVUFBVSxDQUFDO0lBQzlDLE9BQU8sQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDLElBQUksTUFBTSxJQUFJLENBQUMsSUFBSSxJQUFJLElBQUksQ0FBQyxJQUFJLEtBQUssQ0FBQztBQUM1RCxDQUFDO0FBRUQ7Ozs7O0dBS0c7QUFDSCxNQUFNLFVBQVUsZ0JBQWdCLENBQzlCLFVBT0MsRUFDRCxHQUFXLEVBQ1gsSUFBWTtJQUVaLFVBQVUsQ0FBQyxHQUFHLElBQUksR0FBRyxDQUFDO0lBQ3RCLFVBQVUsQ0FBQyxNQUFNLEdBQUcsVUFBVSxDQUFDLEdBQUcsR0FBRyxVQUFVLENBQUMsTUFBTSxDQUFDO0lBRXZELFVBQVUsQ0FBQyxJQUFJLElBQUksSUFBSSxDQUFDO0lBQ3hCLFVBQVUsQ0FBQyxLQUFLLEdBQUcsVUFBVSxDQUFDLElBQUksR0FBRyxVQUFVLENBQUMsS0FBSyxDQUFDO0FBQ3hELENBQUM7QUFFRDs7Ozs7O0dBTUc7QUFDSCxNQUFNLFVBQVUsdUJBQXVCLENBQ3JDLElBQWdCLEVBQ2hCLFNBQWlCLEVBQ2pCLFFBQWdCLEVBQ2hCLFFBQWdCO0lBRWhCLE1BQU0sRUFBQyxHQUFHLEVBQUUsS0FBSyxFQUFFLE1BQU0sRUFBRSxJQUFJLEVBQUUsS0FBSyxFQUFFLE1BQU0sRUFBQyxHQUFHLElBQUksQ0FBQztJQUN2RCxNQUFNLFVBQVUsR0FBRyxLQUFLLEdBQUcsU0FBUyxDQUFDO0lBQ3JDLE1BQU0sVUFBVSxHQUFHLE1BQU0sR0FBRyxTQUFTLENBQUM7SUFFdEMsT0FBTyxDQUNMLFFBQVEsR0FBRyxHQUFHLEdBQUcsVUFBVTtRQUMzQixRQUFRLEdBQUcsTUFBTSxHQUFHLFVBQVU7UUFDOUIsUUFBUSxHQUFHLElBQUksR0FBRyxVQUFVO1FBQzVCLFFBQVEsR0FBRyxLQUFLLEdBQUcsVUFBVSxDQUM5QixDQUFDO0FBQ0osQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDIEFsbCBSaWdodHMgUmVzZXJ2ZWQuXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG4vKiogR2V0cyBhIG11dGFibGUgdmVyc2lvbiBvZiBhbiBlbGVtZW50J3MgYm91bmRpbmcgYENsaWVudFJlY3RgLiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGdldE11dGFibGVDbGllbnRSZWN0KGVsZW1lbnQ6IEVsZW1lbnQpOiBDbGllbnRSZWN0IHtcbiAgY29uc3QgY2xpZW50UmVjdCA9IGVsZW1lbnQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7XG5cbiAgLy8gV2UgbmVlZCB0byBjbG9uZSB0aGUgYGNsaWVudFJlY3RgIGhlcmUsIGJlY2F1c2UgYWxsIHRoZSB2YWx1ZXMgb24gaXQgYXJlIHJlYWRvbmx5XG4gIC8vIGFuZCB3ZSBuZWVkIHRvIGJlIGFibGUgdG8gdXBkYXRlIHRoZW0uIEFsc28gd2UgY2FuJ3QgdXNlIGEgc3ByZWFkIGhlcmUsIGJlY2F1c2VcbiAgLy8gdGhlIHZhbHVlcyBvbiBhIGBDbGllbnRSZWN0YCBhcmVuJ3Qgb3duIHByb3BlcnRpZXMuIFNlZTpcbiAgLy8gaHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvQVBJL0VsZW1lbnQvZ2V0Qm91bmRpbmdDbGllbnRSZWN0I05vdGVzXG4gIHJldHVybiB7XG4gICAgdG9wOiBjbGllbnRSZWN0LnRvcCxcbiAgICByaWdodDogY2xpZW50UmVjdC5yaWdodCxcbiAgICBib3R0b206IGNsaWVudFJlY3QuYm90dG9tLFxuICAgIGxlZnQ6IGNsaWVudFJlY3QubGVmdCxcbiAgICB3aWR0aDogY2xpZW50UmVjdC53aWR0aCxcbiAgICBoZWlnaHQ6IGNsaWVudFJlY3QuaGVpZ2h0LFxuICAgIHg6IGNsaWVudFJlY3QueCxcbiAgICB5OiBjbGllbnRSZWN0LnksXG4gIH0gYXMgQ2xpZW50UmVjdDtcbn1cblxuLyoqXG4gKiBDaGVja3Mgd2hldGhlciBzb21lIGNvb3JkaW5hdGVzIGFyZSB3aXRoaW4gYSBgQ2xpZW50UmVjdGAuXG4gKiBAcGFyYW0gY2xpZW50UmVjdCBDbGllbnRSZWN0IHRoYXQgaXMgYmVpbmcgY2hlY2tlZC5cbiAqIEBwYXJhbSB4IENvb3JkaW5hdGVzIGFsb25nIHRoZSBYIGF4aXMuXG4gKiBAcGFyYW0geSBDb29yZGluYXRlcyBhbG9uZyB0aGUgWSBheGlzLlxuICovXG5leHBvcnQgZnVuY3Rpb24gaXNJbnNpZGVDbGllbnRSZWN0KGNsaWVudFJlY3Q6IENsaWVudFJlY3QsIHg6IG51bWJlciwgeTogbnVtYmVyKSB7XG4gIGNvbnN0IHt0b3AsIGJvdHRvbSwgbGVmdCwgcmlnaHR9ID0gY2xpZW50UmVjdDtcbiAgcmV0dXJuIHkgPj0gdG9wICYmIHkgPD0gYm90dG9tICYmIHggPj0gbGVmdCAmJiB4IDw9IHJpZ2h0O1xufVxuXG4vKipcbiAqIFVwZGF0ZXMgdGhlIHRvcC9sZWZ0IHBvc2l0aW9ucyBvZiBhIGBDbGllbnRSZWN0YCwgYXMgd2VsbCBhcyB0aGVpciBib3R0b20vcmlnaHQgY291bnRlcnBhcnRzLlxuICogQHBhcmFtIGNsaWVudFJlY3QgYENsaWVudFJlY3RgIHRoYXQgc2hvdWxkIGJlIHVwZGF0ZWQuXG4gKiBAcGFyYW0gdG9wIEFtb3VudCB0byBhZGQgdG8gdGhlIGB0b3BgIHBvc2l0aW9uLlxuICogQHBhcmFtIGxlZnQgQW1vdW50IHRvIGFkZCB0byB0aGUgYGxlZnRgIHBvc2l0aW9uLlxuICovXG5leHBvcnQgZnVuY3Rpb24gYWRqdXN0Q2xpZW50UmVjdChcbiAgY2xpZW50UmVjdDoge1xuICAgIHRvcDogbnVtYmVyO1xuICAgIGJvdHRvbTogbnVtYmVyO1xuICAgIGxlZnQ6IG51bWJlcjtcbiAgICByaWdodDogbnVtYmVyO1xuICAgIHdpZHRoOiBudW1iZXI7XG4gICAgaGVpZ2h0OiBudW1iZXI7XG4gIH0sXG4gIHRvcDogbnVtYmVyLFxuICBsZWZ0OiBudW1iZXIsXG4pIHtcbiAgY2xpZW50UmVjdC50b3AgKz0gdG9wO1xuICBjbGllbnRSZWN0LmJvdHRvbSA9IGNsaWVudFJlY3QudG9wICsgY2xpZW50UmVjdC5oZWlnaHQ7XG5cbiAgY2xpZW50UmVjdC5sZWZ0ICs9IGxlZnQ7XG4gIGNsaWVudFJlY3QucmlnaHQgPSBjbGllbnRSZWN0LmxlZnQgKyBjbGllbnRSZWN0LndpZHRoO1xufVxuXG4vKipcbiAqIENoZWNrcyB3aGV0aGVyIHRoZSBwb2ludGVyIGNvb3JkaW5hdGVzIGFyZSBjbG9zZSB0byBhIENsaWVudFJlY3QuXG4gKiBAcGFyYW0gcmVjdCBDbGllbnRSZWN0IHRvIGNoZWNrIGFnYWluc3QuXG4gKiBAcGFyYW0gdGhyZXNob2xkIFRocmVzaG9sZCBhcm91bmQgdGhlIENsaWVudFJlY3QuXG4gKiBAcGFyYW0gcG9pbnRlclggQ29vcmRpbmF0ZXMgYWxvbmcgdGhlIFggYXhpcy5cbiAqIEBwYXJhbSBwb2ludGVyWSBDb29yZGluYXRlcyBhbG9uZyB0aGUgWSBheGlzLlxuICovXG5leHBvcnQgZnVuY3Rpb24gaXNQb2ludGVyTmVhckNsaWVudFJlY3QoXG4gIHJlY3Q6IENsaWVudFJlY3QsXG4gIHRocmVzaG9sZDogbnVtYmVyLFxuICBwb2ludGVyWDogbnVtYmVyLFxuICBwb2ludGVyWTogbnVtYmVyLFxuKTogYm9vbGVhbiB7XG4gIGNvbnN0IHt0b3AsIHJpZ2h0LCBib3R0b20sIGxlZnQsIHdpZHRoLCBoZWlnaHR9ID0gcmVjdDtcbiAgY29uc3QgeFRocmVzaG9sZCA9IHdpZHRoICogdGhyZXNob2xkO1xuICBjb25zdCB5VGhyZXNob2xkID0gaGVpZ2h0ICogdGhyZXNob2xkO1xuXG4gIHJldHVybiAoXG4gICAgcG9pbnRlclkgPiB0b3AgLSB5VGhyZXNob2xkICYmXG4gICAgcG9pbnRlclkgPCBib3R0b20gKyB5VGhyZXNob2xkICYmXG4gICAgcG9pbnRlclggPiBsZWZ0IC0geFRocmVzaG9sZCAmJlxuICAgIHBvaW50ZXJYIDwgcmlnaHQgKyB4VGhyZXNob2xkXG4gICk7XG59XG4iXX0=

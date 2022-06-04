@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/divider",
+  "fesm2020": "../fesm2020/divider.mjs",
+  "fesm2015": "../fesm2015/divider.mjs",
+  "esm2020": "../esm2020/divider/divider_public_index.mjs",
+  "typings": "./divider_public_index.d.ts",
+  "module": "../fesm2015/divider.mjs",
+  "es2020": "../fesm2020/divider.mjs"
+}

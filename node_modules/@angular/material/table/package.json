@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/table",
+  "fesm2020": "../fesm2020/table.mjs",
+  "fesm2015": "../fesm2015/table.mjs",
+  "esm2020": "../esm2020/table/table_public_index.mjs",
+  "typings": "./table_public_index.d.ts",
+  "module": "../fesm2015/table.mjs",
+  "es2020": "../fesm2020/table.mjs"
+}

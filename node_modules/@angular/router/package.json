@@ -1,0 +1,89 @@
+{
+  "name": "@angular/router",
+  "version": "13.3.10",
+  "description": "Angular - the routing library",
+  "keywords": [
+    "angular",
+    "router"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.git",
+    "directory": "packages/router"
+  },
+  "author": "angular",
+  "license": "MIT",
+  "engines": {
+    "node": "^12.20.0 || ^14.15.0 || >=16.10.0"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular/issues"
+  },
+  "homepage": "https://github.com/angular/angular/tree/main/packages/router",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/core": "13.3.10",
+    "@angular/common": "13.3.10",
+    "@angular/platform-browser": "13.3.10",
+    "rxjs": "^6.5.3 || ^7.4.0"
+  },
+  "ng-update": {
+    "packageGroup": [
+      "@angular/core",
+      "@angular/bazel",
+      "@angular/common",
+      "@angular/compiler",
+      "@angular/compiler-cli",
+      "@angular/animations",
+      "@angular/elements",
+      "@angular/platform-browser",
+      "@angular/platform-browser-dynamic",
+      "@angular/forms",
+      "@angular/platform-server",
+      "@angular/upgrade",
+      "@angular/router",
+      "@angular/language-service",
+      "@angular/localize",
+      "@angular/service-worker"
+    ]
+  },
+  "sideEffects": false,
+  "fesm2020": "./fesm2020/router.mjs",
+  "fesm2015": "./fesm2015/router.mjs",
+  "esm2020": "./esm2020/router.mjs",
+  "typings": "./router.d.ts",
+  "module": "./fesm2015/router.mjs",
+  "es2020": "./fesm2020/router.mjs",
+  "type": "module",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./router.d.ts",
+      "esm2020": "./esm2020/router.mjs",
+      "es2020": "./fesm2020/router.mjs",
+      "es2015": "./fesm2015/router.mjs",
+      "node": "./fesm2015/router.mjs",
+      "default": "./fesm2020/router.mjs"
+    },
+    "./testing": {
+      "types": "./testing/testing.d.ts",
+      "esm2020": "./esm2020/testing/testing.mjs",
+      "es2020": "./fesm2020/testing.mjs",
+      "es2015": "./fesm2015/testing.mjs",
+      "node": "./fesm2015/testing.mjs",
+      "default": "./fesm2020/testing.mjs"
+    },
+    "./upgrade": {
+      "types": "./upgrade/upgrade.d.ts",
+      "esm2020": "./esm2020/upgrade/upgrade.mjs",
+      "es2020": "./fesm2020/upgrade.mjs",
+      "es2015": "./fesm2015/upgrade.mjs",
+      "node": "./fesm2015/upgrade.mjs",
+      "default": "./fesm2020/upgrade.mjs"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<mat-drawer-container class="main-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+    <a routerLink="/"><app-logo></app-logo></a>
+    <app-sidenav-buttons></app-sidenav-buttons>
+    </mat-drawer>
+  
+    <div class="sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()" color="primary">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

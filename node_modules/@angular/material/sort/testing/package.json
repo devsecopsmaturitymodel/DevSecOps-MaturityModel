@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/sort/testing",
+  "fesm2020": "../../fesm2020/sort/testing.mjs",
+  "fesm2015": "../../fesm2015/sort/testing.mjs",
+  "esm2020": "../../esm2020/sort/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/sort/testing.mjs",
+  "es2020": "../../fesm2020/sort/testing.mjs"
+}

@@ -1,0 +1,85 @@
+{
+  "name": "@angular/platform-browser",
+  "version": "13.3.10",
+  "description": "Angular - library for using Angular in a web browser",
+  "author": "angular",
+  "license": "MIT",
+  "engines": {
+    "node": "^12.20.0 || ^14.15.0 || >=16.10.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/animations": "13.3.10",
+    "@angular/core": "13.3.10",
+    "@angular/common": "13.3.10"
+  },
+  "peerDependenciesMeta": {
+    "@angular/animations": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular.git",
+    "directory": "packages/platform-browser"
+  },
+  "ng-update": {
+    "packageGroup": [
+      "@angular/core",
+      "@angular/bazel",
+      "@angular/common",
+      "@angular/compiler",
+      "@angular/compiler-cli",
+      "@angular/animations",
+      "@angular/elements",
+      "@angular/platform-browser",
+      "@angular/platform-browser-dynamic",
+      "@angular/forms",
+      "@angular/platform-server",
+      "@angular/upgrade",
+      "@angular/router",
+      "@angular/language-service",
+      "@angular/localize",
+      "@angular/service-worker"
+    ]
+  },
+  "sideEffects": false,
+  "fesm2020": "./fesm2020/platform-browser.mjs",
+  "fesm2015": "./fesm2015/platform-browser.mjs",
+  "esm2020": "./esm2020/platform-browser.mjs",
+  "typings": "./platform-browser.d.ts",
+  "module": "./fesm2015/platform-browser.mjs",
+  "es2020": "./fesm2020/platform-browser.mjs",
+  "type": "module",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./platform-browser.d.ts",
+      "esm2020": "./esm2020/platform-browser.mjs",
+      "es2020": "./fesm2020/platform-browser.mjs",
+      "es2015": "./fesm2015/platform-browser.mjs",
+      "node": "./fesm2015/platform-browser.mjs",
+      "default": "./fesm2020/platform-browser.mjs"
+    },
+    "./animations": {
+      "types": "./animations/animations.d.ts",
+      "esm2020": "./esm2020/animations/animations.mjs",
+      "es2020": "./fesm2020/animations.mjs",
+      "es2015": "./fesm2015/animations.mjs",
+      "node": "./fesm2015/animations.mjs",
+      "default": "./fesm2020/animations.mjs"
+    },
+    "./testing": {
+      "types": "./testing/testing.d.ts",
+      "esm2020": "./esm2020/testing/testing.mjs",
+      "es2020": "./fesm2020/testing.mjs",
+      "es2015": "./fesm2015/testing.mjs",
+      "node": "./fesm2015/testing.mjs",
+      "default": "./fesm2020/testing.mjs"
+    }
+  }
+}

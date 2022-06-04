@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../packages/compiler-cli/ngcc/src/locking/lock_file_with_child_process/util.ts"],
+  "mappings": ";;;;;;AAgBM,wBACF,IAAgB,QAAgB,cAA8B,KAAW;AAC3E,MAAI;AACF,WAAO,MAAM,qCAAqC,eAAe;AACjE,UAAM,cAAc,GAAG,SAAS,YAAY;AAC5C,QAAI,gBAAgB,KAAK;AACvB,aAAO,MAAM,eAAe,qBAAqB,eAAe;AAChE,SAAG,WAAW,YAAY;WACrB;AACL,aAAO,MACH,sBAAsB,WAAW,iCAAiC,eAAe;;WAEhF,GAAP;AACA,QAAI,EAAE,SAAS,UAAU;AACvB,aAAO,MAAM,oBAAoB,mCAAmC;WAE/D;AACL,YAAM;;;AAGZ;",
+  "names": []
+}

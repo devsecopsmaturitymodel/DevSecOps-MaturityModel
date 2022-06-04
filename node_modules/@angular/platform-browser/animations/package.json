@@ -1,0 +1,10 @@
+{
+  "name": "@angular/platform-browser/animations",
+  "sideEffects": false,
+  "fesm2020": "../fesm2020/animations.mjs",
+  "fesm2015": "../fesm2015/animations.mjs",
+  "esm2020": "../esm2020/animations/animations.mjs",
+  "typings": "./animations.d.ts",
+  "module": "../fesm2015/animations.mjs",
+  "es2020": "../fesm2020/animations.mjs"
+}

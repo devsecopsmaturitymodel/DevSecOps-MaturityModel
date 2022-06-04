@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/collections",
+  "fesm2020": "../fesm2020/collections.mjs",
+  "fesm2015": "../fesm2015/collections.mjs",
+  "esm2020": "../esm2020/collections/collections_public_index.mjs",
+  "typings": "./collections_public_index.d.ts",
+  "module": "../fesm2015/collections.mjs",
+  "es2020": "../fesm2020/collections.mjs"
+}

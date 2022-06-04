@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/button-toggle",
+  "fesm2020": "../fesm2020/button-toggle.mjs",
+  "fesm2015": "../fesm2015/button-toggle.mjs",
+  "esm2020": "../esm2020/button-toggle/button-toggle_public_index.mjs",
+  "typings": "./button-toggle_public_index.d.ts",
+  "module": "../fesm2015/button-toggle.mjs",
+  "es2020": "../fesm2020/button-toggle.mjs"
+}

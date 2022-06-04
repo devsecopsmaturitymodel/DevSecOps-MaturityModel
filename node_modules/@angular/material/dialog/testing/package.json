@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/dialog/testing",
+  "fesm2020": "../../fesm2020/dialog/testing.mjs",
+  "fesm2015": "../../fesm2015/dialog/testing.mjs",
+  "esm2020": "../../esm2020/dialog/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/dialog/testing.mjs",
+  "es2020": "../../fesm2020/dialog/testing.mjs"
+}

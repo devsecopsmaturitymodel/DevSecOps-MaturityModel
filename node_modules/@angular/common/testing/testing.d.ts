@@ -1,0 +1,124 @@
+/**
+ * @license Angular v13.3.10
+ * (c) 2010-2022 Google LLC. https://angular.io/
+ * License: MIT
+ */
+
+import * as i0 from '@angular/core';
+import { InjectionToken } from '@angular/core';
+import { Location as Location_2 } from '@angular/common';
+import { LocationChangeListener } from '@angular/common';
+import { LocationStrategy } from '@angular/common';
+import { PlatformLocation } from '@angular/common';
+import { SubscriptionLike } from 'rxjs';
+
+/**
+ * Provider for mock platform location config
+ *
+ * @publicApi
+ */
+export declare const MOCK_PLATFORM_LOCATION_CONFIG: InjectionToken<MockPlatformLocationConfig>;
+
+/**
+ * A mock implementation of {@link LocationStrategy} that allows tests to fire simulated
+ * location events.
+ *
+ * @publicApi
+ */
+export declare class MockLocationStrategy extends LocationStrategy {
+    internalBaseHref: string;
+    internalPath: string;
+    internalTitle: string;
+    urlChanges: string[];
+    private stateChanges;
+    constructor();
+    simulatePopState(url: string): void;
+    path(includeHash?: boolean): string;
+    prepareExternalUrl(internal: string): string;
+    pushState(ctx: any, title: string, path: string, query: string): void;
+    replaceState(ctx: any, title: string, path: string, query: string): void;
+    onPopState(fn: (value: any) => void): void;
+    getBaseHref(): string;
+    back(): void;
+    forward(): void;
+    getState(): unknown;
+    static ɵfac: i0.ɵɵFactoryDeclaration<MockLocationStrategy, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<MockLocationStrategy>;
+}
+
+/**
+ * Mock implementation of URL state.
+ *
+ * @publicApi
+ */
+export declare class MockPlatformLocation implements PlatformLocation {
+    private baseHref;
+    private hashUpdate;
+    private urlChangeIndex;
+    private urlChanges;
+    constructor(config?: MockPlatformLocationConfig);
+    get hostname(): string;
+    get protocol(): string;
+    get port(): string;
+    get pathname(): string;
+    get search(): string;
+    get hash(): string;
+    get state(): unknown;
+    getBaseHrefFromDOM(): string;
+    onPopState(fn: LocationChangeListener): VoidFunction;
+    onHashChange(fn: LocationChangeListener): VoidFunction;
+    get href(): string;
+    get url(): string;
+    private parseChanges;
+    replaceState(state: any, title: string, newUrl: string): void;
+    pushState(state: any, title: string, newUrl: string): void;
+    forward(): void;
+    back(): void;
+    historyGo(relativePosition?: number): void;
+    getState(): unknown;
+    private scheduleHashUpdate;
+    static ɵfac: i0.ɵɵFactoryDeclaration<MockPlatformLocation, [{ optional: true; }]>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<MockPlatformLocation>;
+}
+
+/**
+ * Mock platform location config
+ *
+ * @publicApi
+ */
+export declare interface MockPlatformLocationConfig {
+    startUrl?: string;
+    appBaseHref?: string;
+}
+
+/**
+ * A spy for {@link Location} that allows tests to fire simulated location events.
+ *
+ * @publicApi
+ */
+export declare class SpyLocation implements Location_2 {
+    urlChanges: string[];
+    private _history;
+    private _historyIndex;
+    setInitialPath(url: string): void;
+    setBaseHref(url: string): void;
+    path(): string;
+    getState(): unknown;
+    isCurrentPathEqualTo(path: string, query?: string): boolean;
+    simulateUrlPop(pathname: string): void;
+    simulateHashChange(pathname: string): void;
+    prepareExternalUrl(url: string): string;
+    go(path: string, query?: string, state?: any): void;
+    replaceState(path: string, query?: string, state?: any): void;
+    forward(): void;
+    back(): void;
+    historyGo(relativePosition?: number): void;
+    onUrlChange(fn: (url: string, state: unknown) => void): void;
+    subscribe(onNext: (value: any) => void, onThrow?: ((error: any) => void) | null, onReturn?: (() => void) | null): SubscriptionLike;
+    normalize(url: string): string;
+    private pushHistory;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SpyLocation, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SpyLocation>;
+}
+
+export { }

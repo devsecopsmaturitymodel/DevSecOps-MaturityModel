@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/badge/testing",
+  "fesm2020": "../../fesm2020/badge/testing.mjs",
+  "fesm2015": "../../fesm2015/badge/testing.mjs",
+  "esm2020": "../../esm2020/badge/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/badge/testing.mjs",
+  "es2020": "../../fesm2020/badge/testing.mjs"
+}

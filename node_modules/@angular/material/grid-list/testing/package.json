@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/grid-list/testing",
+  "fesm2020": "../../fesm2020/grid-list/testing.mjs",
+  "fesm2015": "../../fesm2015/grid-list/testing.mjs",
+  "esm2020": "../../esm2020/grid-list/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/grid-list/testing.mjs",
+  "es2020": "../../fesm2020/grid-list/testing.mjs"
+}

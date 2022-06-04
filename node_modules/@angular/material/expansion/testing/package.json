@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/expansion/testing",
+  "fesm2020": "../../fesm2020/expansion/testing.mjs",
+  "fesm2015": "../../fesm2015/expansion/testing.mjs",
+  "esm2020": "../../esm2020/expansion/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/expansion/testing.mjs",
+  "es2020": "../../fesm2020/expansion/testing.mjs"
+}

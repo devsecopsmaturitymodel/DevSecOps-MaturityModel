@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/testing/selenium-webdriver",
+  "fesm2020": "../../fesm2020/testing/selenium-webdriver.mjs",
+  "fesm2015": "../../fesm2015/testing/selenium-webdriver.mjs",
+  "esm2020": "../../esm2020/testing/selenium-webdriver/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/testing/selenium-webdriver.mjs",
+  "es2020": "../../fesm2020/testing/selenium-webdriver.mjs"
+}

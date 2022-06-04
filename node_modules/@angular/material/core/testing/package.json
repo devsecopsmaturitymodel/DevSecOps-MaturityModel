@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/core/testing",
+  "fesm2020": "../../fesm2020/core/testing.mjs",
+  "fesm2015": "../../fesm2015/core/testing.mjs",
+  "esm2020": "../../esm2020/core/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/core/testing.mjs",
+  "es2020": "../../fesm2020/core/testing.mjs"
+}

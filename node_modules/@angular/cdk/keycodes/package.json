@@ -1,0 +1,9 @@
+{
+  "name": "@angular/cdk/keycodes",
+  "fesm2020": "../fesm2020/keycodes.mjs",
+  "fesm2015": "../fesm2015/keycodes.mjs",
+  "esm2020": "../esm2020/keycodes/keycodes_public_index.mjs",
+  "typings": "./keycodes_public_index.d.ts",
+  "module": "../fesm2015/keycodes.mjs",
+  "es2020": "../fesm2020/keycodes.mjs"
+}

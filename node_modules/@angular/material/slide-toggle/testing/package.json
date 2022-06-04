@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/slide-toggle/testing",
+  "fesm2020": "../../fesm2020/slide-toggle/testing.mjs",
+  "fesm2015": "../../fesm2015/slide-toggle/testing.mjs",
+  "esm2020": "../../esm2020/slide-toggle/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/slide-toggle/testing.mjs",
+  "es2020": "../../fesm2020/slide-toggle/testing.mjs"
+}

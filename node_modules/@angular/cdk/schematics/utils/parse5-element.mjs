@@ -1,0 +1,31 @@
+"use strict";
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getChildElementIndentation = void 0;
+const schematics_1 = require("@angular-devkit/schematics");
+/** Determines the indentation of child elements for the given Parse5 element. */
+function getChildElementIndentation(element) {
+    const childElement = element.childNodes.find(node => node.tagName);
+    if ((childElement && !childElement.sourceCodeLocation) || !element.sourceCodeLocation) {
+        throw new schematics_1.SchematicsException('Cannot determine child element indentation because the ' +
+            'specified Parse5 element does not have any source code location metadata.');
+    }
+    const startColumns = childElement
+        ? // In case there are child elements inside of the element, we assume that their
+            // indentation is also applicable for other child elements.
+            childElement.sourceCodeLocation.startCol
+        : // In case there is no child element, we just assume that child elements should be indented
+            // by two spaces.
+            element.sourceCodeLocation.startCol + 2;
+    // Since Parse5 does not set the `startCol` properties as zero-based, we need to subtract
+    // one column in order to have a proper zero-based offset for the indentation.
+    return startColumns - 1;
+}
+exports.getChildElementIndentation = getChildElementIndentation;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFyc2U1LWVsZW1lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9zcmMvY2RrL3NjaGVtYXRpY3MvdXRpbHMvcGFyc2U1LWVsZW1lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBOzs7Ozs7R0FNRzs7O0FBRUgsMkRBQStEO0FBRy9ELGlGQUFpRjtBQUNqRixTQUFnQiwwQkFBMEIsQ0FBQyxPQUFnQjtJQUN6RCxNQUFNLFlBQVksR0FBRyxPQUFPLENBQUMsVUFBVSxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFFLElBQWdCLENBQUMsT0FBTyxDQUFtQixDQUFDO0lBRWxHLElBQUksQ0FBQyxZQUFZLElBQUksQ0FBQyxZQUFZLENBQUMsa0JBQWtCLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxrQkFBa0IsRUFBRTtRQUNyRixNQUFNLElBQUksZ0NBQW1CLENBQzNCLHlEQUF5RDtZQUN2RCwyRUFBMkUsQ0FDOUUsQ0FBQztLQUNIO0lBRUQsTUFBTSxZQUFZLEdBQUcsWUFBWTtRQUMvQixDQUFDLENBQUMsK0VBQStFO1lBQy9FLDJEQUEyRDtZQUMzRCxZQUFZLENBQUMsa0JBQW1CLENBQUMsUUFBUTtRQUMzQyxDQUFDLENBQUMsMkZBQTJGO1lBQzNGLGlCQUFpQjtZQUNqQixPQUFPLENBQUMsa0JBQW1CLENBQUMsUUFBUSxHQUFHLENBQUMsQ0FBQztJQUU3Qyx5RkFBeUY7SUFDekYsOEVBQThFO0lBQzlFLE9BQU8sWUFBWSxHQUFHLENBQUMsQ0FBQztBQUMxQixDQUFDO0FBckJELGdFQXFCQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDIEFsbCBSaWdodHMgUmVzZXJ2ZWQuXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG5pbXBvcnQge1NjaGVtYXRpY3NFeGNlcHRpb259IGZyb20gJ0Bhbmd1bGFyLWRldmtpdC9zY2hlbWF0aWNzJztcbmltcG9ydCB7RWxlbWVudH0gZnJvbSAncGFyc2U1JztcblxuLyoqIERldGVybWluZXMgdGhlIGluZGVudGF0aW9uIG9mIGNoaWxkIGVsZW1lbnRzIGZvciB0aGUgZ2l2ZW4gUGFyc2U1IGVsZW1lbnQuICovXG5leHBvcnQgZnVuY3Rpb24gZ2V0Q2hpbGRFbGVtZW50SW5kZW50YXRpb24oZWxlbWVudDogRWxlbWVudCkge1xuICBjb25zdCBjaGlsZEVsZW1lbnQgPSBlbGVtZW50LmNoaWxkTm9kZXMuZmluZChub2RlID0+IChub2RlIGFzIEVsZW1lbnQpLnRhZ05hbWUpIGFzIEVsZW1lbnQgfCBudWxsO1xuXG4gIGlmICgoY2hpbGRFbGVtZW50ICYmICFjaGlsZEVsZW1lbnQuc291cmNlQ29kZUxvY2F0aW9uKSB8fCAhZWxlbWVudC5zb3VyY2VDb2RlTG9jYXRpb24pIHtcbiAgICB0aHJvdyBuZXcgU2NoZW1hdGljc0V4Y2VwdGlvbihcbiAgICAgICdDYW5ub3QgZGV0ZXJtaW5lIGNoaWxkIGVsZW1lbnQgaW5kZW50YXRpb24gYmVjYXVzZSB0aGUgJyArXG4gICAgICAgICdzcGVjaWZpZWQgUGFyc2U1IGVsZW1lbnQgZG9lcyBub3QgaGF2ZSBhbnkgc291cmNlIGNvZGUgbG9jYXRpb24gbWV0YWRhdGEuJyxcbiAgICApO1xuICB9XG5cbiAgY29uc3Qgc3RhcnRDb2x1bW5zID0gY2hpbGRFbGVtZW50XG4gICAgPyAvLyBJbiBjYXNlIHRoZXJlIGFyZSBjaGlsZCBlbGVtZW50cyBpbnNpZGUgb2YgdGhlIGVsZW1lbnQsIHdlIGFzc3VtZSB0aGF0IHRoZWlyXG4gICAgICAvLyBpbmRlbnRhdGlvbiBpcyBhbHNvIGFwcGxpY2FibGUgZm9yIG90aGVyIGNoaWxkIGVsZW1lbnRzLlxuICAgICAgY2hpbGRFbGVtZW50LnNvdXJjZUNvZGVMb2NhdGlvbiEuc3RhcnRDb2xcbiAgICA6IC8vIEluIGNhc2UgdGhlcmUgaXMgbm8gY2hpbGQgZWxlbWVudCwgd2UganVzdCBhc3N1bWUgdGhhdCBjaGlsZCBlbGVtZW50cyBzaG91bGQgYmUgaW5kZW50ZWRcbiAgICAgIC8vIGJ5IHR3byBzcGFjZXMuXG4gICAgICBlbGVtZW50LnNvdXJjZUNvZGVMb2NhdGlvbiEuc3RhcnRDb2wgKyAyO1xuXG4gIC8vIFNpbmNlIFBhcnNlNSBkb2VzIG5vdCBzZXQgdGhlIGBzdGFydENvbGAgcHJvcGVydGllcyBhcyB6ZXJvLWJhc2VkLCB3ZSBuZWVkIHRvIHN1YnRyYWN0XG4gIC8vIG9uZSBjb2x1bW4gaW4gb3JkZXIgdG8gaGF2ZSBhIHByb3BlciB6ZXJvLWJhc2VkIG9mZnNldCBmb3IgdGhlIGluZGVudGF0aW9uLlxuICByZXR1cm4gc3RhcnRDb2x1bW5zIC0gMTtcbn1cbiJdfQ==

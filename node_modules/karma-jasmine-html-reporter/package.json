@@ -1,0 +1,55 @@
+{
+  "name": "karma-jasmine-html-reporter",
+  "version": "1.7.0",
+  "description": "A Karma plugin. Dynamically displays tests results at debug.html page",
+  "main": "./src/index.js",
+  "keywords": [
+    "karma-plugin",
+    "karma-reporter",
+    "html"
+  ],
+  "scripts": {
+    "build": "node build/build.js"
+  },
+  "repository": {
+    "url": "https://github.com/dfederm/karma-jasmine-html-reporter"
+  },
+  "author": "",
+  "contributors": [
+    {
+      "name": "David Federman",
+      "url": "https://github.com/dfederm"
+    },
+    {
+      "name": "Yudha Setiawan",
+      "url": "https://github.com/yudhasetiawan"
+    },
+    {
+      "name": "Brian Thompson",
+      "url": "https://github.com/dachibro"
+    },
+    {
+      "name": "protazy",
+      "url": "https://github.com/protazy"
+    },
+    {
+      "name": "footballencarta",
+      "url": "https://github.com/footballencarta"
+    },
+    {
+      "name": "PVermeer",
+      "url": "https://github.com/PVermeer"
+    }
+  ],
+  "peerDependencies": {
+    "jasmine-core": ">=3.8",
+    "karma": ">=0.9",
+    "karma-jasmine": ">=1.1"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "*",
+    "jasmine-core": ">=3.8"
+  },
+  "readmeFilename": "README.md"
+}

@@ -1,0 +1,69 @@
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { InjectionToken } from './di';
+/**
+ * A [DI token](guide/glossary#di-token "DI token definition") representing a unique string ID, used
+ * primarily for prefixing application attributes and CSS styles when
+ * {@link ViewEncapsulation#Emulated ViewEncapsulation.Emulated} is being used.
+ *
+ * BY default, the value is randomly generated and assigned to the application by Angular.
+ * To provide a custom ID value, use a DI provider <!-- TODO: provider --> to configure
+ * the root {@link Injector} that uses this token.
+ *
+ * @publicApi
+ */
+export const APP_ID = new InjectionToken('AppId', {
+    providedIn: 'root',
+    factory: _appIdRandomProviderFactory,
+});
+export function _appIdRandomProviderFactory() {
+    return `${_randomChar()}${_randomChar()}${_randomChar()}`;
+}
+/**
+ * Providers that generate a random `APP_ID_TOKEN`.
+ * @publicApi
+ */
+export const APP_ID_RANDOM_PROVIDER = {
+    provide: APP_ID,
+    useFactory: _appIdRandomProviderFactory,
+    deps: [],
+};
+function _randomChar() {
+    return String.fromCharCode(97 + Math.floor(Math.random() * 25));
+}
+/**
+ * A function that is executed when a platform is initialized.
+ * @publicApi
+ */
+export const PLATFORM_INITIALIZER = new InjectionToken('Platform Initializer');
+/**
+ * A token that indicates an opaque platform ID.
+ * @publicApi
+ */
+export const PLATFORM_ID = new InjectionToken('Platform ID', {
+    providedIn: 'platform',
+    factory: () => 'unknown', // set a default platform name, when none set explicitly
+});
+/**
+ * A [DI token](guide/glossary#di-token "DI token definition") that provides a set of callbacks to
+ * be called for every component that is bootstrapped.
+ *
+ * Each callback must take a `ComponentRef` instance and return nothing.
+ *
+ * `(componentRef: ComponentRef) => void`
+ *
+ * @publicApi
+ */
+export const APP_BOOTSTRAP_LISTENER = new InjectionToken('appBootstrapListener');
+/**
+ * A [DI token](guide/glossary#di-token "DI token definition") that indicates the root directory of
+ * the application
+ * @publicApi
+ */
+export const PACKAGE_ROOT_URL = new InjectionToken('Application Packages Root URL');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwbGljYXRpb25fdG9rZW5zLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvY29yZS9zcmMvYXBwbGljYXRpb25fdG9rZW5zLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7R0FNRztBQUVILE9BQU8sRUFBQyxjQUFjLEVBQUMsTUFBTSxNQUFNLENBQUM7QUFJcEM7Ozs7Ozs7Ozs7R0FVRztBQUNILE1BQU0sQ0FBQyxNQUFNLE1BQU0sR0FBRyxJQUFJLGNBQWMsQ0FBUyxPQUFPLEVBQUU7SUFDeEQsVUFBVSxFQUFFLE1BQU07SUFDbEIsT0FBTyxFQUFFLDJCQUEyQjtDQUNyQyxDQUFDLENBQUM7QUFFSCxNQUFNLFVBQVUsMkJBQTJCO0lBQ3pDLE9BQU8sR0FBRyxXQUFXLEVBQUUsR0FBRyxXQUFXLEVBQUUsR0FBRyxXQUFXLEVBQUUsRUFBRSxDQUFDO0FBQzVELENBQUM7QUFFRDs7O0dBR0c7QUFDSCxNQUFNLENBQUMsTUFBTSxzQkFBc0IsR0FBRztJQUNwQyxPQUFPLEVBQUUsTUFBTTtJQUNmLFVBQVUsRUFBRSwyQkFBMkI7SUFDdkMsSUFBSSxFQUFTLEVBQUU7Q0FDaEIsQ0FBQztBQUVGLFNBQVMsV0FBVztJQUNsQixPQUFPLE1BQU0sQ0FBQyxZQUFZLENBQUMsRUFBRSxHQUFHLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLE1BQU0sRUFBRSxHQUFHLEVBQUUsQ0FBQyxDQUFDLENBQUM7QUFDbEUsQ0FBQztBQUVEOzs7R0FHRztBQUNILE1BQU0sQ0FBQyxNQUFNLG9CQUFvQixHQUFHLElBQUksY0FBYyxDQUFvQixzQkFBc0IsQ0FBQyxDQUFDO0FBRWxHOzs7R0FHRztBQUNILE1BQU0sQ0FBQyxNQUFNLFdBQVcsR0FBRyxJQUFJLGNBQWMsQ0FBUyxhQUFhLEVBQUU7SUFDbkUsVUFBVSxFQUFFLFVBQVU7SUFDdEIsT0FBTyxFQUFFLEdBQUcsRUFBRSxDQUFDLFNBQVMsRUFBRyx3REFBd0Q7Q0FDcEYsQ0FBQyxDQUFDO0FBRUg7Ozs7Ozs7OztHQVNHO0FBQ0gsTUFBTSxDQUFDLE1BQU0sc0JBQXNCLEdBQy9CLElBQUksY0FBYyxDQUE4QyxzQkFBc0IsQ0FBQyxDQUFDO0FBRTVGOzs7O0dBSUc7QUFDSCxNQUFNLENBQUMsTUFBTSxnQkFBZ0IsR0FBRyxJQUFJLGNBQWMsQ0FBUywrQkFBK0IsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAbGljZW5zZVxuICogQ29weXJpZ2h0IEdvb2dsZSBMTEMgQWxsIFJpZ2h0cyBSZXNlcnZlZC5cbiAqXG4gKiBVc2Ugb2YgdGhpcyBzb3VyY2UgY29kZSBpcyBnb3Zlcm5lZCBieSBhbiBNSVQtc3R5bGUgbGljZW5zZSB0aGF0IGNhbiBiZVxuICogZm91bmQgaW4gdGhlIExJQ0VOU0UgZmlsZSBhdCBodHRwczovL2FuZ3VsYXIuaW8vbGljZW5zZVxuICovXG5cbmltcG9ydCB7SW5qZWN0aW9uVG9rZW59IGZyb20gJy4vZGknO1xuaW1wb3J0IHtDb21wb25lbnRSZWZ9IGZyb20gJy4vbGlua2VyL2NvbXBvbmVudF9mYWN0b3J5JztcblxuXG4vKipcbiAqIEEgW0RJIHRva2VuXShndWlkZS9nbG9zc2FyeSNkaS10b2tlbiBcIkRJIHRva2VuIGRlZmluaXRpb25cIikgcmVwcmVzZW50aW5nIGEgdW5pcXVlIHN0cmluZyBJRCwgdXNlZFxuICogcHJpbWFyaWx5IGZvciBwcmVmaXhpbmcgYXBwbGljYXRpb24gYXR0cmlidXRlcyBhbmQgQ1NTIHN0eWxlcyB3aGVuXG4gKiB7QGxpbmsgVmlld0VuY2Fwc3VsYXRpb24jRW11bGF0ZWQgVmlld0VuY2Fwc3VsYXRpb24uRW11bGF0ZWR9IGlzIGJlaW5nIHVzZWQuXG4gKlxuICogQlkgZGVmYXVsdCwgdGhlIHZhbHVlIGlzIHJhbmRvbWx5IGdlbmVyYXRlZCBhbmQgYXNzaWduZWQgdG8gdGhlIGFwcGxpY2F0aW9uIGJ5IEFuZ3VsYXIuXG4gKiBUbyBwcm92aWRlIGEgY3VzdG9tIElEIHZhbHVlLCB1c2UgYSBESSBwcm92aWRlciA8IS0tIFRPRE86IHByb3ZpZGVyIC0tPiB0byBjb25maWd1cmVcbiAqIHRoZSByb290IHtAbGluayBJbmplY3Rvcn0gdGhhdCB1c2VzIHRoaXMgdG9rZW4uXG4gKlxuICogQHB1YmxpY0FwaVxuICovXG5leHBvcnQgY29uc3QgQVBQX0lEID0gbmV3IEluamVjdGlvblRva2VuPHN0cmluZz4oJ0FwcElkJywge1xuICBwcm92aWRlZEluOiAncm9vdCcsXG4gIGZhY3Rvcnk6IF9hcHBJZFJhbmRvbVByb3ZpZGVyRmFjdG9yeSxcbn0pO1xuXG5leHBvcnQgZnVuY3Rpb24gX2FwcElkUmFuZG9tUHJvdmlkZXJGYWN0b3J5KCkge1xuICByZXR1cm4gYCR7X3JhbmRvbUNoYXIoKX0ke19yYW5kb21DaGFyKCl9JHtfcmFuZG9tQ2hhcigpfWA7XG59XG5cbi8qKlxuICogUHJvdmlkZXJzIHRoYXQgZ2VuZXJhdGUgYSByYW5kb20gYEFQUF9JRF9UT0tFTmAuXG4gKiBAcHVibGljQXBpXG4gKi9cbmV4cG9ydCBjb25zdCBBUFBfSURfUkFORE9NX1BST1ZJREVSID0ge1xuICBwcm92aWRlOiBBUFBfSUQsXG4gIHVzZUZhY3Rvcnk6IF9hcHBJZFJhbmRvbVByb3ZpZGVyRmFjdG9yeSxcbiAgZGVwczogPGFueVtdPltdLFxufTtcblxuZnVuY3Rpb24gX3JhbmRvbUNoYXIoKTogc3RyaW5nIHtcbiAgcmV0dXJuIFN0cmluZy5mcm9tQ2hhckNvZGUoOTcgKyBNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkgKiAyNSkpO1xufVxuXG4vKipcbiAqIEEgZnVuY3Rpb24gdGhhdCBpcyBleGVjdXRlZCB3aGVuIGEgcGxhdGZvcm0gaXMgaW5pdGlhbGl6ZWQuXG4gKiBAcHVibGljQXBpXG4gKi9cbmV4cG9ydCBjb25zdCBQTEFURk9STV9JTklUSUFMSVpFUiA9IG5ldyBJbmplY3Rpb25Ub2tlbjxBcnJheTwoKSA9PiB2b2lkPj4oJ1BsYXRmb3JtIEluaXRpYWxpemVyJyk7XG5cbi8qKlxuICogQSB0b2tlbiB0aGF0IGluZGljYXRlcyBhbiBvcGFxdWUgcGxhdGZvcm0gSUQuXG4gKiBAcHVibGljQXBpXG4gKi9cbmV4cG9ydCBjb25zdCBQTEFURk9STV9JRCA9IG5ldyBJbmplY3Rpb25Ub2tlbjxPYmplY3Q+KCdQbGF0Zm9ybSBJRCcsIHtcbiAgcHJvdmlkZWRJbjogJ3BsYXRmb3JtJyxcbiAgZmFjdG9yeTogKCkgPT4gJ3Vua25vd24nLCAgLy8gc2V0IGEgZGVmYXVsdCBwbGF0Zm9ybSBuYW1lLCB3aGVuIG5vbmUgc2V0IGV4cGxpY2l0bHlcbn0pO1xuXG4vKipcbiAqIEEgW0RJIHRva2VuXShndWlkZS9nbG9zc2FyeSNkaS10b2tlbiBcIkRJIHRva2VuIGRlZmluaXRpb25cIikgdGhhdCBwcm92aWRlcyBhIHNldCBvZiBjYWxsYmFja3MgdG9cbiAqIGJlIGNhbGxlZCBmb3IgZXZlcnkgY29tcG9uZW50IHRoYXQgaXMgYm9vdHN0cmFwcGVkLlxuICpcbiAqIEVhY2ggY2FsbGJhY2sgbXVzdCB0YWtlIGEgYENvbXBvbmVudFJlZmAgaW5zdGFuY2UgYW5kIHJldHVybiBub3RoaW5nLlxuICpcbiAqIGAoY29tcG9uZW50UmVmOiBDb21wb25lbnRSZWYpID0+IHZvaWRgXG4gKlxuICogQHB1YmxpY0FwaVxuICovXG5leHBvcnQgY29uc3QgQVBQX0JPT1RTVFJBUF9MSVNURU5FUiA9XG4gICAgbmV3IEluamVjdGlvblRva2VuPEFycmF5PChjb21wUmVmOiBDb21wb25lbnRSZWY8YW55PikgPT4gdm9pZD4+KCdhcHBCb290c3RyYXBMaXN0ZW5lcicpO1xuXG4vKipcbiAqIEEgW0RJIHRva2VuXShndWlkZS9nbG9zc2FyeSNkaS10b2tlbiBcIkRJIHRva2VuIGRlZmluaXRpb25cIikgdGhhdCBpbmRpY2F0ZXMgdGhlIHJvb3QgZGlyZWN0b3J5IG9mXG4gKiB0aGUgYXBwbGljYXRpb25cbiAqIEBwdWJsaWNBcGlcbiAqL1xuZXhwb3J0IGNvbnN0IFBBQ0tBR0VfUk9PVF9VUkwgPSBuZXcgSW5qZWN0aW9uVG9rZW48c3RyaW5nPignQXBwbGljYXRpb24gUGFja2FnZXMgUm9vdCBVUkwnKTtcbiJdfQ==

@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/grid-list",
+  "fesm2020": "../fesm2020/grid-list.mjs",
+  "fesm2015": "../fesm2015/grid-list.mjs",
+  "esm2020": "../esm2020/grid-list/grid-list_public_index.mjs",
+  "typings": "./grid-list_public_index.d.ts",
+  "module": "../fesm2015/grid-list.mjs",
+  "es2020": "../fesm2020/grid-list.mjs"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/chips/testing",
+  "fesm2020": "../../fesm2020/chips/testing.mjs",
+  "fesm2015": "../../fesm2015/chips/testing.mjs",
+  "esm2020": "../../esm2020/chips/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/chips/testing.mjs",
+  "es2020": "../../fesm2020/chips/testing.mjs"
+}

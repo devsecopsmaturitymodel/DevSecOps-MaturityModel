@@ -1,0 +1,12 @@
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// DO NOT ADD public exports to this file.
+// The public API exports are specified in the `./localize` module, which is checked by the
+// public_api_guard rules
+export * from './localize';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy9sb2NhbGl6ZS9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFFSCwwQ0FBMEM7QUFDMUMsMkZBQTJGO0FBQzNGLHlCQUF5QjtBQUV6QixjQUFjLFlBQVksQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDIEFsbCBSaWdodHMgUmVzZXJ2ZWQuXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG4vLyBETyBOT1QgQUREIHB1YmxpYyBleHBvcnRzIHRvIHRoaXMgZmlsZS5cbi8vIFRoZSBwdWJsaWMgQVBJIGV4cG9ydHMgYXJlIHNwZWNpZmllZCBpbiB0aGUgYC4vbG9jYWxpemVgIG1vZHVsZSwgd2hpY2ggaXMgY2hlY2tlZCBieSB0aGVcbi8vIHB1YmxpY19hcGlfZ3VhcmQgcnVsZXNcblxuZXhwb3J0ICogZnJvbSAnLi9sb2NhbGl6ZSc7XG4iXX0=

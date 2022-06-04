@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/progress-spinner/testing",
+  "fesm2020": "../../fesm2020/progress-spinner/testing.mjs",
+  "fesm2015": "../../fesm2015/progress-spinner/testing.mjs",
+  "esm2020": "../../esm2020/progress-spinner/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/progress-spinner/testing.mjs",
+  "es2020": "../../fesm2020/progress-spinner/testing.mjs"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/bottom-sheet",
+  "fesm2020": "../fesm2020/bottom-sheet.mjs",
+  "fesm2015": "../fesm2015/bottom-sheet.mjs",
+  "esm2020": "../esm2020/bottom-sheet/bottom-sheet_public_index.mjs",
+  "typings": "./bottom-sheet_public_index.d.ts",
+  "module": "../fesm2015/bottom-sheet.mjs",
+  "es2020": "../fesm2020/bottom-sheet.mjs"
+}

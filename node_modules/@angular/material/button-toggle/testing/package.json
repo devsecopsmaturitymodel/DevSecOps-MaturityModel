@@ -1,0 +1,9 @@
+{
+  "name": "@angular/material/button-toggle/testing",
+  "fesm2020": "../../fesm2020/button-toggle/testing.mjs",
+  "fesm2015": "../../fesm2015/button-toggle/testing.mjs",
+  "esm2020": "../../esm2020/button-toggle/testing/index.mjs",
+  "typings": "./index.d.ts",
+  "module": "../../fesm2015/button-toggle/testing.mjs",
+  "es2020": "../../fesm2020/button-toggle/testing.mjs"
+}

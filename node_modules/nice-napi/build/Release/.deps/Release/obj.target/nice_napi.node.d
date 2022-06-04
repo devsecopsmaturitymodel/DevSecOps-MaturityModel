@@ -1,0 +1,1 @@
+cmd_Release/obj.target/nice_napi.node := ccache g++-7 -shared -pthread -rdynamic -m64  -Wl,-soname=nice_napi.node -o Release/obj.target/nice_napi.node -Wl,--start-group Release/obj.target/nice_napi/binding.o Release/obj.target/node_modules/node-addon-api/nothing.a -Wl,--end-group 
