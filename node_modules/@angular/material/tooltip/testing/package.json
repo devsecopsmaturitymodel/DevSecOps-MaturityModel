@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/tooltip/testing",
-  "fesm2020": "../../fesm2020/tooltip/testing.mjs",
-  "fesm2015": "../../fesm2015/tooltip/testing.mjs",
-  "esm2020": "../../esm2020/tooltip/testing/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../../fesm2015/tooltip/testing.mjs",
-  "es2020": "../../fesm2020/tooltip/testing.mjs"
-}

@@ -1,9 +1,0 @@
-{
-  "name": "@angular/animations/browser/testing",
-  "fesm2020": "../../fesm2020/browser/testing.mjs",
-  "fesm2015": "../../fesm2015/browser/testing.mjs",
-  "esm2020": "../../esm2020/browser/testing/testing.mjs",
-  "typings": "./testing.d.ts",
-  "module": "../../fesm2015/browser/testing.mjs",
-  "es2020": "../../fesm2020/browser/testing.mjs"
-}

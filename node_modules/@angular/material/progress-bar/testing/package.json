@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/progress-bar/testing",
-  "fesm2020": "../../fesm2020/progress-bar/testing.mjs",
-  "fesm2015": "../../fesm2015/progress-bar/testing.mjs",
-  "esm2020": "../../esm2020/progress-bar/testing/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../../fesm2015/progress-bar/testing.mjs",
-  "es2020": "../../fesm2020/progress-bar/testing.mjs"
-}

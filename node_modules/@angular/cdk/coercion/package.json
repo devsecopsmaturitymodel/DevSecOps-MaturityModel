@@ -1,9 +1,0 @@
-{
-  "name": "@angular/cdk/coercion",
-  "fesm2020": "../fesm2020/coercion.mjs",
-  "fesm2015": "../fesm2015/coercion.mjs",
-  "esm2020": "../esm2020/coercion/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../fesm2015/coercion.mjs",
-  "es2020": "../fesm2020/coercion.mjs"
-}

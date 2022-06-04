@@ -1,9 +1,0 @@
-{
-  "name": "@angular/common/http/testing",
-  "fesm2020": "../../fesm2020/http/testing.mjs",
-  "fesm2015": "../../fesm2015/http/testing.mjs",
-  "esm2020": "../../esm2020/http/testing/testing.mjs",
-  "typings": "./testing.d.ts",
-  "module": "../../fesm2015/http/testing.mjs",
-  "es2020": "../../fesm2020/http/testing.mjs"
-}

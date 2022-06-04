@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/radio/testing",
-  "fesm2020": "../../fesm2020/radio/testing.mjs",
-  "fesm2015": "../../fesm2015/radio/testing.mjs",
-  "esm2020": "../../esm2020/radio/testing/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../../fesm2015/radio/testing.mjs",
-  "es2020": "../../fesm2020/radio/testing.mjs"
-}

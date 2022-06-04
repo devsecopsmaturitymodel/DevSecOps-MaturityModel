@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/form-field/testing/control",
-  "fesm2020": "../../../fesm2020/form-field/testing/control.mjs",
-  "fesm2015": "../../../fesm2015/form-field/testing/control.mjs",
-  "esm2020": "../../../esm2020/form-field/testing/control/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../../../fesm2015/form-field/testing/control.mjs",
-  "es2020": "../../../fesm2020/form-field/testing/control.mjs"
-}

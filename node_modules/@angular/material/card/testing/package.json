@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/card/testing",
-  "fesm2020": "../../fesm2020/card/testing.mjs",
-  "fesm2015": "../../fesm2015/card/testing.mjs",
-  "esm2020": "../../esm2020/card/testing/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../../fesm2015/card/testing.mjs",
-  "es2020": "../../fesm2020/card/testing.mjs"
-}

@@ -2,3 +2,4 @@
 data/generated
 *~
 /vendor
+node_modules/

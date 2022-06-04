@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/tabs/testing",
-  "fesm2020": "../../fesm2020/tabs/testing.mjs",
-  "fesm2015": "../../fesm2015/tabs/testing.mjs",
-  "esm2020": "../../esm2020/tabs/testing/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../../fesm2015/tabs/testing.mjs",
-  "es2020": "../../fesm2020/tabs/testing.mjs"
-}

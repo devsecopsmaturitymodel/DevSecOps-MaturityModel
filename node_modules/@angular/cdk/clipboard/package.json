@@ -1,9 +1,0 @@
-{
-  "name": "@angular/cdk/clipboard",
-  "fesm2020": "../fesm2020/clipboard.mjs",
-  "fesm2015": "../fesm2015/clipboard.mjs",
-  "esm2020": "../esm2020/clipboard/clipboard_public_index.mjs",
-  "typings": "./clipboard_public_index.d.ts",
-  "module": "../fesm2015/clipboard.mjs",
-  "es2020": "../fesm2020/clipboard.mjs"
-}

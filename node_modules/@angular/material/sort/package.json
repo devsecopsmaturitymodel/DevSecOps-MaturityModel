@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/sort",
-  "fesm2020": "../fesm2020/sort.mjs",
-  "fesm2015": "../fesm2015/sort.mjs",
-  "esm2020": "../esm2020/sort/sort_public_index.mjs",
-  "typings": "./sort_public_index.d.ts",
-  "module": "../fesm2015/sort.mjs",
-  "es2020": "../fesm2020/sort.mjs"
-}

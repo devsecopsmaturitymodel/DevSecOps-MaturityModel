@@ -1,9 +1,0 @@
-{
-  "name": "@angular/material/sidenav/testing",
-  "fesm2020": "../../fesm2020/sidenav/testing.mjs",
-  "fesm2015": "../../fesm2015/sidenav/testing.mjs",
-  "esm2020": "../../esm2020/sidenav/testing/index.mjs",
-  "typings": "./index.d.ts",
-  "module": "../../fesm2015/sidenav/testing.mjs",
-  "es2020": "../../fesm2020/sidenav/testing.mjs"
-}
