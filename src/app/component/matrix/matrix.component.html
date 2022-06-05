@@ -1,1 +1,71 @@
-<p>matrix works!</p>
+<div class="content">
+<app-top-header section="Matrix"></app-top-header>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 matrix-table">
+  
+    <!-- Dimension Column -->
+    <ng-container matColumnDef="Dimension">
+      <th mat-header-cell *matHeaderCellDef> Dimension </th>
+      <td mat-cell *matCellDef="let element"> {{element.Dimension}} </td>
+    </ng-container>
+  
+    <!-- Sub Dimension Column -->
+    <ng-container matColumnDef="SubDimension">
+      <th mat-header-cell *matHeaderCellDef> Sub-Dimension </th>
+      <td mat-cell *matCellDef="let element"> {{element.SubDimension}} </td>
+    </ng-container>
+  
+    <!-- Level 1 Column -->
+    <ng-container matColumnDef="Level1">
+      <th mat-header-cell *matHeaderCellDef> Level 1: Basic understanding of security practices </th>
+        <td mat-cell *matCellDef="let element"> 
+            <ul>
+                <li *ngFor="let lvl1 of element.Level1">
+                    {{lvl1}}
+                </li>
+            </ul>
+        </td>
+    </ng-container>
+  
+    <!-- Level 2 Column -->
+    <ng-container matColumnDef="Level2">
+      <th mat-header-cell *matHeaderCellDef> Level 2: Adoption of basic security practices </th>
+      <td mat-cell *matCellDef="let element"> 
+            <ul>
+                <li *ngFor="let lvl2 of element.Level2">
+                    {{lvl2}}
+                </li>
+            </ul>
+        </td>
+    </ng-container>
+  
+    <!-- Level 3 Column -->
+    <ng-container matColumnDef="Level3">
+        <th mat-header-cell *matHeaderCellDef> Level 3: High adoption of security practices </th>
+        <td mat-cell *matCellDef="let element">
+            <ul>
+                <li *ngFor="let lvl3 of element.Level3">
+                    {{lvl3}}
+                </li>
+            </ul>
+        </td>
+    </ng-container>
+
+    <!-- Level 4 Column -->
+    <ng-container matColumnDef="Level4">
+        <th mat-header-cell *matHeaderCellDef> Level 4: Advanced deployment of security practices at scale </th>
+        <td mat-cell *matCellDef="let element">
+            <ul>
+                <li *ngFor="let lvl4 of element.Level4">
+                    {{lvl4}}
+                </li>
+            </ul>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
+</div>

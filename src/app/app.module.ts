@@ -9,6 +9,7 @@ import { MainContentComponent } from './component/main-content/main-content.comp
 import { LogoComponent } from './component/logo/logo.component';
 import { MatrixComponent } from './component/matrix/matrix.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
+import { TopHeaderComponent } from './component/top-header/top-header.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-but
     LogoComponent,
     MatrixComponent,
     SidenavButtonsComponent,
+    TopHeaderComponent
   ],
   imports: [
     BrowserModule,
