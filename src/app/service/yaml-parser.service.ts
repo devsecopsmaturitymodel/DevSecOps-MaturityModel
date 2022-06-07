@@ -19,7 +19,7 @@ export class ymlService {
 
   public getJson(): Observable<any> {
     return this.http
-      .get('./assets/file.yaml', {
+      .get('./assets/YAML/sample.yaml', {
         observe: 'body',
         responseType: 'text', // This one here tells HttpClient to parse it as text, not as JSON
       })

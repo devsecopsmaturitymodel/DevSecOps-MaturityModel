@@ -16,7 +16,7 @@
     </ng-container>
   
     <!-- Level 1 Column -->
-    <ng-container matColumnDef="Level1">
+    <ng-container matColumnDef="Level1" *ngIf="iflvl1exists==true">
       <th mat-header-cell *matHeaderCellDef> Level 1: Basic understanding of security practices </th>
         <td mat-cell *matCellDef="let element"> 
             <ul>
@@ -28,7 +28,7 @@
     </ng-container>
   
     <!-- Level 2 Column -->
-    <ng-container matColumnDef="Level2">
+    <ng-container matColumnDef="Level2"  *ngIf="iflvl2exists==true">
       <th mat-header-cell *matHeaderCellDef> Level 2: Adoption of basic security practices </th>
       <td mat-cell *matCellDef="let element"> 
             <ul>
@@ -40,7 +40,7 @@
     </ng-container>
   
     <!-- Level 3 Column -->
-    <ng-container matColumnDef="Level3">
+    <ng-container matColumnDef="Level3"  *ngIf="iflvl3exists==true">
         <th mat-header-cell *matHeaderCellDef> Level 3: High adoption of security practices </th>
         <td mat-cell *matCellDef="let element">
             <ul>
@@ -52,7 +52,7 @@
     </ng-container>
 
     <!-- Level 4 Column -->
-    <ng-container matColumnDef="Level4">
+    <ng-container matColumnDef="Level4"  *ngIf="iflvl1exists==true">
         <th mat-header-cell *matHeaderCellDef> Level 4: Advanced deployment of security practices at scale </th>
         <td mat-cell *matCellDef="let element">
             <ul>
