@@ -10,8 +10,18 @@ export interface PeriodicElement {
 }
 
 const MATRIX_DATA: PeriodicElement[] = [
-  {Dimension: 'Build and Deployment', SubDimension: 'Build', Level1: ['Defined build process','ES'], Level2:['Pinning of artifacts'],Level3:['Signing of artifacts'],Level4:[]},
-  {Dimension: 'Build and Deployment', SubDimension: 'Deployment', Level1: ['Defined deployment process','EN'], Level2:['Defined decommissioning process'],Level3:['Rolling update on deployment'],Level4:['Blue/Green Deployment']},
+  {Dimension: 'Build and Deployment', 
+  SubDimension: 'Build', 
+  Level1: ['Defined build process','ES'], 
+  Level2:['Pinning of artifacts'],
+  Level3:['Signing of artifacts'],
+  Level4:[]},
+  {Dimension: 'Build and Deployment', 
+  SubDimension: 'Deployment', 
+  Level1: ['Defined deployment process','EN'], 
+  Level2:['Defined decommissioning process'],
+  Level3:['Rolling update on deployment'],
+  Level4:['Blue/Green Deployment']},
 ];
 
 @Component({
