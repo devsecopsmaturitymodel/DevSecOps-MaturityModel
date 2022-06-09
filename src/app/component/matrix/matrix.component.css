@@ -1,9 +1,13 @@
 .content{
     width: 100%;
-    background-color: #e5e5e5;
+    /*background-color: gainsboro;*/
 }
+.mat-form-field{
+    margin: 20px;
+    width: 90%;
+} 
 
-.matrix-table {
+.matrix-table{
     margin: 20px;
 }
 
@@ -22,4 +26,5 @@
     font-size: 16px;  
     font-weight: bold;
 }
+
   
