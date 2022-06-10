@@ -18,7 +18,7 @@ Implementation:
         resources: 2
       usefulness: 4
       level: 1
-      md-description: |
+      description: |
         To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jumpstart the development process, but also do so securely.
 
         [...]

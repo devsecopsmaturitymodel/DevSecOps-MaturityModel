@@ -66,7 +66,7 @@ Culture and Organization:
       - G-EG-1-A
       iso27001-2017:
       - 7.2.2
-      md-description: |
+      description: |
         Conduct security awareness training for all roles currently involved in the management, development, testing, or auditing of the software. The goal is to increase the awareness of application security threats and risks, security best practices, and secure software design principles. Develop training internally or procure it externally. Ideally, deliver training in person so participants can have discussions as a team, but Computer-Based Training (CBT) is also an option.
 
         Course content should include a range of topics relevant to application security and privacy, while remaining accessible to a non-technical audience. Suitable concepts are secure design principles including Least Privilege, Defense-in-Depth, Fail Secure (Safe), Complete Mediation, Session Management, Open Design, and Psychological Acceptability. Additionally, the training should include references to any organization-wide standards, policies, and procedures defined to improve application security. The OWASP Top 10 vulnerabilities should be covered at a high level.
@@ -133,7 +133,7 @@ Culture and Organization:
         resources: 1
       usefulness: 4
       level: 2
-      md-description: |
+      description: |
         Implement a program where each software development team has a member considered a “Security Champion” who is the liaison between Information Security and developers. Depending on the size and structure of the team the “Security Champion” may be a software developer, tester, or a product manager. The “Security Champion” has a set number of hours per week for Information Security related activities. They participate in periodic briefings to increase awareness and expertise in different security disciplines. “Security Champions” have additional training to help develop these roles as Software Security subject-matter experts. You may need to customize the way you create and support “Security Champions” for cultural reasons.
 
         The goals of the position are to increase effectiveness and efficiency of application security and compliance and to strengthen the relationship between various teams and Information Security. To achieve these objectives, “Security Champions” assist with researching, verifying, and prioritizing security and compliance related software defects. They are involved in all Risk Assessments, Threat Assessments, and Architectural Reviews to help identify opportunities to remediate security defects by making the architecture of the application more resilient and reducing the attack threat surface.
@@ -288,7 +288,7 @@ Culture and Organization:
         Participate with your whole team in a simple mob hacking session organized by the Security Champion Guild.
         In the session the guild presents a vulnerable application and together you look at possible exploits.
         Just like in mob programming there is one driver and several navigators.
-      md-description: |
+      description: |
         ### Guidelines for your simple mob hacking session
         - All exploits happen via the user interface.
         - No need for security/hacking tools.
@@ -327,7 +327,7 @@ Culture and Organization:
           - Session management
           - Request throttling
           - :unicorn: (self-developed code, only used in that one software)
-      md-description: |
+      description: |
         ### Benefits
         - New vulnerabilities may be found before reaching production.
         - Old vulnerabilities are found and fixed.

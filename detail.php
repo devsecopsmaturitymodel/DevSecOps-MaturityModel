@@ -85,9 +85,9 @@ function printDetail($dimension, $subdimension, $activityName, $dimensions, $rep
   }
 
 
-  if (array_key_exists("md-description", $element) && !empty($element['md-description'])) {
+  if (array_key_exists("description", $element) && !empty($element['description'])) {
     $Parsedown = new Parsedown();
-    echo $Parsedown->text($element['md-description']);
+    echo $Parsedown->text($element['description']);
   }
   if (array_key_exists("implementation", $element) && !empty($element['implementation'])) {
     $implementation = $element['implementation'];
