@@ -12,7 +12,7 @@ Culture and Organization:
         resources: 2
       usefulness: 3
       level: 3
-      md-description: |
+      description: |
       samm2: D-TA-3-B
       iso27001-2017:
       - not explicitly covered by ISO 27001
@@ -38,7 +38,7 @@ Culture and Organization:
       dependsOn:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards
-      md-description: |
+      description: |
         **Example High Maturity Scenario:**
 
         Based on a detailed threat model defined and updated through code, the team decides the following:
@@ -103,7 +103,7 @@ Culture and Organization:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-matrix-for-storage
-      md-description: |
+      description: |
         # OWASP SAMM Description
         Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
 

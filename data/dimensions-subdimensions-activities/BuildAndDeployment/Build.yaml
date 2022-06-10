@@ -36,7 +36,7 @@ Build and Deployment:
         a result of incorrect security related configuration.
       measure: A well defined build process lowers the possibility of errors during
         the build process.
-      description-md: |
+      description: |
         Sample evidence as an attribute in the yaml: The build process is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a>
         in the folder <i>vars</>. Projects are using a <i>Jenkinsfile</i> to use the
         defined process.

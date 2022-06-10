@@ -11,7 +11,7 @@ Implementation:
         resources: 1
       usefulness: 2
       level: 4
-      md-description: |
+      description: |
         
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/stylecop

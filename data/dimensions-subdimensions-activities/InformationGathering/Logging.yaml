@@ -57,7 +57,7 @@ Information Gathering:
       - 12.4.1
       - 18.1.1
     Logging of security events:
-      md-description: |
+      description: |
         Implement logging of security relevant events. The following events tend to be security relevant:
           - successful/failed login/logout
           - creation, change, and deletion of users
