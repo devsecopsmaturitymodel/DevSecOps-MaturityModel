@@ -48,7 +48,7 @@
       <th mat-header-cell *matHeaderCellDef> Level 1: Basic understanding of security practices </th>
         <td mat-cell *matCellDef="let element"> 
             <ul>
-                <li *ngFor="let lvl1 of element.Level1">
+                <li *ngFor="let lvl1 of element.Level1" routerLink={{Routing}}>
                     {{lvl1}}
                 </li>
             </ul>
@@ -60,7 +60,7 @@
       <th mat-header-cell *matHeaderCellDef> Level 2: Adoption of basic security practices </th>
       <td mat-cell *matCellDef="let element"> 
             <ul>
-                <li *ngFor="let lvl2 of element.Level2">
+                <li *ngFor="let lvl2 of element.Level2" routerLink={{Routing}}>
                     {{lvl2}}
                 </li>
             </ul>
@@ -72,7 +72,7 @@
         <th mat-header-cell *matHeaderCellDef> Level 3: High adoption of security practices </th>
         <td mat-cell *matCellDef="let element">
             <ul>
-                <li *ngFor="let lvl3 of element.Level3">
+                <li *ngFor="let lvl3 of element.Level3" routerLink={{Routing}}>
                     {{lvl3}}
                 </li>
             </ul>
@@ -84,7 +84,7 @@
         <th mat-header-cell *matHeaderCellDef> Level 4: Advanced deployment of security practices at scale </th>
         <td mat-cell *matCellDef="let element">
             <ul>
-                <li *ngFor="let lvl4 of element.Level4">
+                <li *ngFor="let lvl4 of element.Level4" routerLink={{Routing}}>
                     {{lvl4}}
                 </li>
             </ul>

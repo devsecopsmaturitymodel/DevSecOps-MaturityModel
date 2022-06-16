@@ -11,6 +11,7 @@ import { LogoComponent } from './component/logo/logo.component';
 import { MatrixComponent } from './component/matrix/matrix.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 import { TopHeaderComponent } from './component/top-header/top-header.component';
+import { TaskDescriptionComponent } from './component/task-description/task-description.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TopHeaderComponent } from './component/top-header/top-header.component'
     LogoComponent,
     MatrixComponent,
     SidenavButtonsComponent,
-    TopHeaderComponent
+    TopHeaderComponent,
+    TaskDescriptionComponent,
   ],
   imports: [
     BrowserModule,
