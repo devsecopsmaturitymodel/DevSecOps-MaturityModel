@@ -8,7 +8,7 @@ import { MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatInputModule} from '@angular/material/input'; 
-
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 const MaterialComponents= [
   MatSidenavModule,
@@ -20,7 +20,8 @@ const MaterialComponents= [
   MatChipsModule,
   MatAutocompleteModule,
   MatInputModule,
-  
+  MatExpansionModule,
+
 ];
 
 @NgModule({

@@ -1,0 +1,168 @@
+<div class="content-box">
+    <h1>Build and Deployment -> Build: Building and testing of artifacts in virtual environments</h1>
+    <div class="example-action-buttons">
+        <button mat-raised-button (click)="openall()" >Expand All</button>
+        <button mat-raised-button (click)="closeall()">Collapse All</button>
+    </div>
+    <mat-accordion multi="true">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Description</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>While building and testing artifacts, third party systems, application frameworks
+                and 3rd party libraries are used. These might be malicious as a result of
+                vulnerable libraries or because they are altered during the delivery phase.</p>
+            </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Risk</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>While building and testing artifacts, third party systems, application frameworks
+                and 3rd party libraries are used. These might be malicious as a result of
+                vulnerable libraries or because they are altered during the delivery phase.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Measure</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p> Each step during within the build and testing phase is performed in
+                a separate virtual environments, which is destroyed afterward.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Implementation Guide</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>Depending on your environment, usage of virtual machines
+                or container technology is a good way. After the build, the filesystem should
+                not be used again in other builds.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Difficulty Of Implementation</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>Knowledge: 2 </p>
+            <p>Time: 2 </p>
+            <p>Resources: 2 </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Implementation</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                <mat-accordion multi="true">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b>CI/CD tools</b>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>
+                            <mat-accordion multi="true">
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <b>Tags</b>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>ci-cd</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <b>URL</b>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>https://martinfowler.com/articles/continuousIntegration.html</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <b>Description</b>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>CI/CD tools such as jenkins, gitlab-ci or github-actions </p>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b>Container technologies and orchestration like Docker, Kubernetes</b>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>
+                            <mat-accordion multi="true">
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <b>Tags</b>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <b>URL</b>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <b>Description</b>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>References</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                <mat-accordion multi="true">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b>OWASP SAMM VERSION 2</b>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>
+                            I-SB-2-A 
+                        </p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b>ISO27001 2017</b>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>
+                            iso27001-2017:14.2.6
+                        </p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+  
