@@ -5,6 +5,8 @@ import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
+import { ymlService } from '../../service/yaml-parser.service';
+
 
 export interface MatrixElement {
   Dimension: string;
@@ -36,6 +38,7 @@ const MATRIX_DATA: MatrixElement[] = [
   Level4:['Temp']},
 ];
 
+
 @Component({
   selector: 'app-matrix',
   templateUrl: './matrix.component.html',
@@ -44,6 +47,9 @@ const MATRIX_DATA: MatrixElement[] = [
 export class MatrixComponent implements OnInit {
 
   Routing: string='/task-description'
+
+  YamlObject:any;
+  levels:string[]=[];
   
   iflvl1exists:boolean = false;
   iflvl2exists:boolean = false;
@@ -59,7 +65,12 @@ export class MatrixComponent implements OnInit {
   dataSource:any= new MatTableDataSource<MatrixElement>(MATRIX_DATA);
   rows: string[] = [];
   
-  constructor() {
+  constructor(private yaml:ymlService) {
+    yaml.setURI('./assets/YAML/sample.yaml');
+    this.yaml.getJson().subscribe((data) => {
+      this.YamlObject = data;
+      this.levels = this.YamlObject['strings']['en']['maturity_levels'];
+    });
     this.filteredRows = this.rowCtrl.valueChanges.pipe(
       startWith(null),
       map((row: string | null) => (row ? this._filter(row) : this.autoCompeteRows.slice())),
@@ -112,7 +123,7 @@ export class MatrixComponent implements OnInit {
       i++;
     }
     console.log(this.allRows)
-
+    
   }
 
 
