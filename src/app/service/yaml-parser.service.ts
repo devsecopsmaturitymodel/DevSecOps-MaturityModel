@@ -7,19 +7,20 @@ import {parse} from 'yamljs';
 
 @Injectable()
 export class ymlService {
-  parsedYamlObject:any;
+
+  private URI:string='./';
 
   constructor(private http: HttpClient) {
-    this.getJson().subscribe(data => {
+    
+  }
 
-      this.parsedYamlObject = data;
-      console.log(data);
-    })
+  setURI(URI_used:string){
+    this.URI=URI_used
   }
 
   public getJson(): Observable<any> {
     return this.http
-      .get('./assets/YAML/sample.yaml', {
+      .get(this.URI, {
         observe: 'body',
         responseType: 'text', // This one here tells HttpClient to parse it as text, not as JSON
       })

@@ -12,6 +12,9 @@ import { MatrixComponent } from './component/matrix/matrix.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 import { TopHeaderComponent } from './component/top-header/top-header.component';
 import { TaskDescriptionComponent } from './component/task-description/task-description.component';
+import { ymlService } from './service/yaml-parser.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -28,10 +31,11 @@ import { TaskDescriptionComponent } from './component/task-description/task-desc
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     
   ],
-  providers: [],
+  providers: [ymlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
