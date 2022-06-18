@@ -42,54 +42,19 @@
       <td mat-cell *matCellDef="let element"> {{element.SubDimension}} </td>
     </ng-container>
   
-    <!-- Level 1 Column -->
-    <ng-container matColumnDef="Level1" *ngIf="iflvl1exists==true">
-      <th mat-header-cell *matHeaderCellDef> {{levels[0]}} </th>
-        <td mat-cell *matCellDef="let element"> 
-            <ul>
-                <li *ngFor="let lvl1 of element.Level1" routerLink={{Routing}}>
-                    {{lvl1}}
-                </li>
-            </ul>
-        </td>
-    </ng-container>
-  
-    <!-- Level 2 Column -->
-    <ng-container matColumnDef="Level2"  *ngIf="iflvl2exists==true">
-      <th mat-header-cell *matHeaderCellDef> {{levels[1]}} </th>
-      <td mat-cell *matCellDef="let element"> 
-            <ul>
-                <li *ngFor="let lvl2 of element.Level2" routerLink={{Routing}}>
-                    {{lvl2}}
-                </li>
-            </ul>
-        </td>
-    </ng-container>
-  
-    <!-- Level 3 Column -->
-    <ng-container matColumnDef="Level3"  *ngIf="iflvl3exists==true">
-        <th mat-header-cell *matHeaderCellDef> {{levels[2]}} </th>
+    
+    <div  *ngFor="let lvl of lvlColumn;index as i">
+    <ng-container matColumnDef={{lvl}} >
+        <th mat-header-cell *matHeaderCellDef> {{levels[i]}} </th>
         <td mat-cell *matCellDef="let element">
             <ul>
-                <li *ngFor="let lvl3 of element.Level3" routerLink={{Routing}}>
-                    {{lvl3}}
+                <li *ngFor="let task of element[lvl]" routerLink={{Routing}}>
+                    {{task}}
                 </li>
             </ul>
         </td>
     </ng-container>
-
-    <!-- Level 4 Column -->
-    <ng-container matColumnDef="Level4"  *ngIf="iflvl1exists==true">
-        <th mat-header-cell *matHeaderCellDef> {{levels[3]}} </th>
-        <td mat-cell *matCellDef="let element">
-            <ul>
-                <li *ngFor="let lvl4 of element.Level4" routerLink={{Routing}}>
-                    {{lvl4}}
-                </li>
-            </ul>
-        </td>
-    </ng-container>
-
+  </div>
     <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
