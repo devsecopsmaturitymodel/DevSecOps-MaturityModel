@@ -58,9 +58,9 @@ export class MatrixComponent implements OnInit {
   
   displayedColumns: string[] = [
     'Dimension',
-    'SubDimension',
+    'SubDimension'
     ];
-  
+  lvlColumn: string[]=[];
   allRows:string[]=[];
   dataSource:any= new MatTableDataSource<MatrixElement>(MATRIX_DATA);
   rows: string[] = [];
@@ -69,7 +69,16 @@ export class MatrixComponent implements OnInit {
     yaml.setURI('./assets/YAML/sample.yaml');
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;
+
+      // Levels header
       this.levels = this.YamlObject['strings']['en']['maturity_levels'];
+
+      // pushes Levels in displayed column  
+      for(let k=1; k<=this.levels.length; k++){
+        this.displayedColumns.push('Level'+k);
+        this.lvlColumn.push('Level'+k);
+      }  
+      console.log(this.displayedColumns);
     });
     this.filteredRows = this.rowCtrl.valueChanges.pipe(
       startWith(null),
@@ -81,40 +90,12 @@ export class MatrixComponent implements OnInit {
    ngOnInit(): void {
     this.dataSource.data = JSON.parse(JSON.stringify(MATRIX_DATA)); ;
     let i =0;
-    while((i<MATRIX_DATA.length) && (this.iflvl1exists==false || this.iflvl2exists==false || this.iflvl3exists==false || this.iflvl4exists==false)){
-      if((this.iflvl1exists==false) && MATRIX_DATA[i].Level1.length!=0){
-        //console.log(MATRIX_DATA[i].Level1);
-        this.iflvl1exists=true
-      }
-      if((this.iflvl2exists==false) && MATRIX_DATA[i].Level2.length!=0){
-        //console.log(MATRIX_DATA[i].Level2);
-        this.iflvl2exists=true
-      }
-      if((this.iflvl3exists==false) && MATRIX_DATA[i].Level3.length!=0){
-        //console.log(MATRIX_DATA[i].Level3);
-        this.iflvl3exists=true
-      }
-      if((this.iflvl4exists==false) && MATRIX_DATA[i].Level4.length!=0){
-        //console.log(MATRIX_DATA[i].Level4);
-        this.iflvl4exists=true
-      }
-      i++;
-    };
-    if(this.iflvl1exists==true){
-      this.displayedColumns.push('Level1');
-    };
-    if(this.iflvl2exists==true){
-      this.displayedColumns.push('Level2');
-    };
-    if(this.iflvl3exists==true){
-      this.displayedColumns.push('Level3');
-    };
-    if(this.iflvl4exists==true){
-      this.displayedColumns.push('Level4');
-    };
+
+    
+
+    
     
     // creates initial row list consisting of all rows 
-    i=0;
     while(i<MATRIX_DATA.length){
       if(!this.allRows.includes(MATRIX_DATA[i].SubDimension)){
         this.allRows.push(MATRIX_DATA[i].SubDimension);
