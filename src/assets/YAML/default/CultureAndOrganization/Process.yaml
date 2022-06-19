@@ -1,0 +1,73 @@
+Culture and Organization:
+  Process:
+    Definition of simple BCDR practices for critical components:
+      risk:
+      - In case of an emergency, like a power outage, DR actions to perform are not
+        clear. This leads to reaction and remediation delays.
+      measure: By understanding and documenting a business continuity and disaster
+        recovery (BCDR) plan, the overall availability of systems and applications
+        is increased. Success factors like responsibilities, Service Level Agreements,
+        Recovery Point Objectives, Recovery Time Objectives or Failover must be fully
+        documented and understood.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 1
+      iso27001-2017:
+      - 17.1.1
+      implementation: []
+    Definition of a change management process:
+      risk:
+      - The impact of a change is not controlled because these are not recorded or
+        documented.
+      measure: Each change of a system is automatically recorded and adequately logged.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 3
+      iso27001-2017:
+      - 14.2.2
+      - 12.1.2
+      - 12.4.1
+      implementation: []
+    Approval by reviewing any new version:
+      risk:
+      - An individual might forget to implement security measures to protect source
+        code or infrastructure components.
+      measure: On each new version (e.g. Pull Request) of source code or infrastructure
+        components a security peer review of the changes is performed (two eyes principle)
+        and approval given by the reviewer.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 3
+      iso27001-2017:
+      - peer review - four eyes principle is not explicitly required by ISO 27001
+      - 6.1.2
+      - 14.2.1
+      implementation: []
+    Prevention of unauthorized installation:
+      risk:
+      - Unapproved components are used.
+      measure: Components must be whitelisted. Regular scans on the docker infrastructure
+        (e.g. cluster) need to be performed, to verify that only standardized base
+        images are used.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 3
+      iso27001-2017:
+      - 12.5.1
+      - 12.6.1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/example-all-docker
+      comment: By preventing teams from trying out new components, innovation might
+        be hampered

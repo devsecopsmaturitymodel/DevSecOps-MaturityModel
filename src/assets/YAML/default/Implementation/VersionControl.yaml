@@ -1,0 +1,56 @@
+Implementation:
+  Version Control:
+    Source Control Protection:
+      risk: Unapproved code in important branches like master.
+      measure: Enabled protections on the source code management system preventing committed directly to an important branch.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 4
+      level: 2
+      iso27001-2017:
+        - peer review - four eyes principle is not explicitly required by ISO 27001
+        - 6.1.2
+        - 14.2.1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/azuredevops
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/github-policies
+      samm2: O-EM-1-C
+    Pre-Commit checks & validations:
+      risk:
+      - Using an insecure application might lead to a compromised application. This
+        might lead to total data theft or data modification.
+      measure: |
+        Implement pre-commit validations to prevent secrets & other security issues being commit to source code.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/pre-commit-microsoft
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/pre-commit-synopsis
+      samm2: V-ST-A-1-1
+      iso27001-2017:
+    Versioning:
+      risk:
+        - Changes to production systems can not be undone.
+      measure: versioning of artifacts related to production environments. For example
+        Jenkins configuration, docker images, (system provisioning) code.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 5
+      level: 1
+      dependsOn:
+        - Defined deployment process
+      samm2: O-EM-1-A
+      iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 12.1.1
+        - 12.1.2
+        - 14.2.2
+      implementation: []

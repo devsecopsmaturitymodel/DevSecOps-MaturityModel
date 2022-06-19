@@ -1,0 +1,76 @@
+Test and Verification:
+  Application tests:
+    High coverage of security related module and integration tests:
+      risk:
+      - Vulnerabilities are rising due to code changes in a complex microservice environment
+        in not important components.
+      measure: Implementation of security related tests via unit tests and integration
+        tests. Including the test of libraries, in case the are not tested already.
+      difficultyOfImplementation:
+        knowledge: 5
+        time: 5
+        resources: 3
+      usefulness: 3
+      level: 4
+      samm2: V-ST-3-B
+      iso27001-2017:
+      - 14.2.3
+      - 14.2.8
+      implementation: []
+    Security integration tests for important components:
+      risk:
+      - Vulnerabilities are rising due to code changes in a complex microservice environment.
+      measure: Implementation of essential security related integration tests. For
+        example for authentication and authorization.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 4
+        resources: 2
+      usefulness: 2
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/httpunit
+      samm2: V-ST-3-B
+      iso27001-2017:
+      - 14.2.3
+      - 14.2.8
+    Security unit tests for important components:
+      risk:
+      - Vulnerabilities are rising due to code changes.
+      measure: Usage of unit tests to test important security related features like
+        authentication and authorization.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 4
+        resources: 2
+      usefulness: 3
+      level: 2
+      comment: |
+        The integration of module tests takes place during development instead, it highlights vulnerabilities in sub-routines, functions, modules, libraries etc. checked.
+        A sample implementation of unit tests are explained in the video [Shift-Left-Security with the Security Test Pyramid - Andreas Falk](https://www.youtube.com/watch?v=TzFZy3f7d8E) starting with minute 9.
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/junit
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/karma
+      samm2: V-ST-3-B
+      iso27001-2017:
+      - 14.2.3
+      - 14.2.8
+    Smoke Test:
+      risk:
+      - During a deployment an error might happen which leads to non-availability
+        of the system, a part of the system or a feature.
+      measure: Integration tests are performed against the production environment
+        after each deployment.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 2
+      level: 4
+      implementation: []
+      dependsOn:
+      - Defined deployment process
+      samm2: V-ST-3-B
+      iso27001-2017:
+      - 14.2.3
+      - 14.2.8

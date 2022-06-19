@@ -1,0 +1,115 @@
+Implementation:
+  Application Hardening:
+    Application Hardening Level 1:
+      risk:
+      - Using an insecure application might lead to a compromised application. This
+        might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+          <ul>
+            <li>OWASP Application Security Verification Standard Level 1</li>
+            <li>OWASP Mobile Application Security Verification Standard Level 1</li>
+          </ul>
+
+        in all applications provides a good baseline.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 1
+      md-description: |
+        To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jumpstart the development process, but also do so securely.
+
+        [...]
+
+        ### Planning aka Requirements Gathering & Analysis
+        The Requirements gathering process tries to answer the question: _"What is the system going to do?"_ At this stage, the [SAMM project](https://owaspsamm.org/model/) offers 3 distinct maturity levels covering both [in-house](https://owaspsamm.org/model/design/security-requirements/stream-a/) software development and [third party](https://owaspsamm.org/model/design/security-requirements/stream-b/) supplier security.
+
+        ![SAMM Requirements](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/OWASP-in0.png)
+
+        Organizations can use these to add solid security considerations at the start of the Software Development or Procurement process.
+
+        These general security considerations can be audited by using a subsection of the ASVS controls in section V1 as a questionnaire. This process attempts to ensure that every feature has concrete security considerations.
+
+        In case of internal development and if the organization maps Features to Epics, the [Security Knowledge Framework](https://securityknowledgeframework.org/) can be used to facilitate this process by leveraging its questionnaire function, shown below.
+
+        Source: [OWASP Project Integration](https://raw.githubusercontent.com/OWASP/www-project-integration-standards/master/writeups/owasp_in_sdlc/index.md)
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
+      samm2: D-SR-1-A
+      iso27001-2017:
+      - hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+    App. Hardening Level 2:
+      risk:
+      - Using an insecure application might lead to a compromised application. This
+        might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+          <ul>
+            <li>OWASP Application Security Verification Standard Level 2</li>
+            <li>OWASP Mobile Application Security Verification Standard Level 2</li>
+          </ul>
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
+      samm2: D-SR-2-A
+      iso27001-2017:
+      - hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+    App. Hardening Level 3:
+      risk:
+      - Using an insecure application might lead to a compromised application. This
+        might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+          <ul>
+            <li>OWASP Application Security Verification Standard Level 3</li>
+            <li>OWASP Mobile Application Security Verification Standard Maturity Requirements</li>
+          </ul>
+          and gain around 75% coverage of both.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
+      samm2: D-SR-3-A
+      iso27001-2017:
+      - hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+    Full Coverage of App. Hardening Level 3:
+      risk:
+      - Using an insecure application might lead to a compromised application. This
+        might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+          <ul>
+            <li>OWASP Application Security Verification Standard Level 3</li>
+            <li>OWASP Mobile Application Security Verification Standard Maturity Requirements</li>
+          </ul>
+          and gain around 95% coverage of both.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
+      samm2: D-SR-3-A
+      iso27001-2017:
+      - hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3

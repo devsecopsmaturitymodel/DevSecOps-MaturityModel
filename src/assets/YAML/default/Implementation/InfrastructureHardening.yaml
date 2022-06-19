@@ -1,0 +1,415 @@
+Implementation:
+  Infrastructure Hardening:
+    Backup:
+      risk:
+      - If errors are experienced during the deployment process you want to deploy
+        an old release. However, due to changes in the database this is often unfeasible.
+      measure: Performing automated periodical backups are used. Backup before deployment
+        can help facilitate deployments whilst testing the backup restore processes.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/a-complete-backup-of
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/a-point-in-time-reco
+      dependsOn:
+      - Defined deployment process
+      references:
+        samm2:
+        - TODO
+        iso27001-2017:
+        - '12.3'
+        - 14.2.6
+    The cluster is hardened:
+      risk:
+      - Using default configurations for a cluster environment leads to potential
+        risks.
+      measure: Harden cluster environments according to best practices. Level 1 and
+        partially level 2 from hardening practices like 'CIS Kubernetes Bench for
+        Security' should considered.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/cis-kubernetes-bench
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/cis-docker-bench-for
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/for-example-for-cont
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/attack-matrix-cloud
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/attack-matrix-contai
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/attack-matrix-kubern
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/defend-the-core-kubernetes
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - system hardening is not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+    Applications are running in virtualized environments:
+      risk:
+      - Through a vulnerability in one service on a server, the attacker gains access
+        to other services running on the same server.
+      measure: Applications are running in a dedicated and isolated virtualized environments.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 5
+      usefulness: 3
+      level: 2
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - virtual environments are not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+      implementation: []
+    Checking the sources of used libraries:
+      risk:
+      - Application and system libraries can have implementation flaws or deployment
+        flaws.
+      measure: Each libraries source is checked to have a trusted source.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 2
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 14.2.1
+      - 14.2.5
+      implementation: []
+    Isolated networks for virtual environments:
+      risk:
+      - Virtual environments in default settings are able to access other virtual
+        environments on the network stack. By using virtual machines, it is often
+        possible to connect to other virtual machines. By using docker, one bridge
+        is used by default so that all containers on one host can communicate with
+        each other.
+      measure: The communication between virtual environments is controlled and regulated.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 5
+      level: 1
+      dependsOn: []
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/istio
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/bridges
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/firewalls
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - virtual environments are not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+    Filter outgoing traffic:
+      risk:
+      - A compromised infrastructure component might try to send out stolen data.
+      measure: Having a whitelist and explicitly allowing egress traffic provides
+        the ability to stop unauthorized data leakage.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 2
+      level: 2
+      dependsOn: []
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/open-policy-agent
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/firewalls
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - virtual environments are not explicitly covered by ISO 27001 - too specific
+      - 13.1.3
+    Infrastructure as Code:
+      risk:
+      - No tracking of changes in systems might lead to errors in the configuration.
+        In additions, it might lead to unauthorized changes. An examples is jenkins.
+      measure: Systems are setup by code. A full environment can be provisioned. In
+        addition, software like Jenkins 2 can be setup and configured in in code too.
+        The code should be stored in a version control system.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 5
+        resources: 4
+      usefulness: 4
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/gitops
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ansible
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/chef
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/puppet
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jenkinsfile
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.1.1
+      - 12.1.2
+    Limitation of system calls in virtual environments:
+      risk:
+      - System calls in virtual environments like docker can lead to privilege escalation.
+      measure: System calls in virtual environments like docker are audited and limited.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 5
+      level: 4
+      dependsOn:
+      - Applications are running in virtualized environments
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/seccomp
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/strace
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - system hardening is not explicitly covered by ISO 27001 - too specific
+    Immutable Infrastructure:
+      risk:
+      - The availability of IT systems might be disturbed due to components failures
+      measure: Redundancies in the IT systems
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 3
+      dependsOn:
+      - Infrastructure as Code
+      - Usage of <a href="https://semver.org/">Semantic Versioning</a> for components
+        like project images
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/remove-direct-access
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 17.2.1
+    Microservice-Architecture:
+      risk:
+      - Monolithic applications are hard to test.
+      measure: A microservice-architecture helps to have small components, which are
+        more easy to test.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 5
+        resources: 5
+      usefulness: 3
+      level: 4
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001
+      implementation: []
+    Production near environments are used by developers:
+      risk:
+      - In case an errors occurs in production, the developer need to be able to create
+        a production near environment on a local development environment.
+      measure: Usage of infrastructure as code helps to create a production near environment.
+        The developer needs to be trained in order to setup a local development environment.
+        In addition, it should be possible to create production like test data. Often
+        personal identifiable information is anonymized in order to comply with data
+        protection laws.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 4
+      dependsOn:
+      - Defined deployment process
+      - Infrastructure as Code
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - 12.1.4
+      - 17.2.1
+      implementation: []
+    Role based authentication and authorization:
+      risk:
+      - Everyone is able to get unauthorized access to information on systems or to
+        modify information unauthorized on systems.
+      measure: The usage of a (role based) access control helps to restrict system
+        access to authorized users.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/directory-service
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/plugins
+      dependsOn:
+      - Defined deployment process
+      - Defined build process
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - 9.4.1
+    2FA:
+      risk:
+      - One factor authentication is more vulnerable to brute force attacks and is
+        considered less secure.
+      measure: Two factor authentication for all privileged accounts on systems and
+        applications
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 3
+      usefulness: 4
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/smartcard
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/yubikey
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sms
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/totp
+      samm2: TODO
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 9.1.1
+      - 9.4.2
+      - 14.2.5
+    Simple access control for systems:
+      risk:
+      - Attackers a gaining access to internal systems and application interfaces
+      measure: All internal systems are using simple authentication
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 5
+      level: 1
+      dependsOn:
+      - Defined deployment process
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/http-basic-authentic
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/vpn
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - 9.4.1
+    Usage of a chaos monkey:
+      risk:
+      - Due to manual changes on a system, they are not replaceable anymore. In case
+        of a crash it might happen that a planned redundant system is unavailable.
+        In addition, it is hard to replay manual changes.
+      measure: A randomized periodically shutdown of systems makes sure, that nobody
+        will perform manual changes to a system.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 5
+        resources: 5
+      usefulness: 3
+      level: 4
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 17.1.3
+      implementation: []
+    Usage of security by default for components:
+      risk:
+      - Components (images, libraries, applications) are not hardened.
+      measure: Hardening of components is important, specially for image on which
+        other teams base on. Hardening should be performed on the operation system
+        and on the services inside (e.g. Nginx or a Java-Application).
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/for-applications-ch
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/managing-secrets
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/crypto
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/authentication
+      dependsOn:
+      - Defined build process
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+    Usage of test and production environments:
+      risk:
+      - Security tests are not running regularly because test environments are missing
+      measure: A production and a production like environment is used
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 5
+      usefulness: 4
+      level: 1
+      dependsOn:
+      - Defined deployment process
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.1.4
+      - 17.2.1
+      implementation: []
+    Virtual environments are limited:
+      risk:
+      - Denial of service (internally by an attacker or unintentionally by a bug)
+        on one service effects other services
+      measure: All virtual environments are using resource limits on hard disks, memory
+        and CPU
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 3
+      usefulness: 3
+      level: 2
+      dependsOn:
+      - Applications are running in virtualized environments
+      samm2: O-EM-1-A
+      iso27001-2017:
+      - virtual environments are not explicitly covered by ISO 27001 - too specific
+      - 12.1.3
+      - 13.1.3
+      - 17.2.1
+      implementation: []
+    Usage of encryption at rest:
+      risk:
+        - Evil actors might be able to access data and read information, e.g. from physical hard disks.
+      measure: By using encryption at trdt, it is impossible or at least harder to to read information.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 1
+      implementation: ''
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 10.1
+    Usage of edge encryption at transit:
+      risk:
+        - Evil actors might be able to perform a man in the middle attack and sniff confidential information
+          (e.g. authentication factors like passwords)
+      measure: By using encryption at the edge of traffic in transit, it is impossible or at least harder to sniff 
+        credentials beeing outside of the organization.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 1
+      implementation: ''
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 10.1
+    Usage of internal encryption at tansit:
+      risk:
+        - Evil actors within the organization of traffic in transit might be able to perform a man in the middle attack 
+          and sniff confidential information (e.g. authentication factors like passwords)
+      measure: By using encryption internally, e.g. inside of a cluster, it is impossible or at least harder to sniff
+        credentials.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation: ''
+      references:
+        samm2: I-SD-2-B
+        iso27001-2017:
+          - 10.1

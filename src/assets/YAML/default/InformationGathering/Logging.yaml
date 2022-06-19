@@ -1,0 +1,153 @@
+_yaml_references:
+  tools:
+    loggingCheatSheet:
+      name: OWASP Logging CheatSheet
+      url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+      tags: [logging, documentation]
+    rsyslog:
+      name: rsyslog
+      url: https://www.rsyslog.com/
+      tags: [tool, logging]
+    logstash:
+      name: logstash
+      url: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+      tags: [tool, logging]
+Information Gathering:
+  Logging:
+    Centralized application logging:
+      risk:
+      - Local stored logs can be unauthorized manipulated by attackers with system
+        access or might be corrupt after an incident. In addition, it is hard to perform
+        an correlation of logs. This leads attacks, which can be performed silently.
+      measure: A centralized logging system is used and applications logs (including
+        application exceptions) are shipped to it.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 5
+      level: 3
+      dependsOn:
+      - Visualized logging
+      - Alerting
+      samm2: O-IM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.4.1
+      implementation: []
+    PII logging concept:
+      risk:
+      - Personal identifiable information (PII) is logged and the law of GDPR is not
+        followed.
+      measure: A concept how to log PII is documented and applied.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 1
+      level: 1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rsyslog
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fluentd
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/bash
+      samm2: O-IM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.4.1
+      - 18.1.1
+    Logging of security events:
+      md-description: |
+        Implement logging of security relevant events. The following events tend to be security relevant:
+          - successful/failed login/logout
+          - creation, change, and deletion of users
+          - errors during input validation and output creation
+          - exceptions and errors with security in their name
+          - transactions of value (e.g., financial transactions, costly operations)
+          - :unicorn: (special things of your application)
+      risk-md: |
+        - No track of security-relevant events makes it harder to analyze an incident.
+        - Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
+      measure: Security-relevant events like login/logout or creation, change, deletion
+        of users should be logged.
+      assessment: |
+        - Show which events are logged.
+        - Show a test for one event logging.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 1
+      credits: |
+        [AppSecure-nrw](https://github.com/AppSecure-nrw/security-belts/blob/master/orange/logging-of-security-events.md)
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fluentd
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/bash
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-logging-cheats
+      samm2: O-IM-1-A
+      iso27001-2017:
+      - 12.4.1
+    Centralized system logging:
+      risk:
+      - Local stored system logs can be unauthorized manipulated by attackers or might
+        be corrupt after an incident. In addition, it is hard to perform a aggregation
+        of logs.
+      measure: By using centralized logging logs are protected against unauthorized
+        modification.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 2
+      level: 1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rsyslog
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logstash
+      samm2: O-IM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.4.1
+    Correlation of security events:
+      risk:
+      - Detection of security related events with hints on different systems/tools/metrics
+        is not possible.
+      measure: Events are correlated on one system. For example the correlation and
+        visualization of failed login attempts combined with successful login attempts.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 4
+      usefulness: 3
+      level: 4
+      dependsOn:
+      - Visualized logging
+      - Alerting
+      samm2: O-IM-2-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.4.1
+      implementation: []
+    Visualized logging:
+      risk:
+      - System and application protocols are not visualized properly which leads to
+        no or very limited logging assessment. Specially developers might have difficulty
+        to read applications logs with unusually tools like the Linux tool 'cat'
+      measure: Protocols are visualized in a simple to use real time monitoring system.
+        The GUI gives the ability to search for special attributes in the protocol.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 2
+      dependsOn:
+      - Centralized system logging
+      - Centralized application logging
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/elk-stack
+      samm2: O-IM-1-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.4.1

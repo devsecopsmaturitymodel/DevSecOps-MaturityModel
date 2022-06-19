@@ -1,0 +1,208 @@
+Test and Verification:
+  Static depth for applications:
+    Exclusion of source code duplicates:
+      risk:
+      - Duplicates in source code might influence the stability of the application.
+      measure: Automatic Detection and manual removal of duplicates in source code.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 1
+      level: 4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/pmd
+      dependsOn:
+      - Defined build process
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 14.2.1
+      - 14.2.5
+    Static analysis for all components/libraries:
+      risk:
+      - Used components like libraries and legacy applications might have vulnerabilities
+      measure: Usage of a static analysis for all used components.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 4
+        resources: 2
+      usefulness: 3
+      level: 4
+      dependsOn:
+      - Static analysis for important client side components
+      - Static analysis for important server side components
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 12.6.1
+      implementation: []
+    Static analysis for all self written components:
+      risk:
+      - Parts in the source code of the frontend or middleware have vulnerabilities.
+      measure: Usage of static analysis tools for all parts of the middleware and
+        frontend. Static analysis uses for example string matching algorithms and/or
+        dataflow analysis.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jsprime
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fortify-vscode-extension
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/checkmarx-vscode-extension
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/appscan-vscode-extension
+      dependsOn:
+      - Static analysis for important client side components
+      - Static analysis for important server side components
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 12.6.1
+    Static analysis for important client side components:
+      risk:
+      - Important parts in the source code of the frontend have vulnerabilities.
+      measure: Usage of static analysis tools for important parts of the frontend
+        are used. Static analysis uses for example string matching algorithms and/or
+        dataflow analysis.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jsprime
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/bdd-mobile-security
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fortify-vscode-extension
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/checkmarx-vscode-extension
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/appscan-vscode-extension
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 12.6.1
+      dependsOn:
+      - Defined build process
+    Static analysis for important server side components:
+      risk:
+      - Important parts in the source code of the middleware have vulnerabilities.
+      measure: Usage of static analysis tools for important parts of the middleware
+        are used. Static analysis uses for example string matching algorithms and/or
+        dataflow analysis.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/eslint
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jsprime
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fortify-vscode-extension
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/checkmarx-vscode-extension
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/appscan-vscode-extension
+      dependsOn:
+      - Defined build process
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 12.6.1
+    Local development security checks performed:
+      risk:
+        - Creating and developing code contains code smells and quality issues.
+      measure: |
+        Integration of quality and linting plugins with interactive development environment (IDEs).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 2
+      implementation:
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fortify-vscode-extension
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/checkmarx-vscode-extension
+        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/appscan-vscode-extension
+      samm2: V-ST-A-1-1
+      iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+    Stylistic analysis:
+      risk:
+      - False source code indenting might lead to vulnerabilities.
+      measure: Analysis of compliance to style guides of the source code ensures that
+        source code indenting rules are met.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 1
+      level: 4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/pmd
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/stylecop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sonarqube
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
+    Test of client side components with known vulnerabilities:
+      risk:
+      - Client side components might have vulnerabilities.
+      measure: Tests for known vulnerabilities in components of the frontend are performed.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 2
+        resources: 1
+      usefulness: 2
+      level: 3
+      dependsOn:
+      - Defined build process
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/retire-js
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/npm-audit
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 12.6.1
+    Test of server side components with known vulnerabilities:
+      risk:
+      - Server side components might have vulnerabilities.
+      measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware)
+        are performed.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 2
+        resources: 1
+      usefulness: 5
+      level: 1
+      dependsOn:
+      - Defined build process
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-dependency-che
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 12.6.1
+    Usage of multiple analyzers:
+      risk:
+      - Each vulnerability analyzer has different opportunities. By using just one
+        analyzer, some vulnerabilities might not be found.
+      measure: Usage of multiple static tools to find more vulnerabilities.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 5
+      usefulness: 1
+      level: 4
+      samm2: V-ST-3-A
+      iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
+      dependsOn:
+      - Test of server side components with known vulnerabilities
+      - Test of client side components with known vulnerabilities
+      - Static analysis for all self written components
+      implementation: []
