@@ -1,0 +1,203 @@
+Test and Verification:
+  Consolidation:
+    Advanced visualization of defects:
+      risk:
+      - Correlation of the vulnerabilities of different tools to have an overview
+        of the the overall security level per component/project/team is not given.
+      measure: Findings are visualized per component/project/team.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 4
+        resources: 1
+      usefulness: 2
+      level: 4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defectdojo
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+      references:
+        samm2: I-DM-1-B
+        iso27001-2017:
+        - 16.1.4
+        - 8.2.1
+        - 8.2.2
+        - 8.2.3
+    Definition of quality gates:
+      risk:
+      - Improper examination of vulnerabilities leads to no visibility at all.
+      measure: |-
+        Quality gates for found vulnerabilities are defined.
+        In the beginning it is important to not overload the security analyst,
+        therefore the recommendation
+        is to start with alerting of high critical vulnerabilities.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 1
+      references:
+        samm2: I-DM-2-A
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 12.6.1
+        - 16.1.4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/see-other-actions-e
+    Integration of vulnerability issues into the development process:
+      risk:
+      - To read console output of the build server to search for vulnerabilities might
+        be difficult. Also, to check a vulnerability management system might not be
+        a daily task for a developer.
+      measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 2
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sast
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dast
+      references:
+        samm2: I-DM-2-B
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 16.1.4
+        - 16.1.5
+        - 16.1.6
+    Reproducible defect tickets:
+      risk:
+      - Vulnerability descriptions are hard to understand by staff from operations
+        and development.
+      measure: Vulnerabilities include the test procedure to give the staff from operations
+        and development the ability to reproduce vulnerabilities. This enhances the
+        understanding of vulnerabilities and therefore the fix have a higher quality.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 2
+      level: 4
+      implementation: []
+      samm2: I-DM-2-B
+      iso27001-2017:
+      - 16.1.4
+      - 8.2.1
+      - 8.2.2
+      - 8.2.3
+    Simple false positive treatment:
+      risk:
+      - As false positive occur during each test, all vulnerabilities might be ignored.
+      measure: False positives are suppressed so they will not show up on the next
+        tests again. Most security tools have the possibility to suppress false positives.
+        A Vulnerability Management System might be used.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defect-dojo
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
+      samm2: I-DM-2-A
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 16.1.6
+    Simple visualization of defects:
+      risk:
+      - The security level of a component is not visible. Therefore, the motivation
+        to enhance the security is not give.
+      measure: Vulnerabilities are simple visualized.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-dependency-che
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/logparser-jenkins-pl
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defectdojo
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
+      references:
+        samm2: I-DM-1-B
+        iso27001-2017:
+        - 16.1.4
+        - 8.2.1
+        - 8.2.2
+        - 8.2.3
+    Treatment of all defects:
+      risk:
+      - Vulnerabilities with severity low are not visible.
+      measure: All vulnerabilities are added to the quality gate.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 2
+      level: 4
+      samm2: I-DM-2-B
+      iso27001-2017:
+      - 16.1.4
+      - 12.6.1
+      implementation: []
+    Treatment of defects with severity high or higher:
+      risk:
+      - Vulnerabilities with severity high or higher are not visible.
+      measure: Vulnerabilities with severity high or higher are added to the quality
+        gate.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 1
+      comment: False positive analysis, specially for static analysis, is time consuming.
+      references:
+        samm2: I-DM-2-B
+        iso27001-2017:
+        - 16.1.4
+        - 12.6.1
+      implementation: []
+    Treatment of defects with severity middle:
+      risk:
+      - Vulnerabilities with severity middle are not visible.
+      measure: Vulnerabilities with severity middle are added to the quality gate.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 3
+      comment: False positive analysis, specially for static analysis, is time consuming.
+      references:
+        samm2: I-DM-2-B
+        iso27001-2017:
+        - 16.1.4
+        - 12.6.1
+      implementation: []
+    Usage of a vulnerability management system:
+      risk:
+      - Maintenance of false positives in each tool enforces a high workload. In addition
+        a correlation of the same finding from different tools is not possible.
+      measure: Aggregation of vulnerabilities in one tool reduce the workload to mark
+        false positives.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 2
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-defectdojo
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/purify
+      references:
+        samm2: I-DM-1-B
+        iso27001-2017:
+        - 12.6.1
+        - 16.1.3
+        - 16.1.4
+        - 16.1.5
+        - 16.1.6

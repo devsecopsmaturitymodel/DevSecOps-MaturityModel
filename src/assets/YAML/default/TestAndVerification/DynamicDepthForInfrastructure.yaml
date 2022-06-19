@@ -1,0 +1,128 @@
+_yaml_references:
+  tools:
+    K8sPurger:
+      name: K8sPurger
+      tags: [vulnerability, scanner, dast, infrastrcture]
+      url: https://github.com/yogeshkk/K8sPurger
+      description: |
+        Hunt Unused Resources In Kubernetes.
+Test and Verification:
+  Dynamic depth for infrastructure:
+    Load tests:
+      risk:
+      - As it is unknown how many requests the systems and applications can serve,
+        due to an unexpected load the availability is disturbed.
+      measure: Load test against the production system or a production near system
+        is performed.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 5
+      usefulness: 3
+      level: 4
+      samm2: V-ST-1-A
+      iso27001-2017:
+      - 12.1.3
+      - 14.2.3
+      - 14.2.8
+      implementation: []
+    Test of the configuration of cloud environments:
+      risk:
+      - Standard hardening practices for cloud environments are not performed leading
+        to vulnerabilities.
+      measure: With the help of tools the configuration of virtual environments are
+        tested.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kubescape
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kube-hunter
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openvas
+      iso27001-2017:
+      - system hardening is not explicitly covered by ISO 27001 - too specific
+      - 12.6.1
+      - 14.2.3
+      - 14.2.8
+    Weak password test:
+      risk:
+      - Weak passwords in components like applications or systems, specially for privileged
+        accounts, lead to take over of that account.
+      measure: Automatic brute force attacks are performed. Specially the usage of
+        standard accounts like 'admin' and employee user-ids is recommended.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 1
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/htc-hydra
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 9.4.3
+    Test network segmentation:
+      risk:
+      - Wrong or no network segmentation of pods makes it easier for an attacker to
+        access a database and extract or modify data.
+      measure: Cluster internal test needs to be performed. Integration of fine granulated
+        network segmentation (also between pods in the same namespace).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/netassert
+      dependsOn:
+      - Segmented networks for virtual environments
+      samm2: V-ST-2-A
+      iso27001-2017:
+      - 13.1.3
+      - 14.2.3
+      - 14.2.8
+    Test for exposed services:
+      risk:
+      - Standard network segmentation and firewalling has not been performed, leading
+        to world open cluster management ports.
+      measure: With the help of tools the network configuration of unintentional exposed
+        cluster(s) are tested. To identify clusters, all subdomains might need to
+        be identified with a tool like OWASP Amass to perform portscans based o the
+        result.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/nmap
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-amass
+      samm2: V-ST-1-A
+      iso27001-2017:
+      - 13.1.3
+      - 14.2.3
+      - 14.2.8
+    Test for unused Resources:
+      risk:
+      - Unused resources, specially secrets, might be still valid, but are exposing
+        information. As an attacker, I compromise a system, gather credentials and
+        try to use them.
+      measure: Test for unused resources helps to identify unused resources.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 2
+      level: 4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/k8spurger
+      samm2: V-ST-1-A
+      iso27001-2017:
+      - 13.1.3
+      - 14.2.3
+      - 14.2.8
