@@ -1,0 +1,11 @@
+version: "3.0"
+services:
+  dsomm:
+    image: wurstbrot/dsomm:latest
+    entrypoint: ["php", "/var/www/html/data/generateDimensions.php"]
+    volumes:
+      - ./data/custom:/var/www/html/data/custom
+      - ./data/dimensions-subdimensions-activities:/var/www/html/data/dimensions-subdimensions-activities
+      - ./data/generated:/var/www/html/data/generated
+    environment:
+      - ENFORCE_DATA_GENERATION_DURING_RUNTIME="true"
