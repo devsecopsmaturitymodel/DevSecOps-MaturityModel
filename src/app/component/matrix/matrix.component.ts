@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
-
+import { Router, NavigationExtras } from '@angular/router';
 
 export interface MatrixElement {
   Dimension: string;
@@ -38,7 +38,7 @@ export class MatrixComponent implements OnInit {
   dataSource:any= new MatTableDataSource<MatrixElement>(this.MATRIX_DATA);
   rows: string[] = [];
   
-  constructor(private yaml:ymlService) {
+  constructor(private yaml:ymlService,private router: Router) {
     this.filteredRows = this.rowCtrl.valueChanges.pipe(
       startWith(null),
       map((row: string | null) => (row ? this._filter(row) : this.autoCompeteRows.slice())),
@@ -160,6 +160,22 @@ export class MatrixComponent implements OnInit {
 
     return this.autoCompeteRows.filter(row => row.toLowerCase().includes(filterValue));
   }
+
+  // task description routing + providing parameters
+
+  navigate(dim:string,subdim:string,lvl:string,ti:Number) {
+    let navigationExtras: NavigationExtras = {
+        queryParams: {
+            dimension:dim,
+            subDimension:subdim,
+            level:lvl,
+            taskIndex:ti
+        }
+    }
+    console.log(this.lvlColumn)
+    console.log(this.levels)
+    this.router.navigate([this.Routing], navigationExtras);
+}
 
   
   

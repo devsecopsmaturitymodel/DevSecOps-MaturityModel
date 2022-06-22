@@ -29,11 +29,11 @@
   
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 matrix-table">
-  
+
     <!-- Dimension Column -->
     <ng-container matColumnDef="Dimension">
       <th mat-header-cell *matHeaderCellDef> Dimension </th>
-      <td mat-cell *matCellDef="let element"> {{element.Dimension}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.Dimension}}</td>
     </ng-container>
   
     <!-- Sub Dimension Column -->
@@ -48,8 +48,10 @@
         <th mat-header-cell *matHeaderCellDef> {{levels[i]}} </th>
         <td mat-cell *matCellDef="let element">
             <ul>
-                <li *ngFor="let task of element[lvl]" routerLink={{Routing}}>
+                <li *ngFor="let task of element[lvl]; index as j" >
+                  <button (click)="navigate(element.Dimension,element.SubDimension,lvl,j)">
                     {{task}}
+                    </button>
                 </li>
             </ul>
         </td>
