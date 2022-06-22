@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { YAMLParserService } from './yaml-parser.service';
+import { CombinerService } from './combiner.service';
 
-describe('YAMLParserService', () => {
-  let service: YAMLParserService;
+describe('CombinerService', () => {
+  let service: CombinerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(YAMLParserService);
+    service = TestBed.inject(CombinerService);
   });
 
   it('should be created', () => {

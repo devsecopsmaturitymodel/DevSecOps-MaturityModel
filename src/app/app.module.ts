@@ -12,8 +12,9 @@ import { MatrixComponent } from './component/matrix/matrix.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 import { TopHeaderComponent } from './component/top-header/top-header.component';
 import { TaskDescriptionComponent } from './component/task-description/task-description.component';
-import { ymlService } from './service/yaml-parser.service';
+import { ymlService } from './service/yaml-parser/yaml-parser.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CombinerService } from './service/combiner/combiner.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
     
   ],
-  providers: [ymlService],
+  providers: [ymlService,CombinerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

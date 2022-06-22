@@ -1,64 +1,180 @@
-Information Gathering:
-  Monitoring:
-    Advanced availability and stability metrics:
-      risk:
-      - Trends and advanced attacks are not detected.
-      measure: Advanced metrics are gathered in relation to availability and stability.
-        For example unplanned downtime's per year.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
+dimension:
+  name: Information Gathering
+  subdimension:
+    level-1:
+    - difficultyOfImplementation:
+        knowledge: 2
         resources: 2
-      usefulness: 4
-      level: 3
-      dependsOn:
-      - Simple application metrics
-      - Visualized metrics
-      samm2: O-IM-2-A
+        time: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/prometheus
+      iso27001-2017:
+      - 12.4.1
+      level: 1
+      measure: Gathering of application metrics helps to identify incidents like brute
+        force attacks, login/logout.
+      name: Simple application metrics
+      risk:
+      - Attacks on an application are not recognized.
+      samm2: O-IM-1-A
+      usefulness: 5
+    - difficultyOfImplementation:
+        knowledge: 2
+        resources: 2
+        time: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/collected
       iso27001-2017:
       - 12.1.3
-      implementation: []
-    Advanced webapplication metrics:
+      level: 1
+      measure: Gathering of system metrics helps to identify incidents and specially
+        bottlenecks like in CPU usage, memory usage and hard disk usage.
+      name: Simple system metrics
       risk:
-      - People are not looking into tests results. Vulnerabilities not recolonized,
-        even they are detected by tools.
-      measure: All defects from the dimension Test- and Verification are instrumented.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 2
-      usefulness: 4
-      level: 3
-      dependsOn:
-      - Simple application metrics
+      - Without simple metrics analysis of incidents are hard. In case an application
+        uses a lot of CPU from time to time, it is hard for a developer to find out
+        the source with Linux commands.
+      samm2: O-IM-1-A
+      usefulness: 5
+    level-2:
+    - dependsOn:
       - Visualized metrics
-      samm2: O-IM-2-A
-      iso27001-2017:
-      - 12.6.1
-      implementation: []
-    Alerting:
-      risk:
-      - Incidents are discovered after they happened.
-      measure: |
-        Thresholds for metrics are set. In case the thresholds are reached, alarms are send out. Which should get attention due to the critically.
       difficultyOfImplementation:
         knowledge: 2
-        time: 5
         resources: 5
-      usefulness: 5
-      level: 2
-      dependsOn:
-      - Visualized metrics
-      samm2: I-DM-A 3
+        time: 5
+      implementation: []
       iso27001-2017:
       - 16.1.2
       - 16.1.4
       - 12.1.4
-      implementation: []
-    Coverage and control metrics:
+      level: 2
+      measure: 'Thresholds for metrics are set. In case the thresholds are reached,
+        alarms are send out. Which should get attention due to the critically.
+
+        '
+      name: Alerting
       risk:
-      - The effectiveness of configuration, patch and vulnerability management is
-        unknown.
+      - Incidents are discovered after they happened.
+      samm2: I-DM-A 3
+      usefulness: 5
+    - dependsOn:
+      - Simple application metrics
+      - Simple system metrics
+      difficultyOfImplementation:
+        knowledge: 1
+        resources: 2
+        time: 2
+      implementation: []
+      iso27001-2017:
+      - 12.1.3
+      level: 2
+      measure: Metrics are visualized in real time in a user friendly way.
+      name: Visualized metrics
+      risk:
+      - Not visualized metrics lead to restricted usage of metrics.
+      samm2: O-IM-2-A
+      usefulness: 3
+    level-3:
+    - dependsOn:
+      - Simple application metrics
+      - Visualized metrics
+      difficultyOfImplementation:
+        knowledge: 3
+        resources: 2
+        time: 3
+      implementation: []
+      iso27001-2017:
+      - 12.1.3
+      level: 3
+      measure: Advanced metrics are gathered in relation to availability and stability.
+        For example unplanned downtime's per year.
+      name: Advanced availability and stability metrics
+      risk:
+      - Trends and advanced attacks are not detected.
+      samm2: O-IM-2-A
+      usefulness: 4
+    - dependsOn:
+      - Simple application metrics
+      - Visualized metrics
+      difficultyOfImplementation:
+        knowledge: 3
+        resources: 2
+        time: 3
+      implementation: []
+      iso27001-2017:
+      - 12.6.1
+      level: 3
+      measure: All defects from the dimension Test- and Verification are instrumented.
+      name: Advanced webapplication metrics
+      risk:
+      - People are not looking into tests results. Vulnerabilities not recolonized,
+        even they are detected by tools.
+      samm2: O-IM-2-A
+      usefulness: 4
+    - dependsOn:
+      - Visualized metrics
+      difficultyOfImplementation:
+        knowledge: 2
+        resources: 5
+        time: 5
+      implementation: []
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.1.3
+      level: 3
+      measure: Deactivation of unused metrics helps to free resources.
+      name: Deactivation of unused metrics
+      risk:
+      - High resources are used while gathering unused metrics.
+      samm2: O-IM-1-A
+      usefulness: 5
+    - difficultyOfImplementation:
+        knowledge: 2
+        resources: 2
+        time: 4
+      implementation: []
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 12.1.3
+      level: 3
+      measure: Meaningful grouping of metrics helps to speed up analysis.
+      name: Grouping of metrics
+      risk:
+      - The analysis of metrics takes long.
+      samm2: O-IM-2-A
+      usefulness: 2
+    - dependsOn:
+      - Alerting
+      difficultyOfImplementation:
+        knowledge: 2
+        resources: 5
+        time: 5
+      implementation: []
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 16.1.5
+      level: 3
+      measure: By the definition of target groups for incidents people are only getting
+        alarms for incidents they are in charge for.
+      name: Targeted alerting
+      risk:
+      - People are bored (ignorant) of incident alarm messages, as they are not responsible
+        to react.
+      samm2: I-DM-A 3
+      usefulness: 5
+    level-4:
+    - dependsOn:
+      - Visualized metrics
+      difficultyOfImplementation:
+        knowledge: 3
+        resources: 2
+        time: 5
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-ht-transpare
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      level: 4
       measure: "Usage of Coverage- and control-metrics to show the effectiveness of\
         \ the security program. Coverage is the degree in \n        which a specific\
         \ security control for a specific target group is applied with all resources.\n\
@@ -66,173 +182,70 @@ Information Gathering:
         \ and security-guidelines. Examples are gathering information on anti-virus,\
         \ anti-rootkits, patch management, server configuration and vulnerability\
         \ management."
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 5
-        resources: 2
-      usefulness: 4
-      level: 4
-      dependsOn:
-      - Visualized metrics
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-ht-transpare
+      name: Coverage and control metrics
+      risk:
+      - The effectiveness of configuration, patch and vulnerability management is
+        unknown.
       samm2: O-IM-2-A
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-    Deactivation of unused metrics:
-      risk:
-      - High resources are used while gathering unused metrics.
-      measure: Deactivation of unused metrics helps to free resources.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 5
-        resources: 5
-      usefulness: 5
-      level: 3
-      dependsOn:
-      - Visualized metrics
-      samm2: O-IM-1-A
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - 12.1.3
-      implementation: []
-    Defense metrics:
-      risk:
-      - IDS/IPS systems like packet- or application-firewalls detect and prevent attacks.
-        It is not known how many attacks has been detected and blocked.
-      measure: |
-        Gathering of defense metrics like TCP/UDP sources enables to assume the geographic location of the request.
-        Assuming a Kubernetes cluster with an egress-traffic filter (e.g. IP/domain based), an alert might be send out in case of every violation. For ingress-traffic, alerting might not even be considered.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 5
-        resources: 2
       usefulness: 4
-      level: 4
-      dependsOn:
+    - dependsOn:
       - Visualized metrics
       - Filter outgoing traffic
-      samm2: O-IM-2-A
+      difficultyOfImplementation:
+        knowledge: 3
+        resources: 2
+        time: 5
+      implementation: []
       iso27001-2017:
       - 12.4.1
       - 13.1.1
-      implementation: []
-    Grouping of metrics:
-      risk:
-      - The analysis of metrics takes long.
-      measure: Meaningful grouping of metrics helps to speed up analysis.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 4
-        resources: 2
-      usefulness: 2
-      level: 3
-      samm2: O-IM-2-A
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - 12.1.3
-      implementation: []
-    Metrics are combined with tests:
-      risk:
-      - Changes might cause high load due to programming errors.
-      measure: Metrics during tests helps to identify programming errors.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 3
-        resources: 2
-      usefulness: 5
       level: 4
-      dependsOn:
-      - Grouping of metrics
+      measure: 'Gathering of defense metrics like TCP/UDP sources enables to assume
+        the geographic location of the request.
+
+        Assuming a Kubernetes cluster with an egress-traffic filter (e.g. IP/domain
+        based), an alert might be send out in case of every violation. For ingress-traffic,
+        alerting might not even be considered.
+
+        '
+      name: Defense metrics
+      risk:
+      - IDS/IPS systems like packet- or application-firewalls detect and prevent attacks.
+        It is not known how many attacks has been detected and blocked.
       samm2: O-IM-2-A
+      usefulness: 4
+    - dependsOn:
+      - Grouping of metrics
+      difficultyOfImplementation:
+        knowledge: 2
+        resources: 2
+        time: 3
+      implementation: []
       iso27001-2017:
       - not explicitly covered by ISO 27001
-      implementation: []
-    Screens with metric visualization:
+      level: 4
+      measure: Metrics during tests helps to identify programming errors.
+      name: Metrics are combined with tests
       risk:
-      - Security related information is discovered too late during an incident.
+      - Changes might cause high load due to programming errors.
+      samm2: O-IM-2-A
+      usefulness: 5
+    - dependsOn:
+      - Grouping of metrics
+      difficultyOfImplementation:
+        knowledge: 2
+        resources: 1
+        time: 1
+      implementation: []
+      iso27001-2017:
+      - not explicitly covered by ISO 27001 - too specific
+      - 16.1.5
+      level: 4
       measure: By having an internal accessible screen with a security related dashboards
         helps to visualize incidents.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 1
-        resources: 1
-      usefulness: 5
-      level: 4
-      dependsOn:
-      - Grouping of metrics
+      name: Screens with metric visualization
+      risk:
+      - Security related information is discovered too late during an incident.
       samm2: O-IM-2-A
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - 16.1.5
-      implementation: []
-    Simple application metrics:
-      risk:
-      - Attacks on an application are not recognized.
-      measure: Gathering of application metrics helps to identify incidents like brute
-        force attacks, login/logout.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 2
       usefulness: 5
-      level: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/prometheus
-      samm2: O-IM-1-A
-      iso27001-2017:
-      - 12.4.1
-    Simple system metrics:
-      risk:
-      - Without simple metrics analysis of incidents are hard. In case an application
-        uses a lot of CPU from time to time, it is hard for a developer to find out
-        the source with Linux commands.
-      measure: Gathering of system metrics helps to identify incidents and specially
-        bottlenecks like in CPU usage, memory usage and hard disk usage.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 2
-      usefulness: 5
-      level: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/collected
-      samm2: O-IM-1-A
-      iso27001-2017:
-      - 12.1.3
-    Targeted alerting:
-      risk:
-      - People are bored (ignorant) of incident alarm messages, as they are not responsible
-        to react.
-      measure: By the definition of target groups for incidents people are only getting
-        alarms for incidents they are in charge for.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 5
-        resources: 5
-      usefulness: 5
-      level: 3
-      dependsOn:
-      - Alerting
-      samm2: I-DM-A 3
-      iso27001-2017:
-      - not explicitly covered by ISO 27001 - too specific
-      - 16.1.5
-      implementation: []
-    Visualized metrics:
-      risk:
-      - Not visualized metrics lead to restricted usage of metrics.
-      measure: Metrics are visualized in real time in a user friendly way.
-      difficultyOfImplementation:
-        knowledge: 1
-        time: 2
-        resources: 2
-      usefulness: 3
-      level: 2
-      dependsOn:
-      - Simple application metrics
-      - Simple system metrics
-      samm2: O-IM-2-A
-      iso27001-2017:
-      - 12.1.3
-      implementation: []
+    name: Monitoring
