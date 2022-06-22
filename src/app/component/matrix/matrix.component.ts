@@ -5,38 +5,13 @@ import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
-import { ymlService } from '../../service/yaml-parser.service';
+import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 
 
 export interface MatrixElement {
   Dimension: string;
   SubDimension: string;
-  Level1: string[];
-  Level2: string[];
-  Level3: string[];
-  Level4: string[];
 }
-
-const MATRIX_DATA: MatrixElement[] = [
-  {Dimension: 'Build and Deployment', 
-  SubDimension: 'Build', 
-  Level1: ['Defined build process','ES'], 
-  Level2:['Pinning of artifacts'],
-  Level3:['Signing of artifacts'],
-  Level4:[]},
-  {Dimension: 'Build and Deployment', 
-  SubDimension: 'Deployment', 
-  Level1: ['Defined deployment process','EN'], 
-  Level2:['Defined decommissioning process'],
-  Level3:['Rolling update on deployment'],
-  Level4:['Temp']},
-  {Dimension: 'Build and Deployment', 
-  SubDimension: 'Depl', 
-  Level1: ['Defined deployment process','EN'], 
-  Level2:['Defined decommissioning process'],
-  Level3:['Rolling update on deployment'],
-  Level4:['Temp']},
-];
 
 
 @Component({
@@ -46,40 +21,24 @@ const MATRIX_DATA: MatrixElement[] = [
 })
 export class MatrixComponent implements OnInit {
 
+  MATRIX_DATA: MatrixElement[] = [];
+
   Routing: string='/task-description'
 
   YamlObject:any;
   levels:string[]=[];
   
-  iflvl1exists:boolean = false;
-  iflvl2exists:boolean = false;
-  iflvl3exists:boolean = false;
-  iflvl4exists:boolean = false;
-  
   displayedColumns: string[] = [
     'Dimension',
     'SubDimension'
     ];
+
   lvlColumn: string[]=[];
   allRows:string[]=[];
-  dataSource:any= new MatTableDataSource<MatrixElement>(MATRIX_DATA);
+  dataSource:any= new MatTableDataSource<MatrixElement>(this.MATRIX_DATA);
   rows: string[] = [];
   
   constructor(private yaml:ymlService) {
-    yaml.setURI('./assets/YAML/sample.yaml');
-    this.yaml.getJson().subscribe((data) => {
-      this.YamlObject = data;
-
-      // Levels header
-      this.levels = this.YamlObject['strings']['en']['maturity_levels'];
-
-      // pushes Levels in displayed column  
-      for(let k=1; k<=this.levels.length; k++){
-        this.displayedColumns.push('Level'+k);
-        this.lvlColumn.push('Level'+k);
-      }  
-      console.log(this.displayedColumns);
-    });
     this.filteredRows = this.rowCtrl.valueChanges.pipe(
       startWith(null),
       map((row: string | null) => (row ? this._filter(row) : this.autoCompeteRows.slice())),
@@ -88,27 +47,76 @@ export class MatrixComponent implements OnInit {
 
    // function to initialize if level columns exists
    ngOnInit(): void {
-    this.dataSource.data = JSON.parse(JSON.stringify(MATRIX_DATA)); ;
-    let i =0;
+    this.yaml.setURI('./assets/YAML/sample.yaml');
+    // Function sets column header
+    this.yaml.getJson().subscribe((data) => {
+      this.YamlObject = data;
 
-    
+      // Levels header
+      this.levels = this.YamlObject['strings']['en']['maturity_levels'];
 
+      // pushes Levels in displayed column  
+      for(let k=1; k<=this.levels.length; k++){
+        this.displayedColumns.push('level'+k);
+        this.lvlColumn.push('level'+k);
+      }  
+      //console.log(this.displayedColumns);
+    });
+
+    //gets value from generated folder 
+    this.yaml.setURI('./assets/YAML/generated/sample.yaml');
+    // Function sets data 
+    this.yaml.getJson().subscribe((data) => {
+      this.YamlObject = data;
+      var len = this.YamlObject['dimension'].length;
+      //console.log(this.YamlObject['dimension'][0]['subdimension']['level-1'])
+      for(let i =0;i<len;i++){
+        var temp = {Dimension:this.YamlObject['dimension'][i]['name'],
+                                  SubDimension:this.YamlObject['dimension'][i]['subdimension']['name'],
+                                  }
+        //console.log(typeof(temp))
+        for (let j = 0 ;j<this.levels.length; j++)
+          {
+            temp={
+              ...temp,
+              [this.lvlColumn[j] as keyof MatrixElement]: []
+            }
+            
+            var lvlTemp='level-'+(j+1)
+            
+            try{
+              for(let k =0;k<this.YamlObject['dimension'][i]['subdimension'][lvlTemp].length;k++){
+                  temp[this.lvlColumn[j] as keyof MatrixElement].push(this.YamlObject['dimension'][i]['subdimension'][lvlTemp][k]['name'])
+                  //console.log(this.YamlObject['dimension'][i]['subdimension'][lvlTemp][k]['name'])
+              }
+            }
+            catch{
+              temp[this.lvlColumn[j] as keyof MatrixElement]=[]
+            }
+          }
+          console.log(temp)
+        this.MATRIX_DATA.push(temp)
+      } 
+      this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA)); 
+      this.createRowList();
+    });
     
-    
-    // creates initial row list consisting of all rows 
-    while(i<MATRIX_DATA.length){
-      if(!this.allRows.includes(MATRIX_DATA[i].SubDimension)){
-        this.allRows.push(MATRIX_DATA[i].SubDimension);
-        this.rows.push(MATRIX_DATA[i].SubDimension);
-      }
-      i++;
-    }
-    console.log(this.allRows)
+    this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA)); 
+    this.createRowList();
     
   }
 
-
-
+  createRowList(): void{
+    let i =0;
+    // creates initial row list consisting of all rows 
+    while(i<this.MATRIX_DATA.length){
+      if(!this.allRows.includes(this.MATRIX_DATA[i].SubDimension)){
+        this.allRows.push(this.MATRIX_DATA[i].SubDimension);
+        this.rows.push(this.MATRIX_DATA[i].SubDimension);
+      }
+      i++;
+    }
+  }
   //chips
   
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -140,9 +148,9 @@ export class MatrixComponent implements OnInit {
     this.rowCtrl.setValue(null);
     //console.log(this.allRows,event.option.viewValue);
     let dataIndex=this.allRows.indexOf(event.option.viewValue);
-    this.dataSource.data.push(MATRIX_DATA[dataIndex]);
+    this.dataSource.data.push(this.MATRIX_DATA[dataIndex]);
     //console.log(dataIndex);
-    //console.log(MATRIX_DATA)
+    //console.log(this.MATRIX_DATA)
     //console.log(this.dataSource.data);
     this.dataSource._data.next(this.dataSource.data);
   }

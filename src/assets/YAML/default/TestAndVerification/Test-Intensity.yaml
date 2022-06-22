@@ -1,94 +1,99 @@
-Test and Verification:
-  Test-Intensity:
-    Regular tests:
-      risk:
-      - After pushing source code to the version control system, any delay in receiving
-        feedback on defects makes them harder for the developer to remediate.
-      measure: On each push and/or at given intervals automatic security tests are
-        performed.
-      difficultyOfImplementation:
+dimension:
+  name: Test and Verification
+  subdimension:
+    level-1:
+    - difficultyOfImplementation:
         knowledge: 1
-        time: 1
         resources: 1
-      usefulness: 2
-      level: 2
+        time: 1
       implementation: []
-      samm2: I-SB-3-A
+      iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
+      level: 1
+      measure: The intensity of the used tools are not modified to safe time.
+      name: Default settings for intensity
+      risk:
+      - Time pressure and ignorance might lead to false predictions for the test intensity.
+      samm2: V-ST-1-A
+      usefulness: 1
+    - difficultyOfImplementation:
+        knowledge: 3
+        resources: 5
+        time: 3
+      implementation: []
+      iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
+      level: 1
+      measure: A deep scan with high test intensity and a low confidence threshold
+        is performed.
+      name: High test intensity
+      risk:
+      - A too small intensity or a too high confidence might lead to not visible vulnerabilities.
+      samm2: V-ST-2-A
+      usefulness: 3
+    level-2:
+    - difficultyOfImplementation:
+        knowledge: 1
+        resources: 1
+        time: 1
+      implementation: []
       iso27001-2017:
       - 14.2.3
       - 14.2.8
       - 14.2.9
-    Creation and application of a testing concept:
+      level: 2
+      measure: On each push and/or at given intervals automatic security tests are
+        performed.
+      name: Regular tests
       risk:
-      - Scans might use a too small or too high test intensity.
-      measure: A testing concept considering the amount of time per scan/intensity
-        is created and applied. A dynamic analysis needs more time than a static analysis.
-        The dynamic scan, depending on the test intensity might be performed on every
-        commit, every night, every week or once in a month.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 3
+      - After pushing source code to the version control system, any delay in receiving
+        feedback on defects makes them harder for the developer to remediate.
+      samm2: I-SB-3-A
       usefulness: 2
-      level: 3
+    - difficultyOfImplementation:
+        knowledge: 2
+        resources: 1
+        time: 3
+      implementation: []
+      iso27001-2017:
+      - 12.6.1
+      - 14.2.1
+      - 14.2.5
+      level: 2
+      measure: Unneeded tests are deactivated. For example in case the service is
+        using a Mongo database and no mysql database, the dynamic scan doesn't need
+        to test for sql injections.
+      name: Deactivating of unneeded tests
+      risk:
+      - As tools cover a wide range of different vulnerability tests, they might not
+        match the used components. Therefore, they need more time and resources as
+        they need and the feedback loops takes too much time.
       samm2: V-ST-2-A
+      usefulness: 1
+    level-3:
+    - difficultyOfImplementation:
+        knowledge: 3
+        resources: 3
+        time: 3
+      implementation: []
       iso27001-2017:
       - 14.2.2
       - 14.2.3
       - 14.2.1
       - 14.2.5
       - 12.6.1
-      implementation: []
-    Deactivating of unneeded tests:
+      level: 3
+      measure: A testing concept considering the amount of time per scan/intensity
+        is created and applied. A dynamic analysis needs more time than a static analysis.
+        The dynamic scan, depending on the test intensity might be performed on every
+        commit, every night, every week or once in a month.
+      name: Creation and application of a testing concept
       risk:
-      - As tools cover a wide range of different vulnerability tests, they might not
-        match the used components. Therefore, they need more time and resources as
-        they need and the feedback loops takes too much time.
-      measure: Unneeded tests are deactivated. For example in case the service is
-        using a Mongo database and no mysql database, the dynamic scan doesn't need
-        to test for sql injections.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 3
-        resources: 1
-      usefulness: 1
-      level: 2
+      - Scans might use a too small or too high test intensity.
       samm2: V-ST-2-A
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.1
-      - 14.2.5
-      implementation: []
-    Default settings for intensity:
-      risk:
-      - Time pressure and ignorance might lead to false predictions for the test intensity.
-      measure: The intensity of the used tools are not modified to safe time.
-      difficultyOfImplementation:
-        knowledge: 1
-        time: 1
-        resources: 1
-      usefulness: 1
-      level: 1
-      samm2: V-ST-1-A
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.1
-      - 14.2.5
-      implementation: []
-    High test intensity:
-      risk:
-      - A too small intensity or a too high confidence might lead to not visible vulnerabilities.
-      measure: A deep scan with high test intensity and a low confidence threshold
-        is performed.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 5
-      usefulness: 3
-      level: 1
-      samm2: V-ST-2-A
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.1
-      - 14.2.5
-      implementation: []
+      usefulness: 2
+    name: Test-Intensity
