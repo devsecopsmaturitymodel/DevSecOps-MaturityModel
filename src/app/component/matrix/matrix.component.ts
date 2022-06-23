@@ -163,7 +163,7 @@ export class MatrixComponent implements OnInit {
 
   // task description routing + providing parameters
 
-  navigate(dim:string,subdim:string,lvl:string,ti:Number) {
+  navigate(dim:string,subdim:string,lvl:Number,ti:Number) {
     let navigationExtras: NavigationExtras = {
         queryParams: {
             dimension:dim,
