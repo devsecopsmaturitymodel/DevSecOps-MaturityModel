@@ -20,7 +20,7 @@ dimension:
         implementation:
         - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
         level: 1
-        md-description: '## Benefits:
+        description: '## Benefits:
 
           Quality is visible to everyone
 
@@ -42,7 +42,7 @@ dimension:
         usefulness: 2
       - dependsOn:
         - Continuous Integration
-        description-md: 'Sample evidence as an attribute in the yaml: The build process
+        description: 'Sample evidence as an attribute in the yaml: The build process
           is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a>
 
           in the folder <i>vars</>. Projects are using a <i>Jenkinsfile</i> to use the

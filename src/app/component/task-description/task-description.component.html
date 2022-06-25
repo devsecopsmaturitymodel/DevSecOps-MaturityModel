@@ -19,9 +19,7 @@
                     <b>Risk</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>While building and testing artifacts, third party systems, application frameworks
-                and 3rd party libraries are used. These might be malicious as a result of
-                vulnerable libraries or because they are altered during the delivery phase.</p>
+            <p [innerHTML]="risk"></p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -29,8 +27,7 @@
                     <b>Measure</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p> Each step during within the build and testing phase is performed in
-                a separate virtual environments, which is destroyed afterward.</p>
+            <p [innerHTML]="measure"></p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>

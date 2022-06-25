@@ -10,6 +10,8 @@ export interface taskDescription {
   level:string
   taskIndex:number
   description:string
+  risk: string
+  measure: string
 }
 
 @Component({
@@ -19,13 +21,15 @@ export interface taskDescription {
 })
 export class TaskDescriptionComponent implements OnInit {
 
-  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskIndex:-1,description:''}
+  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskIndex:-1,description:'',risk:'',measure:''}
 
   YamlObject:any;
 
   rowIndex:number=0;
   markdown:md = md()
   description:any;
+  risk:any;
+  measure:any;
 
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
   constructor(private route: ActivatedRoute,private yaml:ymlService) { }
@@ -55,14 +59,17 @@ export class TaskDescriptionComponent implements OnInit {
       catch{
         console.log('Task does not exist!')
       }
-      try{
-       this.currentTask.description = this.YamlObject['dimension'][this.rowIndex]['subdimension'][this.currentTask.level][this.currentTask.taskIndex]['md-description']
-       this.description=this.markdown.render(this.currentTask.description);
-      }
-      catch{
-        this.currentTask.description = this.YamlObject['dimension'][this.rowIndex]['subdimension'][this.currentTask.level][this.currentTask.taskIndex]['description']
-        this.description=this.markdown.render(this.currentTask.description);
-      }
+      
+      this.currentTask.description = this.YamlObject['dimension'][this.rowIndex]['subdimension']
+      [this.currentTask.level][this.currentTask.taskIndex]['description']
+      this.currentTask.risk = this.YamlObject['dimension'][this.rowIndex]['subdimension']
+      [this.currentTask.level][this.currentTask.taskIndex]['risk']
+      this.currentTask.measure = this.YamlObject['dimension'][this.rowIndex]['subdimension']
+      [this.currentTask.level][this.currentTask.taskIndex]['measure']
+      this.measure=this.markdown.render(this.currentTask.measure);
+      this.description=this.markdown.render(this.currentTask.description);
+      this.risk=this.markdown.render(this.currentTask.risk);
+      
        
        console.log('ere')
     })
