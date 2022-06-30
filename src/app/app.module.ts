@@ -15,6 +15,7 @@ import { TaskDescriptionComponent } from './component/task-description/task-desc
 import { ymlService } from './service/yaml-parser/yaml-parser.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CombinerService } from './service/combiner/combiner.service';
+import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { CombinerService } from './service/combiner/combiner.service';
     SidenavButtonsComponent,
     TopHeaderComponent,
     TaskDescriptionComponent,
+    CircularHeatmapComponent,
   ],
   imports: [
     BrowserModule,
