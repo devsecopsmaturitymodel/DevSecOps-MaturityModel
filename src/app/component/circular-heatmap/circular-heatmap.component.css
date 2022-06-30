@@ -1,0 +1,12 @@
+.margin30 {
+    margin-bottom: 30px;
+  }
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+.abc{
+  background-color: aquamarine;
+}
