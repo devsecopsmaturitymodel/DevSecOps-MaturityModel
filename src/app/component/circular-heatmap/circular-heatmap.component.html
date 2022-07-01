@@ -13,12 +13,12 @@
               <div *ngIf="task.done; then trueBlock else falseBlock"></div>
               <p>
                 <ng-template #trueBlock>
-                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="true">
+                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="true" color="primary">
                     {{task["name"]}}
                   </mat-checkbox>
                 </ng-template>
                 <ng-template #falseBlock>
-                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="false">
+                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="false" color="primary">
                     {{task["name"]}}
                   </mat-checkbox>
                 </ng-template>

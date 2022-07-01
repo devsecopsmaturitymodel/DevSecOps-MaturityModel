@@ -125,6 +125,7 @@ export class CircularHeatmapComponent implements OnInit {
 
   checkboxToggle(taskIndex:number){
     //console.log('fo')
+    let _self=this
     var index=0;
     var cnt=0;
     for(var i=0;i<this.data.length;i++){
@@ -148,7 +149,12 @@ export class CircularHeatmapComponent implements OnInit {
     }
     this.data[index]['Done%']=cnt/this.data[index]["Task"].length
     //console.log(this.data[index]['Done%'],cnt)
+    var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
+    
     this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
+    d3.selectAll("#segment-" + this.data[index]["Name"]+'-'+this.data[index]["Level"].replaceAll(' ','-')).attr("fill", function(p) {
+      return color(_self.data[index]["Done%"])
+    });
     
   }
 
@@ -223,9 +229,7 @@ export class CircularHeatmapComponent implements OnInit {
         });  
         
       })
-      .on('mousemove', function(d,event) {
-        
-      })
+
       .on('mouseout', function(d) {
         //console.log(d.explicitOriginalTarget.__data__.Day)
         
@@ -236,16 +240,12 @@ export class CircularHeatmapComponent implements OnInit {
         //  segment.style("fill", fillcolor);
   
         d3.selectAll("#segment-" + curr.Name+'-'+curr.Level.replaceAll(' ','-')).attr("fill", function(p)  {
-          return d.target.textContent
+          var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
+        // how to access a function within reusable charts
+        //console.log(color(d.Done));
+          return color(curr["Done%"]);
         });
       })
-      .append("desc") //append the current color as a desc element
-      .text(function(d:any) {
-        var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
-        // how to access a function within reusable charts
-        console.log(color(d.Done));
-        return color(d["Done%"]);
-      });
   }
   
   circularHeatChart(num_of_segments:number) {
