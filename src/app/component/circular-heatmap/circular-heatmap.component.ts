@@ -7,54 +7,155 @@ import * as d3 from 'd3';
   styleUrls: ['./circular-heatmap.component.css']
 })
 export class CircularHeatmapComponent implements OnInit {
+  
+  show:number=0
+  header:string=''
+  subheader:string=''
+  tasks:any[]=[]
+  data:any[] =[{
+    "Name": "Build",
+    "Level": "Level 1",
+    "Done%":1/2,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    }
+    ]
+  },{
+    "Name": "Deployment",
+    "Level": "Level 1",
+    "Done%":1/2,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    }
+    ]
+  },{
+    "Name": "Build",
+    "Level": "Level 2",
+    "Done%":1/2,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    }
+    ]
+  },{
+    "Name": "Deployment",
+    "Level": "Level 2",
+    "Done%":1/2,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    }
+    ]
+  }, {
+    "Name": "Build",
+    "Level": "Level 3",
+    "Done%":1/2,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    }
+    ]
+  },{
+    "Name": "Deployment",
+    "Level": "Level 3",
+    "Done%":1/2,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    }
+    ]
+  },{
+    "Name": "Build",
+    "Level": "Level 4",
+    "Done%":1/2,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    }
+    ]
+  },{
+    "Name": "Deployment",
+    "Level": "Level 4",
+    "Done%":1/3,
+    "Task":[
+      { name:"temp1",
+        done:1  
+    },
+      { name:"temp2",
+        done:0
+    },
+    { name:"temp3",
+        done:0
+    }
+    ]
+  }];
+  radial_labels = ['Level 1','Level 2','Level 3','Level 4'];
 
+  segment_labels = ['Build', 'Deployment'];
   constructor() { }
 
   ngOnInit(): void {
 
-  var data =[{
-    "Name": "Build",
-    "Level": "Level 1",
-    "Done": 0.5
-  },{
-    "Name": "Deployment",
-    "Level": "Level 1",
-    "Done": 0.2
-  },{
-    "Name": "Build",
-    "Level": "Level 2",
-    "Done": 0.25
-  },{
-    "Name": "Deployment",
-    "Level": "Level 2",
-    "Done": 0.1
-  }, {
-    "Name": "Build",
-    "Level": "Level 3",
-    "Done": 0.67
-  },{
-    "Name": "Deployment",
-    "Level": "Level 3",
-    "Done": 0.3
-  },{
-    "Name": "Build",
-    "Level": "Level 4",
-    "Done": 0.1
-  },{
-    "Name": "Deployment",
-    "Level": "Level 4",
-    "Done": 0.75
-  }];
-
-  var radial_labels = ['Level 1','Level 2','Level 3','Level 4'];
-
-  var segment_labels = ['Build', 'Deployment'];
-
-  this.loadCircularHeatMap(data, "#chart", radial_labels, segment_labels);
+  this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
 
   }
 
+  checkboxToggle(taskIndex:number){
+    //console.log('fo')
+    var index=0;
+    var cnt=0;
+    for(var i=0;i<this.data.length;i++){
+      if(this.data[i]["Name"]===this.header&&this.data[i]["Level"]===this.subheader){
+        index=i
+        break;
+      }
+    }
+    if(this.data[index]["Task"][taskIndex]["done"]==1){
+      this.data[index]["Task"][taskIndex]["done"]=0
+    }
+    else{
+      this.data[index]["Task"][taskIndex]["done"]=1
+    }
+    //console.log(this.data[i]["Task"][taskIndex]["done"])
+    for(var i=0;i< this.data[index]["Task"].length;i++){
+      console.log(this.data[index]["Task"][i]["done"])
+      if(this.data[index]["Task"][i]["done"]==1){
+        cnt+=1
+      } 
+    }
+    this.data[index]['Done%']=cnt/this.data[index]["Task"].length
+    //console.log(this.data[index]['Done%'],cnt)
+    this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
+    
+  }
+
   loadCircularHeatMap(dataset:any, dom_element_to_append_to:string, radial_labels:string[], segment_labels:string[]) {
+    //d3.select(dom_element_to_append_to).selectAll('svg').exit()
+    //console.log(dataset)
+    let _self=this
     var margin = {
       top: 50,
       right: 50,
@@ -77,9 +178,9 @@ export class CircularHeatmapComponent implements OnInit {
       .segmentLabels(segment_labels);
   
     chart.accessor(function(d:any) {
-      return d.Done;
+      return d["Done%"];
     })
-  
+    //d3.select("svg").remove(); 
     var svg = d3.select(dom_element_to_append_to)
       .selectAll('svg')
       .data([dataset])
@@ -92,19 +193,6 @@ export class CircularHeatmapComponent implements OnInit {
         "translate(" + ((width) / 2 - (radial_labels.length * segmentHeight + innerRadius)) + "," + margin.top + ")")
       .call(chart);
   
-  
-  
-  
-    var tooltip = d3.select(dom_element_to_append_to)
-      .append('div')
-      .attr('class', 'tooltip');
-  
-    tooltip.append('div')
-      .attr('class', 'name');
-    tooltip.append('div')
-      .attr('class', 'level');
-    tooltip.append('div')
-      .attr('class', 'done');
     
       function cx(){
         var e = window.event as MouseEvent;
@@ -114,20 +202,14 @@ export class CircularHeatmapComponent implements OnInit {
         var e = window.event as MouseEvent ;
         return e.clientY;
       }
+      
     svg.selectAll("path")
       .on('click', function(d) {
-        //console.log('oa')
-        tooltip.style('display', 'none');
-        tooltip.style('opacity', 0);
-        tooltip.select('.name').html("<b> Name: " + d.explicitOriginalTarget.__data__.Name + "</b>");
-        tooltip.select('.level').html("<b> Level: " + d.explicitOriginalTarget.__data__.Level + "</b>");
-        tooltip.select('.done').html("<b> Done: " + d.explicitOriginalTarget.__data__.Done + "</b>");
-        tooltip.style('display', 'block');
-        tooltip.style('opacity', 2);
-        tooltip.style('background-color', 'orange');
-        tooltip.style('float', 'right');
-        tooltip.style('width', '25%');
-        tooltip.style('margin', '5%');
+        _self.subheader=d.explicitOriginalTarget.__data__.Level
+        _self.tasks=d.explicitOriginalTarget.__data__.Task;
+        _self.header=d.explicitOriginalTarget.__data__.Name
+        _self.show=1
+        console.log(_self.tasks)
       })
       .on('mouseover', function(d) {
         
@@ -142,8 +224,7 @@ export class CircularHeatmapComponent implements OnInit {
         
       })
       .on('mousemove', function(d,event) {
-        tooltip.style('top', (cy() + 10) + 'px')
-          .style('left', (cx() - 25) + 'px');
+        
       })
       .on('mouseout', function(d) {
         //console.log(d.explicitOriginalTarget.__data__.Day)
@@ -163,7 +244,7 @@ export class CircularHeatmapComponent implements OnInit {
         var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
         // how to access a function within reusable charts
         console.log(color(d.Done));
-        return color(d.Done);
+        return color(d["Done%"]);
       });
   }
   

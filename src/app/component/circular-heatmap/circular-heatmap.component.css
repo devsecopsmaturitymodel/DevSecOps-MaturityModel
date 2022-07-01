@@ -10,3 +10,12 @@
 .abc{
   background-color: aquamarine;
 }
+.example-card {
+  display:block;
+  opacity: 2;
+  background-color:orange;
+  float: right;
+  width:25%;
+  margin:5%;
+  padding: 20px;
+}

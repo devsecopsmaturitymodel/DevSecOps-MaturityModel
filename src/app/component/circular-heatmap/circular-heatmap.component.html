@@ -1,16 +1,35 @@
 <div id="cont" class="container-fluid text-center">
-
     <div class="row">
       <div class="col-md-3">
       </div>
       <div class="col-md-6">
-        <div id="chart" class="abc"></div>
+        <div id="chart" class="abc">
+          <mat-card class="example-card" *ngIf="show">
+            <mat-card-title-group>
+              <mat-card-title>{{header}}</mat-card-title>
+              <mat-card-subtitle>{{subheader}}</mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-content *ngFor="let task of tasks;index as i">
+              <div *ngIf="task.done; then trueBlock else falseBlock"></div>
+              <p>
+                <ng-template #trueBlock>
+                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="true">
+                    {{task["name"]}}
+                  </mat-checkbox>
+                </ng-template>
+                <ng-template #falseBlock>
+                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="false">
+                    {{task["name"]}}
+                  </mat-checkbox>
+                </ng-template>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        
       </div>
       <div class="col-md-3">
       </div>
     </div>
-  
-  
-  
   </div>
   
