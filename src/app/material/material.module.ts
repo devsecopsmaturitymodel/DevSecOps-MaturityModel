@@ -9,6 +9,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatInputModule} from '@angular/material/input'; 
 import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatCardModule} from '@angular/material/card'; 
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 const MaterialComponents= [
   MatSidenavModule,
@@ -21,7 +23,8 @@ const MaterialComponents= [
   MatAutocompleteModule,
   MatInputModule,
   MatExpansionModule,
-
+  MatCardModule,
+  MatCheckboxModule
 ];
 
 @NgModule({
