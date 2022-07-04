@@ -11,15 +11,17 @@
                     <b>Description</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p [innerHTML]="description"></p>
-            </mat-expansion-panel>
+            <p [innerHTML]="currentTask.description"></p>
+        </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <b>Risk</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p [innerHTML]="risk"></p>
+            <ul *ngFor="let risk of currentTask.risk">
+                <li>{{risk}}</li>
+            </ul>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -27,7 +29,7 @@
                     <b>Measure</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p [innerHTML]="measure"></p>
+            <p [innerHTML]="currentTask.measure"></p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -35,9 +37,7 @@
                     <b>Implementation Guide</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>Depending on your environment, usage of virtual machines
-                or container technology is a good way. After the build, the filesystem should
-                not be used again in other builds.</p>
+            <p [innerHTML]="currentTask.implementatonGuide"></p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -45,9 +45,9 @@
                     <b>Difficulty Of Implementation</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>Knowledge: 2 </p>
-            <p>Time: 2 </p>
-            <p>Resources: 2 </p>
+            <p>Knowledge: {{this.currentTask.knowledge}} </p>
+            <p>Time: {{this.currentTask.time}} </p>
+            <p>Resources: {{this.currentTask.resources}}</p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -141,9 +141,9 @@
                                 <b>OWASP SAMM VERSION 2</b>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <p>
-                            I-SB-2-A 
-                        </p>
+                        <ul *ngFor="let samm of currentTask.samm">
+                            <li>{{samm}}</li>
+                        </ul>
                     </mat-expansion-panel>
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
@@ -151,12 +151,22 @@
                                 <b>ISO27001 2017</b>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <p>
-                            iso27001-2017:14.2.6
-                        </p>
+                        <ul *ngFor="let iso of currentTask.iso">
+                            <li>{{iso}}</li>
+                        </ul>
                     </mat-expansion-panel>
                 </mat-accordion>
             </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Depends on</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul *ngFor="let dependency of this.currentTask.dependsOn">
+                <li>{{dependency}}</li>
+            </ul>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
