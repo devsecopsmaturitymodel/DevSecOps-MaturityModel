@@ -37,7 +37,8 @@ dimension:
           - iso27001-2017:14.2.6
           samm2:
           - I-SB-1-A
-        risk: Quality is not visible to everyone, quality checks are distributed or
+        risk: 
+        - Quality is not visible to everyone, quality checks are distributed or
           manually and not deterministic.
         usefulness: 2
       - dependsOn:
@@ -98,12 +99,10 @@ dimension:
           - iso27001-2017:14.2.6
           samm2:
           - I-SB-2-A
-        risk:
-        - 'While building and testing artifacts, third party systems, application frameworks
-
+        risk: 
+        - While building and testing artifacts, third party systems, application frameworks
           and 3rd party libraries are used. These might be malicious as a result of
-
-          vulnerable libraries or because they are altered during the delivery phase.'
+          vulnerable libraries or because they are altered during the delivery phase.
         usefulness: 2
       - comment: The usage of pinning requires a good processes for patching. Therefore,
           choose this activity wisly.
@@ -145,8 +144,7 @@ dimension:
         measure: Creation of an SBOM of components (e.g. application and container image
           content) during build.
         name: SBOM of components
-        risk:
-        - In case a vulnerability of severity high or critical exists, it needs to be
+        risk: In case a vulnerability of severity high or critical exists, it needs to be
           known where an artifacts with that vulnerability is deployed with which dependencies.
         usefulness: 3
       level-3:
@@ -164,7 +162,8 @@ dimension:
         references:
           iso27001-2017:
           - 14.2.6
-          samm2: I-SB-2-A
+          samm2: 
+          - I-SB-2-A
         risk:
         - Unauthorized manipulation of source code might be difficult to spot.
         usefulness: 3
@@ -213,7 +212,8 @@ dimension:
           iso27001-2017:
           - 12.1.1
           - 14.2.2
-          samm2: I-SD-1-A
+          samm2: 
+          - I-SD-1-A
         risk:
         - Deployments without a defined process are error prone thus allowing old or
           untested artifact to be deployed.
@@ -265,7 +265,8 @@ dimension:
         risk:
         - Developers or operations might start random images in the production cluster
           which have malicious code or known vulnerabilities.
-        samm2: I-SD-2-A
+        samm2: 
+        - I-SD-2-A
         usefulness: 3
       - difficultyOfImplementation:
           knowledge: 1
@@ -305,7 +306,8 @@ dimension:
         name: Rolling update on deployment
         risk:
         - While a deployment is performed, the application can not be reached.
-        samm2: I-SD-1-A
+        samm2: 
+        - I-SD-1-A
         usefulness: 2
       - dependsOn:
         - Defined build process
@@ -326,7 +328,8 @@ dimension:
         risk:
         - Building of an artifact for different environments means that an untested
           artifact might reach the production environment.
-        samm2: I-SD-2-A
+        samm2: 
+        - I-SD-2-A
         usefulness: 4
       - dependsOn:
         - Environment depending configuration parameters (secrets)
@@ -347,7 +350,8 @@ dimension:
           - 9.4.3
           - 9.4.1
           - 10.1.2
-          samm2: I-SD-2-B
+          samm2: 
+          - I-SD-2-B
         risk:
         - Attackers who compromise a system can see confidential access information
           like database credentials.
@@ -394,7 +398,8 @@ dimension:
         - In case a vulnerability of severity high or critical exists, it needs to be
           known where an artifacts (e.g. container image) with that vulnerability is
           deployed.
-        samm2: I-SD-2-A
+        samm2: 
+        - I-SD-2-A
         usefulness: 3
       - dependesOn:
         - SBOM of components
@@ -417,7 +422,8 @@ dimension:
         - In case a vulnerability of severity high or critical is known by the organization,
           it needs to be known where an artifacts with that vulnerability is deployed
           with which dependencies.
-        samm2: I-SD-2-A
+        samm2: 
+        - I-SD-2-A
         usefulness: 3
       level-4:
       - dependsOn:

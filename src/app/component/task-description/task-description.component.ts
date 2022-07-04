@@ -10,8 +10,15 @@ export interface taskDescription {
   level:string
   taskIndex:number
   description:string
-  risk: string
+  risk: string[]
   measure: string
+  implementatonGuide:string
+  iso:string[]
+  samm:string[]
+  knowledge:number
+  resources:number
+  time:number
+  dependsOn:string[]
 }
 
 @Component({
@@ -21,15 +28,14 @@ export interface taskDescription {
 })
 export class TaskDescriptionComponent implements OnInit {
 
-  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskIndex:-1,description:'',risk:'',measure:''}
+  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskIndex:-1,description:'',risk:[],
+                                measure:'',implementatonGuide:'',samm:[''],iso:[''],knowledge:-1,resources:-1,
+                              time:-1,dependsOn:[]}
 
   YamlObject:any;
 
   rowIndex:number=0;
   markdown:md = md()
-  description:any;
-  risk:any;
-  measure:any;
 
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
   constructor(private route: ActivatedRoute,private yaml:ymlService) { }
@@ -59,23 +65,72 @@ export class TaskDescriptionComponent implements OnInit {
       catch{
         console.log('Task does not exist!')
       }
+      var data =this.YamlObject['dimension'][this.rowIndex]['subdimension']
+      [this.currentTask.level][this.currentTask.taskIndex]
+
+
+      this.currentTask.description=this.defineStringValues(data['description'],'')
+      this.currentTask.risk=this.defineStringArrayValues(data['risk'],[])
+      this.currentTask.measure=this.defineStringValues(data['measure'],'')
+      try{
+        data['meta']
+        this.currentTask.implementatonGuide=this.defineStringValues(data['meta']['implementationGuide'],'')
+      }
+      catch{
+        console.log('Meta does not exist')
+      }
+      try{
+        data['difficultyOfImplementation']
+        this.currentTask.knowledge=this.defineIntegerValues(data['difficultyOfImplementation']['knowledge'],-1)
+        this.currentTask.time=this.defineIntegerValues(data['difficultyOfImplementation']['time'],-1)
+        this.currentTask.resources=this.defineIntegerValues(data['difficultyOfImplementation']['resources'],-1)
+      }
+      catch{
+        console.log('difficultyOfImplementation does not exist')
+      }
+      try{
+        data['references']
+        this.currentTask.iso=this.defineStringArrayValues(data['iso27001-2017'],[])
+        this.currentTask.samm=this.defineStringArrayValues(data['samm2'],[])
+      }
+      catch{
+        console.log('references does not exist')
+      }
       
-      this.currentTask.description = this.YamlObject['dimension'][this.rowIndex]['subdimension']
-      [this.currentTask.level][this.currentTask.taskIndex]['description']
-      this.currentTask.risk = this.YamlObject['dimension'][this.rowIndex]['subdimension']
-      [this.currentTask.level][this.currentTask.taskIndex]['risk']
-      this.currentTask.measure = this.YamlObject['dimension'][this.rowIndex]['subdimension']
-      [this.currentTask.level][this.currentTask.taskIndex]['measure']
-      this.measure=this.markdown.render(this.currentTask.measure);
-      this.description=this.markdown.render(this.currentTask.description);
-      this.risk=this.markdown.render(this.currentTask.risk);
+      this.currentTask.dependsOn=this.defineStringArrayValues(data['dependsOn'],[])
+  
+      //console.log(this.measure)
       
-       
-       console.log('ere')
     })
   }
 
+  defineStringValues(dataToCheck:string,valueOfDataIfUndefined:string): string{
+    try{
+      return this.markdown.render(dataToCheck)
+    }
+    catch{
+      return valueOfDataIfUndefined
+    }
+  }
 
+  defineStringArrayValues(dataToCheck:string[],valueOfDataIfUndefined:string[]): string[]{
+    try{
+      return dataToCheck
+    }
+    catch{
+      return valueOfDataIfUndefined
+    }
+  }
+
+  defineIntegerValues(dataToCheck:number,valueOfDataIfUndefined:number): number{
+    try{
+      return dataToCheck
+    }
+    catch{
+      return valueOfDataIfUndefined
+    }
+  }
+  
 
   // Expand all function
   openall(): void{
