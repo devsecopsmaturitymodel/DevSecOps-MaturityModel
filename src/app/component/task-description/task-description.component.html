@@ -57,10 +57,10 @@
             </mat-expansion-panel-header>
             <p>
                 <mat-accordion multi="true">
-                    <mat-expansion-panel>
+                    <mat-expansion-panel *ngFor="let implement of this.currentTask.implementation">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                <b>CI/CD tools</b>
+                                <b [innerHTML]="implement['name']"></b>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <p>
@@ -71,7 +71,9 @@
                                             <b>Tags</b>
                                         </mat-panel-title>
                                     </mat-expansion-panel-header>
-                                    <p>ci-cd</p>
+                                    <ul *ngFor="let tag of implement['tags']">
+                                        <li [innerHTML]="tag"></li>
+                                    </ul>
                                 </mat-expansion-panel>
                                 <mat-expansion-panel>
                                     <mat-expansion-panel-header>
@@ -79,7 +81,7 @@
                                             <b>URL</b>
                                         </mat-panel-title>
                                     </mat-expansion-panel-header>
-                                    <p>https://martinfowler.com/articles/continuousIntegration.html</p>
+                                    <p [innerHTML]="implement['url']"></p>
                                 </mat-expansion-panel>
                                 <mat-expansion-panel>
                                     <mat-expansion-panel-header>
@@ -87,39 +89,7 @@
                                             <b>Description</b>
                                         </mat-panel-title>
                                     </mat-expansion-panel-header>
-                                    <p>CI/CD tools such as jenkins, gitlab-ci or github-actions </p>
-                                </mat-expansion-panel>
-                            </mat-accordion>
-                        </p>
-                    </mat-expansion-panel>
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <b>Container technologies and orchestration like Docker, Kubernetes</b>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <p>
-                            <mat-accordion multi="true">
-                                <mat-expansion-panel>
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            <b>Tags</b>
-                                        </mat-panel-title>
-                                    </mat-expansion-panel-header>
-                                </mat-expansion-panel>
-                                <mat-expansion-panel>
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            <b>URL</b>
-                                        </mat-panel-title>
-                                    </mat-expansion-panel-header>
-                                </mat-expansion-panel>
-                                <mat-expansion-panel>
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            <b>Description</b>
-                                        </mat-panel-title>
-                                    </mat-expansion-panel-header>
+                                    <p [innerHTML]="implement['description']"></p>
                                 </mat-expansion-panel>
                             </mat-accordion>
                         </p>
