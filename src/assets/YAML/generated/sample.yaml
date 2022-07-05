@@ -18,7 +18,12 @@ dimension:
           resources: 2
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 1
         description: '## Benefits:
 
@@ -56,8 +61,12 @@ dimension:
           resources: 2
           time: 3
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/container-technologi
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 1
         measure: A well defined build process lowers the possibility of errors during
           the build process.
@@ -84,8 +93,12 @@ dimension:
           resources: 2
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/container-technologi
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 2
         measure: Each step during within the build and testing phase is performed in
           a separate virtual environments, which is destroyed afterward.
@@ -113,10 +126,12 @@ dimension:
           resources: 2
           time: 2
         implementation:
-        - Container technology automatically creates a hash for images, which can be
-          used.
-        - Immutable images are an other way, e.g. by using a registry, which doesn't
-          allow overriding of images.
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 2
         measure: Pinning of artifacts ensure that changes are performed only when intended.
         name: Pinning of artifacts
@@ -136,7 +151,13 @@ dimension:
           knowledge: 2
           resources: 3
           time: 2
-        implementation: []
+        implementation: 
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         iso27001-2017:
         - '8.1'
         - '8.2'
@@ -154,7 +175,14 @@ dimension:
           knowledge: 2
           resources: 2
           time: 2
-        implementation: []
+        implementation: 
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: # markdown
+            CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 3
         measure: Digitally signing commits helps to prevent unauthorized manipulation
           of source code.
@@ -175,8 +203,12 @@ dimension:
           resources: 2
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker-content-trust
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/in-toto
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 3
         measure: Digitally signing artifacts for all steps during the build and especially
           docker images, helps to ensure their integrity.
@@ -202,8 +234,12 @@ dimension:
           resources: 1
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/ci-cd-tools
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 1
         measure: A defined deployment process significantly lowers the likelihood of
           errors during the deployment phase.
@@ -223,7 +259,13 @@ dimension:
           knowledge: 2
           resources: 1
           time: 2
-        implementation: []
+        implementation: 
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 2
         measure: 'Configuration parameters are set for each environment not in the source
           code.
@@ -252,7 +294,12 @@ dimension:
           resources: 1
           time: 1
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kubernetes-admission
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         iso27001-2017:
         - 15.1.1
         - 15.1.2
@@ -294,9 +341,12 @@ dimension:
           resources: 2
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/webserver
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/rolling-update
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         iso27001-2017:
         - 12.5.1
         - 14.2.2
@@ -316,7 +366,12 @@ dimension:
           resources: 1
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         iso27001-2017:
         - 14.3.1
         - 14.2.8
@@ -337,7 +392,13 @@ dimension:
           knowledge: 2
           resources: 1
           time: 2
-        implementation: ''
+        implementation: 
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 3
         measure: By using encryption, it is harder to read credentials , e.g. from the
           file system. Also, the usage of a credential management system can help protect
@@ -366,7 +427,12 @@ dimension:
           resources: 1
           time: 1
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/docker
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         iso27001-2017:
         - 14.3.1
         - 14.2.8
@@ -387,7 +453,13 @@ dimension:
           knowledge: 2
           resources: 3
           time: 2
-        implementation: []
+        implementation: 
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         iso27001-2017:
         - '8.1'
         - '8.2'
@@ -410,7 +482,12 @@ dimension:
           resources: 3
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dependencyTrack
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         iso27001-2017:
         - '8.1'
         - '8.2'
@@ -433,7 +510,12 @@ dimension:
           resources: 1
           time: 2
         implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/blue-green-deploymen
+        - name: CI/CD tools # string
+          tags:
+          - ci-cd # string
+          url: https://martinfowler.com/articles/continuousIntegration.html # url
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
+        - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 4
         measure: By having multiple production environments, a deployment can be performant
           on the first environment to spot possible defects before it is deployment
