@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
 
-export interface task{
+export interface taskSchema{
   name:string
   done:boolean
 }
 
-export interface dataset{
+export interface cardSchema{
   Name:string
   Level:string
   "Done%":number
-  Task:task[]
+  Task:taskSchema[]
 }
 
 @Component({
@@ -25,8 +25,7 @@ export class CircularHeatmapComponent implements OnInit {
   header:string=''
   subheader:string=''
   tasks:any[]=[]
-  tempdata:dataset[]=[]
-  data:dataset[] =[];
+  data:cardSchema[] =[];
   radial_labels:string[]= [];
   YamlObject:any;
   segment_labels:string[] = [];
@@ -58,13 +57,13 @@ export class CircularHeatmapComponent implements OnInit {
       }
       for(var l=0 ; l<this.maxLevel; l++){
         for(var x in this.YamlObject['dimension']){
-          var tempdata:dataset={
+          var tempdata:cardSchema={
             "Name": "",
             "Level": "",
-            "Done%":0,
+            "Done%":-1,
             "Task":[]
           }
-          var totalDone:number=0
+          var totalImplemented:number=0
           try{
             tempdata["Name"]=this.YamlObject['dimension'][x]['subdimension']['name']
             tempdata["Level"]="Level "+(l+1) 
@@ -72,20 +71,21 @@ export class CircularHeatmapComponent implements OnInit {
               var nameOfTask=this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['name']
               var Status:boolean=this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['isImplemented']
               if(Status){
-                totalDone+=1
+                totalImplemented+=1
               }
               tempdata["Task"].push({"name":nameOfTask,"done":Status})
             }
-            tempdata["Done%"]=totalDone/this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length
+            tempdata["Done%"]=totalImplemented/this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length
           }
           catch{
-            tempdata["Done%"]=0
+            tempdata["Done%"]=-1
           }
           this.data.push(tempdata)
         }
       }
       console.log(this.data)
       this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
+      this.noTasktoGrey()
     })
   }
 
@@ -190,9 +190,9 @@ export class CircularHeatmapComponent implements OnInit {
         // increase the segment height of the one being hovered as well as all others of the same date
         // while decreasing the height of all others accordingly
         //console.log(d)
-        d3.selectAll("#segment-" + curr.Name+'-'+curr.Level.replaceAll(' ','-')).attr("fill", function(p) {
-          return "white"
-        });  
+        if(curr["Done%"]!=-1){
+          d3.selectAll("#segment-" + curr.Name+'-'+curr.Level.replaceAll(' ','-')).attr("fill","white")
+        };  
         
       })
 
@@ -204,13 +204,17 @@ export class CircularHeatmapComponent implements OnInit {
         //  var segment = d3.select("#segment-"+d.Day +"-"+timeCleaned); //designate selector variable for brevity
         //  var fillcolor = segment.select("desc").text();  //access original color from desc
         //  segment.style("fill", fillcolor);
-  
-        d3.selectAll("#segment-" + curr.Name+'-'+curr.Level.replaceAll(' ','-')).attr("fill", function(p)  {
-          var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
-        // how to access a function within reusable charts
-        //console.log(color(d.Done));
-          return color(curr["Done%"]);
-        });
+        if(curr["Done%"]!=-1){
+          d3.selectAll("#segment-" + curr.Name+'-'+curr.Level.replaceAll(' ','-')).attr("fill", function(p)  {
+            var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
+          // how to access a function within reusable charts
+          //console.log(color(d.Done));
+            return color(curr["Done%"]);
+          });
+        }
+        else{
+          d3.selectAll("#segment-" + curr.Name+'-'+curr.Level.replaceAll(' ','-')).attr("fill", "#DCDCDC");
+        }
       })
   }
   
@@ -379,6 +383,12 @@ export class CircularHeatmapComponent implements OnInit {
     return chart;
   }
 
-  
+  noTasktoGrey():void{
+    for (var x in this.data){ 
+      if (this.data[x]["Done%"]==-1){
+        d3.selectAll("#segment-" + this.data[x]["Name"]+'-'+this.data[x]["Level"].replace(' ','-')).attr("fill","#DCDCDC");
+      }
+    }
+  }
   
 }
