@@ -1,5 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
+
+export interface task{
+  name:string
+  done:boolean
+}
+
+export interface dataset{
+  Name:string
+  Level:string
+  "Done%":number
+  Task:task[]
+}
 
 @Component({
   selector: 'app-circular-heatmap',
@@ -7,120 +20,73 @@ import * as d3 from 'd3';
   styleUrls: ['./circular-heatmap.component.css']
 })
 export class CircularHeatmapComponent implements OnInit {
-  
-  show:number=0
+  maxLevel:number=-1
+  show:boolean=false
   header:string=''
   subheader:string=''
   tasks:any[]=[]
-  data:any[] =[{
-    "Name": "Build",
-    "Level": "Level 1",
-    "Done%":1/2,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    }
-    ]
-  },{
-    "Name": "Deployment",
-    "Level": "Level 1",
-    "Done%":1/2,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    }
-    ]
-  },{
-    "Name": "Build",
-    "Level": "Level 2",
-    "Done%":1/2,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    }
-    ]
-  },{
-    "Name": "Deployment",
-    "Level": "Level 2",
-    "Done%":1/2,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    }
-    ]
-  }, {
-    "Name": "Build",
-    "Level": "Level 3",
-    "Done%":1/2,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    }
-    ]
-  },{
-    "Name": "Deployment",
-    "Level": "Level 3",
-    "Done%":1/2,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    }
-    ]
-  },{
-    "Name": "Build",
-    "Level": "Level 4",
-    "Done%":1/2,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    }
-    ]
-  },{
-    "Name": "Deployment",
-    "Level": "Level 4",
-    "Done%":1/3,
-    "Task":[
-      { name:"temp1",
-        done:1  
-    },
-      { name:"temp2",
-        done:0
-    },
-    { name:"temp3",
-        done:0
-    }
-    ]
-  }];
-  radial_labels = ['Level 1','Level 2','Level 3','Level 4'];
-
-  segment_labels = ['Build', 'Deployment'];
-  constructor() { }
+  tempdata:dataset[]=[]
+  data:dataset[] =[];
+  radial_labels:string[]= [];
+  YamlObject:any;
+  segment_labels:string[] = [];
+  constructor(private yaml:ymlService) { }
 
   ngOnInit(): void {
+    this.yaml.setURI('./assets/YAML/sample.yaml');
+    // Function sets column header
+    this.yaml.getJson().subscribe((data) => {
+      this.YamlObject = data;
 
-  this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
+      // Levels header
+      for(let x in this.YamlObject['strings']['en']['maturity_levels']){
+        var y=parseInt(x)+1
+        this.radial_labels.push('Level '+y)
+        this.maxLevel=y
+        }      
+      
+    });
 
+    this.yaml.setURI('./assets/YAML/generated/sample.yaml');
+    // Function sets data 
+    this.yaml.getJson().subscribe((data) => {
+      console.log(this.radial_labels)
+      this.YamlObject = data;
+      
+      for(var x in this.YamlObject['dimension']){
+        this.segment_labels.push(this.YamlObject['dimension'][x]['subdimension']['name'])
+      }
+      for(var l=0 ; l<this.maxLevel; l++){
+        for(var x in this.YamlObject['dimension']){
+          var tempdata:dataset={
+            "Name": "",
+            "Level": "",
+            "Done%":0,
+            "Task":[]
+          }
+          var totalDone:number=0
+          try{
+            tempdata["Name"]=this.YamlObject['dimension'][x]['subdimension']['name']
+            tempdata["Level"]="Level "+(l+1) 
+            for(var i=0;i<this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length;i++){
+              var nameOfTask=this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['name']
+              var Status:boolean=this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['isImplemented']
+              if(Status){
+                totalDone+=1
+              }
+              tempdata["Task"].push({"name":nameOfTask,"done":Status})
+            }
+            tempdata["Done%"]=totalDone/this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length
+          }
+          catch{
+            tempdata["Done%"]=0
+          }
+          this.data.push(tempdata)
+        }
+      }
+      console.log(this.data)
+      this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
+    })
   }
 
   checkboxToggle(taskIndex:number){
@@ -134,16 +100,16 @@ export class CircularHeatmapComponent implements OnInit {
         break;
       }
     }
-    if(this.data[index]["Task"][taskIndex]["done"]==1){
-      this.data[index]["Task"][taskIndex]["done"]=0
+    if(this.data[index]["Task"][taskIndex]["done"]){
+      this.data[index]["Task"][taskIndex]["done"]=false
     }
     else{
-      this.data[index]["Task"][taskIndex]["done"]=1
+      this.data[index]["Task"][taskIndex]["done"]=true
     }
     //console.log(this.data[i]["Task"][taskIndex]["done"])
     for(var i=0;i< this.data[index]["Task"].length;i++){
       console.log(this.data[index]["Task"][i]["done"])
-      if(this.data[index]["Task"][i]["done"]==1){
+      if(this.data[index]["Task"][i]["done"]){
         cnt+=1
       } 
     }
@@ -152,7 +118,7 @@ export class CircularHeatmapComponent implements OnInit {
     var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
     
     this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
-    d3.selectAll("#segment-" + this.data[index]["Name"]+'-'+this.data[index]["Level"].replaceAll(' ','-')).attr("fill", function(p) {
+    d3.selectAll("#segment-" + this.data[index]["Name"]+'-'+this.data[index]["Level"].replace(' ','-')).attr("fill", function(p) {
       return color(_self.data[index]["Done%"])
     });
     
@@ -168,7 +134,7 @@ export class CircularHeatmapComponent implements OnInit {
       bottom: 50,
       left: 50
     };
-    var width = 1000 - margin.left - margin.right;
+    var width = 950 - margin.left - margin.right;
     var curr:any;
     var height = width;
     var innerRadius = 100; // width/14;
@@ -214,7 +180,7 @@ export class CircularHeatmapComponent implements OnInit {
         _self.subheader=d.explicitOriginalTarget.__data__.Level
         _self.tasks=d.explicitOriginalTarget.__data__.Task;
         _self.header=d.explicitOriginalTarget.__data__.Name
-        _self.show=1
+        _self.show=true
         console.log(_self.tasks)
       })
       .on('mouseover', function(d) {
@@ -412,5 +378,7 @@ export class CircularHeatmapComponent implements OnInit {
   
     return chart;
   }
+
+  
   
 }

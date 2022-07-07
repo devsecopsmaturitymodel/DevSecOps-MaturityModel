@@ -46,8 +46,10 @@ dimension:
         - Quality is not visible to everyone, quality checks are distributed or
           manually and not deterministic.
         usefulness: 2
+        isImplemented: true
       - dependsOn:
         - Continuous Integration
+        isImplemented: false
         description: 'Sample evidence as an attribute in the yaml: The build process
           is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a>
 
@@ -92,6 +94,7 @@ dimension:
           knowledge: 2
           resources: 2
           time: 2
+        isImplemented: true
         implementation:
         - name: CI/CD tools # string
           tags:
@@ -135,6 +138,7 @@ dimension:
         level: 2
         measure: Pinning of artifacts ensure that changes are performed only when intended.
         name: Pinning of artifacts
+        isImplemented: false
         references:
           iso27001-2017:
           - 14.2.6
@@ -162,6 +166,7 @@ dimension:
         - '8.1'
         - '8.2'
         level: 2
+        isImplemented: true
         measure: Creation of an SBOM of components (e.g. application and container image
           content) during build.
         name: SBOM of components
@@ -184,6 +189,7 @@ dimension:
             CI/CD tools such as jenkins, gitlab-ci or github-actions 
         - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 3
+        isImplemented: true
         measure: Digitally signing commits helps to prevent unauthorized manipulation
           of source code.
         name: Signing of code
@@ -210,6 +216,7 @@ dimension:
           description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
         - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 3
+        isImplemented: false
         measure: Digitally signing artifacts for all steps during the build and especially
           docker images, helps to ensure their integrity.
         name: Signing of artifacts
@@ -244,6 +251,7 @@ dimension:
         measure: A defined deployment process significantly lowers the likelihood of
           errors during the deployment phase.
         name: Defined deployment process
+        isImplemented: true
         references:
           iso27001-2017:
           - 12.1.1
@@ -267,6 +275,7 @@ dimension:
           description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
         - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 2
+        isImplemented: false
         measure: 'Configuration parameters are set for each environment not in the source
           code.
 
@@ -306,6 +315,7 @@ dimension:
         - 15.1.3
         - 14.1.3
         level: 2
+        isImplemented: true
         measure: Create image assessment criteria, perform an evaluation of images and
           create a whitelist of artifacts/container images/virtual machine images.
         name: Usage of trusted images
@@ -320,6 +330,7 @@ dimension:
           resources: 1
           time: 2
         level: 2
+        isImplemented: false
         measure: By having a clear decommissioning process, applicaitons not used are
           not running anymore and can therefore not be explointed.
         name: Defined decommissioning process
@@ -352,6 +363,7 @@ dimension:
         - 14.2.2
         - 17.2.1
         level: 3
+        isImplemented: true
         measure: A deployment without downtime is performed*.
         name: Rolling update on deployment
         risk:
@@ -377,6 +389,7 @@ dimension:
         - 14.2.8
         - 12.1.4
         level: 3
+        isImplemented: false
         measure: Building an artifact once and deploying it to different environments
           means that only tested artifacts are allowed to reach the production environment
         name: Same artifact for environments
@@ -404,6 +417,7 @@ dimension:
           file system. Also, the usage of a credential management system can help protect
           credentials.
         name: Handover of confidential parameters
+        isImplemented: true
         references:
           iso27001-2017:
           - 14.1.3
@@ -439,6 +453,7 @@ dimension:
         - 14.2.9
         - 12.1.4
         level: 3
+        isImplemented: false
         measure: Usage of environment independent configuration parameter, called feature
           toggles, helps to enhance the test coverage. Only what has been tested, goes
           to production.
@@ -464,6 +479,7 @@ dimension:
         - '8.1'
         - '8.2'
         level: 3
+        isImplemented: true
         measure: A documented inventory or a possibility to gather the needed information.
         name: Inventory of running artifacts
         risk:
@@ -492,6 +508,7 @@ dimension:
         - '8.1'
         - '8.2'
         level: 3
+        isImplemented: false
         measure: A documented inventory of dependencies used in images and containers
           exists.
         name: Inventory of dependencies
@@ -517,6 +534,7 @@ dimension:
           description: CI/CD tools such as jenkins, gitlab-ci or github-actions 
         - name: Container technologies and orchestration like Docker, Kubernetes # string
         level: 4
+        isImplemented: true
         measure: By having multiple production environments, a deployment can be performant
           on the first environment to spot possible defects before it is deployment
           in the production environment(s)
