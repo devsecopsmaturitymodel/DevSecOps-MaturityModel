@@ -4,22 +4,22 @@
       </div>
       <div class="col-md-6">
         <div id="chart" class="abc">
-          <mat-card class="example-card" *ngIf="show">
+          <mat-card class="example-card" *ngIf="showTaskCard">
             <mat-card-title-group>
-              <mat-card-title>{{header}}</mat-card-title>
-              <mat-card-subtitle>{{subheader}}</mat-card-subtitle>
+              <mat-card-title>{{taskHeader}}</mat-card-title>
+              <mat-card-subtitle>{{taskSubheader}}</mat-card-subtitle>
             </mat-card-title-group>
-            <mat-card-content *ngFor="let task of tasks;index as i">
-              <div *ngIf="task.done; then trueBlock else falseBlock"></div>
+            <mat-card-content *ngFor="let task of tasksData;index as i">
+              <div *ngIf="task.ifTaskDone; then trueBlock else falseBlock"></div>
               <p>
                 <ng-template #trueBlock>
-                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="true" color="primary">
-                    {{task["name"]}}
+                  <mat-checkbox (click)="this.toggleCheckbox(i)" [checked]="true" color="primary">
+                    {{task["taskName"]}}
                   </mat-checkbox>
                 </ng-template>
                 <ng-template #falseBlock>
-                  <mat-checkbox (click)="this.checkboxToggle(i)" [checked]="false" color="primary">
-                    {{task["name"]}}
+                  <mat-checkbox (click)="this.toggleCheckbox(i)" [checked]="false" color="primary">
+                    {{task["taskName"]}}
                   </mat-checkbox>
                 </ng-template>
               </p>
