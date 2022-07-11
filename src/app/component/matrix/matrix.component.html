@@ -5,7 +5,7 @@
     <mat-chip-list #chipList aria-label="Filter" color="primary">
       <mat-chip
         color="primary"
-        *ngFor="let row of rows"
+        *ngFor="let row of rowsCurrentlyBeingShown"
         (removed)="remove(row)"
         [selected]=true>
         {{row}}

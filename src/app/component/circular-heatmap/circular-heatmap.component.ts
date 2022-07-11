@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
+import * as yaml from "js-yaml"
 
 export interface taskSchema{
-  name:string
-  done:boolean
+  taskName:string
+  ifTaskDone:boolean
 }
 
 export interface cardSchema{
@@ -20,12 +21,12 @@ export interface cardSchema{
   styleUrls: ['./circular-heatmap.component.css']
 })
 export class CircularHeatmapComponent implements OnInit {
-  maxLevel:number=-1
-  show:boolean=false
-  header:string=''
-  subheader:string=''
-  tasks:any[]=[]
-  data:cardSchema[] =[];
+  maxLevelOfTasks:number=-1
+  showTaskCard:boolean=false
+  taskHeader:string=''
+  taskSubheader:string=''
+  tasksData:any[]=[]
+  ALL_CARD_DATA:cardSchema[] =[];
   radial_labels:string[]= [];
   YamlObject:any;
   segment_labels:string[] = [];
@@ -41,7 +42,7 @@ export class CircularHeatmapComponent implements OnInit {
       for(let x in this.YamlObject['strings']['en']['maturity_levels']){
         var y=parseInt(x)+1
         this.radial_labels.push('Level '+y)
-        this.maxLevel=y
+        this.maxLevelOfTasks=y
         }      
       
     });
@@ -55,7 +56,7 @@ export class CircularHeatmapComponent implements OnInit {
       for(var x in this.YamlObject['dimension']){
         this.segment_labels.push(this.YamlObject['dimension'][x]['subdimension']['name'])
       }
-      for(var l=0 ; l<this.maxLevel; l++){
+      for(var l=0 ; l<this.maxLevelOfTasks; l++){
         for(var x in this.YamlObject['dimension']){
           var tempdata:cardSchema={
             "Name": "",
@@ -73,55 +74,65 @@ export class CircularHeatmapComponent implements OnInit {
               if(Status){
                 totalImplemented+=1
               }
-              tempdata["Task"].push({"name":nameOfTask,"done":Status})
+              tempdata["Task"].push({"taskName":nameOfTask,"ifTaskDone":Status})
             }
             tempdata["Done%"]=totalImplemented/this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length
           }
           catch{
             tempdata["Done%"]=-1
           }
-          this.data.push(tempdata)
+          this.ALL_CARD_DATA.push(tempdata)
         }
       }
-      console.log(this.data)
-      this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
+      console.log(this.ALL_CARD_DATA)
+      this.loadCircularHeatMap(this.ALL_CARD_DATA, "#chart", this.radial_labels, this.segment_labels);
       this.noTasktoGrey()
     })
   }
 
-  checkboxToggle(taskIndex:number){
+  toggleCheckbox(taskIndex:number){
     //console.log('fo')
     let _self=this
     var index=0;
     var cnt=0;
-    for(var i=0;i<this.data.length;i++){
-      if(this.data[i]["Name"]===this.header&&this.data[i]["Level"]===this.subheader){
+    for(var i=0;i<this.ALL_CARD_DATA.length;i++){
+      if(this.ALL_CARD_DATA[i]["Name"]===this.taskHeader&&this.ALL_CARD_DATA[i]["Level"]===this.taskSubheader){
         index=i
         break;
       }
     }
-    if(this.data[index]["Task"][taskIndex]["done"]){
-      this.data[index]["Task"][taskIndex]["done"]=false
+    if(this.ALL_CARD_DATA[index]["Task"][taskIndex]["ifTaskDone"]){
+      this.ALL_CARD_DATA[index]["Task"][taskIndex]["ifTaskDone"]=false
     }
     else{
-      this.data[index]["Task"][taskIndex]["done"]=true
+      this.ALL_CARD_DATA[index]["Task"][taskIndex]["ifTaskDone"]=true
     }
     //console.log(this.data[i]["Task"][taskIndex]["done"])
-    for(var i=0;i< this.data[index]["Task"].length;i++){
-      console.log(this.data[index]["Task"][i]["done"])
-      if(this.data[index]["Task"][i]["done"]){
+    for(var i=0;i< this.ALL_CARD_DATA[index]["Task"].length;i++){
+      console.log(this.ALL_CARD_DATA[index]["Task"][i]["ifTaskDone"])
+      if(this.ALL_CARD_DATA[index]["Task"][i]["ifTaskDone"]){
         cnt+=1
       } 
     }
-    this.data[index]['Done%']=cnt/this.data[index]["Task"].length
+    this.ALL_CARD_DATA[index]['Done%']=cnt/this.ALL_CARD_DATA[index]["Task"].length
     //console.log(this.data[index]['Done%'],cnt)
     var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
     
-    this.loadCircularHeatMap(this.data, "#chart", this.radial_labels, this.segment_labels);
-    d3.selectAll("#segment-" + this.data[index]["Name"]+'-'+this.data[index]["Level"].replace(' ','-')).attr("fill", function(p) {
-      return color(_self.data[index]["Done%"])
+    this.loadCircularHeatMap(this.ALL_CARD_DATA, "#chart", this.radial_labels, this.segment_labels);
+    d3.selectAll("#segment-" + this.ALL_CARD_DATA[index]["Name"]+'-'+this.ALL_CARD_DATA[index]["Level"].replace(' ','-')).attr("fill", function(p) {
+      return color(_self.ALL_CARD_DATA[index]["Done%"])
     });
     
+  }
+
+  SaveDemo() {
+      let yamlStr = yaml.dump(this.YamlObject);
+      let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(file);
+      link.download = './hlll.txt'
+      link.click(); 
+      link.remove();
   }
 
   loadCircularHeatMap(dataset:any, dom_element_to_append_to:string, radial_labels:string[], segment_labels:string[]) {
@@ -177,11 +188,11 @@ export class CircularHeatmapComponent implements OnInit {
       
     svg.selectAll("path")
       .on('click', function(d) {
-        _self.subheader=d.explicitOriginalTarget.__data__.Level
-        _self.tasks=d.explicitOriginalTarget.__data__.Task;
-        _self.header=d.explicitOriginalTarget.__data__.Name
-        _self.show=true
-        console.log(_self.tasks)
+        _self.taskSubheader=d.explicitOriginalTarget.__data__.Level
+        _self.tasksData=d.explicitOriginalTarget.__data__.Task;
+        _self.taskHeader=d.explicitOriginalTarget.__data__.Name
+        _self.showTaskCard=true
+        console.log(_self.tasksData)
       })
       .on('mouseover', function(d) {
         
@@ -384,9 +395,9 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   noTasktoGrey():void{
-    for (var x in this.data){ 
-      if (this.data[x]["Done%"]==-1){
-        d3.selectAll("#segment-" + this.data[x]["Name"]+'-'+this.data[x]["Level"].replace(' ','-')).attr("fill","#DCDCDC");
+    for (var x in this.ALL_CARD_DATA){ 
+      if (this.ALL_CARD_DATA[x]["Done%"]==-1){
+        d3.selectAll("#segment-" + this.ALL_CARD_DATA[x]["Name"]+'-'+this.ALL_CARD_DATA[x]["Level"].replace(' ','-')).attr("fill","#DCDCDC");
       }
     }
   }

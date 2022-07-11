@@ -36,12 +36,12 @@ export class MatrixComponent implements OnInit {
   lvlColumn: string[]=[];
   allRows:string[]=[];
   dataSource:any= new MatTableDataSource<MatrixElement>(this.MATRIX_DATA);
-  rows: string[] = [];
+  rowsCurrentlyBeingShown: string[] = [];
   
   constructor(private yaml:ymlService,private router: Router) {
     this.filteredRows = this.rowCtrl.valueChanges.pipe(
       startWith(null),
-      map((row: string | null) => (row ? this._filter(row) : this.autoCompeteRows.slice())),
+      map((row: string | null) => (row ? this._filter(row) : this.autoCompeteResults.slice())),
     );
    }
 
@@ -112,7 +112,7 @@ export class MatrixComponent implements OnInit {
     while(i<this.MATRIX_DATA.length){
       if(!this.allRows.includes(this.MATRIX_DATA[i].SubDimension)){
         this.allRows.push(this.MATRIX_DATA[i].SubDimension);
-        this.rows.push(this.MATRIX_DATA[i].SubDimension);
+        this.rowsCurrentlyBeingShown.push(this.MATRIX_DATA[i].SubDimension);
       }
       i++;
     }
@@ -123,27 +123,27 @@ export class MatrixComponent implements OnInit {
   rowCtrl = new FormControl('');
   filteredRows: Observable<string[]>;
   
-  autoCompeteRows: string[] = [];
+  autoCompeteResults: string[] = [];
 
   @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
    
   //Remove chips 
   remove(row: string): void {
-    let index = this.rows.indexOf(row);
+    let index = this.rowsCurrentlyBeingShown.indexOf(row);
     //console.log(this.allRows);
     if (index >= 0) {
-      this.rows.splice(index, 1);
+      this.rowsCurrentlyBeingShown.splice(index, 1);
     }
-    this.autoCompeteRows.push(row);
+    this.autoCompeteResults.push(row);
     this.dataSource.data.splice(index,1);
     this.dataSource._data.next(this.dataSource.data)
   }
 
   //Add chips
   selected(event: MatAutocompleteSelectedEvent): void {
-    let autoIndex = this.autoCompeteRows.indexOf(event.option.viewValue);
-    this.autoCompeteRows.splice(autoIndex,1);
-    this.rows.push(event.option.viewValue);
+    let autoIndex = this.autoCompeteResults.indexOf(event.option.viewValue);
+    this.autoCompeteResults.splice(autoIndex,1);
+    this.rowsCurrentlyBeingShown.push(event.option.viewValue);
     this.rowInput.nativeElement.value = '';
     this.rowCtrl.setValue(null);
     //console.log(this.allRows,event.option.viewValue);
@@ -158,7 +158,7 @@ export class MatrixComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.autoCompeteRows.filter(row => row.toLowerCase().includes(filterValue));
+    return this.autoCompeteResults.filter(row => row.toLowerCase().includes(filterValue));
   }
 
   // task description routing + providing parameters
