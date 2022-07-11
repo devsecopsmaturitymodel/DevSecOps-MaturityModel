@@ -3,7 +3,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-6">
-        <div id="chart" class="abc">
+        <div id="chart" class="heatmapClass">
           <mat-card class="example-card" *ngIf="showTaskCard">
             <mat-card-title-group>
               <mat-card-title>{{taskHeader}}</mat-card-title>
@@ -25,8 +25,8 @@
               </p>
             </mat-card-content>
           </mat-card>
-        </div>
-        
+          <button class="buttonClass" (click)="SaveDemo()">Save As</button>
+        </div>  
       </div>
       <div class="col-md-3">
       </div>

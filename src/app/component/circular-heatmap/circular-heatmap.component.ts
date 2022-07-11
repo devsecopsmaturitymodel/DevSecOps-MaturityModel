@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
+import * as yaml from "js-yaml"
 
 export interface taskSchema{
   taskName:string
@@ -122,6 +123,16 @@ export class CircularHeatmapComponent implements OnInit {
       return color(_self.ALL_CARD_DATA[index]["Done%"])
     });
     
+  }
+
+  SaveDemo() {
+      let yamlStr = yaml.dump(this.YamlObject);
+      let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(file);
+      link.download = './hlll.txt'
+      link.click(); 
+      link.remove();
   }
 
   loadCircularHeatMap(dataset:any, dom_element_to_append_to:string, radial_labels:string[], segment_labels:string[]) {
