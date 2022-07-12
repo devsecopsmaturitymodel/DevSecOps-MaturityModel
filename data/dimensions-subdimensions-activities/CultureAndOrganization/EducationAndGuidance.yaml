@@ -1,10 +1,10 @@
+---
 Culture and Organization:
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:
-      risk:
-      - Understanding security is hard and personnel needs to be trained on it. Otherwise,
-        flaws like an SQL Injection might be introduced into the software which might
-        get exploited.
+      risk: Understanding security is hard and personnel needs to be trained on it.
+        Otherwise, flaws like an SQL Injection might be introduced into the software
+        which might get exploited.
       measure: Provide security awareness training for all personnel involved in software
         development Ad-Hoc.
       difficultyOfImplementation:
@@ -13,246 +13,16 @@ Culture and Organization:
         resources: 1
       usefulness: 3
       level: 1
-      samm2:
-      - G-EG-1-A
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juice-shop
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
-      iso27001-2017:
-      - 7.2.2
-    Regular security training for externals:
-      risk:
-      - Understanding security is hard.
-      measure: Provide security awareness training for all personnel including externals
-        involved in software development on a regular basis.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 2
-        resources: 3
-      usefulness: 4
-      level: 4
-      samm2:
-      - G-EG-3-A
-      iso27001-2017:
-      - 7.2.2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juiceshop
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-cheatsheetse
-    Regular security training for all:
-      risk:
-      - Understanding security is hard.
-      measure: Provide security awareness training for all internal personnel involved
-        in software development on a regular basis like twice in a year for 1-3 days.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 2
-      samm2:
-      - G-EG-1-A
-      iso27001-2017:
-      - 7.2.2
-      description: |
-        Conduct security awareness training for all roles currently involved in the management, development, testing, or auditing of the software. The goal is to increase the awareness of application security threats and risks, security best practices, and secure software design principles. Develop training internally or procure it externally. Ideally, deliver training in person so participants can have discussions as a team, but Computer-Based Training (CBT) is also an option.
-
-        Course content should include a range of topics relevant to application security and privacy, while remaining accessible to a non-technical audience. Suitable concepts are secure design principles including Least Privilege, Defense-in-Depth, Fail Secure (Safe), Complete Mediation, Session Management, Open Design, and Psychological Acceptability. Additionally, the training should include references to any organization-wide standards, policies, and procedures defined to improve application security. The OWASP Top 10 vulnerabilities should be covered at a high level.
-
-        Training is mandatory for all employees and contractors involved with software development and includes an auditable sign-off to demonstrate compliance. Consider incorporating innovative ways of delivery (such as gamification) to maximize its effectiveness and combat desensitization.
-
-        [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juiceshop
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
-    Security consulting on request:
-      risk:
-      - Not asking a security expert when questions regarding security appear might
-        lead to flaws.
-      measure: Security consulting to teams is given on request. The security consultants
-        can be internal or external.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 1
-        resources: 1
-      usefulness: 3
-      level: 1
-      samm2:
-      - G-EG-1-A
-      iso27001-2017:
-      - security consulting is missing in ISO 27001 may be
-      - 6.1.1
-      - 6.1.4
-      - 6.1.5
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
-    Regular security training of security champions:
-      risk:
-      - Understanding security is hard, even for security champions.
-      measure: Regular security training of security champions.
-      assessment: |
-        - Process Documentation: TODO
-        - Training Content: TOODO
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 2
-        resources: 2
-      usefulness: 5
-      level: 2
-      samm2:
-      - D-TA-2-B
-      - G-EG-1-A
-      iso27001-2017:
-      - security champions are missing in ISO 27001
-      - 7.2.2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
-      dependsOn:
-      - Each team has a security champion
-    Each team has a security champion:
-      risk:
-      - No one feels directly responsible for security and the security champion does
-        not have enough time to allocate to each team.
-      measure: Each team defines an individual to be responsible for security. These
-        individuals are often referred to as 'security champions'
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 2
-        resources: 1
-      usefulness: 4
-      level: 2
-      description: |
-        Implement a program where each software development team has a member considered a “Security Champion” who is the liaison between Information Security and developers. Depending on the size and structure of the team the “Security Champion” may be a software developer, tester, or a product manager. The “Security Champion” has a set number of hours per week for Information Security related activities. They participate in periodic briefings to increase awareness and expertise in different security disciplines. “Security Champions” have additional training to help develop these roles as Software Security subject-matter experts. You may need to customize the way you create and support “Security Champions” for cultural reasons.
-
-        The goals of the position are to increase effectiveness and efficiency of application security and compliance and to strengthen the relationship between various teams and Information Security. To achieve these objectives, “Security Champions” assist with researching, verifying, and prioritizing security and compliance related software defects. They are involved in all Risk Assessments, Threat Assessments, and Architectural Reviews to help identify opportunities to remediate security defects by making the architecture of the application more resilient and reducing the attack threat surface.
-        Source: [OWASP SAMM](https://owaspsamm.org/model/governance/education-and-guidance/stream-b/)
-      samm2:
-      - G-EG-1-B
-      - G-EG-2-B
-      iso27001-2017:
-      - security champions are missing in ISO 27001 most likely
-      - 7.2.1
-      - 7.2.2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-security-champ
-    Security-Lessoned-Learned:
-      risk:
-      - After an incident, a similar incident might reoccur.
-      measure: Running a 'lessons learned' session after an incident helps drive continuous
-        improvement. Regular meetings with security champions are a good place to
-        share and discuss lessons learned.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 1
-      usefulness: 3
-      level: 3
-      samm2:
-      - O-IM-3-B
-      iso27001-2017:
-      - 16.1.6
-      implementation: []
-    Conduction of collaborative security checks with developers and system administrators:
-      risk:
-      - Security checks by external companies do not increase the understanding of
-        an application/system for internal employees.
-      measure: Periodically security reviews of source code (SCA), in which security
-        SME, developers and operations are involved, are effective at increasing the
-        robustness of software and the security knowledge of the teams involved.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 2
-        resources: 1
-      usefulness: 3
-      level: 3
-      iso27001-2017:
-      - Mutual review of source code is not explicitly required in ISO 27001 may be
-      - 7.2.2
-      - 12.6.1
-      - 12.7.1
-      implementation: []
-      samm2:
-      - G-EG-2-A
-    Conduction of collaborative team security checks:
-      risk:
-      - Development teams limited insight over security practices.
-      measure: Mutual security testing the security of other teams project enhances
-        security awareness and knowledge.
-      difficultyOfImplementation:
-        resources: 2
-        knowledge: 4
-        time: 4
-      usefulness: 2
-      level: 4
-      samm2:
-      - G-EG-1-A
-      - G-EG-2-A
-      iso27001-2017:
-      - Mutual security testing is not explicitly required in ISO 27001 may be
-      - 7.2.2
-      implementation: []
-    Conduction of build-it, break-it, fix-it contests:
-      risk:
-      - Understanding security is hard, even for security champions and the conduction
-        of security training often focuses on breaking a component instead of building
-        a component secure.
-      measure: The build-it, break-it, fix-it contest allows to train people with
-        security related roles like security champions the build, break and fix part
-        of a secure application. This increases the learning of building secure components.
-      difficultyOfImplementation:
-        knowledge: 5
-        time: 3
-        resources: 1
-      usefulness: 3
-      level: 3
-      iso27001-2017:
-      - 7.2.2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/build-it-break-it-fi
-      samm2:
-      - G-EG-2-A
-    Conduction of war games:
-      risk:
-      - Understanding incident response plans during an incident is hard and ineffective.
-      measure: War Games like activities help train for incidents. Security SMEs create
-        attack scenarios in a testing environment enabling the trainees to learn how
-        to react in case of an incident.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 5
-        resources: 4
-      usefulness: 3
-      level: 4
-      iso27001-2017:
-      - ware games are not explicitly required in ISO 27001 may be
-      - 7.2.2
-      - '16.1'
-      - 16.1.5
-      implementation: []
-      samm2:
-      - G-EG-2-A
-    Reward of good communication:
-      risk:
-      - Employees are not getting excited about security.
-      measure: Good communication and transparency encourages cross-organizational
-        support. Gamification of security is also known to help, examples include
-        T-Shirts, mugs, cups, giftcards and 'High-Fives'.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 2
-        resources: 1
-      usefulness: 3
-      level: 2
-      samm2: G-EG-1-B
-      iso27001-2017:
-      - not required by ISO 27001
-      - interestingly enough A7.2.3 is requiring a process to handle misconduct but
-        nothing to promote good behavior.
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/motivate-people
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-top-10-maturit
+      references:
+        samm2:
+        - G-EG-1-A
+        iso27001-2017:
+        - 7.2.2
     Aligning security in teams:
-      risk:
-      - The concept of Security Champions might suggest that only he/she is responsible
+      risk: The concept of Security Champions might suggest that only he/she is responsible
         for security. However, everyone in the project team should be responsible
         for security.
       measure: By aligning security SME with project teams, a higher security standard
@@ -265,44 +35,219 @@ Culture and Organization:
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/involve-security-sme
       level: 4
-      samm2:
-      - G-EG-3-B
-      iso27001-2017:
-      - 7.1.1
-    Simple mob hacking:
-      risk: Understanding security is hard.
-      measure: |
-        Participate with your whole team in a simple mob hacking session organized by the Security Champion Guild.
-        In the session the guild presents a vulnerable application and together you look at possible exploits.
-        Just like in mob programming there is one driver and several navigators.
-      description: |
-        ### Guidelines for your simple mob hacking session
-        - All exploits happen via the user interface.
-        - No need for security/hacking tools.
-        - No need for deep technical or security knowledge.
-        - Use an insecure training app, e.g., [DVWA](https://dvwa.co.uk/) or [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/).
-        - Encourage active participation, e.g., use small groups.
-        - Allow enough time for everyone to run at least one exploit.
-
-        ### Benefits
-        - The team gets an idea of how exploits can look like and how easy applications can be attacked.
-        - The team understands functional correct working software can be highly insecure and easy to exploit.
-
+      references:
+        samm2:
+        - G-EG-3-B
+        iso27001-2017:
+        - 7.1.1
+    Conduction of build-it, break-it, fix-it contests:
+      risk: Understanding security is hard, even for security champions and the conduction
+        of security training often focuses on breaking a component instead of building
+        a component secure.
+      measure: The build-it, break-it, fix-it contest allows to train people with
+        security related roles like security champions the build, break and fix part
+        of a secure application. This increases the learning of building secure components.
       difficultyOfImplementation:
         knowledge: 5
         time: 3
         resources: 1
       usefulness: 3
-      level: 2
-      credits: |
-        AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
-      iso27001-2017:
-      - 7.2.2
+      level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juice-shop
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/damn-vulnerable-web
-      samm2:
-      - G-EG-1-A
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/build-it-break-it-fi
+      references:
+        samm2:
+        - G-EG-2-A
+        iso27001-2017:
+        - 7.2.2
+    Conduction of collaborative security checks with developers and system administrators:
+      risk: Security checks by external companies do not increase the understanding
+        of an application/system for internal employees.
+      measure: Periodically security reviews of source code (SCA), in which security
+        SME, developers and operations are involved, are effective at increasing the
+        robustness of software and the security knowledge of the teams involved.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation: []
+      references:
+        samm2:
+        - G-EG-2-A
+        iso27001-2017:
+        - Mutual review of source code is not explicitly required in ISO 27001 may
+          be
+        - 7.2.2
+        - 12.6.1
+        - 12.7.1
+    Conduction of collaborative team security checks:
+      risk: Development teams limited insight over security practices.
+      measure: Mutual security testing the security of other teams project enhances
+        security awareness and knowledge.
+      difficultyOfImplementation:
+        resources: 2
+        knowledge: 4
+        time: 4
+      usefulness: 2
+      level: 4
+      implementation: []
+      references:
+        samm2:
+        - G-EG-1-A
+        - G-EG-2-A
+        iso27001-2017:
+        - Mutual security testing is not explicitly required in ISO 27001 may be
+        - 7.2.2
+    Conduction of war games:
+      risk: Understanding incident response plans during an incident is hard and ineffective.
+      measure: War Games like activities help train for incidents. Security SMEs create
+        attack scenarios in a testing environment enabling the trainees to learn how
+        to react in case of an incident.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 5
+        resources: 4
+      usefulness: 3
+      level: 4
+      implementation: []
+      references:
+        samm2:
+        - G-EG-2-A
+        iso27001-2017:
+        - ware games are not explicitly required in ISO 27001 may be
+        - 7.2.2
+        - "16.1"
+        - 16.1.5
+    Each team has a security champion:
+      risk: No one feels directly responsible for security and the security champion
+        does not have enough time to allocate to each team.
+      measure: Each team defines an individual to be responsible for security. These
+        individuals are often referred to as 'security champions'
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      description: "Implement a program where each software development team has a
+        member considered a \u201CSecurity Champion\u201D who is the liaison between
+        Information Security and developers. Depending on the size and structure of
+        the team the \u201CSecurity Champion\u201D may be a software developer, tester,
+        or a product manager. The \u201CSecurity Champion\u201D has a set number of
+        hours per week for Information Security related activities. They participate
+        in periodic briefings to increase awareness and expertise in different security
+        disciplines. \u201CSecurity Champions\u201D have additional training to help
+        develop these roles as Software Security subject-matter experts. You may need
+        to customize the way you create and support \u201CSecurity Champions\u201D
+        for cultural reasons.\n\nThe goals of the position are to increase effectiveness
+        and efficiency of application security and compliance and to strengthen the
+        relationship between various teams and Information Security. To achieve these
+        objectives, \u201CSecurity Champions\u201D assist with researching, verifying,
+        and prioritizing security and compliance related software defects. They are
+        involved in all Risk Assessments, Threat Assessments, and Architectural Reviews
+        to help identify opportunities to remediate security defects by making the
+        architecture of the application more resilient and reducing the attack threat
+        surface.\nSource: [OWASP SAMM](https://owaspsamm.org/model/governance/education-and-guidance/stream-b/)\n"
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-security-champ
+      references:
+        samm2:
+        - G-EG-1-B
+        - G-EG-2-B
+        iso27001-2017:
+        - security champions are missing in ISO 27001 most likely
+        - 7.2.1
+        - 7.2.2
+    Regular security training for all:
+      risk: Understanding security is hard.
+      measure: Provide security awareness training for all internal personnel involved
+        in software development on a regular basis like twice in a year for 1-3 days.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 2
+      description: |
+        Conduct security awareness training for all roles currently involved in the management, development, testing, or auditing of the software. The goal is to increase the awareness of application security threats and risks, security best practices, and secure software design principles. Develop training internally or procure it externally. Ideally, deliver training in person so participants can have discussions as a team, but Computer-Based Training (CBT) is also an option.
+
+        Course content should include a range of topics relevant to application security and privacy, while remaining accessible to a non-technical audience. Suitable concepts are secure design principles including Least Privilege, Defense-in-Depth, Fail Secure (Safe), Complete Mediation, Session Management, Open Design, and Psychological Acceptability. Additionally, the training should include references to any organization-wide standards, policies, and procedures defined to improve application security. The OWASP Top 10 vulnerabilities should be covered at a high level.
+
+        Training is mandatory for all employees and contractors involved with software development and includes an auditable sign-off to demonstrate compliance. Consider incorporating innovative ways of delivery (such as gamification) to maximize its effectiveness and combat desensitization.
+
+        [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juiceshop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
+      references:
+        samm2:
+        - G-EG-1-A
+        iso27001-2017:
+        - 7.2.2
+    Regular security training for externals:
+      risk: Understanding security is hard.
+      measure: Provide security awareness training for all personnel including externals
+        involved in software development on a regular basis.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 3
+      usefulness: 4
+      level: 4
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juiceshop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-cheatsheetse
+      references:
+        samm2:
+        - G-EG-3-A
+        iso27001-2017:
+        - 7.2.2
+    Regular security training of security champions:
+      risk: Understanding security is hard, even for security champions.
+      measure: Regular security training of security champions.
+      assessment: |
+        - Process Documentation: TODO
+        - Training Content: TOODO
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 2
+        resources: 2
+      usefulness: 5
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
+      dependsOn:
+      - Each team has a security champion
+      references:
+        samm2:
+        - D-TA-2-B
+        - G-EG-1-A
+        iso27001-2017:
+        - security champions are missing in ISO 27001
+        - 7.2.2
+    Reward of good communication:
+      risk: Employees are not getting excited about security.
+      measure: Good communication and transparency encourages cross-organizational
+        support. Gamification of security is also known to help, examples include
+        T-Shirts, mugs, cups, giftcards and 'High-Fives'.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/motivate-people
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-top-10-maturit
+      references:
+        samm2:
+        - G-EG-1-B
+        iso27001-2017:
+        - not required by ISO 27001
+        - interestingly enough A7.2.3 is requiring a process to handle misconduct
+          but nothing to promote good behavior.
     Security code review:
       risk: Understanding security is hard.
       measure: |
@@ -327,8 +272,83 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-        - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/cwe25
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/cwe25
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
-      samm2:
+      references:
+        samm2:
         - V-ST-1-B
+        iso27001-2017: []
+    Security consulting on request:
+      risk: Not asking a security expert when questions regarding security appear
+        might lead to flaws.
+      measure: Security consulting to teams is given on request. The security consultants
+        can be internal or external.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 1
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-cheatsheet-ser
+      references:
+        samm2:
+        - G-EG-1-A
+        iso27001-2017:
+        - security consulting is missing in ISO 27001 may be
+        - 6.1.1
+        - 6.1.4
+        - 6.1.5
+    Security-Lessoned-Learned:
+      risk: After an incident, a similar incident might reoccur.
+      measure: Running a 'lessons learned' session after an incident helps drive continuous
+        improvement. Regular meetings with security champions are a good place to
+        share and discuss lessons learned.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation: []
+      references:
+        samm2:
+        - O-IM-3-B
+        iso27001-2017:
+        - 16.1.6
+    Simple mob hacking:
+      risk: Understanding security is hard.
+      measure: |
+        Participate with your whole team in a simple mob hacking session organized by the Security Champion Guild.
+        In the session the guild presents a vulnerable application and together you look at possible exploits.
+        Just like in mob programming there is one driver and several navigators.
+      description: |
+        ### Guidelines for your simple mob hacking session
+        - All exploits happen via the user interface.
+        - No need for security/hacking tools.
+        - No need for deep technical or security knowledge.
+        - Use an insecure training app, e.g., [DVWA](https://dvwa.co.uk/) or [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/).
+        - Encourage active participation, e.g., use small groups.
+        - Allow enough time for everyone to run at least one exploit.
+
+        ### Benefits
+        - The team gets an idea of how exploits can look like and how easy applications can be attacked.
+        - The team understands functional correct working software can be highly insecure and easy to exploit.
+      difficultyOfImplementation:
+        knowledge: 5
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 2
+      credits: |
+        AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-juice-shop
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/damn-vulnerable-web
+      references:
+        samm2:
+        - G-EG-1-A
+        iso27001-2017:
+        - 7.2.2
+...

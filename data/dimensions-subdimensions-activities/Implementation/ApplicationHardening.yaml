@@ -1,9 +1,58 @@
+---
 Implementation:
   Application Hardening:
+    App. Hardening Level 2:
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+          <ul>
+            <li>OWASP Application Security Verification Standard Level 2</li>
+            <li>OWASP Mobile Application Security Verification Standard Level 2</li>
+          </ul>
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
+      references:
+        samm2:
+        - D-SR-2-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+    App. Hardening Level 3:
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+          <ul>
+            <li>OWASP Application Security Verification Standard Level 3</li>
+            <li>OWASP Mobile Application Security Verification Standard Maturity Requirements</li>
+          </ul>
+          and gain around 75% coverage of both.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
+      references:
+        samm2:
+        - D-SR-3-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
     Application Hardening Level 1:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
           <ul>
@@ -39,61 +88,15 @@ Implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/apimaturity
-      samm2: D-SR-1-A
-      iso27001-2017:
-      - hardening is not explicitly covered by ISO 27001 - too specific
-      - 13.1.3
-    App. Hardening Level 2:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
-      measure: |
-        Following frameworks like the
-          <ul>
-            <li>OWASP Application Security Verification Standard Level 2</li>
-            <li>OWASP Mobile Application Security Verification Standard Level 2</li>
-          </ul>
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
-      samm2: D-SR-2-A
-      iso27001-2017:
-      - hardening is not explicitly covered by ISO 27001 - too specific
-      - 13.1.3
-    App. Hardening Level 3:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
-      measure: |
-        Following frameworks like the
-          <ul>
-            <li>OWASP Application Security Verification Standard Level 3</li>
-            <li>OWASP Mobile Application Security Verification Standard Maturity Requirements</li>
-          </ul>
-          and gain around 75% coverage of both.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 3
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
-      samm2: D-SR-3-A
-      iso27001-2017:
-      - hardening is not explicitly covered by ISO 27001 - too specific
-      - 13.1.3
+      references:
+        samm2:
+        - D-SR-1-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
     Full Coverage of App. Hardening Level 3:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
           <ul>
@@ -110,7 +113,10 @@ Implementation:
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-asvs
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-masvs
-      samm2: D-SR-3-A
-      iso27001-2017:
-      - hardening is not explicitly covered by ISO 27001 - too specific
-      - 13.1.3
+      references:
+        samm2:
+        - D-SR-3-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+...

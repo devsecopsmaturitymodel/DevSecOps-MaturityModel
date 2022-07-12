@@ -1,32 +1,8 @@
+---
 Culture and Organization:
   Design:
-    Creation of threat modeling processes and standards:
-      risk:
-      - Inadequate identification of business and technical risks.
-      measure: Creation of threat modeling processes and standards through the organization
-        helps to enhance the security culture and provide more structure to the threat
-        model exercises.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 3
-        resources: 2
-      usefulness: 3
-      level: 3
-      description: |
-      samm2: D-TA-3-B
-      iso27001-2017:
-      - not explicitly covered by ISO 27001
-      - may be part of risk assessment
-      - 8.2.1
-      - 14.2.1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
-      dependsOn:
-      - Conduction of simple threat modeling on technical level
     Conduction of advanced threat modeling:
-      risk:
-      - Inadequate identification of business and technical risks.
+      risk: Inadequate identification of business and technical risks.
       measure: Threat modeling is performed by using reviewing user stories and producing
         security driven data flow diagrams.
       difficultyOfImplementation:
@@ -51,12 +27,6 @@ Culture and Organization:
         * Input is escaped output is encoded appropriately using well established libraries.
 
         Source: OWASP Project Integration Project
-      samm2: D-TA-2-B
-      iso27001-2017:
-      - not explicitly covered by ISO 27001
-      - may be part of risk assessment
-      - 8.2.1
-      - 14.2.1
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/whiteboard
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/miro-or-any-other-c
@@ -65,10 +35,17 @@ Culture and Organization:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threagile
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-matrix-for-storage
+      references:
+        samm2:
+        - D-TA-2-B
+        iso27001-2017:
+        - not explicitly covered by ISO 27001
+        - may be part of risk assessment
+        - 8.2.1
+        - 14.2.1
     Conduction of simple threat modeling on business level:
-      risk:
-      - Business related threats are discovered too late in the development and deployment
-        process.
+      risk: Business related threats are discovered too late in the development and
+        deployment process.
       measure: Threat modeling of business functionality is performed during the product
         backlog creation to facilitate early detection of security defects.
       difficultyOfImplementation:
@@ -77,17 +54,18 @@ Culture and Organization:
         resources: 1
       usefulness: 3
       level: 3
-      samm2: D-TA-2-B
-      iso27001-2017:
-      - not explicitly covered by ISO 27001
-      - may be part of risk assessment
-      - 8.2.1
-      - 14.2.1
       implementation: []
+      references:
+        samm2:
+        - D-TA-2-B
+        iso27001-2017:
+        - not explicitly covered by ISO 27001
+        - may be part of risk assessment
+        - 8.2.1
+        - 14.2.1
     Conduction of simple threat modeling on technical level:
-      risk:
-      - Technical related threats are discovered too late in the development and deployment
-        process.
+      risk: Technical related threats are discovered too late in the development and
+        deployment process.
       measure: Threat modeling of technical features is performed during the product
         sprint planning.
       difficultyOfImplementation:
@@ -146,15 +124,16 @@ Culture and Organization:
         GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries. Access to data is protected with basic auth set to _1234:1234_ for development purposes.
 
         Source: OWASP Project Integration Project
-      samm2: D-TA-2-B
-      iso27001-2017:
-      - not explicitly covered by ISO 27001
-      - may be part of risk assessment
-      - 8.2.1
-      - 14.2.1
+      references:
+        samm2:
+        - D-TA-2-B
+        iso27001-2017:
+        - not explicitly covered by ISO 27001
+        - may be part of risk assessment
+        - 8.2.1
+        - 14.2.1
     Creation of advanced abuse stories:
-      risk:
-      - Simple user stories are not going deep enough. Relevant security considerations
+      risk: Simple user stories are not going deep enough. Relevant security considerations
         are performed. Security flaws are discovered too late in the development and
         deployment process
       measure: Advanced abuse stories are created as part of threat modeling activities.
@@ -166,19 +145,20 @@ Culture and Organization:
       level: 4
       dependsOn:
       - Creation of simple abuse stories
-      samm2: D-TA-2-B
-      iso27001-2017:
-      - not explicitly covered by ISO 27001
-      - may be part of project management
-      - 6.1.5
-      - may be part of risk assessment
-      - 8.1.2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/don-t-forget-evil-u
+      references:
+        samm2:
+        - D-TA-2-B
+        iso27001-2017:
+        - not explicitly covered by ISO 27001
+        - may be part of project management
+        - 6.1.5
+        - may be part of risk assessment
+        - 8.1.2
     Creation of simple abuse stories:
-      risk:
-      - User stories mostly don't consider security implications. Security flaws are
-        discovered too late in the development and deployment process.
+      risk: User stories mostly don't consider security implications. Security flaws
+        are discovered too late in the development and deployment process.
       measure: Abuse stories are created during the creation of user stories.
       difficultyOfImplementation:
         knowledge: 2
@@ -186,23 +166,49 @@ Culture and Organization:
         resources: 1
       usefulness: 4
       level: 3
-      samm2: D-TA-2-B
-      iso27001-2017:
-      - not explicitly covered by ISO 27001
-      - may be part of project management
-      - 6.1.5
-      - may be part of risk assessment
-      - 8.1.2
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/don-t-forget-evil-u
       dependsOn:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards
+      references:
+        samm2:
+        - D-TA-2-B
+        iso27001-2017:
+        - not explicitly covered by ISO 27001
+        - may be part of project management
+        - 6.1.5
+        - may be part of risk assessment
+        - 8.1.2
+    Creation of threat modeling processes and standards:
+      risk: Inadequate identification of business and technical risks.
+      measure: Creation of threat modeling processes and standards through the organization
+        helps to enhance the security culture and provide more structure to the threat
+        model exercises.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 3
+      level: 3
+      description: ""
+      implementation:
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/threat-modeling-play
+      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/owasp-samm
+      dependsOn:
+      - Conduction of simple threat modeling on technical level
+      references:
+        samm2:
+        - D-TA-3-B
+        iso27001-2017:
+        - not explicitly covered by ISO 27001
+        - may be part of risk assessment
+        - 8.2.1
+        - 14.2.1
     Information security targets are communicated:
-      risk:
-      - Employees don't known their organizations security targets. Therefore security
-        is not considered during development and administration as much as it should
-        be.
+      risk: Employees don't known their organizations security targets. Therefore
+        security is not considered during development and administration as much as
+        it should be.
       measure: Transparent and timely communication of the security targets by senior
         management is essential to ensure teams' buy-in and support.
       difficultyOfImplementation:
@@ -211,7 +217,10 @@ Culture and Organization:
         resources: 1
       usefulness: 4
       level: 1
-      iso27001-2017:
-      - 5.1.1
-      - 7.2.1
       implementation: []
+      references:
+        samm2: []
+        iso27001-2017:
+        - 5.1.1
+        - 7.2.1
+...
