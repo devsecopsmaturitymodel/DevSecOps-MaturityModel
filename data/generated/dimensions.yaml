@@ -6,8 +6,7 @@ Build and Deployment:
         While building and testing artifacts, third party systems, application frameworks
         and 3rd party libraries are used. These might be malicious as a result of
         vulnerable libraries or because they are altered during the delivery phase.
-      risk:
-      - |-
+      risk: |-
         While building and testing artifacts, third party systems, application frameworks
         and 3rd party libraries are used. These might be malicious as a result of
         vulnerable libraries or because they are altered during the delivery phase.
@@ -35,11 +34,10 @@ Build and Deployment:
         samm2:
         - I-SB-2-A
         iso27001-2017:
-        - iso27001-2017:14.2.6
+        - 14.2.6
     Defined build process:
-      risk:
-      - Performing builds without a defined process is error prone; for example, as
-        a result of incorrect security related configuration.
+      risk: Performing builds without a defined process is error prone; for example,
+        as a result of incorrect security related configuration.
       measure: A well defined build process lowers the possibility of errors during
         the build process.
       description: |
@@ -73,10 +71,10 @@ Build and Deployment:
         - 12.1.1
         - 14.2.2
     Pinning of artifacts:
-      risk:
-      - Unauthorized manipulation of artifacts might be difficult to spot. For example,
-        this may result in using images with malicious code. Also, intendend major
-        changes, which are automatically used in an image used might break the functionality.
+      risk: Unauthorized manipulation of artifacts might be difficult to spot. For
+        example, this may result in using images with malicious code. Also, intendend
+        major changes, which are automatically used in an image used might break the
+        functionality.
       measure: Pinning of artifacts ensure that changes are performed only when intended.
       comment: The usage of pinning requires a good processes for patching. Therefore,
         choose this activity wisly.
@@ -99,9 +97,9 @@ Build and Deployment:
         iso27001-2017:
         - 14.2.6
     SBOM of components:
-      risk:
-      - In case a vulnerability of severity high or critical exists, it needs to be
-        known where an artifacts with that vulnerability is deployed with which dependencies.
+      risk: In case a vulnerability of severity high or critical exists, it needs
+        to be known where an artifacts with that vulnerability is deployed with which
+        dependencies.
       measure: Creation of an SBOM of components (e.g. application and container image
         content) during build.
       dependsOn:
@@ -119,9 +117,8 @@ Build and Deployment:
         - "8.1"
         - "8.2"
     Signing of artifacts:
-      risk:
-      - Unauthorized manipulation of artifacts might be difficult to spot. For example,
-        this may result in images with malicious code in the Docker registry.
+      risk: Unauthorized manipulation of artifacts might be difficult to spot. For
+        example, this may result in images with malicious code in the Docker registry.
       measure: Digitally signing artifacts for all steps during the build and especially
         docker images, helps to ensure their integrity.
       difficultyOfImplementation:
@@ -146,8 +143,7 @@ Build and Deployment:
         iso27001-2017:
         - 14.2.6
     Signing of code:
-      risk:
-      - Unauthorized manipulation of source code might be difficult to spot.
+      risk: Unauthorized manipulation of source code might be difficult to spot.
       measure: Digitally signing commits helps to prevent unauthorized manipulation
         of source code.
       difficultyOfImplementation:
@@ -170,13 +166,13 @@ Build and Deployment:
       dependsOn:
       - Defined build process
       references:
-        samm2: I-SB-2-A
+        samm2:
+        - I-SB-2-A
         iso27001-2017:
         - 14.2.6
   Deployment:
     Blue/Green Deployment:
-      risk:
-      - A new artifacts version can have unknown defects.
+      risk: A new artifacts version can have unknown defects.
       measure: By having multiple production environments, a deployment can be performant
         on the first environment to spot possible defects before it is deployment
         in the production environment(s)
@@ -203,10 +199,9 @@ Build and Deployment:
         - 12.5.1
         - 14.2.9
     Defined decommissioning process:
-      risk:
-      - Not used applications erode and are not maintained. As an evil actor, I exploit
-        known vulnerabilities in the not maintained applicaitons to perform latteral
-        movement within the organization.
+      risk: Not used applications erode and are not maintained. As an evil actor,
+        I exploit known vulnerabilities in the not maintained applicaitons to perform
+        latteral movement within the organization.
       measure: By having a clear decommissioning process, applicaitons not used are
         not running anymore and can therefore not be explointed.
       difficultyOfImplementation:
@@ -221,9 +216,8 @@ Build and Deployment:
         iso27001-2017:
         - 11.2.7
     Defined deployment process:
-      risk:
-      - Deployments without a defined process are error prone thus allowing old or
-        untested artifact to be deployed.
+      risk: Deployments without a defined process are error prone thus allowing old
+        or untested artifact to be deployed.
       measure: A defined deployment process significantly lowers the likelihood of
         errors during the deployment phase.
       difficultyOfImplementation:
@@ -244,17 +238,15 @@ Build and Deployment:
         url: https://github.com/moby/moby
         tags: []
       references:
-        samm2: I-SD-1-A
+        samm2:
+        - I-SD-1-A
         iso27001-2017:
         - 12.1.1
         - 14.2.2
     Environment depending configuration parameters (secrets):
-      risk:
-      - Attackers who compromise a system can see confidential access information
-        like database credentials.
-      - Parameters are often used to set credentials, for example by starting containers
-        or applications; these parameters can often be seen by any one listing running
-        processes on the target system.
+      risk: '- Parameters are often used to set credentials, for example by starting
+        containers or applications; these parameters can often be seen by any one
+        listing running processes on the target system.'
       measure: |
         Configuration parameters are set for each environment not in the source code.
         By using encryption, it is harder to read credentials , e.g. from the file system. Also, the usage of a credential management system can help protect credentials.
@@ -272,12 +264,9 @@ Build and Deployment:
         - 9.4.5
         - 14.2.6
     Handover of confidential parameters:
-      risk:
-      - Attackers who compromise a system can see confidential access information
-        like database credentials.
-      - Parameters are often used to set credentials, for example by starting containers
-        or applications; these parameters can often be seen by any one listing running
-        processes on the target system.
+      risk: '- Parameters are often used to set credentials, for example by starting
+        containers or applications; these parameters can often be seen by any one
+        listing running processes on the target system.'
       measure: By using encryption, it is harder to read credentials , e.g. from the
         file system. Also, the usage of a credential management system can help protect
         credentials.
@@ -291,7 +280,8 @@ Build and Deployment:
       dependsOn:
       - Environment depending configuration parameters (secrets)
       references:
-        samm2: I-SD-2-B
+        samm2:
+        - I-SD-2-B
         iso27001-2017:
         - 14.1.3
         - 13.1.3
@@ -299,8 +289,7 @@ Build and Deployment:
         - 9.4.1
         - 10.1.2
     Inventory of dependencies:
-      risk:
-      - In case a vulnerability of severity high or critical is known by the organization,
+      risk: In case a vulnerability of severity high or critical is known by the organization,
         it needs to be known where an artifacts with that vulnerability is deployed
         with which dependencies.
       measure: A documented inventory of dependencies used in images and containers
@@ -325,15 +314,15 @@ Build and Deployment:
         - sca
         - inventory
       references:
-        samm2: I-SD-2-A
+        samm2:
+        - I-SD-2-A
         iso27001-2017:
         - "8.1"
         - "8.2"
     Inventory of running artifacts:
-      risk:
-      - In case a vulnerability of severity high or critical exists, it needs to be
-        known where an artifacts (e.g. container image) with that vulnerability is
-        deployed.
+      risk: In case a vulnerability of severity high or critical exists, it needs
+        to be known where an artifacts (e.g. container image) with that vulnerability
+        is deployed.
       measure: A documented inventory or a possibility to gather the needed information.
       dependsOn:
       - Defined deployment process
@@ -345,13 +334,13 @@ Build and Deployment:
       level: 3
       implementation: []
       references:
-        samm2: I-SD-2-A
+        samm2:
+        - I-SD-2-A
         iso27001-2017:
         - "8.1"
         - "8.2"
     Rolling update on deployment:
-      risk:
-      - While a deployment is performed, the application can not be reached.
+      risk: While a deployment is performed, the application can not be reached.
       measure: A deployment without downtime is performed*.
       difficultyOfImplementation:
         knowledge: 2
@@ -370,14 +359,14 @@ Build and Deployment:
       dependsOn:
       - Defined deployment process
       references:
-        samm2: I-SD-1-A
+        samm2:
+        - I-SD-1-A
         iso27001-2017:
         - 12.5.1
         - 14.2.2
         - 17.2.1
     Same artifact for environments:
-      risk:
-      - Building of an artifact for different environments means that an untested
+      risk: Building of an artifact for different environments means that an untested
         artifact might reach the production environment.
       measure: Building an artifact once and deploying it to different environments
         means that only tested artifacts are allowed to reach the production environment
@@ -394,15 +383,15 @@ Build and Deployment:
       dependsOn:
       - Defined build process
       references:
-        samm2: I-SD-2-A
+        samm2:
+        - I-SD-2-A
         iso27001-2017:
         - 14.3.1
         - 14.2.8
         - 12.1.4
     Usage of feature toggles:
-      risk:
-      - By using environment dependent configuration, some parameters will not be
-        tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
+      risk: By using environment dependent configuration, some parameters will not
+        be tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
       measure: Usage of environment independent configuration parameter, called feature
         toggles, helps to enhance the test coverage. Only what has been tested, goes
         to production.
@@ -426,8 +415,7 @@ Build and Deployment:
         - 14.2.9
         - 12.1.4
     Usage of trusted images:
-      risk:
-      - Developers or operations might start random images in the production cluster
+      risk: Developers or operations might start random images in the production cluster
         which have malicious code or known vulnerabilities.
       measure: Create image assessment criteria, perform an evaluation of images and
         create a whitelist of artifacts/container images/virtual machine images.
@@ -442,7 +430,8 @@ Build and Deployment:
       usefulness: 3
       level: 2
       references:
-        samm2: I-SD-2-A
+        samm2:
+        - I-SD-2-A
         iso27001-2017:
         - 15.1.1
         - 15.1.2
@@ -450,8 +439,7 @@ Build and Deployment:
         - 14.1.3
   Patch Management:
     A patch policy is defined:
-      risk:
-      - Vulnerabilities in running containers stay for long and might get exploited.
+      risk: Vulnerabilities in running containers stay for long and might get exploited.
       measure: A patch policy for all artifacts (e.g. in images) is defined. How often
         is an image rebuilt?
       difficultyOfImplementation:
@@ -462,15 +450,15 @@ Build and Deployment:
       level: 1
       implementation: []
       references:
-        samm2: O-EM-1-B
+        samm2:
+        - O-EM-1-B
         iso27001-2017:
         - 12.6.1
         - 12.5.1
         - 14.2.5
     Automated PRs for patches:
-      risk:
-      - Known vulnerabilities components might stay for long and get exploited, even
-        when a patch is available.
+      risk: Known vulnerabilities components might stay for long and get exploited,
+        even when a patch is available.
       measure: Fast patching of third party component is needed. The DevOps way is
         to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virtualized
         operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
@@ -488,13 +476,14 @@ Build and Deployment:
       - name: Jenkins
         tags: []
       references:
-        samm2: O-EM-1-B
+        samm2:
+        - O-EM-1-B
         iso27001-2017:
         - 12.6.1
         - 14.2.5
     Nightly build of images (base images):
-      risk:
-      - Vulnerabilities in running containers stay for too long and might get exploited.
+      risk: Vulnerabilities in running containers stay for too long and might get
+        exploited.
       measure: Custom base images are getting build at least nightly. In case the
         packages in the base image e.g. <i>centos</i> has changed, the build server
         triggers the build of depending images.
@@ -506,12 +495,12 @@ Build and Deployment:
       level: 2
       implementation: []
       references:
-        samm2: O-EM-1-B
+        samm2:
+        - O-EM-1-B
         iso27001-2017:
         - 12.6.1
     Reduction of the attack surface:
-      risk:
-      - Components, dependencies, files or file access rights might have vulnerabilities,
+      risk: Components, dependencies, files or file access rights might have vulnerabilities,
         but the they are not needed.
       measure: Removal of unneeded components, dependencies, files or file access
         rights. For container images the usage of distroless images is recommended.
@@ -535,11 +524,10 @@ Build and Deployment:
         - hardening is missing in ISO 27001
         - 14.2.1
     Usage of a maximum lifetime for images:
-      risk:
-      - Vulnerabilities in images of running containers stay for too long and might
-        get exploited. Long running containers have potential memory leaks. A compromised
-        container might get killed by restarting the container (e.g. in case the attacker
-        has not reached the persistence layer).
+      risk: Vulnerabilities in images of running containers stay for too long and
+        might get exploited. Long running containers have potential memory leaks.
+        A compromised container might get killed by restarting the container (e.g.
+        in case the attacker has not reached the persistence layer).
       measure: A short maximum lifetime for images is defined, e.g. 30 days. The project
         images, based on the nightly builded images, are deployed at leased once within
         the defined lifetime. Third Party images are deployed at leased once within
@@ -552,12 +540,13 @@ Build and Deployment:
       level: 2
       implementation: []
       references:
-        samm2: O-EM-1-B
+        samm2:
+        - O-EM-1-B
         iso27001-2017:
         - 12.6.1
     Usage of a short maximum lifetime for images:
-      risk:
-      - Vulnerabilities in running containers stay for too long and might get exploited.
+      risk: Vulnerabilities in running containers stay for too long and might get
+        exploited.
       measure: |
         A good practice is to perform the build and deployment daily or even just-in-time, when a new component (e.g. package) for the image is available.
       difficultyOfImplementation:
@@ -581,14 +570,14 @@ Build and Deployment:
           functionality the canary deployment will make sure the \"older version\"
           is being used and not the buggy newer one."
       references:
-        samm2: O-EM-2-B
+        samm2:
+        - O-EM-2-B
         iso27001-2017:
         - 12.6.1
 Culture and Organization:
   Design:
     Conduction of advanced threat modeling:
-      risk:
-      - Inadequate identification of business and technical risks.
+      risk: Inadequate identification of business and technical risks.
       measure: Threat modeling is performed by using reviewing user stories and producing
         security driven data flow diagrams.
       difficultyOfImplementation:
@@ -659,16 +648,16 @@ Culture and Organization:
         - cluster
         - kubernetes
       references:
-        samm2: D-TA-2-B
+        samm2:
+        - D-TA-2-B
         iso27001-2017:
         - not explicitly covered by ISO 27001
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
     Conduction of simple threat modeling on business level:
-      risk:
-      - Business related threats are discovered too late in the development and deployment
-        process.
+      risk: Business related threats are discovered too late in the development and
+        deployment process.
       measure: Threat modeling of business functionality is performed during the product
         backlog creation to facilitate early detection of security defects.
       difficultyOfImplementation:
@@ -679,16 +668,16 @@ Culture and Organization:
       level: 3
       implementation: []
       references:
-        samm2: D-TA-2-B
+        samm2:
+        - D-TA-2-B
         iso27001-2017:
         - not explicitly covered by ISO 27001
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
     Conduction of simple threat modeling on technical level:
-      risk:
-      - Technical related threats are discovered too late in the development and deployment
-        process.
+      risk: Technical related threats are discovered too late in the development and
+        deployment process.
       measure: Threat modeling of technical features is performed during the product
         sprint planning.
       difficultyOfImplementation:
@@ -782,15 +771,15 @@ Culture and Organization:
 
         Source: OWASP Project Integration Project
       references:
-        samm2: D-TA-2-B
+        samm2:
+        - D-TA-2-B
         iso27001-2017:
         - not explicitly covered by ISO 27001
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
     Creation of advanced abuse stories:
-      risk:
-      - Simple user stories are not going deep enough. Relevant security considerations
+      risk: Simple user stories are not going deep enough. Relevant security considerations
         are performed. Security flaws are discovered too late in the development and
         deployment process
       measure: Advanced abuse stories are created as part of threat modeling activities.
@@ -810,7 +799,8 @@ Culture and Organization:
           and [Practical Security Stories and Security Tasks for Agile Development
           Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
       references:
-        samm2: D-TA-2-B
+        samm2:
+        - D-TA-2-B
         iso27001-2017:
         - not explicitly covered by ISO 27001
         - may be part of project management
@@ -818,9 +808,8 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.1.2
     Creation of simple abuse stories:
-      risk:
-      - User stories mostly don't consider security implications. Security flaws are
-        discovered too late in the development and deployment process.
+      risk: User stories mostly don't consider security implications. Security flaws
+        are discovered too late in the development and deployment process.
       measure: Abuse stories are created during the creation of user stories.
       difficultyOfImplementation:
         knowledge: 2
@@ -839,7 +828,8 @@ Culture and Organization:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards
       references:
-        samm2: D-TA-2-B
+        samm2:
+        - D-TA-2-B
         iso27001-2017:
         - not explicitly covered by ISO 27001
         - may be part of project management
@@ -847,8 +837,7 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.1.2
     Creation of threat modeling processes and standards:
-      risk:
-      - Inadequate identification of business and technical risks.
+      risk: Inadequate identification of business and technical risks.
       measure: Creation of threat modeling processes and standards through the organization
         helps to enhance the security culture and provide more structure to the threat
         model exercises.
@@ -876,17 +865,17 @@ Culture and Organization:
       dependsOn:
       - Conduction of simple threat modeling on technical level
       references:
-        samm2: D-TA-3-B
+        samm2:
+        - D-TA-3-B
         iso27001-2017:
         - not explicitly covered by ISO 27001
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
     Information security targets are communicated:
-      risk:
-      - Employees don't known their organizations security targets. Therefore security
-        is not considered during development and administration as much as it should
-        be.
+      risk: Employees don't known their organizations security targets. Therefore
+        security is not considered during development and administration as much as
+        it should be.
       measure: Transparent and timely communication of the security targets by senior
         management is essential to ensure teams' buy-in and support.
       difficultyOfImplementation:
@@ -903,10 +892,9 @@ Culture and Organization:
         - 7.2.1
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:
-      risk:
-      - Understanding security is hard and personnel needs to be trained on it. Otherwise,
-        flaws like an SQL Injection might be introduced into the software which might
-        get exploited.
+      risk: Understanding security is hard and personnel needs to be trained on it.
+        Otherwise, flaws like an SQL Injection might be introduced into the software
+        which might get exploited.
       measure: Provide security awareness training for all personnel involved in software
         development Ad-Hoc.
       difficultyOfImplementation:
@@ -932,8 +920,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
     Aligning security in teams:
-      risk:
-      - The concept of Security Champions might suggest that only he/she is responsible
+      risk: The concept of Security Champions might suggest that only he/she is responsible
         for security. However, everyone in the project team should be responsible
         for security.
       measure: By aligning security SME with project teams, a higher security standard
@@ -955,8 +942,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.1.1
     Conduction of build-it, break-it, fix-it contests:
-      risk:
-      - Understanding security is hard, even for security champions and the conduction
+      risk: Understanding security is hard, even for security champions and the conduction
         of security training often focuses on breaking a component instead of building
         a component secure.
       measure: The build-it, break-it, fix-it contest allows to train people with
@@ -978,9 +964,8 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
     Conduction of collaborative security checks with developers and system administrators:
-      risk:
-      - Security checks by external companies do not increase the understanding of
-        an application/system for internal employees.
+      risk: Security checks by external companies do not increase the understanding
+        of an application/system for internal employees.
       measure: Periodically security reviews of source code (SCA), in which security
         SME, developers and operations are involved, are effective at increasing the
         robustness of software and the security knowledge of the teams involved.
@@ -1001,8 +986,7 @@ Culture and Organization:
         - 12.6.1
         - 12.7.1
     Conduction of collaborative team security checks:
-      risk:
-      - Development teams limited insight over security practices.
+      risk: Development teams limited insight over security practices.
       measure: Mutual security testing the security of other teams project enhances
         security awareness and knowledge.
       difficultyOfImplementation:
@@ -1020,8 +1004,7 @@ Culture and Organization:
         - Mutual security testing is not explicitly required in ISO 27001 may be
         - 7.2.2
     Conduction of war games:
-      risk:
-      - Understanding incident response plans during an incident is hard and ineffective.
+      risk: Understanding incident response plans during an incident is hard and ineffective.
       measure: War Games like activities help train for incidents. Security SMEs create
         attack scenarios in a testing environment enabling the trainees to learn how
         to react in case of an incident.
@@ -1041,9 +1024,8 @@ Culture and Organization:
         - "16.1"
         - 16.1.5
     Each team has a security champion:
-      risk:
-      - No one feels directly responsible for security and the security champion does
-        not have enough time to allocate to each team.
+      risk: No one feels directly responsible for security and the security champion
+        does not have enough time to allocate to each team.
       measure: Each team defines an individual to be responsible for security. These
         individuals are often referred to as 'security champions'
       difficultyOfImplementation:
@@ -1085,8 +1067,7 @@ Culture and Organization:
         - 7.2.1
         - 7.2.2
     Regular security training for all:
-      risk:
-      - Understanding security is hard.
+      risk: Understanding security is hard.
       measure: Provide security awareness training for all internal personnel involved
         in software development on a regular basis like twice in a year for 1-3 days.
       difficultyOfImplementation:
@@ -1120,8 +1101,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
     Regular security training for externals:
-      risk:
-      - Understanding security is hard.
+      risk: Understanding security is hard.
       measure: Provide security awareness training for all personnel including externals
         involved in software development on a regular basis.
       difficultyOfImplementation:
@@ -1148,8 +1128,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
     Regular security training of security champions:
-      risk:
-      - Understanding security is hard, even for security champions.
+      risk: Understanding security is hard, even for security champions.
       measure: Regular security training of security champions.
       assessment: |
         - Process Documentation: TODO
@@ -1175,8 +1154,7 @@ Culture and Organization:
         - security champions are missing in ISO 27001
         - 7.2.2
     Reward of good communication:
-      risk:
-      - Employees are not getting excited about security.
+      risk: Employees are not getting excited about security.
       measure: Good communication and transparency encourages cross-organizational
         support. Gamification of security is also known to help, examples include
         T-Shirts, mugs, cups, giftcards and 'High-Fives'.
@@ -1201,7 +1179,8 @@ Culture and Organization:
         - security champions
         url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
       references:
-        samm2: G-EG-1-B
+        samm2:
+        - G-EG-1-B
         iso27001-2017:
         - not required by ISO 27001
         - interestingly enough A7.2.3 is requiring a process to handle misconduct
@@ -1242,9 +1221,8 @@ Culture and Organization:
         - V-ST-1-B
         iso27001-2017: []
     Security consulting on request:
-      risk:
-      - Not asking a security expert when questions regarding security appear might
-        lead to flaws.
+      risk: Not asking a security expert when questions regarding security appear
+        might lead to flaws.
       measure: Security consulting to teams is given on request. The security consultants
         can be internal or external.
       difficultyOfImplementation:
@@ -1267,8 +1245,7 @@ Culture and Organization:
         - 6.1.4
         - 6.1.5
     Security-Lessoned-Learned:
-      risk:
-      - After an incident, a similar incident might reoccur.
+      risk: After an incident, a similar incident might reoccur.
       measure: Running a 'lessons learned' session after an incident helps drive continuous
         improvement. Regular meetings with security champions are a good place to
         share and discuss lessons learned.
@@ -1328,8 +1305,7 @@ Culture and Organization:
         - 7.2.2
   Process:
     Approval by reviewing any new version:
-      risk:
-      - An individual might forget to implement security measures to protect source
+      risk: An individual might forget to implement security measures to protect source
         code or infrastructure components.
       measure: On each new version (e.g. Pull Request) of source code or infrastructure
         components a security peer review of the changes is performed (two eyes principle)
@@ -1348,9 +1324,8 @@ Culture and Organization:
         - 6.1.2
         - 14.2.1
     Definition of a change management process:
-      risk:
-      - The impact of a change is not controlled because these are not recorded or
-        documented.
+      risk: The impact of a change is not controlled because these are not recorded
+        or documented.
       measure: Each change of a system is automatically recorded and adequately logged.
       difficultyOfImplementation:
         knowledge: 4
@@ -1366,9 +1341,8 @@ Culture and Organization:
         - 12.1.2
         - 12.4.1
     Definition of simple BCDR practices for critical components:
-      risk:
-      - In case of an emergency, like a power outage, DR actions to perform are not
-        clear. This leads to reaction and remediation delays.
+      risk: In case of an emergency, like a power outage, DR actions to perform are
+        not clear. This leads to reaction and remediation delays.
       measure: By understanding and documenting a business continuity and disaster
         recovery (BCDR) plan, the overall availability of systems and applications
         is increased. Success factors like responsibilities, Service Level Agreements,
@@ -1386,8 +1360,7 @@ Culture and Organization:
         iso27001-2017:
         - 17.1.1
     Prevention of unauthorized installation:
-      risk:
-      - Unapproved components are used.
+      risk: Unapproved components are used.
       measure: Components must be whitelisted. Regular scans on the docker infrastructure
         (e.g. cluster) need to be performed, to verify that only standardized base
         images are used.
@@ -1411,9 +1384,8 @@ Culture and Organization:
 Implementation:
   Application Hardening:
     App. Hardening Level 2:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
           <ul>
@@ -1434,14 +1406,14 @@ Implementation:
         tags: []
         url: https://github.com/OWASP/owasp-masvs
       references:
-        samm2: D-SR-2-A
+        samm2:
+        - D-SR-2-A
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     App. Hardening Level 3:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
           <ul>
@@ -1463,14 +1435,14 @@ Implementation:
         tags: []
         url: https://github.com/OWASP/owasp-masvs
       references:
-        samm2: D-SR-3-A
+        samm2:
+        - D-SR-3-A
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     Application Hardening Level 1:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
           <ul>
@@ -1514,14 +1486,14 @@ Implementation:
         - api
         url: https://curity.io/resources/learn/the-api-security-maturity-model/
       references:
-        samm2: D-SR-1-A
+        samm2:
+        - D-SR-1-A
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     Full Coverage of App. Hardening Level 3:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
           <ul>
@@ -1543,14 +1515,14 @@ Implementation:
         tags: []
         url: https://github.com/OWASP/owasp-masvs
       references:
-        samm2: D-SR-3-A
+        samm2:
+        - D-SR-3-A
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
   Development & Source Control:
     Local development linting & style checks performed:
-      risk:
-      - Creating and developing code that contains code smells and quality issues.
+      risk: Creating and developing code that contains code smells and quality issues.
       measure: "Integration of quality and linting plugins with interactive development
         environment (IDEs). \n"
       difficultyOfImplementation:
@@ -1572,12 +1544,12 @@ Implementation:
         - ide
         - linting
       references:
-        samm2: V-ST-A-1-1
+        samm2:
+        - V-ST-A-1-1
         iso27001-2017: []
     Pre-Commit checks & validations:
-      risk:
-      - Using an insecure application might lead to a compromised application. This
-        might lead to total data theft or data modification.
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
       measure: |
         Implement pre-commit validations to prevent secrets & other security issues being commit to source code.
       difficultyOfImplementation:
@@ -1596,7 +1568,8 @@ Implementation:
         tags:
         - pre-commit
       references:
-        samm2: V-ST-A-1-1
+        samm2:
+        - V-ST-A-1-1
         iso27001-2017: []
     Source Control Protection:
       risk: Unapproved code in important branches like master.
@@ -1625,14 +1598,14 @@ Implementation:
         url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
         description: Usage of branch protection rules
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - peer review - four eyes principle is not explicitly required by ISO 27001
         - 6.1.2
         - 14.2.1
     Versioning:
-      risk:
-      - Changes to production systems can not be undone.
+      risk: Changes to production systems can not be undone.
       measure: versioning of artifacts related to production environments. For example
         Jenkins configuration, docker images, (system provisioning) code.
       difficultyOfImplementation:
@@ -1645,7 +1618,8 @@ Implementation:
       - Defined deployment process
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.1
@@ -1653,9 +1627,8 @@ Implementation:
         - 14.2.2
   Infrastructure Hardening:
     2FA:
-      risk:
-      - One factor authentication is more vulnerable to brute force attacks and is
-        considered less secure.
+      risk: One factor authentication is more vulnerable to brute force attacks and
+        is considered less secure.
       measure: Two factor authentication for all privileged accounts on systems and
         applications
       difficultyOfImplementation:
@@ -1674,16 +1647,16 @@ Implementation:
       - name: TOTP
         tags: []
       references:
-        samm2: TODO
+        samm2:
+        - TODO
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 9.1.1
         - 9.4.2
         - 14.2.5
     Applications are running in virtualized environments:
-      risk:
-      - Through a vulnerability in one service on a server, the attacker gains access
-        to other services running on the same server.
+      risk: Through a vulnerability in one service on a server, the attacker gains
+        access to other services running on the same server.
       measure: Applications are running in a dedicated and isolated virtualized environments.
       difficultyOfImplementation:
         knowledge: 3
@@ -1693,13 +1666,13 @@ Implementation:
       level: 2
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     Backup:
-      risk:
-      - If errors are experienced during the deployment process you want to deploy
+      risk: If errors are experienced during the deployment process you want to deploy
         an old release. However, due to changes in the database this is often unfeasible.
       measure: Performing automated periodical backups are used. Backup before deployment
         can help facilitate deployments whilst testing the backup restore processes.
@@ -1723,8 +1696,7 @@ Implementation:
         - "12.3"
         - 14.2.6
     Checking the sources of used libraries:
-      risk:
-      - Application and system libraries can have implementation flaws or deployment
+      risk: Application and system libraries can have implementation flaws or deployment
         flaws.
       measure: Each libraries source is checked to have a trusted source.
       difficultyOfImplementation:
@@ -1735,14 +1707,14 @@ Implementation:
       level: 2
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.1
         - 14.2.5
     Filter outgoing traffic:
-      risk:
-      - A compromised infrastructure component might try to send out stolen data.
+      risk: A compromised infrastructure component might try to send out stolen data.
       measure: Having a whitelist and explicitly allowing egress traffic provides
         the ability to stop unauthorized data leakage.
       difficultyOfImplementation:
@@ -1758,13 +1730,13 @@ Implementation:
       - name: firewalls
         tags: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     Immutable Infrastructure:
-      risk:
-      - The availability of IT systems might be disturbed due to components failures
+      risk: The availability of IT systems might be disturbed due to components failures
       measure: Redundancies in the IT systems
       difficultyOfImplementation:
         knowledge: 2
@@ -1780,13 +1752,13 @@ Implementation:
       - name: Remove direct access to infrastructure
         tags: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 17.2.1
     Infrastructure as Code:
-      risk:
-      - No tracking of changes in systems might lead to errors in the configuration.
+      risk: No tracking of changes in systems might lead to errors in the configuration.
         In additions, it might lead to unauthorized changes. An examples is jenkins.
       measure: Systems are setup by code. A full environment can be provisioned. In
         addition, software like Jenkins 2 can be setup and configured in in code too.
@@ -1809,14 +1781,14 @@ Implementation:
       - name: Jenkinsfile
         tags: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.1
         - 12.1.2
     Isolated networks for virtual environments:
-      risk:
-      - Virtual environments in default settings are able to access other virtual
+      risk: Virtual environments in default settings are able to access other virtual
         environments on the network stack. By using virtual machines, it is often
         possible to connect to other virtual machines. By using docker, one bridge
         is used by default so that all containers on one host can communicate with
@@ -1837,13 +1809,14 @@ Implementation:
       - name: firewalls
         tags: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     Limitation of system calls in virtual environments:
-      risk:
-      - System calls in virtual environments like docker can lead to privilege escalation.
+      risk: System calls in virtual environments like docker can lead to privilege
+        escalation.
       measure: System calls in virtual environments like docker are audited and limited.
       difficultyOfImplementation:
         knowledge: 3
@@ -1859,12 +1832,12 @@ Implementation:
       - name: strace
         tags: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
     Microservice-Architecture:
-      risk:
-      - Monolithic applications are hard to test.
+      risk: Monolithic applications are hard to test.
       measure: A microservice-architecture helps to have small components, which are
         more easy to test.
       difficultyOfImplementation:
@@ -1875,13 +1848,13 @@ Implementation:
       level: 4
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001
     Production near environments are used by developers:
-      risk:
-      - In case an errors occurs in production, the developer need to be able to create
-        a production near environment on a local development environment.
+      risk: In case an errors occurs in production, the developer need to be able
+        to create a production near environment on a local development environment.
       measure: Usage of infrastructure as code helps to create a production near environment.
         The developer needs to be trained in order to setup a local development environment.
         In addition, it should be possible to create production like test data. Often
@@ -1898,14 +1871,14 @@ Implementation:
       - Infrastructure as Code
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - 12.1.4
         - 17.2.1
     Role based authentication and authorization:
-      risk:
-      - Everyone is able to get unauthorized access to information on systems or to
-        modify information unauthorized on systems.
+      risk: Everyone is able to get unauthorized access to information on systems
+        or to modify information unauthorized on systems.
       measure: The usage of a (role based) access control helps to restrict system
         access to authorized users.
       difficultyOfImplementation:
@@ -1923,12 +1896,12 @@ Implementation:
       - Defined deployment process
       - Defined build process
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - 9.4.1
     Simple access control for systems:
-      risk:
-      - Attackers a gaining access to internal systems and application interfaces
+      risk: Attackers a gaining access to internal systems and application interfaces
       measure: All internal systems are using simple authentication
       difficultyOfImplementation:
         knowledge: 3
@@ -1944,12 +1917,12 @@ Implementation:
       - name: VPN
         tags: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - 9.4.1
     The environment is hardened:
-      risk:
-      - Using default configurations for a cluster environment leads to potential
+      risk: Using default configurations for a cluster environment leads to potential
         risks.
       measure: Harden cluster environments according to best practices. Level 1 and
         partially level 2 from hardening practices like 'CIS Kubernetes Bench for
@@ -1993,14 +1966,14 @@ Implementation:
         - cluster
         - kubernetes
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     Usage of a chaos monkey:
-      risk:
-      - Due to manual changes on a system, they are not replaceable anymore. In case
-        of a crash it might happen that a planned redundant system is unavailable.
+      risk: Due to manual changes on a system, they are not replaceable anymore. In
+        case of a crash it might happen that a planned redundant system is unavailable.
         In addition, it is hard to replay manual changes.
       measure: A randomized periodically shutdown of systems makes sure, that nobody
         will perform manual changes to a system.
@@ -2012,13 +1985,13 @@ Implementation:
       level: 4
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 17.1.3
     Usage of an security account:
-      risk:
-      - Having security auditing in the same account as infrastructure and applications
+      risk: Having security auditing in the same account as infrastructure and applications
         at the cloud provide might cause evil administrators (or threat actors taking
         over an account of an administrator) to alter evidence like audit logs.
       measure: Usage of a seperate account dedicated for security activities.
@@ -2030,12 +2003,12 @@ Implementation:
       level: 2
       implementation: ""
       references:
-        samm2: I-SD-2-B
+        samm2:
+        - I-SD-2-B
         iso27001-2017:
         - 10.1
     Usage of edge encryption at transit:
-      risk:
-      - Evil actors might be able to perform a man in the middle attack and sniff
+      risk: Evil actors might be able to perform a man in the middle attack and sniff
         confidential information (e.g. authentication factors like passwords)
       measure: By using encryption at the edge of traffic in transit, it is impossible
         or at least harder to sniff credentials beeing outside of the organization.
@@ -2047,13 +2020,13 @@ Implementation:
       level: 1
       implementation: ""
       references:
-        samm2: I-SD-2-B
+        samm2:
+        - I-SD-2-B
         iso27001-2017:
         - 10.1
     Usage of encryption at rest:
-      risk:
-      - Evil actors might be able to access data and read information, e.g. from physical
-        hard disks.
+      risk: Evil actors might be able to access data and read information, e.g. from
+        physical hard disks.
       measure: By using encryption at trdt, it is impossible or at least harder to
         to read information.
       difficultyOfImplementation:
@@ -2064,13 +2037,13 @@ Implementation:
       level: 1
       implementation: ""
       references:
-        samm2: I-SD-2-B
+        samm2:
+        - I-SD-2-B
         iso27001-2017:
         - 10.1
     Usage of internal encryption at tansit:
-      risk:
-      - Evil actors within the organization of traffic in transit might be able to
-        perform a man in the middle attack and sniff confidential information (e.g.
+      risk: Evil actors within the organization of traffic in transit might be able
+        to perform a man in the middle attack and sniff confidential information (e.g.
         authentication factors like passwords)
       measure: By using encryption internally, e.g. inside of a cluster, it is impossible
         or at least harder to sniff credentials.
@@ -2082,12 +2055,12 @@ Implementation:
       level: 2
       implementation: ""
       references:
-        samm2: I-SD-2-B
+        samm2:
+        - I-SD-2-B
         iso27001-2017:
         - 10.1
     Usage of security by default for components:
-      risk:
-      - Components (images, libraries, applications) are not hardened.
+      risk: Components (images, libraries, applications) are not hardened.
       measure: Hardening of components is important, specially for image on which
         other teams base on. Hardening should be performed on the operation system
         and on the services inside (e.g. Nginx or a Java-Application).
@@ -2109,12 +2082,13 @@ Implementation:
       dependsOn:
       - Defined build process
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
     Usage of test and production environments:
-      risk:
-      - Security tests are not running regularly because test environments are missing
+      risk: Security tests are not running regularly because test environments are
+        missing
       measure: A production and a production like environment is used
       difficultyOfImplementation:
         knowledge: 3
@@ -2126,14 +2100,14 @@ Implementation:
       - Defined deployment process
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.4
         - 17.2.1
     Virtual environments are limited:
-      risk:
-      - Denial of service (internally by an attacker or unintentionally by a bug)
+      risk: Denial of service (internally by an attacker or unintentionally by a bug)
         on one service effects other services
       measure: All virtual environments are using resource limits on hard disks, memory
         and CPU
@@ -2147,7 +2121,8 @@ Implementation:
       - Applications are running in virtualized environments
       implementation: []
       references:
-        samm2: O-EM-1-A
+        samm2:
+        - O-EM-1-A
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 12.1.3
@@ -2156,8 +2131,7 @@ Implementation:
 Information Gathering:
   Logging:
     Centralized application logging:
-      risk:
-      - Local stored logs can be unauthorized manipulated by attackers with system
+      risk: Local stored logs can be unauthorized manipulated by attackers with system
         access or might be corrupt after an incident. In addition, it is hard to perform
         an correlation of logs. This leads attacks, which can be performed silently.
       measure: A centralized logging system is used and applications logs (including
@@ -2173,15 +2147,15 @@ Information Gathering:
       - Alerting
       implementation: []
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
     Centralized system logging:
-      risk:
-      - Local stored system logs can be unauthorized manipulated by attackers or might
-        be corrupt after an incident. In addition, it is hard to perform a aggregation
-        of logs.
+      risk: Local stored system logs can be unauthorized manipulated by attackers
+        or might be corrupt after an incident. In addition, it is hard to perform
+        a aggregation of logs.
       measure: By using centralized logging logs are protected against unauthorized
         modification.
       difficultyOfImplementation:
@@ -2202,13 +2176,13 @@ Information Gathering:
         - tool
         - logging
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
     Correlation of security events:
-      risk:
-      - Detection of security related events with hints on different systems/tools/metrics
+      risk: Detection of security related events with hints on different systems/tools/metrics
         is not possible.
       measure: Events are correlated on one system. For example the correlation and
         visualization of failed login attempts combined with successful login attempts.
@@ -2223,7 +2197,8 @@ Information Gathering:
       - Alerting
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -2236,9 +2211,6 @@ Information Gathering:
           - exceptions and errors with security in their name
           - transactions of value (e.g., financial transactions, costly operations)
           - :unicorn: (special things of your application)
-      risk-md: |
-        - No track of security-relevant events makes it harder to analyze an incident.
-        - Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
       measure: Security-relevant events like login/logout or creation, change, deletion
         of users should be logged.
       assessment: |
@@ -2270,13 +2242,18 @@ Information Gathering:
         - logging
         - documentation
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - 12.4.1
+      risk: |-
+        <ul>
+        <li>No track of security-relevant events makes it harder to analyze an incident.</li>
+        <li>Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.</li>
+        </ul>
     PII logging concept:
-      risk:
-      - Personal identifiable information (PII) is logged and the law of GDPR is not
-        followed.
+      risk: Personal identifiable information (PII) is logged and the law of GDPR
+        is not followed.
       measure: A concept how to log PII is documented and applied.
       difficultyOfImplementation:
         knowledge: 1
@@ -2302,16 +2279,17 @@ Information Gathering:
         tags:
         - tool
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
         - 18.1.1
     Visualized logging:
-      risk:
-      - System and application protocols are not visualized properly which leads to
-        no or very limited logging assessment. Specially developers might have difficulty
-        to read applications logs with unusually tools like the Linux tool 'cat'
+      risk: System and application protocols are not visualized properly which leads
+        to no or very limited logging assessment. Specially developers might have
+        difficulty to read applications logs with unusually tools like the Linux tool
+        'cat'
       measure: Protocols are visualized in a simple to use real time monitoring system.
         The GUI gives the ability to search for special attributes in the protocol.
       difficultyOfImplementation:
@@ -2327,14 +2305,14 @@ Information Gathering:
       - name: ELK-Stack
         tags: []
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
   Monitoring:
     Advanced availability and stability metrics:
-      risk:
-      - Trends and advanced attacks are not detected.
+      risk: Trends and advanced attacks are not detected.
       measure: Advanced metrics are gathered in relation to availability and stability.
         For example unplanned downtime's per year.
       difficultyOfImplementation:
@@ -2348,12 +2326,12 @@ Information Gathering:
       - Visualized metrics
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - 12.1.3
     Advanced webapplication metrics:
-      risk:
-      - People are not looking into tests results. Vulnerabilities not recolonized,
+      risk: People are not looking into tests results. Vulnerabilities not recolonized,
         even they are detected by tools.
       measure: All defects from the dimension Test- and Verification are instrumented.
       difficultyOfImplementation:
@@ -2367,12 +2345,12 @@ Information Gathering:
       - Visualized metrics
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - 12.6.1
     Alerting:
-      risk:
-      - Incidents are discovered after they happened.
+      risk: Incidents are discovered after they happened.
       measure: |
         Thresholds for metrics are set. In case the thresholds are reached, alarms are send out. Which should get attention due to the critically.
       difficultyOfImplementation:
@@ -2385,15 +2363,15 @@ Information Gathering:
       - Visualized metrics
       implementation: []
       references:
-        samm2: I-DM-A 3
+        samm2:
+        - I-DM-A 3
         iso27001-2017:
         - 16.1.2
         - 16.1.4
         - 12.1.4
     Coverage and control metrics:
-      risk:
-      - The effectiveness of configuration, patch and vulnerability management is
-        unknown.
+      risk: The effectiveness of configuration, patch and vulnerability management
+        is unknown.
       measure: "Usage of Coverage- and control-metrics to show the effectiveness of
         the security program. Coverage is the degree in \n        which a specific
         security control for a specific target group is applied with all resources.\n
@@ -2414,12 +2392,12 @@ Information Gathering:
         url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
         description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
     Deactivation of unused metrics:
-      risk:
-      - High resources are used while gathering unused metrics.
+      risk: High resources are used while gathering unused metrics.
       measure: Deactivation of unused metrics helps to free resources.
       difficultyOfImplementation:
         knowledge: 2
@@ -2431,14 +2409,14 @@ Information Gathering:
       - Visualized metrics
       implementation: []
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.3
     Defense metrics:
-      risk:
-      - IDS/IPS systems like packet- or application-firewalls detect and prevent attacks.
-        It is not known how many attacks has been detected and blocked.
+      risk: IDS/IPS systems like packet- or application-firewalls detect and prevent
+        attacks. It is not known how many attacks has been detected and blocked.
       measure: |
         Gathering of defense metrics like TCP/UDP sources enables to assume the geographic location of the request.
         Assuming a Kubernetes cluster with an egress-traffic filter (e.g. IP/domain based), an alert might be send out in case of every violation. For ingress-traffic, alerting might not even be considered.
@@ -2453,13 +2431,13 @@ Information Gathering:
       - Filter outgoing traffic
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - 12.4.1
         - 13.1.1
     Grouping of metrics:
-      risk:
-      - The analysis of metrics takes long.
+      risk: The analysis of metrics takes long.
       measure: Meaningful grouping of metrics helps to speed up analysis.
       difficultyOfImplementation:
         knowledge: 2
@@ -2469,13 +2447,13 @@ Information Gathering:
       level: 3
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.3
     Metrics are combined with tests:
-      risk:
-      - Changes might cause high load due to programming errors.
+      risk: Changes might cause high load due to programming errors.
       measure: Metrics during tests helps to identify programming errors.
       difficultyOfImplementation:
         knowledge: 2
@@ -2487,13 +2465,13 @@ Information Gathering:
       - Grouping of metrics
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001
     Monitoring of costs:
-      risk:
-      - Not monitorig costs might lead to unexpected high resource consumption and
-        a high invoice.
+      risk: Not monitorig costs might lead to unexpected high resource consumption
+        and a high invoice.
       measure: Implement cost budgets
       difficultyOfImplementation:
         knowledge: 1
@@ -2506,12 +2484,12 @@ Information Gathering:
       - Simple system metrics
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - 12.1.3
     Screens with metric visualization:
-      risk:
-      - Security related information is discovered too late during an incident.
+      risk: Security related information is discovered too late during an incident.
       measure: By having an internal accessible screen with a security related dashboards
         helps to visualize incidents.
       difficultyOfImplementation:
@@ -2524,13 +2502,13 @@ Information Gathering:
       - Grouping of metrics
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.5
     Simple application metrics:
-      risk:
-      - Attacks on an application are not recognized.
+      risk: Attacks on an application are not recognized.
       measure: Gathering of application metrics helps to identify incidents like brute
         force attacks, login/logout.
       difficultyOfImplementation:
@@ -2543,13 +2521,13 @@ Information Gathering:
       - name: Prometheus
         tags: []
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - 12.4.1
     Simple budget metrics:
-      risk:
-      - Not getting notified about reaching the end of the budget (e.g. due to a denial
-        of service) creates unexpected costs.
+      risk: Not getting notified about reaching the end of the budget (e.g. due to
+        a denial of service) creates unexpected costs.
       measure: Cloud providers often provide insight into budgets. A threshold and
         alarming for the budget is set.
       difficultyOfImplementation:
@@ -2562,12 +2540,12 @@ Information Gathering:
       - name: collected
         tags: []
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - 12.1.3
     Simple system metrics:
-      risk:
-      - Without simple metrics analysis of incidents are hard. In case an application
+      risk: Without simple metrics analysis of incidents are hard. In case an application
         uses a lot of CPU from time to time, it is hard for a developer to find out
         the source with Linux commands.
       measure: Gathering of system metrics helps to identify incidents and specially
@@ -2584,13 +2562,13 @@ Information Gathering:
       - name: collected
         tags: []
       references:
-        samm2: O-IM-1-A
+        samm2:
+        - O-IM-1-A
         iso27001-2017:
         - 12.1.3
     Targeted alerting:
-      risk:
-      - People are bored (ignorant) of incident alarm messages, as they are not responsible
-        to react.
+      risk: People are bored (ignorant) of incident alarm messages, as they are not
+        responsible to react.
       measure: By the definition of target groups for incidents people are only getting
         alarms for incidents they are in charge for.
       difficultyOfImplementation:
@@ -2603,13 +2581,13 @@ Information Gathering:
       - Alerting
       implementation: []
       references:
-        samm2: I-DM-A 3
+        samm2:
+        - I-DM-A 3
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.5
     Visualized metrics:
-      risk:
-      - Not visualized metrics lead to restricted usage of metrics.
+      risk: Not visualized metrics lead to restricted usage of metrics.
       measure: Metrics are visualized in real time in a user friendly way.
       difficultyOfImplementation:
         knowledge: 1
@@ -2622,15 +2600,15 @@ Information Gathering:
       - Simple system metrics
       implementation: []
       references:
-        samm2: O-IM-2-A
+        samm2:
+        - O-IM-2-A
         iso27001-2017:
         - 12.1.3
 Test and Verification:
   Application tests:
     High coverage of security related module and integration tests:
-      risk:
-      - Vulnerabilities are rising due to code changes in a complex microservice environment
-        in not important components.
+      risk: Vulnerabilities are rising due to code changes in a complex microservice
+        environment in not important components.
       measure: Implementation of security related tests via unit tests and integration
         tests. Including the test of libraries, in case the are not tested already.
       difficultyOfImplementation:
@@ -2641,13 +2619,14 @@ Test and Verification:
       level: 4
       implementation: []
       references:
-        samm2: V-ST-3-B
+        samm2:
+        - V-ST-3-B
         iso27001-2017:
         - 14.2.3
         - 14.2.8
     Security integration tests for important components:
-      risk:
-      - Vulnerabilities are rising due to code changes in a complex microservice environment.
+      risk: Vulnerabilities are rising due to code changes in a complex microservice
+        environment.
       measure: Implementation of essential security related integration tests. For
         example for authentication and authorization.
       difficultyOfImplementation:
@@ -2660,13 +2639,13 @@ Test and Verification:
       - name: HttpUnit
         tags: []
       references:
-        samm2: V-ST-3-B
+        samm2:
+        - V-ST-3-B
         iso27001-2017:
         - 14.2.3
         - 14.2.8
     Security unit tests for important components:
-      risk:
-      - Vulnerabilities are rising due to code changes.
+      risk: Vulnerabilities are rising due to code changes.
       measure: Usage of unit tests to test important security related features like
         authentication and authorization.
       difficultyOfImplementation:
@@ -2686,13 +2665,13 @@ Test and Verification:
         tags: []
         url: https://karma-runner.github.io
       references:
-        samm2: V-ST-3-B
+        samm2:
+        - V-ST-3-B
         iso27001-2017:
         - 14.2.3
         - 14.2.8
     Smoke Test:
-      risk:
-      - During a deployment an error might happen which leads to non-availability
+      risk: During a deployment an error might happen which leads to non-availability
         of the system, a part of the system or a feature.
       measure: Integration tests are performed against the production environment
         after each deployment.
@@ -2706,14 +2685,14 @@ Test and Verification:
       dependsOn:
       - Defined deployment process
       references:
-        samm2: V-ST-3-B
+        samm2:
+        - V-ST-3-B
         iso27001-2017:
         - 14.2.3
         - 14.2.8
   Consolidation:
     Advanced visualization of defects:
-      risk:
-      - Correlation of the vulnerabilities of different tools to have an overview
+      risk: Correlation of the vulnerabilities of different tools to have an overview
         of the the overall security level per component/project/team is not given.
       measure: Findings are visualized per component/project/team.
       difficultyOfImplementation:
@@ -2743,15 +2722,15 @@ Test and Verification:
         - vulnerability
         - vulnerability management system
       references:
-        samm2: I-DM-3-B
+        samm2:
+        - I-DM-3-B
         iso27001-2017:
         - 16.1.4
         - 8.2.1
         - 8.2.2
         - 8.2.3
     Definition of quality gates:
-      risk:
-      - Improper examination of vulnerabilities leads to no visibility at all.
+      risk: Improper examination of vulnerabilities leads to no visibility at all.
       measure: |-
         Quality gates for found vulnerabilities are defined.
         In the beginning it is important to not overload the security analyst,
@@ -2764,7 +2743,8 @@ Test and Verification:
       usefulness: 4
       level: 1
       references:
-        samm2: I-DM-2-A
+        samm2:
+        - I-DM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.6.1
@@ -2773,10 +2753,9 @@ Test and Verification:
       - name: See other actions, e.g. "Treatment of defects with severity high".
         tags: []
     Integration of vulnerability issues into the development process:
-      risk:
-      - To read console output of the build server to search for vulnerabilities might
-        be difficult. Also, to check a vulnerability management system might not be
-        a daily task for a developer.
+      risk: To read console output of the build server to search for vulnerabilities
+        might be difficult. Also, to check a vulnerability management system might
+        not be a daily task for a developer.
       measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
       difficultyOfImplementation:
         knowledge: 2
@@ -2795,15 +2774,15 @@ Test and Verification:
         description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
           are classified and can be assigned to server-side and client-side teams.'
       references:
-        samm2: I-DM-2-B
+        samm2:
+        - I-DM-2-B
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.4
         - 16.1.5
         - 16.1.6
     Reproducible defect tickets:
-      risk:
-      - Vulnerability descriptions are hard to understand by staff from operations
+      risk: Vulnerability descriptions are hard to understand by staff from operations
         and development.
       measure: Vulnerabilities include the test procedure to give the staff from operations
         and development the ability to reproduce vulnerabilities. This enhances the
@@ -2816,15 +2795,16 @@ Test and Verification:
       level: 4
       implementation: []
       references:
-        samm2: I-DM-2-B
+        samm2:
+        - I-DM-2-B
         iso27001-2017:
         - 16.1.4
         - 8.2.1
         - 8.2.2
         - 8.2.3
     Simple false positive treatment:
-      risk:
-      - As false positive occur during each test, all vulnerabilities might be ignored.
+      risk: As false positive occur during each test, all vulnerabilities might be
+        ignored.
       measure: False positives are suppressed so they will not show up on the next
         tests again. Most security tools have the possibility to suppress false positives.
         A Vulnerability Management System might be used.
@@ -2845,13 +2825,13 @@ Test and Verification:
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
-        samm2: I-DM-2-A
+        samm2:
+        - I-DM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.6
     Simple visualization of defects:
-      risk:
-      - The security level of a component is not visible. Therefore, the motivation
+      risk: The security level of a component is not visible. Therefore, the motivation
         to enhance the security is not give.
       measure: Vulnerabilities are simple visualized.
       difficultyOfImplementation:
@@ -2879,15 +2859,15 @@ Test and Verification:
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
-        samm2: I-DM-1-B
+        samm2:
+        - I-DM-1-B
         iso27001-2017:
         - 16.1.4
         - 8.2.1
         - 8.2.2
         - 8.2.3
     Treatment of all defects:
-      risk:
-      - Vulnerabilities with severity low are not visible.
+      risk: Vulnerabilities with severity low are not visible.
       measure: All vulnerabilities are added to the quality gate.
       difficultyOfImplementation:
         knowledge: 3
@@ -2897,13 +2877,13 @@ Test and Verification:
       level: 4
       implementation: []
       references:
-        samm2: I-DM-2-B
+        samm2:
+        - I-DM-2-B
         iso27001-2017:
         - 16.1.4
         - 12.6.1
     Treatment of defects with severity high or higher:
-      risk:
-      - Vulnerabilities with severity high or higher are not visible.
+      risk: Vulnerabilities with severity high or higher are not visible.
       measure: Vulnerabilities with severity high or higher are added to the quality
         gate.
       difficultyOfImplementation:
@@ -2914,14 +2894,14 @@ Test and Verification:
       level: 1
       comment: False positive analysis, specially for static analysis, is time consuming.
       references:
-        samm2: I-DM-2-B
+        samm2:
+        - I-DM-2-B
         iso27001-2017:
         - 16.1.4
         - 12.6.1
       implementation: []
     Treatment of defects with severity middle:
-      risk:
-      - Vulnerabilities with severity middle are not visible.
+      risk: Vulnerabilities with severity middle are not visible.
       measure: Vulnerabilities with severity middle are added to the quality gate.
       difficultyOfImplementation:
         knowledge: 2
@@ -2931,15 +2911,16 @@ Test and Verification:
       level: 3
       comment: False positive analysis, specially for static analysis, is time consuming.
       references:
-        samm2: I-DM-2-B
+        samm2:
+        - I-DM-2-B
         iso27001-2017:
         - 16.1.4
         - 12.6.1
       implementation: []
     Usage of a vulnerability management system:
-      risk:
-      - Maintenance of false positives in each tool enforces a high workload. In addition
-        a correlation of the same finding from different tools is not possible.
+      risk: Maintenance of false positives in each tool enforces a high workload.
+        In addition a correlation of the same finding from different tools is not
+        possible.
       measure: Aggregation of vulnerabilities in one tool reduce the workload to mark
         false positives.
       difficultyOfImplementation:
@@ -2963,7 +2944,8 @@ Test and Verification:
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
-        samm2: I-DM-1-B
+        samm2:
+        - I-DM-1-B
         iso27001-2017:
         - 12.6.1
         - 16.1.3
@@ -2972,8 +2954,7 @@ Test and Verification:
         - 16.1.6
   Dynamic depth for applications:
     Coverage analysis:
-      risk:
-      - Parts of the service are not still covered.
+      risk: Parts of the service are not still covered.
       measure: Check that there are no missing paths in the application with coverage-tools.
       difficultyOfImplementation:
         knowledge: 4
@@ -2985,14 +2966,14 @@ Test and Verification:
       - name: OWASP Code Pulse
         tags: []
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - part of periodic review, PDCA
     Coverage of client side dynamic components:
-      risk:
-      - Parts of the service are not covered during the scan, because JavaScript is
-        not getting executed. Therefore, the co
+      risk: Parts of the service are not covered during the scan, because JavaScript
+        is not getting executed. Therefore, the co
       measure: Usage of a spider which executes dynamic content like JavaScript, e.g.
         via Selenium.
       difficultyOfImplementation:
@@ -3004,7 +2985,8 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -3012,8 +2994,7 @@ Test and Verification:
       - name: Ajax Spider
         tags: []
     Coverage of hidden endpoints:
-      risk:
-      - Hidden endpoints of the service are not getting tracked.
+      risk: Hidden endpoints of the service are not getting tracked.
       measure: Hidden endpoints are getting detected and included in the vulnerability
         scan.
       difficultyOfImplementation:
@@ -3030,14 +3011,14 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
     Coverage of more input vectors:
-      risk:
-      - Parts of the service are not covered. For example specially formatted or coded
-        parameters are not getting detected as parameter (e.g. parameters in REST-like
-        URLs, parameters in JSON-Format or base64-coded parameters).
+      risk: Parts of the service are not covered. For example specially formatted
+        or coded parameters are not getting detected as parameter (e.g. parameters
+        in REST-like URLs, parameters in JSON-Format or base64-coded parameters).
       measure: Special parameter and special encodings are defined, so that they get
         fuzzed by the used vulnerability scanners.
       difficultyOfImplementation:
@@ -3049,13 +3030,14 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
       implementation: []
     Coverage of sequential operations:
-      risk:
-      - Sequential operations like workflows (e.g. login -> put products in the basket
+      risk: Sequential operations like workflows (e.g. login -> put products in the
+        basket
       measure: Sequential operations are defined and checked by the vulnerability
         scanner in the defined order.
       difficultyOfImplementation:
@@ -3070,13 +3052,13 @@ Test and Verification:
       dependsOn:
       - Usage of different roles
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 14.2.8
         - 14.2.3
     Coverage of service to service communication:
-      risk:
-      - Service to service communication is not covered.
+      risk: Service to service communication is not covered.
       measure: Service to service communication is dumped and checked.
       difficultyOfImplementation:
         knowledge: 4
@@ -3087,16 +3069,16 @@ Test and Verification:
       dependsOn:
       - Simple Scan
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
       implementation: []
     Simple Scan:
-      risk:
-      - Deficient security tests are performed. Simple vulnerabilities are not detected
-        and missing security configurations (e.g. headers) are not set. Fast feedback
-        is not given.
+      risk: Deficient security tests are performed. Simple vulnerabilities are not
+        detected and missing security configurations (e.g. headers) are not set. Fast
+        feedback is not given.
       measure: A simple scan is performed to get a security baseline. In case the
         test is done in under 10 minutes, it should be part of the build and deployment
         process.
@@ -3118,14 +3100,14 @@ Test and Verification:
           The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
       - name: Arachni
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
     Usage of different roles:
-      risk:
-      - Parts of the service are not covered during the scan, because a login is not
-        performed.
+      risk: Parts of the service are not covered during the scan, because a login
+        is not performed.
       measure: Integration of authentication with all roles used in the service.
       difficultyOfImplementation:
         knowledge: 3
@@ -3136,7 +3118,8 @@ Test and Verification:
       dependsOn:
       - Simple Scan
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.3
@@ -3149,9 +3132,8 @@ Test and Verification:
         description: |
           Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
     Usage of multiple scanners:
-      risk:
-      - Each vulnerability scanner has different opportunities. By using just one
-        scanner, some vulnerabilities might not be found.
+      risk: Each vulnerability scanner has different opportunities. By using just
+        one scanner, some vulnerabilities might not be found.
       measure: Usage of multiple spiders and scanner enhance the coverage and the
         vulnerabilities.
       difficultyOfImplementation:
@@ -3171,14 +3153,14 @@ Test and Verification:
         description: |
           secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
         - 14.2.5
   Dynamic depth for infrastructure:
     Load tests:
-      risk:
-      - As it is unknown how many requests the systems and applications can serve,
+      risk: As it is unknown how many requests the systems and applications can serve,
         due to an unexpected load the availability is disturbed.
       measure: Load test against the production system or a production near system
         is performed.
@@ -3190,15 +3172,15 @@ Test and Verification:
       level: 4
       implementation: []
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 12.1.3
         - 14.2.3
         - 14.2.8
     Test for exposed services:
-      risk:
-      - Standard network segmentation and firewalling has not been performed, leading
-        to world open cluster management ports.
+      risk: Standard network segmentation and firewalling has not been performed,
+        leading to world open cluster management ports.
       measure: With the help of tools the network configuration of unintentional exposed
         cluster(s) are tested. To identify clusters, all subdomains might need to
         be identified with a tool like OWASP Amass to perform portscans based o the
@@ -3216,14 +3198,14 @@ Test and Verification:
         tags: []
         url: https://github.com/OWASP/Amass
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 13.1.3
         - 14.2.3
         - 14.2.8
     Test for unused Resources:
-      risk:
-      - Unused resources, specially secrets, might be still valid, but are exposing
+      risk: Unused resources, specially secrets, might be still valid, but are exposing
         information. As an attacker, I compromise a system, gather credentials and
         try to use them.
       measure: Test for unused resources helps to identify unused resources.
@@ -3244,15 +3226,15 @@ Test and Verification:
         description: |
           Hunt Unused Resources In Kubernetes.
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 13.1.3
         - 14.2.3
         - 14.2.8
     Test network segmentation:
-      risk:
-      - Wrong or no network segmentation of pods makes it easier for an attacker to
-        access a database and extract or modify data.
+      risk: Wrong or no network segmentation of pods makes it easier for an attacker
+        to access a database and extract or modify data.
       measure: Cluster internal test needs to be performed. Integration of fine granulated
         network segmentation (also between pods in the same namespace).
       difficultyOfImplementation:
@@ -3268,15 +3250,15 @@ Test and Verification:
       dependsOn:
       - Segmented networks for virtual environments
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 13.1.3
         - 14.2.3
         - 14.2.8
     Test of the configuration of cloud environments:
-      risk:
-      - Standard hardening practices for cloud environments are not performed leading
-        to vulnerabilities.
+      risk: Standard hardening practices for cloud environments are not performed
+        leading to vulnerabilities.
       measure: With the help of tools the configuration of virtual environments are
         tested.
       difficultyOfImplementation:
@@ -3307,9 +3289,8 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
     Weak password test:
-      risk:
-      - Weak passwords in components like applications or systems, specially for privileged
-        accounts, lead to take over of that account.
+      risk: Weak passwords in components like applications or systems, specially for
+        privileged accounts, lead to take over of that account.
       measure: Automatic brute force attacks are performed. Specially the usage of
         standard accounts like 'admin' and employee user-ids is recommended.
       difficultyOfImplementation:
@@ -3323,13 +3304,13 @@ Test and Verification:
         tags:
         - password
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 9.4.3
   Static depth for applications:
     Exclusion of source code duplicates:
-      risk:
-      - Duplicates in source code might influence the stability of the application.
+      risk: Duplicates in source code might influence the stability of the application.
       measure: Automatic Detection and manual removal of duplicates in source code.
       difficultyOfImplementation:
         knowledge: 1
@@ -3343,14 +3324,14 @@ Test and Verification:
       dependsOn:
       - Defined build process
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.1
         - 14.2.5
     Local development security checks performed:
-      risk:
-      - Creating and developing code contains code smells and quality issues.
+      risk: Creating and developing code contains code smells and quality issues.
       measure: |
         Integration of quality and linting plugins with interactive development environment (IDEs).
       difficultyOfImplementation:
@@ -3376,13 +3357,13 @@ Test and Verification:
         - ide
         - sast
       references:
-        samm2: V-ST-A-1-1
+        samm2:
+        - V-ST-A-1-1
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
     Static analysis for all components/libraries:
-      risk:
-      - Used components like libraries and legacy applications might have vulnerabilities
+      risk: Used components like libraries and legacy applications might have vulnerabilities
       measure: Usage of a static analysis for all used components.
       difficultyOfImplementation:
         knowledge: 2
@@ -3395,12 +3376,12 @@ Test and Verification:
       - Static analysis for important server side components
       implementation: []
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
     Static analysis for all self written components:
-      risk:
-      - Parts in the source code of the frontend or middleware have vulnerabilities.
+      risk: Parts in the source code of the frontend or middleware have vulnerabilities.
       measure: Usage of static analysis tools for all parts of the middleware and
         frontend. Static analysis uses for example string matching algorithms and/or
         dataflow analysis.
@@ -3436,12 +3417,12 @@ Test and Verification:
       - Static analysis for important client side components
       - Static analysis for important server side components
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
     Static analysis for important client side components:
-      risk:
-      - Important parts in the source code of the frontend have vulnerabilities.
+      risk: Important parts in the source code of the frontend have vulnerabilities.
       measure: Usage of static analysis tools for important parts of the frontend
         are used. Static analysis uses for example string matching algorithms and/or
         dataflow analysis.
@@ -3480,12 +3461,12 @@ Test and Verification:
       dependsOn:
       - Defined build process
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
     Static analysis for important server side components:
-      risk:
-      - Important parts in the source code of the middleware have vulnerabilities.
+      risk: Important parts in the source code of the middleware have vulnerabilities.
       measure: Usage of static analysis tools for important parts of the middleware
         are used. Static analysis uses for example string matching algorithms and/or
         dataflow analysis.
@@ -3520,12 +3501,12 @@ Test and Verification:
       dependsOn:
       - Defined build process
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
     Stylistic analysis:
-      risk:
-      - False source code indenting might lead to vulnerabilities.
+      risk: False source code indenting might lead to vulnerabilities.
       measure: Analysis of compliance to style guides of the source code ensures that
         source code indenting rules are met.
       difficultyOfImplementation:
@@ -3548,14 +3529,14 @@ Test and Verification:
         - ide
         - linting
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
         - 14.2.1
         - 14.2.5
     Test of client side components with known vulnerabilities:
-      risk:
-      - Client side components might have vulnerabilities.
+      risk: Client side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in components of the frontend are performed.
       difficultyOfImplementation:
         knowledge: 1
@@ -3573,12 +3554,12 @@ Test and Verification:
         tags: []
         url: https://docs.npmjs.com/cli/audit
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
     Test of server side components with known vulnerabilities:
-      risk:
-      - Server side components might have vulnerabilities.
+      risk: Server side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware)
         are performed.
       difficultyOfImplementation:
@@ -3593,13 +3574,13 @@ Test and Verification:
       - name: OWASP Dependency Check
         tags: []
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
     Usage of multiple analyzers:
-      risk:
-      - Each vulnerability analyzer has different opportunities. By using just one
-        analyzer, some vulnerabilities might not be found.
+      risk: Each vulnerability analyzer has different opportunities. By using just
+        one analyzer, some vulnerabilities might not be found.
       measure: Usage of multiple static tools to find more vulnerabilities.
       difficultyOfImplementation:
         knowledge: 3
@@ -3613,15 +3594,15 @@ Test and Verification:
       - Static analysis for all self written components
       implementation: []
       references:
-        samm2: V-ST-3-A
+        samm2:
+        - V-ST-3-A
         iso27001-2017:
         - 12.6.1
         - 14.2.1
         - 14.2.5
   Static depth for infrastructure:
     Analyze logs:
-      risk:
-      - Not aware of attacks happening.
+      risk: Not aware of attacks happening.
       measure: Check logs for keywords.
       difficultyOfImplementation:
         knowledge: 2
@@ -3637,9 +3618,8 @@ Test and Verification:
         samm2: []
         iso27001-2017: []
     Check for image lifetime:
-      risk:
-      - Old container images in production indicate that patch management is not performed
-        and therefore vulnerabilities might exists.
+      risk: Old container images in production indicate that patch management is not
+        performed and therefore vulnerabilities might exists.
       measure: Check the image age of containers in production.
       difficultyOfImplementation:
         knowledge: 2
@@ -3661,14 +3641,14 @@ Test and Verification:
         description: Discover vulnerabilities and container image misconfiguration
           in production environments.
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 12.6.1
         - 14.2.5
     Check for known vulnerabilities:
-      risk:
-      - Known vulnerabilities in infrastructure components like container images might
-        get exploited.
+      risk: Known vulnerabilities in infrastructure components like container images
+        might get exploited.
       measure: Check for known vulnerabilities
       difficultyOfImplementation:
         knowledge: 2
@@ -3685,14 +3665,14 @@ Test and Verification:
         description: Registries like quay, dockerhub provide (commercial) offerings,
           often not suitable for distroless images
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
     Check for malware:
-      risk:
-      - Third party might include  malware. Ether due to the maintainer (e.g. typo
-        squatting of an image name and using the wrong image) or by an attacker on
-        behalf of the maintainer with stolen credentials.
+      risk: Third party might include  malware. Ether due to the maintainer (e.g.
+        typo squatting of an image name and using the wrong image) or by an attacker
+        on behalf of the maintainer with stolen credentials.
       measure: Check for malware in components (e.g. container images, VM baseline
         images, libraries).
       difficultyOfImplementation:
@@ -3715,12 +3695,12 @@ Test and Verification:
         description: Discover vulnerabilities and container image misconfiguration
           in production environments.
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.2.1
     Check for new image version:
-      risk:
-      - When a new version of an image is available, it might fix security vulnerabilities.
+      risk: When a new version of an image is available, it might fix security vulnerabilities.
       measure: Check for new images of containers in production.
       difficultyOfImplementation:
         knowledge: 3
@@ -3730,14 +3710,14 @@ Test and Verification:
       level: 3
       implementation: []
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
         - 14.2.5
         - 12.2.1
     Correlate known vulnerabilities in infrastructure with new image versions:
-      risk:
-      - TODO.
+      risk: TODO.
       measure: TODO
       difficultyOfImplementation:
         knowledge: 2
@@ -3758,14 +3738,14 @@ Test and Verification:
         tags: []
         url: https://github.com/future-architect/vuls
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 12.6.1
         - 14.2.1
     Stored Secrets:
-      risk:
-      - Stored secrets in git history, in container images or directly in code shouldn't
-        exists because they might be exposed to unauthorized parties.
+      risk: Stored secrets in git history, in container images or directly in code
+        shouldn't exists because they might be exposed to unauthorized parties.
       measure: Test for secrets in code, container images and history
       difficultyOfImplementation:
         knowledge: 2
@@ -3781,14 +3761,14 @@ Test and Verification:
         tags: []
         url: https://github.com/nccgroup/go-pillage-registries
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 9.4.3
         - 10.1.2
     Test cluster deployment resources:
-      risk:
-      - The deployment configuration (e.g. kubernetes deployment resources) might
+      risk: The deployment configuration (e.g. kubernetes deployment resources) might
         contain unsecured configurations.
       measure: Test the deployment configuration for virtualized environments for
         unsecured configurations.
@@ -3803,15 +3783,15 @@ Test and Verification:
         tags: []
         url: https://kubesec.io
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
         - 12.6.1
         - 14.2.3
         - 14.2.8
     Test of infrastructure components for known vulnerabilities:
-      risk:
-      - Infrastructure components might have vulnerabilities.
+      risk: Infrastructure components might have vulnerabilities.
       measure: Test for known vulnerabilities in infrastructure components. Often,
         the only way to respond to known vulnerabilities in operating system packages
         is to accept the risk and wait for a patch. As the patch needs to be applied
@@ -3836,13 +3816,13 @@ Test and Verification:
         tags: []
         url: https://github.com/future-architect/vuls
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 12.6.1
         - 14.2.1
     Test of virtualized environments:
-      risk:
-      - Virtualized environments (e.g. via <i>Container Images</i>) might contains
+      risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains
         unsecure configurations.
       measure: Test virtualized environments for unsecured configurations.
       difficultyOfImplementation:
@@ -3868,12 +3848,12 @@ Test and Verification:
         description: Discover vulnerabilities and container image misconfiguration
           in production environments.
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017: []
     Test the cloud configuration:
-      risk:
-      - Standard hardening practices for cloud environments are not performed leading
-        to vulnerabilities.
+      risk: Standard hardening practices for cloud environments are not performed
+        leading to vulnerabilities.
       measure: With the help of tools, the configuration of virtual environments are
         tested.
       difficultyOfImplementation:
@@ -3887,16 +3867,16 @@ Test and Verification:
         tags: []
         url: https://github.com/aquasecurity/kube-bench
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
         - 12.6.1
         - 14.2.3
         - 14.2.8
     Test the definition of virtualized environments:
-      risk:
-      - The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might
-        contain unsecure configurations.
+      risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>)
+        might contain unsecure configurations.
       measure: Test the definition of virtualized environments for unsecured configurations.
       difficultyOfImplementation:
         knowledge: 2
@@ -3923,7 +3903,8 @@ Test and Verification:
         description: dockerfilelint is an node module that analyzes a Dockerfile and
           looks for common traps, mistakes and helps enforce best practices.
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - system hardening, virtual environments are not explicitly covered by ISO
           27001 - too specific
@@ -3933,8 +3914,7 @@ Test and Verification:
         - 14.2.1
   Test-Intensity:
     Creation and application of a testing concept:
-      risk:
-      - Scans might use a too small or too high test intensity.
+      risk: Scans might use a too small or too high test intensity.
       measure: A testing concept considering the amount of time per scan/intensity
         is created and applied. A dynamic analysis needs more time than a static analysis.
         The dynamic scan, depending on the test intensity might be performed on every
@@ -3947,7 +3927,8 @@ Test and Verification:
       level: 3
       implementation: []
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 14.2.2
         - 14.2.3
@@ -3955,10 +3936,9 @@ Test and Verification:
         - 14.2.5
         - 12.6.1
     Deactivating of unneeded tests:
-      risk:
-      - As tools cover a wide range of different vulnerability tests, they might not
-        match the used components. Therefore, they need more time and resources as
-        they need and the feedback loops takes too much time.
+      risk: As tools cover a wide range of different vulnerability tests, they might
+        not match the used components. Therefore, they need more time and resources
+        as they need and the feedback loops takes too much time.
       measure: Unneeded tests are deactivated. For example in case the service is
         using a Mongo database and no mysql database, the dynamic scan doesn't need
         to test for sql injections.
@@ -3970,14 +3950,15 @@ Test and Verification:
       level: 2
       implementation: []
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
         - 14.2.1
         - 14.2.5
     Default settings for intensity:
-      risk:
-      - Time pressure and ignorance might lead to false predictions for the test intensity.
+      risk: Time pressure and ignorance might lead to false predictions for the test
+        intensity.
       measure: The intensity of the used tools are not modified to safe time.
       difficultyOfImplementation:
         knowledge: 1
@@ -3987,14 +3968,15 @@ Test and Verification:
       level: 1
       implementation: []
       references:
-        samm2: V-ST-1-A
+        samm2:
+        - V-ST-1-A
         iso27001-2017:
         - 12.6.1
         - 14.2.1
         - 14.2.5
     High test intensity:
-      risk:
-      - A too small intensity or a too high confidence might lead to not visible vulnerabilities.
+      risk: A too small intensity or a too high confidence might lead to not visible
+        vulnerabilities.
       measure: A deep scan with high test intensity and a low confidence threshold
         is performed.
       difficultyOfImplementation:
@@ -4005,15 +3987,15 @@ Test and Verification:
       level: 1
       implementation: []
       references:
-        samm2: V-ST-2-A
+        samm2:
+        - V-ST-2-A
         iso27001-2017:
         - 12.6.1
         - 14.2.1
         - 14.2.5
     Regular tests:
-      risk:
-      - After pushing source code to the version control system, any delay in receiving
-        feedback on defects makes them harder for the developer to remediate.
+      risk: After pushing source code to the version control system, any delay in
+        receiving feedback on defects makes them harder for the developer to remediate.
       measure: On each push and/or at given intervals automatic security tests are
         performed.
       difficultyOfImplementation:
@@ -4024,7 +4006,8 @@ Test and Verification:
       level: 2
       implementation: []
       references:
-        samm2: I-SB-3-A
+        samm2:
+        - I-SB-3-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
