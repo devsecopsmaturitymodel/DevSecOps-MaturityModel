@@ -1,11 +1,3 @@
-_yaml_references:
-  tools:
-    K8sPurger:
-      name: K8sPurger
-      tags: [vulnerability, scanner, dast, infrastrcture]
-      url: https://github.com/yogeshkk/K8sPurger
-      description: |
-        Hunt Unused Resources In Kubernetes.
 Test and Verification:
   Dynamic depth for infrastructure:
     Load tests:

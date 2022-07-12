@@ -566,3 +566,36 @@ implementations:
     name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
     tags: [sca, inventory]
+  juice-shop:
+    name: OWASP Juice Shop
+    tags: [training]
+    url: https://github.com/bkimminich/juice-shop
+    description: |-
+      In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+  dvwa:
+    name: Damn Vulnerable Web Application
+    tags: [training]
+    description: |-
+      Simple Application with intended vulnerabilities. HTML based.
+  loggingCheatSheet:
+    name: OWASP Logging CheatSheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+    tags: [logging, documentation]
+  zap:
+    name: OWASP Zap
+    tags: [vulnerability, scanner]
+    url: https://github.com/zaproxy/zaproxy
+    description: |
+      The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+  secureCodeBox:
+    name: OWASP secureCodeBox
+    tags: [vulnerability, scanner-orchestration]
+    url: https://github.com/secureCodeBox/secureCodeBox
+    description: |
+      secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+  K8sPurger:
+    name: K8sPurger
+    tags: [vulnerability, scanner, dast, infrastrcture]
+    url: https://github.com/yogeshkk/K8sPurger
+    description: |
+      Hunt Unused Resources In Kubernetes.

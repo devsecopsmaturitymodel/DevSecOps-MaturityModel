@@ -1,16 +1,3 @@
-_yaml_references:
-  tools:
-    juice-shop:
-      name: OWASP Juice Shop
-      tags: [training]
-      url: https://github.com/bkimminich/juice-shop
-      description: |-
-        In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
-    dvwa:
-      name: Damn Vulnerable Web Application
-      tags: [training]
-      description: |-
-        Simple Application with intended vulnerabilities. HTML based.
 Culture and Organization:
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:

@@ -1,17 +1,3 @@
-_yaml_references:
-  tools:
-    loggingCheatSheet:
-      name: OWASP Logging CheatSheet
-      url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
-      tags: [logging, documentation]
-    rsyslog:
-      name: rsyslog
-      url: https://www.rsyslog.com/
-      tags: [tool, logging]
-    logstash:
-      name: logstash
-      url: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
-      tags: [tool, logging]
 Information Gathering:
   Logging:
     Centralized application logging:
