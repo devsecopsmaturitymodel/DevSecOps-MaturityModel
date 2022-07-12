@@ -6,8 +6,8 @@
         <div id="chart" class="heatmapClass">
           <mat-card class="example-card" *ngIf="showTaskCard">
             <mat-card-title-group>
-              <mat-card-title>{{taskHeader}}</mat-card-title>
-              <mat-card-subtitle>{{taskSubheader}}</mat-card-subtitle>
+              <mat-card-title>{{cardHeader}}</mat-card-title>
+              <mat-card-subtitle>{{cardSubheader}}</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content *ngFor="let task of tasksData;index as i">
               <div *ngIf="task.ifTaskDone; then trueBlock else falseBlock"></div>
@@ -25,7 +25,7 @@
               </p>
             </mat-card-content>
           </mat-card>
-          <button class="buttonClass" (click)="SaveDemo()">Save As</button>
+          <button mat-raised-button  class="buttonClass" (click)="SaveEditedYAMLfile()">Download edited YAML file</button>
         </div>  
       </div>
       <div class="col-md-3">

@@ -23,8 +23,8 @@ export interface cardSchema{
 export class CircularHeatmapComponent implements OnInit {
   maxLevelOfTasks:number=-1
   showTaskCard:boolean=false
-  taskHeader:string=''
-  taskSubheader:string=''
+  cardHeader:string=''
+  cardSubheader:string=''
   tasksData:any[]=[]
   ALL_CARD_DATA:cardSchema[] =[];
   radial_labels:string[]= [];
@@ -58,7 +58,7 @@ export class CircularHeatmapComponent implements OnInit {
       }
       for(var l=0 ; l<this.maxLevelOfTasks; l++){
         for(var x in this.YamlObject['dimension']){
-          var tempdata:cardSchema={
+          var tempData:cardSchema={
             "Name": "",
             "Level": "",
             "Done%":-1,
@@ -66,22 +66,22 @@ export class CircularHeatmapComponent implements OnInit {
           }
           var totalImplemented:number=0
           try{
-            tempdata["Name"]=this.YamlObject['dimension'][x]['subdimension']['name']
-            tempdata["Level"]="Level "+(l+1) 
+            tempData["Name"]=this.YamlObject['dimension'][x]['subdimension']['name']
+            tempData["Level"]="Level "+(l+1) 
             for(var i=0;i<this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length;i++){
-              var nameOfTask=this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['name']
+              var nameOfTask:string=this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['name']
               var Status:boolean=this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['isImplemented']
               if(Status){
                 totalImplemented+=1
               }
-              tempdata["Task"].push({"taskName":nameOfTask,"ifTaskDone":Status})
+              tempData["Task"].push({"taskName":nameOfTask,"ifTaskDone":Status})
             }
-            tempdata["Done%"]=totalImplemented/this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length
+            tempData["Done%"]=totalImplemented/this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)].length
           }
           catch{
-            tempdata["Done%"]=-1
+            tempData["Done%"]=-1
           }
-          this.ALL_CARD_DATA.push(tempdata)
+          this.ALL_CARD_DATA.push(tempData)
         }
       }
       console.log(this.ALL_CARD_DATA)
@@ -96,7 +96,7 @@ export class CircularHeatmapComponent implements OnInit {
     var index=0;
     var cnt=0;
     for(var i=0;i<this.ALL_CARD_DATA.length;i++){
-      if(this.ALL_CARD_DATA[i]["Name"]===this.taskHeader&&this.ALL_CARD_DATA[i]["Level"]===this.taskSubheader){
+      if(this.ALL_CARD_DATA[i]["Name"]===this.cardHeader&&this.ALL_CARD_DATA[i]["Level"]===this.cardSubheader){
         index=i
         break;
       }
@@ -114,6 +114,14 @@ export class CircularHeatmapComponent implements OnInit {
         cnt+=1
       } 
     }
+    for(var i=0; i<this.YamlObject['dimension'].length;i++){
+      if(this.YamlObject['dimension'][i]['subdimension']['name']===this.cardHeader){
+        var lvlString=this.cardSubheader.toLowerCase().replace(" ","-")
+        this.YamlObject['dimension'][i]['subdimension'][lvlString][taskIndex]["isImplemented"]=this.ALL_CARD_DATA[index]["Task"][i]["ifTaskDone"]
+        break
+      }
+      
+    }
     this.ALL_CARD_DATA[index]['Done%']=cnt/this.ALL_CARD_DATA[index]["Task"].length
     //console.log(this.data[index]['Done%'],cnt)
     var color = d3.scaleLinear<string,string>().domain([0,1]).range(["white", "green"]);
@@ -125,12 +133,13 @@ export class CircularHeatmapComponent implements OnInit {
     
   }
 
-  SaveDemo() {
+  SaveEditedYAMLfile() {
+      console.log(this.YamlObject)
       let yamlStr = yaml.dump(this.YamlObject);
       let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
       var link = document.createElement('a');
       link.href = window.URL.createObjectURL(file);
-      link.download = './hlll.txt'
+      link.download = 'generated.yaml'
       link.click(); 
       link.remove();
   }
@@ -188,9 +197,9 @@ export class CircularHeatmapComponent implements OnInit {
       
     svg.selectAll("path")
       .on('click', function(d) {
-        _self.taskSubheader=d.explicitOriginalTarget.__data__.Level
+        _self.cardSubheader=d.explicitOriginalTarget.__data__.Level
         _self.tasksData=d.explicitOriginalTarget.__data__.Task;
-        _self.taskHeader=d.explicitOriginalTarget.__data__.Name
+        _self.cardHeader=d.explicitOriginalTarget.__data__.Name
         _self.showTaskCard=true
         console.log(_self.tasksData)
       })
