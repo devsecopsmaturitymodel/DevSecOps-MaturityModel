@@ -15,7 +15,7 @@ export interface taskDescription {
   dimension:string
   subDimension:string
   level:string
-  taskIndex:number
+  taskName:string
   description:string
   risk: string[]
   measure: string
@@ -36,7 +36,7 @@ export interface taskDescription {
 })
 export class TaskDescriptionComponent implements OnInit {
 
-  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskIndex:-1,description:'',risk:[],
+  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskName:'',description:'',risk:[],
                                 measure:'',implementatonGuide:'',samm:[''],iso:[''],knowledge:-1,resources:-1,
                               time:-1,dependsOn:[], implementation:[]}
 
@@ -53,30 +53,14 @@ export class TaskDescriptionComponent implements OnInit {
         this.currentTask.dimension=params['dimension'];
         this.currentTask.subDimension=params['subDimension'];
         this.currentTask.level="level-"+params['level'];
-        this.currentTask.taskIndex=params['taskIndex'];
+        this.currentTask.taskName=params['taskName'];
     });
      //gets value from generated folder 
      this.yaml.setURI('./assets/YAML/generated/sample.yaml');
      // Function sets data 
      this.yaml.getJson().subscribe((data) => {
-       this.YamlObject = data;
-       try{
-        for(this.rowIndex=0;this.rowIndex<this.YamlObject['dimension'].length;this.rowIndex++){
-
-              if(!this.YamlObject['dimension'][this.rowIndex]['subdimension']['name']
-                .localeCompare(this.currentTask.subDimension)){
-                  
-                break;
-              }   
-        }
-      }
-      catch{
-        console.log('Task does not exist!')
-      }
-      var data =this.YamlObject['dimension'][this.rowIndex]['subdimension']
-      [this.currentTask.level][this.currentTask.taskIndex]
-
-
+      this.YamlObject = data;
+      var data =this.YamlObject[this.currentTask.dimension][this.currentTask.subDimension][this.currentTask.taskName]
       this.currentTask.description=this.defineStringValues(data['description'],'')
       this.currentTask.risk=this.defineStringArrayValues(data['risk'],[])
       this.currentTask.measure=this.defineStringValues(data['measure'],'')

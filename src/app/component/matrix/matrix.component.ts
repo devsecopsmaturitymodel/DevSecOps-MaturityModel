@@ -37,7 +37,7 @@ export class MatrixComponent implements OnInit {
   allRows:string[]=[];
   dataSource:any= new MatTableDataSource<MatrixElement>(this.MATRIX_DATA);
   rowsCurrentlyBeingShown: string[] = [];
-  
+  allDimensionNames:string[]=[];
   constructor(private yaml:ymlService,private router: Router) {
     this.filteredRows = this.rowCtrl.valueChanges.pipe(
       startWith(null),
@@ -68,34 +68,38 @@ export class MatrixComponent implements OnInit {
     // Function sets data 
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;
-      var len = this.YamlObject['dimension'].length;
-      //console.log(this.YamlObject['dimension'][0]['subdimension']['level-1'])
-      for(let i =0;i<len;i++){
-        var temp = {Dimension:this.YamlObject['dimension'][i]['name'],
-                                  SubDimension:this.YamlObject['dimension'][i]['subdimension']['name'],
-                                  }
-        //console.log(typeof(temp))
-        for (let j = 0 ;j<this.levels.length; j++)
-          {
-            temp={
-              ...temp,
-              [this.lvlColumn[j] as keyof MatrixElement]: []
-            }
-            
-            var lvlTemp='level-'+(j+1)
-            
-            try{
-              for(let k =0;k<this.YamlObject['dimension'][i]['subdimension'][lvlTemp].length;k++){
-                  temp[this.lvlColumn[j] as keyof MatrixElement].push(this.YamlObject['dimension'][i]['subdimension'][lvlTemp][k]['name'])
-                  //console.log(this.YamlObject['dimension'][i]['subdimension'][lvlTemp][k]['name'])
+      this.allDimensionNames= Object.keys(this.YamlObject)
+      for(let i =0;i<this.allDimensionNames.length;i++){
+        var subdimensionsInCurrentDimension = Object.keys(this.YamlObject[this.allDimensionNames[i]])
+        for(let j=0;j<subdimensionsInCurrentDimension.length;j++){
+          var temp = {Dimension:this.allDimensionNames[i],
+                      SubDimension:subdimensionsInCurrentDimension[j],
+                      }
+          //console.log(typeof(temp))
+          for (let k = 0 ;k<this.levels.length; k++){
+              temp={
+                ...temp,
+                [this.lvlColumn[k] as keyof MatrixElement]: []
               }
             }
-            catch{
-              temp[this.lvlColumn[j] as keyof MatrixElement]=[]
+        var taskInCurrentSubDimension:string[]= Object.keys(this.YamlObject[this.allDimensionNames[i]][subdimensionsInCurrentDimension[j]])
+          for(let a=0;a<taskInCurrentSubDimension.length;a++){
+            var currentTaskName=taskInCurrentSubDimension[a]
+            try{
+              var lvlOfTask:number=this.YamlObject[this.allDimensionNames[i]][subdimensionsInCurrentDimension[j]][currentTaskName]['level']
+              console.log(temp[this.lvlColumn[lvlOfTask-1] as keyof MatrixElement]);
+              (temp[this.lvlColumn[lvlOfTask-1] as keyof MatrixElement] as unknown as string[]).push(currentTaskName)
             }
+            catch{
+              console.log("Level for task does not exist")
+            }
+            
+            //console.log(this.YamlObject['dimension'][i]['subdimension'][lvlTemp][k]['name'])
           }
-          console.log(temp)
-        this.MATRIX_DATA.push(temp)
+            
+            console.log(temp)
+          this.MATRIX_DATA.push(temp)
+        }
       } 
       this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA)); 
       this.createRowList();
@@ -163,13 +167,13 @@ export class MatrixComponent implements OnInit {
 
   // task description routing + providing parameters
 
-  navigate(dim:string,subdim:string,lvl:Number,ti:Number) {
+  navigate(dim:string,subdim:string,lvl:Number,taskName:string) {
     let navigationExtras: NavigationExtras = {
         queryParams: {
             dimension:dim,
             subDimension:subdim,
             level:lvl,
-            taskIndex:ti
+            taskName:taskName
         }
     }
     console.log(this.lvlColumn)
