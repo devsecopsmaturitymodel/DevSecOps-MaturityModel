@@ -1547,7 +1547,7 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
-  Development & Source Control:
+  Development and Source Control:
     Local development linting & style checks performed:
       risk:
       - Creating and developing code that contains code smells and quality issues.
