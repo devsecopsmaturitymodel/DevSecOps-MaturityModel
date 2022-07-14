@@ -83,7 +83,7 @@ export class CircularHeatmapComponent implements OnInit {
                 if (lvlOfCurrentTask==l+1){
                   totalTasks+=1
                   var nameOfTask:string=allTaskInThisSubDimension[k]
-                  var Status:boolean=true //this.YamlObject['dimension'][x]['subdimension']['level-'+(l+1)][i]['isImplemented']
+                  var Status:boolean=this.YamlObject[allDimensionNames[i]][allSubDimensionInThisDimension[j]][allTaskInThisSubDimension[k]]['isImplemented']
                   if(Status){
                     totalImplemented+=1
                   }
@@ -131,13 +131,17 @@ export class CircularHeatmapComponent implements OnInit {
         cnt+=1
       } 
     }
-    for(var i=0; i<this.YamlObject['dimension'].length;i++){
-      if(this.YamlObject['dimension'][i]['subdimension']['name']===this.cardHeader){
-        var lvlString=this.cardSubheader.toLowerCase().replace(" ","-")
-        this.YamlObject['dimension'][i]['subdimension'][lvlString][taskIndex]["isImplemented"]=this.ALL_CARD_DATA[index]["Task"][i]["ifTaskDone"]
-        break
+    var allDimensionNames=Object.keys(this.YamlObject)
+    for(var i=0; i<allDimensionNames.length;i++){
+      var allSubDimensionInThisDimension=Object.keys(this.YamlObject[allDimensionNames[i]])
+      for(var j=0;j<allSubDimensionInThisDimension.length;j++){
+        if(allSubDimensionInThisDimension[j]==this.cardHeader){
+          var taskName= this.ALL_CARD_DATA[index]["Task"][taskIndex]["taskName"]
+          console.log(taskName)
+          this.YamlObject[allDimensionNames[i]][allSubDimensionInThisDimension[j]][taskName]["isImplemented"]=this.ALL_CARD_DATA[index]["Task"][taskIndex]["ifTaskDone"]
+          break
+        }
       }
-      
     }
     this.ALL_CARD_DATA[index]['Done%']=cnt/this.ALL_CARD_DATA[index]["Task"].length
     //console.log(this.data[index]['Done%'],cnt)
