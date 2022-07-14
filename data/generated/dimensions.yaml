@@ -35,6 +35,10 @@ Build and Deployment:
         - I-SB-2-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Defined build process:
       risk: Performing builds without a defined process is error prone; for example,
         as a result of incorrect security related configuration.
@@ -70,6 +74,9 @@ Build and Deployment:
         iso27001-2017:
         - 12.1.1
         - 14.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Pinning of artifacts:
       risk: Unauthorized manipulation of artifacts might be difficult to spot. For
         example, this may result in using images with malicious code. Also, intendend
@@ -96,6 +103,10 @@ Build and Deployment:
         - I-SB-1-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     SBOM of components:
       risk: In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts with that vulnerability is deployed with which
@@ -116,6 +127,10 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Signing of artifacts:
       risk: Unauthorized manipulation of artifacts might be difficult to spot. For
         example, this may result in images with malicious code in the Docker registry.
@@ -142,6 +157,10 @@ Build and Deployment:
         - I-SB-1-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Signing of code:
       risk: Unauthorized manipulation of source code might be difficult to spot.
       measure: Digitally signing commits helps to prevent unauthorized manipulation
@@ -170,6 +189,10 @@ Build and Deployment:
         - I-SB-2-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Deployment:
     Blue/Green Deployment:
       risk: A new artifacts version can have unknown defects.
@@ -198,6 +221,10 @@ Build and Deployment:
         - 12.1.4
         - 12.5.1
         - 14.2.9
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Defined decommissioning process:
       risk: Not used applications erode and are not maintained. As an evil actor,
         I exploit known vulnerabilities in the not maintained applicaitons to perform
@@ -215,6 +242,10 @@ Build and Deployment:
         - O-OM-2-B
         iso27001-2017:
         - 11.2.7
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Defined deployment process:
       risk: Deployments without a defined process are error prone thus allowing old
         or untested artifact to be deployed.
@@ -243,6 +274,10 @@ Build and Deployment:
         iso27001-2017:
         - 12.1.1
         - 14.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Environment depending configuration parameters (secrets):
       risk: '- Parameters are often used to set credentials, for example by starting
         containers or applications; these parameters can often be seen by any one
@@ -263,6 +298,10 @@ Build and Deployment:
         iso27001-2017:
         - 9.4.5
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Handover of confidential parameters:
       risk: '- Parameters are often used to set credentials, for example by starting
         containers or applications; these parameters can often be seen by any one
@@ -288,6 +327,10 @@ Build and Deployment:
         - 9.4.3
         - 9.4.1
         - 10.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Inventory of dependencies:
       risk: In case a vulnerability of severity high or critical is known by the organization,
         it needs to be known where an artifacts with that vulnerability is deployed
@@ -319,6 +362,10 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Inventory of running artifacts:
       risk: In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts (e.g. container image) with that vulnerability
@@ -339,6 +386,10 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Rolling update on deployment:
       risk: While a deployment is performed, the application can not be reached.
       measure: A deployment without downtime is performed*.
@@ -365,6 +416,10 @@ Build and Deployment:
         - 12.5.1
         - 14.2.2
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Same artifact for environments:
       risk: Building of an artifact for different environments means that an untested
         artifact might reach the production environment.
@@ -389,6 +444,10 @@ Build and Deployment:
         - 14.3.1
         - 14.2.8
         - 12.1.4
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of feature toggles:
       risk: By using environment dependent configuration, some parameters will not
         be tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
@@ -414,6 +473,10 @@ Build and Deployment:
         - 14.2.8
         - 14.2.9
         - 12.1.4
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of trusted images:
       risk: Developers or operations might start random images in the production cluster
         which have malicious code or known vulnerabilities.
@@ -437,6 +500,10 @@ Build and Deployment:
         - 15.1.2
         - 15.1.3
         - 14.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Patch Management:
     A patch policy is defined:
       risk: Vulnerabilities in running containers stay for long and might get exploited.
@@ -456,6 +523,10 @@ Build and Deployment:
         - 12.6.1
         - 12.5.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Automated PRs for patches:
       risk: Known vulnerabilities components might stay for long and get exploited,
         even when a patch is available.
@@ -481,6 +552,10 @@ Build and Deployment:
         iso27001-2017:
         - 12.6.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Nightly build of images (base images):
       risk: Vulnerabilities in running containers stay for too long and might get
         exploited.
@@ -499,6 +574,10 @@ Build and Deployment:
         - O-EM-1-B
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Reduction of the attack surface:
       risk: Components, dependencies, files or file access rights might have vulnerabilities,
         but the they are not needed.
@@ -523,6 +602,10 @@ Build and Deployment:
         iso27001-2017:
         - hardening is missing in ISO 27001
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of a maximum lifetime for images:
       risk: Vulnerabilities in images of running containers stay for too long and
         might get exploited. Long running containers have potential memory leaks.
@@ -544,6 +627,10 @@ Build and Deployment:
         - O-EM-1-B
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of a short maximum lifetime for images:
       risk: Vulnerabilities in running containers stay for too long and might get
         exploited.
@@ -574,6 +661,10 @@ Build and Deployment:
         - O-EM-2-B
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
 Culture and Organization:
   Design:
     Conduction of advanced threat modeling:
@@ -655,6 +746,10 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Conduction of simple threat modeling on business level:
       risk: Business related threats are discovered too late in the development and
         deployment process.
@@ -675,6 +770,10 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Conduction of simple threat modeling on technical level:
       risk: Technical related threats are discovered too late in the development and
         deployment process.
@@ -778,6 +877,10 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Creation of advanced abuse stories:
       risk: Simple user stories are not going deep enough. Relevant security considerations
         are performed. Security flaws are discovered too late in the development and
@@ -807,6 +910,10 @@ Culture and Organization:
         - 6.1.5
         - may be part of risk assessment
         - 8.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Creation of simple abuse stories:
       risk: User stories mostly don't consider security implications. Security flaws
         are discovered too late in the development and deployment process.
@@ -836,6 +943,10 @@ Culture and Organization:
         - 6.1.5
         - may be part of risk assessment
         - 8.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Creation of threat modeling processes and standards:
       risk: Inadequate identification of business and technical risks.
       measure: Creation of threat modeling processes and standards through the organization
@@ -872,6 +983,10 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Information security targets are communicated:
       risk: Employees don't known their organizations security targets. Therefore
         security is not considered during development and administration as much as
@@ -890,6 +1005,10 @@ Culture and Organization:
         iso27001-2017:
         - 5.1.1
         - 7.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:
       risk: Understanding security is hard and personnel needs to be trained on it.
@@ -919,6 +1038,10 @@ Culture and Organization:
         - G-EG-1-A
         iso27001-2017:
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Aligning security in teams:
       risk: The concept of Security Champions might suggest that only he/she is responsible
         for security. However, everyone in the project team should be responsible
@@ -941,6 +1064,10 @@ Culture and Organization:
         - G-EG-3-B
         iso27001-2017:
         - 7.1.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Conduction of build-it, break-it, fix-it contests:
       risk: Understanding security is hard, even for security champions and the conduction
         of security training often focuses on breaking a component instead of building
@@ -963,6 +1090,10 @@ Culture and Organization:
         - G-EG-2-A
         iso27001-2017:
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Conduction of collaborative security checks with developers and system administrators:
       risk: Security checks by external companies do not increase the understanding
         of an application/system for internal employees.
@@ -985,6 +1116,10 @@ Culture and Organization:
         - 7.2.2
         - 12.6.1
         - 12.7.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Conduction of collaborative team security checks:
       risk: Development teams limited insight over security practices.
       measure: Mutual security testing the security of other teams project enhances
@@ -1003,6 +1138,10 @@ Culture and Organization:
         iso27001-2017:
         - Mutual security testing is not explicitly required in ISO 27001 may be
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Conduction of war games:
       risk: Understanding incident response plans during an incident is hard and ineffective.
       measure: War Games like activities help train for incidents. Security SMEs create
@@ -1023,6 +1162,10 @@ Culture and Organization:
         - 7.2.2
         - "16.1"
         - 16.1.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Each team has a security champion:
       risk: No one feels directly responsible for security and the security champion
         does not have enough time to allocate to each team.
@@ -1066,6 +1209,10 @@ Culture and Organization:
         - security champions are missing in ISO 27001 most likely
         - 7.2.1
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Regular security training for all:
       risk: Understanding security is hard.
       measure: Provide security awareness training for all internal personnel involved
@@ -1100,6 +1247,10 @@ Culture and Organization:
         - G-EG-1-A
         iso27001-2017:
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Regular security training for externals:
       risk: Understanding security is hard.
       measure: Provide security awareness training for all personnel including externals
@@ -1127,6 +1278,10 @@ Culture and Organization:
         - G-EG-3-A
         iso27001-2017:
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Regular security training of security champions:
       risk: Understanding security is hard, even for security champions.
       measure: Regular security training of security champions.
@@ -1153,6 +1308,9 @@ Culture and Organization:
         iso27001-2017:
         - security champions are missing in ISO 27001
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Reward of good communication:
       risk: Employees are not getting excited about security.
       measure: Good communication and transparency encourages cross-organizational
@@ -1185,6 +1343,10 @@ Culture and Organization:
         - not required by ISO 27001
         - interestingly enough A7.2.3 is requiring a process to handle misconduct
           but nothing to promote good behavior.
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Security code review:
       risk: Understanding security is hard.
       measure: |
@@ -1220,6 +1382,9 @@ Culture and Organization:
         samm2:
         - V-ST-1-B
         iso27001-2017: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Security consulting on request:
       risk: Not asking a security expert when questions regarding security appear
         might lead to flaws.
@@ -1244,6 +1409,10 @@ Culture and Organization:
         - 6.1.1
         - 6.1.4
         - 6.1.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Security-Lessoned-Learned:
       risk: After an incident, a similar incident might reoccur.
       measure: Running a 'lessons learned' session after an incident helps drive continuous
@@ -1261,6 +1430,10 @@ Culture and Organization:
         - O-IM-3-B
         iso27001-2017:
         - 16.1.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple mob hacking:
       risk: Understanding security is hard.
       measure: |
@@ -1303,6 +1476,10 @@ Culture and Organization:
         - G-EG-1-A
         iso27001-2017:
         - 7.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Process:
     Approval by reviewing any new version:
       risk: An individual might forget to implement security measures to protect source
@@ -1323,6 +1500,10 @@ Culture and Organization:
         - peer review - four eyes principle is not explicitly required by ISO 27001
         - 6.1.2
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Definition of a change management process:
       risk: The impact of a change is not controlled because these are not recorded
         or documented.
@@ -1340,6 +1521,10 @@ Culture and Organization:
         - 14.2.2
         - 12.1.2
         - 12.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Definition of simple BCDR practices for critical components:
       risk: In case of an emergency, like a power outage, DR actions to perform are
         not clear. This leads to reaction and remediation delays.
@@ -1359,6 +1544,10 @@ Culture and Organization:
         samm2: []
         iso27001-2017:
         - 17.1.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Prevention of unauthorized installation:
       risk: Unapproved components are used.
       measure: Components must be whitelisted. Regular scans on the docker infrastructure
@@ -1381,6 +1570,10 @@ Culture and Organization:
         iso27001-2017:
         - 12.5.1
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
 Implementation:
   Application Hardening:
     App. Hardening Level 2:
@@ -1411,6 +1604,10 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     App. Hardening Level 3:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
@@ -1440,6 +1637,10 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Application Hardening Level 1:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
@@ -1491,6 +1692,10 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Full Coverage of App. Hardening Level 3:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
@@ -1520,6 +1725,10 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Development & Source Control:
     Local development linting & style checks performed:
       risk: Creating and developing code that contains code smells and quality issues.
@@ -1547,6 +1756,10 @@ Implementation:
         samm2:
         - V-ST-A-1-1
         iso27001-2017: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Pre-Commit checks & validations:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
@@ -1571,6 +1784,10 @@ Implementation:
         samm2:
         - V-ST-A-1-1
         iso27001-2017: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Source Control Protection:
       risk: Unapproved code in important branches like master.
       measure: Enabled protections on the source code management system preventing
@@ -1604,6 +1821,10 @@ Implementation:
         - peer review - four eyes principle is not explicitly required by ISO 27001
         - 6.1.2
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Versioning:
       risk: Changes to production systems can not be undone.
       measure: versioning of artifacts related to production environments. For example
@@ -1625,6 +1846,10 @@ Implementation:
         - 12.1.1
         - 12.1.2
         - 14.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Infrastructure Hardening:
     2FA:
       risk: One factor authentication is more vulnerable to brute force attacks and
@@ -1654,6 +1879,10 @@ Implementation:
         - 9.1.1
         - 9.4.2
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Applications are running in virtualized environments:
       risk: Through a vulnerability in one service on a server, the attacker gains
         access to other services running on the same server.
@@ -1671,6 +1900,10 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Backup:
       risk: If errors are experienced during the deployment process you want to deploy
         an old release. However, due to changes in the database this is often unfeasible.
@@ -1695,6 +1928,10 @@ Implementation:
         iso27001-2017:
         - "12.3"
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Checking the sources of used libraries:
       risk: Application and system libraries can have implementation flaws or deployment
         flaws.
@@ -1713,6 +1950,10 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Filter outgoing traffic:
       risk: A compromised infrastructure component might try to send out stolen data.
       measure: Having a whitelist and explicitly allowing egress traffic provides
@@ -1735,6 +1976,10 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Immutable Infrastructure:
       risk: The availability of IT systems might be disturbed due to components failures
       measure: Redundancies in the IT systems
@@ -1757,6 +2002,10 @@ Implementation:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Infrastructure as Code:
       risk: No tracking of changes in systems might lead to errors in the configuration.
         In additions, it might lead to unauthorized changes. An examples is jenkins.
@@ -1787,6 +2036,10 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.1
         - 12.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Isolated networks for virtual environments:
       risk: Virtual environments in default settings are able to access other virtual
         environments on the network stack. By using virtual machines, it is often
@@ -1814,6 +2067,10 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Limitation of system calls in virtual environments:
       risk: System calls in virtual environments like docker can lead to privilege
         escalation.
@@ -1836,6 +2093,10 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Microservice-Architecture:
       risk: Monolithic applications are hard to test.
       measure: A microservice-architecture helps to have small components, which are
@@ -1852,6 +2113,10 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Production near environments are used by developers:
       risk: In case an errors occurs in production, the developer need to be able
         to create a production near environment on a local development environment.
@@ -1876,6 +2141,10 @@ Implementation:
         iso27001-2017:
         - 12.1.4
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Role based authentication and authorization:
       risk: Everyone is able to get unauthorized access to information on systems
         or to modify information unauthorized on systems.
@@ -1900,6 +2169,10 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - 9.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple access control for systems:
       risk: Attackers a gaining access to internal systems and application interfaces
       measure: All internal systems are using simple authentication
@@ -1921,6 +2194,10 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - 9.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     The environment is hardened:
       risk: Using default configurations for a cluster environment leads to potential
         risks.
@@ -1971,6 +2248,10 @@ Implementation:
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of a chaos monkey:
       risk: Due to manual changes on a system, they are not replaceable anymore. In
         case of a crash it might happen that a planned redundant system is unavailable.
@@ -1990,6 +2271,10 @@ Implementation:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 17.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of an security account:
       risk: Having security auditing in the same account as infrastructure and applications
         at the cloud provide might cause evil administrators (or threat actors taking
@@ -2007,6 +2292,10 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of edge encryption at transit:
       risk: Evil actors might be able to perform a man in the middle attack and sniff
         confidential information (e.g. authentication factors like passwords)
@@ -2024,6 +2313,10 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of encryption at rest:
       risk: Evil actors might be able to access data and read information, e.g. from
         physical hard disks.
@@ -2041,6 +2334,10 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of internal encryption at tansit:
       risk: Evil actors within the organization of traffic in transit might be able
         to perform a man in the middle attack and sniff confidential information (e.g.
@@ -2059,6 +2356,10 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of security by default for components:
       risk: Components (images, libraries, applications) are not hardened.
       measure: Hardening of components is important, specially for image on which
@@ -2086,6 +2387,10 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of test and production environments:
       risk: Security tests are not running regularly because test environments are
         missing
@@ -2106,6 +2411,10 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.4
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Virtual environments are limited:
       risk: Denial of service (internally by an attacker or unintentionally by a bug)
         on one service effects other services
@@ -2128,6 +2437,10 @@ Implementation:
         - 12.1.3
         - 13.1.3
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
 Information Gathering:
   Logging:
     Centralized application logging:
@@ -2152,6 +2465,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Centralized system logging:
       risk: Local stored system logs can be unauthorized manipulated by attackers
         or might be corrupt after an incident. In addition, it is hard to perform
@@ -2181,6 +2498,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Correlation of security events:
       risk: Detection of security related events with hints on different systems/tools/metrics
         is not possible.
@@ -2202,6 +2523,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Logging of security events:
       description: |
         Implement logging of security relevant events. The following events tend to be security relevant:
@@ -2251,6 +2576,9 @@ Information Gathering:
         <li>No track of security-relevant events makes it harder to analyze an incident.</li>
         <li>Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.</li>
         </ul>
+      isImplemented: false
+      evidence: ""
+      comments: ""
     PII logging concept:
       risk: Personal identifiable information (PII) is logged and the law of GDPR
         is not followed.
@@ -2285,6 +2613,10 @@ Information Gathering:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
         - 18.1.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Visualized logging:
       risk: System and application protocols are not visualized properly which leads
         to no or very limited logging assessment. Specially developers might have
@@ -2310,6 +2642,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Monitoring:
     Advanced availability and stability metrics:
       risk: Trends and advanced attacks are not detected.
@@ -2330,6 +2666,10 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Advanced webapplication metrics:
       risk: People are not looking into tests results. Vulnerabilities not recolonized,
         even they are detected by tools.
@@ -2349,6 +2689,10 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Alerting:
       risk: Incidents are discovered after they happened.
       measure: |
@@ -2369,6 +2713,10 @@ Information Gathering:
         - 16.1.2
         - 16.1.4
         - 12.1.4
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Coverage and control metrics:
       risk: The effectiveness of configuration, patch and vulnerability management
         is unknown.
@@ -2396,6 +2744,10 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Deactivation of unused metrics:
       risk: High resources are used while gathering unused metrics.
       measure: Deactivation of unused metrics helps to free resources.
@@ -2414,6 +2766,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Defense metrics:
       risk: IDS/IPS systems like packet- or application-firewalls detect and prevent
         attacks. It is not known how many attacks has been detected and blocked.
@@ -2436,6 +2792,10 @@ Information Gathering:
         iso27001-2017:
         - 12.4.1
         - 13.1.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Grouping of metrics:
       risk: The analysis of metrics takes long.
       measure: Meaningful grouping of metrics helps to speed up analysis.
@@ -2452,6 +2812,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Metrics are combined with tests:
       risk: Changes might cause high load due to programming errors.
       measure: Metrics during tests helps to identify programming errors.
@@ -2469,6 +2833,10 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Monitoring of costs:
       risk: Not monitorig costs might lead to unexpected high resource consumption
         and a high invoice.
@@ -2488,6 +2856,10 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Screens with metric visualization:
       risk: Security related information is discovered too late during an incident.
       measure: By having an internal accessible screen with a security related dashboards
@@ -2507,6 +2879,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple application metrics:
       risk: Attacks on an application are not recognized.
       measure: Gathering of application metrics helps to identify incidents like brute
@@ -2525,6 +2901,10 @@ Information Gathering:
         - O-IM-1-A
         iso27001-2017:
         - 12.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple budget metrics:
       risk: Not getting notified about reaching the end of the budget (e.g. due to
         a denial of service) creates unexpected costs.
@@ -2544,6 +2924,10 @@ Information Gathering:
         - O-IM-1-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple system metrics:
       risk: Without simple metrics analysis of incidents are hard. In case an application
         uses a lot of CPU from time to time, it is hard for a developer to find out
@@ -2566,6 +2950,9 @@ Information Gathering:
         - O-IM-1-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Targeted alerting:
       risk: People are bored (ignorant) of incident alarm messages, as they are not
         responsible to react.
@@ -2586,6 +2973,10 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Visualized metrics:
       risk: Not visualized metrics lead to restricted usage of metrics.
       measure: Metrics are visualized in real time in a user friendly way.
@@ -2604,6 +2995,10 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
 Test and Verification:
   Application tests:
     High coverage of security related module and integration tests:
@@ -2624,6 +3019,10 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Security integration tests for important components:
       risk: Vulnerabilities are rising due to code changes in a complex microservice
         environment.
@@ -2644,6 +3043,10 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Security unit tests for important components:
       risk: Vulnerabilities are rising due to code changes.
       measure: Usage of unit tests to test important security related features like
@@ -2670,6 +3073,10 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Smoke Test:
       risk: During a deployment an error might happen which leads to non-availability
         of the system, a part of the system or a feature.
@@ -2690,6 +3097,10 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Consolidation:
     Advanced visualization of defects:
       risk: Correlation of the vulnerabilities of different tools to have an overview
@@ -2729,6 +3140,10 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Definition of quality gates:
       risk: Improper examination of vulnerabilities leads to no visibility at all.
       measure: |-
@@ -2752,6 +3167,10 @@ Test and Verification:
       implementation:
       - name: See other actions, e.g. "Treatment of defects with severity high".
         tags: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Integration of vulnerability issues into the development process:
       risk: To read console output of the build server to search for vulnerabilities
         might be difficult. Also, to check a vulnerability management system might
@@ -2781,6 +3200,10 @@ Test and Verification:
         - 16.1.4
         - 16.1.5
         - 16.1.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Reproducible defect tickets:
       risk: Vulnerability descriptions are hard to understand by staff from operations
         and development.
@@ -2802,6 +3225,10 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple false positive treatment:
       risk: As false positive occur during each test, all vulnerabilities might be
         ignored.
@@ -2830,6 +3257,10 @@ Test and Verification:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple visualization of defects:
       risk: The security level of a component is not visible. Therefore, the motivation
         to enhance the security is not give.
@@ -2866,6 +3297,10 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Treatment of all defects:
       risk: Vulnerabilities with severity low are not visible.
       measure: All vulnerabilities are added to the quality gate.
@@ -2882,6 +3317,10 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Treatment of defects with severity high or higher:
       risk: Vulnerabilities with severity high or higher are not visible.
       measure: Vulnerabilities with severity high or higher are added to the quality
@@ -2900,6 +3339,10 @@ Test and Verification:
         - 16.1.4
         - 12.6.1
       implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Treatment of defects with severity middle:
       risk: Vulnerabilities with severity middle are not visible.
       measure: Vulnerabilities with severity middle are added to the quality gate.
@@ -2917,6 +3360,10 @@ Test and Verification:
         - 16.1.4
         - 12.6.1
       implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of a vulnerability management system:
       risk: Maintenance of false positives in each tool enforces a high workload.
         In addition a correlation of the same finding from different tools is not
@@ -2952,6 +3399,10 @@ Test and Verification:
         - 16.1.4
         - 16.1.5
         - 16.1.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Dynamic depth for applications:
     Coverage analysis:
       risk: Parts of the service are not still covered.
@@ -2971,6 +3422,10 @@ Test and Verification:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - part of periodic review, PDCA
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Coverage of client side dynamic components:
       risk: Parts of the service are not covered during the scan, because JavaScript
         is not getting executed. Therefore, the co
@@ -2993,6 +3448,10 @@ Test and Verification:
       implementation:
       - name: Ajax Spider
         tags: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Coverage of hidden endpoints:
       risk: Hidden endpoints of the service are not getting tracked.
       measure: Hidden endpoints are getting detected and included in the vulnerability
@@ -3015,6 +3474,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Coverage of more input vectors:
       risk: Parts of the service are not covered. For example specially formatted
         or coded parameters are not getting detected as parameter (e.g. parameters
@@ -3035,6 +3498,10 @@ Test and Verification:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
       implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Coverage of sequential operations:
       risk: Sequential operations like workflows (e.g. login -> put products in the
         basket
@@ -3057,6 +3524,10 @@ Test and Verification:
         iso27001-2017:
         - 14.2.8
         - 14.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Coverage of service to service communication:
       risk: Service to service communication is not covered.
       measure: Service to service communication is dumped and checked.
@@ -3075,6 +3546,10 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
       implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Simple Scan:
       risk: Deficient security tests are performed. Simple vulnerabilities are not
         detected and missing security configurations (e.g. headers) are not set. Fast
@@ -3105,6 +3580,10 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of different roles:
       risk: Parts of the service are not covered during the scan, because a login
         is not performed.
@@ -3131,6 +3610,10 @@ Test and Verification:
         - zap
         description: |
           Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of multiple scanners:
       risk: Each vulnerability scanner has different opportunities. By using just
         one scanner, some vulnerabilities might not be found.
@@ -3158,6 +3641,10 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Dynamic depth for infrastructure:
     Load tests:
       risk: As it is unknown how many requests the systems and applications can serve,
@@ -3178,6 +3665,10 @@ Test and Verification:
         - 12.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test for exposed services:
       risk: Standard network segmentation and firewalling has not been performed,
         leading to world open cluster management ports.
@@ -3204,6 +3695,10 @@ Test and Verification:
         - 13.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test for unused Resources:
       risk: Unused resources, specially secrets, might be still valid, but are exposing
         information. As an attacker, I compromise a system, gather credentials and
@@ -3232,6 +3727,10 @@ Test and Verification:
         - 13.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test network segmentation:
       risk: Wrong or no network segmentation of pods makes it easier for an attacker
         to access a database and extract or modify data.
@@ -3256,6 +3755,10 @@ Test and Verification:
         - 13.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test of the configuration of cloud environments:
       risk: Standard hardening practices for cloud environments are not performed
         leading to vulnerabilities.
@@ -3288,6 +3791,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Weak password test:
       risk: Weak passwords in components like applications or systems, specially for
         privileged accounts, lead to take over of that account.
@@ -3308,6 +3815,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 9.4.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Static depth for applications:
     Exclusion of source code duplicates:
       risk: Duplicates in source code might influence the stability of the application.
@@ -3330,6 +3841,10 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Local development security checks performed:
       risk: Creating and developing code contains code smells and quality issues.
       measure: |
@@ -3362,6 +3877,10 @@ Test and Verification:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Static analysis for all components/libraries:
       risk: Used components like libraries and legacy applications might have vulnerabilities
       measure: Usage of a static analysis for all used components.
@@ -3380,6 +3899,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Static analysis for all self written components:
       risk: Parts in the source code of the frontend or middleware have vulnerabilities.
       measure: Usage of static analysis tools for all parts of the middleware and
@@ -3421,6 +3944,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Static analysis for important client side components:
       risk: Important parts in the source code of the frontend have vulnerabilities.
       measure: Usage of static analysis tools for important parts of the frontend
@@ -3465,6 +3992,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Static analysis for important server side components:
       risk: Important parts in the source code of the middleware have vulnerabilities.
       measure: Usage of static analysis tools for important parts of the middleware
@@ -3505,6 +4036,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Stylistic analysis:
       risk: False source code indenting might lead to vulnerabilities.
       measure: Analysis of compliance to style guides of the source code ensures that
@@ -3535,6 +4070,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test of client side components with known vulnerabilities:
       risk: Client side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in components of the frontend are performed.
@@ -3558,6 +4097,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test of server side components with known vulnerabilities:
       risk: Server side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware)
@@ -3578,6 +4121,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Usage of multiple analyzers:
       risk: Each vulnerability analyzer has different opportunities. By using just
         one analyzer, some vulnerabilities might not be found.
@@ -3600,6 +4147,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Static depth for infrastructure:
     Analyze logs:
       risk: Not aware of attacks happening.
@@ -3617,6 +4168,10 @@ Test and Verification:
       references:
         samm2: []
         iso27001-2017: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Check for image lifetime:
       risk: Old container images in production indicate that patch management is not
         performed and therefore vulnerabilities might exists.
@@ -3646,6 +4201,10 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Check for known vulnerabilities:
       risk: Known vulnerabilities in infrastructure components like container images
         might get exploited.
@@ -3669,6 +4228,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Check for malware:
       risk: Third party might include  malware. Ether due to the maintainer (e.g.
         typo squatting of an image name and using the wrong image) or by an attacker
@@ -3699,6 +4262,10 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Check for new image version:
       risk: When a new version of an image is available, it might fix security vulnerabilities.
       measure: Check for new images of containers in production.
@@ -3716,6 +4283,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.5
         - 12.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Correlate known vulnerabilities in infrastructure with new image versions:
       risk: TODO.
       measure: TODO
@@ -3743,6 +4314,10 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Stored Secrets:
       risk: Stored secrets in git history, in container images or directly in code
         shouldn't exists because they might be exposed to unauthorized parties.
@@ -3767,6 +4342,10 @@ Test and Verification:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 9.4.3
         - 10.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test cluster deployment resources:
       risk: The deployment configuration (e.g. kubernetes deployment resources) might
         contain unsecured configurations.
@@ -3790,6 +4369,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test of infrastructure components for known vulnerabilities:
       risk: Infrastructure components might have vulnerabilities.
       measure: Test for known vulnerabilities in infrastructure components. Often,
@@ -3821,6 +4404,10 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test of virtualized environments:
       risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains
         unsecure configurations.
@@ -3851,6 +4438,10 @@ Test and Verification:
         samm2:
         - V-ST-1-A
         iso27001-2017: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test the cloud configuration:
       risk: Standard hardening practices for cloud environments are not performed
         leading to vulnerabilities.
@@ -3874,6 +4465,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Test the definition of virtualized environments:
       risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>)
         might contain unsecure configurations.
@@ -3912,6 +4507,10 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
   Test-Intensity:
     Creation and application of a testing concept:
       risk: Scans might use a too small or too high test intensity.
@@ -3935,6 +4534,10 @@ Test and Verification:
         - 14.2.1
         - 14.2.5
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Deactivating of unneeded tests:
       risk: As tools cover a wide range of different vulnerability tests, they might
         not match the used components. Therefore, they need more time and resources
@@ -3956,6 +4559,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Default settings for intensity:
       risk: Time pressure and ignorance might lead to false predictions for the test
         intensity.
@@ -3974,6 +4581,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     High test intensity:
       risk: A too small intensity or a too high confidence might lead to not visible
         vulnerabilities.
@@ -3993,6 +4604,10 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
     Regular tests:
       risk: After pushing source code to the version control system, any delay in
         receiving feedback on defects makes them harder for the developer to remediate.
@@ -4012,4 +4627,8 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         - 14.2.9
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      assessment: ""
 ...

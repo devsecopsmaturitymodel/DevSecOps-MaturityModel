@@ -25,6 +25,9 @@ Implementation:
         - 9.1.1
         - 9.4.2
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Applications are running in virtualized environments:
       risk: Through a vulnerability in one service on a server, the attacker gains
         access to other services running on the same server.
@@ -42,6 +45,9 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Backup:
       risk: If errors are experienced during the deployment process you want to deploy
         an old release. However, due to changes in the database this is often unfeasible.
@@ -64,6 +70,9 @@ Implementation:
         iso27001-2017:
         - "12.3"
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Checking the sources of used libraries:
       risk: Application and system libraries can have implementation flaws or deployment
         flaws.
@@ -82,6 +91,9 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Filter outgoing traffic:
       risk: A compromised infrastructure component might try to send out stolen data.
       measure: Having a whitelist and explicitly allowing egress traffic provides
@@ -102,6 +114,9 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Immutable Infrastructure:
       risk: The availability of IT systems might be disturbed due to components failures
       measure: Redundancies in the IT systems
@@ -123,6 +138,9 @@ Implementation:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Infrastructure as Code:
       risk: No tracking of changes in systems might lead to errors in the configuration.
         In additions, it might lead to unauthorized changes. An examples is jenkins.
@@ -148,6 +166,9 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.1
         - 12.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Isolated networks for virtual environments:
       risk: Virtual environments in default settings are able to access other virtual
         environments on the network stack. By using virtual machines, it is often
@@ -172,6 +193,9 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Limitation of system calls in virtual environments:
       risk: System calls in virtual environments like docker can lead to privilege
         escalation.
@@ -192,6 +216,9 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Microservice-Architecture:
       risk: Monolithic applications are hard to test.
       measure: A microservice-architecture helps to have small components, which are
@@ -208,6 +235,9 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Production near environments are used by developers:
       risk: In case an errors occurs in production, the developer need to be able
         to create a production near environment on a local development environment.
@@ -232,6 +262,9 @@ Implementation:
         iso27001-2017:
         - 12.1.4
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Role based authentication and authorization:
       risk: Everyone is able to get unauthorized access to information on systems
         or to modify information unauthorized on systems.
@@ -254,6 +287,9 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - 9.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Simple access control for systems:
       risk: Attackers a gaining access to internal systems and application interfaces
       measure: All internal systems are using simple authentication
@@ -273,6 +309,9 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - 9.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     The environment is hardened:
       risk: Using default configurations for a cluster environment leads to potential
         risks.
@@ -299,6 +338,9 @@ Implementation:
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of a chaos monkey:
       risk: Due to manual changes on a system, they are not replaceable anymore. In
         case of a crash it might happen that a planned redundant system is unavailable.
@@ -318,6 +360,9 @@ Implementation:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 17.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of an security account:
       risk: Having security auditing in the same account as infrastructure and applications
         at the cloud provide might cause evil administrators (or threat actors taking
@@ -335,6 +380,9 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of edge encryption at transit:
       risk: Evil actors might be able to perform a man in the middle attack and sniff
         confidential information (e.g. authentication factors like passwords)
@@ -352,6 +400,9 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of encryption at rest:
       risk: Evil actors might be able to access data and read information, e.g. from
         physical hard disks.
@@ -369,6 +420,9 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of internal encryption at tansit:
       risk: Evil actors within the organization of traffic in transit might be able
         to perform a man in the middle attack and sniff confidential information (e.g.
@@ -387,6 +441,9 @@ Implementation:
         - I-SD-2-B
         iso27001-2017:
         - 10.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of security by default for components:
       risk: Components (images, libraries, applications) are not hardened.
       measure: Hardening of components is important, specially for image on which
@@ -410,6 +467,9 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of test and production environments:
       risk: Security tests are not running regularly because test environments are
         missing
@@ -430,6 +490,9 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.4
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Virtual environments are limited:
       risk: Denial of service (internally by an attacker or unintentionally by a bug)
         on one service effects other services
@@ -452,4 +515,7 @@ Implementation:
         - 12.1.3
         - 13.1.3
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

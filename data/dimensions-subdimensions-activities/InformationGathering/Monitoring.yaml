@@ -20,6 +20,9 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Advanced webapplication metrics:
       risk: People are not looking into tests results. Vulnerabilities not recolonized,
         even they are detected by tools.
@@ -39,6 +42,9 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Alerting:
       risk: Incidents are discovered after they happened.
       measure: |
@@ -59,6 +65,9 @@ Information Gathering:
         - 16.1.2
         - 16.1.4
         - 12.1.4
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Coverage and control metrics:
       risk: The effectiveness of configuration, patch and vulnerability management
         is unknown.
@@ -83,6 +92,9 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Deactivation of unused metrics:
       risk: High resources are used while gathering unused metrics.
       measure: Deactivation of unused metrics helps to free resources.
@@ -101,6 +113,9 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Defense metrics:
       risk: IDS/IPS systems like packet- or application-firewalls detect and prevent
         attacks. It is not known how many attacks has been detected and blocked.
@@ -123,6 +138,9 @@ Information Gathering:
         iso27001-2017:
         - 12.4.1
         - 13.1.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Grouping of metrics:
       risk: The analysis of metrics takes long.
       measure: Meaningful grouping of metrics helps to speed up analysis.
@@ -139,6 +157,9 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Metrics are combined with tests:
       risk: Changes might cause high load due to programming errors.
       measure: Metrics during tests helps to identify programming errors.
@@ -156,6 +177,9 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Monitoring of costs:
       risk: Not monitorig costs might lead to unexpected high resource consumption
         and a high invoice.
@@ -175,6 +199,9 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Screens with metric visualization:
       risk: Security related information is discovered too late during an incident.
       measure: By having an internal accessible screen with a security related dashboards
@@ -194,6 +221,9 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Simple application metrics:
       risk: Attacks on an application are not recognized.
       measure: Gathering of application metrics helps to identify incidents like brute
@@ -211,6 +241,9 @@ Information Gathering:
         - O-IM-1-A
         iso27001-2017:
         - 12.4.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Simple budget metrics:
       risk: Not getting notified about reaching the end of the budget (e.g. due to
         a denial of service) creates unexpected costs.
@@ -229,6 +262,9 @@ Information Gathering:
         - O-IM-1-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Simple system metrics:
       risk: Without simple metrics analysis of incidents are hard. In case an application
         uses a lot of CPU from time to time, it is hard for a developer to find out
@@ -250,6 +286,9 @@ Information Gathering:
         - O-IM-1-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Targeted alerting:
       risk: People are bored (ignorant) of incident alarm messages, as they are not
         responsible to react.
@@ -270,6 +309,9 @@ Information Gathering:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Visualized metrics:
       risk: Not visualized metrics lead to restricted usage of metrics.
       measure: Metrics are visualized in real time in a user friendly way.
@@ -288,4 +330,7 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

@@ -26,6 +26,9 @@ Build and Deployment:
         - 12.1.4
         - 12.5.1
         - 14.2.9
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Defined decommissioning process:
       risk: Not used applications erode and are not maintained. As an evil actor,
         I exploit known vulnerabilities in the not maintained applicaitons to perform
@@ -43,6 +46,9 @@ Build and Deployment:
         - O-OM-2-B
         iso27001-2017:
         - 11.2.7
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Defined deployment process:
       risk: Deployments without a defined process are error prone thus allowing old
         or untested artifact to be deployed.
@@ -65,6 +71,9 @@ Build and Deployment:
         iso27001-2017:
         - 12.1.1
         - 14.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Environment depending configuration parameters (secrets):
       risk: '- Parameters are often used to set credentials, for example by starting
         containers or applications; these parameters can often be seen by any one
@@ -85,6 +94,9 @@ Build and Deployment:
         iso27001-2017:
         - 9.4.5
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Handover of confidential parameters:
       risk: '- Parameters are often used to set credentials, for example by starting
         containers or applications; these parameters can often be seen by any one
@@ -110,6 +122,9 @@ Build and Deployment:
         - 9.4.3
         - 9.4.1
         - 10.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Inventory of dependencies:
       risk: In case a vulnerability of severity high or critical is known by the organization,
         it needs to be known where an artifacts with that vulnerability is deployed
@@ -134,6 +149,9 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Inventory of running artifacts:
       risk: In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts (e.g. container image) with that vulnerability
@@ -154,6 +172,9 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Rolling update on deployment:
       risk: While a deployment is performed, the application can not be reached.
       measure: A deployment without downtime is performed*.
@@ -176,6 +197,9 @@ Build and Deployment:
         - 12.5.1
         - 14.2.2
         - 17.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Same artifact for environments:
       risk: Building of an artifact for different environments means that an untested
         artifact might reach the production environment.
@@ -198,6 +222,9 @@ Build and Deployment:
         - 14.3.1
         - 14.2.8
         - 12.1.4
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of feature toggles:
       risk: By using environment dependent configuration, some parameters will not
         be tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
@@ -221,6 +248,9 @@ Build and Deployment:
         - 14.2.8
         - 14.2.9
         - 12.1.4
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of trusted images:
       risk: Developers or operations might start random images in the production cluster
         which have malicious code or known vulnerabilities.
@@ -242,4 +272,7 @@ Build and Deployment:
         - 15.1.2
         - 15.1.3
         - 14.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

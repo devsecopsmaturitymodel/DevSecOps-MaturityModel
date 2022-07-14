@@ -43,6 +43,9 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Conduction of simple threat modeling on business level:
       risk: Business related threats are discovered too late in the development and
         deployment process.
@@ -63,6 +66,9 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Conduction of simple threat modeling on technical level:
       risk: Technical related threats are discovered too late in the development and
         deployment process.
@@ -132,6 +138,9 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Creation of advanced abuse stories:
       risk: Simple user stories are not going deep enough. Relevant security considerations
         are performed. Security flaws are discovered too late in the development and
@@ -156,6 +165,9 @@ Culture and Organization:
         - 6.1.5
         - may be part of risk assessment
         - 8.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Creation of simple abuse stories:
       risk: User stories mostly don't consider security implications. Security flaws
         are discovered too late in the development and deployment process.
@@ -180,6 +192,9 @@ Culture and Organization:
         - 6.1.5
         - may be part of risk assessment
         - 8.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Creation of threat modeling processes and standards:
       risk: Inadequate identification of business and technical risks.
       measure: Creation of threat modeling processes and standards through the organization
@@ -205,6 +220,9 @@ Culture and Organization:
         - may be part of risk assessment
         - 8.2.1
         - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Information security targets are communicated:
       risk: Employees don't known their organizations security targets. Therefore
         security is not considered during development and administration as much as
@@ -223,4 +241,7 @@ Culture and Organization:
         iso27001-2017:
         - 5.1.1
         - 7.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

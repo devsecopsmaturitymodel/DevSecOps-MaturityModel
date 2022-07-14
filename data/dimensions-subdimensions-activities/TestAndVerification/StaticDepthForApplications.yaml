@@ -21,6 +21,9 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Local development security checks performed:
       risk: Creating and developing code contains code smells and quality issues.
       measure: |
@@ -41,6 +44,9 @@ Test and Verification:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Static analysis for all components/libraries:
       risk: Used components like libraries and legacy applications might have vulnerabilities
       measure: Usage of a static analysis for all used components.
@@ -59,6 +65,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Static analysis for all self written components:
       risk: Parts in the source code of the frontend or middleware have vulnerabilities.
       measure: Usage of static analysis tools for all parts of the middleware and
@@ -85,6 +94,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Static analysis for important client side components:
       risk: Important parts in the source code of the frontend have vulnerabilities.
       measure: Usage of static analysis tools for important parts of the frontend
@@ -111,6 +123,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Static analysis for important server side components:
       risk: Important parts in the source code of the middleware have vulnerabilities.
       measure: Usage of static analysis tools for important parts of the middleware
@@ -136,6 +151,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Stylistic analysis:
       risk: False source code indenting might lead to vulnerabilities.
       measure: Analysis of compliance to style guides of the source code ensures that
@@ -157,6 +175,9 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Test of client side components with known vulnerabilities:
       risk: Client side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in components of the frontend are performed.
@@ -176,6 +197,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Test of server side components with known vulnerabilities:
       risk: Server side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware)
@@ -195,6 +219,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of multiple analyzers:
       risk: Each vulnerability analyzer has different opportunities. By using just
         one analyzer, some vulnerabilities might not be found.
@@ -217,4 +244,7 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

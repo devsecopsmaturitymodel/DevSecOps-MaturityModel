@@ -19,6 +19,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Security integration tests for important components:
       risk: Vulnerabilities are rising due to code changes in a complex microservice
         environment.
@@ -38,6 +41,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Security unit tests for important components:
       risk: Vulnerabilities are rising due to code changes.
       measure: Usage of unit tests to test important security related features like
@@ -60,6 +66,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Smoke Test:
       risk: During a deployment an error might happen which leads to non-availability
         of the system, a part of the system or a feature.
@@ -80,4 +89,7 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

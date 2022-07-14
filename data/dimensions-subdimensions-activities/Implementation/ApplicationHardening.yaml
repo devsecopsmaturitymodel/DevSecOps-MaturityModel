@@ -25,6 +25,9 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     App. Hardening Level 3:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
@@ -50,6 +53,9 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Application Hardening Level 1:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
@@ -94,6 +100,9 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Full Coverage of App. Hardening Level 3:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
@@ -119,4 +128,7 @@ Implementation:
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

@@ -30,6 +30,9 @@ Build and Deployment:
         - I-SB-2-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Defined build process:
       risk: Performing builds without a defined process is error prone; for example,
         as a result of incorrect security related configuration.
@@ -60,6 +63,9 @@ Build and Deployment:
         iso27001-2017:
         - 12.1.1
         - 14.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Pinning of artifacts:
       risk: Unauthorized manipulation of artifacts might be difficult to spot. For
         example, this may result in using images with malicious code. Also, intendend
@@ -86,6 +92,9 @@ Build and Deployment:
         - I-SB-1-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
     SBOM of components:
       risk: In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts with that vulnerability is deployed with which
@@ -106,6 +115,9 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Signing of artifacts:
       risk: Unauthorized manipulation of artifacts might be difficult to spot. For
         example, this may result in images with malicious code in the Docker registry.
@@ -128,6 +140,9 @@ Build and Deployment:
         - I-SB-1-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Signing of code:
       risk: Unauthorized manipulation of source code might be difficult to spot.
       measure: Digitally signing commits helps to prevent unauthorized manipulation
@@ -148,4 +163,7 @@ Build and Deployment:
         - I-SB-2-A
         iso27001-2017:
         - 14.2.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

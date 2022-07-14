@@ -23,6 +23,9 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Definition of quality gates:
       risk: Improper examination of vulnerabilities leads to no visibility at all.
       measure: |-
@@ -45,6 +48,9 @@ Test and Verification:
         - 16.1.4
       implementation:
       - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/see-other-actions-e
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Integration of vulnerability issues into the development process:
       risk: To read console output of the build server to search for vulnerabilities
         might be difficult. Also, to check a vulnerability management system might
@@ -67,6 +73,9 @@ Test and Verification:
         - 16.1.4
         - 16.1.5
         - 16.1.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Reproducible defect tickets:
       risk: Vulnerability descriptions are hard to understand by staff from operations
         and development.
@@ -88,6 +97,9 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Simple false positive treatment:
       risk: As false positive occur during each test, all vulnerabilities might be
         ignored.
@@ -109,6 +121,9 @@ Test and Verification:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Simple visualization of defects:
       risk: The security level of a component is not visible. Therefore, the motivation
         to enhance the security is not give.
@@ -132,6 +147,9 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Treatment of all defects:
       risk: Vulnerabilities with severity low are not visible.
       measure: All vulnerabilities are added to the quality gate.
@@ -148,6 +166,9 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Treatment of defects with severity high or higher:
       risk: Vulnerabilities with severity high or higher are not visible.
       measure: Vulnerabilities with severity high or higher are added to the quality
@@ -166,6 +187,9 @@ Test and Verification:
         - 16.1.4
         - 12.6.1
       implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Treatment of defects with severity middle:
       risk: Vulnerabilities with severity middle are not visible.
       measure: Vulnerabilities with severity middle are added to the quality gate.
@@ -183,6 +207,9 @@ Test and Verification:
         - 16.1.4
         - 12.6.1
       implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Usage of a vulnerability management system:
       risk: Maintenance of false positives in each tool enforces a high workload.
         In addition a correlation of the same finding from different tools is not
@@ -207,4 +234,7 @@ Test and Verification:
         - 16.1.4
         - 16.1.5
         - 16.1.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...

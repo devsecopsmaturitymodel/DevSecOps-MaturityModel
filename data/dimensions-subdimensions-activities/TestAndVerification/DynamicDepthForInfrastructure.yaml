@@ -20,6 +20,9 @@ Test and Verification:
         - 12.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Test for exposed services:
       risk: Standard network segmentation and firewalling has not been performed,
         leading to world open cluster management ports.
@@ -43,6 +46,9 @@ Test and Verification:
         - 13.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Test for unused Resources:
       risk: Unused resources, specially secrets, might be still valid, but are exposing
         information. As an attacker, I compromise a system, gather credentials and
@@ -63,6 +69,9 @@ Test and Verification:
         - 13.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Test network segmentation:
       risk: Wrong or no network segmentation of pods makes it easier for an attacker
         to access a database and extract or modify data.
@@ -85,6 +94,9 @@ Test and Verification:
         - 13.1.3
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Test of the configuration of cloud environments:
       risk: Standard hardening practices for cloud environments are not performed
         leading to vulnerabilities.
@@ -107,6 +119,9 @@ Test and Verification:
         - 12.6.1
         - 14.2.3
         - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Weak password test:
       risk: Weak passwords in components like applications or systems, specially for
         privileged accounts, lead to take over of that account.
@@ -125,4 +140,7 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 9.4.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
 ...
