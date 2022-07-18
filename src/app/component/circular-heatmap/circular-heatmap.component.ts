@@ -137,7 +137,7 @@ export class CircularHeatmapComponent implements OnInit {
       for(var j=0;j<allSubDimensionInThisDimension.length;j++){
         if(allSubDimensionInThisDimension[j]==this.cardHeader){
           var taskName= this.ALL_CARD_DATA[index]["Task"][taskIndex]["taskName"]
-          console.log(taskName)
+          //console.log(taskName)
           this.YamlObject[allDimensionNames[i]][allSubDimensionInThisDimension[j]][taskName]["isImplemented"]=this.ALL_CARD_DATA[index]["Task"][taskIndex]["ifTaskDone"]
           break
         }
@@ -223,17 +223,17 @@ export class CircularHeatmapComponent implements OnInit {
         _self.tasksData=d.explicitOriginalTarget.__data__.Task;
         _self.cardHeader=d.explicitOriginalTarget.__data__.Name
         _self.showTaskCard=true
-        console.log(_self.tasksData)
+        //console.log(_self.tasksData)
       })
       .on('mouseover', function(d) {
         
         curr=d.explicitOriginalTarget.__data__
-        console.log(curr)
+        //console.log(curr)
         // increase the segment height of the one being hovered as well as all others of the same date
         // while decreasing the height of all others accordingly
         //console.log(d)
         if(curr["Done%"]!=-1){
-          d3.selectAll("#segment-" + curr.Name.replace(/ /g, "-")+'-'+curr.Level.replaceAll(' ','-')).attr("fill","white")
+          d3.selectAll("#segment-" + curr.Name.replace(/ /g, "-")+'-'+curr.Level.replaceAll(' ','-')).attr("fill","yellow")
         };  
         
       })
@@ -347,8 +347,7 @@ export class CircularHeatmapComponent implements OnInit {
           .text(function(d:any) {
             return d;
           });
-      });
-  
+      });  
     }
   
     /* Arc functions */
@@ -434,6 +433,5 @@ export class CircularHeatmapComponent implements OnInit {
         d3.selectAll("#segment-" + this.ALL_CARD_DATA[x]["Name"].replace(/ /g, "-")+'-'+this.ALL_CARD_DATA[x]["Level"].replace(' ','-')).attr("fill","#DCDCDC");
       }
     }
-  }
-  
+  }  
 }

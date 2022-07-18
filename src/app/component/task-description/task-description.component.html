@@ -31,7 +31,7 @@
             </mat-expansion-panel-header>
             <p [innerHTML]="currentTask.measure"></p>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <mat-expansion-panel *ngIf="currentTask.implementatonGuide">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <b>Implementation Guide</b>
@@ -42,7 +42,7 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    <b>Difficulty Of Implementation</b>
+                    <b>Difficulty of Implementation</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <p>Knowledge: {{this.currentTask.knowledge}} </p>
@@ -128,7 +128,7 @@
                 </mat-accordion>
             </p>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <mat-expansion-panel *ngIf="this.currentTask.dependsOn">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <b>Depends on</b>
