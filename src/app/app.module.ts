@@ -16,6 +16,7 @@ import { ymlService } from './service/yaml-parser/yaml-parser.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CombinerService } from './service/combiner/combiner.service';
 import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
+import { MappingComponent } from './component/mapping/mapping.component';
 
 
 @NgModule({
@@ -28,6 +29,8 @@ import { CircularHeatmapComponent } from './component/circular-heatmap/circular-
     TopHeaderComponent,
     TaskDescriptionComponent,
     CircularHeatmapComponent,
+    MappingComponent,
+    
   ],
   imports: [
     BrowserModule,
