@@ -45,9 +45,9 @@
                     <b>Difficulty of Implementation</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>Knowledge: {{this.currentTask.knowledge}} </p>
-            <p>Time: {{this.currentTask.time}} </p>
-            <p>Resources: {{this.currentTask.resources}}</p>
+            <p>Knowledge: {{this.KnowledgeLabels[this.currentTask.knowledge]}} </p>
+            <p>Time: {{this.TimeAndResourceLabels[this.currentTask.knowledge]}} </p>
+            <p>Resources: {{this.TimeAndResourceLabels[this.currentTask.knowledge]}}</p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>

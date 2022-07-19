@@ -41,7 +41,8 @@ export class TaskDescriptionComponent implements OnInit {
                               time:-1,dependsOn:[], implementation:[]}
 
   YamlObject:any;
-
+  TimeAndResourceLabels:string[]=[];
+  KnowledgeLabels:string[]=[];
   rowIndex:number=0;
   markdown:md = md()
 
@@ -55,6 +56,15 @@ export class TaskDescriptionComponent implements OnInit {
         this.currentTask.level="level-"+params['level'];
         this.currentTask.taskName=params['taskName'];
     });
+
+    //gets value from sample file 
+    this.yaml.setURI('./assets/YAML/sample.yaml');
+    // Function sets label data 
+    this.yaml.getJson().subscribe((data) => {
+      this.YamlObject = data;
+      this.TimeAndResourceLabels=this.YamlObject['strings']['en']['labels']
+      this.KnowledgeLabels=this.YamlObject['strings']['en']['KnowledgeLabels']
+    })
      //gets value from generated folder 
      this.yaml.setURI('./assets/YAML/generated/sample.yaml');
      // Function sets data 
