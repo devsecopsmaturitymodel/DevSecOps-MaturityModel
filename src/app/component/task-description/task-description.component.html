@@ -19,9 +19,7 @@
                     <b>Risk</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let risk of currentTask.risk">
-                <li>{{risk}}</li>
-            </ul>
+            <p [innerHTML]="currentTask.risk"></p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>

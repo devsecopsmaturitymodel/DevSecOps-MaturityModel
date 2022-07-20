@@ -97,7 +97,7 @@ export class MatrixComponent implements OnInit {
             //console.log(this.YamlObject['dimension'][i]['subdimension'][lvlTemp][k]['name'])
           }
             
-            console.log(temp)
+          console.log(temp)
           this.MATRIX_DATA.push(temp)
         }
       } 

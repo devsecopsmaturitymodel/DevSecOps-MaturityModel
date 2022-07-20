@@ -17,7 +17,7 @@ export interface taskDescription {
   level:string
   taskName:string
   description:string
-  risk: string[]
+  risk: string
   measure: string
   implementatonGuide:string
   iso:string[]
@@ -36,7 +36,7 @@ export interface taskDescription {
 })
 export class TaskDescriptionComponent implements OnInit {
 
-  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskName:'',description:'',risk:[],
+  currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskName:'',description:'',risk:'',
                                 measure:'',implementatonGuide:'',samm:[''],iso:[''],knowledge:-1,resources:-1,
                               time:-1,dependsOn:[], implementation:[]}
 
@@ -72,7 +72,7 @@ export class TaskDescriptionComponent implements OnInit {
       this.YamlObject = data;
       var data =this.YamlObject[this.currentTask.dimension][this.currentTask.subDimension][this.currentTask.taskName]
       this.currentTask.description=this.defineStringValues(data['description'],'')
-      this.currentTask.risk=this.defineStringArrayValues(data['risk'],[])
+      this.currentTask.risk=this.defineStringValues(data['risk'],'')
       this.currentTask.measure=this.defineStringValues(data['measure'],'')
       try{
         data['meta']
@@ -92,8 +92,8 @@ export class TaskDescriptionComponent implements OnInit {
       }
       try{
         data['references']
-        this.currentTask.iso=this.defineStringArrayValues(data['iso27001-2017'],[])
-        this.currentTask.samm=this.defineStringArrayValues(data['samm2'],[])
+        this.currentTask.iso=this.defineStringArrayValues(data['references']['iso27001-2017'],[])
+        this.currentTask.samm=this.defineStringArrayValues(data['references']['samm2'],[])
       }
       catch{
         console.log('references does not exist')

@@ -1,24 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
+import { MatTableDataSource } from '@angular/material/table';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface MappingElement {
+  dimension: string;
+  subDimension: string;
+  taskName: string;
+  samm2: string[];
+  ISO:string[];
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 @Component({
   selector: 'app-mapping',
@@ -26,13 +17,47 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./mapping.component.css']
 })
 export class MappingComponent implements OnInit {
+  MAPPING_DATA:MappingElement[]=[]
+  dataSource:any= new MatTableDataSource<MappingElement>(this.MAPPING_DATA);  
+  YamlObject:any;
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-
-  constructor() { }
+  displayedColumns: string[] = ['dimension', 'subDimension', 'taskName','samm2' ,'ISO'];
+  allDimensionNames:string[]=[];
+  temporaryMappingElement:any
+  constructor(private yaml:ymlService) { }
 
   ngOnInit(): void {
+    //gets value from generated folder 
+    this.yaml.setURI('./assets/YAML/generated/sample.yaml');
+    // Function sets data 
+    this.yaml.getJson().subscribe((data) => {
+      this.YamlObject = data;
+      this.allDimensionNames= Object.keys(this.YamlObject)
+      for(let i =0;i<this.allDimensionNames.length;i++){
+        var subdimensionsInCurrentDimension = Object.keys(this.YamlObject[this.allDimensionNames[i]])
+        for(let j=0;j<subdimensionsInCurrentDimension.length;j++){
+          var taskInCurrentSubDimension:string[]= Object.keys(this.YamlObject[this.allDimensionNames[i]][subdimensionsInCurrentDimension[j]])
+          for(let a=0;a<taskInCurrentSubDimension.length;a++){
+            this.setValueandAppendToDataset(this.allDimensionNames[i],subdimensionsInCurrentDimension[j],taskInCurrentSubDimension[a])
+          }
+        }
+      }
+      // weird fix to render DOM for table viewing in angular material
+      this.dataSource._data.next(this.dataSource.data);
+    })
+    
+    //this.dataSource=new MatTableDataSource([...this.dataSource]);
+    //console.log(this.dataSource.data)
+  }
+
+  //Sets dataSource value
+  setValueandAppendToDataset(dim:string,subDim:string,task:string){
+    var ISOArray:string[]=this.YamlObject[dim][subDim][task]['references']['iso27001-2017']
+    var SAMMArray:string[]=this.YamlObject[dim][subDim][task]['references']['samm2']
+    this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":ISOArray,"samm2":SAMMArray}
+    //console.log(this.temp)
+    this.dataSource.data.push(this.temporaryMappingElement)
+    
   }
 
 }
