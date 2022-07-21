@@ -1,5 +1,32 @@
 <div class="content">
+  
   <app-top-header section="Mappings"></app-top-header>
+
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>Filter</mat-label>
+    <mat-chip-list #chipList aria-label="Filter" color="primary">
+      <mat-chip
+        *ngFor="let chip of currentChip"
+        (removed)="remove(chip)">
+        {{chip}}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input
+        #chipInput
+        [formControl]="chipCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let fruit of filteredChips | async" [value]="fruit">
+        {{fruit}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 matrix-table" >
 

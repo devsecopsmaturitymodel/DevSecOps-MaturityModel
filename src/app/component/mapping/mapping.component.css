@@ -3,6 +3,11 @@
   background-color: gainsboro;
 }
 
+.mat-form-field{
+  margin: 20px;
+  width: 90%;
+}
+ 
 .matrix-table{
   margin: 20px;
 }

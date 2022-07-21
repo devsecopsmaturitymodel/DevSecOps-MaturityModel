@@ -1,31 +1,31 @@
 <div class="content">
 <app-top-header section="Matrix"></app-top-header>
 <mat-form-field class="example-chip-list">
-    <mat-label>Filter</mat-label>
-    <mat-chip-list #chipList aria-label="Filter" color="primary">
-      <mat-chip
-        color="primary"
-        *ngFor="let row of rowsCurrentlyBeingShown"
-        (removed)="remove(row)"
-        [selected]=true>
-        {{row}}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-      <input
-        #rowInput
-        [formControl]="rowCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let row of filteredRows | async" [value]="row">
-        {{row}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  <mat-label>Filter</mat-label>
+  <mat-chip-list #chipList aria-label="Filter" color="primary">
+    <mat-chip
+      color="primary"
+      *ngFor="let row of rowsCurrentlyBeingShown"
+      (removed)="remove(row)"
+      [selected]=true>
+      {{row}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      #rowInput
+      [formControl]="rowCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let row of filteredRows | async" [value]="row">
+      {{row}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
   
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 matrix-table">
