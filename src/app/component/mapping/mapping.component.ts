@@ -38,7 +38,7 @@ export class MappingComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   chipCtrl = new FormControl('');
   filteredChips: Observable<string[]>;
-  currentChip: string[] = ['Performed Activities','Planned Activities'];
+  currentChip: string[] = [];
   allChips: string[] = ['Performed Activities','Planned Activities'];
 
   @ViewChild('chipInput') chipInput!: ElementRef<HTMLInputElement>;
@@ -97,10 +97,21 @@ export class MappingComponent implements OnInit {
     if (index >= 0) {
       this.currentChip.splice(index, 1);
     }
+    this.changeTableBasedOnCurrentFilter()
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.currentChip.push(event.option.viewValue);
+    this.changeTableBasedOnCurrentFilter()
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allChips.filter(chip => chip.toLowerCase().includes(filterValue));
+  }
+
+  changeTableBasedOnCurrentFilter(){
     if((this.currentChip.length>1)||(this.currentChip.length==0)){ // both planned and performed actvities are selected
       this.dataSource._data.next(this.allMappingData);
     }
@@ -117,11 +128,5 @@ export class MappingComponent implements OnInit {
 
     this.chipInput.nativeElement.value = '';
     this.chipCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allChips.filter(chip => chip.toLowerCase().includes(filterValue));
   }
 }
