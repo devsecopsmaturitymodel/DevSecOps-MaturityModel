@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion'; 
 import {MatCardModule} from '@angular/material/card'; 
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 
 const MaterialComponents= [
   MatSidenavModule,
@@ -24,7 +25,8 @@ const MaterialComponents= [
   MatInputModule,
   MatExpansionModule,
   MatCardModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatButtonToggleModule
 ];
 
 @NgModule({

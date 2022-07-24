@@ -6,6 +6,8 @@
 .mat-form-field{
   margin: 20px;
   width: 50%;
+  background-color: coral;
+
 }
  
 .matrix-table{
@@ -26,4 +28,15 @@
   word-wrap: break-word;
   font-size: 16px;  
   font-weight: bold;
+}
+
+.sortSection{
+  margin: 30px;
+  margin-right: 60px;
+  background-color: mediumorchid;
+  float: right;
+}
+
+.filterandsort{
+  background-color: brown;
 }

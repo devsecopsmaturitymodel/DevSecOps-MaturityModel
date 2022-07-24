@@ -1,20 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import { MatTableDataSource } from '@angular/material/table';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {COMMA, ENTER, T} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
-export interface MappingElement {
+export interface MappingElementSortedByTask {
   dimension: string;
   subDimension: string;
   taskName: string;
   samm2: string[];
   ISO:string[];
+}
+
+export interface MappingElementSortedBySAMM {
+  samm2: string;
+  dimension: string;
+  subDimension: string;
+  taskName: string;
+  ISO:string[];
+}
+
+export interface MappingElementSortedByISO {
+  ISO: string;
+  dimension: string;
+  subDimension: string;
+  taskName: string;
+  samm2:string[];
 }
 
 
@@ -24,11 +39,23 @@ export interface MappingElement {
   styleUrls: ['./mapping.component.css']
 })
 export class MappingComponent implements OnInit {
-  allMappingData:MappingElement[]=[]
-  plannedMappingData:MappingElement[]=[]
-  performedMappingData:MappingElement[]=[]
+  allMappingDataSortedByTask:MappingElementSortedByTask[]=[]
+  plannedMappingDataSortedByTask:MappingElementSortedByTask[]=[]
+  performedMappingDataSortedByTask:MappingElementSortedByTask[]=[]
+  currentlySortingByTask:boolean=true;
 
-  dataSource:any= new MatTableDataSource<MappingElement>(this.allMappingData);  
+  allMappingDataSortedBySAMM:MappingElementSortedBySAMM[]=[]
+  plannedMappingDataSortedBySAMM:MappingElementSortedBySAMM[]=[]
+  performedMappingDataSortedBySAMM:MappingElementSortedBySAMM[]=[]
+  currentlySortingBySAMM:boolean=false;
+
+  allMappingDataSortedByISO:MappingElementSortedByISO[]=[]
+  plannedMappingDataSortedByISO:MappingElementSortedByISO[]=[]
+  performedMappingDataSortedByISO:MappingElementSortedByISO[]=[]
+  currentlySortingByISO:boolean=false;
+
+
+  dataSource:any= new MatTableDataSource<MappingElementSortedByTask>(this.allMappingDataSortedByTask);  
   YamlObject:any;
 
   displayedColumns: string[] = ['dimension', 'subDimension', 'taskName','samm2' ,'ISO'];
@@ -36,7 +63,8 @@ export class MappingComponent implements OnInit {
   temporaryMappingElement:any
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  chipCtrl = new FormControl('');
+  FilterCtrl = new FormControl('');
+  SortCtrl = new FormControl('');
   filteredChips: Observable<string[]>;
   currentChip: string[] = [];
   allChips: string[] = ['Performed Activities','Planned Activities'];
@@ -44,7 +72,7 @@ export class MappingComponent implements OnInit {
   @ViewChild('chipInput') chipInput!: ElementRef<HTMLInputElement>;
 
   constructor(private yaml:ymlService) { 
-    this.filteredChips = this.chipCtrl.valueChanges.pipe(
+    this.filteredChips = this.FilterCtrl.valueChanges.pipe(
       startWith(null),
       map((x: string | null) => (x ? this._filter(x) : this.allChips.slice())),
     );
@@ -62,34 +90,100 @@ export class MappingComponent implements OnInit {
         for(let j=0;j<subdimensionsInCurrentDimension.length;j++){
           var taskInCurrentSubDimension:string[]= Object.keys(this.YamlObject[this.allDimensionNames[i]][subdimensionsInCurrentDimension[j]])
           for(let a=0;a<taskInCurrentSubDimension.length;a++){
-            this.setValueandAppendToDataset(this.allDimensionNames[i],subdimensionsInCurrentDimension[j],taskInCurrentSubDimension[a])
+            this.setValueandAppendToDatasetSortedbyTask(this.allDimensionNames[i],subdimensionsInCurrentDimension[j],taskInCurrentSubDimension[a])
+            this.setValueandAppendToDatasetandSortbySAMM(this.allDimensionNames[i],subdimensionsInCurrentDimension[j],taskInCurrentSubDimension[a])
+            this.setValueandAppendToDatasetandSortbyISO(this.allDimensionNames[i],subdimensionsInCurrentDimension[j],taskInCurrentSubDimension[a])
           }
         }
       }
       // weird fix to render DOM for table viewing in angular material
-      this.dataSource._data.next(this.dataSource.data);
-      this.allMappingData=this.dataSource.data
+      this.dataSource._data.next(this.allMappingDataSortedByTask);
     })
-    
+    //console.log(this.allMappingDataSortedByTask)
+    //console.log(this.allMappingDataSortedBySAMM)
+    //console.log(this.allMappingDataSortedByISO)
     //this.dataSource=new MatTableDataSource([...this.dataSource]);
     //console.log(this.dataSource.data)
   }
 
-  //Sets dataSource value
-  setValueandAppendToDataset(dim:string,subDim:string,task:string){
+  //Sets dataSource value sorted by task
+  setValueandAppendToDatasetSortedbyTask(dim:string,subDim:string,task:string){
     var ISOArray:string[]=this.YamlObject[dim][subDim][task]['references']['iso27001-2017']
     var SAMMArray:string[]=this.YamlObject[dim][subDim][task]['references']['samm2']
     this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":ISOArray,"samm2":SAMMArray}
     //console.log(this.temp)
-    this.dataSource.data.push(this.temporaryMappingElement)
+    this.allMappingDataSortedByTask.push(this.temporaryMappingElement)
     if(this.YamlObject[dim][subDim][task]['isImplemented']){
-      this.performedMappingData.push(this.temporaryMappingElement)
+      this.performedMappingDataSortedByTask.push(this.temporaryMappingElement)
     }
     else{
-      this.plannedMappingData.push(this.temporaryMappingElement)
+      this.plannedMappingDataSortedByTask.push(this.temporaryMappingElement)
     }
-    
   }
+
+  //Sets dataSource value sorted by SAMM
+  setValueandAppendToDatasetandSortbySAMM(dim:string,subDim:string,task:string){
+    var ISOArray:string[]=this.YamlObject[dim][subDim][task]['references']['iso27001-2017']
+    var SAMMArray:string[]=this.YamlObject[dim][subDim][task]['references']['samm2']
+    this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":ISOArray,"samm2":""}
+    if(SAMMArray.length==0){
+      this.allMappingDataSortedBySAMM.push(this.temporaryMappingElement)
+      if(this.YamlObject[dim][subDim][task]['isImplemented']){
+        this.performedMappingDataSortedBySAMM.push(this.temporaryMappingElement)
+      }
+      else{
+        this.plannedMappingDataSortedBySAMM.push(this.temporaryMappingElement)
+      }
+    }
+    for(var i=0;i<SAMMArray.length;i++){
+      this.temporaryMappingElement["samm2"]=SAMMArray[i]
+      this.allMappingDataSortedBySAMM.push(this.temporaryMappingElement)
+      if(this.YamlObject[dim][subDim][task]['isImplemented']){
+        this.performedMappingDataSortedBySAMM.push(this.temporaryMappingElement)
+      }
+      else{
+        this.plannedMappingDataSortedBySAMM.push(this.temporaryMappingElement)
+      }
+    }
+    //sorting by descending order
+    this.allMappingDataSortedBySAMM.sort((first, second) => 0 - (first['samm2'] > second['samm2'] ? 1 : -1));
+    this.plannedMappingDataSortedBySAMM.sort((first, second) => 0 - (first['samm2'] > second['samm2'] ? 1 : -1));
+    this.performedMappingDataSortedBySAMM.sort((first, second) => 0 - (first['samm2'] > second['samm2'] ? 1 : -1));
+    //console.log(this.temp)
+  }
+
+  //Sets dataSource value sorted by ISO
+  setValueandAppendToDatasetandSortbyISO(dim:string,subDim:string,task:string){
+    var ISOArray:string[]=this.YamlObject[dim][subDim][task]['references']['iso27001-2017']
+    var SAMMArray:string[]=this.YamlObject[dim][subDim][task]['references']['samm2']
+    this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":"","samm2":SAMMArray}
+    if(ISOArray.length==0){
+      this.allMappingDataSortedByISO.push(this.temporaryMappingElement)
+      if(this.YamlObject[dim][subDim][task]['isImplemented']){
+        this.performedMappingDataSortedByISO.push(this.temporaryMappingElement)
+      }
+      else{
+        this.plannedMappingDataSortedByISO.push(this.temporaryMappingElement)
+      }
+    }
+    for(var i=0;i<ISOArray.length;i++){
+      this.temporaryMappingElement["ISO"]=ISOArray[i]
+      this.allMappingDataSortedByISO.push(this.temporaryMappingElement)
+      if(this.YamlObject[dim][subDim][task]['isImplemented']){
+        this.performedMappingDataSortedByISO.push(this.temporaryMappingElement)
+      }
+      else{
+        this.plannedMappingDataSortedByISO.push(this.temporaryMappingElement)
+      }
+    }
+    //sorting by descending order
+    this.allMappingDataSortedByISO.sort((first, second) => 0 - (first['ISO'] > second['ISO'] ? 1 : -1));
+    this.performedMappingDataSortedByISO.sort((first, second) => 0 - (first['ISO'] > second['ISO'] ? 1 : -1));
+    this.plannedMappingDataSortedByISO.sort((first, second) => 0 - (first['ISO'] > second['ISO'] ? 1 : -1));
+    //console.log(this.temp)
+  }
+
+  
 
   remove(chip: string): void {
     const index = this.currentChip.indexOf(chip);
@@ -113,20 +207,106 @@ export class MappingComponent implements OnInit {
 
   changeTableBasedOnCurrentFilter(){
     if((this.currentChip.length>1)||(this.currentChip.length==0)){ // both planned and performed actvities are selected
-      this.dataSource._data.next(this.allMappingData);
+      
+      //Check current sort value
+      if(this.currentlySortingByTask){
+        this.dataSource=this.allMappingDataSortedByTask
+      }
+      else if(this.currentlySortingByISO){
+        this.dataSource=this.allMappingDataSortedByISO
+      }
+      else{
+        this.dataSource=this.allMappingDataSortedBySAMM
+      }
     }
-    else{
-      if(this.currentChip[0]=='Planned Activities'){ // planned actvities shows planned data
-        this.dataSource._data.next(this.plannedMappingData);
-        console.log(this.plannedMappingData)
+    else if(this.currentChip[0]=='Planned Activities'){ // planned actvities shows planned data
+
+        //Check current sort value
+        if(this.currentlySortingByTask){
+          this.dataSource=this.plannedMappingDataSortedByTask
+        }
+        else if(this.currentlySortingByISO){
+          this.dataSource=this.plannedMappingDataSortedByISO
+        }
+        else{
+          this.dataSource=this.plannedMappingDataSortedBySAMM
+        }
       }
       else {
-        this.dataSource._data.next(this.performedMappingData); // performed actvities shows performed data
-        console.log(this.performedMappingData)
+        //Check current sort value
+        if(this.currentlySortingByTask){
+          this.dataSource=this.performedMappingDataSortedByTask
+        }
+        else if(this.currentlySortingByISO){
+          this.dataSource=this.performedMappingDataSortedByISO
+        }
+        else{
+          this.dataSource=this.performedMappingDataSortedBySAMM
+        }
       }
-    }
 
     this.chipInput.nativeElement.value = '';
-    this.chipCtrl.setValue(null);
+    this.FilterCtrl.setValue(null);
+  }
+
+  changeTableBasedOnCurrentSort(){
+    if(this.SortCtrl.value=="sortByTask"){
+      this.currentlySortingByTask=true
+      this.currentlySortingBySAMM=false
+      this.currentlySortingByISO=false
+
+      //Checking filters 
+      if((this.currentChip.length>1)||(this.currentChip.length==0)){ // both planned and performed actvities are selected
+        this.dataSource=this.allMappingDataSortedByTask
+      }
+      else{
+        if(this.currentChip[0]=='Planned Activities'){ // planned actvities shows planned data
+          this.dataSource=this.plannedMappingDataSortedByTask
+        }
+        else {
+          // performed actvities shows performed data
+          this.dataSource=this.performedMappingDataSortedByTask
+        }
+      }
+    }
+    else if(this.SortCtrl.value=="sortBySAMM"){
+      this.currentlySortingByTask=false
+      this.currentlySortingBySAMM=true
+      this.currentlySortingByISO=false
+
+      //Checking filters 
+      if((this.currentChip.length>1)||(this.currentChip.length==0)){ // both planned and performed actvities are selected
+        this.dataSource=this.allMappingDataSortedBySAMM
+      }
+      else{
+        if(this.currentChip[0]=='Planned Activities'){ // planned actvities shows planned data
+          this.dataSource=this.plannedMappingDataSortedBySAMM
+        }
+        else {
+          // performed actvities shows performed data
+          this.dataSource=this.performedMappingDataSortedBySAMM
+        }
+      }
+    }
+    else{
+      this.currentlySortingByTask=false
+      this.currentlySortingBySAMM=false
+      this.currentlySortingByISO=true
+
+      //Checking filters 
+      if((this.currentChip.length>1)||(this.currentChip.length==0)){ // both planned and performed actvities are selected
+        this.dataSource=this.allMappingDataSortedByISO
+      }
+      else{
+        if(this.currentChip[0]=='Planned Activities'){ // planned actvities shows planned data
+          this.dataSource=this.plannedMappingDataSortedByISO
+        }
+        else {
+          // performed actvities shows performed data
+          this.dataSource=this.performedMappingDataSortedByISO
+        }
+      }
+    }
+    
   }
 }
