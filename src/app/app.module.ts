@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CombinerService } from './service/combiner/combiner.service';
 import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
 import { MappingComponent } from './component/mapping/mapping.component';
+import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
+import { UsageComponent } from './component/usage/usage.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
 
 
 @NgModule({
@@ -30,6 +33,9 @@ import { MappingComponent } from './component/mapping/mapping.component';
     TaskDescriptionComponent,
     CircularHeatmapComponent,
     MappingComponent,
+    ReadmeToHtmlComponent,
+    UsageComponent,
+    AboutUsComponent,
     
   ],
   imports: [
