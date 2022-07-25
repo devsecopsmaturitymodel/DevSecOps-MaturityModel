@@ -30,7 +30,7 @@
 
     <section class="sortSection">
       <mat-button-toggle-group [formControl]="SortCtrl" aria-label="Sort By">
-        <mat-button-toggle value="sortByTask" (click)="changeTableBasedOnCurrentSort()">Tasks</mat-button-toggle>
+        <mat-button-toggle value="sortByTask" (click)="changeTableBasedOnCurrentSort()">Activity</mat-button-toggle>
         <mat-button-toggle value="sortBySAMM" (click)="changeTableBasedOnCurrentSort()">SAMM</mat-button-toggle>
         <mat-button-toggle value="sortByISO" (click)="changeTableBasedOnCurrentSort()">ISO</mat-button-toggle>
       </mat-button-toggle-group>
@@ -52,7 +52,7 @@
     </ng-container>
 
     <ng-container matColumnDef="taskName">
-      <th mat-header-cell *matHeaderCellDef> Task </th>
+      <th mat-header-cell *matHeaderCellDef> Activity </th>
       <td mat-cell *matCellDef="let element"> {{element.taskName}} </td>
     </ng-container>
 
