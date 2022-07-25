@@ -1382,7 +1382,7 @@ Culture and Organization:
         samm2:
         - V-ST-1-B
         iso27001-2017: []
-      isImplemented: false
+      isImplemented: true
       evidence: ""
       comments: ""
     Security consulting on request:
