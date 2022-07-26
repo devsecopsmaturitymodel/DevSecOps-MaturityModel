@@ -7,6 +7,7 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import * as XLSX from 'xlsx';
 
 export interface MappingElementSortedByTask {
   dimension: string;
@@ -308,5 +309,18 @@ export class MappingComponent implements OnInit {
       }
     }
     
+  }
+
+  exportToExcel(){
+    /* passing the table id */
+    let element = document.getElementById("excel-table");
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+ 
+    /* save to file */  
+    XLSX.writeFile(wb, "Planned-Activities-Sorted-By-ISO.xlsx");
   }
 }

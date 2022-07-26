@@ -29,13 +29,27 @@
   font-weight: bold;
 }
 
-.sortSection{
+.sort-section{
   margin: 30px;
   margin-right: 60px;
-  background-color: mediumorchid;
-  float: right;
+  float: right;  
 }
 
 .filterandsort{
   background-color: brown;
+}
+
+.hide{
+  display: none;
+}
+
+.export-button{
+  margin: 30px;
+  margin-top: 35px;
+  float: right;
+}
+
+.right-section{
+  background-color: mediumorchid;
+  float: right;
 }

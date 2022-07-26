@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidenavButtonsComponent implements OnInit {
   Options: string[] = ['Matrix', 'Home','Implementation Levels','Mappings','Usage','About Us'];
   Icons: string[] = ['bar_chart','home','home','home','home','home'];
-  Routing: string[]=['/matrix','/','/circular-heatmap','/mapping','/usage','/about']
+  Routing: string[]=['/','/home','/circular-heatmap','/mapping','/usage','/about']
   constructor() { }
 
   ngOnInit(): void {
