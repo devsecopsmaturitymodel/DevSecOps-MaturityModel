@@ -10,8 +10,8 @@ import { UsageComponent } from './component/usage/usage.component';
 
 
 const routes: Routes = [
-  {path: '',component: MainContentComponent},
-  {path: 'matrix', component: MatrixComponent},
+  {path: 'home',component: MainContentComponent},
+  {path: '', component: MatrixComponent},
   {path: 'circular-heatmap', component: CircularHeatmapComponent},
   {path: 'task-description', component: TaskDescriptionComponent},
   {path: 'mapping', component: MappingComponent},

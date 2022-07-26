@@ -27,14 +27,20 @@
       </mat-autocomplete>
     </mat-form-field>
 
-
-    <section class="sortSection">
-      <mat-button-toggle-group [formControl]="SortCtrl" aria-label="Sort By">
-        <mat-button-toggle value="sortByTask" (click)="changeTableBasedOnCurrentSort()">Activity</mat-button-toggle>
-        <mat-button-toggle value="sortBySAMM" (click)="changeTableBasedOnCurrentSort()">SAMM</mat-button-toggle>
-        <mat-button-toggle value="sortByISO" (click)="changeTableBasedOnCurrentSort()">ISO</mat-button-toggle>
-      </mat-button-toggle-group>
-    </section>
+    <div class="right-section">
+      <section class="export-button">
+        <button mat-raised-button color="primary" (click)="exportToExcel()">
+          <mat-icon>file_download</mat-icon>
+        </button>
+      </section>
+      <section class="sort-section">
+        <mat-button-toggle-group [formControl]="SortCtrl" aria-label="Sort By">
+          <mat-button-toggle value="sortByTask" (click)="changeTableBasedOnCurrentSort()">Activity</mat-button-toggle>
+          <mat-button-toggle value="sortBySAMM" (click)="changeTableBasedOnCurrentSort()">SAMM</mat-button-toggle>
+          <mat-button-toggle value="sortByISO" (click)="changeTableBasedOnCurrentSort()">ISO</mat-button-toggle>
+        </mat-button-toggle-group>
+      </section>
+    </div>
   </div>
   
   
@@ -93,6 +99,23 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <table id="excel-table" class="hide">
+    <tr>
+      <th>Dimension</th>
+      <th>Sub Dimension</th>
+      <th>Activity</th>
+      <th>SAMM</th>
+      <th>ISO</th>
+    </tr>
+    <tr *ngFor="let item of performedMappingDataSortedByISO">
+      <td>{{item.dimension}}</td>
+      <td>{{item.subDimension}}</td>
+      <td>{{item.taskName}}</td>
+      <td>{{item.samm2}}</td>
+      <td>{{item.ISO}}</td>
+    </tr>
   </table>
 </div>
   
