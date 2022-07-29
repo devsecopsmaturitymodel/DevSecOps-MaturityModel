@@ -6,5 +6,5 @@ COPY . .
 RUN npm run build
 
 FROM bitnami/nginx:latest
-#COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx/location.conf /opt/bitnami/nginx/conf/bitnami/location.conf
 COPY --from=build /usr/src/app/dist/dsomm/ /app

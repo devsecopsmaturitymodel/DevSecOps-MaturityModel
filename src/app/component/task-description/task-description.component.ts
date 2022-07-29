@@ -58,7 +58,7 @@ export class TaskDescriptionComponent implements OnInit {
     });
 
     //gets value from sample file 
-    this.yaml.setURI('./assets/YAML/sample.yaml');
+    this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets label data 
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;
