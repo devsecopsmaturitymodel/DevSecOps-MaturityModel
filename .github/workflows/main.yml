@@ -22,7 +22,6 @@ jobs:
           password: ${{ secrets.HUB_TOKEN }}
       - name: create and push an image
         run: |
-          chmod +x ./build.sh
           if [ "${GITHUB_REF##*/}" == "master" ]; then
             VERSION="3.0.${GITHUB_RUN_NUMBER}"
           else
