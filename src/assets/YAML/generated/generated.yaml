@@ -1760,7 +1760,7 @@ Implementation:
       evidence: ""
       comments: ""
       assessment: ""
-    Pre-Commit checks & validations:
+    Pre-Commit checks and validations:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
       measure: |
