@@ -33,7 +33,7 @@ export class CircularHeatmapComponent implements OnInit {
   constructor(private yaml:ymlService) { }
 
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/sample.yaml');
+    this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets column header
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;
@@ -47,7 +47,7 @@ export class CircularHeatmapComponent implements OnInit {
       
     });
 
-    this.yaml.setURI('./assets/YAML/generated/sample.yaml');
+    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data 
     this.yaml.getJson().subscribe((data) => {
       //console.log(this.radial_labels)

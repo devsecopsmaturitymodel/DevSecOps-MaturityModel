@@ -58,7 +58,7 @@ export class TaskDescriptionComponent implements OnInit {
     });
 
     //gets value from sample file 
-    this.yaml.setURI('./assets/YAML/sample.yaml');
+    this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets label data 
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;
@@ -66,7 +66,7 @@ export class TaskDescriptionComponent implements OnInit {
       this.KnowledgeLabels=this.YamlObject['strings']['en']['KnowledgeLabels']
     })
      //gets value from generated folder 
-     this.yaml.setURI('./assets/YAML/generated/sample.yaml');
+     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
      // Function sets data 
      this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;

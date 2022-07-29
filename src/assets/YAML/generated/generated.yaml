@@ -1729,7 +1729,7 @@ Implementation:
       evidence: ""
       comments: ""
       assessment: ""
-  Development & Source Control:
+  Development and Source Control:
     Local development linting & style checks performed:
       risk: Creating and developing code that contains code smells and quality issues.
       measure: "Integration of quality and linting plugins with interactive development
