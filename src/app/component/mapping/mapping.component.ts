@@ -81,7 +81,7 @@ export class MappingComponent implements OnInit {
 
   ngOnInit(): void {
     //gets value from generated folder 
-    this.yaml.setURI('./assets/YAML/generated/sample.yaml');
+    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data 
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;

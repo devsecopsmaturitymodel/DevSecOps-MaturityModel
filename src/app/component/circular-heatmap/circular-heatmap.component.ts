@@ -33,7 +33,7 @@ export class CircularHeatmapComponent implements OnInit {
   constructor(private yaml:ymlService) { }
 
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/sample.yaml');
+    this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets column header
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;
@@ -47,7 +47,7 @@ export class CircularHeatmapComponent implements OnInit {
       
     });
 
-    this.yaml.setURI('./assets/YAML/generated/sample.yaml');
+    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data 
     this.yaml.getJson().subscribe((data) => {
       //console.log(this.radial_labels)
@@ -219,15 +219,28 @@ export class CircularHeatmapComponent implements OnInit {
       
     svg.selectAll("path")
       .on('click', function(d) {
-        _self.cardSubheader=d.explicitOriginalTarget.__data__.Level
-        _self.tasksData=d.explicitOriginalTarget.__data__.Task;
-        _self.cardHeader=d.explicitOriginalTarget.__data__.Name
+        console.log(d)
+        try{
+          curr=d.explicitOriginalTarget.__data__
+        }
+        catch{
+          curr=d.srcElement.__data__
+          
+        }
+        _self.cardSubheader=curr.Level
+        _self.tasksData=curr.Task;
+        _self.cardHeader=curr.Name
         _self.showTaskCard=true
         //console.log(_self.tasksData)
       })
       .on('mouseover', function(d) {
-        console.log(d.explicitOriginalTarget)
-        curr=d.explicitOriginalTarget.__data__
+        console.log(d.toElement.__data__.Name)
+        try{
+          curr=d.explicitOriginalTarget.__data__
+        }
+        catch{
+          curr=d.toElement.__data__
+        }
         //console.log(curr)
         // increase the segment height of the one being hovered as well as all others of the same date
         // while decreasing the height of all others accordingly
