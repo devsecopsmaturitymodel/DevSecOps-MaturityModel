@@ -226,7 +226,7 @@ export class CircularHeatmapComponent implements OnInit {
         //console.log(_self.tasksData)
       })
       .on('mouseover', function(d) {
-        
+        console.log(d.explicitOriginalTarget)
         curr=d.explicitOriginalTarget.__data__
         //console.log(curr)
         // increase the segment height of the one being hovered as well as all others of the same date
