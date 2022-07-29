@@ -1,12 +1,12 @@
 .content{
   width: 100%;
-  background-color: gainsboro;
+  /*background-color: gainsboro;*/
 }
 
 .mat-form-field{
   margin: 20px;
   width: 50%;
-  background-color: coral;
+  /*background-color: coral;*/
 }
  
 .matrix-table{
@@ -36,7 +36,7 @@
 }
 
 .filterandsort{
-  background-color: brown;
+  /*background-color: brown;*/
 }
 
 .hide{
@@ -50,6 +50,6 @@
 }
 
 .right-section{
-  background-color: mediumorchid;
+  /*background-color: mediumorchid;*/
   float: right;
 }
