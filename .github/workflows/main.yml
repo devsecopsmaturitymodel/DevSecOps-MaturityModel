@@ -22,11 +22,13 @@ jobs:
           password: ${{ secrets.HUB_TOKEN }}
       - name: create and push an image
         run: |
-          chmod +x ./build.sh
           if [ "${GITHUB_REF##*/}" == "master" ]; then
-            VERSION="2.5.${GITHUB_RUN_NUMBER}"
+            VERSION="3.0.${GITHUB_RUN_NUMBER}"
           else
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
           fi
-          sudo ./build.sh "registry.hub.docker.com" "wurstbrot" "dsomm" "${VERSION}" "${{ secrets.HUB_USERNAME }}" "${{ secrets.HUB_TOKEN }}"
+          sudo docker build -t wurstbrot/dsomm:latest .
+          sudo docker push wurstbrot/dsomm:latest
+          sudo docker tag  wurstbrot/dsomm:${VERSION}
+          sudo docker push wurstbrot/dsomm:${VERSION}
