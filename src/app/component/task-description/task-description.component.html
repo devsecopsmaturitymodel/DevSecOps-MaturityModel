@@ -63,7 +63,7 @@
                         </mat-expansion-panel-header>
                         <p>
                             <mat-accordion multi="true">
-                                <mat-expansion-panel>
+                                <mat-expansion-panel [expanded]="true">
                                     <mat-expansion-panel-header>
                                         <mat-panel-title>
                                             <b>Tags</b>
@@ -73,7 +73,7 @@
                                         <li [innerHTML]="tag"></li>
                                     </ul>
                                 </mat-expansion-panel>
-                                <mat-expansion-panel>
+                                <mat-expansion-panel [expanded]="true">
                                     <mat-expansion-panel-header>
                                         <mat-panel-title>
                                             <b>URL</b>
@@ -81,7 +81,7 @@
                                     </mat-expansion-panel-header>
                                     <p [innerHTML]="implement['url']"></p>
                                 </mat-expansion-panel>
-                                <mat-expansion-panel>
+                                <mat-expansion-panel [expanded]="true">
                                     <mat-expansion-panel-header>
                                         <mat-panel-title>
                                             <b>Description</b>
@@ -134,6 +134,7 @@
             </mat-expansion-panel-header>
             <ul *ngFor="let dependency of this.currentTask.dependsOn">
                 <li>{{dependency}}</li>
+                <app-tree-map></app-tree-map>
             </ul>
         </mat-expansion-panel>
     </mat-accordion>
