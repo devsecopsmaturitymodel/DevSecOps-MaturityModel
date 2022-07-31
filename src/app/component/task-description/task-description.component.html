@@ -126,16 +126,13 @@
                 </mat-accordion>
             </p>
         </mat-expansion-panel>
-        <mat-expansion-panel *ngIf="this.currentTask.dependsOn">
+        <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <b>Depends on</b>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let dependency of this.currentTask.dependsOn">
-                <li>{{dependency}}</li>
-                <app-tree-map></app-tree-map>
-            </ul>
+               <app-tree-map dimension={{currentTask.dimension}} subDimension={{currentTask.subDimension}} taskName={{currentTask.taskName}}></app-tree-map>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
