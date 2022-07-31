@@ -20,6 +20,7 @@ import { MappingComponent } from './component/mapping/mapping.component';
 import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
 import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
+import { TreeMapComponent } from './component/tree-map/tree-map.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
     ReadmeToHtmlComponent,
     UsageComponent,
     AboutUsComponent,
+    TreeMapComponent,
     
   ],
   imports: [

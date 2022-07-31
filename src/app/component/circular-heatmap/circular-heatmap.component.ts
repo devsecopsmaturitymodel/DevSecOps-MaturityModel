@@ -234,7 +234,7 @@ export class CircularHeatmapComponent implements OnInit {
         //console.log(_self.tasksData)
       })
       .on('mouseover', function(d) {
-        console.log(d.toElement.__data__.Name)
+        //console.log(d.toElement.__data__.Name)
         try{
           curr=d.explicitOriginalTarget.__data__
         }
