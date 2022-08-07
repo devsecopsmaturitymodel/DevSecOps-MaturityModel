@@ -20,7 +20,7 @@ import { MappingComponent } from './component/mapping/mapping.component';
 import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
 import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
-import { TreeMapComponent } from './component/tree-map/tree-map.component';
+import { DependencyGraphComponent } from './dependency-graph/dependency-graph.component';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { TreeMapComponent } from './component/tree-map/tree-map.component';
     ReadmeToHtmlComponent,
     UsageComponent,
     AboutUsComponent,
-    TreeMapComponent,
+    DependencyGraphComponent,
     
   ],
   imports: [

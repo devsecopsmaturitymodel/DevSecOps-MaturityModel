@@ -1991,8 +1991,6 @@ Implementation:
       level: 3
       dependsOn:
       - Infrastructure as Code
-      - Usage of <a href="https://semver.org/">Semantic Versioning</a> for components
-        like project images
       implementation:
       - name: Remove direct access to infrastructure
         tags: []
