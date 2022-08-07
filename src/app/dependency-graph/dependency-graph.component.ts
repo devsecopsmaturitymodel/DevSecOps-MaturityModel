@@ -102,7 +102,7 @@ export class DependencyGraphComponent implements OnInit {
 
     this.simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d:any) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-2000))
+    .force("charge", d3.forceManyBody().strength(-12000))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
     svg.append('defs').append('marker')
