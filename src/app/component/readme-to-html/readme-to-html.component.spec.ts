@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule} from '@angular/common/http/testing';
 import { ReadmeToHtmlComponent } from './readme-to-html.component';
 
 describe('ReadmeToHtmlComponent', () => {
@@ -8,6 +8,7 @@ describe('ReadmeToHtmlComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule], 
       declarations: [ ReadmeToHtmlComponent ]
     })
     .compileComponents();
