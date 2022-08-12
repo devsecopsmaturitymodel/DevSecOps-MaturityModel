@@ -14,7 +14,6 @@ import { TopHeaderComponent } from './component/top-header/top-header.component'
 import { TaskDescriptionComponent } from './component/task-description/task-description.component';
 import { ymlService } from './service/yaml-parser/yaml-parser.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CombinerService } from './service/combiner/combiner.service';
 import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
 import { MappingComponent } from './component/mapping/mapping.component';
 import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
@@ -49,7 +48,7 @@ import { DependencyGraphComponent } from './dependency-graph/dependency-graph.co
     HttpClientModule
     
   ],
-  providers: [ymlService,CombinerService],
+  providers: [ymlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
