@@ -1,20 +1,24 @@
-name: Node.js CI
+name: CI
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
 
+    # Machine environment:
+    # https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions#ubuntu-1804-lts
+    # We specify the Node.js version manually below, and use versioned Chrome from Puppeteer.
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.8
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm test -- --watch=false --browsers=ChromeHeadless
+        node-version: 12.8
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build -- --prod
+    - name: Test
+      run: npm test -- --configuration=ci
