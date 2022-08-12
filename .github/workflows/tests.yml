@@ -18,7 +18,5 @@ jobs:
         node-version: 12.8
     - name: Install dependencies
       run: npm install
-    - name: Build
-      run: npm run build -- --prod
     - name: Test
       run: npm test -- --configuration=ci
