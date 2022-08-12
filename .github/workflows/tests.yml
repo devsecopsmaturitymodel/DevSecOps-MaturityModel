@@ -12,5 +12,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 16.0
+    - name: Install dependencies
+      run: npm install
     - name: Test
       run: npm test -- --watch=false --browsers=ChromeHeadless
