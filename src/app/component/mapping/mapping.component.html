@@ -106,13 +106,27 @@
       <th>Dimension</th>
       <th>Sub Dimension</th>
       <th>Activity</th>
+      <th>Description</th>
+      <th>Risk</th>
+      <th>Measure</th>
+      <th>Knowledge</th>
+      <th>Resources</th>
+      <th>Time</th>
+      <th>Usefulness</th>
       <th>SAMM</th>
       <th>ISO</th>
     </tr>
-    <tr *ngFor="let item of performedMappingDataSortedByISO">
+    <tr *ngFor="let item of allMappingDataSortedByISO">
       <td>{{item.dimension}}</td>
       <td>{{item.subDimension}}</td>
       <td>{{item.taskName}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.risk}}</td>
+      <td>{{item.measure}}</td>
+      <td>{{item.knowledge}}</td>
+      <td>{{item.resources}}</td>
+      <td>{{item.time}}</td>
+      <td>{{item.usefulness}}</td>
       <td>{{item.samm2}}</td>
       <td>{{item.ISO}}</td>
     </tr>

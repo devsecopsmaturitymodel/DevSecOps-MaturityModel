@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import { MatTableDataSource } from '@angular/material/table';
-import {COMMA, ENTER, T} from '@angular/cdk/keycodes';
+import {COMMA, ENTER } from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
@@ -31,6 +31,13 @@ export interface MappingElementSortedByISO {
   subDimension: string;
   taskName: string;
   samm2:string[];
+  description:string;
+  risk:string;
+  measure:string;
+  knowledge:string;
+  resources:string;
+  time:string;
+  usefulness:string;
 }
 
 
@@ -63,6 +70,10 @@ export class MappingComponent implements OnInit {
   allDimensionNames:string[]=[];
   temporaryMappingElement:any
 
+  //labels
+  knowledgeLabels: string[]=[]
+  generalLabels: string[]=[]
+
   separatorKeysCodes: number[] = [ENTER, COMMA];
   FilterCtrl = new FormControl('');
   SortCtrl = new FormControl('');
@@ -80,6 +91,14 @@ export class MappingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //gets value from meta folder 
+    this.yaml.setURI('./assets/YAML/meta.yaml');
+    // Function sets label data 
+    this.yaml.getJson().subscribe((data) => {
+      //console.log(data)
+      this.knowledgeLabels=data['strings']['en']['KnowledgeLabels']
+      this.generalLabels=data['strings']['en']['labels']
+    })
     //gets value from generated folder 
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data 
@@ -157,7 +176,53 @@ export class MappingComponent implements OnInit {
   setValueandAppendToDatasetandSortbyISO(dim:string,subDim:string,task:string){
     var ISOArray:string[]=this.YamlObject[dim][subDim][task]['references']['iso27001-2017']
     var SAMMArray:string[]=this.YamlObject[dim][subDim][task]['references']['samm2']
-    this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":"","samm2":SAMMArray}
+    try{
+      var CurrentDescription:string=this.YamlObject[dim][subDim][task]['description']
+    }
+    catch{
+      var CurrentDescription:string=""
+    }
+    try{
+      var CurrentRisk:string=this.YamlObject[dim][subDim][task]['risk']
+    }
+    catch{
+      var CurrentRisk:string=""
+    }
+    try{
+      var CurrentMeasure:string=this.YamlObject[dim][subDim][task]['measure']
+    }
+    catch{
+      var CurrentMeasure:string=""
+    }
+    try{
+      var CurrentKnowledge:string=this.knowledgeLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['knowledge']]
+      
+    }
+    catch{
+      var CurrentKnowledge:string=""
+    }
+    try{
+      
+      var CurrentTime:string=this.generalLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['time']]
+    }
+    catch{
+      var CurrentTime:string=""
+    }
+    try{
+      var CurrentResources:string=this.generalLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['resources']]
+    }
+    catch{
+      var CurrentResources:string=""
+    }
+    try{
+      var CurrentUsefulness:string=this.generalLabels[this.YamlObject[dim][subDim][task]['usefulness']]
+    }
+    catch{
+      var CurrentUsefulness:string=""
+    }
+    this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":"","samm2":SAMMArray,
+    description:CurrentDescription,risk:CurrentRisk,measure:CurrentMeasure,knowledge:CurrentKnowledge,time:CurrentTime,
+    resources:CurrentResources,usefulness:CurrentUsefulness}
     if(ISOArray.length==0){
       this.allMappingDataSortedByISO.push(this.temporaryMappingElement)
       if(this.YamlObject[dim][subDim][task]['isImplemented']){
@@ -313,14 +378,15 @@ export class MappingComponent implements OnInit {
 
   exportToExcel(){
     /* passing the table id */
-    let element = document.getElementById("excel-table");
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+    //let element = document.getElementById("excel-table");
+    //const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
  
     /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    //const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    //XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
  
     /* save to file */  
-    XLSX.writeFile(wb, "Planned-Activities-Sorted-By-ISO.xlsx");
+    //XLSX.writeFile(wb, "Planned-Activities-Sorted-By-ISO.xlsx");
+    console.log(this.allMappingDataSortedByISO)
   }
 }
