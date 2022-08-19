@@ -101,7 +101,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <table id="excel-table" class="hide">
+  <table id="excel-table" >
     <tr>
       <th>Dimension</th>
       <th>Sub Dimension</th>
@@ -113,6 +113,7 @@
       <th>Resources</th>
       <th>Time</th>
       <th>Usefulness</th>
+      <th>Depends On</th>
       <th>SAMM</th>
       <th>ISO</th>
     </tr>
@@ -127,6 +128,7 @@
       <td>{{item.resources}}</td>
       <td>{{item.time}}</td>
       <td>{{item.usefulness}}</td>
+      <td>{{item.dependsOn}}</td>
       <td>{{item.samm2}}</td>
       <td>{{item.ISO}}</td>
     </tr>

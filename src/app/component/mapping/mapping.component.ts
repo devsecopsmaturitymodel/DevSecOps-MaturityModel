@@ -38,6 +38,7 @@ export interface MappingElementSortedByISO {
   resources:string;
   time:string;
   usefulness:string;
+  dependsOn:string[]
 }
 
 
@@ -220,9 +221,15 @@ export class MappingComponent implements OnInit {
     catch{
       var CurrentUsefulness:string=""
     }
+    try{
+      var CurrentDependsOn:string[]=this.YamlObject[dim][subDim][task]['dependsOn']
+    }
+    catch{
+      var CurrentDependsOn:string[]=[]
+    }
     this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":"","samm2":SAMMArray,
     description:CurrentDescription,risk:CurrentRisk,measure:CurrentMeasure,knowledge:CurrentKnowledge,time:CurrentTime,
-    resources:CurrentResources,usefulness:CurrentUsefulness}
+    resources:CurrentResources,usefulness:CurrentUsefulness,dependsOn:CurrentDependsOn}
     if(ISOArray.length==0){
       this.allMappingDataSortedByISO.push(this.temporaryMappingElement)
       if(this.YamlObject[dim][subDim][task]['isImplemented']){
