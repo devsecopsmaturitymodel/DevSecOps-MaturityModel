@@ -19,7 +19,7 @@ import { MappingComponent } from './component/mapping/mapping.component';
 import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
 import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
-import { DependencyGraphComponent } from './dependency-graph/dependency-graph.component';
+import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
 
 
 @NgModule({

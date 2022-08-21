@@ -1,7 +1,7 @@
 
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ymlService } from '../service/yaml-parser/yaml-parser.service';
+import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import { DependencyGraphComponent } from './dependency-graph.component';
 
 describe('DependencyGraphComponent', () => {
