@@ -27,6 +27,7 @@ export interface taskDescription {
   time:number
   dependsOn:string[]
   implementation:implementation[]
+  usefulness:number
 }
 
 @Component({
@@ -38,10 +39,10 @@ export class TaskDescriptionComponent implements OnInit {
 
   currentTask: taskDescription={dimension:'',subDimension:'',level:'',taskName:'',description:'',risk:'',
                                 measure:'',implementatonGuide:'',samm:[''],iso:[''],knowledge:-1,resources:-1,
-                              time:-1,dependsOn:[], implementation:[]}
+                              time:-1,dependsOn:[], implementation:[],usefulness:-1}
 
   YamlObject:any;
-  TimeAndResourceLabels:string[]=[];
+  GeneralLabels:string[]=[];
   KnowledgeLabels:string[]=[];
   rowIndex:number=0;
   markdown:md = md()
@@ -62,7 +63,7 @@ export class TaskDescriptionComponent implements OnInit {
     // Function sets label data 
     this.yaml.getJson().subscribe((data) => {
       this.YamlObject = data;
-      this.TimeAndResourceLabels=this.YamlObject['strings']['en']['labels']
+      this.GeneralLabels=this.YamlObject['strings']['en']['labels']
       this.KnowledgeLabels=this.YamlObject['strings']['en']['KnowledgeLabels']
     })
      //gets value from generated folder 
@@ -77,6 +78,13 @@ export class TaskDescriptionComponent implements OnInit {
       try{
         data['meta']
         this.currentTask.implementatonGuide=this.defineStringValues(data['meta']['implementationGuide'],'')
+      }
+      catch{
+        console.log('Meta does not exist')
+      }
+      try{
+        data['usefulness']
+        this.currentTask.usefulness=this.defineIntegerValues(data['usefulness'],-1)
       }
       catch{
         console.log('Meta does not exist')

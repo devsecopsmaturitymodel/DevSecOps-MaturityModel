@@ -44,8 +44,16 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <p>Knowledge: {{this.KnowledgeLabels[this.currentTask.knowledge]}} </p>
-            <p>Time: {{this.TimeAndResourceLabels[this.currentTask.knowledge]}} </p>
-            <p>Resources: {{this.TimeAndResourceLabels[this.currentTask.knowledge]}}</p>
+            <p>Time: {{this.GeneralLabels[this.currentTask.time]}} </p>
+            <p>Resources: {{this.GeneralLabels[this.currentTask.resources]}}</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="currentTask.usefulness!=-1">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Usefulness</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>{{this.GeneralLabels[this.currentTask.usefulness]}} </p>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>

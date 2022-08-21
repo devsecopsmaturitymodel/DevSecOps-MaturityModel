@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as d3 from 'd3'
-import { ymlService } from '../service/yaml-parser/yaml-parser.service';
+import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
 
 export interface graphNodes{
   id:string
