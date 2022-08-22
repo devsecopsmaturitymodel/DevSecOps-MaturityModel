@@ -38,7 +38,8 @@ export interface MappingElementSortedByISO {
   resources:string;
   time:string;
   usefulness:string;
-  dependsOn:string[]
+  dependsOn:string[];
+  implementation:any;
 }
 
 
@@ -177,59 +178,28 @@ export class MappingComponent implements OnInit {
   setValueandAppendToDatasetandSortbyISO(dim:string,subDim:string,task:string){
     var ISOArray:string[]=this.YamlObject[dim][subDim][task]['references']['iso27001-2017']
     var SAMMArray:string[]=this.YamlObject[dim][subDim][task]['references']['samm2']
+    var CurrentDescription:string=this.YamlObject[dim][subDim][task]['description']
+    var CurrentRisk:string=this.YamlObject[dim][subDim][task]['risk']
+    var CurrentMeasure:string=this.YamlObject[dim][subDim][task]['measure']
+    var CurrentKnowledge:string=this.knowledgeLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['knowledge']]
+    var CurrentTime:string=this.generalLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['time']]
+    var CurrentResources:string=this.generalLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['resources']]
+    var CurrentUsefulness:string=this.generalLabels[this.YamlObject[dim][subDim][task]['usefulness']]
+    var CurrentDependsOn:string[]=this.YamlObject[dim][subDim][task]['dependsOn']
     try{
-      var CurrentDescription:string=this.YamlObject[dim][subDim][task]['description']
+      var CurrentImplementation:any=JSON.stringify(this.YamlObject[dim][subDim][task]['implementation'])
+      if(CurrentImplementation.length==2){
+        CurrentImplementation=""
+      }
     }
     catch{
-      var CurrentDescription:string=""
+      CurrentImplementation=""
     }
-    try{
-      var CurrentRisk:string=this.YamlObject[dim][subDim][task]['risk']
-    }
-    catch{
-      var CurrentRisk:string=""
-    }
-    try{
-      var CurrentMeasure:string=this.YamlObject[dim][subDim][task]['measure']
-    }
-    catch{
-      var CurrentMeasure:string=""
-    }
-    try{
-      var CurrentKnowledge:string=this.knowledgeLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['knowledge']]
-      
-    }
-    catch{
-      var CurrentKnowledge:string=""
-    }
-    try{
-      
-      var CurrentTime:string=this.generalLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['time']]
-    }
-    catch{
-      var CurrentTime:string=""
-    }
-    try{
-      var CurrentResources:string=this.generalLabels[this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['resources']]
-    }
-    catch{
-      var CurrentResources:string=""
-    }
-    try{
-      var CurrentUsefulness:string=this.generalLabels[this.YamlObject[dim][subDim][task]['usefulness']]
-    }
-    catch{
-      var CurrentUsefulness:string=""
-    }
-    try{
-      var CurrentDependsOn:string[]=this.YamlObject[dim][subDim][task]['dependsOn']
-    }
-    catch{
-      var CurrentDependsOn:string[]=[]
-    }
+    
+    
     this.temporaryMappingElement={"dimension":dim,"subDimension":subDim,"taskName":task,"ISO":"","samm2":SAMMArray,
     description:CurrentDescription,risk:CurrentRisk,measure:CurrentMeasure,knowledge:CurrentKnowledge,time:CurrentTime,
-    resources:CurrentResources,usefulness:CurrentUsefulness,dependsOn:CurrentDependsOn}
+    resources:CurrentResources,usefulness:CurrentUsefulness,dependsOn:CurrentDependsOn,implementation:CurrentImplementation}
     if(ISOArray.length==0){
       this.allMappingDataSortedByISO.push(this.temporaryMappingElement)
       if(this.YamlObject[dim][subDim][task]['isImplemented']){
@@ -385,15 +355,15 @@ export class MappingComponent implements OnInit {
 
   exportToExcel(){
     /* passing the table id */
-    //let element = document.getElementById("excel-table");
-    //const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+    let element = document.getElementById("excel-table");
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
  
     /* generate workbook and add the worksheet */
-    //const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    //XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
  
     /* save to file */  
-    //XLSX.writeFile(wb, "Planned-Activities-Sorted-By-ISO.xlsx");
-    console.log(this.allMappingDataSortedByISO)
+    XLSX.writeFile(wb, "Planned-Activities-Sorted-By-ISO.xlsx");
+    //console.log(this.allMappingDataSortedByISO)
   }
 }
