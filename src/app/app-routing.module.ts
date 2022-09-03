@@ -7,18 +7,17 @@ import { MatrixComponent } from './component/matrix/matrix.component';
 import { TaskDescriptionComponent } from './component/task-description/task-description.component';
 import { UsageComponent } from './component/usage/usage.component';
 
-
 const routes: Routes = [
-  {path: '', component: MatrixComponent},
-  {path: 'circular-heatmap', component: CircularHeatmapComponent},
-  {path: 'task-description', component: TaskDescriptionComponent},
-  {path: 'mapping', component: MappingComponent},
-  {path: 'usage', component:UsageComponent},
-  {path: 'about', component:AboutUsComponent}
+  { path: '', component: MatrixComponent },
+  { path: 'circular-heatmap', component: CircularHeatmapComponent },
+  { path: 'task-description', component: TaskDescriptionComponent },
+  { path: 'mapping', component: MappingComponent },
+  { path: 'usage', component: UsageComponent },
+  { path: 'about', component: AboutUsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import {parse} from 'yamljs';
-
+import { parse } from 'yamljs';
 
 @Injectable()
 export class ymlService {
+  private URI: string = './';
 
-  private URI:string='./';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-    
-  }
-
-  setURI(URI_used:string){
-    this.URI=URI_used
+  setURI(URI_used: string) {
+    this.URI = URI_used;
   }
 
   public getJson(): Observable<any> {
@@ -26,9 +22,7 @@ export class ymlService {
       })
       .pipe(
         // Map Yaml to JavaScript Object
-        map((yamlString) => parse(yamlString))
+        map(yamlString => parse(yamlString))
       );
   }
-  
-
 }

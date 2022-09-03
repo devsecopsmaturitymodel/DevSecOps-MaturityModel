@@ -1,15 +1,21 @@
 <mat-drawer-container class="main-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer #drawer class="example-sidenav" mode="side">
     <a routerLink="/"><app-logo></app-logo></a>
     <app-sidenav-buttons></app-sidenav-buttons>
-    </mat-drawer>
-  
-    <div class="sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()" color="primary">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <a class="github-fork-ribbon" href="https://github.com/wurstbrot/DevSecOps-MaturityModel" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a> 
-    </div>
-    <mat-divider></mat-divider>
-    <router-outlet></router-outlet>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()" color="primary">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a
+      class="github-fork-ribbon"
+      href="https://github.com/wurstbrot/DevSecOps-MaturityModel"
+      data-ribbon="Fork me on GitHub"
+      title="Fork me on GitHub"
+      >Fork me on GitHub</a
+    >
+  </div>
+  <mat-divider></mat-divider>
+  <router-outlet></router-outlet>
 </mat-drawer-container>

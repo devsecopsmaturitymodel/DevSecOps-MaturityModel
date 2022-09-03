@@ -9,10 +9,9 @@ describe('CircularHeatmapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[ymlService,HttpClient,HttpHandler],
-      declarations: [ CircularHeatmapComponent ]
-    })
-    .compileComponents();
+      providers: [ymlService, HttpClient, HttpHandler],
+      declarations: [CircularHeatmapComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

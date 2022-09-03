@@ -20,7 +20,6 @@ import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +34,6 @@ import { DependencyGraphComponent } from './component/dependency-graph/dependenc
     UsageComponent,
     AboutUsComponent,
     DependencyGraphComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -43,10 +41,9 @@ import { DependencyGraphComponent } from './component/dependency-graph/dependenc
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
-    
+    HttpClientModule,
   ],
   providers: [ymlService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

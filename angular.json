@@ -100,9 +100,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "DSOMM"
+  "defaultProject": "DSOMM",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

@@ -13,12 +13,10 @@ describe('MatrixComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[ymlService,HttpClient,HttpHandler
-        ,HttpClientTestingModule],
-      imports:[RouterTestingModule],
-      declarations: [ MatrixComponent,MatAutocomplete]
-    })
-    .compileComponents();
+      providers: [ymlService, HttpClient, HttpHandler, HttpClientTestingModule],
+      imports: [RouterTestingModule],
+      declarations: [MatrixComponent, MatAutocomplete],
+    }).compileComponents();
   });
 
   beforeEach(() => {

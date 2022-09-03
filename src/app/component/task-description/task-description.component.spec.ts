@@ -11,11 +11,10 @@ describe('TaskDescriptionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[ymlService,HttpClient,HttpHandler],
-      imports:[RouterTestingModule],
-      declarations: [ TaskDescriptionComponent ]
-    })
-    .compileComponents();
+      providers: [ymlService, HttpClient, HttpHandler],
+      imports: [RouterTestingModule],
+      declarations: [TaskDescriptionComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

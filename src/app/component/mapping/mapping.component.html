@@ -1,14 +1,11 @@
 <div class="content">
-  
   <app-top-header section="Mappings"></app-top-header>
   <div class="filterandsort">
     <mat-form-field class="filterSection" appearance="fill">
       <mat-label>Filter</mat-label>
       <mat-chip-list #chipList aria-label="Filter" color="primary">
-        <mat-chip
-          *ngFor="let chip of currentChip"
-          (removed)="remove(chip)">
-          {{chip}}
+        <mat-chip *ngFor="let chip of currentChip" (removed)="remove(chip)">
+          {{ chip }}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
@@ -18,11 +15,15 @@
           [formControl]="FilterCtrl"
           [matAutocomplete]="auto"
           [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
       </mat-chip-list>
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-        <mat-option *ngFor="let filter of filteredChips | async" [value]="filter">
-          {{filter}}
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)">
+        <mat-option
+          *ngFor="let filter of filteredChips | async"
+          [value]="filter">
+          {{ filter }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -35,44 +36,56 @@
       </section>
       <section class="sort-section">
         <mat-button-toggle-group [formControl]="SortCtrl" aria-label="Sort By">
-          <mat-button-toggle value="sortByTask" (click)="changeTableBasedOnCurrentSort()">Activity</mat-button-toggle>
-          <mat-button-toggle value="sortBySAMM" (click)="changeTableBasedOnCurrentSort()">SAMM</mat-button-toggle>
-          <mat-button-toggle value="sortByISO" (click)="changeTableBasedOnCurrentSort()">ISO</mat-button-toggle>
+          <mat-button-toggle
+            value="sortByTask"
+            (click)="changeTableBasedOnCurrentSort()"
+            >Activity</mat-button-toggle
+          >
+          <mat-button-toggle
+            value="sortBySAMM"
+            (click)="changeTableBasedOnCurrentSort()"
+            >SAMM</mat-button-toggle
+          >
+          <mat-button-toggle
+            value="sortByISO"
+            (click)="changeTableBasedOnCurrentSort()"
+            >ISO</mat-button-toggle
+          >
         </mat-button-toggle-group>
       </section>
     </div>
   </div>
-  
-  
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 matrix-table" >
-
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 matrix-table">
     <ng-container matColumnDef="dimension">
-      <th mat-header-cell *matHeaderCellDef> Dimension </th>
-      <td mat-cell *matCellDef="let element"> {{element.dimension}} </td>
+      <th mat-header-cell *matHeaderCellDef>Dimension</th>
+      <td mat-cell *matCellDef="let element">{{ element.dimension }}</td>
     </ng-container>
 
     <ng-container matColumnDef="subDimension">
-      <th mat-header-cell *matHeaderCellDef> Sub-Dimension </th>
-      <td mat-cell *matCellDef="let element"> {{element.subDimension}} </td>
+      <th mat-header-cell *matHeaderCellDef>Sub-Dimension</th>
+      <td mat-cell *matCellDef="let element">{{ element.subDimension }}</td>
     </ng-container>
 
     <ng-container matColumnDef="taskName">
-      <th mat-header-cell *matHeaderCellDef> Activity </th>
-      <td mat-cell *matCellDef="let element"> {{element.taskName}} </td>
+      <th mat-header-cell *matHeaderCellDef>Activity</th>
+      <td mat-cell *matCellDef="let element">{{ element.taskName }}</td>
     </ng-container>
 
     <ng-container matColumnDef="samm2">
       <ng-container *ngIf="currentlySortingBySAMM">
-        <th mat-header-cell *matHeaderCellDef> SAMM </th>
-        <td mat-cell *matCellDef="let element"> {{element.samm2}} </td>
+        <th mat-header-cell *matHeaderCellDef>SAMM</th>
+        <td mat-cell *matCellDef="let element">{{ element.samm2 }}</td>
       </ng-container>
-      <ng-container *ngIf="currentlySortingByTask || currentlySortingByISO"> 
-        <th mat-header-cell *matHeaderCellDef> SAMM </th>
-        <td mat-cell *matCellDef="let element"> 
+      <ng-container *ngIf="currentlySortingByTask || currentlySortingByISO">
+        <th mat-header-cell *matHeaderCellDef>SAMM</th>
+        <td mat-cell *matCellDef="let element">
           <ul>
             <li *ngFor="let sammElement of element.samm2">
-              {{sammElement}}
+              {{ sammElement }}
             </li>
           </ul>
         </td>
@@ -81,16 +94,16 @@
 
     <ng-container matColumnDef="ISO">
       <ng-container *ngIf="currentlySortingByISO">
-        <th mat-header-cell *matHeaderCellDef> ISO </th>
-        <td mat-cell *matCellDef="let element"> {{element.ISO}} </td>
+        <th mat-header-cell *matHeaderCellDef>ISO</th>
+        <td mat-cell *matCellDef="let element">{{ element.ISO }}</td>
       </ng-container>
 
-      <ng-container *ngIf="currentlySortingByTask || currentlySortingBySAMM"> 
-        <th mat-header-cell *matHeaderCellDef> ISO </th>
+      <ng-container *ngIf="currentlySortingByTask || currentlySortingBySAMM">
+        <th mat-header-cell *matHeaderCellDef>ISO</th>
         <td mat-cell *matCellDef="let element">
           <ul>
             <li *ngFor="let ISOElement of element.ISO">
-              {{ISOElement}}
+              {{ ISOElement }}
             </li>
           </ul>
         </td>
@@ -98,7 +111,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
   <table id="excel-table" class="hide">
@@ -119,21 +132,20 @@
       <th>ISO</th>
     </tr>
     <tr *ngFor="let item of allMappingDataSortedByISO">
-      <td>{{item.dimension}}</td>
-      <td>{{item.subDimension}}</td>
-      <td>{{item.taskName}}</td>
-      <td>{{item.description}}</td>
-      <td>{{item.risk}}</td>
-      <td>{{item.measure}}</td>
-      <td>{{item.knowledge}}</td>
-      <td>{{item.resources}}</td>
-      <td>{{item.time}}</td>
-      <td>{{item.usefulness}}</td>
-      <td>{{item.implementation}}</td>
-      <td>{{item.dependsOn}}</td>
-      <td>{{item.samm2}}</td>
-      <td>{{item.ISO}}</td>
+      <td>{{ item.dimension }}</td>
+      <td>{{ item.subDimension }}</td>
+      <td>{{ item.taskName }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.risk }}</td>
+      <td>{{ item.measure }}</td>
+      <td>{{ item.knowledge }}</td>
+      <td>{{ item.resources }}</td>
+      <td>{{ item.time }}</td>
+      <td>{{ item.usefulness }}</td>
+      <td>{{ item.implementation }}</td>
+      <td>{{ item.dependsOn }}</td>
+      <td>{{ item.samm2 }}</td>
+      <td>{{ item.ISO }}</td>
     </tr>
   </table>
 </div>
-  

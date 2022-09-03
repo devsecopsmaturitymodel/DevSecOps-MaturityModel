@@ -11,10 +11,9 @@ describe('MappingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[ymlService,HttpClient,HttpHandler],
-      declarations: [ MappingComponent,MatAutocomplete ]
-    })
-    .compileComponents();
+      providers: [ymlService, HttpClient, HttpHandler],
+      declarations: [MappingComponent, MatAutocomplete],
+    }).compileComponents();
   });
 
   beforeEach(() => {
