@@ -174,7 +174,7 @@ export class MappingComponent implements OnInit {
     //console.log(this.temp)
   }
 
-  //Sets dataSource value sorted by ISO
+  //Sets dataSource value sorted by ISO - to also be used by download functionality
   setValueandAppendToDatasetandSortbyISO(dim:string,subDim:string,task:string){
     var ISOArray:string[]=this.YamlObject[dim][subDim][task]['references']['iso27001-2017']
     var SAMMArray:string[]=this.YamlObject[dim][subDim][task]['references']['samm2']
@@ -227,7 +227,7 @@ export class MappingComponent implements OnInit {
   }
 
   
-
+  // remong filter chip
   remove(chip: string): void {
     const index = this.currentChip.indexOf(chip);
     //console.log(fruit)
@@ -237,6 +237,7 @@ export class MappingComponent implements OnInit {
     this.changeTableBasedOnCurrentFilter()
   }
 
+  //adding filter chip
   selected(event: MatAutocompleteSelectedEvent): void {
     this.currentChip.push(event.option.viewValue);
     this.changeTableBasedOnCurrentFilter()
@@ -354,15 +355,15 @@ export class MappingComponent implements OnInit {
   }
 
   exportToExcel(){
-    /* passing the table id */
+    //passing the table id 
     let element = document.getElementById("excel-table");
     const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
  
-    /* generate workbook and add the worksheet */
+    //generate workbook and add the worksheet 
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
  
-    /* save to file */  
+    //save to file 
     XLSX.writeFile(wb, "Planned-Activities-Sorted-By-ISO.xlsx");
     //console.log(this.allMappingDataSortedByISO)
   }
