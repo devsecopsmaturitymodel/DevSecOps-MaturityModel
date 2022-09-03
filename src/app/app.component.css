@@ -17,3 +17,6 @@
     padding: 20px;
   }
   
+  .github-fork-ribbon:before { 
+    background-color: #333; 
+  }
