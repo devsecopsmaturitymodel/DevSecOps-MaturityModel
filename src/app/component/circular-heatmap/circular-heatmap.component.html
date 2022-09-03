@@ -1,35 +1,43 @@
 <div id="cont" class="container-fluid text-center">
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-6">
-        <div id="chart" class="heatmapClass">
-          <mat-card class="example-card" *ngIf="showTaskCard">
-            <mat-card-title-group>
-              <mat-card-title>{{cardHeader}}</mat-card-title>
-              <mat-card-subtitle>{{cardSubheader}}</mat-card-subtitle>
-            </mat-card-title-group>
-            <mat-card-content *ngFor="let task of tasksData;index as i">
-              <div *ngIf="task.ifTaskDone; then trueBlock else falseBlock"></div>
-              <p>
-                <ng-template #trueBlock>
-                  <mat-checkbox (click)="this.toggleCheckbox(i)" [checked]="true" color="primary">
-                    {{task["taskName"]}}
-                  </mat-checkbox>
-                </ng-template>
-                <ng-template #falseBlock>
-                  <mat-checkbox (click)="this.toggleCheckbox(i)" [checked]="false" color="primary">
-                    {{task["taskName"]}}
-                  </mat-checkbox>
-                </ng-template>
-              </p>
-            </mat-card-content>
-          </mat-card>
-          <button mat-raised-button  class="buttonClass" (click)="SaveEditedYAMLfile()">Download edited YAML file</button>
-        </div>  
-      </div>
-      <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div id="chart" class="heatmapClass">
+        <mat-card class="example-card" *ngIf="showTaskCard">
+          <mat-card-title-group>
+            <mat-card-title>{{ cardHeader }}</mat-card-title>
+            <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
+          </mat-card-title-group>
+          <mat-card-content *ngFor="let task of tasksData; index as i">
+            <div *ngIf="task.ifTaskDone; then trueBlock; else falseBlock"></div>
+            <p>
+              <ng-template #trueBlock>
+                <mat-checkbox
+                  (click)="this.toggleCheckbox(i)"
+                  [checked]="true"
+                  color="primary">
+                  {{ task['taskName'] }}
+                </mat-checkbox>
+              </ng-template>
+              <ng-template #falseBlock>
+                <mat-checkbox
+                  (click)="this.toggleCheckbox(i)"
+                  [checked]="false"
+                  color="primary">
+                  {{ task['taskName'] }}
+                </mat-checkbox>
+              </ng-template>
+            </p>
+          </mat-card-content>
+        </mat-card>
+        <button
+          mat-raised-button
+          class="buttonClass"
+          (click)="SaveEditedYAMLfile()">
+          Download edited YAML file
+        </button>
       </div>
     </div>
+    <div class="col-md-3"></div>
   </div>
-  
+</div>

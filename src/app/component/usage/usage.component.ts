@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-usage',
   templateUrl: './usage.component.html',
-  styleUrls: ['./usage.component.css']
+  styleUrls: ['./usage.component.css'],
 })
-export class UsageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class UsageComponent {
+  constructor() {}
 }

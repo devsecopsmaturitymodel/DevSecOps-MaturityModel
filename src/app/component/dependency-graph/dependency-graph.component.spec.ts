@@ -1,4 +1,3 @@
-
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
@@ -10,10 +9,9 @@ describe('DependencyGraphComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[HttpClient,ymlService,HttpHandler],
-      declarations: [ DependencyGraphComponent ]
-    })
-    .compileComponents();
+      providers: [HttpClient, ymlService, HttpHandler],
+      declarations: [DependencyGraphComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
