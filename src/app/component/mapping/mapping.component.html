@@ -4,7 +4,7 @@
     <mat-form-field class="filterSection" appearance="fill">
       <mat-label>Filter</mat-label>
       <mat-chip-list #chipList aria-label="Filter" color="primary">
-        <mat-chip *ngFor="let chip of currentChip" (removed)="remove(chip)">
+        <mat-chip *ngFor="let chip of currentChip" (removed)="removeChip(chip)">
           {{ chip }}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
@@ -19,7 +19,7 @@
       </mat-chip-list>
       <mat-autocomplete
         #auto="matAutocomplete"
-        (optionSelected)="selected($event)">
+        (optionSelected)="addChip($event)">
         <mat-option
           *ngFor="let filter of filteredChips | async"
           [value]="filter">

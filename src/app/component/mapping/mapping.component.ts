@@ -320,10 +320,9 @@ export class MappingComponent implements OnInit {
     //console.log(this.temp)
   }
 
-  // remong filter chip
-  remove(chip: string): void {
+  // remove filter chip
+  removeChip(chip: string): void {
     const index = this.currentChip.indexOf(chip);
-    //console.log(fruit)
     if (index >= 0) {
       this.currentChip.splice(index, 1);
     }
@@ -331,7 +330,7 @@ export class MappingComponent implements OnInit {
   }
 
   //adding filter chip
-  selected(event: MatAutocompleteSelectedEvent): void {
+  addChip(event: MatAutocompleteSelectedEvent): void {
     this.currentChip.push(event.option.viewValue);
     this.changeTableBasedOnCurrentFilter();
   }
@@ -344,38 +343,47 @@ export class MappingComponent implements OnInit {
     );
   }
 
+  //check sort value and change table data accordingly
+  checkSortValueAndChangeTableData(
+    taskData: any,
+    ISOData: any,
+    SAMMData: any
+  ): void {
+    if (this.currentlySortingByTask) {
+      this.dataSource = taskData;
+    } else if (this.currentlySortingByISO) {
+      this.dataSource = ISOData;
+    } else {
+      this.dataSource = SAMMData;
+    }
+  }
+
   changeTableBasedOnCurrentFilter() {
     if (this.currentChip.length > 1 || this.currentChip.length == 0) {
       // both planned and performed actvities are selected
 
       //Check current sort value
-      if (this.currentlySortingByTask) {
-        this.dataSource = this.allMappingDataSortedByTask;
-      } else if (this.currentlySortingByISO) {
-        this.dataSource = this.allMappingDataSortedByISO;
-      } else {
-        this.dataSource = this.allMappingDataSortedBySAMM;
-      }
+      this.checkSortValueAndChangeTableData(
+        this.allMappingDataSortedByTask,
+        this.allMappingDataSortedByISO,
+        this.allMappingDataSortedBySAMM
+      );
     } else if (this.currentChip[0] == 'Planned Activities') {
       // planned actvities shows planned data
 
       //Check current sort value
-      if (this.currentlySortingByTask) {
-        this.dataSource = this.plannedMappingDataSortedByTask;
-      } else if (this.currentlySortingByISO) {
-        this.dataSource = this.plannedMappingDataSortedByISO;
-      } else {
-        this.dataSource = this.plannedMappingDataSortedBySAMM;
-      }
+      this.checkSortValueAndChangeTableData(
+        this.plannedMappingDataSortedByTask,
+        this.plannedMappingDataSortedByISO,
+        this.plannedMappingDataSortedBySAMM
+      );
     } else {
       //Check current sort value
-      if (this.currentlySortingByTask) {
-        this.dataSource = this.performedMappingDataSortedByTask;
-      } else if (this.currentlySortingByISO) {
-        this.dataSource = this.performedMappingDataSortedByISO;
-      } else {
-        this.dataSource = this.performedMappingDataSortedBySAMM;
-      }
+      this.checkSortValueAndChangeTableData(
+        this.performedMappingDataSortedByTask,
+        this.performedMappingDataSortedByISO,
+        this.performedMappingDataSortedBySAMM
+      );
     }
 
     this.chipInput.nativeElement.value = '';
