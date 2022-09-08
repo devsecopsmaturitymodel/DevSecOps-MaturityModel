@@ -1,120 +1,139 @@
-dimension:
-  name: Build and Deployment
-  subdimension:
-    level-1:
-    - difficultyOfImplementation:
-        knowledge: 3
-        resources: 2
-        time: 1
-      implementation: []
-      iso27001-2017:
-      - 12.6.1
-      - 12.5.1
-      - 14.2.5
-      level: 1
+---
+Build and Deployment:
+  Patch Management:
+    A patch policy is defined:
+      risk: Vulnerabilities in running containers stay for long and might get exploited.
       measure: A patch policy for all artifacts (e.g. in images) is defined. How often
         is an image rebuilt?
-      name: A patch policy is defined
-      risk:
-      - Vulnerabilities in running containers stay for long and might get exploited.
-      samm2: O-EM-1-B
-      usefulness: 4
-    - difficultyOfImplementation:
-        knowledge: 2
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 1
         resources: 2
-        time: 2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dependabot
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/jenkins
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.5
+      usefulness: 4
       level: 1
+      implementation: []
+      references:
+        samm2:
+        - O-EM-1-B
+        iso27001-2017:
+        - 12.6.1
+        - 12.5.1
+        - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Automated PRs for patches:
+      risk: Known vulnerabilities components might stay for long and get exploited,
+        even when a patch is available.
       measure: Fast patching of third party component is needed. The DevOps way is
         to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virtualized
         operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
         as Code/GitOps (e.g. argocd)</li> </ul>
-      name: Automated PRs for patches
-      risk:
-      - Known vulnerabilities components might stay for long and get exploited, even
-        when a patch is available.
-      samm2: O-EM-1-B
-      usefulness: 5
-    level-2:
-    - difficultyOfImplementation:
-        knowledge: 3
-        resources: 2
+      difficultyOfImplementation:
+        knowledge: 2
         time: 2
-      implementation: []
-      iso27001-2017:
-      - 12.6.1
-      level: 2
+        resources: 2
+      usefulness: 5
+      level: 1
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jenkins
+      references:
+        samm2:
+        - O-EM-1-B
+        iso27001-2017:
+        - 12.6.1
+        - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Nightly build of images (base images):
+      risk: Vulnerabilities in running containers stay for too long and might get
+        exploited.
       measure: Custom base images are getting build at least nightly. In case the
         packages in the base image e.g. <i>centos</i> has changed, the build server
         triggers the build of depending images.
-      name: Nightly build of images (base images)
-      risk:
-      - Vulnerabilities in running containers stay for too long and might get exploited.
-      samm2: O-EM-1-B
-      usefulness: 3
-    - difficultyOfImplementation:
+      difficultyOfImplementation:
         knowledge: 3
+        time: 2
         resources: 2
-        time: 4
-      implementation: []
-      iso27001-2017:
-      - 12.6.1
+      usefulness: 3
       level: 2
+      implementation: []
+      references:
+        samm2:
+        - O-EM-1-B
+        iso27001-2017:
+        - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Reduction of the attack surface:
+      risk: Components, dependencies, files or file access rights might have vulnerabilities,
+        but the they are not needed.
+      measure: Removal of unneeded components, dependencies, files or file access
+        rights. For container images the usage of distroless images is recommended.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 3
+      level: 2
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/distroless
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fedora-coreos
+      references:
+        samm2:
+        - I-SB-2
+        iso27001-2017:
+        - hardening is missing in ISO 27001
+        - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Usage of a maximum lifetime for images:
+      risk: Vulnerabilities in images of running containers stay for too long and
+        might get exploited. Long running containers have potential memory leaks.
+        A compromised container might get killed by restarting the container (e.g.
+        in case the attacker has not reached the persistence layer).
       measure: A short maximum lifetime for images is defined, e.g. 30 days. The project
         images, based on the nightly builded images, are deployed at leased once within
         the defined lifetime. Third Party images are deployed at leased once within
         the defined lifetime.
-      name: Usage of a maximum lifetime for images
-      risk:
-      - Vulnerabilities in images of running containers stay for too long and might
-        get exploited. Long running containers have potential memory leaks. A compromised
-        container might get killed by restarting the container (e.g. in case the attacker
-        has not reached the persistence layer).
-      samm2: O-EM-1-B
-      usefulness: 3
-    - difficultyOfImplementation:
+      difficultyOfImplementation:
         knowledge: 3
-        resources: 2
-        time: 3
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/distroless
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/fedora-coreos
-      iso27001-2017:
-      - hardening is missing in ISO 27001
-      - 14.2.1
-      level: 2
-      measure: Removal of unneeded components, dependencies, files or file access
-        rights. For container images the usage of distroless images is recommended.
-      name: Reduction of the attack surface
-      risk:
-      - Components, dependencies, files or file access rights might have vulnerabilities,
-        but the they are not needed.
-      samm2:
-      - I-SB-2
-      usefulness: 3
-    level-3: []
-    level-4:
-    - difficultyOfImplementation:
-        knowledge: 3
-        resources: 2
         time: 4
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sample-concept-1
-      iso27001-2017:
-      - 12.6.1
-      level: 4
-      measure: 'A good practice is to perform the build and deployment daily or even
-        just-in-time, when a new component (e.g. package) for the image is available.
-
-        '
-      name: Usage of a short maximum lifetime for images
-      risk:
-      - Vulnerabilities in running containers stay for too long and might get exploited.
-      samm2: O-EM-1-B
+        resources: 2
       usefulness: 3
-    name: Patch Management
+      level: 2
+      implementation: []
+      references:
+        samm2:
+        - O-EM-1-B
+        iso27001-2017:
+        - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Usage of a short maximum lifetime for images:
+      risk: Vulnerabilities in running containers stay for too long and might get
+        exploited.
+      measure: |
+        A good practice is to perform the build and deployment daily or even just-in-time, when a new component (e.g. package) for the image is available.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 4
+        resources: 2
+      usefulness: 3
+      level: 4
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sample-concept-1
+      references:
+        samm2:
+        - O-EM-2-B
+        iso27001-2017:
+        - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+...
