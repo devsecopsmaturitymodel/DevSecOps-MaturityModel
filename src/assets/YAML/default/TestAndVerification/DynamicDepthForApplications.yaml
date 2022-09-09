@@ -1,4 +1,214 @@
-dimension:
-  name: _yaml_references
-  subdimension:
-    name: tools
+---
+Test and Verification:
+  Dynamic depth for applications:
+    Coverage analysis:
+      risk: Parts of the service are not still covered.
+      measure: Check that there are no missing paths in the application with coverage-tools.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 5
+        resources: 3
+      usefulness: 4
+      level: 4
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-code-pulse
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - part of periodic review, PDCA
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Coverage of client side dynamic components:
+      risk: Parts of the service are not covered during the scan, because JavaScript
+        is not getting executed. Therefore, the co
+      measure: Usage of a spider which executes dynamic content like JavaScript, e.g.
+        via Selenium.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 4
+      level: 2
+      dependsOn:
+      - Usage of different roles
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 14.2.3
+        - 14.2.8
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ajax-spider
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Coverage of hidden endpoints:
+      risk: Hidden endpoints of the service are not getting tracked.
+      measure: Hidden endpoints are getting detected and included in the vulnerability
+        scan.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 5
+      level: 3
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/curl
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openapi
+      dependsOn:
+      - Usage of different roles
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Coverage of more input vectors:
+      risk: Parts of the service are not covered. For example specially formatted
+        or coded parameters are not getting detected as parameter (e.g. parameters
+        in REST-like URLs, parameters in JSON-Format or base64-coded parameters).
+      measure: Special parameter and special encodings are defined, so that they get
+        fuzzed by the used vulnerability scanners.
+      difficultyOfImplementation:
+        knowledge: 5
+        time: 5
+        resources: 1
+      usefulness: 4
+      level: 3
+      dependsOn:
+      - Usage of different roles
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+      implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Coverage of sequential operations:
+      risk: Sequential operations like workflows (e.g. login -> put products in the
+        basket
+      measure: Sequential operations are defined and checked by the vulnerability
+        scanner in the defined order.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 5
+      level: 3
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/curl
+      dependsOn:
+      - Usage of different roles
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 14.2.8
+        - 14.2.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Coverage of service to service communication:
+      risk: Service to service communication is not covered.
+      measure: Service to service communication is dumped and checked.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 5
+        resources: 2
+      usefulness: 3
+      level: 4
+      dependsOn:
+      - Simple Scan
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 14.2.3
+        - 14.2.8
+      implementation: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Simple Scan:
+      risk: Deficient security tests are performed. Simple vulnerabilities are not
+        detected and missing security configurations (e.g. headers) are not set. Fast
+        feedback is not given.
+      measure: A simple scan is performed to get a security baseline. In case the
+        test is done in under 10 minutes, it should be part of the build and deployment
+        process.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 1
+      usefulness: 2
+      level: 1
+      dependsOn:
+      - Defined build process
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-zap
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/arachni
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - 14.2.3
+        - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Usage of different roles:
+      risk: Parts of the service are not covered during the scan, because a login
+        is not performed.
+      measure: Integration of authentication with all roles used in the service.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 2
+      level: 2
+      dependsOn:
+      - Simple Scan
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 14.2.3
+        - 14.2.8
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/zest
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Usage of multiple scanners:
+      risk: Each vulnerability scanner has different opportunities. By using just
+        one scanner, some vulnerabilities might not be found.
+      measure: Usage of multiple spiders and scanner enhance the coverage and the
+        vulnerabilities.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 5
+      usefulness: 1
+      level: 3
+      dependsOn:
+      - Usage of different roles
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-securecodebox
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 12.6.1
+        - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+...

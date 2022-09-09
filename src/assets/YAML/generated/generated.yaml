@@ -898,9 +898,9 @@ Culture and Organization:
       - name: '[Don''t Forget EVIL U'
         tags: []
         url: https://www.owasp.org/index.php/Agile_Software_Development
-        description: "[Don''t Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
+        description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
           and [Practical Security Stories and Security Tasks for Agile Development
-          Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+          Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
       references:
         samm2:
         - D-TA-2-B
@@ -928,9 +928,9 @@ Culture and Organization:
       - name: '[Don''t Forget EVIL U'
         tags: []
         url: https://www.owasp.org/index.php/Agile_Software_Development
-        description: "[Don''t Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
+        description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
           and [Practical Security Stories and Security Tasks for Agile Development
-          Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+          Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
       dependsOn:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards
@@ -1382,7 +1382,7 @@ Culture and Organization:
         samm2:
         - V-ST-1-B
         iso27001-2017: []
-      isImplemented: true
+      isImplemented: false
       evidence: ""
       comments: ""
     Security consulting on request:

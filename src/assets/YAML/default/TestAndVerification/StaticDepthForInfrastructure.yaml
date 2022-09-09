@@ -1,234 +1,280 @@
-dimension:
-  name: Test and Verification
-  subdimension:
-    level-1:
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 2
-        time: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/trufflehog
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/go-pillage-registrie
-      iso27001-2017:
-      - vcs usage is not explicitly covered by ISO 27001 - too specific
-      - 9.4.3
-      - 10.1.2
-      level: 1
-      measure: Test for secrets in code, container images and history
-      name: Stored Secrets
-      risk:
-      - Stored secrets in git history, in container images or directly in code shouldn't
-        exists because they might be exposed to unauthorized parties.
-      samm2: V-ST-1-A
-      usefulness: 2
-    level-2:
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 2
-        time: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dive-to-inspect-a-co
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
-      level: 2
-      measure: Test virtualized environments for unsecured configurations.
-      name: Test of virtualized environments
-      risk:
-      - Virtualized environments (e.g. via <i>Container Images</i>) might contains
-        unsecure configurations.
-      samm2: V-ST-1-A
-      usefulness: 3
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 2
-        time: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dockerfile-with-hado
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/deployment-with-kube
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/dockerfilelint
-      iso27001-2017:
-      - system hardening, virtual environments are not explicitly covered by ISO 27001
-        - too specific
-      - 12.6.1
-      - 14.2.3
-      - 14.2.8
-      - 14.2.1
-      level: 2
-      measure: Test the definition of virtualized environments for unsecured configurations.
-      meta:
-        implementationGuide: For containier (images), test that the images are following
-          best practices like distroless or non-root.
-      name: Test the definition of virtualized environments
-      risk:
-      - The definition of virtualized environments (e.g. via <i>Dockerfile</i>) might
-        contain unsecure configurations.
-      samm2: V-ST-1-A
-      usefulness: 3
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 2
-        time: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kubesec
-      iso27001-2017:
-      - system hardening is not explicitly covered by ISO 27001 - too specific
-      - 12.6.1
-      - 14.2.3
-      - 14.2.8
-      level: 2
-      measure: Test the deployment configuration for virtualized environments for
-        unsecured configurations.
-      name: Test cluster deployment resources
-      risk:
-      - The deployment configuration (e.g. kubernetes deployment resources) might
-        contain unsecured configurations.
-      samm2: V-ST-1-A
-      usefulness: 3
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 1
-        time: 2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/kube-bench
-      iso27001-2017:
-      - system hardening is not explicitly covered by ISO 27001 - too specific
-      - 12.6.1
-      - 14.2.3
-      - 14.2.8
-      level: 2
-      measure: With the help of tools, the configuration of virtual environments are
-        tested.
-      name: Test the cloud configuration
-      risk:
-      - Standard hardening practices for cloud environments are not performed leading
-        to vulnerabilities.
-      samm2: V-ST-1-A
-      usefulness: 4
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 1
-        time: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.5
-      level: 2
-      measure: Check the image age of containers in production.
-      name: Check for image lifetime
-      risk:
-      - Old container images in production indicate that patch management is not performed
-        and therefore vulnerabilities might exists.
-      samm2: V-ST-1-A
-      usefulness: 2
-    level-3:
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 2
-        time: 2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/sigmahq
-      level: 3
+---
+Test and Verification:
+  Static depth for infrastructure:
+    Analyze logs:
+      risk: Not aware of attacks happening.
       measure: Check logs for keywords.
-      name: Analyze logs
-      risk:
-      - Not aware of attacks happening.
-      usefulness: 3
-    - difficultyOfImplementation:
-        knowledge: 3
-        resources: 1
-        time: 3
-      implementation: []
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.5
-      - 12.2.1
-      level: 3
-      measure: Check for new images of containers in production.
-      name: Check for new image version
-      risk:
-      - When a new version of an image is available, it might fix security vulnerabilities.
-      samm2: V-ST-2-A
-      usefulness: 2
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 2
-        time: 2
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clusterscanner
-      iso27001-2017:
-      - 12.2.1
-      level: 3
-      measure: Check for malware in components (e.g. container images, VM baseline
-        images, libraries).
-      name: Check for malware
-      risk:
-      - Third party might include  malware. Ether due to the maintainer (e.g. typo
-        squatting of an image name and using the wrong image) or by an attacker on
-        behalf of the maintainer with stolen credentials.
-      samm2: V-ST-2-A
-      usefulness: 3
-    level-4:
-    - dependsOn:
-      - Usage of a maximum lifetime for images
       difficultyOfImplementation:
         knowledge: 2
+        time: 2
         resources: 2
-        time: 5
+      usefulness: 3
+      level: 3
       implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/anchore-io
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clair
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openscap
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/vuls
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.1
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sigmahq
+      references:
+        samm2: []
+        iso27001-2017: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Check for image lifetime:
+      risk: Old container images in production indicate that patch management is not
+        performed and therefore vulnerabilities might exists.
+      measure: Check the image age of containers in production.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 2
+      level: 2
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clusterscanner
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - 12.6.1
+        - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Check for known vulnerabilities:
+      risk: Known vulnerabilities in infrastructure components like container images
+        might get exploited.
+      measure: Check for known vulnerabilities
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
       level: 4
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-github-com-a
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/registries-like-quay
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Check for malware:
+      risk: Third party might include  malware. Ether due to the maintainer (e.g.
+        typo squatting of an image name and using the wrong image) or by an attacker
+        on behalf of the maintainer with stolen credentials.
+      measure: Check for malware in components (e.g. container images, VM baseline
+        images, libraries).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 3
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clusterscanner
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 12.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Check for new image version:
+      risk: When a new version of an image is available, it might fix security vulnerabilities.
+      measure: Check for new images of containers in production.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 2
+      level: 3
+      implementation: []
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 12.6.1
+        - 14.2.5
+        - 12.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Correlate known vulnerabilities in infrastructure with new image versions:
+      risk: TODO.
+      measure: TODO
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 5
+        resources: 4
+      usefulness: 1
+      level: 4
+      dependsOn:
+      - Usage of a maximum lifetime for images
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anchore-io
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clair
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openscap
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/vuls
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - 12.6.1
+        - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Stored Secrets:
+      risk: Stored secrets in git history, in container images or directly in code
+        shouldn't exists because they might be exposed to unauthorized parties.
+      measure: Test for secrets in code, container images and history
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 2
+      level: 1
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trufflehog
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/go-pillage-registrie
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 9.4.3
+        - 10.1.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Test cluster deployment resources:
+      risk: The deployment configuration (e.g. kubernetes deployment resources) might
+        contain unsecured configurations.
+      measure: Test the deployment configuration for virtualized environments for
+        unsecured configurations.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 3
+      level: 2
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/kubesec
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - system hardening is not explicitly covered by ISO 27001 - too specific
+        - 12.6.1
+        - 14.2.3
+        - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Test of infrastructure components for known vulnerabilities:
+      risk: Infrastructure components might have vulnerabilities.
       measure: Test for known vulnerabilities in infrastructure components. Often,
         the only way to respond to known vulnerabilities in operating system packages
         is to accept the risk and wait for a patch. As the patch needs to be applied
         fast when it is available, this activity depends on 'Usage of a maximum life
         for images'.
-      name: Test of infrastructure components for known vulnerabilities
-      risk:
-      - Infrastructure components might have vulnerabilities.
-      samm2: V-ST-1-A
-      usefulness: 1
-    - dependsOn:
-      - Usage of a maximum lifetime for images
       difficultyOfImplementation:
         knowledge: 2
-        resources: 4
         time: 5
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/anchore-io
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/clair
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/openscap
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/vuls
-      iso27001-2017:
-      - 12.6.1
-      - 14.2.1
-      level: 4
-      measure: TODO
-      name: Correlate known vulnerabilities in infrastructure with new image versions
-      risk:
-      - TODO.
-      samm2: V-ST-1-A
+        resources: 2
       usefulness: 1
-    - difficultyOfImplementation:
-        knowledge: 2
-        resources: 1
-        time: 1
-      implementation:
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/https-github-com-a
-      - $ref: data/dimensions-subdimensions-activities/implementations.yaml#/implementations/registries-like-quay
-      iso27001-2017:
-      - 12.6.1
       level: 4
-      measure: Check for known vulnerabilities
-      name: Check for known vulnerabilities
-      risk:
-      - Known vulnerabilities in infrastructure components like container images might
-        get exploited.
-      samm2: V-ST-2-A
+      dependsOn:
+      - Usage of a maximum lifetime for images
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anchore-io
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clair
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openscap
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/vuls
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - 12.6.1
+        - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Test of virtualized environments:
+      risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains
+        unsecure configurations.
+      measure: Test virtualized environments for unsecured configurations.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 3
+      level: 2
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dive-to-inspect-a-co
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clusterscanner
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017: []
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Test the cloud configuration:
+      risk: Standard hardening practices for cloud environments are not performed
+        leading to vulnerabilities.
+      measure: With the help of tools, the configuration of virtual environments are
+        tested.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
       usefulness: 4
-    name: Static depth for infrastructure
+      level: 2
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/kube-bench
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - system hardening is not explicitly covered by ISO 27001 - too specific
+        - 12.6.1
+        - 14.2.3
+        - 14.2.8
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Test the definition of virtualized environments:
+      risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>)
+        might contain unsecure configurations.
+      measure: Test the definition of virtualized environments for unsecured configurations.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 3
+      level: 2
+      meta:
+        implementationGuide: For containier (images), test that the images are following
+          best practices like distroless or non-root.
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dockerfile-with-hado
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/deployment-with-kube
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dockerfilelint
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - system hardening, virtual environments are not explicitly covered by ISO
+          27001 - too specific
+        - 12.6.1
+        - 14.2.3
+        - 14.2.8
+        - 14.2.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+...
