@@ -18,12 +18,12 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: registry.hub.docker.com
-          username: ${{ secrets.HUB_USERNAME }}
+          username: wurstbrot
           password: ${{ secrets.HUB_TOKEN }}
       - name: create and push an image
         run: |
           if [ "${GITHUB_REF##*/}" == "master" ]; then
-            VERSION="3.0.${GITHUB_RUN_NUMBER}"
+            VERSION="3.0.0-${GITHUB_RUN_NUMBER}"
           else
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
