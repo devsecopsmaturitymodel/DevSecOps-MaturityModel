@@ -143,7 +143,7 @@ Multilanguage support is not given currently and not planned.
 
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro)
 
-[![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
+[![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
 
 
 # Donations
