@@ -38,16 +38,19 @@ if (ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
         $dimensionsAggregated=$dimensions;
     }
 
-    foreach ($dimensions as $dimension => $subdimensions) {
+    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
         ksort($subdimensions);
-
         foreach ($subdimensions as $subdimension => $elements) {
-            if (substr($subdimension, 0, 1) == "_")
+            if(sizeof($elements) == 0) {
+                echo "unsetting $subdimension\n";
+                unset($dimensionsAggregated[$dimension][$subdimension]);
+                    continue;
+            }
+            if (substr($subdimension, 0, 1) == "_") {
                 continue;
+            }
+
             foreach ($elements as $activityName => $activity) {
-                if(!array_key_exists("assessment", $activity)) {
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName]['assessment'] = "";
-                }
                 if (!array_key_exists("level", $activity)) {
                     echo "'$activityName' is not complete!";
                     echo "<pre>";
@@ -58,7 +61,12 @@ if (ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
             }
         }
     }
-
+    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
+        if(sizeof($subdimensions) == 0) {
+            echo "unsetting $dimension\n";
+            unset($dimensionsAggregated[$dimension]);
+        }
+    }
 
     resolve_json_ref($dimensionsAggregated);
 
