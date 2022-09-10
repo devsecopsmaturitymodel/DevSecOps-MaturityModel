@@ -30,7 +30,7 @@ jobs:
           fi
           docker build -t wurstbrot/dsomm-yaml-generation:latest -f Dockerfile-yaml .
           docker push wurstbrot/dsomm-yaml-generation:latest
-          docker tag wurstbrot/dsomm-yaml-generation:latest wurstbrot/dsomm:${VERSION}
+          docker tag wurstbrot/dsomm-yaml-generation:latest wurstbrot/dsomm-yaml-generation:${VERSION}
           docker push wurstbrot/dsomm-yaml-generation:${VERSION}
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
