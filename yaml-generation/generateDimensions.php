@@ -2,77 +2,79 @@
 
 require_once "functions.php";
 
-if (ENFORCE_DATA_GENERATION_DURING_RUNTIME) {
-    $files = glob("src/assets/YAML/default/*/*.yaml");
-    $dimensions=array();
-    foreach ($files as $filename) {
-        //echo "Found $filename";
-        if (preg_match("/_meta.yaml/", $filename)) continue;
-        $dimension = getDimensions($filename);
-        if (array_key_exists("_yaml_references", $dimension)) {
-            unset($dimension['_yaml_references']);
-        }
-        $dimensions = array_merge_recursive($dimensions, $dimension);
+$files = glob("src/assets/YAML/default/*/*.yaml");
+$dimensions=array();
+foreach ($files as $filename) {
+    //echo "Found $filename";
+    if (preg_match("/_meta.yaml/", $filename)) continue;
+    $dimension = getDimensions($filename);
+    if (array_key_exists("_yaml_references", $dimension)) {
+        unset($dimension['_yaml_references']);
     }
-
-    $files = glob("src/assets/YAML/custom/*/*.yaml");
-    $dimensionsCustom=array();
-    $dimensionsAggregated=array();
-    foreach ($files as $filename) {
-        //echo "Found $filename";
-        $dimensionCustom = getDimensions($filename);
-        $dimensionsCustom = array_merge_recursive($dimensionsCustom, $dimensionCustom);
-    }
-    if (sizeof($files) > 0) {
-        $dimensions = array_merge_recursive_ex($dimensions, $dimensionsCustom);
-        foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
-            if (!array_key_exists($dimension, $dimensionsAggregated)) $dimensionsAggregated[$dimension] = array();
-            if (!array_key_exists($subdimension, $dimensionsAggregated[$dimension])) $dimensionsAggregated[$dimension][$subdimension] = array();
-            foreach ($activities as $activityName => $activity) {
-                if (isActivityExisting($dimensionsCustom, $activityName)) {
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName] = $activity;
-                }
-            }
-        }
-    } else {
-        $dimensionsAggregated=$dimensions;
-    }
-
-    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
-        ksort($subdimensions);
-        foreach ($subdimensions as $subdimension => $elements) {
-            if(sizeof($elements) == 0) {
-                echo "unsetting $subdimension\n";
-                unset($dimensionsAggregated[$dimension][$subdimension]);
-                    continue;
-            }
-            if (substr($subdimension, 0, 1) == "_") {
-                continue;
-            }
-
-            foreach ($elements as $activityName => $activity) {
-                if (!array_key_exists("level", $activity)) {
-                    echo "'$activityName' is not complete!";
-                    echo "<pre>";
-                    var_dump($activity);
-                    echo "</pre>";
-                    exit;
-                }
-            }
-        }
-    }
-    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
-        if(sizeof($subdimensions) == 0) {
-            echo "unsetting $dimension\n";
-            unset($dimensionsAggregated[$dimension]);
-        }
-    }
-
-    resolve_json_ref($dimensionsAggregated);
-
-    $dimensionsString = yaml_emit($dimensionsAggregated);
-    file_put_contents("src/assets/YAML/generated/generated.yaml", $dimensionsString);
+    $dimensions = array_merge_recursive($dimensions, $dimension);
 }
+
+$files = glob("src/assets/YAML/custom/*/*.yaml");
+$dimensionsCustom=array();
+$dimensionsAggregated=array();
+foreach ($files as $filename) {
+    //echo "Found $filename";
+    $dimensionCustom = getDimensions($filename);
+    $dimensionsCustom = array_merge_recursive($dimensionsCustom, $dimensionCustom);
+}
+if (sizeof($files) > 0) {
+    $dimensions = array_merge_recursive_ex($dimensions, $dimensionsCustom);
+    foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
+        if (!array_key_exists($dimension, $dimensionsAggregated)) $dimensionsAggregated[$dimension] = array();
+        if (!array_key_exists($subdimension, $dimensionsAggregated[$dimension])) $dimensionsAggregated[$dimension][$subdimension] = array();
+        foreach ($activities as $activityName => $activity) {
+            if (isActivityExisting($dimensionsCustom, $activityName)) {
+                $dimensionsAggregated[$dimension][$subdimension][$activityName] = $activity;
+            }
+        }
+    }
+} else {
+    $dimensionsAggregated=$dimensions;
+}
+
+foreach ($dimensionsAggregated as $dimension => $subdimensions) {
+    ksort($subdimensions);
+    foreach ($subdimensions as $subdimension => $elements) {
+        if(sizeof($elements) == 0) {
+            echo "unsetting $subdimension\n";
+            unset($dimensionsAggregated[$dimension][$subdimension]);
+                continue;
+        }
+        if (substr($subdimension, 0, 1) == "_") {
+            continue;
+        }
+
+        foreach ($elements as $activityName => $activity) {
+            if(array_key_exists("evidence", $activity) && $activity["evidence"] != "" && IS_IMPLEMENTED_WHEN_EVIDENCE) {
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["isImplemented"] = true;
+            }
+            if (!array_key_exists("level", $activity)) {
+                echo "'$activityName' is not complete!";
+                echo "<pre>";
+                var_dump($activity);
+                echo "</pre>";
+                exit;
+            }
+        }
+    }
+}
+foreach ($dimensionsAggregated as $dimension => $subdimensions) {
+    if(sizeof($subdimensions) == 0) {
+        echo "unsetting $dimension\n";
+        unset($dimensionsAggregated[$dimension]);
+    }
+}
+
+resolve_json_ref($dimensionsAggregated);
+
+$dimensionsString = yaml_emit($dimensionsAggregated);
+file_put_contents("src/assets/YAML/generated/generated.yaml", $dimensionsString);
+
 
 
 /**

@@ -8,4 +8,4 @@ docker run --rm --interactive --tty   --volume $PWD/:/app   --user $(id -u):$(id
     --prefer-dist
 
 cd ..
-docker run --rm --volume $PWD/:/app php:apache-buster bash -c 'apt-get update && apt-get -y dist-upgrade && apt-get -y install apt-utils libyaml-dev wget && pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml && cd /app/ && ENFORCE_DATA_GENERATION_DURING_RUNTIME=true php yaml-generation/generateDimensions.php'
+docker run --rm --volume $PWD/:/app php:apache-buster bash -c 'apt-get update && apt-get -y dist-upgrade && apt-get -y install apt-utils libyaml-dev wget && pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml && cd /app/ && php yaml-generation/generateDimensions.php'
