@@ -180,7 +180,7 @@ Test and Verification:
       comments: ""
     Test of client side components with known vulnerabilities:
       risk: Client side components might have vulnerabilities.
-      measure: Tests for known vulnerabilities in components of the frontend are performed.
+      measure: Tests for known vulnerabilities in components via Software Composition Analysis of the frontend are performed.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -192,6 +192,7 @@ Test and Verification:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
       references:
         samm2:
         - V-ST-2-A
