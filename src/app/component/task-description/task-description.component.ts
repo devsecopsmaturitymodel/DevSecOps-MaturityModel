@@ -27,6 +27,10 @@ export interface taskDescription {
   dependsOn: string[];
   implementation: implementation[];
   usefulness: number;
+  evidence: string;
+  assessment: string;
+  comments: string;
+  isImplemented: boolean;
 }
 
 @Component({
@@ -52,6 +56,10 @@ export class TaskDescriptionComponent implements OnInit {
     dependsOn: [],
     implementation: [],
     usefulness: -1,
+    assessment: '',
+    evidence: '',
+    comments: '',
+    isImplemented: false,
   };
 
   YamlObject: any;
@@ -152,6 +160,19 @@ export class TaskDescriptionComponent implements OnInit {
       this.currentTask.implementation = this.defineImplementationObject(
         data['implementation']
       );
+
+      this.currentTask.evidence = this.defineStringValues(data['evidence'], '');
+
+      this.currentTask.comments = this.defineStringValues(data['comments'], '');
+
+      this.currentTask.assessment = this.defineStringValues(
+        data['assessment'],
+        ''
+      );
+      this.currentTask.isImplemented = this.defineBooleanValues(
+        data['isImplemented'],
+        false
+      );
     });
   }
 
@@ -161,6 +182,17 @@ export class TaskDescriptionComponent implements OnInit {
   ): string {
     try {
       return this.markdown.render(dataToCheck);
+    } catch {
+      return valueOfDataIfUndefined;
+    }
+  }
+
+  defineBooleanValues(
+    dataToCheck: boolean,
+    valueOfDataIfUndefined: boolean
+  ): boolean {
+    try {
+      return dataToCheck;
     } catch {
       return valueOfDataIfUndefined;
     }
@@ -187,6 +219,7 @@ export class TaskDescriptionComponent implements OnInit {
       return valueOfDataIfUndefined;
     }
   }
+
   defineImplementationObject(dataToCheck: implementation[]): implementation[] {
     var dataToReturn: implementation[] = [];
     for (var data in dataToCheck) {

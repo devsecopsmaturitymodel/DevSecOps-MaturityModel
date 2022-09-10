@@ -39,6 +39,9 @@ export interface MappingElementSortedByISO {
   time: string;
   usefulness: string;
   dependsOn: string[];
+  evidence: string;
+  comments: string;
+  assessment: string;
   implementation: any;
 }
 
@@ -261,6 +264,16 @@ export class MappingComponent implements OnInit {
       ];
     var CurrentUsefulness: string =
       this.generalLabels[this.YamlObject[dim][subDim][task]['usefulness']];
+
+    var CurrentEvidence: string =
+      this.YamlObject[dim][subDim][task]['evidence'];
+
+    var CurrentComments: string =
+      this.YamlObject[dim][subDim][task]['comments'];
+
+    var CurrentAssessment: string =
+      this.YamlObject[dim][subDim][task]['assessment'];
+
     var CurrentDependsOn: string[] =
       this.YamlObject[dim][subDim][task]['dependsOn'];
     try {
@@ -289,6 +302,9 @@ export class MappingComponent implements OnInit {
       usefulness: CurrentUsefulness,
       dependsOn: CurrentDependsOn,
       implementation: CurrentImplementation,
+      evidence: CurrentEvidence,
+      comments: CurrentComments,
+      assessment: CurrentAssessment,
     };
     if (ISOArray.length == 0) {
       this.allMappingDataSortedByISO.push(this.temporaryMappingElement);

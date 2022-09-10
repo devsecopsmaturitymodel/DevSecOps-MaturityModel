@@ -36,7 +36,13 @@
     <!-- Dimension Column -->
     <ng-container matColumnDef="Dimension">
       <th mat-header-cell *matHeaderCellDef>Dimension</th>
-      <td mat-cell *matCellDef="let element">{{ element.Dimension }}</td>
+      <td mat-cell *matCellDef="let element">
+        <img
+          src="assets/images/{{ element.Dimension }}.png"
+          height="40px"
+          alt="" />
+        {{ element.Dimension }}
+      </td>
     </ng-container>
 
     <!-- Sub Dimension Column -->

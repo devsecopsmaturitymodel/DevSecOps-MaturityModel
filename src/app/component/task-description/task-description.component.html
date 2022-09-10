@@ -3,10 +3,12 @@
     {{ currentTask.dimension }} -> {{ currentTask.subDimension }}:
     {{ currentTask.taskName }}
   </h1>
+
   <div class="example-action-buttons">
     <button mat-raised-button (click)="openall()">Expand All</button>
     <button mat-raised-button (click)="closeall()">Collapse All</button>
   </div>
+
   <mat-accordion multi="true">
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
@@ -16,6 +18,7 @@
       </mat-expansion-panel-header>
       <p [innerHTML]="currentTask.description"></p>
     </mat-expansion-panel>
+
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -24,6 +27,7 @@
       </mat-expansion-panel-header>
       <p [innerHTML]="currentTask.risk"></p>
     </mat-expansion-panel>
+
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -32,6 +36,7 @@
       </mat-expansion-panel-header>
       <p [innerHTML]="currentTask.measure"></p>
     </mat-expansion-panel>
+
     <mat-expansion-panel *ngIf="currentTask.implementatonGuide">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -40,6 +45,7 @@
       </mat-expansion-panel-header>
       <p [innerHTML]="currentTask.implementatonGuide"></p>
     </mat-expansion-panel>
+
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -50,6 +56,7 @@
       <p>Time: {{ this.GeneralLabels[this.currentTask.time] }}</p>
       <p>Resources: {{ this.GeneralLabels[this.currentTask.resources] }}</p>
     </mat-expansion-panel>
+
     <mat-expansion-panel *ngIf="currentTask.usefulness !== -1">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -58,6 +65,25 @@
       </mat-expansion-panel-header>
       <p>{{ this.GeneralLabels[this.currentTask.usefulness] }}</p>
     </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>Evidence</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="currentTask.evidence"></p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>Assessment</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="currentTask.assessment"></p>
+    </mat-expansion-panel>
+
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -107,6 +133,7 @@
         </mat-accordion>
       </p>
     </mat-expansion-panel>
+
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -138,6 +165,18 @@
         </mat-accordion>
       </p>
     </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>Implemented</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div
+        *ngIf="currentTask.isImplemented; then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock> Implemented </ng-template>
+      <ng-template #elseBlock> Not Implemented </ng-template>
+    </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -148,6 +187,15 @@
         dimension="{{ currentTask.dimension }}"
         subDimension="{{ currentTask.subDimension }}"
         taskName="{{ currentTask.taskName }}"></app-dependency-graph>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>Comments</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="currentTask.comments"></p>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
