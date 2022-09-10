@@ -215,6 +215,9 @@ Test and Verification:
       - Defined build process
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dependency-che
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
       references:
         samm2:
         - V-ST-2-A
