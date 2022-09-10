@@ -9,6 +9,7 @@ RUN cd /var/www/html/yaml-generation && composer install \
 --no-scripts \
 --prefer-dist
 
+
 RUN pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml
 RUN cd /var/www/html && ENFORCE_DATA_GENERATION_DURING_RUNTIME=true php yaml-generation/generateDimensions.php
 CMD 'cd /var/www/html && ENFORCE_DATA_GENERATION_DURING_RUNTIME=true php yaml-generation/generateDimensions.php'
