@@ -35,7 +35,7 @@ Build and Deployment:
         - I-SB-2-A
         iso27001-2017:
         - 14.2.6
-      isImplemented: false
+      isImplemented: true
       evidence: ""
       comments: ""
       assessment: ""
@@ -3608,7 +3608,7 @@ Test and Verification:
         - zap
         description: |
           Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
-      isImplemented: false
+      isImplemented: true
       evidence: ""
       comments: ""
       assessment: ""
