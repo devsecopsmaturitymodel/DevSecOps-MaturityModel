@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
+import { Router, NavigationExtras } from '@angular/router';
 
 export interface taskSchema {
   taskName: string;
@@ -9,7 +10,8 @@ export interface taskSchema {
 }
 
 export interface cardSchema {
-  Name: string;
+  Dimension: string;
+  SubDimension: string;
   Level: string;
   'Done%': number;
   Task: taskSchema[];
@@ -21,16 +23,19 @@ export interface cardSchema {
   styleUrls: ['./circular-heatmap.component.css'],
 })
 export class CircularHeatmapComponent implements OnInit {
+  Routing: string = '/task-description';
+
   maxLevelOfTasks: number = -1;
   showTaskCard: boolean = false;
   cardHeader: string = '';
   cardSubheader: string = '';
+  currentDimension: string = '';
   tasksData: any[] = [];
   ALL_CARD_DATA: cardSchema[] = [];
   radial_labels: string[] = [];
   YamlObject: any;
   segment_labels: string[] = [];
-  constructor(private yaml: ymlService) {}
+  constructor(private yaml: ymlService, private router: Router) {}
 
   ngOnInit(): void {
     this.yaml.setURI('./assets/YAML/meta.yaml');
@@ -75,14 +80,16 @@ export class CircularHeatmapComponent implements OnInit {
               ]
             );
             var tempData: cardSchema = {
-              Name: '',
+              Dimension: '',
+              SubDimension: '',
               Level: '',
               'Done%': -1,
               Task: [],
             };
             var totalImplemented: number = 0;
             var totalTasks: number = 0;
-            tempData['Name'] = allSubDimensionInThisDimension[j];
+            tempData['Dimension'] = allDimensionNames[i];
+            tempData['SubDimension'] = allSubDimensionInThisDimension[j];
             tempData['Level'] = 'Level ' + (l + 1);
             for (var k = 0; k < allTaskInThisSubDimension.length; k++) {
               try {
@@ -116,7 +123,7 @@ export class CircularHeatmapComponent implements OnInit {
           }
         }
       }
-      console.log(this.ALL_CARD_DATA);
+      //console.log(this.ALL_CARD_DATA);
       this.loadCircularHeatMap(
         this.ALL_CARD_DATA,
         '#chart',
@@ -134,7 +141,7 @@ export class CircularHeatmapComponent implements OnInit {
     var cnt = 0;
     for (var i = 0; i < this.ALL_CARD_DATA.length; i++) {
       if (
-        this.ALL_CARD_DATA[i]['Name'] === this.cardHeader &&
+        this.ALL_CARD_DATA[i]['SubDimension'] === this.cardHeader &&
         this.ALL_CARD_DATA[i]['Level'] === this.cardSubheader
       ) {
         index = i;
@@ -187,7 +194,7 @@ export class CircularHeatmapComponent implements OnInit {
     );
     d3.selectAll(
       '#segment-' +
-        this.ALL_CARD_DATA[index]['Name'].replace(/ /g, '-') +
+        this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
         '-' +
         this.ALL_CARD_DATA[index]['Level'].replace(' ', '-')
     ).attr('fill', function (p) {
@@ -280,9 +287,11 @@ export class CircularHeatmapComponent implements OnInit {
         } catch {
           curr = d.srcElement.__data__;
         }
+        //console.log(curr);
+        _self.currentDimension = curr.Dimension;
         _self.cardSubheader = curr.Level;
         _self.tasksData = curr.Task;
-        _self.cardHeader = curr.Name;
+        _self.cardHeader = curr.SubDimension;
         _self.showTaskCard = true;
         //console.log(_self.tasksData)
       })
@@ -300,7 +309,7 @@ export class CircularHeatmapComponent implements OnInit {
         if (curr['Done%'] != -1) {
           d3.selectAll(
             '#segment-' +
-              curr.Name.replace(/ /g, '-') +
+              curr.SubDimension.replace(/ /g, '-') +
               '-' +
               curr.Level.replaceAll(' ', '-')
           ).attr('fill', 'yellow');
@@ -318,7 +327,7 @@ export class CircularHeatmapComponent implements OnInit {
         if (curr['Done%'] != -1) {
           d3.selectAll(
             '#segment-' +
-              curr.Name.replace(/ /g, '-') +
+              curr.SubDimension.replace(/ /g, '-') +
               '-' +
               curr.Level.replaceAll(' ', '-')
           ).attr('fill', function (p) {
@@ -333,7 +342,7 @@ export class CircularHeatmapComponent implements OnInit {
         } else {
           d3.selectAll(
             '#segment-' +
-              curr.Name.replace(/ /g, '-') +
+              curr.SubDimension.replace(/ /g, '-') +
               '-' +
               curr.Level.replaceAll(' ', '-')
           ).attr('fill', '#DCDCDC');
@@ -396,12 +405,12 @@ export class CircularHeatmapComponent implements OnInit {
           .append('path')
           // .attr("class","segment")
           .attr('class', function (d: any) {
-            return 'segment-' + d.Name.replace(/ /g, '-');
+            return 'segment-' + d.SubDimension.replace(/ /g, '-');
           })
           .attr('id', function (d: any) {
             return (
               'segment-' +
-              d.Name.replace(/ /g, '-') +
+              d.SubDimension.replace(/ /g, '-') +
               '-' +
               d.Level.replaceAll(' ', '-')
             );
@@ -550,15 +559,29 @@ export class CircularHeatmapComponent implements OnInit {
     console.log(this.ALL_CARD_DATA);
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
-        console.log(this.ALL_CARD_DATA[x]['Name']);
+        console.log(this.ALL_CARD_DATA[x]['SubDimension']);
         console.log(this.ALL_CARD_DATA[x]['Level']);
         d3.selectAll(
           '#segment-' +
-            this.ALL_CARD_DATA[x]['Name'].replace(/ /g, '-') +
+            this.ALL_CARD_DATA[x]['SubDimension'].replace(/ /g, '-') +
             '-' +
             this.ALL_CARD_DATA[x]['Level'].replace(' ', '-')
         ).attr('fill', '#DCDCDC');
       }
     }
+  }
+
+  navigate(dim: string, subdim: string, lvl: Number, taskName: string) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        dimension: dim,
+        subDimension: subdim,
+        level: lvl,
+        taskName: taskName,
+      },
+    };
+    //console.log(navigationExtras);
+    //console.log(this.ALL_CARD_DATA);
+    this.router.navigate([this.Routing], navigationExtras);
   }
 }

@@ -16,16 +16,26 @@
                   (click)="this.toggleCheckbox(i)"
                   [checked]="true"
                   color="primary">
-                  {{ task['taskName'] }}
                 </mat-checkbox>
+                <button
+                  (click)="
+                    navigate(currentDimension, cardHeader, 1, task['taskName'])
+                  ">
+                  {{ task['taskName'] }}
+                </button>
               </ng-template>
               <ng-template #falseBlock>
                 <mat-checkbox
                   (click)="this.toggleCheckbox(i)"
                   [checked]="false"
                   color="primary">
-                  {{ task['taskName'] }}
                 </mat-checkbox>
+                <button
+                  (click)="
+                    navigate(currentDimension, cardHeader, 1, task['taskName'])
+                  ">
+                  {{ task['taskName'] }}
+                </button>
               </ng-template>
             </p>
           </mat-card-content>

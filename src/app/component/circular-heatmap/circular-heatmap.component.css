@@ -7,9 +7,15 @@
     stroke: #000;
     shape-rendering: crispEdges;
   }
-.heatmapClass{
-  /*background-color: aquamarine;*/
+
+
+button{
+  background-color: white;
+  border: none;
+  text-align: left;
+  cursor:pointer;
 }
+
 .example-card {
   float: right;
   width:25%;
