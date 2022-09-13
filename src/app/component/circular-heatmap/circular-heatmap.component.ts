@@ -186,12 +186,6 @@ export class CircularHeatmapComponent implements OnInit {
       .domain([0, 1])
       .range(['white', 'green']);
 
-    this.loadCircularHeatMap(
-      this.ALL_CARD_DATA,
-      '#chart',
-      this.radial_labels,
-      this.segment_labels
-    );
     d3.selectAll(
       '#segment-' +
         this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
@@ -200,17 +194,6 @@ export class CircularHeatmapComponent implements OnInit {
     ).attr('fill', function (p) {
       return color(_self.ALL_CARD_DATA[index]['Done%']);
     });
-  }
-
-  SaveEditedYAMLfile() {
-    console.log(this.YamlObject);
-    let yamlStr = yaml.dump(this.YamlObject);
-    let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
-    var link = document.createElement('a');
-    link.href = window.URL.createObjectURL(file);
-    link.download = 'generated.yaml';
-    link.click();
-    link.remove();
   }
 
   loadCircularHeatMap(
@@ -583,5 +566,32 @@ export class CircularHeatmapComponent implements OnInit {
     //console.log(navigationExtras);
     //console.log(this.ALL_CARD_DATA);
     this.router.navigate([this.Routing], navigationExtras);
+  }
+  SaveEditedYAMLfile() {
+    //console.log(this.YamlObject);
+    let yamlStr = yaml.dump(this.YamlObject);
+    let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(file);
+    link.download = 'generated.yaml';
+    link.click();
+    link.remove();
+  }
+
+  ResetIsImplemented() {
+    for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
+      if (this.ALL_CARD_DATA[x]['Done%'] > 0) {
+        this.ALL_CARD_DATA[x]['Done%'] = 0;
+        for (var y = 0; y < this.ALL_CARD_DATA[x]['Task'].length; y++) {
+          this.ALL_CARD_DATA[x]['Task'][y]['ifTaskDone'] = false;
+        }
+        d3.selectAll(
+          '#segment-' +
+            this.ALL_CARD_DATA[x]['SubDimension'].replace(/ /g, '-') +
+            '-' +
+            this.ALL_CARD_DATA[x]['Level'].replace(' ', '-')
+        ).attr('fill', 'white');
+      }
+    }
   }
 }

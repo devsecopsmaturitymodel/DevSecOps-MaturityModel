@@ -22,9 +22,15 @@ button{
   margin:5%;
   padding: 20px;
 }
-.buttonClass{
+.downloadButtonClass{
   position: absolute;
   padding: 10px;
-  bottom: 12%;
+  bottom: 5%;
   right: 5%;
+}
+.resetButtonClass{
+  position: absolute;
+  padding: 10px;
+  bottom: 5%;
+  right: 18%;
 }
