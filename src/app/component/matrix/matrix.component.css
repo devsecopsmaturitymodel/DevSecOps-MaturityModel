@@ -11,22 +11,27 @@
     margin: 20px;
 }
 
+
+
 .mat-cell{
     padding: 20px;
-    width: 12.5%;  
-    max-width: 12.5%;  
+    width: 12.5%;
+    max-width: 17%;
     word-wrap: break-word;
 }
 
 .mat-header-cell{
     padding: 10px;
-    width: 12.5%;  
-    max-width: 12.5%;  
+    width: 12.5%;
+    max-width: 17%;
     word-wrap: break-word;
     font-size: 16px;  
     font-weight: bold;
 }
-
+.cdk-column-SubDimension,.cdk-column-Dimension{
+    width: 5%;
+    max-width: 9%;
+}
 button{
     background-color: white;
     border: none;
