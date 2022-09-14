@@ -7,18 +7,30 @@
     stroke: #000;
     shape-rendering: crispEdges;
   }
-.heatmapClass{
-  /*background-color: aquamarine;*/
+
+
+button{
+  background-color: white;
+  border: none;
+  text-align: left;
+  cursor:pointer;
 }
+
 .example-card {
   float: right;
   width:25%;
   margin:5%;
   padding: 20px;
 }
-.buttonClass{
+.downloadButtonClass{
   position: absolute;
   padding: 10px;
-  bottom: 12%;
+  bottom: 5%;
   right: 5%;
+}
+.resetButtonClass{
+  position: absolute;
+  padding: 10px;
+  bottom: 5%;
+  right: 18%;
 }

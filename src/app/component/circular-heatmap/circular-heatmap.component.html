@@ -16,25 +16,41 @@
                   (click)="this.toggleCheckbox(i)"
                   [checked]="true"
                   color="primary">
-                  {{ task['taskName'] }}
                 </mat-checkbox>
+                <button
+                  (click)="
+                    navigate(currentDimension, cardHeader, 1, task['taskName'])
+                  ">
+                  {{ task['taskName'] }}
+                </button>
               </ng-template>
               <ng-template #falseBlock>
                 <mat-checkbox
                   (click)="this.toggleCheckbox(i)"
                   [checked]="false"
                   color="primary">
-                  {{ task['taskName'] }}
                 </mat-checkbox>
+                <button
+                  (click)="
+                    navigate(currentDimension, cardHeader, 1, task['taskName'])
+                  ">
+                  {{ task['taskName'] }}
+                </button>
               </ng-template>
             </p>
           </mat-card-content>
         </mat-card>
         <button
           mat-raised-button
-          class="buttonClass"
+          class="downloadButtonClass"
           (click)="SaveEditedYAMLfile()">
           Download edited YAML file
+        </button>
+        <button
+          mat-raised-button
+          class="resetButtonClass"
+          (click)="ResetIsImplemented()">
+          Reset Implemented
         </button>
       </div>
     </div>
