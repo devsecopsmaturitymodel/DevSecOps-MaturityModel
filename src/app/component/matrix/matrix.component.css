@@ -11,8 +11,6 @@
     margin: 20px;
 }
 
-
-
 .mat-cell{
     padding: 20px;
     width: 12.5%;
@@ -28,7 +26,7 @@
     font-size: 16px;  
     font-weight: bold;
 }
-.cdk-column-SubDimension,.cdk-column-Dimension{
+.table-small-width{
     width: 5%;
     max-width: 9%;
 }
