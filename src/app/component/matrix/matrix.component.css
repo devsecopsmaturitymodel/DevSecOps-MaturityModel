@@ -26,10 +26,12 @@
     font-size: 16px;  
     font-weight: bold;
 }
+
 .table-small-width{
     width: 5%;
     max-width: 9%;
 }
+
 button{
     background-color: white;
     border: none;

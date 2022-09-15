@@ -35,7 +35,9 @@
     class="mat-elevation-z8 matrix-table">
     <!-- Dimension Column -->
     <ng-container matColumnDef="Dimension">
-      <th mat-header-cell *matHeaderCellDef class="table-small-width">Dimension</th>
+      <th mat-header-cell *matHeaderCellDef class="table-small-width">
+        Dimension
+      </th>
       <td mat-cell *matCellDef="let element" class="table-small-width">
         <img
           src="assets/images/{{ element.Dimension }}.png"
@@ -47,8 +49,12 @@
 
     <!-- Sub Dimension Column -->
     <ng-container matColumnDef="SubDimension">
-      <th mat-header-cell *matHeaderCellDef class="table-small-width">Sub-Dimension</th>
-      <td mat-cell *matCellDef="let element" class="table-small-width">{{ element.SubDimension }}</td>
+      <th mat-header-cell *matHeaderCellDef class="table-small-width">
+        Sub-Dimension
+      </th>
+      <td mat-cell *matCellDef="let element" class="table-small-width">
+        {{ element.SubDimension }}
+      </td>
     </ng-container>
 
     <div *ngFor="let lvl of lvlColumn; index as i">
