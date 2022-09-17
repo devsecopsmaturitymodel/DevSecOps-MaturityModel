@@ -14,14 +14,20 @@ export class ReadmeToHtmlComponent implements OnInit {
   toRender: string = '';
   constructor(private http: HttpClient) {}
 
-  async ngOnInit() {
+  ngOnInit(): void {
+    this.loadMarkdownFiles(this.MDFile);
+  }
+
+  async loadMarkdownFiles(MDFile: string): Promise<boolean> {
     try {
       this.markdownURI = await this.http
-        .get(this.MDFile, { responseType: 'text' })
+        .get(MDFile, { responseType: 'text' })
         .toPromise();
       this.toRender = this.markdown.render(this.markdownURI);
+      return true;
     } catch {
       this.toRender = 'Markdown file could not be found';
+      return false;
     }
   }
 }
