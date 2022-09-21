@@ -61,24 +61,7 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
-In case the application should be visible, but the "Implementation Level" shouldn't be changeable, consider the following code:
-
-```bash
-#!/bin/bash
-set -xe
-
-IMAGE_NAME="<YOUR ORGANIZATION>/dsomm:latest"
-
-rm -Rf DevSecOps-MaturityModel || true
-git clone git@github.com:wurstbrot/DevSecOps-MaturityModel.git
-cp  data/* DevSecOps-MaturityModel/data
-cp -a selectedData.csv DevSecOps-MaturityModel/selectedData.csv
-
-cd DevSecOps-MaturityModel
-docker build -t $IMAGE_NAME .
-docker push $IMAGE_NAME
-```
+For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
 
 This approach also allows teams to perform self assessment with changes tracked in a repository.
 
