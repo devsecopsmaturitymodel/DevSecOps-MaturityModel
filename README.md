@@ -57,7 +57,7 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 ## Container
 
 1. Install [Docker](https://www.docker.com)
-2. Run `docker run --rm -p 8080:80 wurstbrot/dsomm:latest
+2. Run `docker run --rm -p 8080:8080 wurstbrot/dsomm:latest
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
@@ -80,10 +80,8 @@ This approach also allows teams to perform self assessment with changes tracked 
 
 ```bash
 #!/bin/bash
-yum update -y
-yum install -y docker
 service docker start
-docker run -d -p 80:80 wurstbrot/dsomm:latest
+docker run -d -p 80:8080 wurstbrot/dsomm:latest
 ```
 
 ## Tests
