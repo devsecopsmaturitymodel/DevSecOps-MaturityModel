@@ -24,6 +24,7 @@ implementations:
   container-technologi:
     name: Container technologies and orchestration like Docker, Kubernetes
     tags: []
+    url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
   cwe25:
     name: CWE Top 25 Most Dangerous Software Weaknesses
     tags: ["documentation", "threat"]
@@ -53,6 +54,7 @@ implementations:
   webserver:
     name: Webserver
     tags: []
+    url: https://d3fend.mitre.org/dao/artifact/d3f:WebServer/
   rolling-update:
     name: rolling update
     tags: []
@@ -67,6 +69,7 @@ implementations:
   jenkins:
     name: Jenkins
     tags: []
+    url: https://www.jenkins.io/
   sample-concept-1:
     name: "Sample concept:  \n(1"
     tags: []
@@ -193,6 +196,7 @@ implementations:
     tags: []
     description: 'For example for Containers: Deny running containers as root, deny
       using advanced privileges, deny mounting of the hole filesystem, ...'
+    url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
   attack-matrix-cloud:
     name: Attack Matrix Cloud
     tags: [mitre]
@@ -214,15 +218,18 @@ implementations:
   istio:
     name: istio
     tags: []
+    url: https://istio.io/
   bridges:
     name: bridges
     tags: []
   firewalls:
     name: firewalls
     tags: []
+    url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
   open-policy-agent:
     name: Open Policy Agent
     tags: []
+    url: https://www.openpolicyagent.org/
   gitops:
     name: GitOps
     tags: []
@@ -238,18 +245,21 @@ implementations:
   jenkinsfile:
     name: Jenkinsfile
     tags: []
+    url: 
   seccomp:
     name: seccomp
     tags: []
   strace:
     name: strace
     tags: []
+    url: https://man7.org/linux/man-pages/man1/strace.1.html
   remove-direct-access:
     name: Remove direct access to infrastructure
     tags: []
   directory-service:
     name: Directory Service
     tags: []
+    url: https://d3fend.mitre.org/dao/artifact/d3f:DirectoryService/
   plugins:
     name: Plugins
     tags: []
@@ -268,21 +278,25 @@ implementations:
   http-basic-authentic:
     name: HTTP-Basic Authentication
     tags: []
+    url: https://d3fend.mitre.org/dao/artifact/d3f:WebAuthentication/
   vpn:
     name: VPN
     tags: []
+    url: https://d3fend.mitre.org/dao/artifact/d3f:VPN/
   for-applications-ch:
     name: 'For applications: Check default encoding'
     tags: []
   managing-secrets:
     name: managing secrets
     tags: []
+    url: https://d3fend.mitre.org/technique/d3f:CredentialHardening/
   crypto:
     name: crypto
     tags: []
   authentication:
     name: authentication
     tags: []
+    url: https://d3fend.mitre.org/dao/artifact/d3f:Authentication/
   rsyslog:
     name: rsyslog
     url: https://www.rsyslog.com/
@@ -294,9 +308,11 @@ implementations:
   fluentd:
     name: fluentd
     tags: [tool]
+    url: https://www.fluentd.org/
   bash:
     name: bash
     tags: [tool]
+    url: https://www.gnu.org/software/bash/
   owasp-logging-cheats:
     name: OWASP Logging CheatSheet
     url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
@@ -304,6 +320,7 @@ implementations:
   elk-stack:
     name: ELK-Stack
     tags: []
+    url: https://www.elastic.co/elk-stack
   https-ht-transpare:
     name: https://ht.transpare
     tags: []
@@ -312,15 +329,18 @@ implementations:
   prometheus:
     name: Prometheus
     tags: []
+    url: https://prometheus.io/
   collected:
     name: collected
     tags: []
   httpunit:
     name: HttpUnit
     tags: []
+    url: http://httpunit.sourceforge.net/
   junit:
     name: JUnit
     tags: [unittest]
+    url: https://junit.org/junit5/
   karma:
     name: Karma
     tags: []
@@ -346,11 +366,13 @@ implementations:
     description: 'At SAST (Static Application Security Testing): Server-side / client-side
       teams can easily be recorded. With microservice architecture individual microservices
       can be used usually Teams.'
+    url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
   dast:
     name: DAST
     tags: []
     description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
       are classified and can be assigned to server-side and client-side teams.'
+    url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
   owasp-defect-dojo:
     name: OWASP Defect Dojo
     tags: []
@@ -358,21 +380,26 @@ implementations:
   owasp-dependency-che:
     name: OWASP Dependency Check
     tags: []
+    url: https://owasp.org/www-project-dependency-check/
   logparser-jenkins-pl:
     name: LogParser Jenkins Plugins
     tags: []
   owasp-code-pulse:
     name: OWASP Code Pulse
     tags: []
+    url: https://www.owasp.org/index.php/OWASP_Code_Pulse
   ajax-spider:
     name: Ajax Spider
     tags: []
+    url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
   curl:
     name: cURL
     tags: []
+    url: https://curl.se/
   openapi:
-    name: OpenAPI
+    name: OpenAPI Specifications
     tags: []
+    url: https://spec.openapis.org/
   owasp-zap:
     name: OWASP Zap
     tags: [vulnerability, scanner]
@@ -381,6 +408,7 @@ implementations:
       The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
   arachni:
     name: Arachni
+    url: https://github.com/Arachni/arachni
   zest:
     name: Zest
     url: https://www.zaproxy.org/docs/desktop/addons/zest/
@@ -400,9 +428,11 @@ implementations:
   openvas:
     name: openVAS
     tags: []
+    url: https://www.openvas.org/
   htc-hydra:
     name: HTC Hydra
     tags: [password]
+    url: https://www.htc-cs.com/en/products/htc-hydra/
   netassert:
     name: netassert
     tags: []
@@ -410,6 +440,7 @@ implementations:
   nmap:
     name: nmap
     tags: []
+    url: https://nmap.org/
   owasp-amass:
     name: OWASP Amass
     tags: []
@@ -426,12 +457,14 @@ implementations:
   eslint:
     name: eslint
     tags: []
+    url: https://eslint.org/
   findsecuritybugs:
     name: FindSecurityBugs
     tags: []
   jsprime:
     name: jsprime
     tags: []
+    url: https://github.com/dpnishant/jsprime
   bdd-mobile-security:
     name: '[bdd-mobile-security'
     tags: []
@@ -473,12 +506,15 @@ implementations:
   anchore-io:
     name: Anchore.io
     tags: []
+    url: https://anchore.com/
   clair:
     name: Clair
     tags: []
+    url: https://github.com/quay/clair
   openscap:
     name: OpenSCAP
     tags: []
+    url: https://www.open-scap.org/
   vuls:
     name: Vuls
     tags: []
