@@ -17,7 +17,7 @@ Implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube
       references:
         samm2:
-        - V-ST-A-1-1
+        - V-ST-1-A
         iso27001-2017: []
       isImplemented: false
       evidence: ""
@@ -38,7 +38,7 @@ Implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
       references:
         samm2:
-        - V-ST-A-1-1
+        - V-ST-1-A
         iso27001-2017: []
       isImplemented: false
       evidence: ""
