@@ -33,8 +33,6 @@ Test and Verification:
         resources: 2
       usefulness: 2
       level: 3
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/httpunit
       references:
         samm2:
         - V-ST-3-B
