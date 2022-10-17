@@ -124,6 +124,7 @@ export class CircularHeatmapComponent implements OnInit {
         }
       }
       //console.log(this.ALL_CARD_DATA);
+      this.loadState();
       this.loadCircularHeatMap(
         this.ALL_CARD_DATA,
         '#chart',
@@ -194,6 +195,7 @@ export class CircularHeatmapComponent implements OnInit {
     ).attr('fill', function (p) {
       return color(_self.ALL_CARD_DATA[index]['Done%']);
     });
+    this.saveState();
   }
 
   loadCircularHeatMap(
@@ -592,6 +594,17 @@ export class CircularHeatmapComponent implements OnInit {
             this.ALL_CARD_DATA[x]['Level'].replace(' ', '-')
         ).attr('fill', 'white');
       }
+    }
+    this.saveState();
+  }
+
+  saveState() {
+    localStorage.setItem('dataset', JSON.stringify(this.ALL_CARD_DATA));
+  }
+  loadState() {
+    var content = localStorage.getItem('dataset');
+    if (content != null) {
+      this.ALL_CARD_DATA = JSON.parse(content);
     }
   }
 }

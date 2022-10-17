@@ -10,7 +10,7 @@ Attackers are intelligent and creative, equipped with new technologies and purpo
 
 # Usage
 
-Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/wurstbrot/DevSecOps-MaturityModel/) and run `startDocker.bash`.
+Go to https://dsomm.timo-pagel.de.
 
 * _matrix_ shows the dimensions, subdimensions and activities are described.
 * _Implementation Levels_ can be used to measure the current implementation level by clicking on the specific activities which have been performed.
@@ -23,6 +23,8 @@ In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describe
 
 In case you have evidence or review questions to gather evidence, you can add the attribute "evidence" to an activity which will be attached to an activity to provide it to your CISO or your customer's CISO.
 You can switch on to show open TODO's for evidence by changing IS_SHOW_EVIDENCE_TODO to true 'bib.php' `define(IS_SHOW_EVIDENCE_TODO, true);`
+
+This page uses the Browser's localStorage to store the state of the circular headmap.
 
 # Community
 
@@ -62,6 +64,8 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
    of the native docker installation)
 
 For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
+
+You can download your current state from the circular headmap and mount it again via `docker run  -p 8080:8080 -v /tmp/generated.yaml:/app/assets/YAML/generated/generated.yaml  wurstbrot/dsomm:latest`.
 
 This approach also allows teams to perform self assessment with changes tracked in a repository.
 
