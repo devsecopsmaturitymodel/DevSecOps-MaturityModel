@@ -119,10 +119,9 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Signing of artifacts:
-      risk: Unauthorized manipulation of artifacts might be difficult to spot. For
-        example, this may result in images with malicious code in the Docker registry.
+      risk: &execution-maliciuous Execution or usage of malicious code or data e.g. via executables, libraries or container images.
       measure: Digitally signing artifacts for all steps during the build and especially
-        docker images, helps to ensure their integrity.
+        docker images, helps to ensure their integrity and autenticity.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -144,7 +143,7 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Signing of code:
-      risk: Unauthorized manipulation of source code might be difficult to spot.
+      risk: *execution-maliciuous
       measure: Digitally signing commits helps to prevent unauthorized manipulation
         of source code.
       difficultyOfImplementation:

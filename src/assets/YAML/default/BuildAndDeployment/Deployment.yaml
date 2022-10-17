@@ -2,10 +2,10 @@
 Build and Deployment:
   Deployment:
     Blue/Green Deployment:
-      risk: A new artifacts version can have unknown defects.
-      measure: By having multiple production environments, a deployment can be performant
-        on the first environment to spot possible defects before it is deployment
-        in the production environment(s)
+      risk: A new artifact's version can have unknown defects.
+      measure: |-
+        Using a blue/green deployment strategy increases application availability
+        and reduces deployment risk by simplifying the rollback process if a deployment fails.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -30,11 +30,11 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Defined decommissioning process:
-      risk: Not used applications erode and are not maintained. As an evil actor,
-        I exploit known vulnerabilities in the not maintained applicaitons to perform
-        latteral movement within the organization.
-      measure: By having a clear decommissioning process, applicaitons not used are
-        not running anymore and can therefore not be explointed.
+      risk: >-
+        Unused applications are not maintained and may contain vulnerabilities.
+        Once exploited they can be used to attack other applications or
+        to perform lateral movements within the organization.
+      measure: A clear decommissioning process ensures the removal of unused applications.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -52,8 +52,7 @@ Build and Deployment:
     Defined deployment process:
       risk: Deployments without a defined process are error prone thus allowing old
         or untested artifact to be deployed.
-      measure: A defined deployment process significantly lowers the likelihood of
-        errors during the deployment phase.
+      measure: A defined deployment process ensures that .
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -80,7 +79,9 @@ Build and Deployment:
         listing running processes on the target system.'
       measure: |
         Configuration parameters are set for each environment not in the source code.
-        By using encryption, it is harder to read credentials , e.g. from the file system. Also, the usage of a credential management system can help protect credentials.
+        By using encryption, it is harder to read credentials,
+        e.g. from the file system.
+        Also, the usage of a credential management system can help protect credentials.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
