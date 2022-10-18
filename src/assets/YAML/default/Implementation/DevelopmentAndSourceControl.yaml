@@ -2,9 +2,9 @@
 Implementation:
   Development and Source Control:
     Local development linting & style checks performed:
-      risk: Creating and developing code that contains code smells and quality issues.
-      measure: "Integration of quality and linting plugins with interactive development
-        environment (IDEs)."
+      risk: Insecure or unmaintenable code base.
+      measure: >-
+        Integrate static code analysis tools in IDEs.
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -92,6 +92,34 @@ Implementation:
         - 12.1.1
         - 12.1.2
         - 14.2.2
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    MFA to SCM:
+      risk: Unauthorized access to source code.
+      measure: >-
+        Enforce Multi-Factor authentication to source code management platforms.
+        These policies can be implemented at repository level or organization level,
+        depending on the source code management system.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 4
+      level: 1
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/totp
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/smartcard
+      references:
+        samm2:
+        - O-EM-1-A
+        iso27001-2017:
+        - 5.17    # Authentication information
+        - 6.1.2   # Segregation of duties.
+        - 14.2.1  # Secure development policies.
+        d3f:
+        - Multi-factorAuthentication
       isImplemented: false
       evidence: ""
       comments: ""
