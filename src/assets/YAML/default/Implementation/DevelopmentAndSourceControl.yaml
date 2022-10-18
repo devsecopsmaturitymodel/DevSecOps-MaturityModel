@@ -4,7 +4,7 @@ Implementation:
     Local development linting & style checks performed:
       risk: Creating and developing code that contains code smells and quality issues.
       measure: "Integration of quality and linting plugins with interactive development
-        environment (IDEs). \n"
+        environment (IDEs)."
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -26,7 +26,7 @@ Implementation:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
       measure: |
-        Implement pre-commit validations to prevent secrets & other security issues being commit to source code.
+        Implement pre-commit checks to prevent secrets & other security issues being commit to source code.
       difficultyOfImplementation:
         knowledge: 4
         time: 4
@@ -44,9 +44,13 @@ Implementation:
       evidence: ""
       comments: ""
     Source Control Protection:
-      risk: Unapproved code in important branches like master.
-      measure: Enabled protections on the source code management system preventing
-        committed directly to an important branch.
+      risk: Intentional or accidental alterations in critical branches like master.
+      measure: >-
+        Define source code management system policies (e.g. branch protection rules,
+        mandatory code reviews, ...)
+        to ensure that changes to critical branches are only possible under defined conditions.
+        These policies can be implemented at repository level or organization level,
+        depending on the source code management system.
       difficultyOfImplementation:
         knowledge: 2
         time: 1
