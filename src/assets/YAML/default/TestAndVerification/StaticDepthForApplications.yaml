@@ -40,7 +40,7 @@ Test and Verification:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       references:
         samm2:
-        - V-ST-A-1-1
+        - V-ST-1-A
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3

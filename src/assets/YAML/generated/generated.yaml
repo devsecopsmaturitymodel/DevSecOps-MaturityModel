@@ -1754,7 +1754,7 @@ Implementation:
         - linting
       references:
         samm2:
-        - V-ST-A-1-1
+        - V-ST-1-A
         iso27001-2017: []
       isImplemented: false
       evidence: ""
@@ -1782,7 +1782,7 @@ Implementation:
         - pre-commit
       references:
         samm2:
-        - V-ST-A-1-1
+        - V-ST-1-A
         iso27001-2017: []
       isImplemented: false
       evidence: ""
@@ -3871,7 +3871,7 @@ Test and Verification:
         - sast
       references:
         samm2:
-        - V-ST-A-1-1
+        - V-ST-1-A
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
