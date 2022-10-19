@@ -640,4 +640,18 @@ implementations:
     tags: [authentication, authorization, secrets, infrastructure]
     url: https://github.com/hashicorp/vault
     description: |
-      A tool for secrets management, encryption as a service, and privileged access management
+      A tool for secrets management, encryption as a service, and privileged access management.
+  stoplight-spectral:
+    name: Spectral
+    tags: [linting, api, documentation]
+    url: https://github.com/stoplightio/spectral
+    description: |
+      Spectral is a flexible JSON/YAML linter built with extensibility in mind.
+      It uses JSON/YAML path rules to describe the problems you want to find.
+  api-oas-checker:
+    name: API OAS Checker
+    tags: [linting, api, documentation]
+    url: https://github.com/italia/api-oas-checker
+    description: |
+      A tool to check OpenAPI specifications using a comprehensive ruleset based
+      on API best practices.

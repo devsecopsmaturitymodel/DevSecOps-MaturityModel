@@ -43,6 +43,31 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
+    API design validation:
+      risk: Creation of insecure or non-compliant API.
+      measure: |
+        Design contract-first APIs using an interface description language such as OpenAPI, AsyncAPI or SOAP
+        and validate the specification using specific tools.
+        Checks should be integrated in IDEs and CI/CD pipelines.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stoplight-spectral
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - 8.25  # Secure development lifecycle
+        - 8.27  # Secure system architecture and engineering principles
+        - 8.28  # Secure coding
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Source Control Protection:
       risk: Intentional or accidental alterations in critical branches like master.
       measure: >-
