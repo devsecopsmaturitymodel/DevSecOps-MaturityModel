@@ -655,3 +655,27 @@ implementations:
     description: |
       A tool to check OpenAPI specifications using a comprehensive ruleset based
       on API best practices.
+  coveragepy:
+    name: Coverage.py
+    tags: [testing, coverage]
+    url: https://github.com/nedbat/coveragepy
+    description: |
+      Code coverage measurement for Python
+  github-dependabot:
+    name: Dependabot
+    tags: [dependency, dependency-management, scm]
+    url: https://github.com/dependabot/dependabot-core
+    description: |
+      Dependabot creates pull requests to keep your dependencies secure and up-to-date.
+  github-super-linter:
+    name: Super-Linter
+    tags: [linting, scm]
+    url: https://github.com/github/super-linter
+    description: |
+      Lint code bases to catch common errors and enforce code style
+  schemathesis:
+    name: Schemathesis
+    tags: [testing, api, documentation]
+    url: https://github.com/schemathesis/schemathesis
+    description: |
+      Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.

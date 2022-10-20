@@ -2,7 +2,7 @@
 Test and Verification:
   Dynamic depth for applications:
     Coverage analysis:
-      risk: Parts of the service are not still covered.
+      risk: Parts of the service are not still covered by tests.
       measure: Check that there are no missing paths in the application with coverage-tools.
       difficultyOfImplementation:
         knowledge: 4
@@ -12,6 +12,7 @@ Test and Verification:
       level: 4
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-code-pulse
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/coveragepy
       references:
         samm2:
         - V-ST-2-A
@@ -58,6 +59,8 @@ Test and Verification:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/curl
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openapi
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-zap
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/schemathesis
       dependsOn:
       - Usage of different roles
       references:
@@ -185,7 +188,7 @@ Test and Verification:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/zest
       isImplemented: false
-      evidence: ""
+      evidence: "For REST APIs, multiple OAuth2 scopes are used."
       comments: ""
     Usage of multiple scanners:
       risk: Each vulnerability scanner has different opportunities. By using just
