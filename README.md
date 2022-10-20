@@ -88,6 +88,11 @@ service docker start
 docker run -d -p 80:8080 wurstbrot/dsomm:latest
 ```
 
+# Information/Data Development 
+To test changes to the yaml-files, please run:
+```
+docker run -ti -v $(pwd)/src/assets/YAML/:/var/www/html/src/assets/YAML wurstbrot/dsomm-yaml-generation
+```
 # Credits
 
 * The dimension _Test and Verification_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
