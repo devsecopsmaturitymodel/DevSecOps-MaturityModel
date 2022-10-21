@@ -188,7 +188,8 @@ Test and Verification:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/zest
       isImplemented: false
-      evidence: "For REST APIs, multiple OAuth2 scopes are used."
+      assessment: "For REST APIs, multiple OAuth2 scopes are used."
+      evidence: ""
       comments: ""
     Usage of multiple scanners:
       risk: Each vulnerability scanner has different opportunities. By using just
