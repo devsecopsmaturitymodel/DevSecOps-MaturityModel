@@ -1,7 +1,7 @@
 ---
 Test and Verification:
   Static depth for applications:
-    Exclusion of source code duplicates:
+    Exclusion of source code duplicates: &Exclusion-of-source-code-duplicates
       risk: Duplicates in source code might influence the stability of the application.
       measure: Automatic Detection and manual removal of duplicates in source code.
       difficultyOfImplementation:
@@ -24,6 +24,11 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
+    Dead code elimination:
+      <<: *Exclusion-of-source-code-duplicates
+      risk: Dead code increases the attack surface (use of hard coded credentials and
+        variables, sensitive information)
+      measure: Collection of unused code and then manual removal of unused code.
     Local development security checks performed:
       risk: Creating and developing code contains code smells and quality issues.
       measure: |
@@ -38,12 +43,38 @@ Test and Verification:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fortify-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/checkmarx-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit
       references:
         samm2:
         - V-ST-1-A
         iso27001-2017:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    API design validation:
+      risk: Creation of insecure or non-compliant API.
+      measure: |
+        Design contract-first APIs using an interface description language such as OpenAPI, AsyncAPI or SOAP
+        and validate the specification using specific tools.
+        Checks should be integrated in IDEs and CI/CD pipelines.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stoplight-spectral
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - 8.25  # Secure development lifecycle
+        - 8.27  # Secure system architecture and engineering principles
+        - 8.28  # Secure coding
       isImplemented: false
       evidence: ""
       comments: ""
@@ -155,9 +186,9 @@ Test and Verification:
       evidence: ""
       comments: ""
     Stylistic analysis:
-      risk: False source code indenting might lead to vulnerabilities.
+      risk: Unclear or obfuscated code might have unexpected behavior.
       measure: Analysis of compliance to style guides of the source code ensures that
-        source code indenting rules are met.
+        source code formatting rules are met (e.g. indentation, loops, ...).
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -168,6 +199,7 @@ Test and Verification:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pmd
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-super-linter
       references:
         samm2:
         - V-ST-2-A
@@ -193,6 +225,7 @@ Test and Verification:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-dependabot
       references:
         samm2:
         - V-ST-2-A
@@ -218,6 +251,7 @@ Test and Verification:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-dependabot
       references:
         samm2:
         - V-ST-2-A

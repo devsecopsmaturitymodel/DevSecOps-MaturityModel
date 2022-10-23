@@ -447,7 +447,7 @@ implementations:
     url: https://github.com/OWASP/Amass
   k8spurger:
     name: K8sPurger
-    tags: [vulnerability, scanner, dast, infrastrcture]
+    tags: [vulnerability, scanner, dast, infrastructure]
     url: https://github.com/yogeshkk/K8sPurger
     description: |
       Hunt Unused Resources In Kubernetes.
@@ -631,7 +631,51 @@ implementations:
       secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
   K8sPurger:
     name: K8sPurger
-    tags: [vulnerability, scanner, dast, infrastrcture]
+    tags: [vulnerability, scanner, dast, infrastructure]
     url: https://github.com/yogeshkk/K8sPurger
     description: |
       Hunt Unused Resources In Kubernetes.
+  hashicorp-vault:
+    name: Hashicorp Vault
+    tags: [authentication, authorization, secrets, infrastructure]
+    url: https://github.com/hashicorp/vault
+    description: |
+      A tool for secrets management, encryption as a service, and privileged access management.
+  stoplight-spectral:
+    name: Spectral
+    tags: [linting, api, documentation]
+    url: https://github.com/stoplightio/spectral
+    description: |
+      Spectral is a flexible JSON/YAML linter built with extensibility in mind.
+      It uses JSON/YAML path rules to describe the problems you want to find.
+  api-oas-checker:
+    name: API OAS Checker
+    tags: [linting, api, documentation]
+    url: https://github.com/italia/api-oas-checker
+    description: |
+      A tool to check OpenAPI specifications using a comprehensive ruleset based
+      on API best practices.
+  coveragepy:
+    name: Coverage.py
+    tags: [testing, coverage]
+    url: https://github.com/nedbat/coveragepy
+    description: |
+      Code coverage measurement for Python
+  github-dependabot:
+    name: Dependabot
+    tags: [dependency, dependency-management, scm]
+    url: https://github.com/dependabot/dependabot-core
+    description: |
+      Dependabot creates pull requests to keep your dependencies secure and up-to-date.
+  github-super-linter:
+    name: Super-Linter
+    tags: [linting, scm]
+    url: https://github.com/github/super-linter
+    description: |
+      Lint code bases to catch common errors and enforce code style
+  schemathesis:
+    name: Schemathesis
+    tags: [testing, api, documentation]
+    url: https://github.com/schemathesis/schemathesis
+    description: |
+      Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.

@@ -2,10 +2,10 @@
 Build and Deployment:
   Deployment:
     Blue/Green Deployment:
-      risk: A new artifacts version can have unknown defects.
-      measure: By having multiple production environments, a deployment can be performant
-        on the first environment to spot possible defects before it is deployment
-        in the production environment(s)
+      risk: A new artifact's version can have unknown defects.
+      measure: |-
+        Using a blue/green deployment strategy increases application availability
+        and reduces deployment risk by simplifying the rollback process if a deployment fails.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -20,21 +20,21 @@ Build and Deployment:
         samm2:
         - TODO
         iso27001-2017:
-        - 17.2.1
-        - 12.1.1
-        - 12.1.2
-        - 12.1.4
+        - 17.2.1  # Availability of information processing facilities
+        - 12.1.1  # Documented operational procedures
+        - 12.1.2  # Change management
+        - 12.1.4  # Separation of development,testing and operational environments
         - 12.5.1
         - 14.2.9
       isImplemented: false
       evidence: ""
       comments: ""
     Defined decommissioning process:
-      risk: Not used applications erode and are not maintained. As an evil actor,
-        I exploit known vulnerabilities in the not maintained applicaitons to perform
-        latteral movement within the organization.
-      measure: By having a clear decommissioning process, applicaitons not used are
-        not running anymore and can therefore not be explointed.
+      risk: >-
+        Unused applications are not maintained and may contain vulnerabilities.
+        Once exploited they can be used to attack other applications or
+        to perform lateral movements within the organization.
+      measure: A clear decommissioning process ensures the removal of unused applications.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -50,10 +50,13 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Defined deployment process:
-      risk: Deployments without a defined process are error prone thus allowing old
-        or untested artifact to be deployed.
-      measure: A defined deployment process significantly lowers the likelihood of
-        errors during the deployment phase.
+      risk: >-
+        Deployment of insecure or malfunctioning artifacts.
+      measure: >-
+        Defining a deployment process ensures that there are
+        established criteria in terms of functionalities,
+        security, compliance, and performance,
+        and that the artifacts meet them.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -75,19 +78,23 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Environment depending configuration parameters (secrets):
-      risk: '- Parameters are often used to set credentials, for example by starting
-        containers or applications; these parameters can often be seen by any one
-        listing running processes on the target system.'
-      measure: |
-        Configuration parameters are set for each environment not in the source code.
-        By using encryption, it is harder to read credentials , e.g. from the file system. Also, the usage of a credential management system can help protect credentials.
+      risk: >-
+        Unauthorized access to secrets stored in source code
+        or in artifacts (e.g. container images)
+        through process listing (e.g. ps -ef).
+      measure: >-
+        Set configuration parameters via environment variables 
+        stored using specific platform functionalities
+        or secrets management systems
+        (e.g. Kubernetes secrets or Hashicorp Vault).
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 1
       usefulness: 4
       level: 2
-      implementation: []
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/hasicorp-vault
       references:
         samm2:
         - I-SD-1-B
@@ -101,8 +108,10 @@ Build and Deployment:
       risk: '- Parameters are often used to set credentials, for example by starting
         containers or applications; these parameters can often be seen by any one
         listing running processes on the target system.'
-      measure: By using encryption, it is harder to read credentials , e.g. from the
-        file system. Also, the usage of a credential management system can help protect
+      measure: >-
+        Encryption ensures confidentiality of credentials
+        e.g. from unauthorized access on the file system.
+        Also, the usage of a credential management system can help protect
         credentials.
       difficultyOfImplementation:
         knowledge: 2
