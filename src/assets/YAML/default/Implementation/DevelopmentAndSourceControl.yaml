@@ -97,9 +97,10 @@ Implementation:
       evidence: ""
       comments: ""
     Versioning:
-      risk: Changes to production systems can not be undone.
-      measure: versioning of artifacts related to production environments. For example
-        Jenkins configuration, docker images, (system provisioning) code.
+      risk: Deployment of untracked artifacts.
+      measure: >-
+        Version artifacts in order to identify deployed features and issues.
+        This includes application and infrastructure code, jenkins configuration, container and virtual machine images.
       difficultyOfImplementation:
         knowledge: 3
         time: 3

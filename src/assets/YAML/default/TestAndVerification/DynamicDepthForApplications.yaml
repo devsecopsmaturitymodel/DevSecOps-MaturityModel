@@ -90,7 +90,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
-      implementation: []
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/schemathesis
       isImplemented: false
       evidence: ""
       comments: ""
@@ -135,7 +136,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
-      implementation: []
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pact-io
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/citrusframework
       isImplemented: false
       evidence: ""
       comments: ""

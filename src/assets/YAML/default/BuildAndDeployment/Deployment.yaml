@@ -101,11 +101,13 @@ Build and Deployment:
         iso27001-2017:
         - 9.4.5
         - 14.2.6
+        d3f:
+        - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""
       comments: ""
     Handover of confidential parameters:
-      risk: '- Parameters are often used to set credentials, for example by starting
+      risk: 'Parameters are often used to set credentials, for example by starting
         containers or applications; these parameters can often be seen by any one
         listing running processes on the target system.'
       measure: >-
@@ -131,6 +133,8 @@ Build and Deployment:
         - 9.4.3
         - 9.4.1
         - 10.1.2
+        d3f:
+        - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""
       comments: ""
@@ -235,11 +239,10 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Usage of feature toggles:
-      risk: By using environment dependent configuration, some parameters will not
-        be tested correctly. i.e. <pre>if (host == 'production') {} else {}</pre>
-      measure: Usage of environment independent configuration parameter, called feature
-        toggles, helps to enhance the test coverage. Only what has been tested, goes
-        to production.
+      risk: Using environment variables to enable or disable features can lead to
+        a situation where a feature is accidentally enabled in the production environment.
+      measure: Usage of environment independent configuration parameter, called static feature
+        toggles, mitigates the risk of accidentally enabling insecure features in production.
       difficultyOfImplementation:
         knowledge: 2
         time: 1
@@ -257,6 +260,8 @@ Build and Deployment:
         - 14.2.8
         - 14.2.9
         - 12.1.4
+        d3f: 
+        - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""
       comments: ""
