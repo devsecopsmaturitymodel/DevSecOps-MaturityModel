@@ -1,4 +1,4 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatAutocomplete } from '@angular/material/autocomplete';
@@ -12,8 +12,8 @@ describe('MatrixComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [ymlService, HttpClient, HttpHandler, HttpClientTestingModule],
-      imports: [RouterTestingModule],
+      providers: [ymlService, HttpClientTestingModule],
+      imports: [RouterTestingModule, HttpClientModule],
       declarations: [MatrixComponent, MatAutocomplete],
     }).compileComponents();
   });
@@ -25,6 +25,13 @@ describe('MatrixComponent', () => {
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
+  });
+
+  it('check for table generation', () => {
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const table = HTMLElement.querySelector('table')!;
+    expect(table).toBeTruthy();
   });
 });

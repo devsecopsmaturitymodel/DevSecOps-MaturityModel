@@ -94,9 +94,7 @@ export class MatrixComponent implements OnInit {
                 this.YamlObject[this.allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
                 ][currentTaskName]['level'];
-              console.log(
-                temp[this.lvlColumn[lvlOfTask - 1] as keyof MatrixElement]
-              );
+              //console.log(temp[this.lvlColumn[lvlOfTask - 1] as keyof MatrixElement]);
               (
                 temp[
                   this.lvlColumn[lvlOfTask - 1] as keyof MatrixElement
@@ -109,7 +107,7 @@ export class MatrixComponent implements OnInit {
             //console.log(this.YamlObject['dimension'][i]['subdimension'][lvlTemp][k]['name'])
           }
 
-          console.log(temp);
+          //console.log(temp);
           this.MATRIX_DATA.push(temp);
         }
       }
@@ -189,8 +187,8 @@ export class MatrixComponent implements OnInit {
         taskName: taskName,
       },
     };
-    console.log(this.lvlColumn);
-    console.log(this.levels);
+    //console.log(this.lvlColumn);
+    //console.log(this.levels);
     this.router.navigate([this.Routing], navigationExtras);
   }
 }
