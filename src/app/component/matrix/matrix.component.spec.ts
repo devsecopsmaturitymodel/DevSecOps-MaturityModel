@@ -21,7 +21,6 @@ describe('MatrixComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MatrixComponent);
     component = fixture.componentInstance;
-    component.ngOnInit();
     fixture.detectChanges();
   });
 
@@ -34,13 +33,5 @@ describe('MatrixComponent', () => {
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const table = HTMLElement.querySelector('table')!;
     expect(table).toBeTruthy();
-    //expect(p.textContent).toEqual('banner works!');
-  });
-
-  it('check if all rows are being shown as chips', () => {
-    var check = JSON.parse(JSON.stringify(component.MATRIX_DATA));
-    console.log(check);
-    expect(component.rowsCurrentlyBeingShown).toEqual(component.allRows);
-    //expect(p.textContent).toEqual('banner works!');
   });
 });
