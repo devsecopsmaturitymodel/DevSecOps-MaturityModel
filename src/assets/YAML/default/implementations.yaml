@@ -233,22 +233,27 @@ implementations:
   gitops:
     name: GitOps
     tags: []
+    url: https://www.redhat.com/en/topics/devops/what-is-gitops
   ansible:
     name: Ansible
     tags: []
+    url: https://github.com/ansible/ansible
   chef:
     name: Chef
     tags: []
+    url: https://github.com/chef/chef
   puppet:
     name: Puppet
     tags: []
+    url: https://github.com/puppetlabs/puppet
   jenkinsfile:
     name: Jenkinsfile
     tags: []
-    url: 
+    url: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
   seccomp:
     name: seccomp
     tags: []
+    url: https://man7.org/linux/man-pages/man2/seccomp.2.html
   strace:
     name: strace
     tags: []
@@ -266,15 +271,18 @@ implementations:
   smartcard:
     name: Smartcard
     tags: []
+    url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   yubikey:
     name: YubiKey
     tags: []
+    url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   sms:
     name: SMS
     tags: []
   totp:
     name: TOTP
     tags: []
+    url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
   http-basic-authentic:
     name: HTTP-Basic Authentication
     tags: []
