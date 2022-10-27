@@ -687,3 +687,9 @@ implementations:
     url: https://github.com/schemathesis/schemathesis
     description: |
       Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+  martin-feature-toggles:
+    name: Feature Toggles
+    tags: [development, architecture]
+    url: https://martinfowler.com/articles/feature-toggles.html
+    description: |
+      Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
