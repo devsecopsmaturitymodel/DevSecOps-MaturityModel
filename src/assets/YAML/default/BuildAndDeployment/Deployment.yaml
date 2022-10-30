@@ -251,6 +251,7 @@ Build and Deployment:
       level: 3
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/martin-feature-toggles
       dependsOn:
       - Same artifact for environments
       references:
