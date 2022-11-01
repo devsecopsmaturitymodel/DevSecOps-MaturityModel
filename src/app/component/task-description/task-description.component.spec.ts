@@ -35,9 +35,26 @@ describe('TaskDescriptionComponent', () => {
     component.currentTask.subDimension = testSubDimension;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    console.log(HTMLElement);
     const heading = HTMLElement.querySelector('h1')!;
     expect(heading.textContent).toContain(testDimension);
     expect(heading.textContent).toContain(testSubDimension);
+  });
+
+  it('check if description is being genenrated', () => {
+    const testDescription = 'Sample Description';
+    component.currentTask.description = testDescription;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const heading = HTMLElement.querySelectorAll('p')!;
+    expect(heading[0].textContent).toContain(testDescription);
+  });
+
+  it('check if risk is being genenrated', () => {
+    const testRisk = 'Sample Risk';
+    component.currentTask.risk = testRisk;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const heading = HTMLElement.querySelectorAll('p')!;
+    expect(heading[1].textContent).toContain(testRisk);
   });
 });
