@@ -45,8 +45,10 @@ describe('TaskDescriptionComponent', () => {
     component.currentTask.description = testDescription;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const heading = HTMLElement.querySelectorAll('p')!;
-    expect(heading[0].textContent).toContain(testDescription);
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[0].textContent).toContain(
+      testDescription
+    );
   });
 
   it('check if risk is being genenrated', () => {
@@ -54,7 +56,40 @@ describe('TaskDescriptionComponent', () => {
     component.currentTask.risk = testRisk;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const heading = HTMLElement.querySelectorAll('p')!;
-    expect(heading[1].textContent).toContain(testRisk);
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[1].textContent).toContain(testRisk);
+  });
+
+  it('check if measure is being genenrated', () => {
+    const testMeasure = 'Sample Measure';
+    component.currentTask.measure = testMeasure;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[2].textContent).toContain(
+      testMeasure
+    );
+  });
+
+  it('check if implementation guide is being genenrated', () => {
+    const testImplementationGuide = 'Sample Implementation Guide';
+    component.currentTask.implementatonGuide = testImplementationGuide;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[3].textContent).toContain(
+      testImplementationGuide
+    );
+  });
+
+  it('check if evidence is being genenrated', () => {
+    const testEvidence = 'Sample Evidence';
+    component.currentTask.evidence = testEvidence;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[6].textContent).toContain(
+      testEvidence
+    );
   });
 });
