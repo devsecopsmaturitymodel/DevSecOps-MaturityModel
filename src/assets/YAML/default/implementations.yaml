@@ -1,3 +1,6 @@
+---
+# The following file includes a D3FEND classification
+#  based on d3f:DigitalArtifact.
 implementations:
   signing-of-commits-protection:
     name: Enforcement of commit signing
@@ -21,7 +24,7 @@ implementations:
     name: API Security Maturity Model for Authorization
     tags: [api]
     url: https://curity.io/resources/learn/the-api-security-maturity-model/
-  container-technologi:
+  container-orchestration:
     name: Container technologies and orchestration like Docker, Kubernetes
     tags: []
     url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
@@ -61,7 +64,7 @@ implementations:
   kubernetes-admission:
     name: Kubernetes Admission Controller can whitelist registries and/or whitelist
       a signing key.
-    tags: []
+    tags: [ "d3f:ContainerOrchestrationSoftware" ]
   dependabot:
     name: dependabot
     tags: []
@@ -85,8 +88,8 @@ implementations:
       \ the canary deployment will make sure the \"older version\" is being used and\
       \ not the buggy newer one."
   distroless:
-    name: Distroless
-    tags: []
+    name: Distroless Container Images
+    tags: ["d3f:ContainerImage"]
     url: https://github.com/GoogleContainerTools/distroless
   fedora-coreos:
     name: Fedora CoreOS
@@ -117,28 +120,22 @@ implementations:
     tags: [threat-modeling]
     url: https://github.com/Threagile/threagile
   don-t-forget-evil-u:
-    name: "[Don't Forget EVIL U"
+    name: "Don't Forget EVIL User stories"
     tags: []
     url: https://www.owasp.org/index.php/Agile_Software_Development
     description: "[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
       \ and [Practical Security Stories and Security Tasks for Agile Development Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
-  owasp-juice-shop:
+  owasp-juiceshop:
     name: OWASP Juice Shop
     tags: [training]
-    url: https://github.com/bkimminich/juice-shop
+    url: https://github.com/bkimminich/juiceshop
     description: |-
-      In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+      In case you do not have the budget to hire an external security expert,
+      an option is to use the OWASP JuiceShop on a "hacking Friday"
   owasp-cheatsheet-ser:
     name: OWASP Cheatsheet Series
     tags: [secure coding]
     url: https://cheatsheetseries.owasp.org/
-  owasp-juiceshop:
-    name: OWASP JuiceShop
-    tags: []
-    url: https://github.com/bkimminich/juice-shop
-    description: "In case you do not have the budget to hire an external security\
-      \ expert, an option\nis to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop)\
-      \ on a \"hacking Friday\""
   https-cheatsheetse:
     name: https://cheatsheetseries.owasp.org/
     tags: [training, secure coding]
@@ -185,15 +182,15 @@ implementations:
     url: https://github.com/OWASP/owasp-masvs
   cis-kubernetes-bench:
     name: CIS Kubernetes Bench for Security
-    tags: []
+    tags: ["d3f:ContainerOrchestrationSoftware"]
     url: https://www.cisecurity.org/cis-benchmarks/
   cis-docker-bench-for:
     name: CIS Docker Bench for Security
-    tags: []
+    tags: ["d3f:ContainerRuntime"]
     url: https://www.cisecurity.org/cis-benchmarks/
-  for-example-for-cont:
-    name: For example for Cont
-    tags: []
+  container-execution-isolation:
+    name: Isolate containers execution
+    tags: ["d3f:ContainerOrchestrationSoftware", "d3f:ContainerImage"]
     description: 'For example for Containers: Deny running containers as root, deny
       using advanced privileges, deny mounting of the hole filesystem, ...'
     url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
@@ -211,7 +208,7 @@ implementations:
       Attack matrix for containers
   attack-matrix-kubern:
     name: Attack Matrix Kubernetes
-    tags: [mitre]
+    tags: [mitre, "d3f:ContainerOrchestrationSoftware"]
     url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
     description: |-
       Attack matrix for kubernetes
@@ -228,6 +225,9 @@ implementations:
     url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
   open-policy-agent:
     name: Open Policy Agent
+    description: |-
+      Open Policy Agent is an open source,
+      general-purpose policy engine that unifies policy enforcement across the stack.
     tags: []
     url: https://www.openpolicyagent.org/
   gitops:
@@ -236,13 +236,21 @@ implementations:
     url: https://www.redhat.com/en/topics/devops/what-is-gitops
   ansible:
     name: Ansible
+    description: |-
+      Ansible is an open-source software provisioning, configuration management,
+      and application-deployment tool enabling infrastructure as code.
     tags: []
     url: https://github.com/ansible/ansible
   chef:
     name: Chef
+    description: |-
+      Chef is an open-source software automation platform that
+      helps system administrators manage infrastructure and applications.
     tags: []
     url: https://github.com/chef/chef
   puppet:
+    description: |-
+      Puppet is an open-source software configuration management tool.
     name: Puppet
     tags: []
     url: https://github.com/puppetlabs/puppet
@@ -610,10 +618,10 @@ implementations:
     name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
     tags: [sca, inventory]
-  juice-shop:
+  juiceshop:
     name: OWASP Juice Shop
     tags: [training]
-    url: https://github.com/bkimminich/juice-shop
+    url: https://github.com/bkimminich/juiceshop
     description: |-
       In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
   dvwa:

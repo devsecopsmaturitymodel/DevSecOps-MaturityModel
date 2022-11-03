@@ -238,6 +238,8 @@ Build and Deployment:
         - O-OM-2-B
         iso27001-2017:
         - 11.2.7
+        d3f:
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""
@@ -260,9 +262,24 @@ Build and Deployment:
         - ci-cd
         url: https://martinfowler.com/articles/continuousIntegration.html
         description: CI/CD tools such as jenkins, gitlab-ci or github-actions
-      - name: Docker
-        url: https://github.com/moby/moby
+      - name: Container technologies and orchestration like Docker, Kubernetes
         tags: []
+        url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
+      - name: Ansible
+        description: "Ansible is an open-source software provisioning, configuration
+          management, \nand application-deployment tool enabling infrastructure as
+          code."
+        tags: []
+        url: https://github.com/ansible/ansible
+      - description: Puppet is an open-source software configuration management tool.
+        name: Puppet
+        tags: []
+        url: https://github.com/puppetlabs/puppet
+      - name: Chef
+        description: "Chef is an open-source software automation platform that \nhelps
+          system administrators manage infrastructure and applications."
+        tags: []
+        url: https://github.com/chef/chef
       references:
         samm2:
         - I-SD-1-A
@@ -308,7 +325,7 @@ Build and Deployment:
           tags:
           - api
           url: https://curity.io/resources/learn/the-api-security-maturity-model/
-        container-technologi:
+        container-orchestration:
           name: Container technologies and orchestration like Docker, Kubernetes
           tags: []
           url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
@@ -350,7 +367,8 @@ Build and Deployment:
         kubernetes-admission:
           name: Kubernetes Admission Controller can whitelist registries and/or whitelist
             a signing key.
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
         dependabot:
           name: dependabot
           tags: []
@@ -374,8 +392,9 @@ Build and Deployment:
             which breaks functionality the canary deployment will make sure the \"older
             version\" is being used and not the buggy newer one."
         distroless:
-          name: Distroless
-          tags: []
+          name: Distroless Container Images
+          tags:
+          - d3f:ContainerImage
           url: https://github.com/GoogleContainerTools/distroless
         fedora-coreos:
           name: Fedora CoreOS
@@ -425,31 +444,25 @@ Build and Deployment:
           - threat-modeling
           url: https://github.com/Threagile/threagile
         don-t-forget-evil-u:
-          name: '[Don''t Forget EVIL U'
+          name: Don't Forget EVIL User stories
           tags: []
           url: https://www.owasp.org/index.php/Agile_Software_Development
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
-        owasp-juice-shop:
+        owasp-juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
-          description: In case you do not have the budget to hire an external security
-            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+          url: https://github.com/bkimminich/juiceshop
+          description: |-
+            In case you do not have the budget to hire an external security expert,
+            an option is to use the OWASP JuiceShop on a "hacking Friday"
         owasp-cheatsheet-ser:
           name: OWASP Cheatsheet Series
           tags:
           - secure coding
           url: https://cheatsheetseries.owasp.org/
-        owasp-juiceshop:
-          name: OWASP JuiceShop
-          tags: []
-          url: https://github.com/bkimminich/juice-shop
-          description: |-
-            In case you do not have the budget to hire an external security expert, an option
-            is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
         https-cheatsheetse:
           name: https://cheatsheetseries.owasp.org/
           tags:
@@ -504,15 +517,19 @@ Build and Deployment:
           url: https://github.com/OWASP/owasp-masvs
         cis-kubernetes-bench:
           name: CIS Kubernetes Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.cisecurity.org/cis-benchmarks/
         cis-docker-bench-for:
           name: CIS Docker Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerRuntime
           url: https://www.cisecurity.org/cis-benchmarks/
-        for-example-for-cont:
-          name: For example for Cont
-          tags: []
+        container-execution-isolation:
+          name: Isolate containers execution
+          tags:
+          - d3f:ContainerOrchestrationSoftware
+          - d3f:ContainerImage
           description: 'For example for Containers: Deny running containers as root,
             deny using advanced privileges, deny mounting of the hole filesystem,
             ...'
@@ -533,6 +550,7 @@ Build and Deployment:
           name: Attack Matrix Kubernetes
           tags:
           - mitre
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
           description: Attack matrix for kubernetes
         istio:
@@ -548,6 +566,8 @@ Build and Deployment:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
+          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
+            engine that unifies policy enforcement across the stack."
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
@@ -556,13 +576,20 @@ Build and Deployment:
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
+          description: "Ansible is an open-source software provisioning, configuration
+            management, \nand application-deployment tool enabling infrastructure
+            as code."
           tags: []
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
+          description: "Chef is an open-source software automation platform that \nhelps
+            system administrators manage infrastructure and applications."
           tags: []
           url: https://github.com/chef/chef
         puppet:
+          description: Puppet is an open-source software configuration management
+            tool.
           name: Puppet
           tags: []
           url: https://github.com/puppetlabs/puppet
@@ -999,11 +1026,11 @@ Build and Deployment:
           tags:
           - sca
           - inventory
-        juice-shop:
+        juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
+          url: https://github.com/bkimminich/juiceshop
           description: In case you do not have the budget to hire an external security
             expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
         dvwa:
@@ -1105,8 +1132,16 @@ Build and Deployment:
           - api
           - documentation
           url: https://github.com/schemathesis/schemathesis
-          description: Schemathesis is a tool for testing web applications and services
-            by sending requests based on the Open API / Swagger schema.
+          description: |
+            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+        martin-feature-toggles:
+          name: Feature Toggles
+          tags:
+          - development
+          - architecture
+          url: https://martinfowler.com/articles/feature-toggles.html
+          description: Feature Toggles are a powerful technique, allowing teams to
+            modify system behavior without changing code. (Pete Hodgson)
       references:
         samm2:
         - I-SD-1-B
@@ -1179,6 +1214,8 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+        d3f:
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""
@@ -1202,6 +1239,8 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+        d3f:
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""
@@ -1278,6 +1317,13 @@ Build and Deployment:
       - name: Docker
         url: https://github.com/moby/moby
         tags: []
+      - name: Feature Toggles
+        tags:
+        - development
+        - architecture
+        url: https://martinfowler.com/articles/feature-toggles.html
+        description: Feature Toggles are a powerful technique, allowing teams to modify
+          system behavior without changing code. (Pete Hodgson)
       dependsOn:
       - Same artifact for environments
       references:
@@ -1300,7 +1346,8 @@ Build and Deployment:
       implementation:
       - name: Kubernetes Admission Controller can whitelist registries and/or whitelist
           a signing key.
-        tags: []
+        tags:
+        - d3f:ContainerOrchestrationSoftware
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -1402,8 +1449,9 @@ Build and Deployment:
       usefulness: 3
       level: 2
       implementation:
-      - name: Distroless
-        tags: []
+      - name: Distroless Container Images
+        tags:
+        - d3f:ContainerImage
         url: https://github.com/GoogleContainerTools/distroless
       - name: Fedora CoreOS
         tags: []
@@ -1701,7 +1749,7 @@ Culture and Organization:
       dependsOn:
       - Creation of simple abuse stories
       implementation:
-      - name: '[Don''t Forget EVIL U'
+      - name: Don't Forget EVIL User stories
         tags: []
         url: https://www.owasp.org/index.php/Agile_Software_Development
         description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
@@ -1730,7 +1778,7 @@ Culture and Organization:
       usefulness: 4
       level: 3
       implementation:
-      - name: '[Don''t Forget EVIL U'
+      - name: Don't Forget EVIL User stories
         tags: []
         url: https://www.owasp.org/index.php/Agile_Software_Development
         description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
@@ -1828,9 +1876,10 @@ Culture and Organization:
       - name: OWASP Juice Shop
         tags:
         - training
-        url: https://github.com/bkimminich/juice-shop
-        description: In case you do not have the budget to hire an external security
-          expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        url: https://github.com/bkimminich/juiceshop
+        description: |-
+          In case you do not have the budget to hire an external security expert,
+          an option is to use the OWASP JuiceShop on a "hacking Friday"
       - name: OWASP Cheatsheet Series
         tags:
         - secure coding
@@ -2027,12 +2076,13 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-      - name: OWASP JuiceShop
-        tags: []
-        url: https://github.com/bkimminich/juice-shop
+      - name: OWASP Juice Shop
+        tags:
+        - training
+        url: https://github.com/bkimminich/juiceshop
         description: |-
-          In case you do not have the budget to hire an external security expert, an option
-          is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
+          In case you do not have the budget to hire an external security expert,
+          an option is to use the OWASP JuiceShop on a "hacking Friday"
       - name: OWASP Cheatsheet Series
         tags:
         - secure coding
@@ -2056,12 +2106,13 @@ Culture and Organization:
       usefulness: 4
       level: 4
       implementation:
-      - name: OWASP JuiceShop
-        tags: []
-        url: https://github.com/bkimminich/juice-shop
+      - name: OWASP Juice Shop
+        tags:
+        - training
+        url: https://github.com/bkimminich/juiceshop
         description: |-
-          In case you do not have the budget to hire an external security expert, an option
-          is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
+          In case you do not have the budget to hire an external security expert,
+          an option is to use the OWASP JuiceShop on a "hacking Friday"
       - name: https://cheatsheetseries.owasp.org/
         tags:
         - training
@@ -2235,7 +2286,7 @@ Culture and Organization:
         - All exploits happen via the user interface.
         - No need for security/hacking tools.
         - No need for deep technical or security knowledge.
-        - Use an insecure training app, e.g., [DVWA](https://dvwa.co.uk/) or [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/).
+        - Use an insecure training app, e.g., [DVWA](https://dvwa.co.uk/) or [OWASP Juice Shop](https://owasp.org/www-project-juiceshop/).
         - Encourage active participation, e.g., use small groups.
         - Allow enough time for everyone to run at least one exploit.
 
@@ -2254,9 +2305,10 @@ Culture and Organization:
       - name: OWASP Juice Shop
         tags:
         - training
-        url: https://github.com/bkimminich/juice-shop
-        description: In case you do not have the budget to hire an external security
-          expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        url: https://github.com/bkimminich/juiceshop
+        description: |-
+          In case you do not have the budget to hire an external security expert,
+          an option is to use the OWASP JuiceShop on a "hacking Friday"
       - name: Damn Vulnerable Web Application
         tags:
         - training
@@ -2706,10 +2758,8 @@ Implementation:
       comments: ""
   Infrastructure Hardening:
     2FA:
-      risk: One factor authentication is more vulnerable to brute force attacks and
-        is considered less secure.
-      measure: Two factor authentication for all privileged accounts on systems and
-        applications
+      risk: Unauthorized credential access.
+      measure: Multi-factor authentication for all accounts on systems and applications
       difficultyOfImplementation:
         knowledge: 3
         time: 2
@@ -2736,6 +2786,8 @@ Implementation:
         - 9.1.1
         - 9.4.2
         - 14.2.5
+        d3f:
+        - CredentialHardening
       isImplemented: false
       evidence: ""
       comments: ""
@@ -2756,6 +2808,8 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+        d3f:
+        - KernelBasedIsolation
       isImplemented: false
       evidence: ""
       comments: ""
@@ -2787,9 +2841,8 @@ Implementation:
       evidence: ""
       comments: ""
     Checking the sources of used libraries:
-      risk: Application and system libraries can have implementation flaws or deployment
-        flaws.
-      measure: Each libraries source is checked to have a trusted source.
+      risk: Use of vulnerable dependencies (application or libraries).
+      measure: Each dependency's source code is checked.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
@@ -2804,6 +2857,8 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.1
         - 14.2.5
+        d3f:
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""
@@ -2820,6 +2875,8 @@ Implementation:
       dependsOn: []
       implementation:
       - name: Open Policy Agent
+        description: "Open Policy Agent is an open source, \ngeneral-purpose policy
+          engine that unifies policy enforcement across the stack."
         tags: []
         url: https://www.openpolicyagent.org/
       - name: firewalls
@@ -2831,6 +2888,8 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+        d3f:
+        - NetworkTrafficAnalysis
       isImplemented: false
       evidence: ""
       comments: ""
@@ -2874,12 +2933,18 @@ Implementation:
         tags: []
         url: https://www.redhat.com/en/topics/devops/what-is-gitops
       - name: Ansible
+        description: "Ansible is an open-source software provisioning, configuration
+          management, \nand application-deployment tool enabling infrastructure as
+          code."
         tags: []
         url: https://github.com/ansible/ansible
       - name: Chef
+        description: "Chef is an open-source software automation platform that \nhelps
+          system administrators manage infrastructure and applications."
         tags: []
         url: https://github.com/chef/chef
-      - name: Puppet
+      - description: Puppet is an open-source software configuration management tool.
+        name: Puppet
         tags: []
         url: https://github.com/puppetlabs/puppet
       - name: Jenkinsfile
@@ -2924,6 +2989,8 @@ Implementation:
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
+        d3f:
+        - NetworkIsolation
       isImplemented: false
       evidence: ""
       comments: ""
@@ -2951,6 +3018,8 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
+        d3f:
+        - SystemCallFiltering
       isImplemented: false
       evidence: ""
       comments: ""
@@ -3068,13 +3137,17 @@ Implementation:
       level: 2
       implementation:
       - name: CIS Kubernetes Bench for Security
-        tags: []
+        tags:
+        - d3f:ContainerOrchestrationSoftware
         url: https://www.cisecurity.org/cis-benchmarks/
       - name: CIS Docker Bench for Security
-        tags: []
+        tags:
+        - d3f:ContainerRuntime
         url: https://www.cisecurity.org/cis-benchmarks/
-      - name: For example for Cont
-        tags: []
+      - name: Isolate containers execution
+        tags:
+        - d3f:ContainerOrchestrationSoftware
+        - d3f:ContainerImage
         description: 'For example for Containers: Deny running containers as root,
           deny using advanced privileges, deny mounting of the hole filesystem, ...'
         url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
@@ -3091,6 +3164,7 @@ Implementation:
       - name: Attack Matrix Kubernetes
         tags:
         - mitre
+        - d3f:ContainerOrchestrationSoftware
         url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
         description: Attack matrix for kubernetes
       - name: Defend the core kubernetes security at every layer
@@ -4313,8 +4387,8 @@ Test and Verification:
         - api
         - documentation
         url: https://github.com/schemathesis/schemathesis
-        description: Schemathesis is a tool for testing web applications and services
-          by sending requests based on the Open API / Swagger schema.
+        description: |
+          Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
       dependsOn:
       - Usage of different roles
       references:
@@ -4351,8 +4425,8 @@ Test and Verification:
         - api
         - documentation
         url: https://github.com/schemathesis/schemathesis
-        description: Schemathesis is a tool for testing web applications and services
-          by sending requests based on the Open API / Swagger schema.
+        description: |
+          Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
       isImplemented: false
       evidence: ""
       comments: ""
@@ -4423,7 +4497,7 @@ Test and Verification:
           tags:
           - api
           url: https://curity.io/resources/learn/the-api-security-maturity-model/
-        container-technologi:
+        container-orchestration:
           name: Container technologies and orchestration like Docker, Kubernetes
           tags: []
           url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
@@ -4465,7 +4539,8 @@ Test and Verification:
         kubernetes-admission:
           name: Kubernetes Admission Controller can whitelist registries and/or whitelist
             a signing key.
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
         dependabot:
           name: dependabot
           tags: []
@@ -4489,8 +4564,9 @@ Test and Verification:
             which breaks functionality the canary deployment will make sure the \"older
             version\" is being used and not the buggy newer one."
         distroless:
-          name: Distroless
-          tags: []
+          name: Distroless Container Images
+          tags:
+          - d3f:ContainerImage
           url: https://github.com/GoogleContainerTools/distroless
         fedora-coreos:
           name: Fedora CoreOS
@@ -4540,31 +4616,25 @@ Test and Verification:
           - threat-modeling
           url: https://github.com/Threagile/threagile
         don-t-forget-evil-u:
-          name: '[Don''t Forget EVIL U'
+          name: Don't Forget EVIL User stories
           tags: []
           url: https://www.owasp.org/index.php/Agile_Software_Development
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
-        owasp-juice-shop:
+        owasp-juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
-          description: In case you do not have the budget to hire an external security
-            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+          url: https://github.com/bkimminich/juiceshop
+          description: |-
+            In case you do not have the budget to hire an external security expert,
+            an option is to use the OWASP JuiceShop on a "hacking Friday"
         owasp-cheatsheet-ser:
           name: OWASP Cheatsheet Series
           tags:
           - secure coding
           url: https://cheatsheetseries.owasp.org/
-        owasp-juiceshop:
-          name: OWASP JuiceShop
-          tags: []
-          url: https://github.com/bkimminich/juice-shop
-          description: |-
-            In case you do not have the budget to hire an external security expert, an option
-            is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
         https-cheatsheetse:
           name: https://cheatsheetseries.owasp.org/
           tags:
@@ -4619,15 +4689,19 @@ Test and Verification:
           url: https://github.com/OWASP/owasp-masvs
         cis-kubernetes-bench:
           name: CIS Kubernetes Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.cisecurity.org/cis-benchmarks/
         cis-docker-bench-for:
           name: CIS Docker Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerRuntime
           url: https://www.cisecurity.org/cis-benchmarks/
-        for-example-for-cont:
-          name: For example for Cont
-          tags: []
+        container-execution-isolation:
+          name: Isolate containers execution
+          tags:
+          - d3f:ContainerOrchestrationSoftware
+          - d3f:ContainerImage
           description: 'For example for Containers: Deny running containers as root,
             deny using advanced privileges, deny mounting of the hole filesystem,
             ...'
@@ -4648,6 +4722,7 @@ Test and Verification:
           name: Attack Matrix Kubernetes
           tags:
           - mitre
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
           description: Attack matrix for kubernetes
         istio:
@@ -4663,6 +4738,8 @@ Test and Verification:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
+          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
+            engine that unifies policy enforcement across the stack."
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
@@ -4671,13 +4748,20 @@ Test and Verification:
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
+          description: "Ansible is an open-source software provisioning, configuration
+            management, \nand application-deployment tool enabling infrastructure
+            as code."
           tags: []
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
+          description: "Chef is an open-source software automation platform that \nhelps
+            system administrators manage infrastructure and applications."
           tags: []
           url: https://github.com/chef/chef
         puppet:
+          description: Puppet is an open-source software configuration management
+            tool.
           name: Puppet
           tags: []
           url: https://github.com/puppetlabs/puppet
@@ -5114,11 +5198,11 @@ Test and Verification:
           tags:
           - sca
           - inventory
-        juice-shop:
+        juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
+          url: https://github.com/bkimminich/juiceshop
           description: In case you do not have the budget to hire an external security
             expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
         dvwa:
@@ -5220,8 +5304,16 @@ Test and Verification:
           - api
           - documentation
           url: https://github.com/schemathesis/schemathesis
-          description: Schemathesis is a tool for testing web applications and services
-            by sending requests based on the Open API / Swagger schema.
+          description: |
+            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+        martin-feature-toggles:
+          name: Feature Toggles
+          tags:
+          - development
+          - architecture
+          url: https://martinfowler.com/articles/feature-toggles.html
+          description: Feature Toggles are a powerful technique, allowing teams to
+            modify system behavior without changing code. (Pete Hodgson)
       - signing-of-commits-protection:
           name: Enforcement of commit signing
           tags:
@@ -5245,7 +5337,7 @@ Test and Verification:
           tags:
           - api
           url: https://curity.io/resources/learn/the-api-security-maturity-model/
-        container-technologi:
+        container-orchestration:
           name: Container technologies and orchestration like Docker, Kubernetes
           tags: []
           url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
@@ -5287,7 +5379,8 @@ Test and Verification:
         kubernetes-admission:
           name: Kubernetes Admission Controller can whitelist registries and/or whitelist
             a signing key.
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
         dependabot:
           name: dependabot
           tags: []
@@ -5311,8 +5404,9 @@ Test and Verification:
             which breaks functionality the canary deployment will make sure the \"older
             version\" is being used and not the buggy newer one."
         distroless:
-          name: Distroless
-          tags: []
+          name: Distroless Container Images
+          tags:
+          - d3f:ContainerImage
           url: https://github.com/GoogleContainerTools/distroless
         fedora-coreos:
           name: Fedora CoreOS
@@ -5362,31 +5456,25 @@ Test and Verification:
           - threat-modeling
           url: https://github.com/Threagile/threagile
         don-t-forget-evil-u:
-          name: '[Don''t Forget EVIL U'
+          name: Don't Forget EVIL User stories
           tags: []
           url: https://www.owasp.org/index.php/Agile_Software_Development
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
-        owasp-juice-shop:
+        owasp-juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
-          description: In case you do not have the budget to hire an external security
-            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+          url: https://github.com/bkimminich/juiceshop
+          description: |-
+            In case you do not have the budget to hire an external security expert,
+            an option is to use the OWASP JuiceShop on a "hacking Friday"
         owasp-cheatsheet-ser:
           name: OWASP Cheatsheet Series
           tags:
           - secure coding
           url: https://cheatsheetseries.owasp.org/
-        owasp-juiceshop:
-          name: OWASP JuiceShop
-          tags: []
-          url: https://github.com/bkimminich/juice-shop
-          description: |-
-            In case you do not have the budget to hire an external security expert, an option
-            is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
         https-cheatsheetse:
           name: https://cheatsheetseries.owasp.org/
           tags:
@@ -5441,15 +5529,19 @@ Test and Verification:
           url: https://github.com/OWASP/owasp-masvs
         cis-kubernetes-bench:
           name: CIS Kubernetes Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.cisecurity.org/cis-benchmarks/
         cis-docker-bench-for:
           name: CIS Docker Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerRuntime
           url: https://www.cisecurity.org/cis-benchmarks/
-        for-example-for-cont:
-          name: For example for Cont
-          tags: []
+        container-execution-isolation:
+          name: Isolate containers execution
+          tags:
+          - d3f:ContainerOrchestrationSoftware
+          - d3f:ContainerImage
           description: 'For example for Containers: Deny running containers as root,
             deny using advanced privileges, deny mounting of the hole filesystem,
             ...'
@@ -5470,6 +5562,7 @@ Test and Verification:
           name: Attack Matrix Kubernetes
           tags:
           - mitre
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
           description: Attack matrix for kubernetes
         istio:
@@ -5485,6 +5578,8 @@ Test and Verification:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
+          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
+            engine that unifies policy enforcement across the stack."
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
@@ -5493,13 +5588,20 @@ Test and Verification:
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
+          description: "Ansible is an open-source software provisioning, configuration
+            management, \nand application-deployment tool enabling infrastructure
+            as code."
           tags: []
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
+          description: "Chef is an open-source software automation platform that \nhelps
+            system administrators manage infrastructure and applications."
           tags: []
           url: https://github.com/chef/chef
         puppet:
+          description: Puppet is an open-source software configuration management
+            tool.
           name: Puppet
           tags: []
           url: https://github.com/puppetlabs/puppet
@@ -5936,11 +6038,11 @@ Test and Verification:
           tags:
           - sca
           - inventory
-        juice-shop:
+        juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
+          url: https://github.com/bkimminich/juiceshop
           description: In case you do not have the budget to hire an external security
             expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
         dvwa:
@@ -6042,8 +6144,16 @@ Test and Verification:
           - api
           - documentation
           url: https://github.com/schemathesis/schemathesis
-          description: Schemathesis is a tool for testing web applications and services
-            by sending requests based on the Open API / Swagger schema.
+          description: |
+            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+        martin-feature-toggles:
+          name: Feature Toggles
+          tags:
+          - development
+          - architecture
+          url: https://martinfowler.com/articles/feature-toggles.html
+          description: Feature Toggles are a powerful technique, allowing teams to
+            modify system behavior without changing code. (Pete Hodgson)
       isImplemented: false
       evidence: ""
       comments: ""
@@ -6452,7 +6562,7 @@ Test and Verification:
           tags:
           - api
           url: https://curity.io/resources/learn/the-api-security-maturity-model/
-        container-technologi:
+        container-orchestration:
           name: Container technologies and orchestration like Docker, Kubernetes
           tags: []
           url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
@@ -6494,7 +6604,8 @@ Test and Verification:
         kubernetes-admission:
           name: Kubernetes Admission Controller can whitelist registries and/or whitelist
             a signing key.
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
         dependabot:
           name: dependabot
           tags: []
@@ -6518,8 +6629,9 @@ Test and Verification:
             which breaks functionality the canary deployment will make sure the \"older
             version\" is being used and not the buggy newer one."
         distroless:
-          name: Distroless
-          tags: []
+          name: Distroless Container Images
+          tags:
+          - d3f:ContainerImage
           url: https://github.com/GoogleContainerTools/distroless
         fedora-coreos:
           name: Fedora CoreOS
@@ -6569,31 +6681,25 @@ Test and Verification:
           - threat-modeling
           url: https://github.com/Threagile/threagile
         don-t-forget-evil-u:
-          name: '[Don''t Forget EVIL U'
+          name: Don't Forget EVIL User stories
           tags: []
           url: https://www.owasp.org/index.php/Agile_Software_Development
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
-        owasp-juice-shop:
+        owasp-juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
-          description: In case you do not have the budget to hire an external security
-            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+          url: https://github.com/bkimminich/juiceshop
+          description: |-
+            In case you do not have the budget to hire an external security expert,
+            an option is to use the OWASP JuiceShop on a "hacking Friday"
         owasp-cheatsheet-ser:
           name: OWASP Cheatsheet Series
           tags:
           - secure coding
           url: https://cheatsheetseries.owasp.org/
-        owasp-juiceshop:
-          name: OWASP JuiceShop
-          tags: []
-          url: https://github.com/bkimminich/juice-shop
-          description: |-
-            In case you do not have the budget to hire an external security expert, an option
-            is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
         https-cheatsheetse:
           name: https://cheatsheetseries.owasp.org/
           tags:
@@ -6648,15 +6754,19 @@ Test and Verification:
           url: https://github.com/OWASP/owasp-masvs
         cis-kubernetes-bench:
           name: CIS Kubernetes Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.cisecurity.org/cis-benchmarks/
         cis-docker-bench-for:
           name: CIS Docker Bench for Security
-          tags: []
+          tags:
+          - d3f:ContainerRuntime
           url: https://www.cisecurity.org/cis-benchmarks/
-        for-example-for-cont:
-          name: For example for Cont
-          tags: []
+        container-execution-isolation:
+          name: Isolate containers execution
+          tags:
+          - d3f:ContainerOrchestrationSoftware
+          - d3f:ContainerImage
           description: 'For example for Containers: Deny running containers as root,
             deny using advanced privileges, deny mounting of the hole filesystem,
             ...'
@@ -6677,6 +6787,7 @@ Test and Verification:
           name: Attack Matrix Kubernetes
           tags:
           - mitre
+          - d3f:ContainerOrchestrationSoftware
           url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
           description: Attack matrix for kubernetes
         istio:
@@ -6692,6 +6803,8 @@ Test and Verification:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
+          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
+            engine that unifies policy enforcement across the stack."
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
@@ -6700,13 +6813,20 @@ Test and Verification:
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
+          description: "Ansible is an open-source software provisioning, configuration
+            management, \nand application-deployment tool enabling infrastructure
+            as code."
           tags: []
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
+          description: "Chef is an open-source software automation platform that \nhelps
+            system administrators manage infrastructure and applications."
           tags: []
           url: https://github.com/chef/chef
         puppet:
+          description: Puppet is an open-source software configuration management
+            tool.
           name: Puppet
           tags: []
           url: https://github.com/puppetlabs/puppet
@@ -7143,11 +7263,11 @@ Test and Verification:
           tags:
           - sca
           - inventory
-        juice-shop:
+        juiceshop:
           name: OWASP Juice Shop
           tags:
           - training
-          url: https://github.com/bkimminich/juice-shop
+          url: https://github.com/bkimminich/juiceshop
           description: In case you do not have the budget to hire an external security
             expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
         dvwa:
@@ -7249,8 +7369,16 @@ Test and Verification:
           - api
           - documentation
           url: https://github.com/schemathesis/schemathesis
-          description: Schemathesis is a tool for testing web applications and services
-            by sending requests based on the Open API / Swagger schema.
+          description: |
+            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+        martin-feature-toggles:
+          name: Feature Toggles
+          tags:
+          - development
+          - architecture
+          url: https://martinfowler.com/articles/feature-toggles.html
+          description: Feature Toggles are a powerful technique, allowing teams to
+            modify system behavior without changing code. (Pete Hodgson)
       references:
         samm2:
         - V-ST-1-A

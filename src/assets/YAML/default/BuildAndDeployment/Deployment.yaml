@@ -46,6 +46,8 @@ Build and Deployment:
         - O-OM-2-B
         iso27001-2017:
         - 11.2.7
+        d3f:
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""
@@ -67,7 +69,10 @@ Build and Deployment:
       - Continuous Integration
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-orchestration
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ansible
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/puppet
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/chef
       references:
         samm2:
         - I-SD-1-A
@@ -162,6 +167,8 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+        d3f:
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""
@@ -185,6 +192,8 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+        d3f:
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""

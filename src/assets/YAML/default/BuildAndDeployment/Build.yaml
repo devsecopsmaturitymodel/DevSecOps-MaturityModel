@@ -24,7 +24,7 @@ Build and Deployment:
       level: 2
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-orchestration
       references:
         samm2:
         - I-SB-2-A
@@ -56,7 +56,7 @@ Build and Deployment:
         Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-orchestration
       references:
         samm2:
         - I-SB-1-A

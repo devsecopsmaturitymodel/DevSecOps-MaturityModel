@@ -14,7 +14,7 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
       references:
         samm2:
@@ -370,7 +370,7 @@ Culture and Organization:
         - All exploits happen via the user interface.
         - No need for security/hacking tools.
         - No need for deep technical or security knowledge.
-        - Use an insecure training app, e.g., [DVWA](https://dvwa.co.uk/) or [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/).
+        - Use an insecure training app, e.g., [DVWA](https://dvwa.co.uk/) or [OWASP Juice Shop](https://owasp.org/www-project-juiceshop/).
         - Encourage active participation, e.g., use small groups.
         - Allow enough time for everyone to run at least one exploit.
 
@@ -386,7 +386,7 @@ Culture and Organization:
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/damn-vulnerable-web
       references:
         samm2:
