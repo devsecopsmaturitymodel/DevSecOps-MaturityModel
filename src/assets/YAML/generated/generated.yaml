@@ -266,19 +266,23 @@ Build and Deployment:
         tags: []
         url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
       - name: Ansible
-        description: "Ansible is an open-source software provisioning, configuration
-          management, \nand application-deployment tool enabling infrastructure as
-          code."
-        tags: []
+        description: |-
+          Ansible is an open-source software provisioning, configuration management,
+          and application-deployment tool enabling infrastructure as code.
+        tags:
+        - d3f:SoftwareDeploymentTool
         url: https://github.com/ansible/ansible
       - description: Puppet is an open-source software configuration management tool.
         name: Puppet
-        tags: []
+        tags:
+        - d3f:SoftwareDeploymentTool
         url: https://github.com/puppetlabs/puppet
       - name: Chef
-        description: "Chef is an open-source software automation platform that \nhelps
-          system administrators manage infrastructure and applications."
-        tags: []
+        description: |-
+          Chef is an open-source software automation platform that
+          helps system administrators manage infrastructure and applications.
+        tags:
+        - d3f:SoftwareDeploymentTool
         url: https://github.com/chef/chef
       references:
         samm2:
@@ -292,7 +296,7 @@ Build and Deployment:
     Environment depending configuration parameters (secrets):
       risk: Unauthorized access to secrets stored in source code or in artifacts (e.g.
         container images) through process listing (e.g. ps -ef).
-      measure: Set configuration parameters via environment variables  stored using
+      measure: Set configuration parameters via environment variables stored using
         specific platform functionalities or secrets management systems (e.g. Kubernetes
         secrets or Hashicorp Vault).
       difficultyOfImplementation:
@@ -344,7 +348,7 @@ Build and Deployment:
           tags: []
           url: https://in-toto.github.io/
         a-complete-backup-of:
-          name: A complete backup of persisted data might be performed*.
+          name: A complete backup of persisted data might be performed.
           tags: []
         a-point-in-time-reco:
           name: A Point in Time Recovery for databases should be implemented.
@@ -378,19 +382,21 @@ Build and Deployment:
           tags: []
           url: https://www.jenkins.io/
         sample-concept-1:
-          name: "Sample concept:  \n(1"
+          name: Daily rebuild of container images
           tags: []
-          description: "Sample concept:  \n(1) each container has a set lifetime and
-            is killed / replaced with a new container multiple times a day where you
-            have some form of a graceful replacement to ensure no (short) service
-            outage will occur to the end users.  \n(2) twice a day a rebuild of images
-            is done. The rebuilds are put into a automated testing pipeline. If the
-            testing has no blocking issues the new images will be released for deployment
-            during the next \"restart\" of a container. What has to be done, is to
-            ensure the new containers are deployed in some canary deployment manner,
-            this will ensure that if (and only if) something buggy has been introduced
-            which breaks functionality the canary deployment will make sure the \"older
-            version\" is being used and not the buggy newer one."
+          description: |
+            Sample concept:
+            1. each container has a set lifetime and is killed/replaced with a new container
+            multiple times a day where you have
+            some form of a graceful replacement to ensure no (short) service outage will
+            occur to the end users.
+            2. twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline.
+            If the testing has no blocking issues the new images will be released for deployment during the
+            next "restart" of a container. What has to be done, is to ensure the new
+            containers are deployed in some canary deployment manner, this will ensure
+            that if (and only if) something buggy has been introduced which breaks functionality
+            the canary deployment will make sure the "older version" is being used and
+                            not the buggy newer one.
         distroless:
           name: Distroless Container Images
           tags:
@@ -556,6 +562,7 @@ Build and Deployment:
         istio:
           name: istio
           tags: []
+          description: Istio is an open platform to connect, manage, and secure microservices.
           url: https://istio.io/
         bridges:
           name: bridges
@@ -566,33 +573,49 @@ Build and Deployment:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
-          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
-            engine that unifies policy enforcement across the stack."
+          description: |-
+            Open Policy Agent is an open source,
+            general-purpose policy engine that unifies policy enforcement across the stack.
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
           name: GitOps
+          description: |-
+            GitOps is a way to do Kubernetes application delivery.
+            It works by using Git as a single source of truth for Kubernetes resources
+            and everything else.
           tags: []
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
-          description: "Ansible is an open-source software provisioning, configuration
-            management, \nand application-deployment tool enabling infrastructure
-            as code."
-          tags: []
+          description: |-
+            Ansible is an open-source software provisioning, configuration management,
+            and application-deployment tool enabling infrastructure as code.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
-          description: "Chef is an open-source software automation platform that \nhelps
-            system administrators manage infrastructure and applications."
-          tags: []
+          description: |-
+            Chef is an open-source software automation platform that
+            helps system administrators manage infrastructure and applications.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/chef/chef
         puppet:
           description: Puppet is an open-source software configuration management
             tool.
           name: Puppet
-          tags: []
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/puppetlabs/puppet
+        argocd:
+          name: ArgoCD
+          description: Argo CD is a declarative, GitOps continuous delivery tool for
+            Kubernetes.
+          tags:
+          - d3f:SoftwareDeploymentTool
+          url: https://github.com/argoproj/argo-cd
         jenkinsfile:
           name: Jenkinsfile
           tags: []
@@ -704,10 +727,13 @@ Build and Deployment:
           name: JUnit
           tags:
           - unittest
+          - d3f:UnitTestExecutionTool
           url: https://junit.org/junit5/
         karma:
           name: Karma
-          tags: []
+          description: Karma is a test runner for JavaScript.
+          tags:
+          - d3f:UnitTestExecutionTool
           url: https://karma-runner.github.io
         owasp-defectdojo:
           name: OWASP DefectDojo
@@ -715,28 +741,34 @@ Build and Deployment:
           - vulnerability management system
           - owasp
           url: https://github.com/DefectDojo/django-DefectDojo
-          description: |
-            DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+          description: DefectDojo is a security program and vulnerability management
+            tool. DefectDojo allows you to manage your application security program,
+            maintain product and application information, triage vulnerabilities and
+            push findings into defect trackers. Consolidate your findings into one
+            source of truth with DefectDojo.
         purify:
           name: Purify
           tags:
           - vulnerability management system
           url: https://github.com/faloker/purify/
           description: |
-            The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+            The goal of Purify to be an easy-in-use and efficient tool to
+            simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
         see-other-actions-e:
           name: See other actions, e.g. "Treatment of defects with severity high".
           tags: []
         sast:
           name: SAST
-          tags: []
+          tags:
+          - d3f:StaticAnalysisTool
           description: 'At SAST (Static Application Security Testing): Server-side
             / client-side teams can easily be recorded. With microservice architecture
             individual microservices can be used usually Teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
         dast:
           name: DAST
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
             are classified and can be assigned to server-side and client-side teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
@@ -757,7 +789,8 @@ Build and Deployment:
           url: https://www.owasp.org/index.php/OWASP_Code_Pulse
         ajax-spider:
           name: Ajax Spider
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
         curl:
           name: cURL
@@ -772,19 +805,24 @@ Build and Deployment:
           tags:
           - vulnerability
           - scanner
+          - d3f:DynamicAnalysisTool
           url: https://github.com/zaproxy/zaproxy
           description: |
             The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
         arachni:
           name: Arachni
+          description: Arachni is a feature-full, modular, high-performance Ruby framework
+            aimed towards helping penetration testers and administrators evaluate
+            the security of web applications.
           url: https://github.com/Arachni/arachni
         zest:
           name: Zest
           url: https://www.zaproxy.org/docs/desktop/addons/zest/
           tags:
           - zap
-          description: |
-            Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+          description: Zest is an experimental specialized scripting language (also
+            known as a domain-specific language) originally developed by the Mozilla
+            security team and is intended to be used in web oriented security tools.
         owasp-securecodebox:
           name: OWASP secureCodeBox
           tags:
@@ -795,7 +833,13 @@ Build and Deployment:
             secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
         kube-hunter:
           name: kube-hunter
-          tags: []
+          description: kube-hunter is a tool that helps you to hunt for security weaknesses
+            in Kubernetes clusters. It is a customizable, easy to use and powerful
+            hunting framework that enables security researchers and developers to
+            test the security of their Kubernetes clusters and workloads.
+          tags:
+          - d3f:DynamicAnalysisTool
+          - d3f:ContainerOrchestrationSoftware
           url: https://github.com/aquasecurity/kube-hunter
         openvas:
           name: openVAS
@@ -1140,8 +1184,8 @@ Build and Deployment:
           - development
           - architecture
           url: https://martinfowler.com/articles/feature-toggles.html
-          description: Feature Toggles are a powerful technique, allowing teams to
-            modify system behavior without changing code. (Pete Hodgson)
+          description: |
+            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
       references:
         samm2:
         - I-SD-1-B
@@ -1322,8 +1366,8 @@ Build and Deployment:
         - development
         - architecture
         url: https://martinfowler.com/articles/feature-toggles.html
-        description: Feature Toggles are a powerful technique, allowing teams to modify
-          system behavior without changing code. (Pete Hodgson)
+        description: |
+          Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
       dependsOn:
       - Same artifact for environments
       references:
@@ -1367,9 +1411,9 @@ Build and Deployment:
       comments: ""
   Patch Management:
     A patch policy is defined:
-      risk: Vulnerabilities in running containers stay for long and might get exploited.
-      measure: A patch policy for all artifacts (e.g. in images) is defined. How often
-        is an image rebuilt?
+      risk: Exploit of known vulnerabilities in long-running artifacts.
+      measure: A patch policy for all artifacts (e.g. in container images) is defined.
+        Images are periodically rebuilt according to a defined policy.
       difficultyOfImplementation:
         knowledge: 3
         time: 1
@@ -1384,16 +1428,21 @@ Build and Deployment:
         - 12.6.1
         - 12.5.1
         - 14.2.5
+        d3f:
+        - SoftwareUpdate
       isImplemented: false
       evidence: ""
       comments: ""
     Automated PRs for patches:
-      risk: Known vulnerabilities components might stay for long and get exploited,
-        even when a patch is available.
-      measure: Fast patching of third party component is needed. The DevOps way is
-        to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virtualized
-        operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
-        as Code/GitOps (e.g. argocd)</li> </ul>
+      risk: Exploit of known vulnerabilities in long-running artifacts.
+      measure: |-
+        Fast patching of third party component is needed. The DevOps way is
+        to have an automated pull request for new components. This includes:
+
+        - Applications
+        - Virtualized operating system components (e.g. container images)
+        - Operating Systems
+        - Infrastructure as Code/GitOps (e.g. argocd)
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -1438,8 +1487,7 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Reduction of the attack surface:
-      risk: Components, dependencies, files or file access rights might have vulnerabilities,
-        but the they are not needed.
+      risk: Unneeded components and permissions can be exploited.
       measure: Removal of unneeded components, dependencies, files or file access
         rights. For container images the usage of distroless images is recommended.
       difficultyOfImplementation:
@@ -1462,17 +1510,23 @@ Build and Deployment:
         iso27001-2017:
         - hardening is missing in ISO 27001
         - 14.2.1
+        d3f:
+        - LocalFilePermissions
+        - SystemConfigurationPermissions
+        - DeadCodeElimination
+        - ApplicationConfigurationHardening
+        - SoftwareInventory
       isImplemented: false
       evidence: ""
       comments: ""
     Usage of a maximum lifetime for images:
-      risk: Vulnerabilities in images of running containers stay for too long and
-        might get exploited. Long running containers have potential memory leaks.
-        A compromised container might get killed by restarting the container (e.g.
-        in case the attacker has not reached the persistence layer).
-      measure: A short maximum lifetime for images is defined, e.g. 30 days. The project
+      risk: Vulnerabilities in long-running container images can be exploited. Long
+        running containers have potential memory leaks. A compromised container might
+        get killed by restarting the container (e.g. in case the attacker has not
+        reached the persistence layer).
+      measure: A maximum lifetime for images is defined, e.g. 30 days. The project
         images, based on the nightly builded images, are deployed at leased once within
-        the defined lifetime. Third Party images are deployed at leased once within
+        the defined lifetime. Third Party images are deployed at least once within
         the defined lifetime.
       difficultyOfImplementation:
         knowledge: 3
@@ -1490,10 +1544,10 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Usage of a short maximum lifetime for images:
-      risk: Vulnerabilities in running containers stay for too long and might get
-        exploited.
+      risk: Exploit of known vulnerabilities in long-running artifacts.
       measure: |
-        A good practice is to perform the build and deployment daily or even just-in-time, when a new component (e.g. package) for the image is available.
+        Build and deploy an artifact whenever a new component (e.g. package, container base image)
+        is available, or on a periodic basis, according to an established policy.
       difficultyOfImplementation:
         knowledge: 3
         time: 4
@@ -1501,19 +1555,21 @@ Build and Deployment:
       usefulness: 3
       level: 4
       implementation:
-      - name: "Sample concept:  \n(1"
+      - name: Daily rebuild of container images
         tags: []
-        description: "Sample concept:  \n(1) each container has a set lifetime and
-          is killed / replaced with a new container multiple times a day where you
-          have some form of a graceful replacement to ensure no (short) service outage
-          will occur to the end users.  \n(2) twice a day a rebuild of images is done.
-          The rebuilds are put into a automated testing pipeline. If the testing has
-          no blocking issues the new images will be released for deployment during
-          the next \"restart\" of a container. What has to be done, is to ensure the
-          new containers are deployed in some canary deployment manner, this will
-          ensure that if (and only if) something buggy has been introduced which breaks
-          functionality the canary deployment will make sure the \"older version\"
-          is being used and not the buggy newer one."
+        description: |
+          Sample concept:
+          1. each container has a set lifetime and is killed/replaced with a new container
+          multiple times a day where you have
+          some form of a graceful replacement to ensure no (short) service outage will
+          occur to the end users.
+          2. twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline.
+          If the testing has no blocking issues the new images will be released for deployment during the
+          next "restart" of a container. What has to be done, is to ensure the new
+          containers are deployed in some canary deployment manner, this will ensure
+          that if (and only if) something buggy has been introduced which breaks functionality
+          the canary deployment will make sure the "older version" is being used and
+                          not the buggy newer one.
       references:
         samm2:
         - O-EM-2-B
@@ -2825,7 +2881,7 @@ Implementation:
       usefulness: 4
       level: 2
       implementation:
-      - name: A complete backup of persisted data might be performed*.
+      - name: A complete backup of persisted data might be performed.
         tags: []
       - name: A Point in Time Recovery for databases should be implemented.
         tags: []
@@ -2875,8 +2931,9 @@ Implementation:
       dependsOn: []
       implementation:
       - name: Open Policy Agent
-        description: "Open Policy Agent is an open source, \ngeneral-purpose policy
-          engine that unifies policy enforcement across the stack."
+        description: |-
+          Open Policy Agent is an open source,
+          general-purpose policy engine that unifies policy enforcement across the stack.
         tags: []
         url: https://www.openpolicyagent.org/
       - name: firewalls
@@ -2930,22 +2987,30 @@ Implementation:
       level: 3
       implementation:
       - name: GitOps
+        description: |-
+          GitOps is a way to do Kubernetes application delivery.
+          It works by using Git as a single source of truth for Kubernetes resources
+          and everything else.
         tags: []
         url: https://www.redhat.com/en/topics/devops/what-is-gitops
       - name: Ansible
-        description: "Ansible is an open-source software provisioning, configuration
-          management, \nand application-deployment tool enabling infrastructure as
-          code."
-        tags: []
+        description: |-
+          Ansible is an open-source software provisioning, configuration management,
+          and application-deployment tool enabling infrastructure as code.
+        tags:
+        - d3f:SoftwareDeploymentTool
         url: https://github.com/ansible/ansible
       - name: Chef
-        description: "Chef is an open-source software automation platform that \nhelps
-          system administrators manage infrastructure and applications."
-        tags: []
+        description: |-
+          Chef is an open-source software automation platform that
+          helps system administrators manage infrastructure and applications.
+        tags:
+        - d3f:SoftwareDeploymentTool
         url: https://github.com/chef/chef
       - description: Puppet is an open-source software configuration management tool.
         name: Puppet
-        tags: []
+        tags:
+        - d3f:SoftwareDeploymentTool
         url: https://github.com/puppetlabs/puppet
       - name: Jenkinsfile
         tags: []
@@ -2977,6 +3042,7 @@ Implementation:
       implementation:
       - name: istio
         tags: []
+        description: Istio is an open platform to connect, manage, and secure microservices.
         url: https://istio.io/
       - name: bridges
         tags: []
@@ -3970,9 +4036,12 @@ Test and Verification:
       - name: JUnit
         tags:
         - unittest
+        - d3f:UnitTestExecutionTool
         url: https://junit.org/junit5/
       - name: Karma
-        tags: []
+        description: Karma is a test runner for JavaScript.
+        tags:
+        - d3f:UnitTestExecutionTool
         url: https://karma-runner.github.io
       references:
         samm2:
@@ -4023,14 +4092,18 @@ Test and Verification:
         - vulnerability management system
         - owasp
         url: https://github.com/DefectDojo/django-DefectDojo
-        description: |
-          DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+        description: DefectDojo is a security program and vulnerability management
+          tool. DefectDojo allows you to manage your application security program,
+          maintain product and application information, triage vulnerabilities and
+          push findings into defect trackers. Consolidate your findings into one source
+          of truth with DefectDojo.
       - name: Purify
         tags:
         - vulnerability management system
         url: https://github.com/faloker/purify/
         description: |
-          The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+          The goal of Purify to be an easy-in-use and efficient tool to
+          simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       - name: Business friendly vulnerability management metrics
         url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
         tags:
@@ -4087,13 +4160,15 @@ Test and Verification:
       level: 3
       implementation:
       - name: SAST
-        tags: []
+        tags:
+        - d3f:StaticAnalysisTool
         description: 'At SAST (Static Application Security Testing): Server-side /
           client-side teams can easily be recorded. With microservice architecture
           individual microservices can be used usually Teams.'
         url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
       - name: DAST
-        tags: []
+        tags:
+        - d3f:DynamicAnalysisTool
         description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
           are classified and can be assigned to server-side and client-side teams.'
         url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
@@ -4153,7 +4228,8 @@ Test and Verification:
         - vulnerability management system
         url: https://github.com/faloker/purify/
         description: |
-          The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+          The goal of Purify to be an easy-in-use and efficient tool to
+          simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
         samm2:
         - I-DM-2-A
@@ -4184,14 +4260,18 @@ Test and Verification:
         - vulnerability management system
         - owasp
         url: https://github.com/DefectDojo/django-DefectDojo
-        description: |
-          DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+        description: DefectDojo is a security program and vulnerability management
+          tool. DefectDojo allows you to manage your application security program,
+          maintain product and application information, triage vulnerabilities and
+          push findings into defect trackers. Consolidate your findings into one source
+          of truth with DefectDojo.
       - name: Purify
         tags:
         - vulnerability management system
         url: https://github.com/faloker/purify/
         description: |
-          The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+          The goal of Purify to be an easy-in-use and efficient tool to
+          simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
         samm2:
         - I-DM-1-B
@@ -4281,14 +4361,18 @@ Test and Verification:
         - vulnerability management system
         - owasp
         url: https://github.com/DefectDojo/django-DefectDojo
-        description: |
-          DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+        description: DefectDojo is a security program and vulnerability management
+          tool. DefectDojo allows you to manage your application security program,
+          maintain product and application information, triage vulnerabilities and
+          push findings into defect trackers. Consolidate your findings into one source
+          of truth with DefectDojo.
       - name: Purify
         tags:
         - vulnerability management system
         url: https://github.com/faloker/purify/
         description: |
-          The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+          The goal of Purify to be an easy-in-use and efficient tool to
+          simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
         samm2:
         - I-DM-1-B
@@ -4352,7 +4436,8 @@ Test and Verification:
         - 14.2.8
       implementation:
       - name: Ajax Spider
-        tags: []
+        tags:
+        - d3f:DynamicAnalysisTool
         url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
       isImplemented: false
       evidence: ""
@@ -4378,6 +4463,7 @@ Test and Verification:
         tags:
         - vulnerability
         - scanner
+        - d3f:DynamicAnalysisTool
         url: https://github.com/zaproxy/zaproxy
         description: |
           The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
@@ -4516,7 +4602,7 @@ Test and Verification:
           tags: []
           url: https://in-toto.github.io/
         a-complete-backup-of:
-          name: A complete backup of persisted data might be performed*.
+          name: A complete backup of persisted data might be performed.
           tags: []
         a-point-in-time-reco:
           name: A Point in Time Recovery for databases should be implemented.
@@ -4550,19 +4636,21 @@ Test and Verification:
           tags: []
           url: https://www.jenkins.io/
         sample-concept-1:
-          name: "Sample concept:  \n(1"
+          name: Daily rebuild of container images
           tags: []
-          description: "Sample concept:  \n(1) each container has a set lifetime and
-            is killed / replaced with a new container multiple times a day where you
-            have some form of a graceful replacement to ensure no (short) service
-            outage will occur to the end users.  \n(2) twice a day a rebuild of images
-            is done. The rebuilds are put into a automated testing pipeline. If the
-            testing has no blocking issues the new images will be released for deployment
-            during the next \"restart\" of a container. What has to be done, is to
-            ensure the new containers are deployed in some canary deployment manner,
-            this will ensure that if (and only if) something buggy has been introduced
-            which breaks functionality the canary deployment will make sure the \"older
-            version\" is being used and not the buggy newer one."
+          description: |
+            Sample concept:
+            1. each container has a set lifetime and is killed/replaced with a new container
+            multiple times a day where you have
+            some form of a graceful replacement to ensure no (short) service outage will
+            occur to the end users.
+            2. twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline.
+            If the testing has no blocking issues the new images will be released for deployment during the
+            next "restart" of a container. What has to be done, is to ensure the new
+            containers are deployed in some canary deployment manner, this will ensure
+            that if (and only if) something buggy has been introduced which breaks functionality
+            the canary deployment will make sure the "older version" is being used and
+                            not the buggy newer one.
         distroless:
           name: Distroless Container Images
           tags:
@@ -4728,6 +4816,7 @@ Test and Verification:
         istio:
           name: istio
           tags: []
+          description: Istio is an open platform to connect, manage, and secure microservices.
           url: https://istio.io/
         bridges:
           name: bridges
@@ -4738,33 +4827,49 @@ Test and Verification:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
-          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
-            engine that unifies policy enforcement across the stack."
+          description: |-
+            Open Policy Agent is an open source,
+            general-purpose policy engine that unifies policy enforcement across the stack.
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
           name: GitOps
+          description: |-
+            GitOps is a way to do Kubernetes application delivery.
+            It works by using Git as a single source of truth for Kubernetes resources
+            and everything else.
           tags: []
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
-          description: "Ansible is an open-source software provisioning, configuration
-            management, \nand application-deployment tool enabling infrastructure
-            as code."
-          tags: []
+          description: |-
+            Ansible is an open-source software provisioning, configuration management,
+            and application-deployment tool enabling infrastructure as code.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
-          description: "Chef is an open-source software automation platform that \nhelps
-            system administrators manage infrastructure and applications."
-          tags: []
+          description: |-
+            Chef is an open-source software automation platform that
+            helps system administrators manage infrastructure and applications.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/chef/chef
         puppet:
           description: Puppet is an open-source software configuration management
             tool.
           name: Puppet
-          tags: []
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/puppetlabs/puppet
+        argocd:
+          name: ArgoCD
+          description: Argo CD is a declarative, GitOps continuous delivery tool for
+            Kubernetes.
+          tags:
+          - d3f:SoftwareDeploymentTool
+          url: https://github.com/argoproj/argo-cd
         jenkinsfile:
           name: Jenkinsfile
           tags: []
@@ -4876,10 +4981,13 @@ Test and Verification:
           name: JUnit
           tags:
           - unittest
+          - d3f:UnitTestExecutionTool
           url: https://junit.org/junit5/
         karma:
           name: Karma
-          tags: []
+          description: Karma is a test runner for JavaScript.
+          tags:
+          - d3f:UnitTestExecutionTool
           url: https://karma-runner.github.io
         owasp-defectdojo:
           name: OWASP DefectDojo
@@ -4887,28 +4995,34 @@ Test and Verification:
           - vulnerability management system
           - owasp
           url: https://github.com/DefectDojo/django-DefectDojo
-          description: |
-            DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+          description: DefectDojo is a security program and vulnerability management
+            tool. DefectDojo allows you to manage your application security program,
+            maintain product and application information, triage vulnerabilities and
+            push findings into defect trackers. Consolidate your findings into one
+            source of truth with DefectDojo.
         purify:
           name: Purify
           tags:
           - vulnerability management system
           url: https://github.com/faloker/purify/
           description: |
-            The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+            The goal of Purify to be an easy-in-use and efficient tool to
+            simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
         see-other-actions-e:
           name: See other actions, e.g. "Treatment of defects with severity high".
           tags: []
         sast:
           name: SAST
-          tags: []
+          tags:
+          - d3f:StaticAnalysisTool
           description: 'At SAST (Static Application Security Testing): Server-side
             / client-side teams can easily be recorded. With microservice architecture
             individual microservices can be used usually Teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
         dast:
           name: DAST
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
             are classified and can be assigned to server-side and client-side teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
@@ -4929,7 +5043,8 @@ Test and Verification:
           url: https://www.owasp.org/index.php/OWASP_Code_Pulse
         ajax-spider:
           name: Ajax Spider
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
         curl:
           name: cURL
@@ -4944,19 +5059,24 @@ Test and Verification:
           tags:
           - vulnerability
           - scanner
+          - d3f:DynamicAnalysisTool
           url: https://github.com/zaproxy/zaproxy
           description: |
             The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
         arachni:
           name: Arachni
+          description: Arachni is a feature-full, modular, high-performance Ruby framework
+            aimed towards helping penetration testers and administrators evaluate
+            the security of web applications.
           url: https://github.com/Arachni/arachni
         zest:
           name: Zest
           url: https://www.zaproxy.org/docs/desktop/addons/zest/
           tags:
           - zap
-          description: |
-            Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+          description: Zest is an experimental specialized scripting language (also
+            known as a domain-specific language) originally developed by the Mozilla
+            security team and is intended to be used in web oriented security tools.
         owasp-securecodebox:
           name: OWASP secureCodeBox
           tags:
@@ -4967,7 +5087,13 @@ Test and Verification:
             secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
         kube-hunter:
           name: kube-hunter
-          tags: []
+          description: kube-hunter is a tool that helps you to hunt for security weaknesses
+            in Kubernetes clusters. It is a customizable, easy to use and powerful
+            hunting framework that enables security researchers and developers to
+            test the security of their Kubernetes clusters and workloads.
+          tags:
+          - d3f:DynamicAnalysisTool
+          - d3f:ContainerOrchestrationSoftware
           url: https://github.com/aquasecurity/kube-hunter
         openvas:
           name: openVAS
@@ -5312,8 +5438,8 @@ Test and Verification:
           - development
           - architecture
           url: https://martinfowler.com/articles/feature-toggles.html
-          description: Feature Toggles are a powerful technique, allowing teams to
-            modify system behavior without changing code. (Pete Hodgson)
+          description: |
+            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
       - signing-of-commits-protection:
           name: Enforcement of commit signing
           tags:
@@ -5356,7 +5482,7 @@ Test and Verification:
           tags: []
           url: https://in-toto.github.io/
         a-complete-backup-of:
-          name: A complete backup of persisted data might be performed*.
+          name: A complete backup of persisted data might be performed.
           tags: []
         a-point-in-time-reco:
           name: A Point in Time Recovery for databases should be implemented.
@@ -5390,19 +5516,21 @@ Test and Verification:
           tags: []
           url: https://www.jenkins.io/
         sample-concept-1:
-          name: "Sample concept:  \n(1"
+          name: Daily rebuild of container images
           tags: []
-          description: "Sample concept:  \n(1) each container has a set lifetime and
-            is killed / replaced with a new container multiple times a day where you
-            have some form of a graceful replacement to ensure no (short) service
-            outage will occur to the end users.  \n(2) twice a day a rebuild of images
-            is done. The rebuilds are put into a automated testing pipeline. If the
-            testing has no blocking issues the new images will be released for deployment
-            during the next \"restart\" of a container. What has to be done, is to
-            ensure the new containers are deployed in some canary deployment manner,
-            this will ensure that if (and only if) something buggy has been introduced
-            which breaks functionality the canary deployment will make sure the \"older
-            version\" is being used and not the buggy newer one."
+          description: |
+            Sample concept:
+            1. each container has a set lifetime and is killed/replaced with a new container
+            multiple times a day where you have
+            some form of a graceful replacement to ensure no (short) service outage will
+            occur to the end users.
+            2. twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline.
+            If the testing has no blocking issues the new images will be released for deployment during the
+            next "restart" of a container. What has to be done, is to ensure the new
+            containers are deployed in some canary deployment manner, this will ensure
+            that if (and only if) something buggy has been introduced which breaks functionality
+            the canary deployment will make sure the "older version" is being used and
+                            not the buggy newer one.
         distroless:
           name: Distroless Container Images
           tags:
@@ -5568,6 +5696,7 @@ Test and Verification:
         istio:
           name: istio
           tags: []
+          description: Istio is an open platform to connect, manage, and secure microservices.
           url: https://istio.io/
         bridges:
           name: bridges
@@ -5578,33 +5707,49 @@ Test and Verification:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
-          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
-            engine that unifies policy enforcement across the stack."
+          description: |-
+            Open Policy Agent is an open source,
+            general-purpose policy engine that unifies policy enforcement across the stack.
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
           name: GitOps
+          description: |-
+            GitOps is a way to do Kubernetes application delivery.
+            It works by using Git as a single source of truth for Kubernetes resources
+            and everything else.
           tags: []
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
-          description: "Ansible is an open-source software provisioning, configuration
-            management, \nand application-deployment tool enabling infrastructure
-            as code."
-          tags: []
+          description: |-
+            Ansible is an open-source software provisioning, configuration management,
+            and application-deployment tool enabling infrastructure as code.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
-          description: "Chef is an open-source software automation platform that \nhelps
-            system administrators manage infrastructure and applications."
-          tags: []
+          description: |-
+            Chef is an open-source software automation platform that
+            helps system administrators manage infrastructure and applications.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/chef/chef
         puppet:
           description: Puppet is an open-source software configuration management
             tool.
           name: Puppet
-          tags: []
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/puppetlabs/puppet
+        argocd:
+          name: ArgoCD
+          description: Argo CD is a declarative, GitOps continuous delivery tool for
+            Kubernetes.
+          tags:
+          - d3f:SoftwareDeploymentTool
+          url: https://github.com/argoproj/argo-cd
         jenkinsfile:
           name: Jenkinsfile
           tags: []
@@ -5716,10 +5861,13 @@ Test and Verification:
           name: JUnit
           tags:
           - unittest
+          - d3f:UnitTestExecutionTool
           url: https://junit.org/junit5/
         karma:
           name: Karma
-          tags: []
+          description: Karma is a test runner for JavaScript.
+          tags:
+          - d3f:UnitTestExecutionTool
           url: https://karma-runner.github.io
         owasp-defectdojo:
           name: OWASP DefectDojo
@@ -5727,28 +5875,34 @@ Test and Verification:
           - vulnerability management system
           - owasp
           url: https://github.com/DefectDojo/django-DefectDojo
-          description: |
-            DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+          description: DefectDojo is a security program and vulnerability management
+            tool. DefectDojo allows you to manage your application security program,
+            maintain product and application information, triage vulnerabilities and
+            push findings into defect trackers. Consolidate your findings into one
+            source of truth with DefectDojo.
         purify:
           name: Purify
           tags:
           - vulnerability management system
           url: https://github.com/faloker/purify/
           description: |
-            The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+            The goal of Purify to be an easy-in-use and efficient tool to
+            simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
         see-other-actions-e:
           name: See other actions, e.g. "Treatment of defects with severity high".
           tags: []
         sast:
           name: SAST
-          tags: []
+          tags:
+          - d3f:StaticAnalysisTool
           description: 'At SAST (Static Application Security Testing): Server-side
             / client-side teams can easily be recorded. With microservice architecture
             individual microservices can be used usually Teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
         dast:
           name: DAST
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
             are classified and can be assigned to server-side and client-side teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
@@ -5769,7 +5923,8 @@ Test and Verification:
           url: https://www.owasp.org/index.php/OWASP_Code_Pulse
         ajax-spider:
           name: Ajax Spider
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
         curl:
           name: cURL
@@ -5784,19 +5939,24 @@ Test and Verification:
           tags:
           - vulnerability
           - scanner
+          - d3f:DynamicAnalysisTool
           url: https://github.com/zaproxy/zaproxy
           description: |
             The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
         arachni:
           name: Arachni
+          description: Arachni is a feature-full, modular, high-performance Ruby framework
+            aimed towards helping penetration testers and administrators evaluate
+            the security of web applications.
           url: https://github.com/Arachni/arachni
         zest:
           name: Zest
           url: https://www.zaproxy.org/docs/desktop/addons/zest/
           tags:
           - zap
-          description: |
-            Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+          description: Zest is an experimental specialized scripting language (also
+            known as a domain-specific language) originally developed by the Mozilla
+            security team and is intended to be used in web oriented security tools.
         owasp-securecodebox:
           name: OWASP secureCodeBox
           tags:
@@ -5807,7 +5967,13 @@ Test and Verification:
             secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
         kube-hunter:
           name: kube-hunter
-          tags: []
+          description: kube-hunter is a tool that helps you to hunt for security weaknesses
+            in Kubernetes clusters. It is a customizable, easy to use and powerful
+            hunting framework that enables security researchers and developers to
+            test the security of their Kubernetes clusters and workloads.
+          tags:
+          - d3f:DynamicAnalysisTool
+          - d3f:ContainerOrchestrationSoftware
           url: https://github.com/aquasecurity/kube-hunter
         openvas:
           name: openVAS
@@ -6152,8 +6318,8 @@ Test and Verification:
           - development
           - architecture
           url: https://martinfowler.com/articles/feature-toggles.html
-          description: Feature Toggles are a powerful technique, allowing teams to
-            modify system behavior without changing code. (Pete Hodgson)
+          description: |
+            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
       isImplemented: false
       evidence: ""
       comments: ""
@@ -6177,10 +6343,14 @@ Test and Verification:
         tags:
         - vulnerability
         - scanner
+        - d3f:DynamicAnalysisTool
         url: https://github.com/zaproxy/zaproxy
         description: |
           The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
       - name: Arachni
+        description: Arachni is a feature-full, modular, high-performance Ruby framework
+          aimed towards helping penetration testers and administrators evaluate the
+          security of web applications.
         url: https://github.com/Arachni/arachni
       references:
         samm2:
@@ -6215,8 +6385,9 @@ Test and Verification:
         url: https://www.zaproxy.org/docs/desktop/addons/zest/
         tags:
         - zap
-        description: |
-          Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+        description: Zest is an experimental specialized scripting language (also
+          known as a domain-specific language) originally developed by the Mozilla
+          security team and is intended to be used in web oriented security tools.
       isImplemented: false
       assessment: For REST APIs, multiple OAuth2 scopes are used.
       evidence: ""
@@ -6383,7 +6554,13 @@ Test and Verification:
         description: _Testing if Kubernetes is deployed securely as defined in Kubernetes
           Hardening Guidance by to NSA and CISA_
       - name: kube-hunter
-        tags: []
+        description: kube-hunter is a tool that helps you to hunt for security weaknesses
+          in Kubernetes clusters. It is a customizable, easy to use and powerful hunting
+          framework that enables security researchers and developers to test the security
+          of their Kubernetes clusters and workloads.
+        tags:
+        - d3f:DynamicAnalysisTool
+        - d3f:ContainerOrchestrationSoftware
         url: https://github.com/aquasecurity/kube-hunter
       - name: openVAS
         tags: []
@@ -6581,7 +6758,7 @@ Test and Verification:
           tags: []
           url: https://in-toto.github.io/
         a-complete-backup-of:
-          name: A complete backup of persisted data might be performed*.
+          name: A complete backup of persisted data might be performed.
           tags: []
         a-point-in-time-reco:
           name: A Point in Time Recovery for databases should be implemented.
@@ -6615,19 +6792,21 @@ Test and Verification:
           tags: []
           url: https://www.jenkins.io/
         sample-concept-1:
-          name: "Sample concept:  \n(1"
+          name: Daily rebuild of container images
           tags: []
-          description: "Sample concept:  \n(1) each container has a set lifetime and
-            is killed / replaced with a new container multiple times a day where you
-            have some form of a graceful replacement to ensure no (short) service
-            outage will occur to the end users.  \n(2) twice a day a rebuild of images
-            is done. The rebuilds are put into a automated testing pipeline. If the
-            testing has no blocking issues the new images will be released for deployment
-            during the next \"restart\" of a container. What has to be done, is to
-            ensure the new containers are deployed in some canary deployment manner,
-            this will ensure that if (and only if) something buggy has been introduced
-            which breaks functionality the canary deployment will make sure the \"older
-            version\" is being used and not the buggy newer one."
+          description: |
+            Sample concept:
+            1. each container has a set lifetime and is killed/replaced with a new container
+            multiple times a day where you have
+            some form of a graceful replacement to ensure no (short) service outage will
+            occur to the end users.
+            2. twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline.
+            If the testing has no blocking issues the new images will be released for deployment during the
+            next "restart" of a container. What has to be done, is to ensure the new
+            containers are deployed in some canary deployment manner, this will ensure
+            that if (and only if) something buggy has been introduced which breaks functionality
+            the canary deployment will make sure the "older version" is being used and
+                            not the buggy newer one.
         distroless:
           name: Distroless Container Images
           tags:
@@ -6793,6 +6972,7 @@ Test and Verification:
         istio:
           name: istio
           tags: []
+          description: Istio is an open platform to connect, manage, and secure microservices.
           url: https://istio.io/
         bridges:
           name: bridges
@@ -6803,33 +6983,49 @@ Test and Verification:
           url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
         open-policy-agent:
           name: Open Policy Agent
-          description: "Open Policy Agent is an open source, \ngeneral-purpose policy
-            engine that unifies policy enforcement across the stack."
+          description: |-
+            Open Policy Agent is an open source,
+            general-purpose policy engine that unifies policy enforcement across the stack.
           tags: []
           url: https://www.openpolicyagent.org/
         gitops:
           name: GitOps
+          description: |-
+            GitOps is a way to do Kubernetes application delivery.
+            It works by using Git as a single source of truth for Kubernetes resources
+            and everything else.
           tags: []
           url: https://www.redhat.com/en/topics/devops/what-is-gitops
         ansible:
           name: Ansible
-          description: "Ansible is an open-source software provisioning, configuration
-            management, \nand application-deployment tool enabling infrastructure
-            as code."
-          tags: []
+          description: |-
+            Ansible is an open-source software provisioning, configuration management,
+            and application-deployment tool enabling infrastructure as code.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/ansible/ansible
         chef:
           name: Chef
-          description: "Chef is an open-source software automation platform that \nhelps
-            system administrators manage infrastructure and applications."
-          tags: []
+          description: |-
+            Chef is an open-source software automation platform that
+            helps system administrators manage infrastructure and applications.
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/chef/chef
         puppet:
           description: Puppet is an open-source software configuration management
             tool.
           name: Puppet
-          tags: []
+          tags:
+          - d3f:SoftwareDeploymentTool
           url: https://github.com/puppetlabs/puppet
+        argocd:
+          name: ArgoCD
+          description: Argo CD is a declarative, GitOps continuous delivery tool for
+            Kubernetes.
+          tags:
+          - d3f:SoftwareDeploymentTool
+          url: https://github.com/argoproj/argo-cd
         jenkinsfile:
           name: Jenkinsfile
           tags: []
@@ -6941,10 +7137,13 @@ Test and Verification:
           name: JUnit
           tags:
           - unittest
+          - d3f:UnitTestExecutionTool
           url: https://junit.org/junit5/
         karma:
           name: Karma
-          tags: []
+          description: Karma is a test runner for JavaScript.
+          tags:
+          - d3f:UnitTestExecutionTool
           url: https://karma-runner.github.io
         owasp-defectdojo:
           name: OWASP DefectDojo
@@ -6952,28 +7151,34 @@ Test and Verification:
           - vulnerability management system
           - owasp
           url: https://github.com/DefectDojo/django-DefectDojo
-          description: |
-            DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+          description: DefectDojo is a security program and vulnerability management
+            tool. DefectDojo allows you to manage your application security program,
+            maintain product and application information, triage vulnerabilities and
+            push findings into defect trackers. Consolidate your findings into one
+            source of truth with DefectDojo.
         purify:
           name: Purify
           tags:
           - vulnerability management system
           url: https://github.com/faloker/purify/
           description: |
-            The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+            The goal of Purify to be an easy-in-use and efficient tool to
+            simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
         see-other-actions-e:
           name: See other actions, e.g. "Treatment of defects with severity high".
           tags: []
         sast:
           name: SAST
-          tags: []
+          tags:
+          - d3f:StaticAnalysisTool
           description: 'At SAST (Static Application Security Testing): Server-side
             / client-side teams can easily be recorded. With microservice architecture
             individual microservices can be used usually Teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
         dast:
           name: DAST
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
             are classified and can be assigned to server-side and client-side teams.'
           url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
@@ -6994,7 +7199,8 @@ Test and Verification:
           url: https://www.owasp.org/index.php/OWASP_Code_Pulse
         ajax-spider:
           name: Ajax Spider
-          tags: []
+          tags:
+          - d3f:DynamicAnalysisTool
           url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
         curl:
           name: cURL
@@ -7009,19 +7215,24 @@ Test and Verification:
           tags:
           - vulnerability
           - scanner
+          - d3f:DynamicAnalysisTool
           url: https://github.com/zaproxy/zaproxy
           description: |
             The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
         arachni:
           name: Arachni
+          description: Arachni is a feature-full, modular, high-performance Ruby framework
+            aimed towards helping penetration testers and administrators evaluate
+            the security of web applications.
           url: https://github.com/Arachni/arachni
         zest:
           name: Zest
           url: https://www.zaproxy.org/docs/desktop/addons/zest/
           tags:
           - zap
-          description: |
-            Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+          description: Zest is an experimental specialized scripting language (also
+            known as a domain-specific language) originally developed by the Mozilla
+            security team and is intended to be used in web oriented security tools.
         owasp-securecodebox:
           name: OWASP secureCodeBox
           tags:
@@ -7032,7 +7243,13 @@ Test and Verification:
             secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
         kube-hunter:
           name: kube-hunter
-          tags: []
+          description: kube-hunter is a tool that helps you to hunt for security weaknesses
+            in Kubernetes clusters. It is a customizable, easy to use and powerful
+            hunting framework that enables security researchers and developers to
+            test the security of their Kubernetes clusters and workloads.
+          tags:
+          - d3f:DynamicAnalysisTool
+          - d3f:ContainerOrchestrationSoftware
           url: https://github.com/aquasecurity/kube-hunter
         openvas:
           name: openVAS
@@ -7377,8 +7594,8 @@ Test and Verification:
           - development
           - architecture
           url: https://martinfowler.com/articles/feature-toggles.html
-          description: Feature Toggles are a powerful technique, allowing teams to
-            modify system behavior without changing code. (Pete Hodgson)
+          description: |
+            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
       references:
         samm2:
         - V-ST-1-A

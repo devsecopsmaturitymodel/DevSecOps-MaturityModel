@@ -88,7 +88,7 @@ Build and Deployment:
         or in artifacts (e.g. container images)
         through process listing (e.g. ps -ef).
       measure: >-
-        Set configuration parameters via environment variables 
+        Set configuration parameters via environment variables
         stored using specific platform functionalities
         or secrets management systems
         (e.g. Kubernetes secrets or Hashicorp Vault).
@@ -270,7 +270,7 @@ Build and Deployment:
         - 14.2.8
         - 14.2.9
         - 12.1.4
-        d3f: 
+        d3f:
         - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""

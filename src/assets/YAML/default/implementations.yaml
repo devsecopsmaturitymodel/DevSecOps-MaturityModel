@@ -1,6 +1,12 @@
 ---
-# The following file includes a D3FEND classification
-#  based on d3f:DigitalArtifact.
+# This implementation list includes both techniques
+#  and applications. With respect to D3FEND classification
+#  this means that an implementation can be either a d3f:DigitalArtifact
+#  or a d3f:Technique. As an experiment we will use the d3f:DigitalArtifact
+#  classification in the tags. A more comprehensive approach would be to use
+#  different properties for the different classifications.
+# When a generic implementation is referenced, the d3f:DigitalArtifact URI is
+#  used (e.g. ContainerOrchestrationSoftware).
 implementations:
   signing-of-commits-protection:
     name: Enforcement of commit signing
@@ -41,7 +47,7 @@ implementations:
     tags: []
     url: https://in-toto.github.io/
   a-complete-backup-of:
-    name: A complete backup of persisted data might be performed*.
+    name: A complete backup of persisted data might be performed.
     tags: []
   a-point-in-time-reco:
     name: A Point in Time Recovery for databases should be implemented.
@@ -74,19 +80,22 @@ implementations:
     tags: []
     url: https://www.jenkins.io/
   sample-concept-1:
-    name: "Sample concept:  \n(1"
+    name: Daily rebuild of container images
     tags: []
-    description: "Sample concept:  \n(1) each container has a set lifetime and is\
-      \ killed / replaced with a new container multiple times a day where you have\
-      \ some form of a graceful replacement to ensure no (short) service outage will\
-      \ occur to the end users.  \n(2) twice a day a rebuild of images is done. The\
-      \ rebuilds are put into a automated testing pipeline. If the testing has no\
-      \ blocking issues the new images will be released for deployment during the\
-      \ next \"restart\" of a container. What has to be done, is to ensure the new\
-      \ containers are deployed in some canary deployment manner, this will ensure\
-      \ that if (and only if) something buggy has been introduced which breaks functionality\
-      \ the canary deployment will make sure the \"older version\" is being used and\
-      \ not the buggy newer one."
+    description: |
+      Sample concept:
+      1. each container has a set lifetime and is killed/replaced with a new container
+      multiple times a day where you have
+      some form of a graceful replacement to ensure no (short) service outage will
+      occur to the end users.
+      2. twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline.
+      If the testing has no blocking issues the new images will be released for deployment during the
+      next "restart" of a container. What has to be done, is to ensure the new
+      containers are deployed in some canary deployment manner, this will ensure
+      that if (and only if) something buggy has been introduced which breaks functionality
+      the canary deployment will make sure the "older version" is being used and
+                      not the buggy newer one.
+
   distroless:
     name: Distroless Container Images
     tags: ["d3f:ContainerImage"]
@@ -215,6 +224,8 @@ implementations:
   istio:
     name: istio
     tags: []
+    description: |-
+      Istio is an open platform to connect, manage, and secure microservices.
     url: https://istio.io/
   bridges:
     name: bridges
@@ -232,6 +243,10 @@ implementations:
     url: https://www.openpolicyagent.org/
   gitops:
     name: GitOps
+    description: |-
+      GitOps is a way to do Kubernetes application delivery.
+      It works by using Git as a single source of truth for Kubernetes resources
+      and everything else.
     tags: []
     url: https://www.redhat.com/en/topics/devops/what-is-gitops
   ansible:
@@ -239,21 +254,27 @@ implementations:
     description: |-
       Ansible is an open-source software provisioning, configuration management,
       and application-deployment tool enabling infrastructure as code.
-    tags: []
+    tags: ["d3f:SoftwareDeploymentTool"]
     url: https://github.com/ansible/ansible
   chef:
     name: Chef
     description: |-
       Chef is an open-source software automation platform that
       helps system administrators manage infrastructure and applications.
-    tags: []
+    tags: ["d3f:SoftwareDeploymentTool"]
     url: https://github.com/chef/chef
   puppet:
     description: |-
       Puppet is an open-source software configuration management tool.
     name: Puppet
-    tags: []
+    tags: ["d3f:SoftwareDeploymentTool"]
     url: https://github.com/puppetlabs/puppet
+  argocd:
+    name: ArgoCD
+    description: |-
+      Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
+    tags: ["d3f:SoftwareDeploymentTool"]
+    url: https://github.com/argoproj/argo-cd
   jenkinsfile:
     name: Jenkinsfile
     tags: []
@@ -355,37 +376,42 @@ implementations:
     url: http://httpunit.sourceforge.net/
   junit:
     name: JUnit
-    tags: [unittest]
+    tags: [unittest, "d3f:UnitTestExecutionTool"]
     url: https://junit.org/junit5/
   karma:
     name: Karma
-    tags: []
+    description: |-
+      Karma is a test runner for JavaScript.
+    tags: ["d3f:UnitTestExecutionTool"]
     url: https://karma-runner.github.io
   owasp-defectdojo:
     name: OWASP DefectDojo
     tags: [vulnerability management system, owasp]
     url: https://github.com/DefectDojo/django-DefectDojo
-    description: |
-      DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+    description: >-
+      DefectDojo is a security program and vulnerability management tool.
+      DefectDojo allows you to manage your application security program, maintain product and application information,
+      triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
   purify:
     name: Purify
     tags: [vulnerability management system]
     url: https://github.com/faloker/purify/
     description: |
-      The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      The goal of Purify to be an easy-in-use and efficient tool to
+      simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
   see-other-actions-e:
     name: See other actions, e.g. "Treatment of defects with severity high".
     tags: []
   sast:
     name: SAST
-    tags: []
+    tags: ["d3f:StaticAnalysisTool"]
     description: 'At SAST (Static Application Security Testing): Server-side / client-side
       teams can easily be recorded. With microservice architecture individual microservices
       can be used usually Teams.'
     url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
   dast:
     name: DAST
-    tags: []
+    tags: ["d3f:DynamicAnalysisTool"]
     description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
       are classified and can be assigned to server-side and client-side teams.'
     url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
@@ -406,7 +432,7 @@ implementations:
     url: https://www.owasp.org/index.php/OWASP_Code_Pulse
   ajax-spider:
     name: Ajax Spider
-    tags: []
+    tags: ["d3f:DynamicAnalysisTool"]
     url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
   curl:
     name: cURL
@@ -418,19 +444,23 @@ implementations:
     url: https://spec.openapis.org/
   owasp-zap:
     name: OWASP Zap
-    tags: [vulnerability, scanner]
+    tags: [vulnerability, scanner, "d3f:DynamicAnalysisTool"]
     url: https://github.com/zaproxy/zaproxy
     description: |
       The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
   arachni:
     name: Arachni
+    description: >-
+      Arachni is a feature-full, modular, high-performance Ruby framework aimed towards helping penetration testers
+      and administrators evaluate the security of web applications.
     url: https://github.com/Arachni/arachni
   zest:
     name: Zest
     url: https://www.zaproxy.org/docs/desktop/addons/zest/
     tags: [zap]
-    description: |
-      Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+    description: >-
+      Zest is an experimental specialized scripting language (also known as a domain-specific language)
+      originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
   owasp-securecodebox:
     name: OWASP secureCodeBox
     tags: [vulnerability, scanner-orchestration]
@@ -439,7 +469,11 @@ implementations:
       secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
   kube-hunter:
     name: kube-hunter
-    tags: []
+    description: >-
+      kube-hunter is a tool that helps you to hunt for security weaknesses in Kubernetes clusters.
+      It is a customizable, easy to use and powerful hunting framework that enables security researchers
+      and developers to test the security of their Kubernetes clusters and workloads.
+    tags: ["d3f:DynamicAnalysisTool", "d3f:ContainerOrchestrationSoftware"]
     url: https://github.com/aquasecurity/kube-hunter
   openvas:
     name: openVAS
