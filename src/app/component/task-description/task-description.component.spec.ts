@@ -92,4 +92,40 @@ describe('TaskDescriptionComponent', () => {
       testEvidence
     );
   });
+
+  it('check if assessment is being genenrated', () => {
+    const testAssessment = 'Sample Assessment';
+    component.currentTask.assessment = testAssessment;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[7].textContent).toContain(
+      testAssessment
+    );
+  });
+
+  it('check if comments is being genenrated', () => {
+    const testComments = 'Sample Comments';
+    component.currentTask.comments = testComments;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    console.log(contentDisplayedinParagraphTag);
+    expect(contentDisplayedinParagraphTag[10].textContent).toContain(
+      testComments
+    );
+  });
+  it('check if references is being genenrated', () => {
+    const testSAMM = [' Sample SAMM '];
+    const testISO = [' Sample ISO'];
+    component.currentTask.samm = testSAMM;
+    component.currentTask.iso = testISO;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    console.log(contentDisplayedinParagraphTag);
+    expect(contentDisplayedinParagraphTag[9].textContent).toContain(
+      'OWASP SAMM VERSION 2' + testSAMM[0] + 'ISO27001 2017' + testISO[0]
+    );
+  });
 });
