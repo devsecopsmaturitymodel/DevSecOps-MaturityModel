@@ -110,11 +110,11 @@ describe('TaskDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    console.log(contentDisplayedinParagraphTag);
     expect(contentDisplayedinParagraphTag[10].textContent).toContain(
       testComments
     );
   });
+
   it('check if references is being genenrated', () => {
     const testSAMM = [' Sample SAMM '];
     const testISO = [' Sample ISO'];
@@ -123,9 +123,8 @@ describe('TaskDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    console.log(contentDisplayedinParagraphTag);
     expect(contentDisplayedinParagraphTag[9].textContent).toContain(
-      'OWASP SAMM VERSION 2' + testSAMM[0] + 'ISO27001 2017' + testISO[0]
+      component.SAMMVersion + testSAMM[0] + component.ISOVersion + testISO[0]
     );
   });
 });

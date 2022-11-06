@@ -145,7 +145,7 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <b>OWASP SAMM VERSION 2</b>
+                <b>{{ SAMMVersion }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <ul *ngFor="let samm of currentTask.samm">
@@ -155,7 +155,7 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <b>ISO27001 2017</b>
+                <b>{{ ISOVersion }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <ul *ngFor="let iso of currentTask.iso">

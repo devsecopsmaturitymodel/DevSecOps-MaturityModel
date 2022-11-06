@@ -67,7 +67,8 @@ export class TaskDescriptionComponent implements OnInit {
   KnowledgeLabels: string[] = [];
   rowIndex: number = 0;
   markdown: md = md();
-
+  SAMMVersion: string = 'OWASP SAMM VERSION 2';
+  ISOVersion: string = 'ISO27001 2017';
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
   constructor(private route: ActivatedRoute, private yaml: ymlService) {}
 
