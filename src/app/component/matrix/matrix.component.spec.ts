@@ -5,7 +5,6 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
 import { MatrixComponent } from './matrix.component';
-import { delay } from 'rxjs';
 
 describe('MatrixComponent', () => {
   let component: MatrixComponent;
