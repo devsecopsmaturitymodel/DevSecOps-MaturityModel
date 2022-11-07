@@ -447,7 +447,8 @@ implementations:
     tags: [vulnerability, scanner, "d3f:DynamicAnalysisTool"]
     url: https://github.com/zaproxy/zaproxy
     description: |
-      The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+      The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools
+      and is actively maintained by a dedicated international team of ...
   arachni:
     name: Arachni
     description: >-
@@ -497,7 +498,7 @@ implementations:
     url: https://github.com/OWASP/Amass
   k8spurger:
     name: K8sPurger
-    tags: [vulnerability, scanner, dast, infrastructure]
+    tags: [vulnerability, scanner, dast, infrastructure, "d3f:ContainerOrchestrationSoftware", "d3f:DynamicAnalysisTool"]
     url: https://github.com/yogeshkk/K8sPurger
     description: |
       Hunt Unused Resources In Kubernetes.
@@ -506,14 +507,18 @@ implementations:
     tags: []
   eslint:
     name: eslint
-    tags: []
+    tags: ["d3f:StaticAnalysisTool"]
     url: https://eslint.org/
   findsecuritybugs:
     name: FindSecurityBugs
     tags: []
   jsprime:
     name: jsprime
-    tags: []
+    description: >-
+      jsprime is a static analysis tool for JavaScript that detects security vulnerabilities
+      in web applications. It is based on the JavaScript parser Esprima and the static analysis
+      framework TSLint.
+    tags: ["d3f:StaticAnalysisTool"]
     url: https://github.com/dpnishant/jsprime
   bdd-mobile-security:
     name: '[bdd-mobile-security'
@@ -526,7 +531,7 @@ implementations:
     url: https://github.com/RetireJS/retire.js/
   npm-audit:
     name: npm audit
-    tags: []
+    tags: ["d3f:StaticAnalysisTool"]
     url: https://docs.npmjs.com/cli/audit
   sigmahq:
     name: SigmaHQ
@@ -543,7 +548,7 @@ implementations:
     description: Discover vulnerabilities and container image misconfiguration in production environments.
   dockerfile-with-hado:
     name: Dockerfile with hadolint
-    tags: []
+    tags: ["d3f:StaticAnalysisTool"]
     url: https://github.com/hadolint/hadolint
   deployment-with-kube:
     name: Deployment with kube-score
@@ -555,11 +560,18 @@ implementations:
     url: https://kubesec.io
   anchore-io:
     name: Anchore.io
-    tags: []
+    description: >-
+      Anchore is a container image analysis and policy engine that enables you to
+      understand the contents of your container images and ensure that they are
+      secure and compliant.
+    tags: ["d3f:StaticAnalysisTool", "d3f:ContainerImage"]
     url: https://anchore.com/
   clair:
     name: Clair
-    tags: []
+    description: >-
+      Clair is an open source project for the static analysis of vulnerabilities in
+      application containers (currently including appc and docker).
+    tags: ["d3f:StaticAnalysisTool", "d3f:ContainerImage"]
     url: https://github.com/quay/clair
   openscap:
     name: OpenSCAP
@@ -575,15 +587,19 @@ implementations:
     url: https://github.com/aquasecurity/kube-bench
   trufflehog:
     name: truffleHog
+    description: >-
+      Searches through git repositories for high entropy strings, digging deep into commit history.
     tags: []
     url: https://github.com/dxa4481/truffleHog
   go-pillage-registrie:
     name: go-pillage-registries
     tags: []
     url: https://github.com/nccgroup/go-pillage-registries
-  https-github-com-a:
+  trivy:
     name: https://github.com/aquasecurity/trivy
-    tags: []
+    description: >-
+      A Simple and Comprehensive Vulnerability Scanner for Containers, Suitable for CI
+    tags: ["d3f:StaticAnalysisTool", "d3f:ContainerImage"]
     url: https://github.com/aquasecurity/trivy
   registries-like-quay:
     name: Registries like quay
@@ -592,7 +608,7 @@ implementations:
       not suitable for distroless images
   dockerfilelint:
     name: dockerfilelint
-    tags: [sast, docker, dockerfile]
+    tags: [sast, docker, dockerfile, "d3f:StaticAnalysisTool", "d3f:ContainerBuildTool"]
     url: https://github.com/replicatedhq/dockerfilelint
     description: dockerfilelint is an node module that analyzes a Dockerfile and looks for common traps, mistakes and helps enforce best practices.
   threat-matrix-for-storage:
@@ -609,9 +625,11 @@ implementations:
     tags: [documentation, vulnerability, vulnerability management system]
   kubescape:
     name: kubescape
+    description: >-
+      kubescape is a tool that helps you scan your Kubernetes clusters to identify security misconfigurations
+      as defined in Kubernetes Hardening Guidance by to NSA and CISA_
     url: https://github.com/armosec/kubescape
     tags: [kubernetes, vulnerability, misconfiguration]
-    description: _Testing if Kubernetes is deployed securely as defined in Kubernetes Hardening Guidance by to NSA and CISA_
   azuredevops:
     name: Improve code quality with branch policies
     url: https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
@@ -623,11 +641,11 @@ implementations:
   sonarqube:
     name: In-Depth Linting of Your TypeScript While Coding
     url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
-    tags: [ide, linting]
+    tags: [ide, linting, "d3f:StaticAnalysisTool"]
   stylecop:
     name: How to enforce a consistent coding style in your projects
     url: https://www.meziantou.net/how-to-enforce-a-consistent-coding-style-in-your-projects.htm
-    tags: [ide, linting]
+    tags: [ide, linting, "d3f:StaticAnalysisTool"]
   fortify-vscode-extension:
     name: Fortify Extension for Visual Studio Code
     url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
@@ -648,8 +666,13 @@ implementations:
     name: Building your DevSecOps pipeline 5 essential activities
     url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
     tags: [pre-commit]
+  pre-commit-python:
+    name: Pre-commit hooks in Python
+    url: https://github.com/pre-commit/pre-commit
+    tags: [pre-commit, "d3f:StaticAnalysisTool"]
   dependencyTrack:
-    name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
+    name: >-
+      Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
     tags: [sca, inventory]
   juiceshop:
@@ -667,12 +690,6 @@ implementations:
     name: OWASP Logging CheatSheet
     url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
     tags: [logging, documentation]
-  zap:
-    name: OWASP Zap
-    tags: [vulnerability, scanner]
-    url: https://github.com/zaproxy/zaproxy
-    description: |
-      The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
   secureCodeBox:
     name: OWASP secureCodeBox
     tags: [vulnerability, scanner-orchestration]

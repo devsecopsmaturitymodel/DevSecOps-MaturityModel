@@ -15,6 +15,8 @@ Test and Verification:
       references:
         samm2: []
         iso27001-2017: []
+        d3f:
+        - PlatformMonitoring
       isImplemented: false
       evidence: ""
       comments: ""
@@ -50,13 +52,15 @@ Test and Verification:
       usefulness: 4
       level: 4
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-github-com-a
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/registries-like-quay
       references:
         samm2:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
       isImplemented: false
       evidence: ""
       comments: ""
@@ -79,6 +83,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.2.1
+        d3f:
+        - FileAnalysis
       isImplemented: false
       evidence: ""
       comments: ""
@@ -99,6 +105,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.5
         - 12.2.1
+        d3f:
+        - SoftwareUpdate
       isImplemented: false
       evidence: ""
       comments: ""
@@ -124,13 +132,14 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.1
+        d3f:
+        - AssetVulnerabilityEnumeration
       isImplemented: false
       evidence: ""
       comments: ""
     Stored Secrets:
-      risk: Stored secrets in git history, in container images or directly in code
-        shouldn't exists because they might be exposed to unauthorized parties.
-      measure: Test for secrets in code, container images and history
+      risk: Confidential information exposure via git history, in container images or in code.
+      measure: Test for secrets presence in code, container images and commit history.
       difficultyOfImplementation:
         knowledge: 2
         time: 1
@@ -147,6 +156,8 @@ Test and Verification:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 9.4.3
         - 10.1.2
+        d3f:
+        - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""
       comments: ""
@@ -171,6 +182,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.3
         - 14.2.8
+        d3f:
+        - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""
       comments: ""
@@ -200,11 +213,13 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.1
+        d3f:
+        - SystemVulnerabilityAssessment
       isImplemented: false
       evidence: ""
       comments: ""
     Test of virtualized environments:
-      risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains
+      risk: Virtualized environments (e.g. via Container Images) might contains
         unsecure configurations.
       measure: Test virtualized environments for unsecured configurations.
       difficultyOfImplementation:
@@ -220,6 +235,8 @@ Test and Verification:
         samm2:
         - V-ST-1-A
         iso27001-2017: []
+        d3f:
+        - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""
       comments: ""
