@@ -148,6 +148,7 @@ Test and Verification:
       level: 1
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trufflehog
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tw-talisman
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/go-pillage-registrie
       references:
         samm2:

@@ -15,6 +15,8 @@ Implementation:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spotbugs
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/super-linter
       references:
         samm2:
         - V-ST-1-A
@@ -36,6 +38,8 @@ Implementation:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-microsoft
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-python
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tw-talisman
       references:
         samm2:
         - V-ST-1-A

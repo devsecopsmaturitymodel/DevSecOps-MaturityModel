@@ -694,8 +694,9 @@ implementations:
     name: OWASP secureCodeBox
     tags: [vulnerability, scanner-orchestration]
     url: https://github.com/secureCodeBox/secureCodeBox
-    description: |
-      secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+    description: >-
+      secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project.
+      Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
   K8sPurger:
     name: K8sPurger
     tags: [vulnerability, scanner, dast, infrastructure]
@@ -710,21 +711,21 @@ implementations:
       A tool for secrets management, encryption as a service, and privileged access management.
   stoplight-spectral:
     name: Spectral
-    tags: [linting, api, documentation]
+    tags: [linting, api, "d3f:StaticAnalysisTool"]
     url: https://github.com/stoplightio/spectral
     description: |
       Spectral is a flexible JSON/YAML linter built with extensibility in mind.
       It uses JSON/YAML path rules to describe the problems you want to find.
   api-oas-checker:
     name: API OAS Checker
-    tags: [linting, api, documentation]
+    tags: [linting, api, "d3f:StaticAnalysisTool"]
     url: https://github.com/italia/api-oas-checker
     description: |
       A tool to check OpenAPI specifications using a comprehensive ruleset based
       on API best practices.
   coveragepy:
     name: Coverage.py
-    tags: [testing, coverage]
+    tags: [testing, coverage, "d3f:DynamicAnalysisTool"]
     url: https://github.com/nedbat/coveragepy
     description: |
       Code coverage measurement for Python
@@ -736,7 +737,7 @@ implementations:
       Dependabot creates pull requests to keep your dependencies secure and up-to-date.
   github-super-linter:
     name: Super-Linter
-    tags: [linting, scm]
+    tags: [linting, scm, "d3f:StaticAnalysisTool"]
     url: https://github.com/github/super-linter
     description: |
       Lint code bases to catch common errors and enforce code style
@@ -752,3 +753,15 @@ implementations:
     url: https://martinfowler.com/articles/feature-toggles.html
     description: |
       Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
+  tw-talisman:
+    name: Talisman
+    tags: [scm, secrets, "d3f:StaticAnalysisTool"]
+    url: https://github.com/thoughtworks/talisman
+    description: |
+      Talisman is a git hook that scans your commits for secrets before you push them to a remote repository.
+  spotbugs:
+    name: SpotBugs
+    tags: [static-analysis, java, "d3f:StaticAnalysisTool"]
+    url: https://github.com/spotbugs/spotbugs
+    description: |
+      SpotBugs is a program which uses static analysis to look for bugs in Java code.
