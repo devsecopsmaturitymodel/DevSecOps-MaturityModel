@@ -230,7 +230,7 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dive-to-inspect-a-co
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/wagoodman-dive
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clusterscanner
       references:
         samm2:
@@ -279,7 +279,7 @@ Test and Verification:
         implementationGuide: For containier (images), test that the images are following
           best practices like distroless or non-root.
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dockerfile-with-hado
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/hadolint
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/deployment-with-kube
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dockerfilelint
       references:

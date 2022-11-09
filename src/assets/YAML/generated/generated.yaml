@@ -886,9 +886,6 @@ Build and Deployment:
           tags:
           - d3f:StaticAnalysisTool
           url: https://eslint.org/
-        findsecuritybugs:
-          name: FindSecurityBugs
-          tags: []
         jsprime:
           name: jsprime
           description: jsprime is a static analysis tool for JavaScript that detects
@@ -898,16 +895,23 @@ Build and Deployment:
           - d3f:StaticAnalysisTool
           url: https://github.com/dpnishant/jsprime
         bdd-mobile-security:
-          name: '[bdd-mobile-security'
+          name: BDD Mobile Security
+          description: BDD Mobile Security is a framework for testing mobile applications.
+            It is based on the Behavior Driven Development (BDD) approach and uses
+            the Cucumber framework.
           tags: []
           url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
         retire-js:
           name: retire.js
+          description: Retire.js is a scanner for JavaScript libraries. It scans your
+            project for libraries with known vulnerabilities and checks if a more
+            recent version exists.
           tags: []
           url: https://github.com/RetireJS/retire.js/
         npm-audit:
           name: npm audit
+          description: npm audit is a command line tool that audits your project's
+            dependencies for known security vulnerabilities.
           tags:
           - d3f:StaticAnalysisTool
           url: https://docs.npmjs.com/cli/audit
@@ -915,8 +919,10 @@ Build and Deployment:
           name: SigmaHQ
           tags: []
           url: https://github.com/SigmaHQ/sigma
-        dive-to-inspect-a-co:
-          name: Dive to inspect a container images
+        wagoodman-dive:
+          name: Dive Container Image Scanner
+          description: Dive is a tool for exploring a docker image, layer contents,
+            and discovering ways to shrink the size of your docker/OCI image.
           tags: []
           url: https://github.com/wagoodman/dive
         clusterscanner:
@@ -932,8 +938,10 @@ Build and Deployment:
           - scanning
           description: Discover vulnerabilities and container image misconfiguration
             in production environments.
-        dockerfile-with-hado:
-          name: Dockerfile with hadolint
+        hadolint:
+          name: Hadolint
+          description: Hadolint is a Dockerfile linter that helps you build best practice
+            Docker images.
           tags:
           - d3f:StaticAnalysisTool
           url: https://github.com/hadolint/hadolint
@@ -2745,940 +2753,14 @@ Implementation:
         url: https://github.com/spotbugs/spotbugs
         description: |
           SpotBugs is a program which uses static analysis to look for bugs in Java code.
-      - signing-of-commits-protection:
-          name: Enforcement of commit signing
-          tags:
-          - signing
-          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
-          description: Usage of branch protection rules
-        signing-of-commits:
-          name: Signing of commits
-          tags:
-          - signing
-          url: https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
-          description: Signing of commits in git
-        ci-cd-tools:
-          name: CI/CD tools
-          tags:
-          - ci-cd
-          url: https://martinfowler.com/articles/continuousIntegration.html
-          description: CI/CD tools such as jenkins, gitlab-ci or github-actions
-        apimaturity:
-          name: API Security Maturity Model for Authorization
-          tags:
-          - api
-          url: https://curity.io/resources/learn/the-api-security-maturity-model/
-        container-orchestration:
-          name: Container technologies and orchestration like Docker, Kubernetes
-          tags: []
-          url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
-        cwe25:
-          name: CWE Top 25 Most Dangerous Software Weaknesses
-          tags:
-          - documentation
-          - threat
-          url: https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html
-        docker-content-trust:
-          name: Docker Content Trust
-          tags: []
-          url: https://docs.docker.com/notary/getting_started/
-        in-toto:
-          name: in-toto
-          tags: []
-          url: https://in-toto.github.io/
-        a-complete-backup-of:
-          name: A complete backup of persisted data might be performed.
-          tags: []
-        a-point-in-time-reco:
-          name: A Point in Time Recovery for databases should be implemented.
-          tags: []
-        blue-green-deploymen:
-          name: Blue/Green Deployments
-          tags: []
-          url: https://martinfowler.com/bliki/BlueGreenDeployment.html
-        docker:
-          name: Docker
-          url: https://github.com/moby/moby
-          tags: []
-        webserver:
-          name: Webserver
-          tags: []
-          url: https://d3fend.mitre.org/dao/artifact/d3f:WebServer/
-        rolling-update:
-          name: rolling update
-          tags: []
-        kubernetes-admission:
-          name: Kubernetes Admission Controller can whitelist registries and/or whitelist
-            a signing key.
-          tags:
-          - d3f:ContainerOrchestrationSoftware
-        dependabot:
-          name: dependabot
-          tags: []
-          url: https://dependabot.com/
-        jenkins:
-          name: Jenkins
-          tags: []
-          url: https://www.jenkins.io/
-        sample-concept-1:
-          name: Daily rebuild of container images
-          tags: []
-          description: |
-            Sample concept:
-            1. each container has a set lifetime and is killed/replaced with a new container
-            multiple times a day where you have
-            some form of a graceful replacement to ensure no (short) service outage will
-            occur to the end users.
-            2. twice a day a rebuild of images is done. The rebuilds are put into a automated testing pipeline.
-            If the testing has no blocking issues the new images will be released for deployment during the
-            next "restart" of a container. What has to be done, is to ensure the new
-            containers are deployed in some canary deployment manner, this will ensure
-            that if (and only if) something buggy has been introduced which breaks functionality
-            the canary deployment will make sure the "older version" is being used and
-                            not the buggy newer one.
-        distroless:
-          name: Distroless Container Images
-          tags:
-          - d3f:ContainerImage
-          url: https://github.com/GoogleContainerTools/distroless
-        fedora-coreos:
-          name: Fedora CoreOS
-          tags: []
-          url: https://getfedora.org/coreos
-        threat-modeling-play:
-          name: Threat Modeling Playbook
-          tags:
-          - owasp
-          - defender
-          - threat-modeling
-          - whiteboard
-          url: https://github.com/Toreon/threat-model-playbook
-        owasp-samm:
-          name: OWASP SAMM
-          tags:
-          - threat-modeling
-          - owasp
-          - defender
-          url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
-        whiteboard:
-          name: Whiteboard
-          tags:
-          - defender
-          - threat-modeling
-          - collaboration
-          - whiteboard
-          url: https://en.wikipedia.org/wiki/Whiteboard
-        miro-or-any-other-c:
-          name: Miro (or any other collaborative board)
-          tags:
-          - defender
-          - threat-modeling
-          - collaboration
-          - whiteboard
-          url: https://miro.com/
-        draw-io:
-          name: Draw.io
-          tags:
-          - defender
-          - threat-modeling
-          - whiteboard
-          url: https://github.com/jgraph/drawio-desktop
-        threagile:
-          name: Threagile
-          tags:
-          - threat-modeling
-          url: https://github.com/Threagile/threagile
-        don-t-forget-evil-u:
-          name: Don't Forget EVIL User stories
-          tags: []
-          url: https://www.owasp.org/index.php/Agile_Software_Development
-          description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
-            and [Practical Security Stories and Security Tasks for Agile Development
-            Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
-        owasp-juiceshop:
-          name: OWASP Juice Shop
-          tags:
-          - training
-          url: https://github.com/bkimminich/juiceshop
-          description: |-
-            In case you do not have the budget to hire an external security expert,
-            an option is to use the OWASP JuiceShop on a "hacking Friday"
-        owasp-cheatsheet-ser:
-          name: OWASP Cheatsheet Series
-          tags:
-          - secure coding
-          url: https://cheatsheetseries.owasp.org/
-        https-cheatsheetse:
-          name: https://cheatsheetseries.owasp.org/
-          tags:
-          - training
-          - secure coding
-          url: https://cheatsheetseries.owasp.org/
-        owasp-security-champ:
-          name: OWASP Security Champions Playbook
-          tags:
-          - security champions
-          url: https://github.com/c0rdis/security-champions-playbook
-        build-it-break-it-fi:
-          name: Build it Break it Fix it Contest
-          tags: []
-          url: https://builditbreakit.org/
-        motivate-people:
-          name: Motivate people
-          tags:
-          - security champions
-          - gamification
-          - nudging
-          url: https://github.com/wurstbrot/security-pins
-          description: |-
-            Enhance motivation can be performed with the distribution of pins
-            as a reward, see [OWASP Security Pins Project](https://github.com/wurstbrot/security-pins)
-        owasp-top-10-maturit:
-          name: OWASP Top 10 Maturity Categories for Security Champions
-          tags:
-          - security champions
-          url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
-        involve-security-sme:
-          name: Involve Security SME
-          tags: []
-          description: Security SME are involved in discussion for requirements analysis,
-            software design and sprint planning to provide guidance and suggestions.
-        damn-vulnerable-web:
-          name: Damn Vulnerable Web Application
-          tags:
-          - training
-          description: Simple Application with intended vulnerabilities. HTML based.
-        example-all-docker:
-          name: 'Example: All docker images used by teams need to be based on standard
-            images.'
-          tags: []
-        owasp-asvs:
-          name: OWASP ASVS
-          tags: []
-          url: https://owasp.org/www-project-application-security-verification-standard/
-        owasp-masvs:
-          name: OWASP MASVS
-          tags: []
-          url: https://github.com/OWASP/owasp-masvs
-        cis-kubernetes-bench:
-          name: CIS Kubernetes Bench for Security
-          tags:
-          - d3f:ContainerOrchestrationSoftware
-          url: https://www.cisecurity.org/cis-benchmarks/
-        cis-docker-bench-for:
-          name: CIS Docker Bench for Security
-          tags:
-          - d3f:ContainerRuntime
-          url: https://www.cisecurity.org/cis-benchmarks/
-        container-execution-isolation:
-          name: Isolate containers execution
-          tags:
-          - d3f:ContainerOrchestrationSoftware
-          - d3f:ContainerImage
-          description: 'For example for Containers: Deny running containers as root,
-            deny using advanced privileges, deny mounting of the hole filesystem,
-            ...'
-          url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
-        attack-matrix-cloud:
-          name: Attack Matrix Cloud
-          tags:
-          - mitre
-          url: https://attack.mitre.org/matrices/enterprise/cloud/
-          description: Attack matrix for cloud
-        attack-matrix-contai:
-          name: Attack Matrix Containers
-          tags:
-          - mitre
-          url: https://attack.mitre.org/matrices/enterprise/cloud/
-          description: Attack matrix for containers
-        attack-matrix-kubern:
-          name: Attack Matrix Kubernetes
-          tags:
-          - mitre
-          - d3f:ContainerOrchestrationSoftware
-          url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
-          description: Attack matrix for kubernetes
-        istio:
-          name: istio
-          tags: []
-          description: Istio is an open platform to connect, manage, and secure microservices.
-          url: https://istio.io/
-        bridges:
-          name: bridges
-          tags: []
-        firewalls:
-          name: firewalls
-          tags: []
-          url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
-        open-policy-agent:
-          name: Open Policy Agent
-          description: |-
-            Open Policy Agent is an open source,
-            general-purpose policy engine that unifies policy enforcement across the stack.
-          tags: []
-          url: https://www.openpolicyagent.org/
-        gitops:
-          name: GitOps
-          description: |-
-            GitOps is a way to do Kubernetes application delivery.
-            It works by using Git as a single source of truth for Kubernetes resources
-            and everything else.
-          tags: []
-          url: https://www.redhat.com/en/topics/devops/what-is-gitops
-        ansible:
-          name: Ansible
-          description: |-
-            Ansible is an open-source software provisioning, configuration management,
-            and application-deployment tool enabling infrastructure as code.
-          tags:
-          - d3f:SoftwareDeploymentTool
-          url: https://github.com/ansible/ansible
-        chef:
-          name: Chef
-          description: |-
-            Chef is an open-source software automation platform that
-            helps system administrators manage infrastructure and applications.
-          tags:
-          - d3f:SoftwareDeploymentTool
-          url: https://github.com/chef/chef
-        puppet:
-          description: Puppet is an open-source software configuration management
-            tool.
-          name: Puppet
-          tags:
-          - d3f:SoftwareDeploymentTool
-          url: https://github.com/puppetlabs/puppet
-        argocd:
-          name: ArgoCD
-          description: Argo CD is a declarative, GitOps continuous delivery tool for
-            Kubernetes.
-          tags:
-          - d3f:SoftwareDeploymentTool
-          url: https://github.com/argoproj/argo-cd
-        jenkinsfile:
-          name: Jenkinsfile
-          tags: []
-          url: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
-        seccomp:
-          name: seccomp
-          tags: []
-          url: https://man7.org/linux/man-pages/man2/seccomp.2.html
-        strace:
-          name: strace
-          tags: []
-          url: https://man7.org/linux/man-pages/man1/strace.1.html
-        remove-direct-access:
-          name: Remove direct access to infrastructure
-          tags: []
-        directory-service:
-          name: Directory Service
-          tags: []
-          url: https://d3fend.mitre.org/dao/artifact/d3f:DirectoryService/
-        plugins:
-          name: Plugins
-          tags: []
-        smartcard:
-          name: Smartcard
-          tags:
-          - d3f:Multi-factorAuthentication
-          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
-        yubikey:
-          name: YubiKey
-          tags:
-          - d3f:Multi-factorAuthentication
-          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
-        sms:
-          name: SMS
-          tags:
-          - d3f:Multi-factorAuthentication
-        totp:
-          name: TOTP
-          tags: []
-          url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
-        http-basic-authentic:
-          name: HTTP-Basic Authentication
-          tags: []
-          url: https://d3fend.mitre.org/dao/artifact/d3f:WebAuthentication/
-        vpn:
-          name: VPN
-          tags: []
-          url: https://d3fend.mitre.org/dao/artifact/d3f:VPN/
-        for-applications-ch:
-          name: 'For applications: Check default encoding'
-          tags: []
-        managing-secrets:
-          name: managing secrets
-          tags: []
-          url: https://d3fend.mitre.org/technique/d3f:CredentialHardening/
-        crypto:
-          name: crypto
-          tags: []
-        authentication:
-          name: authentication
-          tags: []
-          url: https://d3fend.mitre.org/dao/artifact/d3f:Authentication/
-        rsyslog:
-          name: rsyslog
-          url: https://www.rsyslog.com/
-          tags:
-          - tool
-          - logging
-        logstash:
-          name: logstash
-          url: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
-          tags:
-          - tool
-          - logging
-        fluentd:
-          name: fluentd
-          tags:
-          - tool
-          url: https://www.fluentd.org/
-        bash:
-          name: bash
-          tags:
-          - tool
-          url: https://www.gnu.org/software/bash/
-        owasp-logging-cheats:
-          name: OWASP Logging CheatSheet
-          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
-          tags:
-          - logging
-          - documentation
-        elk-stack:
-          name: ELK-Stack
-          tags: []
-          url: https://www.elastic.co/elk-stack
-        https-ht-transpare:
-          name: https://ht.transpare
-          tags: []
-          url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
-          description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
-        prometheus:
-          name: Prometheus
-          tags: []
-          url: https://prometheus.io/
-        collected:
-          name: collected
-          tags: []
-        httpunit:
-          name: HttpUnit
-          tags: []
-          url: http://httpunit.sourceforge.net/
-        junit:
-          name: JUnit
-          tags:
-          - unittest
-          - d3f:UnitTestExecutionTool
-          url: https://junit.org/junit5/
-        karma:
-          name: Karma
-          description: Karma is a test runner for JavaScript.
-          tags:
-          - d3f:UnitTestExecutionTool
-          url: https://karma-runner.github.io
-        owasp-defectdojo:
-          name: OWASP DefectDojo
-          tags:
-          - vulnerability management system
-          - owasp
-          url: https://github.com/DefectDojo/django-DefectDojo
-          description: DefectDojo is a security program and vulnerability management
-            tool. DefectDojo allows you to manage your application security program,
-            maintain product and application information, triage vulnerabilities and
-            push findings into defect trackers. Consolidate your findings into one
-            source of truth with DefectDojo.
-        purify:
-          name: Purify
-          tags:
-          - vulnerability management system
-          url: https://github.com/faloker/purify/
-          description: |
-            The goal of Purify to be an easy-in-use and efficient tool to
-            simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
-        see-other-actions-e:
-          name: See other actions, e.g. "Treatment of defects with severity high".
-          tags: []
-        sast:
-          name: SAST
-          tags:
-          - d3f:StaticAnalysisTool
-          description: 'At SAST (Static Application Security Testing): Server-side
-            / client-side teams can easily be recorded. With microservice architecture
-            individual microservices can be used usually Teams.'
-          url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
-        dast:
-          name: DAST
-          tags:
-          - d3f:DynamicAnalysisTool
-          description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
-            are classified and can be assigned to server-side and client-side teams.'
-          url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
-        owasp-defect-dojo:
-          name: OWASP Defect Dojo
-          tags: []
-          url: https://github.com/DefectDojo/django-DefectDojo
-        owasp-dependency-che:
-          name: OWASP Dependency Check
-          tags: []
-          url: https://owasp.org/www-project-dependency-check/
-        logparser-jenkins-pl:
-          name: LogParser Jenkins Plugins
-          tags: []
-        owasp-code-pulse:
-          name: OWASP Code Pulse
-          tags: []
-          url: https://www.owasp.org/index.php/OWASP_Code_Pulse
-        ajax-spider:
-          name: Ajax Spider
-          tags:
-          - d3f:DynamicAnalysisTool
-          url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
-        curl:
-          name: cURL
-          tags: []
-          url: https://curl.se/
-        openapi:
-          name: OpenAPI Specifications
-          tags: []
-          url: https://spec.openapis.org/
-        owasp-zap:
-          name: OWASP Zap
-          tags:
-          - vulnerability
-          - scanner
-          - d3f:DynamicAnalysisTool
-          url: https://github.com/zaproxy/zaproxy
-          description: |
-            The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools
-            and is actively maintained by a dedicated international team of ...
-        arachni:
-          name: Arachni
-          description: Arachni is a feature-full, modular, high-performance Ruby framework
-            aimed towards helping penetration testers and administrators evaluate
-            the security of web applications.
-          url: https://github.com/Arachni/arachni
-        zest:
-          name: Zest
-          url: https://www.zaproxy.org/docs/desktop/addons/zest/
-          tags:
-          - zap
-          description: Zest is an experimental specialized scripting language (also
-            known as a domain-specific language) originally developed by the Mozilla
-            security team and is intended to be used in web oriented security tools.
-        owasp-securecodebox:
-          name: OWASP secureCodeBox
-          tags:
-          - vulnerability
-          - scanner-orchestration
-          url: https://github.com/secureCodeBox/secureCodeBox
-          description: |
-            secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
-        kube-hunter:
-          name: kube-hunter
-          description: kube-hunter is a tool that helps you to hunt for security weaknesses
-            in Kubernetes clusters. It is a customizable, easy to use and powerful
-            hunting framework that enables security researchers and developers to
-            test the security of their Kubernetes clusters and workloads.
-          tags:
-          - d3f:DynamicAnalysisTool
-          - d3f:ContainerOrchestrationSoftware
-          url: https://github.com/aquasecurity/kube-hunter
-        openvas:
-          name: openVAS
-          tags: []
-          url: https://www.openvas.org/
-        htc-hydra:
-          name: HTC Hydra
-          tags:
-          - password
-          url: https://www.htc-cs.com/en/products/htc-hydra/
-        netassert:
-          name: netassert
-          tags: []
-          url: https://github.com/controlplaneio/netassert
-        nmap:
-          name: nmap
-          tags: []
-          url: https://nmap.org/
-        owasp-amass:
-          name: OWASP Amass
-          tags: []
-          url: https://github.com/OWASP/Amass
-        k8spurger:
-          name: K8sPurger
-          tags:
-          - vulnerability
-          - scanner
-          - dast
-          - infrastructure
-          - d3f:ContainerOrchestrationSoftware
-          - d3f:DynamicAnalysisTool
-          url: https://github.com/yogeshkk/K8sPurger
-          description: |
-            Hunt Unused Resources In Kubernetes.
-        pmd:
-          name: PMD
-          tags: []
-        eslint:
-          name: eslint
-          tags:
-          - d3f:StaticAnalysisTool
-          url: https://eslint.org/
-        findsecuritybugs:
-          name: FindSecurityBugs
-          tags: []
-        jsprime:
-          name: jsprime
-          description: jsprime is a static analysis tool for JavaScript that detects
-            security vulnerabilities in web applications. It is based on the JavaScript
-            parser Esprima and the static analysis framework TSLint.
-          tags:
-          - d3f:StaticAnalysisTool
-          url: https://github.com/dpnishant/jsprime
-        bdd-mobile-security:
-          name: '[bdd-mobile-security'
-          tags: []
-          url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
-        retire-js:
-          name: retire.js
-          tags: []
-          url: https://github.com/RetireJS/retire.js/
-        npm-audit:
-          name: npm audit
-          tags:
-          - d3f:StaticAnalysisTool
-          url: https://docs.npmjs.com/cli/audit
-        sigmahq:
-          name: SigmaHQ
-          tags: []
-          url: https://github.com/SigmaHQ/sigma
-        dive-to-inspect-a-co:
-          name: Dive to inspect a container images
-          tags: []
-          url: https://github.com/wagoodman/dive
-        clusterscanner:
-          url: https://github.com/SDA-SE/clusterscanner
-          name: ClusterScanner
-          tags:
-          - docker
-          - image
-          - container
-          - vulnerability
-          - misconfiguration
-          - securiity-tools
-          - scanning
-          description: Discover vulnerabilities and container image misconfiguration
-            in production environments.
-        dockerfile-with-hado:
-          name: Dockerfile with hadolint
-          tags:
-          - d3f:StaticAnalysisTool
-          url: https://github.com/hadolint/hadolint
-        deployment-with-kube:
-          name: Deployment with kube-score
-          tags: []
-          url: https://github.com/zegl/kube-score
-        kubesec:
-          name: kubesec
-          tags: []
-          url: https://kubesec.io
-        anchore-io:
-          name: Anchore.io
-          description: Anchore is a container image analysis and policy engine that
-            enables you to understand the contents of your container images and ensure
-            that they are secure and compliant.
-          tags:
-          - d3f:StaticAnalysisTool
-          - d3f:ContainerImage
-          url: https://anchore.com/
-        clair:
-          name: Clair
-          description: Clair is an open source project for the static analysis of
-            vulnerabilities in application containers (currently including appc and
-            docker).
-          tags:
-          - d3f:StaticAnalysisTool
-          - d3f:ContainerImage
-          url: https://github.com/quay/clair
-        openscap:
-          name: OpenSCAP
-          tags: []
-          url: https://www.open-scap.org/
-        vuls:
-          name: Vuls
-          tags: []
-          url: https://github.com/future-architect/vuls
-        kube-bench:
-          name: kube-bench
-          tags: []
-          url: https://github.com/aquasecurity/kube-bench
-        trufflehog:
-          name: truffleHog
-          description: Searches through git repositories for high entropy strings,
-            digging deep into commit history.
-          tags: []
-          url: https://github.com/dxa4481/truffleHog
-        go-pillage-registrie:
-          name: go-pillage-registries
-          tags: []
-          url: https://github.com/nccgroup/go-pillage-registries
-        trivy:
-          name: https://github.com/aquasecurity/trivy
-          description: A Simple and Comprehensive Vulnerability Scanner for Containers,
-            Suitable for CI
-          tags:
-          - d3f:StaticAnalysisTool
-          - d3f:ContainerImage
-          url: https://github.com/aquasecurity/trivy
-        registries-like-quay:
-          name: Registries like quay
-          tags: []
-          description: Registries like quay, dockerhub provide (commercial) offerings,
-            often not suitable for distroless images
-        dockerfilelint:
-          name: dockerfilelint
-          tags:
-          - sast
-          - docker
-          - dockerfile
-          - d3f:StaticAnalysisTool
-          - d3f:ContainerBuildTool
-          url: https://github.com/replicatedhq/dockerfilelint
-          description: dockerfilelint is an node module that analyzes a Dockerfile
-            and looks for common traps, mistakes and helps enforce best practices.
-        threat-matrix-for-storage:
-          name: Threat Matrix for Storage
-          url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
-          tags:
-          - documentation
-          - storage
-          - cluster
-          - kubernetes
-        defend-the-core-kubernetes:
-          name: Defend the core kubernetes security at every layer
-          url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
-          tags:
-          - documentation
-          - cluster
-          - kubernetes
-        business-friendly-vulnerability-metrics:
-          name: Business friendly vulnerability management metrics
-          url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
-          tags:
-          - documentation
-          - vulnerability
-          - vulnerability management system
-        kubescape:
-          name: kubescape
-          description: kubescape is a tool that helps you scan your Kubernetes clusters
-            to identify security misconfigurations as defined in Kubernetes Hardening
-            Guidance by to NSA and CISA_
-          url: https://github.com/armosec/kubescape
-          tags:
-          - kubernetes
-          - vulnerability
-          - misconfiguration
-        azuredevops:
-          name: Improve code quality with branch policies
-          url: https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
-          tags:
-          - source-code-protection
-          - scm
-        github-policies:
-          name: About protected branches
-          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
-          tags:
-          - source-code-protection
-          - scm
-        sonarqube:
-          name: In-Depth Linting of Your TypeScript While Coding
-          url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
-          tags:
-          - ide
-          - linting
-          - d3f:StaticAnalysisTool
-        stylecop:
-          name: How to enforce a consistent coding style in your projects
-          url: https://www.meziantou.net/how-to-enforce-a-consistent-coding-style-in-your-projects.htm
-          tags:
-          - ide
-          - linting
-          - d3f:StaticAnalysisTool
-        fortify-vscode-extension:
-          name: Fortify Extension for Visual Studio Code
-          url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
-          tags:
-          - ide
-          - sast
-        appscan-vscode-extension:
-          name: HCL AppScan CodeSweep
-          url: https://marketplace.visualstudio.com/items?itemName=HCLTechnologies.hclappscancodesweep
-          tags:
-          - ide
-          - sast
-        checkmarx-vscode-extension:
-          name: Setting Up the Visual Studio Code Extension Plugin
-          url: https://checkmarx.atlassian.net/wiki/spaces/SD/pages/1759216424/Setting+Up+the+Visual+Studio+Code+Extension+Plugin
-          tags:
-          - ide
-          - sast
-        pre-commit-microsoft:
-          name: DevSecOps control Pre-commit
-          url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
-          tags:
-          - pre-commit
-        pre-commit-synopsis:
-          name: Building your DevSecOps pipeline 5 essential activities
-          url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
-          tags:
-          - pre-commit
-        pre-commit-python:
-          name: Pre-commit hooks in Python
-          url: https://github.com/pre-commit/pre-commit
-          tags:
-          - pre-commit
-          - d3f:StaticAnalysisTool
-        dependencyTrack:
-          name: Dependency-Track is an intelligent Component Analysis platform that
-            allows organizations to identify and reduce risk in the software supply
-            chain. Dependency-Track takes a unique and highly beneficial approach
-            by leveraging the capabilities of Software Bill of Materials (SBOM).
-          url: https://github.com/DependencyTrack/dependency-track
-          tags:
-          - sca
-          - inventory
-        juiceshop:
-          name: OWASP Juice Shop
-          tags:
-          - training
-          url: https://github.com/bkimminich/juiceshop
-          description: In case you do not have the budget to hire an external security
-            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
-        dvwa:
-          name: Damn Vulnerable Web Application
-          tags:
-          - training
-          description: Simple Application with intended vulnerabilities. HTML based.
-        loggingCheatSheet:
-          name: OWASP Logging CheatSheet
-          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
-          tags:
-          - logging
-          - documentation
-        secureCodeBox:
-          name: OWASP secureCodeBox
-          tags:
-          - vulnerability
-          - scanner-orchestration
-          url: https://github.com/secureCodeBox/secureCodeBox
-          description: secureCodeBox is a kubernetes based, modularized toolchain
-            for continuous security scans of your software project. Its goal is to
-            orchestrate and easily automate a bunch of security-testing tools out
-            of the box.
-        K8sPurger:
-          name: K8sPurger
-          tags:
-          - vulnerability
-          - scanner
-          - dast
-          - infrastructure
-          url: https://github.com/yogeshkk/K8sPurger
-          description: |
-            Hunt Unused Resources In Kubernetes.
-        hashicorp-vault:
-          name: Hashicorp Vault
-          tags:
-          - authentication
-          - authorization
-          - secrets
-          - infrastructure
-          url: https://github.com/hashicorp/vault
-          description: |
-            A tool for secrets management, encryption as a service, and privileged access management.
-        stoplight-spectral:
-          name: Spectral
-          tags:
-          - linting
-          - api
-          - d3f:StaticAnalysisTool
-          url: https://github.com/stoplightio/spectral
-          description: |
-            Spectral is a flexible JSON/YAML linter built with extensibility in mind.
-            It uses JSON/YAML path rules to describe the problems you want to find.
-        api-oas-checker:
-          name: API OAS Checker
-          tags:
-          - linting
-          - api
-          - d3f:StaticAnalysisTool
-          url: https://github.com/italia/api-oas-checker
-          description: |
-            A tool to check OpenAPI specifications using a comprehensive ruleset based
-            on API best practices.
-        coveragepy:
-          name: Coverage.py
-          tags:
-          - testing
-          - coverage
-          - d3f:DynamicAnalysisTool
-          url: https://github.com/nedbat/coveragepy
-          description: |
-            Code coverage measurement for Python
-        github-dependabot:
-          name: Dependabot
-          tags:
-          - dependency
-          - dependency-management
-          - scm
-          url: https://github.com/dependabot/dependabot-core
-          description: |
-            Dependabot creates pull requests to keep your dependencies secure and up-to-date.
-        github-super-linter:
-          name: Super-Linter
-          tags:
-          - linting
-          - scm
-          - d3f:StaticAnalysisTool
-          url: https://github.com/github/super-linter
-          description: |
-            Lint code bases to catch common errors and enforce code style
-        schemathesis:
-          name: Schemathesis
-          tags:
-          - testing
-          - api
-          - documentation
-          url: https://github.com/schemathesis/schemathesis
-          description: |
-            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
-        martin-feature-toggles:
-          name: Feature Toggles
-          tags:
-          - development
-          - architecture
-          url: https://martinfowler.com/articles/feature-toggles.html
-          description: |
-            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
-        tw-talisman:
-          name: Talisman
-          tags:
-          - scm
-          - secrets
-          - d3f:StaticAnalysisTool
-          url: https://github.com/thoughtworks/talisman
-          description: |
-            Talisman is a git hook that scans your commits for secrets before you push them to a remote repository.
-        spotbugs:
-          name: SpotBugs
-          tags:
-          - static-analysis
-          - java
-          - d3f:StaticAnalysisTool
-          url: https://github.com/spotbugs/spotbugs
-          description: |
-            SpotBugs is a program which uses static analysis to look for bugs in Java code.
+      - name: Super-Linter
+        tags:
+        - linting
+        - scm
+        - d3f:StaticAnalysisTool
+        url: https://github.com/github/super-linter
+        description: |
+          Lint code bases to catch common errors and enforce code style
       references:
         samm2:
         - V-ST-1-A
@@ -6158,9 +5240,6 @@ Test and Verification:
           tags:
           - d3f:StaticAnalysisTool
           url: https://eslint.org/
-        findsecuritybugs:
-          name: FindSecurityBugs
-          tags: []
         jsprime:
           name: jsprime
           description: jsprime is a static analysis tool for JavaScript that detects
@@ -6170,16 +5249,23 @@ Test and Verification:
           - d3f:StaticAnalysisTool
           url: https://github.com/dpnishant/jsprime
         bdd-mobile-security:
-          name: '[bdd-mobile-security'
+          name: BDD Mobile Security
+          description: BDD Mobile Security is a framework for testing mobile applications.
+            It is based on the Behavior Driven Development (BDD) approach and uses
+            the Cucumber framework.
           tags: []
           url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
         retire-js:
           name: retire.js
+          description: Retire.js is a scanner for JavaScript libraries. It scans your
+            project for libraries with known vulnerabilities and checks if a more
+            recent version exists.
           tags: []
           url: https://github.com/RetireJS/retire.js/
         npm-audit:
           name: npm audit
+          description: npm audit is a command line tool that audits your project's
+            dependencies for known security vulnerabilities.
           tags:
           - d3f:StaticAnalysisTool
           url: https://docs.npmjs.com/cli/audit
@@ -6187,8 +5273,10 @@ Test and Verification:
           name: SigmaHQ
           tags: []
           url: https://github.com/SigmaHQ/sigma
-        dive-to-inspect-a-co:
-          name: Dive to inspect a container images
+        wagoodman-dive:
+          name: Dive Container Image Scanner
+          description: Dive is a tool for exploring a docker image, layer contents,
+            and discovering ways to shrink the size of your docker/OCI image.
           tags: []
           url: https://github.com/wagoodman/dive
         clusterscanner:
@@ -6204,8 +5292,10 @@ Test and Verification:
           - scanning
           description: Discover vulnerabilities and container image misconfiguration
             in production environments.
-        dockerfile-with-hado:
-          name: Dockerfile with hadolint
+        hadolint:
+          name: Hadolint
+          description: Hadolint is a Dockerfile linter that helps you build best practice
+            Docker images.
           tags:
           - d3f:StaticAnalysisTool
           url: https://github.com/hadolint/hadolint
@@ -7092,9 +6182,6 @@ Test and Verification:
           tags:
           - d3f:StaticAnalysisTool
           url: https://eslint.org/
-        findsecuritybugs:
-          name: FindSecurityBugs
-          tags: []
         jsprime:
           name: jsprime
           description: jsprime is a static analysis tool for JavaScript that detects
@@ -7104,16 +6191,23 @@ Test and Verification:
           - d3f:StaticAnalysisTool
           url: https://github.com/dpnishant/jsprime
         bdd-mobile-security:
-          name: '[bdd-mobile-security'
+          name: BDD Mobile Security
+          description: BDD Mobile Security is a framework for testing mobile applications.
+            It is based on the Behavior Driven Development (BDD) approach and uses
+            the Cucumber framework.
           tags: []
           url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
         retire-js:
           name: retire.js
+          description: Retire.js is a scanner for JavaScript libraries. It scans your
+            project for libraries with known vulnerabilities and checks if a more
+            recent version exists.
           tags: []
           url: https://github.com/RetireJS/retire.js/
         npm-audit:
           name: npm audit
+          description: npm audit is a command line tool that audits your project's
+            dependencies for known security vulnerabilities.
           tags:
           - d3f:StaticAnalysisTool
           url: https://docs.npmjs.com/cli/audit
@@ -7121,8 +6215,10 @@ Test and Verification:
           name: SigmaHQ
           tags: []
           url: https://github.com/SigmaHQ/sigma
-        dive-to-inspect-a-co:
-          name: Dive to inspect a container images
+        wagoodman-dive:
+          name: Dive Container Image Scanner
+          description: Dive is a tool for exploring a docker image, layer contents,
+            and discovering ways to shrink the size of your docker/OCI image.
           tags: []
           url: https://github.com/wagoodman/dive
         clusterscanner:
@@ -7138,8 +6234,10 @@ Test and Verification:
           - scanning
           description: Discover vulnerabilities and container image misconfiguration
             in production environments.
-        dockerfile-with-hado:
-          name: Dockerfile with hadolint
+        hadolint:
+          name: Hadolint
+          description: Hadolint is a Dockerfile linter that helps you build best practice
+            Docker images.
           tags:
           - d3f:StaticAnalysisTool
           url: https://github.com/hadolint/hadolint
@@ -8429,9 +7527,6 @@ Test and Verification:
           tags:
           - d3f:StaticAnalysisTool
           url: https://eslint.org/
-        findsecuritybugs:
-          name: FindSecurityBugs
-          tags: []
         jsprime:
           name: jsprime
           description: jsprime is a static analysis tool for JavaScript that detects
@@ -8441,16 +7536,23 @@ Test and Verification:
           - d3f:StaticAnalysisTool
           url: https://github.com/dpnishant/jsprime
         bdd-mobile-security:
-          name: '[bdd-mobile-security'
+          name: BDD Mobile Security
+          description: BDD Mobile Security is a framework for testing mobile applications.
+            It is based on the Behavior Driven Development (BDD) approach and uses
+            the Cucumber framework.
           tags: []
           url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
         retire-js:
           name: retire.js
+          description: Retire.js is a scanner for JavaScript libraries. It scans your
+            project for libraries with known vulnerabilities and checks if a more
+            recent version exists.
           tags: []
           url: https://github.com/RetireJS/retire.js/
         npm-audit:
           name: npm audit
+          description: npm audit is a command line tool that audits your project's
+            dependencies for known security vulnerabilities.
           tags:
           - d3f:StaticAnalysisTool
           url: https://docs.npmjs.com/cli/audit
@@ -8458,8 +7560,10 @@ Test and Verification:
           name: SigmaHQ
           tags: []
           url: https://github.com/SigmaHQ/sigma
-        dive-to-inspect-a-co:
-          name: Dive to inspect a container images
+        wagoodman-dive:
+          name: Dive Container Image Scanner
+          description: Dive is a tool for exploring a docker image, layer contents,
+            and discovering ways to shrink the size of your docker/OCI image.
           tags: []
           url: https://github.com/wagoodman/dive
         clusterscanner:
@@ -8475,8 +7579,10 @@ Test and Verification:
           - scanning
           description: Discover vulnerabilities and container image misconfiguration
             in production environments.
-        dockerfile-with-hado:
-          name: Dockerfile with hadolint
+        hadolint:
+          name: Hadolint
+          description: Hadolint is a Dockerfile linter that helps you build best practice
+            Docker images.
           tags:
           - d3f:StaticAnalysisTool
           url: https://github.com/hadolint/hadolint
@@ -8810,6 +7916,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -8829,8 +7938,14 @@ Test and Verification:
         tags:
         - d3f:StaticAnalysisTool
         url: https://eslint.org/
-      - name: FindSecurityBugs
-        tags: []
+      - name: SpotBugs
+        tags:
+        - static-analysis
+        - java
+        - d3f:StaticAnalysisTool
+        url: https://github.com/spotbugs/spotbugs
+        description: |
+          SpotBugs is a program which uses static analysis to look for bugs in Java code.
       - name: jsprime
         description: jsprime is a static analysis tool for JavaScript that detects
           security vulnerabilities in web applications. It is based on the JavaScript
@@ -8853,6 +7968,20 @@ Test and Verification:
         tags:
         - ide
         - sast
+      - name: BDD Mobile Security
+        description: BDD Mobile Security is a framework for testing mobile applications.
+          It is based on the Behavior Driven Development (BDD) approach and uses the
+          Cucumber framework.
+        tags: []
+        url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
+      - name: Super-Linter
+        tags:
+        - linting
+        - scm
+        - d3f:StaticAnalysisTool
+        url: https://github.com/github/super-linter
+        description: |
+          Lint code bases to catch common errors and enforce code style
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
@@ -8861,6 +7990,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -8880,8 +8012,14 @@ Test and Verification:
         tags:
         - d3f:StaticAnalysisTool
         url: https://eslint.org/
-      - name: FindSecurityBugs
-        tags: []
+      - name: SpotBugs
+        tags:
+        - static-analysis
+        - java
+        - d3f:StaticAnalysisTool
+        url: https://github.com/spotbugs/spotbugs
+        description: |
+          SpotBugs is a program which uses static analysis to look for bugs in Java code.
       - name: jsprime
         description: jsprime is a static analysis tool for JavaScript that detects
           security vulnerabilities in web applications. It is based on the JavaScript
@@ -8889,10 +8027,6 @@ Test and Verification:
         tags:
         - d3f:StaticAnalysisTool
         url: https://github.com/dpnishant/jsprime
-      - name: '[bdd-mobile-security'
-        tags: []
-        url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-        description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
       - name: Fortify Extension for Visual Studio Code
         url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
         tags:
@@ -8908,6 +8042,20 @@ Test and Verification:
         tags:
         - ide
         - sast
+      - name: BDD Mobile Security
+        description: BDD Mobile Security is a framework for testing mobile applications.
+          It is based on the Behavior Driven Development (BDD) approach and uses the
+          Cucumber framework.
+        tags: []
+        url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
+      - name: Super-Linter
+        tags:
+        - linting
+        - scm
+        - d3f:StaticAnalysisTool
+        url: https://github.com/github/super-linter
+        description: |
+          Lint code bases to catch common errors and enforce code style
       dependsOn:
       - Defined build process
       references:
@@ -8915,6 +8063,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -8934,8 +8085,14 @@ Test and Verification:
         tags:
         - d3f:StaticAnalysisTool
         url: https://eslint.org/
-      - name: FindSecurityBugs
-        tags: []
+      - name: SpotBugs
+        tags:
+        - static-analysis
+        - java
+        - d3f:StaticAnalysisTool
+        url: https://github.com/spotbugs/spotbugs
+        description: |
+          SpotBugs is a program which uses static analysis to look for bugs in Java code.
       - name: jsprime
         description: jsprime is a static analysis tool for JavaScript that detects
           security vulnerabilities in web applications. It is based on the JavaScript
@@ -8965,6 +8122,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -9008,6 +8168,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+        d3f:
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -9025,9 +8187,14 @@ Test and Verification:
       - Defined build process
       implementation:
       - name: retire.js
+        description: Retire.js is a scanner for JavaScript libraries. It scans your
+          project for libraries with known vulnerabilities and checks if a more recent
+          version exists.
         tags: []
         url: https://github.com/RetireJS/retire.js/
       - name: npm audit
+        description: npm audit is a command line tool that audits your project's dependencies
+          for known security vulnerabilities.
         tags:
         - d3f:StaticAnalysisTool
         url: https://docs.npmjs.com/cli/audit
@@ -9052,6 +8219,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
       isImplemented: false
       evidence: ""
       comments: ""
@@ -9080,9 +8249,14 @@ Test and Verification:
         - sca
         - inventory
       - name: retire.js
+        description: Retire.js is a scanner for JavaScript libraries. It scans your
+          project for libraries with known vulnerabilities and checks if a more recent
+          version exists.
         tags: []
         url: https://github.com/RetireJS/retire.js/
       - name: npm audit
+        description: npm audit is a command line tool that audits your project's dependencies
+          for known security vulnerabilities.
         tags:
         - d3f:StaticAnalysisTool
         url: https://docs.npmjs.com/cli/audit
@@ -9099,13 +8273,14 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
       isImplemented: false
       evidence: ""
       comments: ""
     Usage of multiple analyzers:
-      risk: Each vulnerability analyzer has different opportunities. By using just
-        one analyzer, some vulnerabilities might not be found.
-      measure: Usage of multiple static tools to find more vulnerabilities.
+      risk: Deployment of vulnerable artifacts.
+      measure: Usage multiple code analyzer increases the chance of finding vulnerabilities.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
@@ -9440,7 +8615,9 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - name: Dive to inspect a container images
+      - name: Dive Container Image Scanner
+        description: Dive is a tool for exploring a docker image, layer contents,
+          and discovering ways to shrink the size of your docker/OCI image.
         tags: []
         url: https://github.com/wagoodman/dive
       - url: https://github.com/SDA-SE/clusterscanner
@@ -9504,7 +8681,9 @@ Test and Verification:
         implementationGuide: For containier (images), test that the images are following
           best practices like distroless or non-root.
       implementation:
-      - name: Dockerfile with hadolint
+      - name: Hadolint
+        description: Hadolint is a Dockerfile linter that helps you build best practice
+          Docker images.
         tags:
         - d3f:StaticAnalysisTool
         url: https://github.com/hadolint/hadolint

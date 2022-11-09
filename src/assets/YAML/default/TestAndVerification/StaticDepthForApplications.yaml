@@ -99,6 +99,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -113,13 +116,15 @@ Test and Verification:
         resources: 1
       usefulness: 4
       level: 4
-      implementation:
+      implementation: &static-analysis-implementations
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eslint
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spotbugs
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jsprime
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fortify-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/checkmarx-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/bdd-mobile-security
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-super-linter
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
@@ -128,6 +133,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -142,14 +150,7 @@ Test and Verification:
         resources: 1
       usefulness: 3
       level: 3
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eslint
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/findsecuritybugs
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jsprime
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/bdd-mobile-security
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fortify-vscode-extension
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/checkmarx-vscode-extension
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
+      implementation: *static-analysis-implementations
       dependsOn:
       - Defined build process
       references:
@@ -157,6 +158,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -173,7 +177,7 @@ Test and Verification:
       level: 2
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eslint
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/findsecuritybugs
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spotbugs
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jsprime
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fortify-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/checkmarx-vscode-extension
@@ -185,6 +189,9 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -210,6 +217,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         - 14.2.5
+        d3f:
+        - DeadCodeElimination
       isImplemented: false
       evidence: ""
       comments: ""
@@ -234,6 +243,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
       isImplemented: false
       evidence: ""
       comments: ""
@@ -260,13 +271,14 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        d3f:
+        - AssetVulnerabilityEnumeration
       isImplemented: false
       evidence: ""
       comments: ""
     Usage of multiple analyzers:
-      risk: Each vulnerability analyzer has different opportunities. By using just
-        one analyzer, some vulnerabilities might not be found.
-      measure: Usage of multiple static tools to find more vulnerabilities.
+      risk: Deployment of vulnerable artifacts.
+      measure: Usage multiple code analyzer increases the chance of finding vulnerabilities.
       difficultyOfImplementation:
         knowledge: 3
         time: 3

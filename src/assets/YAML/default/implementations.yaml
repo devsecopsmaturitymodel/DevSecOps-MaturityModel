@@ -509,9 +509,6 @@ implementations:
     name: eslint
     tags: ["d3f:StaticAnalysisTool"]
     url: https://eslint.org/
-  findsecuritybugs:
-    name: FindSecurityBugs
-    tags: []
   jsprime:
     name: jsprime
     description: >-
@@ -521,24 +518,34 @@ implementations:
     tags: ["d3f:StaticAnalysisTool"]
     url: https://github.com/dpnishant/jsprime
   bdd-mobile-security:
-    name: '[bdd-mobile-security'
+    name: BDD Mobile Security
+    description: >-
+      BDD Mobile Security is a framework for testing mobile applications. It is based on the
+      Behavior Driven Development (BDD) approach and uses the Cucumber framework.
     tags: []
     url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
-    description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
   retire-js:
     name: retire.js
+    description: >-
+      Retire.js is a scanner for JavaScript libraries. It scans your project for libraries with known
+      vulnerabilities and checks if a more recent version exists.
     tags: []
     url: https://github.com/RetireJS/retire.js/
   npm-audit:
     name: npm audit
+    description: >-
+      npm audit is a command line tool that audits your project's dependencies for known security vulnerabilities.
     tags: ["d3f:StaticAnalysisTool"]
     url: https://docs.npmjs.com/cli/audit
   sigmahq:
     name: SigmaHQ
     tags: []
     url: https://github.com/SigmaHQ/sigma
-  dive-to-inspect-a-co:
-    name: Dive to inspect a container images
+  wagoodman-dive:
+    name: Dive Container Image Scanner
+    description: >-
+      Dive is a tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your
+      docker/OCI image.
     tags: []
     url: https://github.com/wagoodman/dive
   clusterscanner:
@@ -546,8 +553,10 @@ implementations:
     name: ClusterScanner
     tags: [docker, image, container, vulnerability, misconfiguration, securiity-tools, scanning]
     description: Discover vulnerabilities and container image misconfiguration in production environments.
-  dockerfile-with-hado:
-    name: Dockerfile with hadolint
+  hadolint:
+    name: Hadolint
+    description: >-
+      Hadolint is a Dockerfile linter that helps you build best practice Docker images.
     tags: ["d3f:StaticAnalysisTool"]
     url: https://github.com/hadolint/hadolint
   deployment-with-kube:

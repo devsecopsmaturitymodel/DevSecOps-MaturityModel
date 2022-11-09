@@ -16,7 +16,7 @@ Implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spotbugs
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/super-linter
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-super-linter
       references:
         samm2:
         - V-ST-1-A
