@@ -299,15 +299,15 @@ implementations:
     tags: []
   smartcard:
     name: Smartcard
-    tags: []
+    tags: ["d3f:Multi-factorAuthentication"]
     url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   yubikey:
     name: YubiKey
-    tags: []
+    tags: ["d3f:Multi-factorAuthentication"]
     url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   sms:
     name: SMS
-    tags: []
+    tags: ["d3f:Multi-factorAuthentication"]
   totp:
     name: TOTP
     tags: []

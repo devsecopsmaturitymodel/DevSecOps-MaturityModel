@@ -640,15 +640,18 @@ Build and Deployment:
           tags: []
         smartcard:
           name: Smartcard
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         yubikey:
           name: YubiKey
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         sms:
           name: SMS
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
         totp:
           name: TOTP
           tags: []
@@ -1235,8 +1238,8 @@ Build and Deployment:
           - java
           - d3f:StaticAnalysisTool
           url: https://github.com/spotbugs/spotbugs
-          description: SpotBugs is a program which uses static analysis to look for
-            bugs in Java code.
+          description: |
+            SpotBugs is a program which uses static analysis to look for bugs in Java code.
       references:
         samm2:
         - I-SD-1-B
@@ -2740,8 +2743,8 @@ Implementation:
         - java
         - d3f:StaticAnalysisTool
         url: https://github.com/spotbugs/spotbugs
-        description: SpotBugs is a program which uses static analysis to look for
-          bugs in Java code.
+        description: |
+          SpotBugs is a program which uses static analysis to look for bugs in Java code.
       - signing-of-commits-protection:
           name: Enforcement of commit signing
           tags:
@@ -3076,15 +3079,18 @@ Implementation:
           tags: []
         smartcard:
           name: Smartcard
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         yubikey:
           name: YubiKey
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         sms:
           name: SMS
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
         totp:
           name: TOTP
           tags: []
@@ -3671,8 +3677,8 @@ Implementation:
           - java
           - d3f:StaticAnalysisTool
           url: https://github.com/spotbugs/spotbugs
-          description: SpotBugs is a program which uses static analysis to look for
-            bugs in Java code.
+          description: |
+            SpotBugs is a program which uses static analysis to look for bugs in Java code.
       references:
         samm2:
         - V-ST-1-A
@@ -3693,13 +3699,15 @@ Implementation:
       level: 1
       implementation:
       - name: YubiKey
-        tags: []
+        tags:
+        - d3f:Multi-factorAuthentication
         url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
       - name: TOTP
         tags: []
         url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
       - name: Smartcard
-        tags: []
+        tags:
+        - d3f:Multi-factorAuthentication
         url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
       references:
         samm2:
@@ -3829,13 +3837,16 @@ Implementation:
       level: 2
       implementation:
       - name: Smartcard
-        tags: []
+        tags:
+        - d3f:Multi-factorAuthentication
         url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
       - name: YubiKey
-        tags: []
+        tags:
+        - d3f:Multi-factorAuthentication
         url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
       - name: SMS
-        tags: []
+        tags:
+        - d3f:Multi-factorAuthentication
       - name: TOTP
         tags: []
         url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
@@ -5901,15 +5912,18 @@ Test and Verification:
           tags: []
         smartcard:
           name: Smartcard
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         yubikey:
           name: YubiKey
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         sms:
           name: SMS
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
         totp:
           name: TOTP
           tags: []
@@ -6496,8 +6510,8 @@ Test and Verification:
           - java
           - d3f:StaticAnalysisTool
           url: https://github.com/spotbugs/spotbugs
-          description: SpotBugs is a program which uses static analysis to look for
-            bugs in Java code.
+          description: |
+            SpotBugs is a program which uses static analysis to look for bugs in Java code.
       - signing-of-commits-protection:
           name: Enforcement of commit signing
           tags:
@@ -6832,15 +6846,18 @@ Test and Verification:
           tags: []
         smartcard:
           name: Smartcard
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         yubikey:
           name: YubiKey
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         sms:
           name: SMS
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
         totp:
           name: TOTP
           tags: []
@@ -7427,8 +7444,8 @@ Test and Verification:
           - java
           - d3f:StaticAnalysisTool
           url: https://github.com/spotbugs/spotbugs
-          description: SpotBugs is a program which uses static analysis to look for
-            bugs in Java code.
+          description: |
+            SpotBugs is a program which uses static analysis to look for bugs in Java code.
       isImplemented: false
       evidence: ""
       comments: ""
@@ -7751,6 +7768,9 @@ Test and Verification:
         - 8.25
         - 8.27
         - 8.28
+        d3f:
+        - AccessModeling
+        - DataExchangeMapping
       isImplemented: false
       evidence: ""
       comments: ""
@@ -8163,15 +8183,18 @@ Test and Verification:
           tags: []
         smartcard:
           name: Smartcard
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         yubikey:
           name: YubiKey
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
           url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
         sms:
           name: SMS
-          tags: []
+          tags:
+          - d3f:Multi-factorAuthentication
         totp:
           name: TOTP
           tags: []
@@ -8758,8 +8781,8 @@ Test and Verification:
           - java
           - d3f:StaticAnalysisTool
           url: https://github.com/spotbugs/spotbugs
-          description: SpotBugs is a program which uses static analysis to look for
-            bugs in Java code.
+          description: |
+            SpotBugs is a program which uses static analysis to look for bugs in Java code.
       references:
         samm2:
         - V-ST-1-A

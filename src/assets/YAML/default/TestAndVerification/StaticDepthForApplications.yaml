@@ -75,6 +75,9 @@ Test and Verification:
         - 8.25  # Secure development lifecycle
         - 8.27  # Secure system architecture and engineering principles
         - 8.28  # Secure coding
+        d3f:
+        - AccessModeling
+        - DataExchangeMapping
       isImplemented: false
       evidence: ""
       comments: ""
