@@ -25,4 +25,18 @@ describe('MappingComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('check for table generation', () => {
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const table = HTMLElement.querySelector('table')!;
+    expect(table).toBeTruthy();
+  });
+
+  it('check for chip deletion', () => {
+    component.currentChip = ['row1', 'row2'];
+    component.removeChip('row1');
+    const newChipRow = ['row2'];
+    fixture.detectChanges();
+    expect(component.currentChip).toEqual(newChipRow);
+  });
 });
