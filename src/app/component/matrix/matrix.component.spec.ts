@@ -34,4 +34,12 @@ describe('MatrixComponent', () => {
     const table = HTMLElement.querySelector('table')!;
     expect(table).toBeTruthy();
   });
+
+  it('check for chip deletion', () => {
+    component.rowsCurrentlyBeingShown = ['row1', 'row2'];
+    component.remove('row1');
+    const newChipRow = ['row2'];
+    fixture.detectChanges();
+    expect(component.rowsCurrentlyBeingShown).toEqual(newChipRow);
+  });
 });
