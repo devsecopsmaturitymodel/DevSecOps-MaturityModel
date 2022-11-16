@@ -3173,7 +3173,7 @@ Implementation:
     Usage of encryption at rest:
       risk: Evil actors might be able to access data and read information, e.g. from
         physical hard disks.
-      measure: By using encryption at trdt, it is impossible or at least harder to
+      measure: By using encryption at rest, it is impossible or at least harder to
         to read information.
       difficultyOfImplementation:
         knowledge: 2
