@@ -3246,7 +3246,7 @@ Implementation:
     Usage of test and production environments:
       risk: Security tests are not running regularly because test environments are
         missing
-      measure: A production and a production like environment is used
+      measure: A test and a production like environment is used
       difficultyOfImplementation:
         knowledge: 3
         time: 3
