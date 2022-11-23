@@ -174,6 +174,7 @@ export class TaskDescriptionComponent implements OnInit {
         data['isImplemented'],
         false
       );
+      this.openall();
     });
   }
 
