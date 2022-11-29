@@ -39,8 +39,8 @@ Build and Deployment:
       measure: A well defined build process lowers the possibility of errors during
         the build process.
       description: |
-        Sample evidence as an attribute in the yaml: The build process is defined in <a href="REPLACE-ME">REPLACE-ME Pipeline</a>
-        in the folder <i>vars</>. Projects are using a <i>Jenkinsfile</i> to use the
+        Sample evidence as an attribute in the yaml: The build process is defined in [REPLACE-ME Pipeline](https://replace-me/jenkins/job)
+        in the folder _vars_. Projects are using a _Jenkinsfile_ to use the
         defined process.
       difficultyOfImplementation:
         knowledge: 2
