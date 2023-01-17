@@ -27,9 +27,6 @@ You can switch on to show open TODO's for evidence by changing IS_SHOW_EVIDENCE_
 This page uses the Browser's localStorage to store the state of the circular headmap.
 
 # Community
-
-Code Freeze: Currently, with the Google Summer student Aryan Prasad we develop a new Angular frontend version, therefore, we do not accept any code changes right now.
-
 Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw#/).
 Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
 
