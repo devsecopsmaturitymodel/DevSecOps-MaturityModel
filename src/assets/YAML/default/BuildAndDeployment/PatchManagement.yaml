@@ -6,6 +6,10 @@ Build and Deployment:
       measure: >-
         A patch policy for all artifacts (e.g. in container images) is defined.
         Images are periodically rebuilt according to a defined policy.
+      assessment: | 
+        - Show how often an (base) image rebuilt in CI/CD.
+        - Show the image creation date of all relevant images in production.
+        - Show the image history with creation dates of all relevant images in production.
       difficultyOfImplementation:
         knowledge: 3
         time: 1
