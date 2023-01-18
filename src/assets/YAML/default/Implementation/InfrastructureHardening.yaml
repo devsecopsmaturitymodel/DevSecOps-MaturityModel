@@ -47,7 +47,7 @@ Implementation:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         d3f:
-        - KernelBasedIsolation
+        - Kernel-basedProcessIsolation
       isImplemented: false
       evidence: ""
       comments: ""
