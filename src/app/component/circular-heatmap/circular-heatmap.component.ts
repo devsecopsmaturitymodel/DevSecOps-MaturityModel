@@ -241,7 +241,7 @@ export class CircularHeatmapComponent implements OnInit {
       .data([dataset])
       .enter()
       .append('svg')
-      .attr('width', '60%')
+      .attr('width', '100%')
       .attr('height', height + margin.top + margin.bottom)
       .append('g')
       .attr(
