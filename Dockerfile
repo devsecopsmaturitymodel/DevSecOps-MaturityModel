@@ -1,7 +1,9 @@
 FROM node:18.7-alpine AS build
+
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
-RUN npm install
+RUN apk add --upgrade python3 build-base \
+ && npm install
 COPY . .
 RUN npm run build
 
