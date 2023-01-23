@@ -46,7 +46,7 @@ jobs:
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
           fi
-          docker build -t wurstbrot/dsomm:latest .
+          docker buildx build -t wurstbrot/dsomm:latest --platform=linux/amd64,linux/arm64,linux/arm/v7 -t wurstbrot/dsomm:latest .
           docker push wurstbrot/dsomm:latest
           docker tag wurstbrot/dsomm:latest wurstbrot/dsomm:${VERSION}
           docker push wurstbrot/dsomm:${VERSION}
