@@ -13,25 +13,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          #registry: registry.hub.docker.com
-          username: wurstbrot
-          password: ${{ secrets.HUB_TOKEN }}
-      - name: create and push an image
-        run: |
-          if [ "${GITHUB_REF##*/}" == "master" ]; then
-            VERSION="3.0.0-${GITHUB_RUN_NUMBER}"
-          else
-            BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
-            VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
-          fi
-          docker build -t wurstbrot/dsomm-yaml-generation:latest -f Dockerfile-yaml .
-          docker push wurstbrot/dsomm-yaml-generation:latest
-          docker tag wurstbrot/dsomm-yaml-generation:latest wurstbrot/dsomm-yaml-generation:${VERSION}
-          docker push wurstbrot/dsomm-yaml-generation:${VERSION}
+      #- uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+      #- name: Log in to Docker Hub
+      #  uses: docker/login-action@v2
+      #  with:
+      #    #registry: registry.hub.docker.com
+      #    username: wurstbrot
+      #    password: ${{ secrets.HUB_TOKEN }}
+      #- name: create and push an image
+      #  run: |
+      #    if [ "${GITHUB_REF##*/}" == "master" ]; then
+      #      VERSION="3.0.0-${GITHUB_RUN_NUMBER}"
+      #    else
+      #      BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
+      #      VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
+      #    fi
+      #    docker build -t wurstbrot/dsomm-yaml-generation:latest -f Dockerfile-yaml .
+      #    docker push wurstbrot/dsomm-yaml-generation:latest
+      #    docker tag wurstbrot/dsomm-yaml-generation:latest wurstbrot/dsomm-yaml-generation:${VERSION}
+      #    docker push wurstbrot/dsomm-yaml-generation:${VERSION}
       - name: setup qemu for multi-arch build
         uses: docker/setup-qemu-action@v1
       - name: setup buildx
@@ -46,17 +46,17 @@ jobs:
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
           fi
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          #registry: registry.hub.docker.com
-          username: wurstbrot
-          password: ${{ secrets.HUB_TOKEN }}
+      #- name: Log in to Docker Hub
+      #  uses: docker/login-action@v2
+      #  with:
+      #    #registry: registry.hub.docker.com
+      #    username: wurstbrot
+      #    password: ${{ secrets.HUB_TOKEN }}
       - name: create and push an image
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: true
+          push: false
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: wurstbrot/dsomm:${VERSION},wurstbrot/dsomm:latest
   
