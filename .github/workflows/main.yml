@@ -38,12 +38,14 @@ jobs:
       - name: create and push yaml image
         uses: docker/build-push-action@v3
         with:
+          push: true
           file: Dockerfile-yaml
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm-yaml-generation:${{ env.VERSION }},wurstbrot/dsomm-yaml-generation:latest
       - name: create and push dsomm image
         uses: docker/build-push-action@v3
         with:
+          push: true
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ env.VERSION }},wurstbrot/dsomm:latest
   
