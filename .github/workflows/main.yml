@@ -38,7 +38,13 @@ jobs:
           #registry: registry.hub.docker.com
           username: wurstbrot
           password: ${{ secrets.HUB_TOKEN }}
-      - name: create and push an image
+      - name: setup qemu for multi-arch build
+        uses: docker/setup-qemu-action@v1
+      - name: setup buildx
+        id: buildx
+        uses: docker/setup/buildx-action@v1
+      - name: create version string
+        id: version
         run: |
           if [ "${GITHUB_REF##*/}" == "master" ]; then
             VERSION="3.0.0-${GITHUB_RUN_NUMBER}"
@@ -46,9 +52,13 @@ jobs:
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
           fi
-          docker build -t wurstbrot/dsomm:latest .
-          docker push wurstbrot/dsomm:latest
-          docker tag wurstbrot/dsomm:latest wurstbrot/dsomm:${VERSION}
-          docker push wurstbrot/dsomm:${VERSION}
-
+      - name: create and push an image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          tags: 
+            - wurstbrot/dsomm:${VERSION}
+            - wurstbrot/dsomm:lastest
   
