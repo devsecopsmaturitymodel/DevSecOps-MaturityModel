@@ -20,18 +20,6 @@ jobs:
       #    #registry: registry.hub.docker.com
       #    username: wurstbrot
       #    password: ${{ secrets.HUB_TOKEN }}
-      #- name: create and push an image
-      #  run: |
-      #    if [ "${GITHUB_REF##*/}" == "master" ]; then
-      #      VERSION="3.0.0-${GITHUB_RUN_NUMBER}"
-      #    else
-      #      BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
-      #      VERSION="${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}"
-      #    fi
-      #    docker build -t wurstbrot/dsomm-yaml-generation:latest -f Dockerfile-yaml .
-      #    docker push wurstbrot/dsomm-yaml-generation:latest
-      #    docker tag wurstbrot/dsomm-yaml-generation:latest wurstbrot/dsomm-yaml-generation:${VERSION}
-      #    docker push wurstbrot/dsomm-yaml-generation:${VERSION}
       - name: setup qemu for multi-arch build
         uses: docker/setup-qemu-action@v1
       - name: setup buildx
@@ -46,17 +34,19 @@ jobs:
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             echo "VERSION=${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
           fi
-      #- name: Log in to Docker Hub
-      #  uses: docker/login-action@v2
-      #  with:
-      #    #registry: registry.hub.docker.com
-      #    username: wurstbrot
-      #    password: ${{ secrets.HUB_TOKEN }}
-      - name: create and push an image
+      - name: create and push yaml image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile-yaml
+          push: false
+          platforms: linux/amd64,linux/arm64
+          tags: wurstbrot/dsomm-yaml-generation:${{ env.VERSION }},wurstbrot/dsomm-yaml-generation:latest
+      - name: create and push dsomm image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: false
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ env.VERSION }},wurstbrot/dsomm:latest
   
