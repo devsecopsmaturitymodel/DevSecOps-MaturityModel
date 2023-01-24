@@ -21,10 +21,11 @@ jobs:
       #    username: wurstbrot
       #    password: ${{ secrets.HUB_TOKEN }}
       - name: setup qemu for multi-arch build
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: amd64,arm64
       - name: setup buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: create version string
         id: version
         run: |
@@ -37,16 +38,14 @@ jobs:
       - name: create and push yaml image
         uses: docker/build-push-action@v2
         with:
-          context: .
           file: Dockerfile-yaml
           push: false
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: wurstbrot/dsomm-yaml-generation:${{ env.VERSION }},wurstbrot/dsomm-yaml-generation:latest
       - name: create and push dsomm image
         uses: docker/build-push-action@v2
         with:
-          context: .
           push: false
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: wurstbrot/dsomm:${{ env.VERSION }},wurstbrot/dsomm:latest
   
