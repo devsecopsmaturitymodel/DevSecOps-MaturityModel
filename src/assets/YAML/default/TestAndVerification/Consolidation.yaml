@@ -26,6 +26,27 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
+    Generation of Patch Management Statistics:
+      risk: Delays in patch response lead to an increased attack surface through longer exposure of known vulnerabilities.
+      measure: Average time to patch is visualized per component/project/team.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 2
+      level: 3
+      implementation:
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+      references:
+        samm2:
+        - I-DM-3-B
+        iso27001-2017:
+        - 16.1.4
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Definition of quality gates:
       risk: Improper examination of vulnerabilities leads to no visibility at all.
       measure: |-
