@@ -26,7 +26,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Response Statistics:
+    Generation of Response Statistics:
       risk: No or delayed reaction to findings leads to potential exploitation of findings.
       measure: Creation and response statistics of findings.
       difficultyOfImplementation:
