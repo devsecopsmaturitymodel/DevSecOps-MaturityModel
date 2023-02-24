@@ -693,3 +693,9 @@ implementations:
     url: https://martinfowler.com/articles/feature-toggles.html
     description: |
       Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
+  defectdojo-client:
+    name: DefectDojo Client
+    tags: [Defectdojo, statistics]
+    url: https://github.com/SDA-SE/defectdojo-client
+    description: |
+      This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.      
