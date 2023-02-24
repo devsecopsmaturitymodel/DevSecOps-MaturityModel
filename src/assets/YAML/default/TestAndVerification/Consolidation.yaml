@@ -35,6 +35,9 @@ Test and Verification:
         resources: 1
       usefulness: 2
       level: 3
+      dependsOn:
+      - A patch policy is defined
+      - Automated PRs for patches      
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
