@@ -699,3 +699,9 @@ implementations:
     url: https://github.com/SDA-SE/defectdojo-client
     description: |
       This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.      
+  falco:
+    name: Falco
+    tags: [falco, systemcall, monitoring]
+    url: https://github.com/falcosecurity/falco
+    description: |
+      Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.

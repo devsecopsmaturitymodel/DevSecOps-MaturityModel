@@ -194,21 +194,22 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    Limitation of system calls in virtual environments:
-      risk: System calls in virtual environments like docker can lead to privilege
+    Limitation of system events:
+      risk: System events (system calls) can lead to privilege
         escalation.
-      measure: System calls in virtual environments like docker are audited and limited.
+      measure: System calls are limited.
       difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 3
+        knowledge: 2
+        time: 2
+        resources: 1
       usefulness: 5
-      level: 4
+      level: 3
       dependsOn:
-      - Applications are running in virtualized environments
+      - Audit of systemcalls
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/seccomp
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/strace
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/falco
       references:
         samm2:
         - O-EM-1-A
