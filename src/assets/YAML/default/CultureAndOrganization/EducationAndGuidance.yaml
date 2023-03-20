@@ -24,11 +24,30 @@ Culture and Organization:
       isImplemented: false
       evidence: ""
       comments: ""
+    Security Coaching:
+      risk: Even if security practices are understood, it doesn't mean that they get implemented.
+      measure: By coaching teams, teams are getting a better understanding and adoptiing security practices.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 2
+        resources: 1
+      usefulness: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sammancoaching
+      level: 3
+      references:
+        samm2:
+          - G-EG-3-B
+        iso27001-2017:
+          - 7.1.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Aligning security in teams:
       risk: The concept of Security Champions might suggest that only he/she is responsible
         for security. However, everyone in the project team should be responsible
         for security.
-      measure: By aligning security SME with project teams, a higher security standard
+      measure: By aligning security Subject Matter Experts with project teams, a higher security standard
         can be achieved.
       difficultyOfImplementation:
         knowledge: 4
@@ -80,7 +99,7 @@ Culture and Organization:
         time: 2
         resources: 1
       usefulness: 3
-      level: 3
+      level: 5
       implementation: []
       references:
         samm2:

@@ -705,3 +705,9 @@ implementations:
     url: https://github.com/falcosecurity/falco
     description: |
       Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.
+  sammancoaching:
+    name: sammancoaching
+    tags: [documentation, coaching, education]
+    url: https://sammancoaching.org/
+    description: |
+      Security coaches work with software development teams to help them adopt better security practices.

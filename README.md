@@ -66,7 +66,6 @@ You can download your current state from the circular headmap and mount it again
 
 This approach also allows teams to perform self assessment with changes tracked in a repository.
 
-
 ## Amazon EC2 Instance
 
 1. In the _EC2_ sidenav select _Instances_ and click _Launch Instance_

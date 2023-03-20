@@ -127,7 +127,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 4
-      level: 3
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-content-trust
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/in-toto
@@ -151,7 +151,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 3
-      level: 3
+      level: 4
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits-protection

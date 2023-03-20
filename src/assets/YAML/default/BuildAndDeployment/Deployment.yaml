@@ -11,7 +11,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/blue-green-deploymen
       dependsOn:
@@ -223,7 +223,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 4
-      level: 3
+      level: 4
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
       dependsOn:
@@ -248,7 +248,7 @@ Build and Deployment:
         time: 1
         resources: 1
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/martin-feature-toggles
