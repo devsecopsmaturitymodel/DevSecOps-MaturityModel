@@ -29,8 +29,8 @@ Culture and Organization:
       measure: By coaching teams, teams are getting a better understanding and adoptiing security practices.
       difficultyOfImplementation:
         knowledge: 4
-        time: 2
-        resources: 1
+        time: 3
+        resources: 1 # e.g. system resources
       usefulness: 3
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sammancoaching
@@ -322,7 +322,7 @@ Culture and Organization:
         time: 2
         resources: 1
       usefulness: 3
-      level: 1
+      level: 2
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cwe25
       credits: |
@@ -401,7 +401,7 @@ Culture and Organization:
         time: 3
         resources: 1
       usefulness: 3
-      level: 2
+      level: 3
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:

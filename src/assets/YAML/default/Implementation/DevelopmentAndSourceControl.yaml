@@ -22,27 +22,6 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    Pre-Commit checks and validations:
-      risk: Using an insecure application might lead to a compromised application.
-        This might lead to total data theft or data modification.
-      measure: |
-        Implement pre-commit checks to prevent secrets & other security issues being commit to source code.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 2
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-microsoft
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
-      references:
-        samm2:
-        - V-ST-1-A
-        iso27001-2017: []
-      isImplemented: false
-      evidence: ""
-      comments: ""
     API design validation:
       risk: Creation of insecure or non-compliant API.
       measure: |
@@ -54,7 +33,7 @@ Implementation:
         time: 2
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stoplight-spectral
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker

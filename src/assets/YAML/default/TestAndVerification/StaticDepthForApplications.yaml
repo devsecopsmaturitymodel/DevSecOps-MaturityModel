@@ -9,7 +9,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 1
-      level: 4
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pmd
       dependsOn:
@@ -33,17 +33,20 @@ Test and Verification:
       risk: Creating and developing code contains code smells and quality issues.
       measure: |
         Integration of quality and linting plugins with interactive development environment (IDEs).
+        Implement pre-commit checks to prevent secrets & other security issues being commit to source code.
       difficultyOfImplementation:
         knowledge: 2
         time: 1
         resources: 1
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fortify-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/checkmarx-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-microsoft
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
       references:
         samm2:
         - V-ST-1-A
@@ -86,7 +89,7 @@ Test and Verification:
         time: 4
         resources: 2
       usefulness: 3
-      level: 4
+      level: 5
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
@@ -194,7 +197,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 1
-      level: 4
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pmd
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop

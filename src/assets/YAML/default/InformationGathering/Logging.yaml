@@ -60,7 +60,7 @@ Information Gathering:
         time: 4
         resources: 4
       usefulness: 3
-      level: 4
+      level: 5
       dependsOn:
       - Visualized logging
       - Alerting
@@ -93,7 +93,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       credits: |
         [AppSecure-nrw](https://github.com/AppSecure-nrw/security-belts/blob/master/orange/logging-of-security-events.md)
       implementation:
@@ -107,15 +107,13 @@ Information Gathering:
         iso27001-2017:
         - 12.4.1
       risk: |-
-        <ul>
-        <li>No track of security-relevant events makes it harder to analyze an incident.</li>
-        <li>Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.</li>
-        </ul>
+        * No track of security-relevant events makes it harder to analyze an incident.
+        * Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
       isImplemented: false
       evidence: ""
       comments: ""
     PII logging concept:
-      risk: Personal identifiable information (PII) is logged and the law of GDPR
+      risk: Personal identifiable information (PII) is logged and the privacy law (e.g. General Data Protection Regulation)
         is not followed.
       measure: A concept how to log PII is documented and applied.
       difficultyOfImplementation:
@@ -123,7 +121,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 1
-      level: 1
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rsyslog
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
