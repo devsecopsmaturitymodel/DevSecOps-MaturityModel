@@ -719,7 +719,10 @@ Build and Deployment:
           url: https://github.com/DefectDojo/django-DefectDojo
         owasp-dependency-che:
           name: OWASP Dependency Check
-          tags: []
+          tags:
+          - OpenSource
+          - Supply Chain
+          - vulnerability
           url: https://owasp.org/www-project-dependency-check/
         logparser-jenkins-pl:
           name: LogParser Jenkins Plugins
@@ -999,6 +1002,9 @@ Build and Deployment:
           tags:
           - sca
           - inventory
+          - OpenSource
+          - Supply Chain
+          - vulnerability
         juice-shop:
           name: OWASP Juice Shop
           tags:
@@ -1152,6 +1158,900 @@ Build and Deployment:
       isImplemented: false
       evidence: ""
       comments: ""
+    Evaluation of the trust of used components:
+      risk:
+      - Application and system components like Open Source libraies or images can
+        have implementation flaws or deployment flaws.
+      - Developers or operations might start random images in the production cluster
+        which have malicious code or known vulnerabilities.
+      measure:
+      - Each components source is evaluated to be trusted. For example the source,
+        number of developers included, email configuration used by maintainers to
+        prevent maintainer account theft, typo-squatting, ...
+      - Create image assessment criteria, perform an evaluation of images and create
+        a whitelist of artifacts/container images/virtual machine images.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - name: Kubernetes Admission Controller can whitelist registries and/or whitelist
+          a signing key.
+        tags: []
+      - signing-of-commits-protection:
+          name: Enforcement of commit signing
+          tags:
+          - signing
+          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+          description: Usage of branch protection rules
+        signing-of-commits:
+          name: Signing of commits
+          tags:
+          - signing
+          url: https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
+          description: Signing of commits in git
+        ci-cd-tools:
+          name: CI/CD tools
+          tags:
+          - ci-cd
+          url: https://martinfowler.com/articles/continuousIntegration.html
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions
+        apimaturity:
+          name: API Security Maturity Model for Authorization
+          tags:
+          - api
+          url: https://curity.io/resources/learn/the-api-security-maturity-model/
+        container-technologi:
+          name: Container technologies and orchestration like Docker, Kubernetes
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
+        cwe25:
+          name: CWE Top 25 Most Dangerous Software Weaknesses
+          tags:
+          - documentation
+          - threat
+          url: https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html
+        docker-content-trust:
+          name: Docker Content Trust
+          tags: []
+          url: https://docs.docker.com/notary/getting_started/
+        in-toto:
+          name: in-toto
+          tags: []
+          url: https://in-toto.github.io/
+        a-complete-backup-of:
+          name: A complete backup of persisted data might be performed*.
+          tags: []
+        a-point-in-time-reco:
+          name: A Point in Time Recovery for databases should be implemented.
+          tags: []
+        blue-green-deploymen:
+          name: Blue/Green Deployments
+          tags: []
+          url: https://martinfowler.com/bliki/BlueGreenDeployment.html
+        docker:
+          name: Docker
+          url: https://github.com/moby/moby
+          tags: []
+        webserver:
+          name: Webserver
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:WebServer/
+        rolling-update:
+          name: rolling update
+          tags: []
+        kubernetes-admission:
+          name: Kubernetes Admission Controller can whitelist registries and/or whitelist
+            a signing key.
+          tags: []
+        dependabot:
+          name: dependabot
+          tags: []
+          url: https://dependabot.com/
+        jenkins:
+          name: Jenkins
+          tags: []
+          url: https://www.jenkins.io/
+        sample-concept-1:
+          name: "Sample concept:  \n(1"
+          tags: []
+          description: "Sample concept:  \n(1) each container has a set lifetime and
+            is killed / replaced with a new container multiple times a day where you
+            have some form of a graceful replacement to ensure no (short) service
+            outage will occur to the end users.  \n(2) twice a day a rebuild of images
+            is done. The rebuilds are put into a automated testing pipeline. If the
+            testing has no blocking issues the new images will be released for deployment
+            during the next \"restart\" of a container. What has to be done, is to
+            ensure the new containers are deployed in some canary deployment manner,
+            this will ensure that if (and only if) something buggy has been introduced
+            which breaks functionality the canary deployment will make sure the \"older
+            version\" is being used and not the buggy newer one."
+        distroless:
+          name: Distroless
+          tags: []
+          url: https://github.com/GoogleContainerTools/distroless
+        fedora-coreos:
+          name: Fedora CoreOS
+          tags: []
+          url: https://getfedora.org/coreos
+        threat-modeling-play:
+          name: Threat Modeling Playbook
+          tags:
+          - owasp
+          - defender
+          - threat-modeling
+          - whiteboard
+          url: https://github.com/Toreon/threat-model-playbook
+        owasp-samm:
+          name: OWASP SAMM
+          tags:
+          - threat-modeling
+          - owasp
+          - defender
+          url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+        whiteboard:
+          name: Whiteboard
+          tags:
+          - defender
+          - threat-modeling
+          - collaboration
+          - whiteboard
+          url: https://en.wikipedia.org/wiki/Whiteboard
+        miro-or-any-other-c:
+          name: Miro (or any other collaborative board)
+          tags:
+          - defender
+          - threat-modeling
+          - collaboration
+          - whiteboard
+          url: https://miro.com/
+        draw-io:
+          name: Draw.io
+          tags:
+          - defender
+          - threat-modeling
+          - whiteboard
+          url: https://github.com/jgraph/drawio-desktop
+        threagile:
+          name: Threagile
+          tags:
+          - threat-modeling
+          url: https://github.com/Threagile/threagile
+        don-t-forget-evil-u:
+          name: '[Don''t Forget EVIL U'
+          tags: []
+          url: https://www.owasp.org/index.php/Agile_Software_Development
+          description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
+            and [Practical Security Stories and Security Tasks for Agile Development
+            Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+        owasp-juice-shop:
+          name: OWASP Juice Shop
+          tags:
+          - training
+          url: https://github.com/bkimminich/juice-shop
+          description: In case you do not have the budget to hire an external security
+            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        owasp-cheatsheet-ser:
+          name: OWASP Cheatsheet Series
+          tags:
+          - secure coding
+          url: https://cheatsheetseries.owasp.org/
+        owasp-juiceshop:
+          name: OWASP JuiceShop
+          tags: []
+          url: https://github.com/bkimminich/juice-shop
+          description: |-
+            In case you do not have the budget to hire an external security expert, an option
+            is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
+        https-cheatsheetse:
+          name: https://cheatsheetseries.owasp.org/
+          tags:
+          - training
+          - secure coding
+          url: https://cheatsheetseries.owasp.org/
+        owasp-security-champ:
+          name: OWASP Security Champions Playbook
+          tags:
+          - security champions
+          url: https://github.com/c0rdis/security-champions-playbook
+        build-it-break-it-fi:
+          name: Build it Break it Fix it Contest
+          tags: []
+          url: https://builditbreakit.org/
+        motivate-people:
+          name: Motivate people
+          tags:
+          - security champions
+          - gamification
+          - nudging
+          url: https://github.com/wurstbrot/security-pins
+          description: |-
+            Enhance motivation can be performed with the distribution of pins
+            as a reward, see [OWASP Security Pins Project](https://github.com/wurstbrot/security-pins)
+        owasp-top-10-maturit:
+          name: OWASP Top 10 Maturity Categories for Security Champions
+          tags:
+          - security champions
+          url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
+        involve-security-sme:
+          name: Involve Security SME
+          tags: []
+          description: Security SME are involved in discussion for requirements analysis,
+            software design and sprint planning to provide guidance and suggestions.
+        damn-vulnerable-web:
+          name: Damn Vulnerable Web Application
+          tags:
+          - training
+          description: Simple Application with intended vulnerabilities. HTML based.
+        example-all-docker:
+          name: 'Example: All docker images used by teams need to be based on standard
+            images.'
+          tags: []
+        owasp-asvs:
+          name: OWASP ASVS
+          tags: []
+          url: https://owasp.org/www-project-application-security-verification-standard/
+        owasp-masvs:
+          name: OWASP MASVS
+          tags: []
+          url: https://github.com/OWASP/owasp-masvs
+        cis-kubernetes-bench:
+          name: CIS Kubernetes Bench for Security
+          tags: []
+          url: https://www.cisecurity.org/cis-benchmarks/
+        cis-docker-bench-for:
+          name: CIS Docker Bench for Security
+          tags: []
+          url: https://www.cisecurity.org/cis-benchmarks/
+        for-example-for-cont:
+          name: For example for Cont
+          tags: []
+          description: 'For example for Containers: Deny running containers as root,
+            deny using advanced privileges, deny mounting of the hole filesystem,
+            ...'
+          url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
+        attack-matrix-cloud:
+          name: Attack Matrix Cloud
+          tags:
+          - mitre
+          url: https://attack.mitre.org/matrices/enterprise/cloud/
+          description: Attack matrix for cloud
+        attack-matrix-contai:
+          name: Attack Matrix Containers
+          tags:
+          - mitre
+          url: https://attack.mitre.org/matrices/enterprise/cloud/
+          description: Attack matrix for containers
+        attack-matrix-kubern:
+          name: Attack Matrix Kubernetes
+          tags:
+          - mitre
+          url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
+          description: Attack matrix for kubernetes
+        istio:
+          name: istio
+          tags: []
+          url: https://istio.io/
+        bridges:
+          name: bridges
+          tags: []
+        firewalls:
+          name: firewalls
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
+        open-policy-agent:
+          name: Open Policy Agent
+          tags: []
+          url: https://www.openpolicyagent.org/
+        gitops:
+          name: GitOps
+          tags: []
+          url: https://www.redhat.com/en/topics/devops/what-is-gitops
+        ansible:
+          name: Ansible
+          tags: []
+          url: https://github.com/ansible/ansible
+        chef:
+          name: Chef
+          tags: []
+          url: https://github.com/chef/chef
+        puppet:
+          name: Puppet
+          tags: []
+          url: https://github.com/puppetlabs/puppet
+        jenkinsfile:
+          name: Jenkinsfile
+          tags: []
+          url: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
+        seccomp:
+          name: seccomp
+          tags: []
+          url: https://man7.org/linux/man-pages/man2/seccomp.2.html
+        strace:
+          name: strace
+          tags: []
+          url: https://man7.org/linux/man-pages/man1/strace.1.html
+        remove-direct-access:
+          name: Remove direct access to infrastructure
+          tags: []
+        directory-service:
+          name: Directory Service
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:DirectoryService/
+        plugins:
+          name: Plugins
+          tags: []
+        smartcard:
+          name: Smartcard
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        yubikey:
+          name: YubiKey
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        sms:
+          name: SMS
+          tags: []
+        totp:
+          name: TOTP
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
+        http-basic-authentic:
+          name: HTTP-Basic Authentication
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:WebAuthentication/
+        vpn:
+          name: VPN
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:VPN/
+        for-applications-ch:
+          name: 'For applications: Check default encoding'
+          tags: []
+        managing-secrets:
+          name: managing secrets
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:CredentialHardening/
+        crypto:
+          name: crypto
+          tags: []
+        authentication:
+          name: authentication
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:Authentication/
+        rsyslog:
+          name: rsyslog
+          url: https://www.rsyslog.com/
+          tags:
+          - tool
+          - logging
+        logstash:
+          name: logstash
+          url: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+          tags:
+          - tool
+          - logging
+        fluentd:
+          name: fluentd
+          tags:
+          - tool
+          url: https://www.fluentd.org/
+        bash:
+          name: bash
+          tags:
+          - tool
+          url: https://www.gnu.org/software/bash/
+        owasp-logging-cheats:
+          name: OWASP Logging CheatSheet
+          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+          tags:
+          - logging
+          - documentation
+        elk-stack:
+          name: ELK-Stack
+          tags: []
+          url: https://www.elastic.co/elk-stack
+        https-ht-transpare:
+          name: https://ht.transpare
+          tags: []
+          url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
+          description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+        prometheus:
+          name: Prometheus
+          tags: []
+          url: https://prometheus.io/
+        collected:
+          name: collected
+          tags: []
+        httpunit:
+          name: HttpUnit
+          tags: []
+          url: http://httpunit.sourceforge.net/
+        junit:
+          name: JUnit
+          tags:
+          - unittest
+          url: https://junit.org/junit5/
+        karma:
+          name: Karma
+          tags: []
+          url: https://karma-runner.github.io
+        owasp-defectdojo:
+          name: OWASP DefectDojo
+          tags:
+          - vulnerability management system
+          - owasp
+          url: https://github.com/DefectDojo/django-DefectDojo
+          description: |
+            DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+        purify:
+          name: Purify
+          tags:
+          - vulnerability management system
+          url: https://github.com/faloker/purify/
+          description: |
+            The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        see-other-actions-e:
+          name: See other actions, e.g. "Treatment of defects with severity high".
+          tags: []
+        sast:
+          name: SAST
+          tags: []
+          description: 'At SAST (Static Application Security Testing): Server-side
+            / client-side teams can easily be recorded. With microservice architecture
+            individual microservices can be used usually Teams.'
+          url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
+        dast:
+          name: DAST
+          tags: []
+          description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
+            are classified and can be assigned to server-side and client-side teams.'
+          url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
+        owasp-defect-dojo:
+          name: OWASP Defect Dojo
+          tags: []
+          url: https://github.com/DefectDojo/django-DefectDojo
+        owasp-dependency-che:
+          name: OWASP Dependency Check
+          tags:
+          - OpenSource
+          - Supply Chain
+          - vulnerability
+          url: https://owasp.org/www-project-dependency-check/
+        logparser-jenkins-pl:
+          name: LogParser Jenkins Plugins
+          tags: []
+        owasp-code-pulse:
+          name: OWASP Code Pulse
+          tags: []
+          url: https://www.owasp.org/index.php/OWASP_Code_Pulse
+        ajax-spider:
+          name: Ajax Spider
+          tags: []
+          url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
+        curl:
+          name: cURL
+          tags: []
+          url: https://curl.se/
+        openapi:
+          name: OpenAPI Specifications
+          tags: []
+          url: https://spec.openapis.org/
+        owasp-zap:
+          name: OWASP Zap
+          tags:
+          - vulnerability
+          - scanner
+          url: https://github.com/zaproxy/zaproxy
+          description: |
+            The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+        arachni:
+          name: Arachni
+          url: https://github.com/Arachni/arachni
+        zest:
+          name: Zest
+          url: https://www.zaproxy.org/docs/desktop/addons/zest/
+          tags:
+          - zap
+          description: |
+            Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+        owasp-securecodebox:
+          name: OWASP secureCodeBox
+          tags:
+          - vulnerability
+          - scanner-orchestration
+          url: https://github.com/secureCodeBox/secureCodeBox
+          description: |
+            secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+        kube-hunter:
+          name: kube-hunter
+          tags: []
+          url: https://github.com/aquasecurity/kube-hunter
+        openvas:
+          name: openVAS
+          tags: []
+          url: https://www.openvas.org/
+        htc-hydra:
+          name: HTC Hydra
+          tags:
+          - password
+          url: https://www.htc-cs.com/en/products/htc-hydra/
+        netassert:
+          name: netassert
+          tags: []
+          url: https://github.com/controlplaneio/netassert
+        nmap:
+          name: nmap
+          tags: []
+          url: https://nmap.org/
+        owasp-amass:
+          name: OWASP Amass
+          tags: []
+          url: https://github.com/OWASP/Amass
+        k8spurger:
+          name: K8sPurger
+          tags:
+          - vulnerability
+          - scanner
+          - dast
+          - infrastructure
+          url: https://github.com/yogeshkk/K8sPurger
+          description: |
+            Hunt Unused Resources In Kubernetes.
+        pmd:
+          name: PMD
+          tags: []
+        eslint:
+          name: eslint
+          tags: []
+          url: https://eslint.org/
+        findsecuritybugs:
+          name: FindSecurityBugs
+          tags: []
+        jsprime:
+          name: jsprime
+          tags: []
+          url: https://github.com/dpnishant/jsprime
+        bdd-mobile-security:
+          name: '[bdd-mobile-security'
+          tags: []
+          url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
+          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
+        retire-js:
+          name: retire.js
+          tags: []
+          url: https://github.com/RetireJS/retire.js/
+        npm-audit:
+          name: npm audit
+          tags: []
+          url: https://docs.npmjs.com/cli/audit
+        sigmahq:
+          name: SigmaHQ
+          tags: []
+          url: https://github.com/SigmaHQ/sigma
+        dive-to-inspect-a-co:
+          name: Dive to inspect a container images
+          tags: []
+          url: https://github.com/wagoodman/dive
+        clusterscanner:
+          url: https://github.com/SDA-SE/clusterscanner
+          name: ClusterScanner
+          tags:
+          - docker
+          - image
+          - container
+          - vulnerability
+          - misconfiguration
+          - securiity-tools
+          - scanning
+          description: Discover vulnerabilities and container image misconfiguration
+            in production environments.
+        dockerfile-with-hado:
+          name: Dockerfile with hadolint
+          tags: []
+          url: https://github.com/hadolint/hadolint
+        deployment-with-kube:
+          name: Deployment with kube-score
+          tags: []
+          url: https://github.com/zegl/kube-score
+        kubesec:
+          name: kubesec
+          tags: []
+          url: https://kubesec.io
+        anchore-io:
+          name: Anchore.io
+          tags: []
+          url: https://anchore.com/
+        clair:
+          name: Clair
+          tags: []
+          url: https://github.com/quay/clair
+        openscap:
+          name: OpenSCAP
+          tags: []
+          url: https://www.open-scap.org/
+        vuls:
+          name: Vuls
+          tags: []
+          url: https://github.com/future-architect/vuls
+        kube-bench:
+          name: kube-bench
+          tags: []
+          url: https://github.com/aquasecurity/kube-bench
+        trufflehog:
+          name: truffleHog
+          tags: []
+          url: https://github.com/dxa4481/truffleHog
+        go-pillage-registrie:
+          name: go-pillage-registries
+          tags: []
+          url: https://github.com/nccgroup/go-pillage-registries
+        https-github-com-a:
+          name: https://github.com/aquasecurity/trivy
+          tags: []
+          url: https://github.com/aquasecurity/trivy
+        registries-like-quay:
+          name: Registries like quay
+          tags: []
+          description: Registries like quay, dockerhub provide (commercial) offerings,
+            often not suitable for distroless images
+        dockerfilelint:
+          name: dockerfilelint
+          tags:
+          - sast
+          - docker
+          - dockerfile
+          url: https://github.com/replicatedhq/dockerfilelint
+          description: dockerfilelint is an node module that analyzes a Dockerfile
+            and looks for common traps, mistakes and helps enforce best practices.
+        threat-matrix-for-storage:
+          name: Threat Matrix for Storage
+          url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
+          tags:
+          - documentation
+          - storage
+          - cluster
+          - kubernetes
+        defend-the-core-kubernetes:
+          name: Defend the core kubernetes security at every layer
+          url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
+          tags:
+          - documentation
+          - cluster
+          - kubernetes
+        business-friendly-vulnerability-metrics:
+          name: Business friendly vulnerability management metrics
+          url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
+          tags:
+          - documentation
+          - vulnerability
+          - vulnerability management system
+        kubescape:
+          name: kubescape
+          url: https://github.com/armosec/kubescape
+          tags:
+          - kubernetes
+          - vulnerability
+          - misconfiguration
+          description: _Testing if Kubernetes is deployed securely as defined in Kubernetes
+            Hardening Guidance by to NSA and CISA_
+        azuredevops:
+          name: Improve code quality with branch policies
+          url: https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
+          tags:
+          - source-code-protection
+          - scm
+        github-policies:
+          name: About protected branches
+          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
+          tags:
+          - source-code-protection
+          - scm
+        sonarqube:
+          name: In-Depth Linting of Your TypeScript While Coding
+          url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
+          tags:
+          - ide
+          - linting
+        stylecop:
+          name: How to enforce a consistent coding style in your projects
+          url: https://www.meziantou.net/how-to-enforce-a-consistent-coding-style-in-your-projects.htm
+          tags:
+          - ide
+          - linting
+        fortify-vscode-extension:
+          name: Fortify Extension for Visual Studio Code
+          url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
+          tags:
+          - ide
+          - sast
+        appscan-vscode-extension:
+          name: HCL AppScan CodeSweep
+          url: https://marketplace.visualstudio.com/items?itemName=HCLTechnologies.hclappscancodesweep
+          tags:
+          - ide
+          - sast
+        checkmarx-vscode-extension:
+          name: Setting Up the Visual Studio Code Extension Plugin
+          url: https://checkmarx.atlassian.net/wiki/spaces/SD/pages/1759216424/Setting+Up+the+Visual+Studio+Code+Extension+Plugin
+          tags:
+          - ide
+          - sast
+        pre-commit-microsoft:
+          name: DevSecOps control Pre-commit
+          url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
+          tags:
+          - pre-commit
+        pre-commit-synopsis:
+          name: Building your DevSecOps pipeline 5 essential activities
+          url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
+          tags:
+          - pre-commit
+        dependencyTrack:
+          name: Dependency-Track is an intelligent Component Analysis platform that
+            allows organizations to identify and reduce risk in the software supply
+            chain. Dependency-Track takes a unique and highly beneficial approach
+            by leveraging the capabilities of Software Bill of Materials (SBOM).
+          url: https://github.com/DependencyTrack/dependency-track
+          tags:
+          - sca
+          - inventory
+          - OpenSource
+          - Supply Chain
+          - vulnerability
+        juice-shop:
+          name: OWASP Juice Shop
+          tags:
+          - training
+          url: https://github.com/bkimminich/juice-shop
+          description: In case you do not have the budget to hire an external security
+            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        dvwa:
+          name: Damn Vulnerable Web Application
+          tags:
+          - training
+          description: Simple Application with intended vulnerabilities. HTML based.
+        loggingCheatSheet:
+          name: OWASP Logging CheatSheet
+          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+          tags:
+          - logging
+          - documentation
+        zap:
+          name: OWASP Zap
+          tags:
+          - vulnerability
+          - scanner
+          url: https://github.com/zaproxy/zaproxy
+          description: |
+            The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+        secureCodeBox:
+          name: OWASP secureCodeBox
+          tags:
+          - vulnerability
+          - scanner-orchestration
+          url: https://github.com/secureCodeBox/secureCodeBox
+          description: |
+            secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+        K8sPurger:
+          name: K8sPurger
+          tags:
+          - vulnerability
+          - scanner
+          - dast
+          - infrastructure
+          url: https://github.com/yogeshkk/K8sPurger
+          description: |
+            Hunt Unused Resources In Kubernetes.
+        hashicorp-vault:
+          name: Hashicorp Vault
+          tags:
+          - authentication
+          - authorization
+          - secrets
+          - infrastructure
+          url: https://github.com/hashicorp/vault
+          description: |
+            A tool for secrets management, encryption as a service, and privileged access management.
+        stoplight-spectral:
+          name: Spectral
+          tags:
+          - linting
+          - api
+          - documentation
+          url: https://github.com/stoplightio/spectral
+          description: |
+            Spectral is a flexible JSON/YAML linter built with extensibility in mind.
+            It uses JSON/YAML path rules to describe the problems you want to find.
+        api-oas-checker:
+          name: API OAS Checker
+          tags:
+          - linting
+          - api
+          - documentation
+          url: https://github.com/italia/api-oas-checker
+          description: |
+            A tool to check OpenAPI specifications using a comprehensive ruleset based
+            on API best practices.
+        coveragepy:
+          name: Coverage.py
+          tags:
+          - testing
+          - coverage
+          url: https://github.com/nedbat/coveragepy
+          description: |
+            Code coverage measurement for Python
+        github-dependabot:
+          name: Dependabot
+          tags:
+          - dependency
+          - dependency-management
+          - scm
+          url: https://github.com/dependabot/dependabot-core
+          description: |
+            Dependabot creates pull requests to keep your dependencies secure and up-to-date.
+        github-super-linter:
+          name: Super-Linter
+          tags:
+          - linting
+          - scm
+          url: https://github.com/github/super-linter
+          description: |
+            Lint code bases to catch common errors and enforce code style
+        schemathesis:
+          name: Schemathesis
+          tags:
+          - testing
+          - api
+          - documentation
+          url: https://github.com/schemathesis/schemathesis
+          description: |
+            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+        martin-feature-toggles:
+          name: Feature Toggles
+          tags:
+          - development
+          - architecture
+          url: https://martinfowler.com/articles/feature-toggles.html
+          description: |
+            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
+        defectdojo-client:
+          name: DefectDojo Client
+          tags:
+          - Defectdojo
+          - statistics
+          url: https://github.com/SDA-SE/defectdojo-client
+          description: "This projects contains the DefectDojo upload client and statistics
+            client. It is for example used within the ClusterImageScanner.      \n"
+        falco:
+          name: Falco
+          tags:
+          - falco
+          - systemcall
+          - monitoring
+          url: https://github.com/falcosecurity/falco
+          description: |
+            Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.
+        sammancoaching:
+          name: sammancoaching
+          tags:
+          - documentation
+          - coaching
+          - education
+          url: https://sammancoaching.org/
+          description: |
+            Security coaches work with software development teams to help them adopt better security practices.
+      references:
+        samm2:
+        - O-EM-1-A
+        iso27001-2017:
+        - not explicitly covered by ISO 27001 - too specific
+        - 14.2.1
+        - 14.2.5
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Handover of confidential parameters:
       risk: Parameters are often used to set credentials, for example by starting
         containers or applications; these parameters can often be seen by any one
@@ -1207,6 +2107,9 @@ Build and Deployment:
         tags:
         - sca
         - inventory
+        - OpenSource
+        - Supply Chain
+        - vulnerability
       references:
         samm2:
         - I-SD-2-A
@@ -1333,32 +2236,6 @@ Build and Deployment:
       isImplemented: false
       evidence: ""
       comments: ""
-    Usage of trusted images:
-      risk: Developers or operations might start random images in the production cluster
-        which have malicious code or known vulnerabilities.
-      measure: Create image assessment criteria, perform an evaluation of images and
-        create a whitelist of artifacts/container images/virtual machine images.
-      implementation:
-      - name: Kubernetes Admission Controller can whitelist registries and/or whitelist
-          a signing key.
-        tags: []
-      difficultyOfImplementation:
-        knowledge: 1
-        time: 1
-        resources: 1
-      usefulness: 3
-      level: 2
-      references:
-        samm2:
-        - I-SD-2-A
-        iso27001-2017:
-        - 15.1.1
-        - 15.1.2
-        - 15.1.3
-        - 14.1.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
   Patch Management:
     A patch policy is defined:
       risk: Vulnerabilities in running containers stay for long and might get exploited.
@@ -1385,9 +2262,10 @@ Build and Deployment:
       risk: Known vulnerabilities components might stay for long and get exploited,
         even when a patch is available.
       measure: Fast patching of third party component is needed. The DevOps way is
-        to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virtualized
-        operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
-        as Code/GitOps (e.g. argocd)</li> </ul>
+        to have an automated pull request for new components. This includes * Applications
+        * Virtualized operating system components (e.g. container images) * Operating
+        Systems * Infrastructure as Code/GitOps (e.g. argocd based on a git repository
+        or terraform)
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -1401,6 +2279,868 @@ Build and Deployment:
       - name: Jenkins
         tags: []
         url: https://www.jenkins.io/
+      - signing-of-commits-protection:
+          name: Enforcement of commit signing
+          tags:
+          - signing
+          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+          description: Usage of branch protection rules
+        signing-of-commits:
+          name: Signing of commits
+          tags:
+          - signing
+          url: https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
+          description: Signing of commits in git
+        ci-cd-tools:
+          name: CI/CD tools
+          tags:
+          - ci-cd
+          url: https://martinfowler.com/articles/continuousIntegration.html
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions
+        apimaturity:
+          name: API Security Maturity Model for Authorization
+          tags:
+          - api
+          url: https://curity.io/resources/learn/the-api-security-maturity-model/
+        container-technologi:
+          name: Container technologies and orchestration like Docker, Kubernetes
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
+        cwe25:
+          name: CWE Top 25 Most Dangerous Software Weaknesses
+          tags:
+          - documentation
+          - threat
+          url: https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html
+        docker-content-trust:
+          name: Docker Content Trust
+          tags: []
+          url: https://docs.docker.com/notary/getting_started/
+        in-toto:
+          name: in-toto
+          tags: []
+          url: https://in-toto.github.io/
+        a-complete-backup-of:
+          name: A complete backup of persisted data might be performed*.
+          tags: []
+        a-point-in-time-reco:
+          name: A Point in Time Recovery for databases should be implemented.
+          tags: []
+        blue-green-deploymen:
+          name: Blue/Green Deployments
+          tags: []
+          url: https://martinfowler.com/bliki/BlueGreenDeployment.html
+        docker:
+          name: Docker
+          url: https://github.com/moby/moby
+          tags: []
+        webserver:
+          name: Webserver
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:WebServer/
+        rolling-update:
+          name: rolling update
+          tags: []
+        kubernetes-admission:
+          name: Kubernetes Admission Controller can whitelist registries and/or whitelist
+            a signing key.
+          tags: []
+        dependabot:
+          name: dependabot
+          tags: []
+          url: https://dependabot.com/
+        jenkins:
+          name: Jenkins
+          tags: []
+          url: https://www.jenkins.io/
+        sample-concept-1:
+          name: "Sample concept:  \n(1"
+          tags: []
+          description: "Sample concept:  \n(1) each container has a set lifetime and
+            is killed / replaced with a new container multiple times a day where you
+            have some form of a graceful replacement to ensure no (short) service
+            outage will occur to the end users.  \n(2) twice a day a rebuild of images
+            is done. The rebuilds are put into a automated testing pipeline. If the
+            testing has no blocking issues the new images will be released for deployment
+            during the next \"restart\" of a container. What has to be done, is to
+            ensure the new containers are deployed in some canary deployment manner,
+            this will ensure that if (and only if) something buggy has been introduced
+            which breaks functionality the canary deployment will make sure the \"older
+            version\" is being used and not the buggy newer one."
+        distroless:
+          name: Distroless
+          tags: []
+          url: https://github.com/GoogleContainerTools/distroless
+        fedora-coreos:
+          name: Fedora CoreOS
+          tags: []
+          url: https://getfedora.org/coreos
+        threat-modeling-play:
+          name: Threat Modeling Playbook
+          tags:
+          - owasp
+          - defender
+          - threat-modeling
+          - whiteboard
+          url: https://github.com/Toreon/threat-model-playbook
+        owasp-samm:
+          name: OWASP SAMM
+          tags:
+          - threat-modeling
+          - owasp
+          - defender
+          url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+        whiteboard:
+          name: Whiteboard
+          tags:
+          - defender
+          - threat-modeling
+          - collaboration
+          - whiteboard
+          url: https://en.wikipedia.org/wiki/Whiteboard
+        miro-or-any-other-c:
+          name: Miro (or any other collaborative board)
+          tags:
+          - defender
+          - threat-modeling
+          - collaboration
+          - whiteboard
+          url: https://miro.com/
+        draw-io:
+          name: Draw.io
+          tags:
+          - defender
+          - threat-modeling
+          - whiteboard
+          url: https://github.com/jgraph/drawio-desktop
+        threagile:
+          name: Threagile
+          tags:
+          - threat-modeling
+          url: https://github.com/Threagile/threagile
+        don-t-forget-evil-u:
+          name: '[Don''t Forget EVIL U'
+          tags: []
+          url: https://www.owasp.org/index.php/Agile_Software_Development
+          description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
+            and [Practical Security Stories and Security Tasks for Agile Development
+            Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+        owasp-juice-shop:
+          name: OWASP Juice Shop
+          tags:
+          - training
+          url: https://github.com/bkimminich/juice-shop
+          description: In case you do not have the budget to hire an external security
+            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        owasp-cheatsheet-ser:
+          name: OWASP Cheatsheet Series
+          tags:
+          - secure coding
+          url: https://cheatsheetseries.owasp.org/
+        owasp-juiceshop:
+          name: OWASP JuiceShop
+          tags: []
+          url: https://github.com/bkimminich/juice-shop
+          description: |-
+            In case you do not have the budget to hire an external security expert, an option
+            is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
+        https-cheatsheetse:
+          name: https://cheatsheetseries.owasp.org/
+          tags:
+          - training
+          - secure coding
+          url: https://cheatsheetseries.owasp.org/
+        owasp-security-champ:
+          name: OWASP Security Champions Playbook
+          tags:
+          - security champions
+          url: https://github.com/c0rdis/security-champions-playbook
+        build-it-break-it-fi:
+          name: Build it Break it Fix it Contest
+          tags: []
+          url: https://builditbreakit.org/
+        motivate-people:
+          name: Motivate people
+          tags:
+          - security champions
+          - gamification
+          - nudging
+          url: https://github.com/wurstbrot/security-pins
+          description: |-
+            Enhance motivation can be performed with the distribution of pins
+            as a reward, see [OWASP Security Pins Project](https://github.com/wurstbrot/security-pins)
+        owasp-top-10-maturit:
+          name: OWASP Top 10 Maturity Categories for Security Champions
+          tags:
+          - security champions
+          url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
+        involve-security-sme:
+          name: Involve Security SME
+          tags: []
+          description: Security SME are involved in discussion for requirements analysis,
+            software design and sprint planning to provide guidance and suggestions.
+        damn-vulnerable-web:
+          name: Damn Vulnerable Web Application
+          tags:
+          - training
+          description: Simple Application with intended vulnerabilities. HTML based.
+        example-all-docker:
+          name: 'Example: All docker images used by teams need to be based on standard
+            images.'
+          tags: []
+        owasp-asvs:
+          name: OWASP ASVS
+          tags: []
+          url: https://owasp.org/www-project-application-security-verification-standard/
+        owasp-masvs:
+          name: OWASP MASVS
+          tags: []
+          url: https://github.com/OWASP/owasp-masvs
+        cis-kubernetes-bench:
+          name: CIS Kubernetes Bench for Security
+          tags: []
+          url: https://www.cisecurity.org/cis-benchmarks/
+        cis-docker-bench-for:
+          name: CIS Docker Bench for Security
+          tags: []
+          url: https://www.cisecurity.org/cis-benchmarks/
+        for-example-for-cont:
+          name: For example for Cont
+          tags: []
+          description: 'For example for Containers: Deny running containers as root,
+            deny using advanced privileges, deny mounting of the hole filesystem,
+            ...'
+          url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
+        attack-matrix-cloud:
+          name: Attack Matrix Cloud
+          tags:
+          - mitre
+          url: https://attack.mitre.org/matrices/enterprise/cloud/
+          description: Attack matrix for cloud
+        attack-matrix-contai:
+          name: Attack Matrix Containers
+          tags:
+          - mitre
+          url: https://attack.mitre.org/matrices/enterprise/cloud/
+          description: Attack matrix for containers
+        attack-matrix-kubern:
+          name: Attack Matrix Kubernetes
+          tags:
+          - mitre
+          url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
+          description: Attack matrix for kubernetes
+        istio:
+          name: istio
+          tags: []
+          url: https://istio.io/
+        bridges:
+          name: bridges
+          tags: []
+        firewalls:
+          name: firewalls
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
+        open-policy-agent:
+          name: Open Policy Agent
+          tags: []
+          url: https://www.openpolicyagent.org/
+        gitops:
+          name: GitOps
+          tags: []
+          url: https://www.redhat.com/en/topics/devops/what-is-gitops
+        ansible:
+          name: Ansible
+          tags: []
+          url: https://github.com/ansible/ansible
+        chef:
+          name: Chef
+          tags: []
+          url: https://github.com/chef/chef
+        puppet:
+          name: Puppet
+          tags: []
+          url: https://github.com/puppetlabs/puppet
+        jenkinsfile:
+          name: Jenkinsfile
+          tags: []
+          url: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
+        seccomp:
+          name: seccomp
+          tags: []
+          url: https://man7.org/linux/man-pages/man2/seccomp.2.html
+        strace:
+          name: strace
+          tags: []
+          url: https://man7.org/linux/man-pages/man1/strace.1.html
+        remove-direct-access:
+          name: Remove direct access to infrastructure
+          tags: []
+        directory-service:
+          name: Directory Service
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:DirectoryService/
+        plugins:
+          name: Plugins
+          tags: []
+        smartcard:
+          name: Smartcard
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        yubikey:
+          name: YubiKey
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        sms:
+          name: SMS
+          tags: []
+        totp:
+          name: TOTP
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
+        http-basic-authentic:
+          name: HTTP-Basic Authentication
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:WebAuthentication/
+        vpn:
+          name: VPN
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:VPN/
+        for-applications-ch:
+          name: 'For applications: Check default encoding'
+          tags: []
+        managing-secrets:
+          name: managing secrets
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:CredentialHardening/
+        crypto:
+          name: crypto
+          tags: []
+        authentication:
+          name: authentication
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:Authentication/
+        rsyslog:
+          name: rsyslog
+          url: https://www.rsyslog.com/
+          tags:
+          - tool
+          - logging
+        logstash:
+          name: logstash
+          url: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+          tags:
+          - tool
+          - logging
+        fluentd:
+          name: fluentd
+          tags:
+          - tool
+          url: https://www.fluentd.org/
+        bash:
+          name: bash
+          tags:
+          - tool
+          url: https://www.gnu.org/software/bash/
+        owasp-logging-cheats:
+          name: OWASP Logging CheatSheet
+          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+          tags:
+          - logging
+          - documentation
+        elk-stack:
+          name: ELK-Stack
+          tags: []
+          url: https://www.elastic.co/elk-stack
+        https-ht-transpare:
+          name: https://ht.transpare
+          tags: []
+          url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
+          description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+        prometheus:
+          name: Prometheus
+          tags: []
+          url: https://prometheus.io/
+        collected:
+          name: collected
+          tags: []
+        httpunit:
+          name: HttpUnit
+          tags: []
+          url: http://httpunit.sourceforge.net/
+        junit:
+          name: JUnit
+          tags:
+          - unittest
+          url: https://junit.org/junit5/
+        karma:
+          name: Karma
+          tags: []
+          url: https://karma-runner.github.io
+        owasp-defectdojo:
+          name: OWASP DefectDojo
+          tags:
+          - vulnerability management system
+          - owasp
+          url: https://github.com/DefectDojo/django-DefectDojo
+          description: |
+            DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+        purify:
+          name: Purify
+          tags:
+          - vulnerability management system
+          url: https://github.com/faloker/purify/
+          description: |
+            The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        see-other-actions-e:
+          name: See other actions, e.g. "Treatment of defects with severity high".
+          tags: []
+        sast:
+          name: SAST
+          tags: []
+          description: 'At SAST (Static Application Security Testing): Server-side
+            / client-side teams can easily be recorded. With microservice architecture
+            individual microservices can be used usually Teams.'
+          url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
+        dast:
+          name: DAST
+          tags: []
+          description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
+            are classified and can be assigned to server-side and client-side teams.'
+          url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
+        owasp-defect-dojo:
+          name: OWASP Defect Dojo
+          tags: []
+          url: https://github.com/DefectDojo/django-DefectDojo
+        owasp-dependency-che:
+          name: OWASP Dependency Check
+          tags:
+          - OpenSource
+          - Supply Chain
+          - vulnerability
+          url: https://owasp.org/www-project-dependency-check/
+        logparser-jenkins-pl:
+          name: LogParser Jenkins Plugins
+          tags: []
+        owasp-code-pulse:
+          name: OWASP Code Pulse
+          tags: []
+          url: https://www.owasp.org/index.php/OWASP_Code_Pulse
+        ajax-spider:
+          name: Ajax Spider
+          tags: []
+          url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
+        curl:
+          name: cURL
+          tags: []
+          url: https://curl.se/
+        openapi:
+          name: OpenAPI Specifications
+          tags: []
+          url: https://spec.openapis.org/
+        owasp-zap:
+          name: OWASP Zap
+          tags:
+          - vulnerability
+          - scanner
+          url: https://github.com/zaproxy/zaproxy
+          description: |
+            The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+        arachni:
+          name: Arachni
+          url: https://github.com/Arachni/arachni
+        zest:
+          name: Zest
+          url: https://www.zaproxy.org/docs/desktop/addons/zest/
+          tags:
+          - zap
+          description: |
+            Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+        owasp-securecodebox:
+          name: OWASP secureCodeBox
+          tags:
+          - vulnerability
+          - scanner-orchestration
+          url: https://github.com/secureCodeBox/secureCodeBox
+          description: |
+            secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+        kube-hunter:
+          name: kube-hunter
+          tags: []
+          url: https://github.com/aquasecurity/kube-hunter
+        openvas:
+          name: openVAS
+          tags: []
+          url: https://www.openvas.org/
+        htc-hydra:
+          name: HTC Hydra
+          tags:
+          - password
+          url: https://www.htc-cs.com/en/products/htc-hydra/
+        netassert:
+          name: netassert
+          tags: []
+          url: https://github.com/controlplaneio/netassert
+        nmap:
+          name: nmap
+          tags: []
+          url: https://nmap.org/
+        owasp-amass:
+          name: OWASP Amass
+          tags: []
+          url: https://github.com/OWASP/Amass
+        k8spurger:
+          name: K8sPurger
+          tags:
+          - vulnerability
+          - scanner
+          - dast
+          - infrastructure
+          url: https://github.com/yogeshkk/K8sPurger
+          description: |
+            Hunt Unused Resources In Kubernetes.
+        pmd:
+          name: PMD
+          tags: []
+        eslint:
+          name: eslint
+          tags: []
+          url: https://eslint.org/
+        findsecuritybugs:
+          name: FindSecurityBugs
+          tags: []
+        jsprime:
+          name: jsprime
+          tags: []
+          url: https://github.com/dpnishant/jsprime
+        bdd-mobile-security:
+          name: '[bdd-mobile-security'
+          tags: []
+          url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
+          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
+        retire-js:
+          name: retire.js
+          tags: []
+          url: https://github.com/RetireJS/retire.js/
+        npm-audit:
+          name: npm audit
+          tags: []
+          url: https://docs.npmjs.com/cli/audit
+        sigmahq:
+          name: SigmaHQ
+          tags: []
+          url: https://github.com/SigmaHQ/sigma
+        dive-to-inspect-a-co:
+          name: Dive to inspect a container images
+          tags: []
+          url: https://github.com/wagoodman/dive
+        clusterscanner:
+          url: https://github.com/SDA-SE/clusterscanner
+          name: ClusterScanner
+          tags:
+          - docker
+          - image
+          - container
+          - vulnerability
+          - misconfiguration
+          - securiity-tools
+          - scanning
+          description: Discover vulnerabilities and container image misconfiguration
+            in production environments.
+        dockerfile-with-hado:
+          name: Dockerfile with hadolint
+          tags: []
+          url: https://github.com/hadolint/hadolint
+        deployment-with-kube:
+          name: Deployment with kube-score
+          tags: []
+          url: https://github.com/zegl/kube-score
+        kubesec:
+          name: kubesec
+          tags: []
+          url: https://kubesec.io
+        anchore-io:
+          name: Anchore.io
+          tags: []
+          url: https://anchore.com/
+        clair:
+          name: Clair
+          tags: []
+          url: https://github.com/quay/clair
+        openscap:
+          name: OpenSCAP
+          tags: []
+          url: https://www.open-scap.org/
+        vuls:
+          name: Vuls
+          tags: []
+          url: https://github.com/future-architect/vuls
+        kube-bench:
+          name: kube-bench
+          tags: []
+          url: https://github.com/aquasecurity/kube-bench
+        trufflehog:
+          name: truffleHog
+          tags: []
+          url: https://github.com/dxa4481/truffleHog
+        go-pillage-registrie:
+          name: go-pillage-registries
+          tags: []
+          url: https://github.com/nccgroup/go-pillage-registries
+        https-github-com-a:
+          name: https://github.com/aquasecurity/trivy
+          tags: []
+          url: https://github.com/aquasecurity/trivy
+        registries-like-quay:
+          name: Registries like quay
+          tags: []
+          description: Registries like quay, dockerhub provide (commercial) offerings,
+            often not suitable for distroless images
+        dockerfilelint:
+          name: dockerfilelint
+          tags:
+          - sast
+          - docker
+          - dockerfile
+          url: https://github.com/replicatedhq/dockerfilelint
+          description: dockerfilelint is an node module that analyzes a Dockerfile
+            and looks for common traps, mistakes and helps enforce best practices.
+        threat-matrix-for-storage:
+          name: Threat Matrix for Storage
+          url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
+          tags:
+          - documentation
+          - storage
+          - cluster
+          - kubernetes
+        defend-the-core-kubernetes:
+          name: Defend the core kubernetes security at every layer
+          url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
+          tags:
+          - documentation
+          - cluster
+          - kubernetes
+        business-friendly-vulnerability-metrics:
+          name: Business friendly vulnerability management metrics
+          url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
+          tags:
+          - documentation
+          - vulnerability
+          - vulnerability management system
+        kubescape:
+          name: kubescape
+          url: https://github.com/armosec/kubescape
+          tags:
+          - kubernetes
+          - vulnerability
+          - misconfiguration
+          description: _Testing if Kubernetes is deployed securely as defined in Kubernetes
+            Hardening Guidance by to NSA and CISA_
+        azuredevops:
+          name: Improve code quality with branch policies
+          url: https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
+          tags:
+          - source-code-protection
+          - scm
+        github-policies:
+          name: About protected branches
+          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
+          tags:
+          - source-code-protection
+          - scm
+        sonarqube:
+          name: In-Depth Linting of Your TypeScript While Coding
+          url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
+          tags:
+          - ide
+          - linting
+        stylecop:
+          name: How to enforce a consistent coding style in your projects
+          url: https://www.meziantou.net/how-to-enforce-a-consistent-coding-style-in-your-projects.htm
+          tags:
+          - ide
+          - linting
+        fortify-vscode-extension:
+          name: Fortify Extension for Visual Studio Code
+          url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
+          tags:
+          - ide
+          - sast
+        appscan-vscode-extension:
+          name: HCL AppScan CodeSweep
+          url: https://marketplace.visualstudio.com/items?itemName=HCLTechnologies.hclappscancodesweep
+          tags:
+          - ide
+          - sast
+        checkmarx-vscode-extension:
+          name: Setting Up the Visual Studio Code Extension Plugin
+          url: https://checkmarx.atlassian.net/wiki/spaces/SD/pages/1759216424/Setting+Up+the+Visual+Studio+Code+Extension+Plugin
+          tags:
+          - ide
+          - sast
+        pre-commit-microsoft:
+          name: DevSecOps control Pre-commit
+          url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
+          tags:
+          - pre-commit
+        pre-commit-synopsis:
+          name: Building your DevSecOps pipeline 5 essential activities
+          url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
+          tags:
+          - pre-commit
+        dependencyTrack:
+          name: Dependency-Track is an intelligent Component Analysis platform that
+            allows organizations to identify and reduce risk in the software supply
+            chain. Dependency-Track takes a unique and highly beneficial approach
+            by leveraging the capabilities of Software Bill of Materials (SBOM).
+          url: https://github.com/DependencyTrack/dependency-track
+          tags:
+          - sca
+          - inventory
+          - OpenSource
+          - Supply Chain
+          - vulnerability
+        juice-shop:
+          name: OWASP Juice Shop
+          tags:
+          - training
+          url: https://github.com/bkimminich/juice-shop
+          description: In case you do not have the budget to hire an external security
+            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        dvwa:
+          name: Damn Vulnerable Web Application
+          tags:
+          - training
+          description: Simple Application with intended vulnerabilities. HTML based.
+        loggingCheatSheet:
+          name: OWASP Logging CheatSheet
+          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+          tags:
+          - logging
+          - documentation
+        zap:
+          name: OWASP Zap
+          tags:
+          - vulnerability
+          - scanner
+          url: https://github.com/zaproxy/zaproxy
+          description: |
+            The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+        secureCodeBox:
+          name: OWASP secureCodeBox
+          tags:
+          - vulnerability
+          - scanner-orchestration
+          url: https://github.com/secureCodeBox/secureCodeBox
+          description: |
+            secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+        K8sPurger:
+          name: K8sPurger
+          tags:
+          - vulnerability
+          - scanner
+          - dast
+          - infrastructure
+          url: https://github.com/yogeshkk/K8sPurger
+          description: |
+            Hunt Unused Resources In Kubernetes.
+        hashicorp-vault:
+          name: Hashicorp Vault
+          tags:
+          - authentication
+          - authorization
+          - secrets
+          - infrastructure
+          url: https://github.com/hashicorp/vault
+          description: |
+            A tool for secrets management, encryption as a service, and privileged access management.
+        stoplight-spectral:
+          name: Spectral
+          tags:
+          - linting
+          - api
+          - documentation
+          url: https://github.com/stoplightio/spectral
+          description: |
+            Spectral is a flexible JSON/YAML linter built with extensibility in mind.
+            It uses JSON/YAML path rules to describe the problems you want to find.
+        api-oas-checker:
+          name: API OAS Checker
+          tags:
+          - linting
+          - api
+          - documentation
+          url: https://github.com/italia/api-oas-checker
+          description: |
+            A tool to check OpenAPI specifications using a comprehensive ruleset based
+            on API best practices.
+        coveragepy:
+          name: Coverage.py
+          tags:
+          - testing
+          - coverage
+          url: https://github.com/nedbat/coveragepy
+          description: |
+            Code coverage measurement for Python
+        github-dependabot:
+          name: Dependabot
+          tags:
+          - dependency
+          - dependency-management
+          - scm
+          url: https://github.com/dependabot/dependabot-core
+          description: |
+            Dependabot creates pull requests to keep your dependencies secure and up-to-date.
+        github-super-linter:
+          name: Super-Linter
+          tags:
+          - linting
+          - scm
+          url: https://github.com/github/super-linter
+          description: |
+            Lint code bases to catch common errors and enforce code style
+        schemathesis:
+          name: Schemathesis
+          tags:
+          - testing
+          - api
+          - documentation
+          url: https://github.com/schemathesis/schemathesis
+          description: |
+            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+        martin-feature-toggles:
+          name: Feature Toggles
+          tags:
+          - development
+          - architecture
+          url: https://martinfowler.com/articles/feature-toggles.html
+          description: |
+            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
+        defectdojo-client:
+          name: DefectDojo Client
+          tags:
+          - Defectdojo
+          - statistics
+          url: https://github.com/SDA-SE/defectdojo-client
+          description: "This projects contains the DefectDojo upload client and statistics
+            client. It is for example used within the ClusterImageScanner.      \n"
+        falco:
+          name: Falco
+          tags:
+          - falco
+          - systemcall
+          - monitoring
+          url: https://github.com/falcosecurity/falco
+          description: |
+            Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.
+        sammancoaching:
+          name: sammancoaching
+          tags:
+          - documentation
+          - coaching
+          - education
+          url: https://sammancoaching.org/
+          description: |
+            Security coaches work with software development teams to help them adopt better security practices.
       references:
         samm2:
         - O-EM-1-B
@@ -1526,7 +3266,7 @@ Culture and Organization:
         time: 3
         resources: 2
       usefulness: 3
-      level: 3
+      level: 4
       dependsOn:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards
@@ -1841,8 +3581,8 @@ Culture and Organization:
         knowledge: 1
         time: 1
         resources: 1
-      usefulness: 4
-      level: 1
+      usefulness: 3
+      level: 2
       implementation: []
       references:
         samm2: []
@@ -2187,7 +3927,7 @@ Culture and Organization:
         security practices.
       difficultyOfImplementation:
         knowledge: 4
-        time: 2
+        time: 3
         resources: 1
       usefulness: 3
       implementation:
@@ -2230,7 +3970,7 @@ Culture and Organization:
         time: 2
         resources: 1
       usefulness: 3
-      level: 1
+      level: 2
       implementation:
       - name: CWE Top 25 Most Dangerous Software Weaknesses
         tags:
@@ -2316,7 +4056,7 @@ Culture and Organization:
         time: 3
         resources: 1
       usefulness: 3
-      level: 2
+      level: 3
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
@@ -2405,85 +4145,74 @@ Culture and Organization:
       comments: ""
 Implementation:
   Application Hardening:
-    App. Hardening Level 2:
+    App. Hardening Level 1:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
-          <ul>
-            <li>OWASP Application Security Verification Standard Level 2</li>
-            <li>OWASP Mobile Application Security Verification Standard Level 2</li>
-          </ul>
+        * OWASP Application Security Verification Standard Level 1
+        * OWASP Mobile Application Security Verification Standard
+
+        in all applications provides a good baseline. Implement 95%-100% of the recommendations.
       difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
+        knowledge: 2
+        time: 2
+        resources: 1
       usefulness: 4
       level: 2
-      implementation:
-      - name: OWASP ASVS
-        tags: []
-        url: https://owasp.org/www-project-application-security-verification-standard/
-      - name: OWASP MASVS
-        tags: []
-        url: https://github.com/OWASP/owasp-masvs
-      references:
-        samm2:
-        - D-SR-2-A
-        iso27001-2017:
-        - hardening is not explicitly covered by ISO 27001 - too specific
-        - 13.1.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    App. Hardening Level 3:
-      risk: Using an insecure application might lead to a compromised application.
-        This might lead to total data theft or data modification.
-      measure: |
-        Following frameworks like the
-          <ul>
-            <li>OWASP Application Security Verification Standard Level 3</li>
-            <li>OWASP Mobile Application Security Verification Standard Maturity Requirements</li>
-          </ul>
-          and gain around 75% coverage of both.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 3
-      implementation:
-      - name: OWASP ASVS
-        tags: []
-        url: https://owasp.org/www-project-application-security-verification-standard/
-      - name: OWASP MASVS
-        tags: []
-        url: https://github.com/OWASP/owasp-masvs
-      references:
-        samm2:
-        - D-SR-3-A
-        iso27001-2017:
-        - hardening is not explicitly covered by ISO 27001 - too specific
-        - 13.1.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    Application Hardening Level 1:
-      risk: Using an insecure application might lead to a compromised application.
-        This might lead to total data theft or data modification.
-      measure: |
-        Following frameworks like the
-          <ul>
-            <li>OWASP Application Security Verification Standard Level 1</li>
-            <li>OWASP Mobile Application Security Verification Standard Level 1</li>
-          </ul>
+      dependsOn:
+      - App. Hardening Level 1 (50%)
+      description: |
+        To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jumpstart the development process, but also do so securely.
 
-        in all applications provides a good baseline.
+        [...]
+
+        ### Planning aka Requirements Gathering & Analysis
+        The Requirements gathering process tries to answer the question: _"What is the system going to do?"_ At this stage, the [SAMM project](https://owaspsamm.org/model/) offers 3 distinct maturity levels covering both [in-house](https://owaspsamm.org/model/design/security-requirements/stream-a/) software development and [third party](https://owaspsamm.org/model/design/security-requirements/stream-b/) supplier security.
+
+        ![SAMM Requirements](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/OWASP-in0.png)
+
+        Organizations can use these to add solid security considerations at the start of the Software Development or Procurement process.
+
+        These general security considerations can be audited by using a subsection of the ASVS controls in section V1 as a questionnaire. This process attempts to ensure that every feature has concrete security considerations.
+
+        In case of internal development and if the organization maps Features to Epics, the [Security Knowledge Framework](https://securityknowledgeframework.org/) can be used to facilitate this process by leveraging its questionnaire function, shown below.
+
+        Source: [OWASP Project Integration](https://raw.githubusercontent.com/OWASP/www-project-integration-standards/master/writeups/owasp_in_sdlc/index.md)
+      implementation:
+      - name: OWASP ASVS
+        tags: []
+        url: https://owasp.org/www-project-application-security-verification-standard/
+      - name: OWASP MASVS
+        tags: []
+        url: https://github.com/OWASP/owasp-masvs
+      - name: API Security Maturity Model for Authorization
+        tags:
+        - api
+        url: https://curity.io/resources/learn/the-api-security-maturity-model/
+      references:
+        samm2:
+        - D-SR-1-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    App. Hardening Level 1 (50%):
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+        * OWASP Application Security Verification Standard Level 1
+        * OWASP Mobile Application Security Verification Standard
+
+        in all applications provides a good baseline. Implement 50% of the recommendations.
       difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
       level: 1
       description: |
         To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jumpstart the development process, but also do so securely.
@@ -2522,22 +4251,87 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    Full Coverage of App. Hardening Level 3:
+    App. Hardening Level 2:
       risk: Using an insecure application might lead to a compromised application.
         This might lead to total data theft or data modification.
       measure: |
         Following frameworks like the
-          <ul>
-            <li>OWASP Application Security Verification Standard Level 3</li>
-            <li>OWASP Mobile Application Security Verification Standard Maturity Requirements</li>
-          </ul>
-          and gain around 95% coverage of both.
+        * OWASP Application Security Verification Standard Level 2
+        * OWASP Mobile Application Security Verification Standard Level 2
+
+        Implement 95%-100% of the recommendations.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 4
+      implementation:
+      - name: OWASP ASVS
+        tags: []
+        url: https://owasp.org/www-project-application-security-verification-standard/
+      - name: OWASP MASVS
+        tags: []
+        url: https://github.com/OWASP/owasp-masvs
+      references:
+        samm2:
+        - D-SR-2-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      dependsOn:
+      - App. Hardening Level 2 (75%)
+    App. Hardening Level 2 (75%):
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+        * OWASP Application Security Verification Standard Level 2
+        * OWASP Mobile Application Security Verification Standard Level 2
+
+        Implement 75% of the recommendations.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation:
+      - name: OWASP ASVS
+        tags: []
+        url: https://owasp.org/www-project-application-security-verification-standard/
+      - name: OWASP MASVS
+        tags: []
+        url: https://github.com/OWASP/owasp-masvs
+      references:
+        samm2:
+        - D-SR-2-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      dependsOn:
+      - App. Hardening Level 1
+    App. Hardening Level 3:
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
+      measure: |
+        Following frameworks like the
+        * OWASP Application Security Verification Standard Level 3
+        * OWASP Mobile Application Security Verification Standard
+
+        Implement 95%-100% of the recommendations.
       difficultyOfImplementation:
         knowledge: 4
         time: 4
         resources: 2
       usefulness: 4
-      level: 4
+      level: 5
       implementation:
       - name: OWASP ASVS
         tags: []
@@ -2554,6 +4348,893 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
+      dependsOn:
+      - App. Hardening Level 2
+    Usage of a Web Application Firewall:
+      risk: Using an insecure application might lead to a compromised application.
+        This might lead to total data theft or data modification.
+      measure: |
+        The usage of an API Gateway / Web Application Firewall might mitigate it. There are debates on how useful a WAF is for APIs.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 4
+      usefulness: 2
+      level: 5
+      implementation:
+      - signing-of-commits-protection:
+          name: Enforcement of commit signing
+          tags:
+          - signing
+          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+          description: Usage of branch protection rules
+        signing-of-commits:
+          name: Signing of commits
+          tags:
+          - signing
+          url: https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
+          description: Signing of commits in git
+        ci-cd-tools:
+          name: CI/CD tools
+          tags:
+          - ci-cd
+          url: https://martinfowler.com/articles/continuousIntegration.html
+          description: CI/CD tools such as jenkins, gitlab-ci or github-actions
+        apimaturity:
+          name: API Security Maturity Model for Authorization
+          tags:
+          - api
+          url: https://curity.io/resources/learn/the-api-security-maturity-model/
+        container-technologi:
+          name: Container technologies and orchestration like Docker, Kubernetes
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
+        cwe25:
+          name: CWE Top 25 Most Dangerous Software Weaknesses
+          tags:
+          - documentation
+          - threat
+          url: https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html
+        docker-content-trust:
+          name: Docker Content Trust
+          tags: []
+          url: https://docs.docker.com/notary/getting_started/
+        in-toto:
+          name: in-toto
+          tags: []
+          url: https://in-toto.github.io/
+        a-complete-backup-of:
+          name: A complete backup of persisted data might be performed*.
+          tags: []
+        a-point-in-time-reco:
+          name: A Point in Time Recovery for databases should be implemented.
+          tags: []
+        blue-green-deploymen:
+          name: Blue/Green Deployments
+          tags: []
+          url: https://martinfowler.com/bliki/BlueGreenDeployment.html
+        docker:
+          name: Docker
+          url: https://github.com/moby/moby
+          tags: []
+        webserver:
+          name: Webserver
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:WebServer/
+        rolling-update:
+          name: rolling update
+          tags: []
+        kubernetes-admission:
+          name: Kubernetes Admission Controller can whitelist registries and/or whitelist
+            a signing key.
+          tags: []
+        dependabot:
+          name: dependabot
+          tags: []
+          url: https://dependabot.com/
+        jenkins:
+          name: Jenkins
+          tags: []
+          url: https://www.jenkins.io/
+        sample-concept-1:
+          name: "Sample concept:  \n(1"
+          tags: []
+          description: "Sample concept:  \n(1) each container has a set lifetime and
+            is killed / replaced with a new container multiple times a day where you
+            have some form of a graceful replacement to ensure no (short) service
+            outage will occur to the end users.  \n(2) twice a day a rebuild of images
+            is done. The rebuilds are put into a automated testing pipeline. If the
+            testing has no blocking issues the new images will be released for deployment
+            during the next \"restart\" of a container. What has to be done, is to
+            ensure the new containers are deployed in some canary deployment manner,
+            this will ensure that if (and only if) something buggy has been introduced
+            which breaks functionality the canary deployment will make sure the \"older
+            version\" is being used and not the buggy newer one."
+        distroless:
+          name: Distroless
+          tags: []
+          url: https://github.com/GoogleContainerTools/distroless
+        fedora-coreos:
+          name: Fedora CoreOS
+          tags: []
+          url: https://getfedora.org/coreos
+        threat-modeling-play:
+          name: Threat Modeling Playbook
+          tags:
+          - owasp
+          - defender
+          - threat-modeling
+          - whiteboard
+          url: https://github.com/Toreon/threat-model-playbook
+        owasp-samm:
+          name: OWASP SAMM
+          tags:
+          - threat-modeling
+          - owasp
+          - defender
+          url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+        whiteboard:
+          name: Whiteboard
+          tags:
+          - defender
+          - threat-modeling
+          - collaboration
+          - whiteboard
+          url: https://en.wikipedia.org/wiki/Whiteboard
+        miro-or-any-other-c:
+          name: Miro (or any other collaborative board)
+          tags:
+          - defender
+          - threat-modeling
+          - collaboration
+          - whiteboard
+          url: https://miro.com/
+        draw-io:
+          name: Draw.io
+          tags:
+          - defender
+          - threat-modeling
+          - whiteboard
+          url: https://github.com/jgraph/drawio-desktop
+        threagile:
+          name: Threagile
+          tags:
+          - threat-modeling
+          url: https://github.com/Threagile/threagile
+        don-t-forget-evil-u:
+          name: '[Don''t Forget EVIL U'
+          tags: []
+          url: https://www.owasp.org/index.php/Agile_Software_Development
+          description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
+            and [Practical Security Stories and Security Tasks for Agile Development
+            Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+        owasp-juice-shop:
+          name: OWASP Juice Shop
+          tags:
+          - training
+          url: https://github.com/bkimminich/juice-shop
+          description: In case you do not have the budget to hire an external security
+            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        owasp-cheatsheet-ser:
+          name: OWASP Cheatsheet Series
+          tags:
+          - secure coding
+          url: https://cheatsheetseries.owasp.org/
+        owasp-juiceshop:
+          name: OWASP JuiceShop
+          tags: []
+          url: https://github.com/bkimminich/juice-shop
+          description: |-
+            In case you do not have the budget to hire an external security expert, an option
+            is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
+        https-cheatsheetse:
+          name: https://cheatsheetseries.owasp.org/
+          tags:
+          - training
+          - secure coding
+          url: https://cheatsheetseries.owasp.org/
+        owasp-security-champ:
+          name: OWASP Security Champions Playbook
+          tags:
+          - security champions
+          url: https://github.com/c0rdis/security-champions-playbook
+        build-it-break-it-fi:
+          name: Build it Break it Fix it Contest
+          tags: []
+          url: https://builditbreakit.org/
+        motivate-people:
+          name: Motivate people
+          tags:
+          - security champions
+          - gamification
+          - nudging
+          url: https://github.com/wurstbrot/security-pins
+          description: |-
+            Enhance motivation can be performed with the distribution of pins
+            as a reward, see [OWASP Security Pins Project](https://github.com/wurstbrot/security-pins)
+        owasp-top-10-maturit:
+          name: OWASP Top 10 Maturity Categories for Security Champions
+          tags:
+          - security champions
+          url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
+        involve-security-sme:
+          name: Involve Security SME
+          tags: []
+          description: Security SME are involved in discussion for requirements analysis,
+            software design and sprint planning to provide guidance and suggestions.
+        damn-vulnerable-web:
+          name: Damn Vulnerable Web Application
+          tags:
+          - training
+          description: Simple Application with intended vulnerabilities. HTML based.
+        example-all-docker:
+          name: 'Example: All docker images used by teams need to be based on standard
+            images.'
+          tags: []
+        owasp-asvs:
+          name: OWASP ASVS
+          tags: []
+          url: https://owasp.org/www-project-application-security-verification-standard/
+        owasp-masvs:
+          name: OWASP MASVS
+          tags: []
+          url: https://github.com/OWASP/owasp-masvs
+        cis-kubernetes-bench:
+          name: CIS Kubernetes Bench for Security
+          tags: []
+          url: https://www.cisecurity.org/cis-benchmarks/
+        cis-docker-bench-for:
+          name: CIS Docker Bench for Security
+          tags: []
+          url: https://www.cisecurity.org/cis-benchmarks/
+        for-example-for-cont:
+          name: For example for Cont
+          tags: []
+          description: 'For example for Containers: Deny running containers as root,
+            deny using advanced privileges, deny mounting of the hole filesystem,
+            ...'
+          url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
+        attack-matrix-cloud:
+          name: Attack Matrix Cloud
+          tags:
+          - mitre
+          url: https://attack.mitre.org/matrices/enterprise/cloud/
+          description: Attack matrix for cloud
+        attack-matrix-contai:
+          name: Attack Matrix Containers
+          tags:
+          - mitre
+          url: https://attack.mitre.org/matrices/enterprise/cloud/
+          description: Attack matrix for containers
+        attack-matrix-kubern:
+          name: Attack Matrix Kubernetes
+          tags:
+          - mitre
+          url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
+          description: Attack matrix for kubernetes
+        istio:
+          name: istio
+          tags: []
+          url: https://istio.io/
+        bridges:
+          name: bridges
+          tags: []
+        firewalls:
+          name: firewalls
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
+        open-policy-agent:
+          name: Open Policy Agent
+          tags: []
+          url: https://www.openpolicyagent.org/
+        gitops:
+          name: GitOps
+          tags: []
+          url: https://www.redhat.com/en/topics/devops/what-is-gitops
+        ansible:
+          name: Ansible
+          tags: []
+          url: https://github.com/ansible/ansible
+        chef:
+          name: Chef
+          tags: []
+          url: https://github.com/chef/chef
+        puppet:
+          name: Puppet
+          tags: []
+          url: https://github.com/puppetlabs/puppet
+        jenkinsfile:
+          name: Jenkinsfile
+          tags: []
+          url: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
+        seccomp:
+          name: seccomp
+          tags: []
+          url: https://man7.org/linux/man-pages/man2/seccomp.2.html
+        strace:
+          name: strace
+          tags: []
+          url: https://man7.org/linux/man-pages/man1/strace.1.html
+        remove-direct-access:
+          name: Remove direct access to infrastructure
+          tags: []
+        directory-service:
+          name: Directory Service
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:DirectoryService/
+        plugins:
+          name: Plugins
+          tags: []
+        smartcard:
+          name: Smartcard
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        yubikey:
+          name: YubiKey
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        sms:
+          name: SMS
+          tags: []
+        totp:
+          name: TOTP
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
+        http-basic-authentic:
+          name: HTTP-Basic Authentication
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:WebAuthentication/
+        vpn:
+          name: VPN
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:VPN/
+        for-applications-ch:
+          name: 'For applications: Check default encoding'
+          tags: []
+        managing-secrets:
+          name: managing secrets
+          tags: []
+          url: https://d3fend.mitre.org/technique/d3f:CredentialHardening/
+        crypto:
+          name: crypto
+          tags: []
+        authentication:
+          name: authentication
+          tags: []
+          url: https://d3fend.mitre.org/dao/artifact/d3f:Authentication/
+        rsyslog:
+          name: rsyslog
+          url: https://www.rsyslog.com/
+          tags:
+          - tool
+          - logging
+        logstash:
+          name: logstash
+          url: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+          tags:
+          - tool
+          - logging
+        fluentd:
+          name: fluentd
+          tags:
+          - tool
+          url: https://www.fluentd.org/
+        bash:
+          name: bash
+          tags:
+          - tool
+          url: https://www.gnu.org/software/bash/
+        owasp-logging-cheats:
+          name: OWASP Logging CheatSheet
+          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+          tags:
+          - logging
+          - documentation
+        elk-stack:
+          name: ELK-Stack
+          tags: []
+          url: https://www.elastic.co/elk-stack
+        https-ht-transpare:
+          name: https://ht.transpare
+          tags: []
+          url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
+          description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+        prometheus:
+          name: Prometheus
+          tags: []
+          url: https://prometheus.io/
+        collected:
+          name: collected
+          tags: []
+        httpunit:
+          name: HttpUnit
+          tags: []
+          url: http://httpunit.sourceforge.net/
+        junit:
+          name: JUnit
+          tags:
+          - unittest
+          url: https://junit.org/junit5/
+        karma:
+          name: Karma
+          tags: []
+          url: https://karma-runner.github.io
+        owasp-defectdojo:
+          name: OWASP DefectDojo
+          tags:
+          - vulnerability management system
+          - owasp
+          url: https://github.com/DefectDojo/django-DefectDojo
+          description: |
+            DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+        purify:
+          name: Purify
+          tags:
+          - vulnerability management system
+          url: https://github.com/faloker/purify/
+          description: |
+            The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        see-other-actions-e:
+          name: See other actions, e.g. "Treatment of defects with severity high".
+          tags: []
+        sast:
+          name: SAST
+          tags: []
+          description: 'At SAST (Static Application Security Testing): Server-side
+            / client-side teams can easily be recorded. With microservice architecture
+            individual microservices can be used usually Teams.'
+          url: https://d3fend.mitre.org/dao/artifact/d3f:StaticAnalysisTool/
+        dast:
+          name: DAST
+          tags: []
+          description: 'At DAST (Dynamic Application Security Testing): vulnerabilities
+            are classified and can be assigned to server-side and client-side teams.'
+          url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
+        owasp-defect-dojo:
+          name: OWASP Defect Dojo
+          tags: []
+          url: https://github.com/DefectDojo/django-DefectDojo
+        owasp-dependency-che:
+          name: OWASP Dependency Check
+          tags:
+          - OpenSource
+          - Supply Chain
+          - vulnerability
+          url: https://owasp.org/www-project-dependency-check/
+        logparser-jenkins-pl:
+          name: LogParser Jenkins Plugins
+          tags: []
+        owasp-code-pulse:
+          name: OWASP Code Pulse
+          tags: []
+          url: https://www.owasp.org/index.php/OWASP_Code_Pulse
+        ajax-spider:
+          name: Ajax Spider
+          tags: []
+          url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
+        curl:
+          name: cURL
+          tags: []
+          url: https://curl.se/
+        openapi:
+          name: OpenAPI Specifications
+          tags: []
+          url: https://spec.openapis.org/
+        owasp-zap:
+          name: OWASP Zap
+          tags:
+          - vulnerability
+          - scanner
+          url: https://github.com/zaproxy/zaproxy
+          description: |
+            The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+        arachni:
+          name: Arachni
+          url: https://github.com/Arachni/arachni
+        zest:
+          name: Zest
+          url: https://www.zaproxy.org/docs/desktop/addons/zest/
+          tags:
+          - zap
+          description: |
+            Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+        owasp-securecodebox:
+          name: OWASP secureCodeBox
+          tags:
+          - vulnerability
+          - scanner-orchestration
+          url: https://github.com/secureCodeBox/secureCodeBox
+          description: |
+            secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+        kube-hunter:
+          name: kube-hunter
+          tags: []
+          url: https://github.com/aquasecurity/kube-hunter
+        openvas:
+          name: openVAS
+          tags: []
+          url: https://www.openvas.org/
+        htc-hydra:
+          name: HTC Hydra
+          tags:
+          - password
+          url: https://www.htc-cs.com/en/products/htc-hydra/
+        netassert:
+          name: netassert
+          tags: []
+          url: https://github.com/controlplaneio/netassert
+        nmap:
+          name: nmap
+          tags: []
+          url: https://nmap.org/
+        owasp-amass:
+          name: OWASP Amass
+          tags: []
+          url: https://github.com/OWASP/Amass
+        k8spurger:
+          name: K8sPurger
+          tags:
+          - vulnerability
+          - scanner
+          - dast
+          - infrastructure
+          url: https://github.com/yogeshkk/K8sPurger
+          description: |
+            Hunt Unused Resources In Kubernetes.
+        pmd:
+          name: PMD
+          tags: []
+        eslint:
+          name: eslint
+          tags: []
+          url: https://eslint.org/
+        findsecuritybugs:
+          name: FindSecurityBugs
+          tags: []
+        jsprime:
+          name: jsprime
+          tags: []
+          url: https://github.com/dpnishant/jsprime
+        bdd-mobile-security:
+          name: '[bdd-mobile-security'
+          tags: []
+          url: https://github.com/ing-bank/bdd-mobile-security-automation-framework
+          description: '[bdd-mobile-security-automation-framework](https://github.com/ing-bank/bdd-mobile-security-automation-framework)'
+        retire-js:
+          name: retire.js
+          tags: []
+          url: https://github.com/RetireJS/retire.js/
+        npm-audit:
+          name: npm audit
+          tags: []
+          url: https://docs.npmjs.com/cli/audit
+        sigmahq:
+          name: SigmaHQ
+          tags: []
+          url: https://github.com/SigmaHQ/sigma
+        dive-to-inspect-a-co:
+          name: Dive to inspect a container images
+          tags: []
+          url: https://github.com/wagoodman/dive
+        clusterscanner:
+          url: https://github.com/SDA-SE/clusterscanner
+          name: ClusterScanner
+          tags:
+          - docker
+          - image
+          - container
+          - vulnerability
+          - misconfiguration
+          - securiity-tools
+          - scanning
+          description: Discover vulnerabilities and container image misconfiguration
+            in production environments.
+        dockerfile-with-hado:
+          name: Dockerfile with hadolint
+          tags: []
+          url: https://github.com/hadolint/hadolint
+        deployment-with-kube:
+          name: Deployment with kube-score
+          tags: []
+          url: https://github.com/zegl/kube-score
+        kubesec:
+          name: kubesec
+          tags: []
+          url: https://kubesec.io
+        anchore-io:
+          name: Anchore.io
+          tags: []
+          url: https://anchore.com/
+        clair:
+          name: Clair
+          tags: []
+          url: https://github.com/quay/clair
+        openscap:
+          name: OpenSCAP
+          tags: []
+          url: https://www.open-scap.org/
+        vuls:
+          name: Vuls
+          tags: []
+          url: https://github.com/future-architect/vuls
+        kube-bench:
+          name: kube-bench
+          tags: []
+          url: https://github.com/aquasecurity/kube-bench
+        trufflehog:
+          name: truffleHog
+          tags: []
+          url: https://github.com/dxa4481/truffleHog
+        go-pillage-registrie:
+          name: go-pillage-registries
+          tags: []
+          url: https://github.com/nccgroup/go-pillage-registries
+        https-github-com-a:
+          name: https://github.com/aquasecurity/trivy
+          tags: []
+          url: https://github.com/aquasecurity/trivy
+        registries-like-quay:
+          name: Registries like quay
+          tags: []
+          description: Registries like quay, dockerhub provide (commercial) offerings,
+            often not suitable for distroless images
+        dockerfilelint:
+          name: dockerfilelint
+          tags:
+          - sast
+          - docker
+          - dockerfile
+          url: https://github.com/replicatedhq/dockerfilelint
+          description: dockerfilelint is an node module that analyzes a Dockerfile
+            and looks for common traps, mistakes and helps enforce best practices.
+        threat-matrix-for-storage:
+          name: Threat Matrix for Storage
+          url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
+          tags:
+          - documentation
+          - storage
+          - cluster
+          - kubernetes
+        defend-the-core-kubernetes:
+          name: Defend the core kubernetes security at every layer
+          url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
+          tags:
+          - documentation
+          - cluster
+          - kubernetes
+        business-friendly-vulnerability-metrics:
+          name: Business friendly vulnerability management metrics
+          url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
+          tags:
+          - documentation
+          - vulnerability
+          - vulnerability management system
+        kubescape:
+          name: kubescape
+          url: https://github.com/armosec/kubescape
+          tags:
+          - kubernetes
+          - vulnerability
+          - misconfiguration
+          description: _Testing if Kubernetes is deployed securely as defined in Kubernetes
+            Hardening Guidance by to NSA and CISA_
+        azuredevops:
+          name: Improve code quality with branch policies
+          url: https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
+          tags:
+          - source-code-protection
+          - scm
+        github-policies:
+          name: About protected branches
+          url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
+          tags:
+          - source-code-protection
+          - scm
+        sonarqube:
+          name: In-Depth Linting of Your TypeScript While Coding
+          url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
+          tags:
+          - ide
+          - linting
+        stylecop:
+          name: How to enforce a consistent coding style in your projects
+          url: https://www.meziantou.net/how-to-enforce-a-consistent-coding-style-in-your-projects.htm
+          tags:
+          - ide
+          - linting
+        fortify-vscode-extension:
+          name: Fortify Extension for Visual Studio Code
+          url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
+          tags:
+          - ide
+          - sast
+        appscan-vscode-extension:
+          name: HCL AppScan CodeSweep
+          url: https://marketplace.visualstudio.com/items?itemName=HCLTechnologies.hclappscancodesweep
+          tags:
+          - ide
+          - sast
+        checkmarx-vscode-extension:
+          name: Setting Up the Visual Studio Code Extension Plugin
+          url: https://checkmarx.atlassian.net/wiki/spaces/SD/pages/1759216424/Setting+Up+the+Visual+Studio+Code+Extension+Plugin
+          tags:
+          - ide
+          - sast
+        pre-commit-microsoft:
+          name: DevSecOps control Pre-commit
+          url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
+          tags:
+          - pre-commit
+        pre-commit-synopsis:
+          name: Building your DevSecOps pipeline 5 essential activities
+          url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
+          tags:
+          - pre-commit
+        dependencyTrack:
+          name: Dependency-Track is an intelligent Component Analysis platform that
+            allows organizations to identify and reduce risk in the software supply
+            chain. Dependency-Track takes a unique and highly beneficial approach
+            by leveraging the capabilities of Software Bill of Materials (SBOM).
+          url: https://github.com/DependencyTrack/dependency-track
+          tags:
+          - sca
+          - inventory
+          - OpenSource
+          - Supply Chain
+          - vulnerability
+        juice-shop:
+          name: OWASP Juice Shop
+          tags:
+          - training
+          url: https://github.com/bkimminich/juice-shop
+          description: In case you do not have the budget to hire an external security
+            expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+        dvwa:
+          name: Damn Vulnerable Web Application
+          tags:
+          - training
+          description: Simple Application with intended vulnerabilities. HTML based.
+        loggingCheatSheet:
+          name: OWASP Logging CheatSheet
+          url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+          tags:
+          - logging
+          - documentation
+        zap:
+          name: OWASP Zap
+          tags:
+          - vulnerability
+          - scanner
+          url: https://github.com/zaproxy/zaproxy
+          description: |
+            The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
+        secureCodeBox:
+          name: OWASP secureCodeBox
+          tags:
+          - vulnerability
+          - scanner-orchestration
+          url: https://github.com/secureCodeBox/secureCodeBox
+          description: |
+            secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
+        K8sPurger:
+          name: K8sPurger
+          tags:
+          - vulnerability
+          - scanner
+          - dast
+          - infrastructure
+          url: https://github.com/yogeshkk/K8sPurger
+          description: |
+            Hunt Unused Resources In Kubernetes.
+        hashicorp-vault:
+          name: Hashicorp Vault
+          tags:
+          - authentication
+          - authorization
+          - secrets
+          - infrastructure
+          url: https://github.com/hashicorp/vault
+          description: |
+            A tool for secrets management, encryption as a service, and privileged access management.
+        stoplight-spectral:
+          name: Spectral
+          tags:
+          - linting
+          - api
+          - documentation
+          url: https://github.com/stoplightio/spectral
+          description: |
+            Spectral is a flexible JSON/YAML linter built with extensibility in mind.
+            It uses JSON/YAML path rules to describe the problems you want to find.
+        api-oas-checker:
+          name: API OAS Checker
+          tags:
+          - linting
+          - api
+          - documentation
+          url: https://github.com/italia/api-oas-checker
+          description: |
+            A tool to check OpenAPI specifications using a comprehensive ruleset based
+            on API best practices.
+        coveragepy:
+          name: Coverage.py
+          tags:
+          - testing
+          - coverage
+          url: https://github.com/nedbat/coveragepy
+          description: |
+            Code coverage measurement for Python
+        github-dependabot:
+          name: Dependabot
+          tags:
+          - dependency
+          - dependency-management
+          - scm
+          url: https://github.com/dependabot/dependabot-core
+          description: |
+            Dependabot creates pull requests to keep your dependencies secure and up-to-date.
+        github-super-linter:
+          name: Super-Linter
+          tags:
+          - linting
+          - scm
+          url: https://github.com/github/super-linter
+          description: |
+            Lint code bases to catch common errors and enforce code style
+        schemathesis:
+          name: Schemathesis
+          tags:
+          - testing
+          - api
+          - documentation
+          url: https://github.com/schemathesis/schemathesis
+          description: |
+            Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+        martin-feature-toggles:
+          name: Feature Toggles
+          tags:
+          - development
+          - architecture
+          url: https://martinfowler.com/articles/feature-toggles.html
+          description: |
+            Feature Toggles are a powerful technique, allowing teams to modify system behavior without changing code. (Pete Hodgson)
+        defectdojo-client:
+          name: DefectDojo Client
+          tags:
+          - Defectdojo
+          - statistics
+          url: https://github.com/SDA-SE/defectdojo-client
+          description: "This projects contains the DefectDojo upload client and statistics
+            client. It is for example used within the ClusterImageScanner.      \n"
+        falco:
+          name: Falco
+          tags:
+          - falco
+          - systemcall
+          - monitoring
+          url: https://github.com/falcosecurity/falco
+          description: |
+            Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.
+        sammancoaching:
+          name: sammancoaching
+          tags:
+          - documentation
+          - coaching
+          - education
+          url: https://sammancoaching.org/
+          description: |
+            Security coaches work with software development teams to help them adopt better security practices.
+      references:
+        samm2:
+        - D-SR-3-A
+        iso27001-2017:
+        - hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      dependsOn:
+      - App. Hardening Level 2
   Development and Source Control:
     API design validation:
       risk: Creation of insecure or non-compliant API.
@@ -2566,7 +5247,7 @@ Implementation:
         time: 2
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - name: Spectral
         tags:
@@ -2654,33 +5335,6 @@ Implementation:
         - 14.2.1
         d3f:
         - Multi-factorAuthentication
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    Pre-Commit checks and validations:
-      risk: Using an insecure application might lead to a compromised application.
-        This might lead to total data theft or data modification.
-      measure: |
-        Implement pre-commit checks to prevent secrets & other security issues being commit to source code.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 2
-      implementation:
-      - name: DevSecOps control Pre-commit
-        url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
-        tags:
-        - pre-commit
-      - name: Building your DevSecOps pipeline 5 essential activities
-        url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
-        tags:
-        - pre-commit
-      references:
-        samm2:
-        - V-ST-1-A
-        iso27001-2017: []
       isImplemented: false
       evidence: ""
       comments: ""
@@ -2830,24 +5484,57 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    Checking the sources of used libraries:
-      risk: Application and system libraries can have implementation flaws or deployment
-        flaws.
-      measure: Each libraries source is checked to have a trusted source.
+    Baseline Hardening of the Envirnoment:
+      risk: Using default configurations for a cluster environment leads to potential
+        risks.
+      measure: Harden environments according to best practices. Level 1 and partially
+        level 2 from hardening practices like 'CIS Kubernetes Bench for Security'
+        should be considered.
       difficultyOfImplementation:
-        knowledge: 3
+        knowledge: 4
         time: 3
-        resources: 1
-      usefulness: 3
+        resources: 2
+      usefulness: 4
       level: 2
-      implementation: []
+      implementation:
+      - name: CIS Kubernetes Bench for Security
+        tags: []
+        url: https://www.cisecurity.org/cis-benchmarks/
+      - name: CIS Docker Bench for Security
+        tags: []
+        url: https://www.cisecurity.org/cis-benchmarks/
+      - name: For example for Cont
+        tags: []
+        description: 'For example for Containers: Deny running containers as root,
+          deny using advanced privileges, deny mounting of the hole filesystem, ...'
+        url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
+      - name: Attack Matrix Cloud
+        tags:
+        - mitre
+        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        description: Attack matrix for cloud
+      - name: Attack Matrix Containers
+        tags:
+        - mitre
+        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        description: Attack matrix for containers
+      - name: Attack Matrix Kubernetes
+        tags:
+        - mitre
+        url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
+        description: Attack matrix for kubernetes
+      - name: Defend the core kubernetes security at every layer
+        url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
+        tags:
+        - documentation
+        - cluster
+        - kubernetes
       references:
         samm2:
         - O-EM-1-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
-        - 14.2.1
-        - 14.2.5
+        - system hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
       isImplemented: false
       evidence: ""
       comments: ""
@@ -2860,7 +5547,7 @@ Implementation:
         time: 3
         resources: 3
       usefulness: 2
-      level: 2
+      level: 3
       dependsOn: []
       implementation:
       - name: Open Policy Agent
@@ -2874,6 +5561,60 @@ Implementation:
         - O-EM-1-A
         iso27001-2017:
         - virtual environments are not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Hardening of the Envirnoment:
+      risk: Using default configurations for a cluster environment leads to potential
+        risks.
+      measure: Harden environments according to best practices. Level 2 and partially
+        level 3 from hardening practices like 'CIS Kubernetes Bench for Security'
+        should be considered.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 2
+      usefulness: 3
+      level: 4
+      implementation:
+      - name: CIS Kubernetes Bench for Security
+        tags: []
+        url: https://www.cisecurity.org/cis-benchmarks/
+      - name: CIS Docker Bench for Security
+        tags: []
+        url: https://www.cisecurity.org/cis-benchmarks/
+      - name: For example for Cont
+        tags: []
+        description: 'For example for Containers: Deny running containers as root,
+          deny using advanced privileges, deny mounting of the hole filesystem, ...'
+        url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
+      - name: Attack Matrix Cloud
+        tags:
+        - mitre
+        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        description: Attack matrix for cloud
+      - name: Attack Matrix Containers
+        tags:
+        - mitre
+        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        description: Attack matrix for containers
+      - name: Attack Matrix Kubernetes
+        tags:
+        - mitre
+        url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
+        description: Attack matrix for kubernetes
+      - name: Defend the core kubernetes security at every layer
+        url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
+        tags:
+        - documentation
+        - cluster
+        - kubernetes
+      references:
+        samm2:
+        - O-EM-1-A
+        iso27001-2017:
+        - system hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
       isImplemented: false
       evidence: ""
@@ -2951,7 +5692,7 @@ Implementation:
         time: 3
         resources: 3
       usefulness: 5
-      level: 1
+      level: 2
       dependsOn: []
       implementation:
       - name: istio
@@ -3013,39 +5754,14 @@ Implementation:
         knowledge: 4
         time: 5
         resources: 5
-      usefulness: 3
-      level: 4
+      usefulness: 1
+      level: 5
       implementation: []
       references:
         samm2:
         - O-EM-1-A
         iso27001-2017:
         - not explicitly covered by ISO 27001
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    Prevention of unauthorized installation:
-      risk: Unapproved components are used.
-      measure: Components must be whitelisted. Regular scans on the docker infrastructure
-        (e.g. cluster) need to be performed, to verify that only standardized base
-        images are used.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 1
-        resources: 1
-      usefulness: 3
-      level: 3
-      implementation:
-      - name: 'Example: All docker images used by teams need to be based on standard
-          images.'
-        tags: []
-      comment: By preventing teams from trying out new components, innovation might
-        be hampered
-      references:
-        samm2: []
-        iso27001-2017:
-        - 12.5.1
-        - 12.6.1
       isImplemented: false
       evidence: ""
       comments: ""
@@ -3130,60 +5846,6 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    The environment is hardened:
-      risk: Using default configurations for a cluster environment leads to potential
-        risks.
-      measure: Harden cluster environments according to best practices. Level 1 and
-        partially level 2 from hardening practices like 'CIS Kubernetes Bench for
-        Security' should considered.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 3
-        resources: 2
-      usefulness: 4
-      level: 2
-      implementation:
-      - name: CIS Kubernetes Bench for Security
-        tags: []
-        url: https://www.cisecurity.org/cis-benchmarks/
-      - name: CIS Docker Bench for Security
-        tags: []
-        url: https://www.cisecurity.org/cis-benchmarks/
-      - name: For example for Cont
-        tags: []
-        description: 'For example for Containers: Deny running containers as root,
-          deny using advanced privileges, deny mounting of the hole filesystem, ...'
-        url: https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/
-      - name: Attack Matrix Cloud
-        tags:
-        - mitre
-        url: https://attack.mitre.org/matrices/enterprise/cloud/
-        description: Attack matrix for cloud
-      - name: Attack Matrix Containers
-        tags:
-        - mitre
-        url: https://attack.mitre.org/matrices/enterprise/cloud/
-        description: Attack matrix for containers
-      - name: Attack Matrix Kubernetes
-        tags:
-        - mitre
-        url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
-        description: Attack matrix for kubernetes
-      - name: Defend the core kubernetes security at every layer
-        url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
-        tags:
-        - documentation
-        - cluster
-        - kubernetes
-      references:
-        samm2:
-        - O-EM-1-A
-        iso27001-2017:
-        - system hardening is not explicitly covered by ISO 27001 - too specific
-        - 13.1.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
     Usage of a chaos monkey:
       risk: Due to manual changes on a system, they are not replaceable anymore. In
         case of a crash it might happen that a planned redundant system is unavailable.
@@ -3256,7 +5918,7 @@ Implementation:
         time: 2
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       implementation: ""
       references:
         samm2:
@@ -3273,11 +5935,11 @@ Implementation:
       measure: By using encryption internally, e.g. inside of a cluster, it is impossible
         or at least harder to sniff credentials.
       difficultyOfImplementation:
-        knowledge: 4
-        time: 3
-        resources: 2
+        knowledge: 3
+        time: 4
+        resources: 3
       usefulness: 4
-      level: 2
+      level: 3
       implementation: ""
       references:
         samm2:
@@ -3297,7 +5959,7 @@ Implementation:
         time: 3
         resources: 1
       usefulness: 3
-      level: 2
+      level: 3
       implementation:
       - name: 'For applications: Check default encoding'
         tags: []
@@ -3328,7 +5990,7 @@ Implementation:
         time: 3
         resources: 5
       usefulness: 4
-      level: 1
+      level: 2
       dependsOn:
       - Defined deployment process
       implementation: []
@@ -3436,7 +6098,7 @@ Information Gathering:
         time: 4
         resources: 4
       usefulness: 3
-      level: 4
+      level: 5
       dependsOn:
       - Visualized logging
       - Alerting
@@ -3469,7 +6131,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
+      level: 2
       credits: |
         [AppSecure-nrw](https://github.com/AppSecure-nrw/security-belts/blob/master/orange/logging-of-security-events.md)
       implementation:
@@ -3497,23 +6159,21 @@ Information Gathering:
         iso27001-2017:
         - 12.4.1
       risk: |-
-        <ul>
-        <li>No track of security-relevant events makes it harder to analyze an incident.</li>
-        <li>Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.</li>
-        </ul>
+        * No track of security-relevant events makes it harder to analyze an incident.
+        * Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
       isImplemented: false
       evidence: ""
       comments: ""
     PII logging concept:
-      risk: Personal identifiable information (PII) is logged and the law of GDPR
-        is not followed.
+      risk: Personal identifiable information (PII) is logged and the privacy law
+        (e.g. General Data Protection Regulation) is not followed.
       measure: A concept how to log PII is documented and applied.
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 1
-      level: 1
+      level: 5
       implementation:
       - name: rsyslog
         url: https://www.rsyslog.com/
@@ -3573,6 +6233,28 @@ Information Gathering:
       evidence: ""
       comments: ""
   Monitoring:
+    Advanced app. metrics:
+      risk: People are not looking into tests results. Vulnerabilities not recolonized,
+        even they are detected by tools.
+      measure: All defects from the dimension Test- and Verification are instrumented.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 4
+      dependsOn:
+      - Simple application metrics
+      - Visualized metrics
+      implementation: []
+      references:
+        samm2:
+        - O-IM-2-A
+        iso27001-2017:
+        - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
     Advanced availability and stability metrics:
       risk: Trends and advanced attacks are not detected.
       measure: Advanced metrics are gathered in relation to availability and stability.
@@ -3592,28 +6274,6 @@ Information Gathering:
         - O-IM-2-A
         iso27001-2017:
         - 12.1.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    Advanced webapplication metrics:
-      risk: People are not looking into tests results. Vulnerabilities not recolonized,
-        even they are detected by tools.
-      measure: All defects from the dimension Test- and Verification are instrumented.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 2
-      usefulness: 4
-      level: 3
-      dependsOn:
-      - Simple application metrics
-      - Visualized metrics
-      implementation: []
-      references:
-        samm2:
-        - O-IM-2-A
-        iso27001-2017:
-        - 12.6.1
       isImplemented: false
       evidence: ""
       comments: ""
@@ -3786,7 +6446,9 @@ Information Gathering:
     Monitoring of costs:
       risk: Not monitorig costs might lead to unexpected high resource consumption
         and a high invoice.
-      measure: Implement cost budgets
+      measure: Implement cost budgets. Setting of an alert threshold and sending out
+        errors when it is reached. In the best case, a second treshold with a limit
+        is set so that the cost can not go higher.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -3952,7 +6614,7 @@ Test and Verification:
         time: 5
         resources: 3
       usefulness: 3
-      level: 4
+      level: 5
       implementation: []
       references:
         samm2:
@@ -4075,32 +6737,6 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    Definition of quality gates:
-      risk: Improper examination of vulnerabilities leads to no visibility at all.
-      measure: |-
-        Quality gates for found vulnerabilities are defined.
-        In the beginning it is important to not overload the security analyst,
-        therefore the recommendation
-        is to start with alerting of high critical vulnerabilities.
-      difficultyOfImplementation:
-        knowledge: 1
-        time: 1
-        resources: 1
-      usefulness: 4
-      level: 1
-      references:
-        samm2:
-        - I-DM-2-A
-        iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
-        - 12.6.1
-        - 16.1.4
-      implementation:
-      - name: See other actions, e.g. "Treatment of defects with severity high".
-        tags: []
       isImplemented: false
       evidence: ""
       comments: ""
@@ -4296,7 +6932,10 @@ Test and Verification:
       level: 2
       implementation:
       - name: OWASP Dependency Check
-        tags: []
+        tags:
+        - OpenSource
+        - Supply Chain
+        - vulnerability
         url: https://owasp.org/www-project-dependency-check/
       - name: LogParser Jenkins Plugins
         tags: []
@@ -4329,10 +6968,10 @@ Test and Verification:
       measure: All vulnerabilities are added to the quality gate.
       difficultyOfImplementation:
         knowledge: 3
-        time: 2
+        time: 4
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       implementation: []
       references:
         samm2:
@@ -4395,7 +7034,7 @@ Test and Verification:
         time: 3
         resources: 2
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - name: OWASP DefectDojo
         tags:
@@ -4431,7 +7070,7 @@ Test and Verification:
         time: 5
         resources: 3
       usefulness: 4
-      level: 4
+      level: 5
       implementation:
       - name: OWASP Code Pulse
         tags: []
@@ -4585,7 +7224,7 @@ Test and Verification:
         time: 5
         resources: 2
       usefulness: 3
-      level: 4
+      level: 5
       dependsOn:
       - Simple Scan
       references:
@@ -5029,7 +7668,10 @@ Test and Verification:
           url: https://github.com/DefectDojo/django-DefectDojo
         owasp-dependency-che:
           name: OWASP Dependency Check
-          tags: []
+          tags:
+          - OpenSource
+          - Supply Chain
+          - vulnerability
           url: https://owasp.org/www-project-dependency-check/
         logparser-jenkins-pl:
           name: LogParser Jenkins Plugins
@@ -5309,6 +7951,9 @@ Test and Verification:
           tags:
           - sca
           - inventory
+          - OpenSource
+          - Supply Chain
+          - vulnerability
         juice-shop:
           name: OWASP Juice Shop
           tags:
@@ -5885,7 +8530,10 @@ Test and Verification:
           url: https://github.com/DefectDojo/django-DefectDojo
         owasp-dependency-che:
           name: OWASP Dependency Check
-          tags: []
+          tags:
+          - OpenSource
+          - Supply Chain
+          - vulnerability
           url: https://owasp.org/www-project-dependency-check/
         logparser-jenkins-pl:
           name: LogParser Jenkins Plugins
@@ -6165,6 +8813,9 @@ Test and Verification:
           tags:
           - sca
           - inventory
+          - OpenSource
+          - Supply Chain
+          - vulnerability
         juice-shop:
           name: OWASP Juice Shop
           tags:
@@ -6319,10 +8970,10 @@ Test and Verification:
         process.
       difficultyOfImplementation:
         knowledge: 2
-        time: 3
+        time: 2
         resources: 1
-      usefulness: 2
-      level: 1
+      usefulness: 1
+      level: 2
       dependsOn:
       - Defined build process
       implementation:
@@ -6384,7 +9035,7 @@ Test and Verification:
         time: 3
         resources: 5
       usefulness: 1
-      level: 3
+      level: 4
       dependsOn:
       - Usage of different roles
       implementation:
@@ -6437,9 +9088,11 @@ Test and Verification:
       difficultyOfImplementation:
         knowledge: 1
         time: 1
-        resources: 1
-      usefulness: 3
-      level: 1
+        resources: 2
+      dependsOn:
+      - Isolated networks for virtual environments
+      usefulness: 2
+      level: 2
       implementation:
       - name: nmap
         tags: []
@@ -6457,6 +9110,33 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
+    Test for unauthorized installation:
+      risk: Unapproved components are used.
+      measure: Components must be whitelisted. Regular scans on the docker infrastructure
+        (e.g. cluster) need to be performed, to verify that only standardized base
+        images are used.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation:
+      - name: 'Example: All docker images used by teams need to be based on standard
+          images.'
+        tags: []
+      comment: By preventing teams from trying out new components, innovation might
+        be hampered
+      references:
+        samm2: []
+        iso27001-2017:
+        - 12.5.1
+        - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      dependsOn:
+      - Evaluation of the trust of used components
     Test for unused Resources:
       risk: Unused resources, specially secrets, might be still valid, but are exposing
         information. As an attacker, I compromise a system, gather credentials and
@@ -6467,7 +9147,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       implementation:
       - name: K8sPurger
         tags:
@@ -6626,7 +9306,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 1
-      level: 4
+      level: 5
       implementation:
       - name: PMD
         tags: []
@@ -6650,7 +9330,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 1
-      level: 4
+      level: 5
       implementation:
       - name: PMD
         tags: []
@@ -6670,12 +9350,13 @@ Test and Verification:
       risk: Creating and developing code contains code smells and quality issues.
       measure: |
         Integration of quality and linting plugins with interactive development environment (IDEs).
+        Implement pre-commit checks to prevent secrets & other security issues being commit to source code.
       difficultyOfImplementation:
         knowledge: 2
         time: 1
         resources: 1
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - name: Fortify Extension for Visual Studio Code
         url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
@@ -7126,7 +9807,10 @@ Test and Verification:
           url: https://github.com/DefectDojo/django-DefectDojo
         owasp-dependency-che:
           name: OWASP Dependency Check
-          tags: []
+          tags:
+          - OpenSource
+          - Supply Chain
+          - vulnerability
           url: https://owasp.org/www-project-dependency-check/
         logparser-jenkins-pl:
           name: LogParser Jenkins Plugins
@@ -7406,6 +10090,9 @@ Test and Verification:
           tags:
           - sca
           - inventory
+          - OpenSource
+          - Supply Chain
+          - vulnerability
         juice-shop:
           name: OWASP Juice Shop
           tags:
@@ -7548,6 +10235,14 @@ Test and Verification:
           url: https://sammancoaching.org/
           description: |
             Security coaches work with software development teams to help them adopt better security practices.
+      - name: DevSecOps control Pre-commit
+        url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
+        tags:
+        - pre-commit
+      - name: Building your DevSecOps pipeline 5 essential activities
+        url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
+        tags:
+        - pre-commit
       references:
         samm2:
         - V-ST-1-A
@@ -7565,7 +10260,7 @@ Test and Verification:
         time: 4
         resources: 2
       usefulness: 3
-      level: 4
+      level: 5
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
@@ -7727,7 +10422,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 1
-      level: 4
+      level: 5
       implementation:
       - name: PMD
         tags: []
@@ -7785,6 +10480,9 @@ Test and Verification:
         tags:
         - sca
         - inventory
+        - OpenSource
+        - Supply Chain
+        - vulnerability
       - name: Dependabot
         tags:
         - dependency
@@ -7815,7 +10513,10 @@ Test and Verification:
       - Defined build process
       implementation:
       - name: OWASP Dependency Check
-        tags: []
+        tags:
+        - OpenSource
+        - Supply Chain
+        - vulnerability
         url: https://owasp.org/www-project-dependency-check/
       - name: Dependency-Track is an intelligent Component Analysis platform that
           allows organizations to identify and reduce risk in the software supply
@@ -7825,6 +10526,9 @@ Test and Verification:
         tags:
         - sca
         - inventory
+        - OpenSource
+        - Supply Chain
+        - vulnerability
       - name: retire.js
         tags: []
         url: https://github.com/RetireJS/retire.js/
@@ -8238,7 +10942,7 @@ Test and Verification:
         time: 3
         resources: 3
       usefulness: 2
-      level: 3
+      level: 4
       implementation: []
       references:
         samm2:
@@ -8264,7 +10968,7 @@ Test and Verification:
         time: 3
         resources: 1
       usefulness: 1
-      level: 2
+      level: 3
       implementation: []
       references:
         samm2:
