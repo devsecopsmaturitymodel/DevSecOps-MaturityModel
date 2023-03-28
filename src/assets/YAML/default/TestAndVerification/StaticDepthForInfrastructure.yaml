@@ -15,6 +15,8 @@ Test and Verification:
       references:
         samm2: []
         iso27001-2017: []
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -36,6 +38,8 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.5
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -57,6 +61,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.6.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -79,6 +85,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - 12.2.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -99,6 +107,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.5
         - 12.2.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -124,6 +134,8 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -147,6 +159,8 @@ Test and Verification:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 9.4.3
         - 10.1.2
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -171,6 +185,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -200,6 +216,8 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -220,6 +238,8 @@ Test and Verification:
         samm2:
         - V-ST-1-A
         iso27001-2017: []
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -244,6 +264,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -274,6 +296,8 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         - 14.2.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""

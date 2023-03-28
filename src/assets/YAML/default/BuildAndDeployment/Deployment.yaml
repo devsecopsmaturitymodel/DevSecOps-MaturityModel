@@ -26,6 +26,8 @@ Build and Deployment:
         - 12.1.4  # Separation of development,testing and operational environments
         - 12.5.1
         - 14.2.9
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -46,6 +48,8 @@ Build and Deployment:
         - O-OM-2-B
         iso27001-2017:
         - 11.2.7
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -74,6 +78,8 @@ Build and Deployment:
         iso27001-2017:
         - 12.1.1
         - 14.2.2
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -101,6 +107,8 @@ Build and Deployment:
         iso27001-2017:
         - 9.4.5
         - 14.2.6
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
         d3f:
         - ApplicationConfigurationHardening
       isImplemented: false
@@ -133,6 +141,8 @@ Build and Deployment:
         - 9.4.3
         - 9.4.1
         - 10.1.2
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
         d3f:
         - ApplicationConfigurationHardening
       isImplemented: false
@@ -162,6 +172,8 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -185,6 +197,8 @@ Build and Deployment:
         iso27001-2017:
         - "8.1"
         - "8.2"
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -210,6 +224,8 @@ Build and Deployment:
         - 12.5.1
         - 14.2.2
         - 17.2.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -235,6 +251,8 @@ Build and Deployment:
         - 14.3.1
         - 14.2.8
         - 12.1.4
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -261,6 +279,8 @@ Build and Deployment:
         - 14.2.8
         - 14.2.9
         - 12.1.4
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
         d3f: 
         - ApplicationConfigurationHardening
       isImplemented: false
@@ -287,6 +307,8 @@ Build and Deployment:
         - 15.1.2
         - 15.1.3
         - 14.1.3
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""

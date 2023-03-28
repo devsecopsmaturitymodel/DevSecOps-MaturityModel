@@ -51,6 +51,11 @@
             (click)="changeTableBasedOnCurrentSort()"
             >ISO</mat-button-toggle
           >
+          <mat-button-toggle
+          value="sortByISO22"
+          (click)="changeTableBasedOnCurrentSort()"
+          >ISO22</mat-button-toggle
+        >
         </mat-button-toggle-group>
       </section>
     </div>
@@ -80,7 +85,7 @@
         <th mat-header-cell *matHeaderCellDef>SAMM</th>
         <td mat-cell *matCellDef="let element">{{ element.samm2 }}</td>
       </ng-container>
-      <ng-container *ngIf="currentlySortingByTask || currentlySortingByISO">
+      <ng-container *ngIf="currentlySortingByTask || currentlySortingByISO || currentlySortingByISO22">
         <th mat-header-cell *matHeaderCellDef>SAMM</th>
         <td mat-cell *matCellDef="let element">
           <ul>
@@ -98,12 +103,30 @@
         <td mat-cell *matCellDef="let element">{{ element.ISO }}</td>
       </ng-container>
 
-      <ng-container *ngIf="currentlySortingByTask || currentlySortingBySAMM">
+      <ng-container *ngIf="currentlySortingByTask || currentlySortingBySAMM || currentlySortingByISO22">
         <th mat-header-cell *matHeaderCellDef>ISO</th>
         <td mat-cell *matCellDef="let element">
           <ul>
             <li *ngFor="let ISOElement of element.ISO">
               {{ ISOElement }}
+            </li>
+          </ul>
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef="ISO22">
+      <ng-container *ngIf="currentlySortingByISO22">
+        <th mat-header-cell *matHeaderCellDef>ISO22</th>
+        <td mat-cell *matCellDef="let element">{{ element.ISO22 }}</td>
+      </ng-container>
+
+      <ng-container *ngIf="currentlySortingByTask || currentlySortingBySAMM || currentlySortingByISO">
+        <th mat-header-cell *matHeaderCellDef>ISO22</th>
+        <td mat-cell *matCellDef="let element">
+          <ul>
+            <li *ngFor="let ISO22Element of element.ISO22">
+              {{ ISO22Element }}
             </li>
           </ul>
         </td>
@@ -133,6 +156,7 @@
       <th>Depends On</th>
       <th>SAMM</th>
       <th>ISO</th>
+      <th>ISO22</th>
     </tr>
     <tr *ngFor="let item of allMappingDataSortedByISO">
       <td>{{ item.dimension }}</td>
@@ -152,6 +176,7 @@
       <td>{{ item.dependsOn }}</td>
       <td>{{ item.samm2 }}</td>
       <td>{{ item.ISO }}</td>
+      <td>{{ item.ISO22 }}</td>
     </tr>
   </table>
 </div>

@@ -72,6 +72,8 @@ function getDimensions($filename = "data/generated/dimensions.yaml") {
                 unset($content["samm2"]);
                 $content["references"]["iso27001-2017"] = $content["iso27001-2017"] ?? array();
                 unset($content["iso27001-2017"]);
+                $content["references"]["iso27001-2022"] = $content["iso27001-2022"] ?? array();
+                unset($content["iso27001-2022"]);
                 //echo var_dump($elements[$activityName]);
                 //echo "<hr>";
                 $elements[$activityName] = $content;

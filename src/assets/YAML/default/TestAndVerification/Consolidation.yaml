@@ -23,6 +23,8 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -48,6 +50,8 @@ Test and Verification:
         iso27001-2017:
           - 16.1.4
           - 8.2.3
+        iso27001-2022:
+          - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
@@ -72,6 +76,8 @@ Test and Verification:
         - I-DM-3-B
         iso27001-2017:
         - 16.1.4
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -95,6 +101,8 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         - 12.6.1
         - 16.1.4
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/see-other-actions-e
       isImplemented: false
@@ -122,6 +130,8 @@ Test and Verification:
         - 16.1.4
         - 16.1.5
         - 16.1.6
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -146,6 +156,8 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -170,6 +182,8 @@ Test and Verification:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 16.1.6
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -196,6 +210,8 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -215,6 +231,8 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -235,6 +253,8 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       implementation: []
       isImplemented: false
       evidence: ""
@@ -255,6 +275,8 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       implementation: []
       isImplemented: false
       evidence: ""
@@ -283,6 +305,8 @@ Test and Verification:
         - 16.1.4
         - 16.1.5
         - 16.1.6
+        iso27001-2022:
+        - ISO 27001:2022 Mapping missing
       isImplemented: false
       evidence: ""
       comments: ""

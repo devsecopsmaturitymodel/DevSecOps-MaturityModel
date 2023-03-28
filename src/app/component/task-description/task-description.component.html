@@ -162,6 +162,16 @@
               <li>{{ iso }}</li>
             </ul>
           </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b>{{ ISO22Version }}</b>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul *ngFor="let iso22 of currentTask.iso22">
+              <li>{{ iso22 }}</li>
+            </ul>
+          </mat-expansion-panel>
         </mat-accordion>
       </p>
     </mat-expansion-panel>
