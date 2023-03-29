@@ -70,8 +70,8 @@ export class TaskDescriptionComponent implements OnInit {
   rowIndex: number = 0;
   markdown: md = md();
   SAMMVersion: string = 'OWASP SAMM VERSION 2';
-  ISOVersion: string = 'ISO27001 2017';
-  ISO22Version: string = 'ISO27001 2022';
+  ISOVersion: string = 'ISO 27001:2017';
+  ISO22Version: string = 'ISO 27001:2022';
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
   constructor(private route: ActivatedRoute, private yaml: ymlService) {}
 
