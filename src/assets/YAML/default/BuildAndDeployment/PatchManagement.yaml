@@ -23,7 +23,7 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Automated PRs for patches:
-      risk: Known vulnerabilities components might stay for long and get exploited,
+      risk: Components with known (or unknown) vulnerabilities might stay for long and get exploited,
         even when a patch is available.
       measure: Fast patching of third party component is needed. The DevOps way is
         to have an automated pull request for new components. This includes 

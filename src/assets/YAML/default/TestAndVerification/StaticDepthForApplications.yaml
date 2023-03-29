@@ -213,7 +213,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Test of client side components with known vulnerabilities:
+    Software Composition Analysis (client side):
       risk: Client side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in components via Software Composition Analysis of the frontend are performed.
       difficultyOfImplementation:
@@ -237,7 +237,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Test of server side components with known vulnerabilities:
+    Software Composition Analysis (server side):
       risk: Server side components might have vulnerabilities.
       measure: Tests for known vulnerabilities in server side components (e.g. backend/middleware)
         are performed.
@@ -274,8 +274,8 @@ Test and Verification:
       usefulness: 1
       level: 4
       dependsOn:
-      - Test of server side components with known vulnerabilities
-      - Test of client side components with known vulnerabilities
+      - Software Composition Analysis (server side)
+      - Software Composition Analysis (client side)
       - Static analysis for all self written components
       implementation: []
       references:
