@@ -29,7 +29,7 @@ export interface MappingElementSortedBySAMM {
 
 export interface MappingElementSortedByISO {
   ISO: string;
-  ISO22: string;
+  ISO22: string[];
   dimension: string;
   subDimension: string;
   taskName: string;
@@ -49,7 +49,7 @@ export interface MappingElementSortedByISO {
 }
 
 export interface MappingElementSortedByISO22 {
-  ISO: string;
+  ISO: string[];
   ISO22: string;
   dimension: string;
   subDimension: string;
@@ -273,7 +273,7 @@ export class MappingComponent implements OnInit {
     //console.log(this.temp)
   }
 
-  //Sets dataSource value sorted by ISO - to also be used by download functionality
+  //Sets dataSource value sorted by ISO 27001:2017 - to also be used by download functionality
   setValueandAppendToDatasetandSortbyISO(
     dim: string,
     subDim: string,
@@ -380,7 +380,7 @@ export class MappingComponent implements OnInit {
     //console.log(this.temp)
   }
 
-    //Sets dataSource value sorted by ISO22 - to also be used by download functionality
+    //Sets dataSource value sorted by ISO 27001:2022
     setValueandAppendToDatasetandSortbyISO22(
       dim: string,
       subDim: string,

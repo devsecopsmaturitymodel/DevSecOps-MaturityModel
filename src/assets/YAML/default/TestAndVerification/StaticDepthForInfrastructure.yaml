@@ -14,9 +14,10 @@ Test and Verification:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sigmahq
       references:
         samm2: []
-        iso27001-2017: []
+        iso27001-2017:
+        - ISO 27001:2017 mapping is missing
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -39,7 +40,7 @@ Test and Verification:
         - 12.6.1
         - 14.2.5
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -62,7 +63,7 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -86,7 +87,7 @@ Test and Verification:
         iso27001-2017:
         - 12.2.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -108,7 +109,7 @@ Test and Verification:
         - 14.2.5
         - 12.2.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -135,7 +136,7 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -160,7 +161,7 @@ Test and Verification:
         - 9.4.3
         - 10.1.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -186,7 +187,7 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -217,7 +218,7 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -237,9 +238,10 @@ Test and Verification:
       references:
         samm2:
         - V-ST-1-A
-        iso27001-2017: []
+        iso27001-2017:
+        - ISO 27001:2017 mapping is missing
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -265,7 +267,7 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -297,7 +299,7 @@ Test and Verification:
         - 14.2.8
         - 14.2.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""

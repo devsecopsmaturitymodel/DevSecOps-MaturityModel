@@ -26,7 +26,7 @@ Implementation:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -56,7 +56,7 @@ Implementation:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -105,7 +105,7 @@ Implementation:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -135,7 +135,7 @@ Implementation:
         - hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""

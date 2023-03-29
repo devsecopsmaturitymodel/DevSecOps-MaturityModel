@@ -22,7 +22,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -46,7 +46,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.1.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -71,7 +71,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -98,7 +98,7 @@ Culture and Organization:
         - 12.6.1
         - 12.7.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -121,7 +121,7 @@ Culture and Organization:
         - Mutual security testing is not explicitly required in ISO 27001 may be
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -146,7 +146,7 @@ Culture and Organization:
         - "16.1"
         - 16.1.5
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -191,7 +191,7 @@ Culture and Organization:
         - 7.2.1
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -222,7 +222,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -245,7 +245,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -273,7 +273,7 @@ Culture and Organization:
         - security champions are missing in ISO 27001
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -299,7 +299,7 @@ Culture and Organization:
         - interestingly enough A7.2.3 is requiring a process to handle misconduct
           but nothing to promote good behavior.
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -333,9 +333,10 @@ Culture and Organization:
       references:
         samm2:
         - V-ST-1-B
-        iso27001-2017: []
+        iso27001-2017:
+        - ISO 27001:2017 mapping is missing
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -361,7 +362,7 @@ Culture and Organization:
         - 6.1.4
         - 6.1.5
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -383,7 +384,7 @@ Culture and Organization:
         iso27001-2017:
         - 16.1.6
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -422,7 +423,7 @@ Culture and Organization:
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""

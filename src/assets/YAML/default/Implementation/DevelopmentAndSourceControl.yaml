@@ -18,9 +18,10 @@ Implementation:
       references:
         samm2:
         - V-ST-1-A
-        iso27001-2017: []
+        iso27001-2017:
+        - ISO 27001:2017 mapping is missing
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -41,9 +42,10 @@ Implementation:
       references:
         samm2:
         - V-ST-1-A
-        iso27001-2017: []
+        iso27001-2017:
+        - ISO 27001:2017 mapping is missing
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -70,7 +72,7 @@ Implementation:
         - 8.27  # Secure system architecture and engineering principles
         - 8.28  # Secure coding
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -100,7 +102,7 @@ Implementation:
         - 6.1.2
         - 14.2.1
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -127,7 +129,7 @@ Implementation:
         - 12.1.2
         - 14.2.2
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -155,7 +157,7 @@ Implementation:
         - 6.1.2   # Segregation of duties.
         - 14.2.1  # Secure development policies.
         iso27001-2022:
-        - ISO 27001:2022 Mapping missing
+        - ISO 27001:2022 mapping is missing
         d3f:
         - Multi-factorAuthentication
       isImplemented: false
