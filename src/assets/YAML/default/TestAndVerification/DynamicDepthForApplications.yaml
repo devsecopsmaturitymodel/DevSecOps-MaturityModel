@@ -9,7 +9,7 @@ Test and Verification:
         time: 5
         resources: 3
       usefulness: 4
-      level: 4
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-code-pulse
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/coveragepy
@@ -127,7 +127,7 @@ Test and Verification:
         time: 5
         resources: 2
       usefulness: 3
-      level: 4
+      level: 5
       dependsOn:
       - Simple Scan
       references:
@@ -151,10 +151,10 @@ Test and Verification:
         process.
       difficultyOfImplementation:
         knowledge: 2
-        time: 3
+        time: 2
         resources: 1
-      usefulness: 2
-      level: 1
+      usefulness: 1
+      level: 2
       dependsOn:
       - Defined build process
       implementation:
@@ -204,7 +204,7 @@ Test and Verification:
         time: 3
         resources: 5
       usefulness: 1
-      level: 3
+      level: 4
       dependsOn:
       - Usage of different roles
       implementation:

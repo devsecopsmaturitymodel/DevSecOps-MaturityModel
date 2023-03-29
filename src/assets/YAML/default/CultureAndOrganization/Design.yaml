@@ -10,7 +10,7 @@ Culture and Organization:
         time: 3
         resources: 2
       usefulness: 3
-      level: 3
+      level: 4
       dependsOn:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards
@@ -151,7 +151,7 @@ Culture and Organization:
         time: 2
         resources: 1
       usefulness: 4
-      level: 4
+      level: 5
       dependsOn:
       - Creation of simple abuse stories
       implementation:
@@ -233,8 +233,8 @@ Culture and Organization:
         knowledge: 1
         time: 1
         resources: 1
-      usefulness: 4
-      level: 1
+      usefulness: 3
+      level: 2
       implementation: []
       references:
         samm2: []

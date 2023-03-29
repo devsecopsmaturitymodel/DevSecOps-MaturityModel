@@ -10,32 +10,11 @@ Implementation:
         time: 1
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       description: ""
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube
-      references:
-        samm2:
-        - V-ST-1-A
-        iso27001-2017: []
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    Pre-Commit checks and validations:
-      risk: Using an insecure application might lead to a compromised application.
-        This might lead to total data theft or data modification.
-      measure: |
-        Implement pre-commit checks to prevent secrets & other security issues being commit to source code.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 2
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-microsoft
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
       references:
         samm2:
         - V-ST-1-A
@@ -54,7 +33,7 @@ Implementation:
         time: 2
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stoplight-spectral
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
@@ -81,7 +60,7 @@ Implementation:
         time: 1
         resources: 2
       usefulness: 4
-      level: 1
+      level: 2
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/azuredevops
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-policies
@@ -118,34 +97,6 @@ Implementation:
         - 12.1.1
         - 12.1.2
         - 14.2.2
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    MFA to SCM:
-      risk: Unauthorized access to source code.
-      measure: >-
-        Enforce Multi-Factor authentication to source code management platforms.
-        These policies can be implemented at repository level or organization level,
-        depending on the source code management system.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 1
-        resources: 2
-      usefulness: 4
-      level: 1
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/totp
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/smartcard
-      references:
-        samm2:
-        - O-EM-1-A
-        iso27001-2017:
-        - 5.17    # Authentication information
-        - 6.1.2   # Segregation of duties.
-        - 14.2.1  # Secure development policies.
-        d3f:
-        - Multi-factorAuthentication
       isImplemented: false
       evidence: ""
       comments: ""

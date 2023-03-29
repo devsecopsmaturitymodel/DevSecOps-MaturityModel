@@ -12,7 +12,7 @@ Test and Verification:
         time: 3
         resources: 3
       usefulness: 2
-      level: 3
+      level: 4
       implementation: []
       references:
         samm2:
@@ -38,7 +38,7 @@ Test and Verification:
         time: 3
         resources: 1
       usefulness: 1
-      level: 2
+      level: 3
       implementation: []
       references:
         samm2:

@@ -18,7 +18,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Check for image lifetime:
+    Test for image lifetime:
       risk: Old container images in production indicate that patch management is not
         performed and therefore vulnerabilities might exists.
       measure: Check the image age of containers in production.
@@ -39,7 +39,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Check for known vulnerabilities:
+    Test for known vulnerabilities:
       risk: Known vulnerabilities in infrastructure components like container images
         might get exploited.
       measure: Check for known vulnerabilities
@@ -49,9 +49,11 @@ Test and Verification:
         resources: 1
       usefulness: 4
       level: 4
+      description: Subscribing to github projects and reading release notes might help. Software Composition Analysis for infrastructe might help, but is often too fine-granular.
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-github-com-a
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/registries-like-quay
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
       references:
         samm2:
         - V-ST-2-A
@@ -60,7 +62,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Check for malware:
+    Test for malware:
       risk: Third party might include  malware. Ether due to the maintainer (e.g.
         typo squatting of an image name and using the wrong image) or by an attacker
         on behalf of the maintainer with stolen credentials.
@@ -82,7 +84,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Check for new image version:
+    Test for new image version:
       risk: When a new version of an image is available, it might fix security vulnerabilities.
       measure: Check for new images of containers in production.
       difficultyOfImplementation:
@@ -127,7 +129,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Stored Secrets:
+    Test for stored Secrets:
       risk: Stored secrets in git history, in container images or directly in code
         shouldn't exists because they might be exposed to unauthorized parties.
       measure: Test for secrets in code, container images and history
