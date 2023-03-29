@@ -159,24 +159,25 @@
       <th>ISO 27001:2022</th>
     </tr>
     <tr *ngFor="let item of allMappingDataSortedByISO">
-      <td>{{ item.dimension | slice:0:32766 }}</td>
-      <td>{{ item.subDimension | slice:0:32766 }}</td>
-      <td>{{ item.taskName | slice:0:32766 }}</td>
-      <td>{{ item.description | slice:0:32766 }}</td>
-      <td>{{ item.risk | slice:0:32766 }}</td>
-      <td>{{ item.measure | slice:0:32766 }}</td>
-      <td>{{ item.knowledge | slice:0:32766 }}</td>
-      <td>{{ item.resources | slice:0:32766 }}</td>
-      <td>{{ item.time | slice:0:32766 }}</td>
-      <td>{{ item.usefulness | slice:0:32766 }}</td>
-      <td>{{ item.implementation | slice:0:32766 }}</td>
-      <td>{{ item.assessment | slice:0:32766 }}</td>
-      <td>{{ item.evidence | slice:0:32766 }}</td>
-      <td>{{ item.comments | slice:0:32766 }}</td>
-      <td>{{ item.dependsOn | slice:0:32766 }}</td>
-      <td>{{ item.samm2 | slice:0:32766 }}</td>
-      <td>{{ item.ISO | slice:0:32766 }}</td>
-      <td>{{ item.ISO22 | slice:0:32766 }}</td>
+      <!-- checking if item is defined and set & truncating at 32767 characters per cell to fit to excel limitations-->
+      <td><ng-container *ngIf="item.dimension && item.dimension.length>0"> {{ item.dimension | slice:0:32767 }}</ng-container></td> 
+      <td><ng-container *ngIf="item.subDimension && item.subDimension.length>0"> {{ item.subDimension | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.taskName && item.taskName.length>0"> {{ item.taskName | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.description && item.description.length>0"> {{ item.description | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.risk && item.risk.length>0"> {{ item.risk | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.measure && item.measure.length>0"> {{ item.measure | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.knowledge && item.knowledge.length>0"> {{ item.knowledge | slice:0:32767  }}</ng-container></td>
+      <td><ng-container *ngIf="item.resources && item.resources.length>0"> {{ item.resources | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.time && item.time.length>0"> {{ item.time | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.usefulness && item.usefulness.length>0"> {{ item.usefulness | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.implementation && item.implementation.length>0"> {{ item.implementation | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.assessment && item.assessment.length>0"> {{ item.assessment | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.evidence && item.evidence.length>0"> {{ item.evidence | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.comments && item.comments.length>0"> {{ item.comments | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.dependsOn && item.dependsOn.length>0"> {{ item.dependsOn | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.samm2 && item.samm2.length>0"> {{ item.samm2 | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.ISO && item.ISO.length>0"> {{ item.ISO | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.ISO22 && item.ISO22.length>0"> {{ item.ISO22 | slice:0:32767 }}</ng-container></td>
     </tr>
   </table>
 </div>
