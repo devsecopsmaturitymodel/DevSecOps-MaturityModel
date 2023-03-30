@@ -30,6 +30,8 @@ Build and Deployment:
         - I-SB-2-A
         iso27001-2017:
         - 14.2.6
+        iso27001-2022:
+        - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
@@ -63,6 +65,9 @@ Build and Deployment:
         iso27001-2017:
         - 12.1.1
         - 14.2.2
+        iso27001-2022:
+        - 5.37
+        - 8.32
       isImplemented: false
       evidence: ""
       comments: ""
@@ -92,6 +97,8 @@ Build and Deployment:
         - I-SB-1-A
         iso27001-2017:
         - 14.2.6
+        iso27001-2022:
+        - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
@@ -113,8 +120,11 @@ Build and Deployment:
       references:
         samm2: []
         iso27001-2017:
-        - "8.1"
-        - "8.2"
+        - 8.1
+        - 8.2
+        iso27001-2022:
+        - 5.9
+        - 5.12
       isImplemented: false
       evidence: ""
       comments: ""
@@ -139,6 +149,8 @@ Build and Deployment:
         - I-SB-1-A
         iso27001-2017:
         - 14.2.6
+        iso27001-2022:
+        - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
@@ -162,6 +174,8 @@ Build and Deployment:
         - I-SB-2-A
         iso27001-2017:
         - 14.2.6
+        iso27001-2022:
+        - 8.31
       isImplemented: false
       evidence: ""
       comments: ""

@@ -19,6 +19,8 @@ Test and Verification:
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - part of periodic review, PDCA
+        iso27001-2022:
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -41,6 +43,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ajax-spider
       isImplemented: false
@@ -68,6 +73,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
+        iso27001-2022:
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -90,6 +97,8 @@ Test and Verification:
         - V-ST-2-A
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
+        iso27001-2022:
+        - ISO 27001:2022 mapping is missing
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/schemathesis
       isImplemented: false
@@ -116,6 +125,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.8
         - 14.2.3
+        iso27001-2022:
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -136,6 +148,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pact-io
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/citrusframework
@@ -166,6 +181,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -188,6 +206,9 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/zest
       isImplemented: false
@@ -215,6 +236,9 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         - 14.2.5
+        iso27001-2022:
+        - 8.8
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""

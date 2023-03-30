@@ -43,3 +43,4 @@ testem.log
 .DS_Store  
 Thumbs.db 
 /yaml-generation/vendor/
+src/assets/YAML/generated/generated.yaml
