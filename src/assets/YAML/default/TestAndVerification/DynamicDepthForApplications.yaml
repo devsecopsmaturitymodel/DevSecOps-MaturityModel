@@ -44,7 +44,8 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.32
+        - 8.29
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ajax-spider
       isImplemented: false
@@ -125,7 +126,8 @@ Test and Verification:
         - 14.2.8
         - 14.2.3
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -147,7 +149,8 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.32
+        - 8.29
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pact-io
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/citrusframework
@@ -179,7 +182,8 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -203,7 +207,8 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.32
+        - 8.29
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/zest
       isImplemented: false
@@ -232,7 +237,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.5
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
