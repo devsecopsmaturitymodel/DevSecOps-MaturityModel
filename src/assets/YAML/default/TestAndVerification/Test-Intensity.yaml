@@ -24,7 +24,10 @@ Test and Verification:
         - 14.2.5
         - 12.6.1
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.25
+        - 8.32
+        - 8.27
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
@@ -50,7 +53,9 @@ Test and Verification:
         - 14.2.1
         - 14.2.5
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.25
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -73,7 +78,9 @@ Test and Verification:
         - 14.2.1
         - 14.2.5
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.25
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -97,7 +104,9 @@ Test and Verification:
         - 14.2.1
         - 14.2.5
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.25
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -121,7 +130,8 @@ Test and Verification:
         - 14.2.8
         - 14.2.9
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""

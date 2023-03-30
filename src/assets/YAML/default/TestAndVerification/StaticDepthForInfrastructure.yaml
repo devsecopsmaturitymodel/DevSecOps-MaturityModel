@@ -40,7 +40,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.5
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -63,7 +64,7 @@ Test and Verification:
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
@@ -87,7 +88,7 @@ Test and Verification:
         iso27001-2017:
         - 12.2.1
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.7
       isImplemented: false
       evidence: ""
       comments: ""
@@ -109,7 +110,9 @@ Test and Verification:
         - 14.2.5
         - 12.2.1
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.7
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -136,7 +139,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -161,7 +165,9 @@ Test and Verification:
         - 9.4.3
         - 10.1.2
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 5.17
+        - 8.24
       isImplemented: false
       evidence: ""
       comments: ""
@@ -182,12 +188,15 @@ Test and Verification:
         samm2:
         - V-ST-1-A
         iso27001-2017:
-        - system hardening is not explicitly covered by ISO 27001 - too specific
+        - System hardening is not explicitly covered by ISO 27001 - too specific
         - 12.6.1
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - System hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.8
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -218,7 +227,8 @@ Test and Verification:
         - 12.6.1
         - 14.2.1
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.8
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -262,12 +272,15 @@ Test and Verification:
         samm2:
         - V-ST-1-A
         iso27001-2017:
-        - system hardening is not explicitly covered by ISO 27001 - too specific
+        - System hardening is not explicitly covered by ISO 27001 - too specific
         - 12.6.1
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - System hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.8
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -292,14 +305,19 @@ Test and Verification:
         samm2:
         - V-ST-1-A
         iso27001-2017:
-        - system hardening, virtual environments are not explicitly covered by ISO
+        - System hardening, virtual environments are not explicitly covered by ISO
           27001 - too specific
         - 12.6.1
         - 14.2.3
         - 14.2.8
         - 14.2.1
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - System hardening, virtual environments are not explicitly covered by ISO
+          27001 - too specific
+        - 8.8
+        - 8.32
+        - 8.29
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""

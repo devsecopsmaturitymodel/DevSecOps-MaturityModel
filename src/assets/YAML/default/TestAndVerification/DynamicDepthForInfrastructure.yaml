@@ -21,7 +21,9 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - 1ISO 27001:2022 mapping is missing
+        - 8.6
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -49,7 +51,9 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.22
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -74,7 +78,9 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.22
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -101,7 +107,9 @@ Test and Verification:
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 8.22
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -123,12 +131,15 @@ Test and Verification:
       references:
         samm2: []
         iso27001-2017:
-        - system hardening is not explicitly covered by ISO 27001 - too specific
+        - System hardening is not explicitly covered by ISO 27001 - too specific
         - 12.6.1
         - 14.2.3
         - 14.2.8
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - System hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.8
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -151,7 +162,7 @@ Test and Verification:
         iso27001-2017:
         - 9.4.3
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - 5.17
       isImplemented: false
       evidence: ""
       comments: ""

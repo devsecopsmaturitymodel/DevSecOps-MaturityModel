@@ -23,10 +23,11 @@ Implementation:
         samm2:
         - D-SR-2-A
         iso27001-2017:
-        - hardening is not explicitly covered by ISO 27001 - too specific
+        - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
       isImplemented: false
       evidence: ""
       comments: ""
@@ -53,10 +54,11 @@ Implementation:
         samm2:
         - D-SR-3-A
         iso27001-2017:
-        - hardening is not explicitly covered by ISO 27001 - too specific
+        - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
       isImplemented: false
       evidence: ""
       comments: ""
@@ -102,10 +104,11 @@ Implementation:
         samm2:
         - D-SR-1-A
         iso27001-2017:
-        - hardening is not explicitly covered by ISO 27001 - too specific
+        - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
       isImplemented: false
       evidence: ""
       comments: ""
@@ -132,10 +135,11 @@ Implementation:
         samm2:
         - D-SR-3-A
         iso27001-2017:
-        - hardening is not explicitly covered by ISO 27001 - too specific
+        - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
       isImplemented: false
       evidence: ""
       comments: ""
