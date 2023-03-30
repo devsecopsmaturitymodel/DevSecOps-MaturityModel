@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
   workflow_dispatch:
   schedule:
     - cron: "0 7 * * *"
@@ -24,7 +22,7 @@ jobs:
         id: version
         run: |
           if [ "${GITHUB_REF##*/}" == "master" ]; then
-            echo "VERSION=3.0.0-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+            echo "VERSION=3.1.0-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
           else
             BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
             echo "VERSION=${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV

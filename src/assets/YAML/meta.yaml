@@ -24,7 +24,8 @@ strings:
     labels: ["Very Low", "Low", "Medium", "High", "Very High"]
     KnowledgeLabels: ["Very Low (one discipline)", "Low (one discipline)", "Medium (two disciplines)", "High (two disciplines)", "Very High (three or more disciplines)"]
     hardness: ["Very soft", "Soft", "Medium", "High", "Very high"]
-    maturity_levels: ["Level 1: Basic understanding of security practices" ,
+    maturity_levels: ["Level 1: Basic understanding of security practices",
                       "Level 2: Adoption of basic security practices",
                       "Level 3: High adoption of security practices",
-                      "Level 4: Advanced deployment of security practices at scale"]
+                      "Level 4: Very high adoption of security practices",
+                      "Level 5: Advanced deployment of security practices at scale"]

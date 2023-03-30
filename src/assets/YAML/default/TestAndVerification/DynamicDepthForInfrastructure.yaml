@@ -37,9 +37,11 @@ Test and Verification:
       difficultyOfImplementation:
         knowledge: 1
         time: 1
-        resources: 1
-      usefulness: 3
-      level: 1
+        resources: 2
+      dependsOn:
+        - Isolated networks for virtual environments
+      usefulness: 2
+      level: 2
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/nmap
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-amass
@@ -57,6 +59,31 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
+    Test for unauthorized installation:
+      risk: Unapproved components are used.
+      measure: Components must be whitelisted. Regular scans on the docker infrastructure
+        (e.g. cluster) need to be performed, to verify that only standardized base
+        images are used.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/example-all-docker
+      comment: By preventing teams from trying out new components, innovation might
+        be hampered
+      references:
+        samm2: []
+        iso27001-2017:
+          - 12.5.1
+          - 12.6.1
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      dependsOn:
+        - Evaluation of the trust of used components
     Test for unused Resources:
       risk: Unused resources, specially secrets, might be still valid, but are exposing
         information. As an attacker, I compromise a system, gather credentials and
@@ -67,7 +94,7 @@ Test and Verification:
         time: 1
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/k8spurger
       references:

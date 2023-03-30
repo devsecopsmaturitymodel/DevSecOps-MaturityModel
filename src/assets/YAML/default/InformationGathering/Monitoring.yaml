@@ -25,7 +25,7 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
-    Advanced webapplication metrics:
+    Advanced app. metrics:
       risk: People are not looking into tests results. Vulnerabilities not recolonized,
         even they are detected by tools.
       measure: All defects from the dimension Test- and Verification are instrumented.
@@ -34,7 +34,7 @@ Information Gathering:
         time: 3
         resources: 2
       usefulness: 4
-      level: 3
+      level: 4
       dependsOn:
       - Simple application metrics
       - Visualized metrics
@@ -211,7 +211,7 @@ Information Gathering:
         time: 3
         resources: 2
       usefulness: 5
-      level: 4
+      level: 5
       dependsOn:
       - Grouping of metrics
       implementation: []
@@ -228,7 +228,8 @@ Information Gathering:
     Monitoring of costs:
       risk: Not monitorig costs might lead to unexpected high resource consumption
         and a high invoice.
-      measure: Implement cost budgets
+      measure: Implement cost budgets. Setting of an alert threshold and sending out errors when it is reached. In the 
+        best case, a second treshold with a limit is set so that the cost can not go higher.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
