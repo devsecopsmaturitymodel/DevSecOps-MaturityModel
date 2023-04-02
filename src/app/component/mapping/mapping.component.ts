@@ -209,14 +209,15 @@ export class MappingComponent implements OnInit {
       }
     }
     for (var i = 0; i < SAMMArray.length; i++) {
-      this.temporaryMappingElement['samm2'] = SAMMArray[i];
-      this.allMappingDataSortedBySAMM.push(this.temporaryMappingElement);
+      const newTempElement = JSON.parse(
+        JSON.stringify(this.temporaryMappingElement)
+      );
+      newTempElement['samm2'] = SAMMArray[i];
+      this.allMappingDataSortedBySAMM.push(newTempElement);
       if (this.YamlObject[dim][subDim][task]['isImplemented']) {
-        this.performedMappingDataSortedBySAMM.push(
-          this.temporaryMappingElement
-        );
+        this.performedMappingDataSortedBySAMM.push(newTempElement);
       } else {
-        this.plannedMappingDataSortedBySAMM.push(this.temporaryMappingElement);
+        this.plannedMappingDataSortedBySAMM.push(newTempElement);
       }
     }
     //sorting by descending order
@@ -315,12 +316,16 @@ export class MappingComponent implements OnInit {
       }
     }
     for (var i = 0; i < ISOArray.length; i++) {
-      this.temporaryMappingElement['ISO'] = ISOArray[i];
-      this.allMappingDataSortedByISO.push(this.temporaryMappingElement);
+      const newTempElement = JSON.parse(
+        JSON.stringify(this.temporaryMappingElement)
+      );
+      newTempElement['ISO'] = ISOArray[i];
+      //console.log(newTempElement);
+      this.allMappingDataSortedByISO.push(newTempElement);
       if (this.YamlObject[dim][subDim][task]['isImplemented']) {
-        this.performedMappingDataSortedByISO.push(this.temporaryMappingElement);
+        this.performedMappingDataSortedByISO.push(newTempElement);
       } else {
-        this.plannedMappingDataSortedByISO.push(this.temporaryMappingElement);
+        this.plannedMappingDataSortedByISO.push(newTempElement);
       }
     }
     //sorting by descending order
