@@ -22,8 +22,8 @@ Culture and Organization:
         - 14.2.1
         iso27001-2022:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
-        - "5.3"
-        - "8.25"
+        - 5.3
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
