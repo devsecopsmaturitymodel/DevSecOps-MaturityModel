@@ -126,7 +126,12 @@ describe('TaskDescriptionComponent', () => {
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
     expect(contentDisplayedinParagraphTag[9].textContent).toContain(
-      component.SAMMVersion + testSAMM[0] + component.ISOVersion + testISO[0] + component.ISO22Version + testISO22[0]
+      component.SAMMVersion +
+        testSAMM[0] +
+        component.ISOVersion +
+        testISO[0] +
+        component.ISO22Version +
+        testISO22[0]
     );
   });
 });

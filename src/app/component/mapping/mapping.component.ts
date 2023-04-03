@@ -385,116 +385,118 @@ export class MappingComponent implements OnInit {
     //console.log(this.temp)
   }
 
-    //Sets dataSource value sorted by ISO 27001:2022
-    setValueandAppendToDatasetandSortbyISO22(
-      dim: string,
-      subDim: string,
-      task: string
-    ) {
-      var ISOArray: string[] =
-        this.YamlObject[dim][subDim][task]['references']['iso27001-2017'];
-      var ISO22Array: string[] =
-        this.YamlObject[dim][subDim][task]['references']['iso27001-2022'];
-      var SAMMArray: string[] =
-        this.YamlObject[dim][subDim][task]['references']['samm2'];
-      var CurrentDescription: string =
-        this.YamlObject[dim][subDim][task]['description'];
-      var CurrentRisk: string = this.YamlObject[dim][subDim][task]['risk'];
-      var CurrentMeasure: string = this.YamlObject[dim][subDim][task]['measure'];
-      var CurrentKnowledge: string =
-        this.knowledgeLabels[
-          this.YamlObject[dim][subDim][task]['difficultyOfImplementation'][
-            'knowledge'
-          ]
-        ];
-      var CurrentTime: string =
-        this.generalLabels[
-          this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['time']
-        ];
-      var CurrentResources: string =
-        this.generalLabels[
-          this.YamlObject[dim][subDim][task]['difficultyOfImplementation'][
-            'resources'
-          ]
-        ];
-      var CurrentUsefulness: string =
-        this.generalLabels[this.YamlObject[dim][subDim][task]['usefulness']];
-  
-      var CurrentEvidence: string =
-        this.YamlObject[dim][subDim][task]['evidence'];
-  
-      var CurrentComments: string =
-        this.YamlObject[dim][subDim][task]['comments'];
-  
-      var CurrentAssessment: string =
-        this.YamlObject[dim][subDim][task]['assessment'];
-  
-      var CurrentDependsOn: string[] =
-        this.YamlObject[dim][subDim][task]['dependsOn'];
-      try {
-        var CurrentImplementation: any = JSON.stringify(
-          this.YamlObject[dim][subDim][task]['implementation']
-        );
-        if (CurrentImplementation.length == 2) {
-          CurrentImplementation = '';
-        }
-      } catch {
+  //Sets dataSource value sorted by ISO 27001:2022
+  setValueandAppendToDatasetandSortbyISO22(
+    dim: string,
+    subDim: string,
+    task: string
+  ) {
+    var ISOArray: string[] =
+      this.YamlObject[dim][subDim][task]['references']['iso27001-2017'];
+    var ISO22Array: string[] =
+      this.YamlObject[dim][subDim][task]['references']['iso27001-2022'];
+    var SAMMArray: string[] =
+      this.YamlObject[dim][subDim][task]['references']['samm2'];
+    var CurrentDescription: string =
+      this.YamlObject[dim][subDim][task]['description'];
+    var CurrentRisk: string = this.YamlObject[dim][subDim][task]['risk'];
+    var CurrentMeasure: string = this.YamlObject[dim][subDim][task]['measure'];
+    var CurrentKnowledge: string =
+      this.knowledgeLabels[
+        this.YamlObject[dim][subDim][task]['difficultyOfImplementation'][
+          'knowledge'
+        ]
+      ];
+    var CurrentTime: string =
+      this.generalLabels[
+        this.YamlObject[dim][subDim][task]['difficultyOfImplementation']['time']
+      ];
+    var CurrentResources: string =
+      this.generalLabels[
+        this.YamlObject[dim][subDim][task]['difficultyOfImplementation'][
+          'resources'
+        ]
+      ];
+    var CurrentUsefulness: string =
+      this.generalLabels[this.YamlObject[dim][subDim][task]['usefulness']];
+
+    var CurrentEvidence: string =
+      this.YamlObject[dim][subDim][task]['evidence'];
+
+    var CurrentComments: string =
+      this.YamlObject[dim][subDim][task]['comments'];
+
+    var CurrentAssessment: string =
+      this.YamlObject[dim][subDim][task]['assessment'];
+
+    var CurrentDependsOn: string[] =
+      this.YamlObject[dim][subDim][task]['dependsOn'];
+    try {
+      var CurrentImplementation: any = JSON.stringify(
+        this.YamlObject[dim][subDim][task]['implementation']
+      );
+      if (CurrentImplementation.length == 2) {
         CurrentImplementation = '';
       }
-  
-      this.temporaryMappingElement = {
-        dimension: dim,
-        subDimension: subDim,
-        taskName: task,
-        ISO: ISOArray,
-        ISO22: '',
-        samm2: SAMMArray,
-        description: CurrentDescription,
-        risk: CurrentRisk,
-        measure: CurrentMeasure,
-        knowledge: CurrentKnowledge,
-        time: CurrentTime,
-        resources: CurrentResources,
-        usefulness: CurrentUsefulness,
-        dependsOn: CurrentDependsOn,
-        implementation: CurrentImplementation,
-        evidence: CurrentEvidence,
-        comments: CurrentComments,
-        assessment: CurrentAssessment,
-      };
-      if (ISO22Array.length == 0) {
-        this.allMappingDataSortedByISO22.push(this.temporaryMappingElement);
-        if (this.YamlObject[dim][subDim][task]['isImplemented']) {
-          this.performedMappingDataSortedByISO22.push(this.temporaryMappingElement);
-        } else {
-          this.plannedMappingDataSortedByISO22.push(this.temporaryMappingElement);
-        }
-      }
-      for (var i = 0; i < ISO22Array.length; i++) {
-        const newTempElement = JSON.parse(
-          JSON.stringify(this.temporaryMappingElement)
-        );
-        newTempElement['ISO22'] = ISO22Array[i];
-        //console.log(newTempElement);
-        this.allMappingDataSortedByISO22.push(newTempElement);
-        if (this.YamlObject[dim][subDim][task]['isImplemented']) {
-          this.performedMappingDataSortedByISO22.push(newTempElement);
-        } else {
-          this.plannedMappingDataSortedByISO22.push(newTempElement);
-        }
-      }
-      //sorting by descending order
-      this.allMappingDataSortedByISO22.sort(
-        (first, second) => 0 - (first['ISO22'] > second['ISO22'] ? 1 : -1)
-      );
-      this.performedMappingDataSortedByISO22.sort(
-        (first, second) => 0 - (first['ISO22'] > second['ISO22'] ? 1 : -1)
-      );
-      this.plannedMappingDataSortedByISO22.sort(
-        (first, second) => 0 - (first['ISO22'] > second['ISO22'] ? 1 : -1)
-      );
-      //console.log(this.temp)
+    } catch {
+      CurrentImplementation = '';
     }
+
+    this.temporaryMappingElement = {
+      dimension: dim,
+      subDimension: subDim,
+      taskName: task,
+      ISO: ISOArray,
+      ISO22: '',
+      samm2: SAMMArray,
+      description: CurrentDescription,
+      risk: CurrentRisk,
+      measure: CurrentMeasure,
+      knowledge: CurrentKnowledge,
+      time: CurrentTime,
+      resources: CurrentResources,
+      usefulness: CurrentUsefulness,
+      dependsOn: CurrentDependsOn,
+      implementation: CurrentImplementation,
+      evidence: CurrentEvidence,
+      comments: CurrentComments,
+      assessment: CurrentAssessment,
+    };
+    if (ISO22Array.length == 0) {
+      this.allMappingDataSortedByISO22.push(this.temporaryMappingElement);
+      if (this.YamlObject[dim][subDim][task]['isImplemented']) {
+        this.performedMappingDataSortedByISO22.push(
+          this.temporaryMappingElement
+        );
+      } else {
+        this.plannedMappingDataSortedByISO22.push(this.temporaryMappingElement);
+      }
+    }
+    for (var i = 0; i < ISO22Array.length; i++) {
+      const newTempElement = JSON.parse(
+        JSON.stringify(this.temporaryMappingElement)
+      );
+      newTempElement['ISO22'] = ISO22Array[i];
+      //console.log(newTempElement);
+      this.allMappingDataSortedByISO22.push(newTempElement);
+      if (this.YamlObject[dim][subDim][task]['isImplemented']) {
+        this.performedMappingDataSortedByISO22.push(newTempElement);
+      } else {
+        this.plannedMappingDataSortedByISO22.push(newTempElement);
+      }
+    }
+    //sorting by descending order
+    this.allMappingDataSortedByISO22.sort(
+      (first, second) => 0 - (first['ISO22'] > second['ISO22'] ? 1 : -1)
+    );
+    this.performedMappingDataSortedByISO22.sort(
+      (first, second) => 0 - (first['ISO22'] > second['ISO22'] ? 1 : -1)
+    );
+    this.plannedMappingDataSortedByISO22.sort(
+      (first, second) => 0 - (first['ISO22'] > second['ISO22'] ? 1 : -1)
+    );
+    //console.log(this.temp)
+  }
 
   // remove filter chip
   removeChip(chip: string): void {
