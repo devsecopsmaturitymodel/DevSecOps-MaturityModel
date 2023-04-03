@@ -19,6 +19,10 @@ Build and Deployment:
         - 12.6.1
         - 12.5.1
         - 14.2.5
+        iso27001-2022:
+        - 8.8
+        - 8.19
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -48,6 +52,9 @@ Build and Deployment:
         iso27001-2017:
         - 12.6.1
         - 14.2.5
+        iso27001-2022:
+        - 8.8
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -69,6 +76,8 @@ Build and Deployment:
         - O-EM-1-B
         iso27001-2017:
         - 12.6.1
+        iso27001-2022:
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
@@ -92,6 +101,8 @@ Build and Deployment:
         iso27001-2017:
         - hardening is missing in ISO 27001
         - 14.2.1
+        iso27001-2022:
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -116,6 +127,8 @@ Build and Deployment:
         - O-EM-1-B
         iso27001-2017:
         - 12.6.1
+        iso27001-2022:
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
@@ -137,6 +150,8 @@ Build and Deployment:
         - O-EM-2-B
         iso27001-2017:
         - 12.6.1
+        iso27001-2022:
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""

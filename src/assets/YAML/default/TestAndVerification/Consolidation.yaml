@@ -23,6 +23,11 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+        iso27001-2022:
+        - 5.25
+        - 5.12
+        - 5.13
+        - 5.10
       isImplemented: false
       evidence: ""
       comments: ""
@@ -48,6 +53,9 @@ Test and Verification:
         iso27001-2017:
           - 16.1.4
           - 8.2.3
+        iso27001-2022:
+          - 5.25
+          - 5.10
       isImplemented: false
       evidence: ""
       comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
@@ -72,6 +80,8 @@ Test and Verification:
         - I-DM-3-B
         iso27001-2017:
         - 16.1.4
+        iso27001-2022:
+        - I5.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -93,10 +103,15 @@ Test and Verification:
         samm2:
         - I-DM-2-B
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 16.1.4
         - 16.1.5
         - 16.1.6
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 5.25
+        - 5.26
+        - 5.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -121,6 +136,11 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+        iso27001-2022:
+        - 5.25
+        - 5.12
+        - 5.13
+        - 5.10
       isImplemented: false
       evidence: ""
       comments: ""
@@ -143,8 +163,11 @@ Test and Verification:
         samm2:
         - I-DM-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 16.1.6
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 5.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -171,6 +194,11 @@ Test and Verification:
         - 8.2.1
         - 8.2.2
         - 8.2.3
+        iso27001-2022:
+        - 5.25
+        - 5.12
+        - 5.13
+        - 5.10
       isImplemented: false
       evidence: ""
       comments: ""
@@ -190,6 +218,9 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+        iso27001-2022:
+        - 8.8
+        - 5.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -210,6 +241,9 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+        iso27001-2022:
+        - 8.8
+        - 5.25
       implementation: []
       isImplemented: false
       evidence: ""
@@ -230,6 +264,9 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         - 12.6.1
+        iso27001-2022:
+        - 8.8
+        - 5.25
       implementation: []
       isImplemented: false
       evidence: ""
@@ -258,6 +295,12 @@ Test and Verification:
         - 16.1.4
         - 16.1.5
         - 16.1.6
+        iso27001-2022:
+        - 8.8
+        - 6.8
+        - 5.25
+        - 5.26
+        - 5.27
       isImplemented: false
       evidence: ""
       comments: ""

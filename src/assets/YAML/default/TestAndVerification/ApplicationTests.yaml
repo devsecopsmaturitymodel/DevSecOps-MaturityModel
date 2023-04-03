@@ -19,6 +19,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -39,6 +42,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -64,6 +70,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -87,6 +96,9 @@ Test and Verification:
         iso27001-2017:
         - 14.2.3
         - 14.2.8
+        iso27001-2022:
+        - 8.32
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""

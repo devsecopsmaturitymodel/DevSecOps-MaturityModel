@@ -21,8 +21,11 @@ Information Gathering:
         samm2:
         - O-IM-1-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
@@ -45,8 +48,11 @@ Information Gathering:
         samm2:
         - O-IM-1-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
@@ -69,8 +75,11 @@ Information Gathering:
         samm2:
         - O-IM-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
@@ -106,6 +115,8 @@ Information Gathering:
         - O-IM-1-A
         iso27001-2017:
         - 12.4.1
+        iso27001-2022:
+        - 8.15
       risk: |-
         * No track of security-relevant events makes it harder to analyze an incident.
         * Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
@@ -131,9 +142,13 @@ Information Gathering:
         samm2:
         - O-IM-1-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
         - 18.1.1
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.15
+        - 5.31
       isImplemented: false
       evidence: ""
       comments: ""
@@ -159,8 +174,11 @@ Information Gathering:
         samm2:
         - O-IM-1-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
