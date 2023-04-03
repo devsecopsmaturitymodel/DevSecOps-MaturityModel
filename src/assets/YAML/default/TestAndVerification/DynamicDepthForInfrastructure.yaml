@@ -77,8 +77,11 @@ Test and Verification:
       references:
         samm2: []
         iso27001-2017:
-          - 12.5.1
-          - 12.6.1
+        - 12.5.1
+        - 12.6.1
+        iso27001-2022:
+        - 8.19
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""

@@ -81,7 +81,7 @@ Test and Verification:
         iso27001-2017:
         - 16.1.4
         iso27001-2022:
-        - I5.25
+        - 5.25
       isImplemented: false
       evidence: ""
       comments: ""

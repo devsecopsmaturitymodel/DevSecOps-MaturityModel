@@ -39,13 +39,13 @@ Culture and Organization:
         samm2:
         - D-TA-2-B
         iso27001-2017:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 8.2.1
         - 14.2.1
         iso27001-2022:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 5.12
         - 8.25
       isImplemented: false
@@ -67,13 +67,13 @@ Culture and Organization:
         samm2:
         - D-TA-2-B
         iso27001-2017:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 8.2.1
         - 14.2.1
         iso27001-2022:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 5.12
         - 8.25
       isImplemented: false
@@ -144,13 +144,13 @@ Culture and Organization:
         samm2:
         - D-TA-2-B
         iso27001-2017:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 8.2.1
         - 14.2.1
         iso27001-2022:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 5.12
         - 8.25
       isImplemented: false
@@ -175,16 +175,16 @@ Culture and Organization:
         samm2:
         - D-TA-2-B
         iso27001-2017:
-        - not explicitly covered by ISO 27001
-        - may be part of project management
+        - Not explicitly covered by ISO 27001
+        - May be part of project management
         - 6.1.5
-        - may be part of risk assessment
+        - May be part of risk assessment
         - 8.1.2
         iso27001-2022:
-        - not explicitly covered by ISO 27001
-        - may be part of project management
+        - Not explicitly covered by ISO 27001
+        - May be part of project management
         - 5.8
-        - may be part of risk assessment
+        - May be part of risk assessment
         - 5.9
       isImplemented: false
       evidence: ""
@@ -208,16 +208,16 @@ Culture and Organization:
         samm2:
         - D-TA-2-B
         iso27001-2017:
-        - not explicitly covered by ISO 27001
-        - may be part of project management
+        - Not explicitly covered by ISO 27001
+        - May be part of project management
         - 6.1.5
-        - may be part of risk assessment
+        - May be part of risk assessment
         - 8.1.2
         iso27001-2022:
-        - not explicitly covered by ISO 27001
-        - may be part of project management
+        - Not explicitly covered by ISO 27001
+        - May be part of project management
         - 5.8
-        - may be part of risk assessment
+        - May be part of risk assessment
         - 5.9
       isImplemented: false
       evidence: ""
@@ -243,13 +243,13 @@ Culture and Organization:
         samm2:
         - D-TA-3-B
         iso27001-2017:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 8.2.1
         - 14.2.1
         iso27001-2022:
-        - not explicitly covered by ISO 27001
-        - may be part of risk assessment
+        - Not explicitly covered by ISO 27001
+        - May be part of risk assessment
         - 5.12
         - 8.25
       isImplemented: false

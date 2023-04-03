@@ -64,11 +64,11 @@ Information Gathering:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/falco
       references:
         samm2:
-          - O-IM-2-A
+        - O-IM-2-A
         iso27001-2017:
-          - 12.6.1
+        - 12.6.1
         iso27001-2022:
-          - 8.8
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""

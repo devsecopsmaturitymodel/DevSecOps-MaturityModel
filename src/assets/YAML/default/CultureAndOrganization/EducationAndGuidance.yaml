@@ -42,6 +42,8 @@ Culture and Organization:
           - G-EG-3-B
         iso27001-2017:
           - 7.1.1
+        iso27001-2022:
+        - 6.1
       isImplemented: false
       evidence: ""
       comments: ""
