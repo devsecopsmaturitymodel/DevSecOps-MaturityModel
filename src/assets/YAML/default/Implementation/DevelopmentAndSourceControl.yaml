@@ -47,9 +47,9 @@ Implementation:
         - 14.2.1  
         - 14.2.5
         iso27001-2022:
-        - "8.25"  # Secure development lifecycle
-        - "8.27"  # Secure system architecture and engineering principles
-        - "8.28"  # Secure coding
+        - 8.25  # Secure development lifecycle
+        - 8.27  # Secure system architecture and engineering principles
+        - 8.28  # Secure coding
       isImplemented: false
       evidence: ""
       comments: ""

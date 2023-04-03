@@ -471,12 +471,16 @@ export class MappingComponent implements OnInit {
         }
       }
       for (var i = 0; i < ISO22Array.length; i++) {
-        this.temporaryMappingElement['ISO22'] = ISO22Array[i];
-        this.allMappingDataSortedByISO22.push(this.temporaryMappingElement);
+        const newTempElement = JSON.parse(
+          JSON.stringify(this.temporaryMappingElement)
+        );
+        newTempElement['ISO22'] = ISO22Array[i];
+        //console.log(newTempElement);
+        this.allMappingDataSortedByISO22.push(newTempElement);
         if (this.YamlObject[dim][subDim][task]['isImplemented']) {
-          this.performedMappingDataSortedByISO22.push(this.temporaryMappingElement);
+          this.performedMappingDataSortedByISO22.push(newTempElement);
         } else {
-          this.plannedMappingDataSortedByISO22.push(this.temporaryMappingElement);
+          this.plannedMappingDataSortedByISO22.push(newTempElement);
         }
       }
       //sorting by descending order
