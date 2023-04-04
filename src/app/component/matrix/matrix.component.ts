@@ -40,6 +40,12 @@ export class MatrixComponent implements OnInit {
         row ? this._filter(row) : this.autoCompeteResults.slice()
       )
     );
+    this.filteredRows = this.rowCtrltags.valueChanges.pipe(
+      startWith(null),
+      map((row: string | null) =>
+        row ? this._filter(row) : this.autoCompeteResults.slice()
+      )
+    );
   }
 
   // function to initialize if level columns exists
@@ -70,12 +76,13 @@ export class MatrixComponent implements OnInit {
         var subdimensionsInCurrentDimension = Object.keys(
           this.YamlObject[this.allDimensionNames[i]]
         );
+
         for (let j = 0; j < subdimensionsInCurrentDimension.length; j++) {
           var temp = {
             Dimension: this.allDimensionNames[i],
             SubDimension: subdimensionsInCurrentDimension[j],
           };
-          //console.log(typeof(temp))
+
           for (let k = 0; k < this.levels.length; k++) {
             temp = {
               ...temp,
@@ -87,6 +94,7 @@ export class MatrixComponent implements OnInit {
               subdimensionsInCurrentDimension[j]
             ]
           );
+          console.log(temp);
           for (let a = 0; a < taskInCurrentSubDimension.length; a++) {
             var currentTaskName = taskInCurrentSubDimension[a];
             try {
@@ -94,7 +102,7 @@ export class MatrixComponent implements OnInit {
                 this.YamlObject[this.allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
                 ][currentTaskName]['level'];
-              //console.log(temp[this.lvlColumn[lvlOfTask - 1] as keyof MatrixElement]);
+
               (
                 temp[
                   this.lvlColumn[lvlOfTask - 1] as keyof MatrixElement
@@ -126,7 +134,9 @@ export class MatrixComponent implements OnInit {
       if (!this.allRows.includes(this.MATRIX_DATA[i].SubDimension)) {
         this.allRows.push(this.MATRIX_DATA[i].SubDimension);
         this.rowsCurrentlyBeingShown.push(this.MATRIX_DATA[i].SubDimension);
+        this.rowsCurrentlyBeingShown.push('hey');
       }
+
       i++;
     }
   }
@@ -134,6 +144,7 @@ export class MatrixComponent implements OnInit {
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   rowCtrl = new FormControl('');
+  rowCtrltags = new FormControl('');
   filteredRows: Observable<string[]>;
 
   autoCompeteResults: string[] = [];
@@ -159,6 +170,7 @@ export class MatrixComponent implements OnInit {
     this.rowsCurrentlyBeingShown.push(event.option.viewValue);
     this.rowInput.nativeElement.value = '';
     this.rowCtrl.setValue(null);
+    this.rowCtrltags.setValue(null);
     //console.log(this.allRows,event.option.viewValue);
     let dataIndex = this.allRows.indexOf(event.option.viewValue);
     this.dataSource.data.push(this.MATRIX_DATA[dataIndex]);
@@ -171,9 +183,10 @@ export class MatrixComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.autoCompeteResults.filter(row =>
-      row.toLowerCase().includes(filterValue)
-    );
+    return this.autoCompeteResults.filter(row => {
+      row.toLowerCase().includes(filterValue);
+      console.log('row', row);
+    });
   }
 
   // task description routing + providing parameters
