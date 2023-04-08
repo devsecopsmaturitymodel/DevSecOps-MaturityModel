@@ -74,6 +74,11 @@ Build and Deployment:
       measure: Pinning of artifacts ensure that changes are performed only when intended.
       comment: The usage of pinning requires a good processes for patching. Therefore,
         choose this activity wisly.
+      meta:
+        implementationGuide: Pinning artifacts in Dockerfile refers to the practice of using specific,
+          immutable versions of base images and dependencies in your build process. Instead of using the
+          latest tag for your base image, select a specific version or digest. For example, replace FROM node:latest,
+          to FROM node@sha256:abcdef12.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
