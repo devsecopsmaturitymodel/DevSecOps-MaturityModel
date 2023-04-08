@@ -101,6 +101,11 @@ Build and Deployment:
       evidence: ""
       comments: ""
     SBOM of components:
+      description: |-
+       SBOM (Software Bill of Materials) is a document that lists all components, libraries,
+       and dependencies used in a software application or container image. Creating an SBOM
+       during the build process can help ensure transparency, security, and license compliance
+       for your application.
       risk: In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts with that vulnerability is deployed with which
         dependencies.
