@@ -387,7 +387,7 @@ implementations:
     url: https://github.com/DefectDojo/django-DefectDojo
   owasp-dependency-che:
     name: OWASP Dependency Check
-    tags: []
+    tags: [OpenSource, "Supply Chain", vulnerability]
     url: https://owasp.org/www-project-dependency-check/
   logparser-jenkins-pl:
     name: LogParser Jenkins Plugins
@@ -609,7 +609,7 @@ implementations:
   dependencyTrack:
     name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
-    tags: [sca, inventory]
+    tags: [sca, inventory, OpenSource, "Supply Chain", vulnerability]
   juice-shop:
     name: OWASP Juice Shop
     tags: [training]
@@ -699,3 +699,33 @@ implementations:
     url: https://github.com/SDA-SE/defectdojo-client
     description: |
       This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.      
+  falco:
+    name: Falco
+    tags: [falco, systemcall, monitoring]
+    url: https://github.com/falcosecurity/falco
+    description: |
+      Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.
+  sammancoaching:
+    name: sammancoaching
+    tags: [documentation, coaching, education]
+    url: https://sammancoaching.org/
+    description: |
+      Security coaches work with software development teams to help them adopt better security practices.
+terraform:
+  name: terraform
+  tags: [IaC]
+  url: https://www.terraform.io/
+  description: |
+    Terraform enables infrastructure automation for provisioning, compliance, and management of any cloud, datacenter, and service.
+packj:
+  name: packj
+  tags: [OpenSource, "Supply Chain", vulnerability]
+  url: https://github.com/ossillate-inc/packj
+  description: |
+    Packj is a tool to detect software supply chain attacks. It can detect malicious, vulnerable, abandoned, typo-squatting, and other "risky" packages from popular open-source package registries, such as NPM, RubyGems, and PyPI.
+apiMyth:
+  name: Top 5 API Security Myths That Are Crushing Your Business
+  tags: [documentation, waf]
+  url: https://thehackernews.com/2022/11/top-5-api-security-myths-that-are.html
+  description: |
+    There are several myths and misconceptions about API security. These myths about securing APIs are crushing your business

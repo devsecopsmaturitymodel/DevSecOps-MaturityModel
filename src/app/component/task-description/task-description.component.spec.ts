@@ -118,13 +118,20 @@ describe('TaskDescriptionComponent', () => {
   it('check if references is being genenrated', () => {
     const testSAMM = [' Sample SAMM '];
     const testISO = [' Sample ISO'];
+    const testISO22 = [' Sample ISO22'];
     component.currentTask.samm = testSAMM;
     component.currentTask.iso = testISO;
+    component.currentTask.iso22 = testISO22;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
     expect(contentDisplayedinParagraphTag[9].textContent).toContain(
-      component.SAMMVersion + testSAMM[0] + component.ISOVersion + testISO[0]
+      component.SAMMVersion +
+        testSAMM[0] +
+        component.ISOVersion +
+        testISO[0] +
+        component.ISO22Version +
+        testISO22[0]
     );
   });
 });

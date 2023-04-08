@@ -19,16 +19,22 @@ Build and Deployment:
         - 12.6.1
         - 12.5.1
         - 14.2.5
+        iso27001-2022:
+        - 8.8
+        - 8.19
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
     Automated PRs for patches:
-      risk: Known vulnerabilities components might stay for long and get exploited,
+      risk: Components with known (or unknown) vulnerabilities might stay for long and get exploited,
         even when a patch is available.
       measure: Fast patching of third party component is needed. The DevOps way is
-        to have an automated pull request for new components. This includes <ul> <li>Applications</li><li>Virtualized
-        operating system components (e.g. container images)</li> <li>Operating Systems</li><li>Infrastructure
-        as Code/GitOps (e.g. argocd)</li> </ul>
+        to have an automated pull request for new components. This includes 
+        * Applications
+        * Virtualized operating system components (e.g. container images)
+        * Operating Systems
+        * Infrastructure as Code/GitOps (e.g. argocd based on a git repository or terraform)
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -38,12 +44,17 @@ Build and Deployment:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jenkins
+      # - $ref: src/assets/YAML/default/implementations.yaml#/implementations/argocd TODO
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/terraform
       references:
         samm2:
         - O-EM-1-B
         iso27001-2017:
         - 12.6.1
         - 14.2.5
+        iso27001-2022:
+        - 8.8
+        - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -65,6 +76,8 @@ Build and Deployment:
         - O-EM-1-B
         iso27001-2017:
         - 12.6.1
+        iso27001-2022:
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
@@ -88,6 +101,8 @@ Build and Deployment:
         iso27001-2017:
         - hardening is missing in ISO 27001
         - 14.2.1
+        iso27001-2022:
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -112,6 +127,8 @@ Build and Deployment:
         - O-EM-1-B
         iso27001-2017:
         - 12.6.1
+        iso27001-2022:
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
@@ -133,6 +150,8 @@ Build and Deployment:
         - O-EM-2-B
         iso27001-2017:
         - 12.6.1
+        iso27001-2022:
+        - 8.8
       isImplemented: false
       evidence: ""
       comments: ""

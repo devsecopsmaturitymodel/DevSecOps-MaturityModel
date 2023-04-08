@@ -11,7 +11,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/blue-green-deploymen
       dependsOn:
@@ -26,6 +26,13 @@ Build and Deployment:
         - 12.1.4  # Separation of development,testing and operational environments
         - 12.5.1
         - 14.2.9
+        iso27001-2022:
+        - 8.14
+        - 5.37
+        - 8.31
+        - 8.32
+        - 8.19
+        - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
@@ -46,6 +53,8 @@ Build and Deployment:
         - O-OM-2-B
         iso27001-2017:
         - 11.2.7
+        iso27001-2022:
+        - 7.14
       isImplemented: false
       evidence: ""
       comments: ""
@@ -74,6 +83,9 @@ Build and Deployment:
         iso27001-2017:
         - 12.1.1
         - 14.2.2
+        iso27001-2022:
+        - 5.37
+        - 8.32
       isImplemented: false
       evidence: ""
       comments: ""
@@ -101,6 +113,9 @@ Build and Deployment:
         iso27001-2017:
         - 9.4.5
         - 14.2.6
+        iso27001-2022:
+        - 8.4
+        - 8.31
         d3f:
         - ApplicationConfigurationHardening
       isImplemented: false
@@ -133,6 +148,12 @@ Build and Deployment:
         - 9.4.3
         - 9.4.1
         - 10.1.2
+        iso27001-2022:
+        - 8.33
+        - 8.22
+        - 5.17
+        - 8.3
+        - 8.24
         d3f:
         - ApplicationConfigurationHardening
       isImplemented: false
@@ -160,8 +181,11 @@ Build and Deployment:
         samm2:
         - I-SD-2-A
         iso27001-2017:
-        - "8.1"
-        - "8.2"
+        - 8.1
+        - 8.2
+        iso27001-2022:
+        - 5.9
+        - 5.12
       isImplemented: false
       evidence: ""
       comments: ""
@@ -183,8 +207,11 @@ Build and Deployment:
         samm2:
         - I-SD-2-A
         iso27001-2017:
-        - "8.1"
-        - "8.2"
+        - 8.1
+        - 8.2
+        iso27001-2022:
+        - 5.9
+        - 5.12
       isImplemented: false
       evidence: ""
       comments: ""
@@ -210,6 +237,10 @@ Build and Deployment:
         - 12.5.1
         - 14.2.2
         - 17.2.1
+        iso27001-2022:
+        - 8.19
+        - 8.32
+        - 8.14
       isImplemented: false
       evidence: ""
       comments: ""
@@ -223,7 +254,7 @@ Build and Deployment:
         time: 2
         resources: 1
       usefulness: 4
-      level: 3
+      level: 4
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
       dependsOn:
@@ -235,6 +266,10 @@ Build and Deployment:
         - 14.3.1
         - 14.2.8
         - 12.1.4
+        iso27001-2022:
+        - 8.33
+        - 8.29
+        - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
@@ -248,7 +283,7 @@ Build and Deployment:
         time: 1
         resources: 1
       usefulness: 2
-      level: 3
+      level: 4
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/martin-feature-toggles
@@ -261,32 +296,43 @@ Build and Deployment:
         - 14.2.8
         - 14.2.9
         - 12.1.4
+        iso27001-2022:
+        - 8.33
+        - 8.29
+        - 8.31
         d3f: 
         - ApplicationConfigurationHardening
       isImplemented: false
       evidence: ""
       comments: ""
-    Usage of trusted images:
-      risk: Developers or operations might start random images in the production cluster
-        which have malicious code or known vulnerabilities.
-      measure: Create image assessment criteria, perform an evaluation of images and
-        create a whitelist of artifacts/container images/virtual machine images.
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/kubernetes-admission
+    Evaluation of the trust of used components:
+      risk:
+        - Application and system components like Open Source libraies or images can have implementation flaws or deployment flaws.
+        - Developers or operations might start random images in the production cluster 
+          which have malicious code or known vulnerabilities.
+      measure:
+        - Each components source is evaluated to be trusted. For example the source, number of developers included, email configuration used by maintainers to prevent maintainer account theft, typo-squatting, ...
+        - Create image assessment criteria, perform an evaluation of images and create a whitelist of artifacts/container images/virtual machine images.
       difficultyOfImplementation:
-        knowledge: 1
-        time: 1
+        knowledge: 3
+        time: 3
         resources: 1
       usefulness: 3
       level: 2
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/kubernetes-admission
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/packj
       references:
         samm2:
-        - I-SD-2-A
+          - O-EM-1-A
         iso27001-2017:
-        - 15.1.1
-        - 15.1.2
-        - 15.1.3
-        - 14.1.3
+         - Not explicitly covered by ISO 27001 - too specific
+         - 14.2.1
+         - 14.2.5
+        iso27001-2022:
+         - Not explicitly covered by ISO 27001 - too specific
+         - 8.25
+         - 8.27
       isImplemented: false
       evidence: ""
       comments: ""

@@ -17,9 +17,13 @@ Culture and Organization:
       references:
         samm2: []
         iso27001-2017:
-        - peer review - four eyes principle is not explicitly required by ISO 27001
+        - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 6.1.2
         - 14.2.1
+        iso27001-2022:
+        - Peer review - four eyes principle is not explicitly required by ISO 27001
+        - 5.3
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -40,6 +44,9 @@ Culture and Organization:
         - 14.2.2
         - 12.1.2
         - 12.4.1
+        iso27001-2022:
+        - 8.32
+        - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
@@ -62,30 +69,10 @@ Culture and Organization:
         samm2: []
         iso27001-2017:
         - 17.1.1
+        iso27001-2022:
+        - 5.29
       isImplemented: false
       evidence: ""
       comments: ""
-    Prevention of unauthorized installation:
-      risk: Unapproved components are used.
-      measure: Components must be whitelisted. Regular scans on the docker infrastructure
-        (e.g. cluster) need to be performed, to verify that only standardized base
-        images are used.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 1
-        resources: 1
-      usefulness: 3
-      level: 3
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/example-all-docker
-      comment: By preventing teams from trying out new components, innovation might
-        be hampered
-      references:
-        samm2: []
-        iso27001-2017:
-        - 12.5.1
-        - 12.6.1
-      isImplemented: false
-      evidence: ""
-      comments: ""
+
 ...

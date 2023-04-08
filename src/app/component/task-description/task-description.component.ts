@@ -20,6 +20,7 @@ export interface taskDescription {
   measure: string;
   implementatonGuide: string;
   iso: string[];
+  iso22: string[];
   samm: string[];
   knowledge: number;
   resources: number;
@@ -50,6 +51,7 @@ export class TaskDescriptionComponent implements OnInit {
     implementatonGuide: '',
     samm: [''],
     iso: [''],
+    iso22: [''],
     knowledge: -1,
     resources: -1,
     time: -1,
@@ -68,7 +70,8 @@ export class TaskDescriptionComponent implements OnInit {
   rowIndex: number = 0;
   markdown: md = md();
   SAMMVersion: string = 'OWASP SAMM VERSION 2';
-  ISOVersion: string = 'ISO27001 2017';
+  ISOVersion: string = 'ISO 27001:2017';
+  ISO22Version: string = 'ISO 27001:2022';
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
   constructor(private route: ActivatedRoute, private yaml: ymlService) {}
 
@@ -143,6 +146,10 @@ export class TaskDescriptionComponent implements OnInit {
         data['references'];
         this.currentTask.iso = this.defineStringArrayValues(
           data['references']['iso27001-2017'],
+          []
+        );
+        this.currentTask.iso22 = this.defineStringArrayValues(
+          data['references']['iso27001-2022'],
           []
         );
         this.currentTask.samm = this.defineStringArrayValues(

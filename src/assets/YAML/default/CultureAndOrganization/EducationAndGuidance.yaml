@@ -21,6 +21,29 @@ Culture and Organization:
         - G-EG-1-A
         iso27001-2017:
         - 7.2.2
+        iso27001-2022:
+        - 6.3
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Security Coaching:
+      risk: Even if security practices are understood, it doesn't mean that they get implemented.
+      measure: By coaching teams, teams are getting a better understanding and adoptiing security practices.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 1 # e.g. system resources
+      usefulness: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sammancoaching
+      level: 3
+      references:
+        samm2:
+          - G-EG-3-B
+        iso27001-2017:
+          - 7.1.1
+        iso27001-2022:
+        - 6.1
       isImplemented: false
       evidence: ""
       comments: ""
@@ -28,7 +51,7 @@ Culture and Organization:
       risk: The concept of Security Champions might suggest that only he/she is responsible
         for security. However, everyone in the project team should be responsible
         for security.
-      measure: By aligning security SME with project teams, a higher security standard
+      measure: By aligning security Subject Matter Experts with project teams, a higher security standard
         can be achieved.
       difficultyOfImplementation:
         knowledge: 4
@@ -43,6 +66,8 @@ Culture and Organization:
         - G-EG-3-B
         iso27001-2017:
         - 7.1.1
+        iso27001-2022:
+        - 6.1
       isImplemented: false
       evidence: ""
       comments: ""
@@ -66,6 +91,8 @@ Culture and Organization:
         - G-EG-2-A
         iso27001-2017:
         - 7.2.2
+        iso27001-2022:
+        - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
@@ -80,7 +107,7 @@ Culture and Organization:
         time: 2
         resources: 1
       usefulness: 3
-      level: 3
+      level: 5
       implementation: []
       references:
         samm2:
@@ -91,6 +118,12 @@ Culture and Organization:
         - 7.2.2
         - 12.6.1
         - 12.7.1
+        iso27001-2022:
+        - Mutual review of source code is not explicitly required in ISO 27001 may
+          be
+        - 6.3
+        - 8.8
+        - 8.34
       isImplemented: false
       evidence: ""
       comments: ""
@@ -112,6 +145,9 @@ Culture and Organization:
         iso27001-2017:
         - Mutual security testing is not explicitly required in ISO 27001 may be
         - 7.2.2
+        iso27001-2022:
+        - Mutual security testing is not explicitly required in ISO 27001 may be
+        - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
@@ -131,10 +167,15 @@ Culture and Organization:
         samm2:
         - G-EG-2-A
         iso27001-2017:
-        - ware games are not explicitly required in ISO 27001 may be
+        - War games are not explicitly required in ISO 27001 may be
         - 7.2.2
-        - "16.1"
+        - 16.1
         - 16.1.5
+        iso27001-2022:
+        - War games are not explicitly required in ISO 27001 may be
+        - 6.3
+        - 5.24
+        - 5.26
       isImplemented: false
       evidence: ""
       comments: ""
@@ -175,9 +216,13 @@ Culture and Organization:
         - G-EG-1-B
         - G-EG-2-B
         iso27001-2017:
-        - security champions are missing in ISO 27001 most likely
+        - Security champions are missing in ISO 27001 most likely
         - 7.2.1
         - 7.2.2
+        iso27001-2022:
+        - Security champions are missing in ISO 27001 most likely
+        - 5.4
+        - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
@@ -207,6 +252,8 @@ Culture and Organization:
         - G-EG-1-A
         iso27001-2017:
         - 7.2.2
+        iso27001-2022:
+        - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
@@ -228,6 +275,8 @@ Culture and Organization:
         - G-EG-3-A
         iso27001-2017:
         - 7.2.2
+        iso27001-2022:
+        - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
@@ -252,8 +301,11 @@ Culture and Organization:
         - D-TA-2-B
         - G-EG-1-A
         iso27001-2017:
-        - security champions are missing in ISO 27001
+        - Security champions are missing in ISO 27001
         - 7.2.2
+        iso27001-2022:
+        - Security champions are missing in ISO 27001
+        - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
@@ -278,6 +330,8 @@ Culture and Organization:
         - not required by ISO 27001
         - interestingly enough A7.2.3 is requiring a process to handle misconduct
           but nothing to promote good behavior.
+        iso27001-2022:
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -303,7 +357,7 @@ Culture and Organization:
         time: 2
         resources: 1
       usefulness: 3
-      level: 1
+      level: 2
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cwe25
       credits: |
@@ -311,7 +365,10 @@ Culture and Organization:
       references:
         samm2:
         - V-ST-1-B
-        iso27001-2017: []
+        iso27001-2017:
+        - ISO 27001:2017 mapping is missing
+        iso27001-2022:
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -336,6 +393,11 @@ Culture and Organization:
         - 6.1.1
         - 6.1.4
         - 6.1.5
+        iso27001-2022:
+        - Security consulting is missing in ISO 27001 may be
+        - 5.2
+        - 5.6
+        - 5.8
       isImplemented: false
       evidence: ""
       comments: ""
@@ -356,6 +418,8 @@ Culture and Organization:
         - O-IM-3-B
         iso27001-2017:
         - 16.1.6
+        iso27001-2022:
+        - 5.27
       isImplemented: false
       evidence: ""
       comments: ""
@@ -382,7 +446,7 @@ Culture and Organization:
         time: 3
         resources: 1
       usefulness: 3
-      level: 2
+      level: 3
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
@@ -393,6 +457,8 @@ Culture and Organization:
         - G-EG-1-A
         iso27001-2017:
         - 7.2.2
+        iso27001-2022:
+        - 6.3
       isImplemented: false
       evidence: ""
       comments: ""

@@ -10,7 +10,7 @@ Implementation:
         time: 1
         resources: 1
       usefulness: 2
-      level: 4
+      level: 5
       description: ""
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop
@@ -18,28 +18,10 @@ Implementation:
       references:
         samm2:
         - V-ST-1-A
-        iso27001-2017: []
-      isImplemented: false
-      evidence: ""
-      comments: ""
-    Pre-Commit checks and validations:
-      risk: Using an insecure application might lead to a compromised application.
-        This might lead to total data theft or data modification.
-      measure: |
-        Implement pre-commit checks to prevent secrets & other security issues being commit to source code.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 4
-      level: 2
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-microsoft
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
-      references:
-        samm2:
-        - V-ST-1-A
-        iso27001-2017: []
+        iso27001-2017:
+        - ISO 27001:2017 mapping is missing
+        iso27001-2022:
+        - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
@@ -54,7 +36,7 @@ Implementation:
         time: 2
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stoplight-spectral
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
@@ -62,6 +44,9 @@ Implementation:
         samm2:
         - V-ST-1-A
         iso27001-2017:
+        - 14.2.1  
+        - 14.2.5
+        iso27001-2022:
         - 8.25  # Secure development lifecycle
         - 8.27  # Secure system architecture and engineering principles
         - 8.28  # Secure coding
@@ -81,7 +66,7 @@ Implementation:
         time: 1
         resources: 2
       usefulness: 4
-      level: 1
+      level: 2
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/azuredevops
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-policies
@@ -90,9 +75,13 @@ Implementation:
         samm2:
         - O-EM-1-A
         iso27001-2017:
-        - peer review - four eyes principle is not explicitly required by ISO 27001
+        - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 6.1.2
         - 14.2.1
+        iso27001-2022:
+        - Peer review - four eyes principle is not explicitly required by ISO 27001
+        - 5.3
+        - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
@@ -114,39 +103,16 @@ Implementation:
         samm2:
         - O-EM-1-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+        - Not explicitly covered by ISO 27001 - too specific
         - 12.1.1
         - 12.1.2
         - 14.2.2
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 5.37
+        - 8.32
       isImplemented: false
       evidence: ""
       comments: ""
-    MFA to SCM:
-      risk: Unauthorized access to source code.
-      measure: >-
-        Enforce Multi-Factor authentication to source code management platforms.
-        These policies can be implemented at repository level or organization level,
-        depending on the source code management system.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 1
-        resources: 2
-      usefulness: 4
-      level: 1
-      implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/totp
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/smartcard
-      references:
-        samm2:
-        - O-EM-1-A
-        iso27001-2017:
-        - 5.17    # Authentication information
-        - 6.1.2   # Segregation of duties.
-        - 14.2.1  # Secure development policies.
-        d3f:
-        - Multi-factorAuthentication
-      isImplemented: false
-      evidence: ""
-      comments: ""
+
 ...
