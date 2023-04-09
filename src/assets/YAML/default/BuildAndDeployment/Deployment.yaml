@@ -172,7 +172,7 @@ Build and Deployment:
         time: 2
         resources: 3
       usefulness: 3
-      dependesOn:
+      dependsOn:
       - SBOM of components
       level: 3
       implementation:
