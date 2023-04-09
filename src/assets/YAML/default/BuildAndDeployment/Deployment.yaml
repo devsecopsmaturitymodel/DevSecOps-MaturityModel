@@ -37,6 +37,11 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Defined decommissioning process:
+      description: |-
+        The decommissioning process in the context of Docker and Kubernetes involves
+        retiring Docker containers, images, and Kubernetes resources that are no longer
+        needed or have been replaced. This process must be carefully executed to avoid
+        impacting other services and applications.
       risk: >-
         Unused applications are not maintained and may contain vulnerabilities.
         Once exploited they can be used to attack other applications or
