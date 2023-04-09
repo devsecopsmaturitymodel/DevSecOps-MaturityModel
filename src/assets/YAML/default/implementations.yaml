@@ -32,7 +32,7 @@ implementations:
   docker-content-trust:
     name: Docker Content Trust
     tags: []
-    url: https://docs.docker.com/notary/getting_started/
+    url: https://docs.docker.com/engine/security/trust/
   in-toto:
     name: in-toto
     tags: []
