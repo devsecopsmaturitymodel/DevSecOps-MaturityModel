@@ -59,6 +59,13 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Nightly build of images (base images):
+      description: |-
+        A base image is a pre-built image that serves as a starting point for building
+        new images or containers. These base images usually include an operating system,
+        necessary dependencies, libraries, and other components that are required to run
+        a specific application or service. Nightly builds of custom base images refer to
+        an automated process that occurs daily or on a scheduled basis, usually during
+        nighttime or off-peak hours, to create updated versions of custom base images.
       risk: Vulnerabilities in running containers stay for too long and might get
         exploited.
       measure: Custom base images are getting build at least nightly. In case the
@@ -82,6 +89,12 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Reduction of the attack surface:
+      description: |-
+        Distroless images are minimal, stripped-down base images that contain only the
+        essential components required to run your application. They do not include package
+        managers, shells, or any other tools that are commonly found in standard Linux
+        distributions. Using distroless images can help reduce the attack surface and
+        overall size of your container images.
       risk: Components, dependencies, files or file access rights might have vulnerabilities,
         but the they are not needed.
       measure: Removal of unneeded components, dependencies, files or file access
@@ -95,6 +108,7 @@ Build and Deployment:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/distroless
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fedora-coreos
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/distroless-usage
       references:
         samm2:
         - I-SB-2
@@ -107,6 +121,15 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Usage of a maximum lifetime for images:
+      description: |-
+        The maximum lifetime for a Docker container refers to the duration a container
+        should be allowed to run before it is considered outdated, stale, or insecure.
+        There is not a fixed, universally applicable maximum lifetime for a Docker
+        container, as it varies depending on the specific use case, application
+        requirements, and security needs. As a best practice, it is essential to define
+        a reasonable maximum lifetime for containers to ensure that you consistently
+        deploy the most recent, patched, and secure versions of both your custom base
+        images and third-party images.
       risk: Vulnerabilities in images of running containers stay for too long and
         might get exploited. Long running containers have potential memory leaks.
         A compromised container might get killed by restarting the container (e.g.
@@ -133,6 +156,15 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Usage of a short maximum lifetime for images:
+      description: |-
+        The maximum lifetime for a Docker container refers to the duration a container
+        should be allowed to run before it is considered outdated, stale, or insecure.
+        There is not a fixed, universally applicable maximum lifetime for a Docker
+        container, as it varies depending on the specific use case, application
+        requirements, and security needs. As a best practice, it is essential to define
+        a reasonable maximum lifetime for containers to ensure that you consistently
+        deploy the most recent, patched, and secure versions of both your custom base
+        images and third-party images.
       risk: Vulnerabilities in running containers stay for too long and might get
         exploited.
       measure: |

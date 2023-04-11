@@ -62,6 +62,7 @@ implementations:
     name: Kubernetes Admission Controller can whitelist registries and/or whitelist
       a signing key.
     tags: []
+    url: https://medium.com/slalom-technology/build-a-kubernetes-dynamic-admission-controller-for-container-registry-whitelisting-b46fe020e22d
   dependabot:
     name: dependabot
     tags: []
@@ -92,6 +93,10 @@ implementations:
     name: Fedora CoreOS
     tags: []
     url: https://getfedora.org/coreos
+  distroless-usage:
+    name: Distroless or Alpine
+    tags: []
+    url: https://itnext.io/which-container-images-to-use-distroless-or-alpine-96e3dab43a22
   threat-modeling-play:
     name: Threat Modeling Playbook
     tags: [owasp, defender, threat-modeling, whiteboard]
