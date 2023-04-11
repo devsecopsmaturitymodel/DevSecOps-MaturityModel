@@ -89,6 +89,12 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Reduction of the attack surface:
+      description: |-
+        Distroless images are minimal, stripped-down base images that contain only the
+        essential components required to run your application. They do not include package
+        managers, shells, or any other tools that are commonly found in standard Linux
+        distributions. Using distroless images can help reduce the attack surface and
+        overall size of your container images.
       risk: Components, dependencies, files or file access rights might have vulnerabilities,
         but the they are not needed.
       measure: Removal of unneeded components, dependencies, files or file access
