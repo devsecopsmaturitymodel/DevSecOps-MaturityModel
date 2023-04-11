@@ -93,6 +93,10 @@ implementations:
     name: Fedora CoreOS
     tags: []
     url: https://getfedora.org/coreos
+  distroless-usage:
+    name: Distroless or Alpine
+    tags: []
+    url: https://itnext.io/which-container-images-to-use-distroless-or-alpine-96e3dab43a22
   threat-modeling-play:
     name: Threat Modeling Playbook
     tags: [owasp, defender, threat-modeling, whiteboard]
