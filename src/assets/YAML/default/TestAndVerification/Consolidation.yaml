@@ -33,7 +33,7 @@ Test and Verification:
       comments: ""
     Generation of Response Statistics:
       risk: No or delayed reaction to findings leads to potential exploitation of findings.
-      measure: Creation and response statistics of findings.
+      measure: Creation and response statistics of findings. This is also referred to as _Mean Time to Resolve_.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
