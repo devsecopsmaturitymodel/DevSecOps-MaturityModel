@@ -108,6 +108,7 @@ Build and Deployment:
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/distroless
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fedora-coreos
+      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/distroless-usage
       references:
         samm2:
         - I-SB-2
