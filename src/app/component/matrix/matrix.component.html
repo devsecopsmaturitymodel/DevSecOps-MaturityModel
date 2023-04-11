@@ -6,7 +6,7 @@
       <mat-chip
         color="primary"
         *ngFor="let row of rowsCurrentlyBeingShown"
-        (removed)="remove(row)"
+        (removed)="removeSubDimension(row)"
         [selected]="true">
         {{ row }}
         <button matChipRemove>
@@ -29,30 +29,30 @@
     </mat-autocomplete>
   </mat-form-field>
   <mat-form-field class="example-chip-list">
-    <mat-label>Tags Filter</mat-label>
+    <mat-label>Task Filter</mat-label>
     <mat-chip-list #chipListtags aria-label="Filter" color="primary">
       <mat-chip
         color="primary"
-        *ngFor="let row of rowsCurrentlyBeingShown"
-        (removed)="remove(row)"
+        *ngFor="let task of tasksCurrentlyBeingShown"
+        (removed)="removeTask(task)"
         [selected]="true">
-        {{ row }}
+        {{ task }}
         <button matChipRemove>
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-chip>
       <input
-        #rowInput
+        #tagInput
         [formControl]="rowCtrltags"
-        [matAutocomplete]="auto"
+        [matAutocomplete]="autoTask"
         [matChipInputFor]="chipListtags"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
     </mat-chip-list>
     <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="selected($event)">
-      <mat-option *ngFor="let row of filteredRows | async" [value]="row">
-        {{ row }}
+      #autoTask="matAutocomplete"
+      (optionSelected)="selectedTask($event)">
+      <mat-option *ngFor="let task of filteredTasks | async" [value]="task">
+        {{ task }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

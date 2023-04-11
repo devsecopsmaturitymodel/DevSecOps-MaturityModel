@@ -37,9 +37,12 @@ describe('MatrixComponent', () => {
 
   it('check for chip deletion', () => {
     component.rowsCurrentlyBeingShown = ['row1', 'row2'];
-    component.remove('row1');
+    component.removeSubDimension('row1');
+    component.tasksCurrentlyBeingShown = ['row1', 'row2'];
+    component.removeTask('row1');
     const newChipRow = ['row2'];
     fixture.detectChanges();
     expect(component.rowsCurrentlyBeingShown).toEqual(newChipRow);
+    expect(component.tasksCurrentlyBeingShown).toEqual(newChipRow);
   });
 });
