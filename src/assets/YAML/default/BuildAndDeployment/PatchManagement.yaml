@@ -121,6 +121,15 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Usage of a maximum lifetime for images:
+      description: |-
+        The maximum lifetime for a Docker container refers to the duration a container
+        should be allowed to run before it is considered outdated, stale, or insecure.
+        There is not a fixed, universally applicable maximum lifetime for a Docker
+        container, as it varies depending on the specific use case, application
+        requirements, and security needs. As a best practice, it is essential to define
+        a reasonable maximum lifetime for containers to ensure that you consistently
+        deploy the most recent, patched, and secure versions of both your custom base
+        images and third-party images.
       risk: Vulnerabilities in images of running containers stay for too long and
         might get exploited. Long running containers have potential memory leaks.
         A compromised container might get killed by restarting the container (e.g.
@@ -147,6 +156,15 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Usage of a short maximum lifetime for images:
+      description: |-
+        The maximum lifetime for a Docker container refers to the duration a container
+        should be allowed to run before it is considered outdated, stale, or insecure.
+        There is not a fixed, universally applicable maximum lifetime for a Docker
+        container, as it varies depending on the specific use case, application
+        requirements, and security needs. As a best practice, it is essential to define
+        a reasonable maximum lifetime for containers to ensure that you consistently
+        deploy the most recent, patched, and secure versions of both your custom base
+        images and third-party images.
       risk: Vulnerabilities in running containers stay for too long and might get
         exploited.
       measure: |
