@@ -59,6 +59,13 @@ Build and Deployment:
       evidence: ""
       comments: ""
     Nightly build of images (base images):
+      description: |-
+        A base image is a pre-built image that serves as a starting point for building
+        new images or containers. These base images usually include an operating system,
+        necessary dependencies, libraries, and other components that are required to run
+        a specific application or service. Nightly builds of custom base images refer to
+        an automated process that occurs daily or on a scheduled basis, usually during
+        nighttime or off-peak hours, to create updated versions of custom base images.
       risk: Vulnerabilities in running containers stay for too long and might get
         exploited.
       measure: Custom base images are getting build at least nightly. In case the
