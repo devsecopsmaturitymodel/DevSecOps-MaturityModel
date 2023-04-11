@@ -79,6 +79,11 @@ Build and Deployment:
       measure: Pinning of artifacts ensure that changes are performed only when intended.
       comment: The usage of pinning requires a good processes for patching. Therefore,
         choose this activity wisly.
+      meta:
+        implementationGuide: Pinning artifacts in Dockerfile refers to the practice of using specific,
+          immutable versions of base images and dependencies in your build process. Instead of using the
+          latest tag for your base image, select a specific version or digest. For example, replace FROM node:latest,
+          to FROM node@sha256:abcdef12.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -103,6 +108,11 @@ Build and Deployment:
       evidence: ""
       comments: ""
     SBOM of components:
+      description: |-
+       SBOM (Software Bill of Materials) is a document that lists all components, libraries,
+       and dependencies used in a software application or container image. Creating an SBOM
+       during the build process can help ensure transparency, security, and license compliance
+       for your application.
       risk: In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts with that vulnerability is deployed with which
         dependencies.
