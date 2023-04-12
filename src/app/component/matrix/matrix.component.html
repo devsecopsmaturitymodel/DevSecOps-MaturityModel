@@ -52,7 +52,7 @@
       #autoActivity="matAutocomplete"
       (optionSelected)="selectedActivity($event)">
       <mat-option
-        *ngFor="let activity of filteredActivity | async"
+        *ngFor="let activity of filteredActivities | async"
         [value]="activity">
         {{ activity }}
       </mat-option>

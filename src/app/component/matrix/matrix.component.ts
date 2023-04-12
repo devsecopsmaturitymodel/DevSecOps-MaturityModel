@@ -41,7 +41,7 @@ export class MatrixComponent implements OnInit {
         row ? this.filter(row) : this.autoCompeteResults.slice()
       )
     );
-    this.filteredActivity = this.rowCtrlTags.valueChanges.pipe(
+    this.filteredActivities = this.rowCtrlTags.valueChanges.pipe(
       startWith(null),
       map((activity: string | null) =>
         activity
@@ -160,7 +160,7 @@ export class MatrixComponent implements OnInit {
   rowCtrl = new FormControl('');
   rowCtrlTags = new FormControl('');
   filteredRows: Observable<string[]>;
-  filteredActivity: Observable<string[]>;
+  filteredActivities: Observable<string[]>;
 
   autoCompeteResults: string[] = [];
   autoCompleteActivityResults: string[] = [];
@@ -168,7 +168,7 @@ export class MatrixComponent implements OnInit {
   @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
-  updateActivity(tags: string[]): void {
+  updateActivity(): void {
     // Iterate over all objects and create new MATRIX_DATA
     var updatedActivities: any = [];
 
@@ -204,7 +204,11 @@ export class MatrixComponent implements OnInit {
           let flag = 0;
           if (tagsInCurrentActivity) {
             for (let curr = 0; curr < tagsInCurrentActivity.length; curr++) {
-              if (tags.includes(tagsInCurrentActivity[curr])) {
+              if (
+                this.activityCurrentlyBeingShown.includes(
+                  tagsInCurrentActivity[curr]
+                )
+              ) {
                 flag = 1;
               }
             }
@@ -242,8 +246,7 @@ export class MatrixComponent implements OnInit {
       this.rowsCurrentlyBeingShown.splice(index, 1);
     }
     this.autoCompeteResults.push(row);
-    this.dataSource.data.splice(index, 1);
-    this.dataSource._data.next(this.dataSource.data);
+    this.updateActivity();
   }
   // Remove Task from Task Filter
   removeActivity(activity: string): void {
@@ -252,7 +255,7 @@ export class MatrixComponent implements OnInit {
       this.activityCurrentlyBeingShown.splice(index, 1);
     }
     this.autoCompleteActivityResults.push(activity);
-    this.updateActivity(this.activityCurrentlyBeingShown);
+    this.updateActivity();
   }
 
   //Add chips
@@ -262,9 +265,7 @@ export class MatrixComponent implements OnInit {
     this.rowsCurrentlyBeingShown.push(event.option.viewValue);
     this.rowInput.nativeElement.value = '';
     this.rowCtrl.setValue(null);
-    let dataIndex = this.allRows.indexOf(event.option.viewValue);
-    this.dataSource.data.push(this.MATRIX_DATA[dataIndex]);
-    this.dataSource._data.next(this.dataSource.data);
+    this.updateActivity();
   }
   selectedActivity(event: MatAutocompleteSelectedEvent): void {
     let autoIndex = this.autoCompleteActivityResults.indexOf(
@@ -272,7 +273,7 @@ export class MatrixComponent implements OnInit {
     );
     this.autoCompleteActivityResults.splice(autoIndex, 1);
     this.activityCurrentlyBeingShown.push(event.option.viewValue);
-    this.updateActivity(this.activityCurrentlyBeingShown);
+    this.updateActivity();
     this.tagInput.nativeElement.value = '';
     this.rowCtrlTags.setValue(null);
   }
