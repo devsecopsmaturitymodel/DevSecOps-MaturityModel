@@ -29,30 +29,32 @@
     </mat-autocomplete>
   </mat-form-field>
   <mat-form-field class="example-chip-list">
-    <mat-label>Task Filter</mat-label>
-    <mat-chip-list #chipListtags aria-label="Filter" color="primary">
+    <mat-label>Activity Filter</mat-label>
+    <mat-chip-list #chipListTags aria-label="Filter" color="primary">
       <mat-chip
         color="primary"
-        *ngFor="let task of tasksCurrentlyBeingShown"
-        (removed)="removeTask(task)"
+        *ngFor="let activity of activityCurrentlyBeingShown"
+        (removed)="removeActivity(activity)"
         [selected]="true">
-        {{ task }}
+        {{ activity }}
         <button matChipRemove>
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-chip>
       <input
         #tagInput
-        [formControl]="rowCtrltags"
-        [matAutocomplete]="autoTask"
-        [matChipInputFor]="chipListtags"
+        [formControl]="rowCtrlTags"
+        [matAutocomplete]="autoActivity"
+        [matChipInputFor]="chipListTags"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
     </mat-chip-list>
     <mat-autocomplete
-      #autoTask="matAutocomplete"
-      (optionSelected)="selectedTask($event)">
-      <mat-option *ngFor="let task of filteredTasks | async" [value]="task">
-        {{ task }}
+      #autoActivity="matAutocomplete"
+      (optionSelected)="selectedActivity($event)">
+      <mat-option
+        *ngFor="let activity of filteredActivity | async"
+        [value]="activity">
+        {{ activity }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

@@ -20,7 +20,6 @@ export interface MatrixElement {
 })
 export class MatrixComponent implements OnInit {
   MATRIX_DATA: MatrixElement[] = [];
-  // tag_data: string[] = [];
 
   Routing: string = '/task-description';
 
@@ -33,19 +32,21 @@ export class MatrixComponent implements OnInit {
   allRows: string[] = [];
   dataSource: any = new MatTableDataSource<MatrixElement>(this.MATRIX_DATA);
   rowsCurrentlyBeingShown: string[] = [];
-  tasksCurrentlyBeingShown: string[] = [];
+  activityCurrentlyBeingShown: string[] = [];
   allDimensionNames: string[] = [];
   constructor(private yaml: ymlService, private router: Router) {
     this.filteredRows = this.rowCtrl.valueChanges.pipe(
       startWith(null),
       map((row: string | null) =>
-        row ? this._filter(row) : this.autoCompeteResults.slice()
+        row ? this.filter(row) : this.autoCompeteResults.slice()
       )
     );
-    this.filteredTasks = this.rowCtrltags.valueChanges.pipe(
+    this.filteredActivity = this.rowCtrlTags.valueChanges.pipe(
       startWith(null),
-      map((task: string | null) =>
-        task ? this._filterTask(task) : this.autoCompleteTaskResults.slice()
+      map((activity: string | null) =>
+        activity
+          ? this.filterActivity(activity)
+          : this.autoCompleteActivityResults.slice()
       )
     );
   }
@@ -65,7 +66,7 @@ export class MatrixComponent implements OnInit {
         this.lvlColumn.push('level' + k);
       }
     });
-    var taskset = new Set();
+    var activitySet = new Set();
 
     //gets value from generated folder
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
@@ -92,37 +93,37 @@ export class MatrixComponent implements OnInit {
             };
           }
 
-          var taskInCurrentSubDimension: string[] = Object.keys(
+          var activityInCurrentSubDimension: string[] = Object.keys(
             this.YamlObject[this.allDimensionNames[i]][
               subdimensionsInCurrentDimension[j]
             ]
           );
 
-          for (let a = 0; a < taskInCurrentSubDimension.length; a++) {
-            var currentTaskName = taskInCurrentSubDimension[a];
-            var tagsInCurrentTask: string[] =
+          for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
+            var currentActivityName = activityInCurrentSubDimension[a];
+            var tagsInCurrentActivity: string[] =
               this.YamlObject[this.allDimensionNames[i]][
                 subdimensionsInCurrentDimension[j]
-              ][currentTaskName].tags;
-            if (tagsInCurrentTask) {
-              for (let curr = 0; curr < tagsInCurrentTask.length; curr++) {
-                taskset.add(tagsInCurrentTask[curr]);
+              ][currentActivityName].tags;
+            if (tagsInCurrentActivity) {
+              for (let curr = 0; curr < tagsInCurrentActivity.length; curr++) {
+                activitySet.add(tagsInCurrentActivity[curr]);
               }
             }
 
             try {
-              var lvlOfTask: number =
+              var lvlOfActivity: number =
                 this.YamlObject[this.allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
-                ][currentTaskName]['level'];
+                ][currentActivityName]['level'];
 
               (
                 temp[
-                  this.lvlColumn[lvlOfTask - 1] as keyof number
+                  this.lvlColumn[lvlOfActivity - 1] as keyof number
                 ] as unknown as string[]
-              ).push(currentTaskName);
+              ).push(currentActivityName);
             } catch {
-              console.log('Level for task does not exist');
+              console.log('Level for activity does not exist');
             }
           }
 
@@ -131,15 +132,15 @@ export class MatrixComponent implements OnInit {
       }
       this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
       this.createRowList();
-      this.createTaskTags(taskset);
+      this.createTaskTags(activitySet);
     });
 
     this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
     this.createRowList();
   }
 
-  createTaskTags(taskset: Set<any>): void {
-    taskset.forEach(tag => this.tasksCurrentlyBeingShown.push(tag));
+  createTaskTags(activitySet: Set<any>): void {
+    activitySet.forEach(tag => this.activityCurrentlyBeingShown.push(tag));
   }
 
   createRowList(): void {
@@ -157,19 +158,19 @@ export class MatrixComponent implements OnInit {
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   rowCtrl = new FormControl('');
-  rowCtrltags = new FormControl('');
+  rowCtrlTags = new FormControl('');
   filteredRows: Observable<string[]>;
-  filteredTasks: Observable<string[]>;
+  filteredActivity: Observable<string[]>;
 
   autoCompeteResults: string[] = [];
-  autoCompleteTaskResults: string[] = [];
+  autoCompleteActivityResults: string[] = [];
 
   @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
-  updateTask(tags: string[]): void {
+  updateActivity(tags: string[]): void {
     // Iterate over all objects and create new MATRIX_DATA
-    var updatedTasks: any = [];
+    var updatedActivities: any = [];
 
     for (let i = 0; i < this.allDimensionNames.length; i++) {
       var subdimensionsInCurrentDimension = Object.keys(
@@ -181,10 +182,6 @@ export class MatrixComponent implements OnInit {
           Dimension: this.allDimensionNames[i],
           SubDimension: subdimensionsInCurrentDimension[j],
         };
-
-        // if(subDimension_flag === 1){
-
-        // }
         for (let k = 0; k < this.levels.length; k++) {
           temp = {
             ...temp,
@@ -192,52 +189,50 @@ export class MatrixComponent implements OnInit {
           };
         }
 
-        var taskInCurrentSubDimension: string[] = Object.keys(
+        var activityInCurrentSubDimension: string[] = Object.keys(
           this.YamlObject[this.allDimensionNames[i]][
             subdimensionsInCurrentDimension[j]
           ]
         );
 
-        for (let a = 0; a < taskInCurrentSubDimension.length; a++) {
-          var currentTaskName = taskInCurrentSubDimension[a];
-          var tagsInCurrentTask: string[] =
+        for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
+          var currentActivityName = activityInCurrentSubDimension[a];
+          var tagsInCurrentActivity: string[] =
             this.YamlObject[this.allDimensionNames[i]][
               subdimensionsInCurrentDimension[j]
-            ][currentTaskName].tags;
+            ][currentActivityName].tags;
           let flag = 0;
-          if (tagsInCurrentTask) {
-            for (let curr = 0; curr < tagsInCurrentTask.length; curr++) {
-              if (tags.includes(tagsInCurrentTask[curr])) {
+          if (tagsInCurrentActivity) {
+            for (let curr = 0; curr < tagsInCurrentActivity.length; curr++) {
+              if (tags.includes(tagsInCurrentActivity[curr])) {
                 flag = 1;
               }
             }
           }
           if (flag === 1) {
             try {
-              var lvlOfTask: number =
+              var lvlOfActivity: number =
                 this.YamlObject[this.allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
-                ][currentTaskName]['level'];
+                ][currentActivityName]['level'];
 
               (
                 temp[
-                  this.lvlColumn[lvlOfTask - 1] as keyof number
+                  this.lvlColumn[lvlOfActivity - 1] as keyof number
                 ] as unknown as string[]
-              ).push(currentTaskName);
+              ).push(currentActivityName);
             } catch {
-              console.log('Level for task does not exist');
+              console.log('Level for Activity does not exist');
             }
           }
         }
-        // let subDimension_flag = 0;
         if (this.rowsCurrentlyBeingShown.includes(temp.SubDimension)) {
-          // subDimension_flag = 1;
-          updatedTasks.push(temp);
+          updatedActivities.push(temp);
         }
       }
     }
 
-    this.dataSource.data = JSON.parse(JSON.stringify(updatedTasks));
+    this.dataSource.data = JSON.parse(JSON.stringify(updatedActivities));
   }
   //Remove
   // Remove from SubDimension Filter
@@ -251,16 +246,13 @@ export class MatrixComponent implements OnInit {
     this.dataSource._data.next(this.dataSource.data);
   }
   // Remove Task from Task Filter
-  removeTask(task: string): void {
-    // WORK REQUIRED
-    let index = this.tasksCurrentlyBeingShown.indexOf(task);
+  removeActivity(activity: string): void {
+    let index = this.activityCurrentlyBeingShown.indexOf(activity);
     if (index >= 0) {
-      this.tasksCurrentlyBeingShown.splice(index, 1);
+      this.activityCurrentlyBeingShown.splice(index, 1);
     }
-    this.autoCompleteTaskResults.push(task);
-    this.updateTask(this.tasksCurrentlyBeingShown);
-
-    // remove data from matrix
+    this.autoCompleteActivityResults.push(activity);
+    this.updateActivity(this.activityCurrentlyBeingShown);
   }
 
   //Add chips
@@ -274,29 +266,25 @@ export class MatrixComponent implements OnInit {
     this.dataSource.data.push(this.MATRIX_DATA[dataIndex]);
     this.dataSource._data.next(this.dataSource.data);
   }
-  selectedTask(event: MatAutocompleteSelectedEvent): void {
-    let autoIndex = this.autoCompleteTaskResults.indexOf(
+  selectedActivity(event: MatAutocompleteSelectedEvent): void {
+    let autoIndex = this.autoCompleteActivityResults.indexOf(
       event.option.viewValue
     );
-    this.autoCompleteTaskResults.splice(autoIndex, 1);
-    this.tasksCurrentlyBeingShown.push(event.option.viewValue);
-    this.updateTask(this.tasksCurrentlyBeingShown);
+    this.autoCompleteActivityResults.splice(autoIndex, 1);
+    this.activityCurrentlyBeingShown.push(event.option.viewValue);
+    this.updateActivity(this.activityCurrentlyBeingShown);
     this.tagInput.nativeElement.value = '';
-    this.rowCtrltags.setValue(null);
+    this.rowCtrlTags.setValue(null);
   }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.autoCompeteResults.filter(row => {
-      row.toLowerCase().includes(filterValue);
-    });
+  private filter(value: string): string[] {
+    return this.autoCompeteResults.filter(
+      row => row.toLowerCase().indexOf(value.toLowerCase()) === 0
+    );
   }
-  private _filterTask(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.autoCompleteTaskResults.filter(task => {
-      task.toLowerCase().includes(filterValue);
-    });
+  private filterActivity(value: string): string[] {
+    return this.autoCompleteActivityResults.filter(
+      activity => activity.toLowerCase().indexOf(value.toLowerCase()) === 0
+    );
   }
 
   // task description routing + providing parameters
