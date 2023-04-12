@@ -168,7 +168,7 @@ export class MatrixComponent implements OnInit {
   @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
-  updateActivity(): void {
+  updateActivitesBeingDisplayed(): void {
     // Iterate over all objects and create new MATRIX_DATA
     var updatedActivities: any = [];
 
@@ -246,7 +246,7 @@ export class MatrixComponent implements OnInit {
       this.rowsCurrentlyBeingShown.splice(index, 1);
     }
     this.autoCompeteResults.push(row);
-    this.updateActivity();
+    this.updateActivitesBeingDisplayed();
   }
   // Remove Task from Task Filter
   removeActivity(activity: string): void {
@@ -255,7 +255,7 @@ export class MatrixComponent implements OnInit {
       this.activityCurrentlyBeingShown.splice(index, 1);
     }
     this.autoCompleteActivityResults.push(activity);
-    this.updateActivity();
+    this.updateActivitesBeingDisplayed();
   }
 
   //Add chips
@@ -265,7 +265,7 @@ export class MatrixComponent implements OnInit {
     this.rowsCurrentlyBeingShown.push(event.option.viewValue);
     this.rowInput.nativeElement.value = '';
     this.rowCtrl.setValue(null);
-    this.updateActivity();
+    this.updateActivitesBeingDisplayed();
   }
   selectedActivity(event: MatAutocompleteSelectedEvent): void {
     let autoIndex = this.autoCompleteActivityResults.indexOf(
@@ -273,7 +273,7 @@ export class MatrixComponent implements OnInit {
     );
     this.autoCompleteActivityResults.splice(autoIndex, 1);
     this.activityCurrentlyBeingShown.push(event.option.viewValue);
-    this.updateActivity();
+    this.updateActivitesBeingDisplayed();
     this.tagInput.nativeElement.value = '';
     this.rowCtrlTags.setValue(null);
   }
