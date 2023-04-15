@@ -31,17 +31,17 @@ export class MatrixComponent implements OnInit {
   lvlColumn: string[] = [];
   allRows: string[] = [];
   dataSource: any = new MatTableDataSource<MatrixElement>(this.MATRIX_DATA);
-  rowsCurrentlyBeingShown: string[] = [];
-  activityCurrentlyBeingShown: string[] = [];
+  subDimensionVisible: string[] = [];
+  activityVisible: string[] = [];
   allDimensionNames: string[] = [];
   constructor(private yaml: ymlService, private router: Router) {
-    this.filteredRows = this.rowCtrl.valueChanges.pipe(
+    this.filteredSubDimension = this.rowCtrl.valueChanges.pipe(
       startWith(null),
       map((row: string | null) =>
-        row ? this.filter(row) : this.autoCompeteResults.slice()
+        row ? this.filterSubDimension(row) : this.autoCompeteResults.slice()
       )
     );
-    this.filteredActivities = this.rowCtrlTags.valueChanges.pipe(
+    this.filteredActivities = this.rowCtrlActivity.valueChanges.pipe(
       startWith(null),
       map((activity: string | null) =>
         activity
@@ -132,15 +132,15 @@ export class MatrixComponent implements OnInit {
       }
       this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
       this.createRowList();
-      this.createTaskTags(activitySet);
+      this.createActivityTags(activitySet);
     });
 
     this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
     this.createRowList();
   }
 
-  createTaskTags(activitySet: Set<any>): void {
-    activitySet.forEach(tag => this.activityCurrentlyBeingShown.push(tag));
+  createActivityTags(activitySet: Set<any>): void {
+    activitySet.forEach(tag => this.activityVisible.push(tag));
   }
 
   createRowList(): void {
@@ -148,7 +148,7 @@ export class MatrixComponent implements OnInit {
     while (i < this.MATRIX_DATA.length) {
       if (!this.allRows.includes(this.MATRIX_DATA[i].SubDimension)) {
         this.allRows.push(this.MATRIX_DATA[i].SubDimension);
-        this.rowsCurrentlyBeingShown.push(this.MATRIX_DATA[i].SubDimension);
+        this.subDimensionVisible.push(this.MATRIX_DATA[i].SubDimension);
       }
       i++;
     }
@@ -158,15 +158,15 @@ export class MatrixComponent implements OnInit {
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   rowCtrl = new FormControl('');
-  rowCtrlTags = new FormControl('');
-  filteredRows: Observable<string[]>;
+  rowCtrlActivity = new FormControl('');
+  filteredSubDimension: Observable<string[]>;
   filteredActivities: Observable<string[]>;
 
   autoCompeteResults: string[] = [];
   autoCompleteActivityResults: string[] = [];
 
   @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('activityInput') activityInput!: ElementRef<HTMLInputElement>;
 
   updateActivitesBeingDisplayed(): void {
     // Iterate over all objects and create new MATRIX_DATA
@@ -204,11 +204,7 @@ export class MatrixComponent implements OnInit {
           let flag = 0;
           if (tagsInCurrentActivity) {
             for (let curr = 0; curr < tagsInCurrentActivity.length; curr++) {
-              if (
-                this.activityCurrentlyBeingShown.includes(
-                  tagsInCurrentActivity[curr]
-                )
-              ) {
+              if (this.activityVisible.includes(tagsInCurrentActivity[curr])) {
                 flag = 1;
               }
             }
@@ -230,7 +226,7 @@ export class MatrixComponent implements OnInit {
             }
           }
         }
-        if (this.rowsCurrentlyBeingShown.includes(temp.SubDimension)) {
+        if (this.subDimensionVisible.includes(temp.SubDimension)) {
           updatedActivities.push(temp);
         }
       }
@@ -238,31 +234,28 @@ export class MatrixComponent implements OnInit {
 
     this.dataSource.data = JSON.parse(JSON.stringify(updatedActivities));
   }
-  //Remove
-  // Remove from SubDimension Filter
-  removeSubDimension(row: string): void {
-    let index = this.rowsCurrentlyBeingShown.indexOf(row);
+  removeSubDimensionFromFilter(row: string): void {
+    let index = this.subDimensionVisible.indexOf(row);
     if (index >= 0) {
-      this.rowsCurrentlyBeingShown.splice(index, 1);
+      this.subDimensionVisible.splice(index, 1);
     }
     this.autoCompeteResults.push(row);
     this.updateActivitesBeingDisplayed();
   }
-  // Remove Task from Task Filter
-  removeActivity(activity: string): void {
-    let index = this.activityCurrentlyBeingShown.indexOf(activity);
+  removeActivityFromFilter(activity: string): void {
+    let index = this.activityVisible.indexOf(activity);
     if (index >= 0) {
-      this.activityCurrentlyBeingShown.splice(index, 1);
+      this.activityVisible.splice(index, 1);
     }
     this.autoCompleteActivityResults.push(activity);
     this.updateActivitesBeingDisplayed();
   }
 
   //Add chips
-  selected(event: MatAutocompleteSelectedEvent): void {
+  selectedSubDimension(event: MatAutocompleteSelectedEvent): void {
     let autoIndex = this.autoCompeteResults.indexOf(event.option.viewValue);
     this.autoCompeteResults.splice(autoIndex, 1);
-    this.rowsCurrentlyBeingShown.push(event.option.viewValue);
+    this.subDimensionVisible.push(event.option.viewValue);
     this.rowInput.nativeElement.value = '';
     this.rowCtrl.setValue(null);
     this.updateActivitesBeingDisplayed();
@@ -272,12 +265,12 @@ export class MatrixComponent implements OnInit {
       event.option.viewValue
     );
     this.autoCompleteActivityResults.splice(autoIndex, 1);
-    this.activityCurrentlyBeingShown.push(event.option.viewValue);
+    this.activityVisible.push(event.option.viewValue);
     this.updateActivitesBeingDisplayed();
-    this.tagInput.nativeElement.value = '';
-    this.rowCtrlTags.setValue(null);
+    this.activityInput.nativeElement.value = '';
+    this.rowCtrlActivity.setValue(null);
   }
-  private filter(value: string): string[] {
+  private filterSubDimension(value: string): string[] {
     return this.autoCompeteResults.filter(
       row => row.toLowerCase().indexOf(value.toLowerCase()) === 0
     );

@@ -5,8 +5,8 @@
     <mat-chip-list #chipList aria-label="Filter" color="primary">
       <mat-chip
         color="primary"
-        *ngFor="let row of rowsCurrentlyBeingShown"
-        (removed)="removeSubDimension(row)"
+        *ngFor="let row of subDimensionVisible"
+        (removed)="removeSubDimensionFromFilter(row)"
         [selected]="true">
         {{ row }}
         <button matChipRemove>
@@ -22,19 +22,21 @@
     </mat-chip-list>
     <mat-autocomplete
       #auto="matAutocomplete"
-      (optionSelected)="selected($event)">
-      <mat-option *ngFor="let row of filteredRows | async" [value]="row">
+      (optionSelected)="selectedSubDimension($event)">
+      <mat-option
+        *ngFor="let row of filteredSubDimension | async"
+        [value]="row">
         {{ row }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
   <mat-form-field class="example-chip-list">
     <mat-label>Activity Filter</mat-label>
-    <mat-chip-list #chipListTags aria-label="Filter" color="primary">
+    <mat-chip-list #chipListActivity aria-label="Filter" color="primary">
       <mat-chip
         color="primary"
-        *ngFor="let activity of activityCurrentlyBeingShown"
-        (removed)="removeActivity(activity)"
+        *ngFor="let activity of activityVisible"
+        (removed)="removeActivityFromFilter(activity)"
         [selected]="true">
         {{ activity }}
         <button matChipRemove>
@@ -42,10 +44,10 @@
         </button>
       </mat-chip>
       <input
-        #tagInput
-        [formControl]="rowCtrlTags"
+        #activityInput
+        [formControl]="rowCtrlActivity"
         [matAutocomplete]="autoActivity"
-        [matChipInputFor]="chipListTags"
+        [matChipInputFor]="chipListActivity"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
     </mat-chip-list>
     <mat-autocomplete
