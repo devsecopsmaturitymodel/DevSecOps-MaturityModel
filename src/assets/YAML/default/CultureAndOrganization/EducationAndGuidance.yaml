@@ -27,8 +27,8 @@ Culture and Organization:
       evidence: ""
       comments: ""
     Security Coaching:
-      risk: Even if security practices are understood, it doesn't mean that they get implemented.
-      measure: By coaching teams, teams are getting a better understanding and adoptiing security practices.
+      risk: Training does not change behaviour. Therefore, even if security practices are understood, it's likly that they are not performed.
+      measure: By coaching teams on security topics using for example the samman coaching method, teams internalize security practices as new habits in their development process.
       difficultyOfImplementation:
         knowledge: 4
         time: 3
