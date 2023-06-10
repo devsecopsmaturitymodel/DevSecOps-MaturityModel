@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -19,6 +19,7 @@ import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html
 import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
+import { ChipsMultiSelectComponent } from './component/matrix/chips-multi-select/chips-multi-select.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DependencyGraphComponent } from './component/dependency-graph/dependenc
     UsageComponent,
     AboutUsComponent,
     DependencyGraphComponent,
+    ChipsMultiSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,5 +47,6 @@ import { DependencyGraphComponent } from './component/dependency-graph/dependenc
   ],
   providers: [ymlService],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -60,6 +60,28 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+  <!-- sd -->
+  <!-- <div class="content-trial">
+    <app-chips-multi-select [options]="options" [formControl]="chipsControl">
+    </app-chips-multi-select>
+
+    <mat-divider></mat-divider>
+
+    <h3>Value: {{ chipsControlValue$ | async }}</h3>
+  </div> -->
+
+  <mat-chip-list selectable multiple>
+    <mat-chip
+      #c="matChip"
+      *ngFor="let option of options"
+      (click)="toggleSelection(c)"
+      [value]="option">
+      <mat-icon *ngIf="c.selected">check</mat-icon>
+      {{ option }}
+    </mat-chip>
+  </mat-chip-list>
+  <h3>Value: {{ chipsControlValue$ | async }}</h3>
+  <!-- sd -->
 
   <table
     mat-table

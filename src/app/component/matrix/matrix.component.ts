@@ -8,11 +8,15 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import { Router, NavigationExtras } from '@angular/router';
 
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
+import { MatChip, MatChipList } from '@angular/material/chips';
+
 export interface MatrixElement {
   Dimension: string;
   SubDimension: string;
 }
-
+@UntilDestroy()
 @Component({
   selector: 'app-matrix',
   templateUrl: './matrix.component.html',
@@ -34,6 +38,7 @@ export class MatrixComponent implements OnInit {
   subDimensionVisible: string[] = [];
   activityVisible: string[] = [];
   allDimensionNames: string[] = [];
+
   constructor(private yaml: ymlService, private router: Router) {
     this.filteredSubDimension = this.rowCtrl.valueChanges.pipe(
       startWith(null),
@@ -51,7 +56,37 @@ export class MatrixComponent implements OnInit {
     );
   }
   // function to initialize if level columns exists
+
+  ngAfterViewInit() {
+    this.selectChips(this.value);
+    console.log(this.chipList.chipSelectionChanges);
+    this.chipList.chipSelectionChanges
+      .pipe(
+        untilDestroyed(this),
+        map(event => event.source)
+      )
+      .subscribe(chip => {
+        console.log('asd');
+        if (chip.selected) {
+          this.value = [...this.value, chip.value];
+        } else {
+          console.log('asd');
+          this.value = this.value.filter(o => o !== chip.value);
+        }
+
+        this.propagateChange(this.value);
+      });
+  }
   ngOnInit(): void {
+    // //
+    // this.disabledControl.valueChanges
+    //   .pipe(untilDestroyed(this))
+    //   .subscribe(val => {
+    //     if (val) this.chipsControl.disable();
+    //     else this.chipsControl.enable();
+    //   });
+    // //
+
     this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets column header
     this.yaml.getJson().subscribe(data => {
@@ -66,6 +101,7 @@ export class MatrixComponent implements OnInit {
         this.lvlColumn.push('level' + k);
       }
     });
+
     var activitySet = new Set();
 
     //gets value from generated folder
@@ -132,16 +168,81 @@ export class MatrixComponent implements OnInit {
       }
       this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
       this.createRowList();
+
       this.createActivityTags(activitySet);
     });
 
     this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
     this.createRowList();
   }
-
+  options: string[] = [];
   createActivityTags(activitySet: Set<any>): void {
     activitySet.forEach(tag => this.activityVisible.push(tag));
+    activitySet.forEach(tag => this.options.push(tag));
+    console.log(this.options);
   }
+  // options: string[] = this.options2;
+
+  // asdasdas
+
+  @ViewChild(MatChipList)
+  chipList!: MatChipList;
+
+  value: string[] = [];
+
+  onChange!: (value: string[]) => void;
+  onTouch: any;
+
+  disabled = false;
+
+  writeValue(value: string[]): void {
+    // When form value set when chips list initialized
+    if (this.chipList && value) {
+      this.selectChips(value);
+    } else if (value) {
+      // When chips not initialized
+      this.value = value;
+    }
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+    console.log('asd');
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  propagateChange(value: string[]) {
+    if (this.onChange) {
+      this.onChange(value);
+    }
+  }
+
+  selectChips(value: string[]) {
+    this.chipList.chips.forEach(chip => chip.deselect());
+
+    const chipsToSelect = this.chipList.chips.filter(c =>
+      value.includes(c.value)
+    );
+
+    chipsToSelect.forEach(chip => chip.select());
+  }
+
+  toggleSelection(chip: MatChip) {
+    chip.toggleSelected();
+    console.log(chip.value);
+    console.log(chip.toggleSelected);
+  }
+
+  chipsControl = new FormControl([]);
+  chipsControlValue$ = this.chipsControl.valueChanges;
+  // asdasdas
 
   createRowList(): void {
     let i = 0;
@@ -234,6 +335,17 @@ export class MatrixComponent implements OnInit {
 
     this.dataSource.data = JSON.parse(JSON.stringify(updatedActivities));
   }
+
+  //
+
+  // console.log(this);
+  // disabledControl = new FormControl(false);
+
+  // setChipsValue() {
+  //   this.chipsControl.setValue(['Shoes', 'Electronics']);
+  // }
+
+  //
   removeSubDimensionFromFilter(row: string): void {
     let index = this.subDimensionVisible.indexOf(row);
     if (index >= 0) {
