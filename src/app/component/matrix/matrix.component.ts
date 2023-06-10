@@ -146,13 +146,12 @@ export class MatrixComponent implements OnInit {
     this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
     this.createRowList();
   }
+
+  // Activity Tags Toggle Functionality
   options: string[] = [];
   createActivityTags(activitySet: Set<any>): void {
-    activitySet.forEach(tag => this.activityVisible.push(tag));
     activitySet.forEach(tag => this.options.push(tag));
   }
-
-  // Activity Tags Selection STARTS
 
   @ViewChild(MatChipList)
   chipList!: MatChipList;
@@ -282,30 +281,12 @@ export class MatrixComponent implements OnInit {
     this.dataSource.data = JSON.parse(JSON.stringify(updatedActivities));
   }
 
-  //
-
-  // console.log(this);
-  // disabledControl = new FormControl(false);
-
-  // setChipsValue() {
-  //   this.chipsControl.setValue(['Shoes', 'Electronics']);
-  // }
-
-  //
   removeSubDimensionFromFilter(row: string): void {
     let index = this.subDimensionVisible.indexOf(row);
     if (index >= 0) {
       this.subDimensionVisible.splice(index, 1);
     }
     this.autoCompeteResults.push(row);
-    this.updateActivitesBeingDisplayed();
-  }
-  removeActivityFromFilter(activity: string): void {
-    let index = this.activityVisible.indexOf(activity);
-    if (index >= 0) {
-      this.activityVisible.splice(index, 1);
-    }
-    this.autoCompleteActivityResults.push(activity);
     this.updateActivitesBeingDisplayed();
   }
 
@@ -318,16 +299,7 @@ export class MatrixComponent implements OnInit {
     this.rowCtrl.setValue(null);
     this.updateActivitesBeingDisplayed();
   }
-  selectedActivity(event: MatAutocompleteSelectedEvent): void {
-    let autoIndex = this.autoCompleteActivityResults.indexOf(
-      event.option.viewValue
-    );
-    this.autoCompleteActivityResults.splice(autoIndex, 1);
-    this.activityVisible.push(event.option.viewValue);
-    this.updateActivitesBeingDisplayed();
-    this.activityInput.nativeElement.value = '';
-    this.rowCtrlActivity.setValue(null);
-  }
+
   private filterSubDimension(value: string): string[] {
     return this.autoCompeteResults.filter(
       row => row.toLowerCase().indexOf(value.toLowerCase()) === 0

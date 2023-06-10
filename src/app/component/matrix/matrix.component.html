@@ -30,57 +30,19 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <!-- <mat-form-field class="example-chip-list">
+  <mat-form-field class="example-chip-list">
     <mat-label>Activity Filter</mat-label>
-    <mat-chip-list #chipListActivity aria-label="Filter" color="primary">
+    <mat-chip-list selectable multiple>
       <mat-chip
-        color="primary"
-        *ngFor="let activity of activityVisible"
-        (removed)="removeActivityFromFilter(activity)"
-        [selected]="true">
-        {{ activity }}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
+        #c="matChip"
+        *ngFor="let option of options"
+        (click)="toggleSelection(c)"
+        [value]="option">
+        <mat-icon *ngIf="c.selected">check</mat-icon>
+        {{ option }}
       </mat-chip>
-      <input
-        #activityInput
-        [formControl]="rowCtrlActivity"
-        [matAutocomplete]="autoActivity"
-        [matChipInputFor]="chipListActivity"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
     </mat-chip-list>
-    <mat-autocomplete
-      #autoActivity="matAutocomplete"
-      (optionSelected)="selectedActivity($event)">
-      <mat-option
-        *ngFor="let activity of filteredActivities | async"
-        [value]="activity">
-        {{ activity }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field> -->
-  <!-- sd -->
-  <!-- <div class="content-trial">
-    <app-chips-multi-select [options]="options" [formControl]="chipsControl">
-    </app-chips-multi-select>
-
-    <mat-divider></mat-divider>
-
-    <h3>Value: {{ chipsControlValue$ | async }}</h3>
-  </div> -->
-
-  <mat-chip-list selectable multiple>
-    <mat-chip
-      #c="matChip"
-      *ngFor="let option of options"
-      (click)="toggleSelection(c)"
-      [value]="option">
-      <mat-icon *ngIf="c.selected">check</mat-icon>
-      {{ option }}
-    </mat-chip>
-  </mat-chip-list>
-  <!-- sd -->
+  </mat-form-field>
 
   <table
     mat-table

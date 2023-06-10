@@ -19,7 +19,6 @@ import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html
 import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
-import { ChipsMultiSelectComponent } from './component/matrix/chips-multi-select/chips-multi-select.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { ChipsMultiSelectComponent } from './component/matrix/chips-multi-select
     UsageComponent,
     AboutUsComponent,
     DependencyGraphComponent,
-    ChipsMultiSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +45,5 @@ import { ChipsMultiSelectComponent } from './component/matrix/chips-multi-select
   ],
   providers: [ymlService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
