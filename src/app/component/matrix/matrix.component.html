@@ -30,15 +30,16 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <mat-form-field class="example-chip-list">
+  <mat-form-field class="activity-chip-list" (click)="trial()">
     <mat-label>Activity Filter</mat-label>
     <mat-chip-list selectable multiple>
       <mat-chip
         #c="matChip"
         *ngFor="let option of options"
         (click)="toggleSelection(c)"
-        [value]="option">
-        <mat-icon *ngIf="c.selected">check</mat-icon>
+        [value]="option"
+        selected>
+        <!-- <mat-icon *ngIf="c.selected">check</mat-icon> -->
         {{ option }}
       </mat-chip>
     </mat-chip-list>

@@ -146,35 +146,54 @@ export class MatrixComponent implements OnInit {
     this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
     this.createRowList();
   }
+  // ngAfterViewInit() {
+  //   console.log('asdasds');
+  //   this.chipList.chipSelectionChanges
+  //     .pipe(
+  //       untilDestroyed(this),
+  //       map(event => event.source)
+  //     )
+  //     .subscribe(chip => {
+  //       if (chip.selected) {
+  //         this.value = [...this.value, chip.value];
+  //       } else {
+  //         this.value = this.value.filter(o => o !== chip.value);
+  //       }
+
+  //       // this.propagateChange(this.value);
+  //     });
+  // }
 
   // Activity Tags Toggle Functionality
-  options: string[] = [];
-  createActivityTags(activitySet: Set<any>): void {
-    activitySet.forEach(tag => this.options.push(tag));
-  }
 
   @ViewChild(MatChipList)
+  chipsControl = new FormControl(['chipsControl']);
   chipList!: MatChipList;
 
   value: string[] = [];
 
   onChange!: (value: string[]) => void;
 
-  selectChips(value: string[]) {
-    this.chipList.chips.forEach(chip => chip.deselect());
-
-    const chipsToSelect = this.chipList.chips.filter(c =>
-      value.includes(c.value)
-    );
-
-    chipsToSelect.forEach(chip => chip.select());
+  options: string[] = [];
+  createActivityTags(activitySet: Set<any>): void {
+    activitySet.forEach(tag => this.options.push(tag));
+    // Select all tags
+    // this.activityVisible.push
+    activitySet.forEach(tag => this.activityVisible.push(tag));
+    this.updateActivitesBeingDisplayed();
+  }
+  trial() {
+    console.log(this.chipsControl);
+    console.log(this);
   }
 
   toggleSelection(chip: MatChip) {
     chip.toggleSelected();
     console.log(chip.selected);
     if (chip.selected) {
+      console.log(chip);
       this.value = [...this.value, chip.value];
+      // this.chipList
       this.activityVisible = this.value;
       this.updateActivitesBeingDisplayed();
     } else {
@@ -184,8 +203,6 @@ export class MatrixComponent implements OnInit {
     }
     console.log(this.value);
   }
-
-  chipsControl = new FormControl([]);
 
   // Activity Tag ENDS
 
