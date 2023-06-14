@@ -180,11 +180,8 @@ export class MatrixComponent implements OnInit {
     // Select all tags
     // this.activityVisible.push
     activitySet.forEach(tag => this.activityVisible.push(tag));
+    activitySet.forEach(tag => this.value.push(tag));
     this.updateActivitesBeingDisplayed();
-  }
-  trial() {
-    console.log(this.chipsControl);
-    console.log(this);
   }
 
   toggleSelection(chip: MatChip) {
