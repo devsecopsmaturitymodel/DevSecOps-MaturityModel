@@ -146,23 +146,6 @@ export class MatrixComponent implements OnInit {
     this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
     this.createRowList();
   }
-  // ngAfterViewInit() {
-  //   console.log('asdasds');
-  //   this.chipList.chipSelectionChanges
-  //     .pipe(
-  //       untilDestroyed(this),
-  //       map(event => event.source)
-  //     )
-  //     .subscribe(chip => {
-  //       if (chip.selected) {
-  //         this.value = [...this.value, chip.value];
-  //       } else {
-  //         this.value = this.value.filter(o => o !== chip.value);
-  //       }
-
-  //       // this.propagateChange(this.value);
-  //     });
-  // }
 
   // Activity Tags Toggle Functionality
 
@@ -178,7 +161,6 @@ export class MatrixComponent implements OnInit {
   createActivityTags(activitySet: Set<any>): void {
     activitySet.forEach(tag => this.options.push(tag));
     // Select all tags
-    // this.activityVisible.push
     activitySet.forEach(tag => this.activityVisible.push(tag));
     activitySet.forEach(tag => this.value.push(tag));
     this.updateActivitesBeingDisplayed();
@@ -186,11 +168,8 @@ export class MatrixComponent implements OnInit {
 
   toggleSelection(chip: MatChip) {
     chip.toggleSelected();
-    console.log(chip.selected);
     if (chip.selected) {
-      console.log(chip);
       this.value = [...this.value, chip.value];
-      // this.chipList
       this.activityVisible = this.value;
       this.updateActivitesBeingDisplayed();
     } else {
@@ -198,7 +177,6 @@ export class MatrixComponent implements OnInit {
       this.activityVisible = this.value;
       this.updateActivitesBeingDisplayed();
     }
-    console.log(this.value);
   }
 
   // Activity Tag ENDS

@@ -39,7 +39,6 @@
         (click)="toggleSelection(c)"
         [value]="option"
         selected>
-        <!-- <mat-icon *ngIf="c.selected">check</mat-icon> -->
         {{ option }}
       </mat-chip>
     </mat-chip-list>
@@ -93,10 +92,33 @@
                   "></div>
                 <ng-template #thenBlock>
                   <p style="color: green">{{ task }}</p>
+                  <p class="tags-task">[tags here]</p>
                 </ng-template>
                 <ng-template #elseBlock>
                   <p>{{ task }}</p>
                 </ng-template>
+                <span class="tags-task">
+                  [
+                  <span
+                    *ngFor="
+                      let tag of YamlObject[element.Dimension][
+                        element.SubDimension
+                      ][task].tags;
+                      let i = index
+                    ">
+                    {{ tag }}
+                    <span
+                      *ngIf="
+                        i + 1 <
+                        YamlObject[element.Dimension][element.SubDimension][
+                          task
+                        ].tags.length
+                      ">
+                      ,
+                    </span>
+                  </span>
+                  ]
+                </span>
               </button>
             </li>
           </ul>
