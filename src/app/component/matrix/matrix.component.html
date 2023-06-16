@@ -79,6 +79,7 @@
           <ul>
             <li *ngFor="let task of element[lvl]; index as j">
               <button
+                style="margin-bottom: 1em"
                 (click)="
                   navigate(element.Dimension, element.SubDimension, i + 1, task)
                 ">
@@ -91,11 +92,10 @@
                     else elseBlock
                   "></div>
                 <ng-template #thenBlock>
-                  <p style="color: green">{{ task }}</p>
-                  <p class="tags-task">[tags here]</p>
+                  <p style="color: green; margin: 0">{{ task }}</p>
                 </ng-template>
                 <ng-template #elseBlock>
-                  <p>{{ task }}</p>
+                  <p style="margin: 0">{{ task }}</p>
                 </ng-template>
                 <span class="tags-task">
                   [
