@@ -55,6 +55,9 @@ export class MatrixComponent implements OnInit {
       )
     );
   }
+  reload() {
+    window.location.reload();
+  }
   // function to initialize if level columns exists
 
   ngOnInit(): void {

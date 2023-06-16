@@ -4,6 +4,7 @@
 }
 .mat-form-field {
   margin: 20px;
+  margin-bottom: 0;
   width: 90%;
 }
 
@@ -13,6 +14,7 @@
 
 .mat-cell {
   padding: 20px;
+  /* padding-bottom: 0; */
   width: 12.5%;
   max-width: 17%;
   word-wrap: break-word;
@@ -44,4 +46,12 @@ button {
   font-style: italic;
   color: rgb(0, 113, 151);
   font-size: 12px;
+}
+.reset-button {
+  background-color: #66bb6a;
+  display: block;
+  margin: 0 20px;
+  padding: 7px 12px;
+  border-radius: 16px;
+  font: 500 14px / 20px Roboto, 'Helvetica Neue', sans-serif;
 }
