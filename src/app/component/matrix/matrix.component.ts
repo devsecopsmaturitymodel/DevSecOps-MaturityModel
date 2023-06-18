@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
@@ -65,10 +64,8 @@ export class MatrixComponent implements OnInit {
     // Function sets column header
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
-
       // Levels header
       this.levels = this.YamlObject['strings']['en']['maturity_levels'];
-
       // pushes Levels in displayed column
       for (let k = 1; k <= this.levels.length; k++) {
         this.displayedColumns.push('level' + k);
@@ -141,68 +138,75 @@ export class MatrixComponent implements OnInit {
         }
       }
       this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
-      this.createRowList();
-
+      this.createSubDimensionList();
       this.createActivityTags(activitySet);
     });
-
     this.dataSource.data = JSON.parse(JSON.stringify(this.MATRIX_DATA));
-    this.createRowList();
+    this.createSubDimensionList();
   }
-
-  // Activity Tags Toggle Functionality
 
   @ViewChild(MatChipList)
   chipsControl = new FormControl(['chipsControl']);
   chipList!: MatChipList;
 
-  value: string[] = [];
-
-  onChange!: (value: string[]) => void;
-
-  options: string[] = [];
+  listTags: string[] = [];
+  currentTags: string[] = [];
   createActivityTags(activitySet: Set<any>): void {
-    activitySet.forEach(tag => this.options.push(tag));
-    // Select all tags
-    activitySet.forEach(tag => this.activityVisible.push(tag));
-    activitySet.forEach(tag => this.value.push(tag));
+    activitySet.forEach(tag => {
+      this.listTags.push(tag);
+      this.activityVisible.push(tag);
+      this.currentTags.push(tag);
+    });
     this.updateActivitesBeingDisplayed();
   }
 
-  toggleSelection(chip: MatChip) {
+  toggleTagSelection(chip: MatChip) {
     chip.toggleSelected();
     if (chip.selected) {
-      this.value = [...this.value, chip.value];
-      this.activityVisible = this.value;
+      this.currentTags = [...this.currentTags, chip.value];
+      this.activityVisible = this.currentTags;
       this.updateActivitesBeingDisplayed();
     } else {
-      this.value = this.value.filter(o => o !== chip.value);
-      this.activityVisible = this.value;
+      this.currentTags = this.currentTags.filter(o => o !== chip.value);
+      this.activityVisible = this.currentTags;
       this.updateActivitesBeingDisplayed();
     }
   }
 
-  // Activity Tag ENDS
-
-  createRowList(): void {
+  listSubDimension: string[] = [];
+  currentSubDimensions: string[] = [];
+  createSubDimensionList(): void {
     let i = 0;
     while (i < this.MATRIX_DATA.length) {
       if (!this.allRows.includes(this.MATRIX_DATA[i].SubDimension)) {
         this.allRows.push(this.MATRIX_DATA[i].SubDimension);
         this.subDimensionVisible.push(this.MATRIX_DATA[i].SubDimension);
+        this.listSubDimension.push(this.MATRIX_DATA[i].SubDimension);
+        this.currentSubDimensions.push(this.MATRIX_DATA[i].SubDimension);
       }
       i++;
     }
   }
-
+  toggleSubDimensionSelection(chip: MatChip) {
+    chip.toggleSelected();
+    if (chip.selected) {
+      this.currentSubDimensions = [...this.currentSubDimensions, chip.value];
+      this.subDimensionVisible = this.currentSubDimensions;
+      this.selectedSubDimension(chip.value);
+    } else {
+      this.currentSubDimensions = this.currentSubDimensions.filter(
+        o => o !== chip.value
+      );
+      this.subDimensionVisible = this.currentSubDimensions;
+      this.removeSubDimensionFromFilter(chip.value);
+    }
+  }
   //chips
-
   separatorKeysCodes: number[] = [ENTER, COMMA];
   rowCtrl = new FormControl('');
   rowCtrlActivity = new FormControl('');
   filteredSubDimension: Observable<string[]>;
   filteredActivities: Observable<string[]>;
-
   autoCompeteResults: string[] = [];
   autoCompleteActivityResults: string[] = [];
 
@@ -229,13 +233,11 @@ export class MatrixComponent implements OnInit {
             [this.lvlColumn[k] as keyof number]: [],
           };
         }
-
         var activityInCurrentSubDimension: string[] = Object.keys(
           this.YamlObject[this.allDimensionNames[i]][
             subdimensionsInCurrentDimension[j]
           ]
         );
-
         for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
           var currentActivityName = activityInCurrentSubDimension[a];
           var tagsInCurrentActivity: string[] =
@@ -286,12 +288,8 @@ export class MatrixComponent implements OnInit {
   }
 
   //Add chips
-  selectedSubDimension(event: MatAutocompleteSelectedEvent): void {
-    let autoIndex = this.autoCompeteResults.indexOf(event.option.viewValue);
-    this.autoCompeteResults.splice(autoIndex, 1);
-    this.subDimensionVisible.push(event.option.viewValue);
-    this.rowInput.nativeElement.value = '';
-    this.rowCtrl.setValue(null);
+  selectedSubDimension(value: string): void {
+    this.subDimensionVisible.push(value);
     this.updateActivitesBeingDisplayed();
   }
 
