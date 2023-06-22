@@ -2,7 +2,7 @@
   <app-top-header section="Matrix"></app-top-header>
   <mat-form-field class="activity-chip-list">
     <mat-label>SubDimension Filter</mat-label>
-    <mat-chip-list selectable multiple>
+    <mat-chip-list #chipList selectable multiple>
       <mat-chip
         #c="matChip"
         *ngFor="let subDimension of listSubDimension"
@@ -14,7 +14,7 @@
     </mat-chip-list>
   </mat-form-field>
   <mat-form-field class="activity-chip-list">
-    <mat-label>Activity Filter</mat-label>
+    <mat-label>Activity Tag Filter</mat-label>
     <mat-chip-list selectable multiple>
       <mat-chip
         #c="matChip"

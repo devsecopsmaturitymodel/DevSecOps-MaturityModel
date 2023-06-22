@@ -149,6 +149,7 @@ export class MatrixComponent implements OnInit {
   chipsControl = new FormControl(['chipsControl']);
   chipList!: MatChipList;
 
+  // @ViewChild(MatChip)
   listTags: string[] = [];
   currentTags: string[] = [];
   createActivityTags(activitySet: Set<any>): void {
@@ -187,6 +188,7 @@ export class MatrixComponent implements OnInit {
       i++;
     }
   }
+
   toggleSubDimensionSelection(chip: MatChip) {
     chip.toggleSelected();
     if (chip.selected) {
@@ -201,6 +203,7 @@ export class MatrixComponent implements OnInit {
       this.removeSubDimensionFromFilter(chip.value);
     }
   }
+
   //chips
   separatorKeysCodes: number[] = [ENTER, COMMA];
   rowCtrl = new FormControl('');
