@@ -1,33 +1,33 @@
 <div class="content">
   <app-top-header section="Matrix"></app-top-header>
-  <mat-form-field class="example-chip-list">
-    <mat-label>Filter</mat-label>
-    <mat-chip-list #chipList aria-label="Filter" color="primary">
+  <mat-form-field class="activity-chip-list">
+    <mat-label>SubDimension Filter</mat-label>
+    <mat-chip-list #chipList selectable multiple>
       <mat-chip
-        color="primary"
-        *ngFor="let row of rowsCurrentlyBeingShown"
-        (removed)="remove(row)"
-        [selected]="true">
-        {{ row }}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
+        #c="matChip"
+        *ngFor="let subDimension of listSubDimension"
+        (click)="toggleSubDimensionSelection(c)"
+        [value]="subDimension"
+        selected>
+        {{ subDimension }}
       </mat-chip>
-      <input
-        #rowInput
-        [formControl]="rowCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
     </mat-chip-list>
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="selected($event)">
-      <mat-option *ngFor="let row of filteredRows | async" [value]="row">
-        {{ row }}
-      </mat-option>
-    </mat-autocomplete>
   </mat-form-field>
+  <mat-form-field class="activity-chip-list">
+    <mat-label>Activity Tag Filter</mat-label>
+    <mat-chip-list selectable multiple>
+      <mat-chip
+        #c="matChip"
+        *ngFor="let tag of listTags"
+        (click)="toggleTagSelection(c)"
+        [value]="tag"
+        selected>
+        {{ tag }}
+      </mat-chip>
+    </mat-chip-list>
+  </mat-form-field>
+
+  <button class="reset-button" (click)="reload()">RESET</button>
 
   <table
     mat-table
@@ -64,6 +64,7 @@
           <ul>
             <li *ngFor="let task of element[lvl]; index as j">
               <button
+                style="margin-bottom: 1em"
                 (click)="
                   navigate(element.Dimension, element.SubDimension, i + 1, task)
                 ">
@@ -76,11 +77,33 @@
                     else elseBlock
                   "></div>
                 <ng-template #thenBlock>
-                  <p style="color: green">{{ task }}</p>
+                  <p style="color: green; margin: 0">{{ task }}</p>
                 </ng-template>
                 <ng-template #elseBlock>
-                  <p>{{ task }}</p>
+                  <p style="margin: 0">{{ task }}</p>
                 </ng-template>
+                <span class="tags-task">
+                  [
+                  <span
+                    *ngFor="
+                      let tag of YamlObject[element.Dimension][
+                        element.SubDimension
+                      ][task].tags;
+                      let i = index
+                    ">
+                    {{ tag }}
+                    <span
+                      *ngIf="
+                        i + 1 <
+                        YamlObject[element.Dimension][element.SubDimension][
+                          task
+                        ].tags.length
+                      ">
+                      ,
+                    </span>
+                  </span>
+                  ]
+                </span>
               </button>
             </li>
           </ul>
