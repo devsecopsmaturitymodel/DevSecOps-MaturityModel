@@ -60,7 +60,10 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 echo "</pre>";
                 exit;
             }
-        }
+            if (!array_key_exists("tags", $activity)) {
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = [ "none" ];
+            }
+	}
     }
 }
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
