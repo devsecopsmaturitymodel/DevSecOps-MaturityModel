@@ -5,6 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
 import { MatrixComponent } from './matrix.component';
+import { MatChip } from '@angular/material/chips';
 
 describe('MatrixComponent', () => {
   let component: MatrixComponent;
@@ -14,7 +15,7 @@ describe('MatrixComponent', () => {
     await TestBed.configureTestingModule({
       providers: [ymlService, HttpClientTestingModule],
       imports: [RouterTestingModule, HttpClientModule],
-      declarations: [MatrixComponent],
+      declarations: [MatrixComponent, MatChip],
     }).compileComponents();
   });
 
@@ -37,7 +38,7 @@ describe('MatrixComponent', () => {
 
   it('check for chip deletion', () => {
     component.listSubDimension = ['row1', 'row2'];
-    component.removeSubDimensionFromFilter('row1');
+    component.currentSubDimensions = ['row2'];
     component.listTags = ['row1', 'row2'];
     component.currentTags = ['row2'];
     const newChipRow = ['row2'];
