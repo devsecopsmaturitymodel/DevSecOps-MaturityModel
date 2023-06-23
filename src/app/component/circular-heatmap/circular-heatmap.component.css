@@ -1,34 +1,33 @@
 .margin30 {
-    margin-bottom: 30px;
-  }
+  margin-bottom: 30px;
+}
 .axis path,
 .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
-
-button{
+button {
   background-color: white;
   border: none;
   text-align: left;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .example-card {
   float: right;
-  width:25%;
-  margin:5%;
+  width: 25%;
+  margin: 5%;
   padding: 20px;
 }
-.downloadButtonClass{
+.downloadButtonClass {
   position: absolute;
   padding: 10px;
   bottom: 5%;
   right: 5%;
 }
-.resetButtonClass{
+.resetButtonClass {
   position: absolute;
   padding: 10px;
   bottom: 5%;

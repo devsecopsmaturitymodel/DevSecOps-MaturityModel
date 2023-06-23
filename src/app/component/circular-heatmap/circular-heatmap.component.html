@@ -11,6 +11,7 @@
           <mat-card-content *ngFor="let task of tasksData; index as i">
             <div *ngIf="task.ifTaskDone; then trueBlock; else falseBlock"></div>
             <p>
+              <!-- Comprehensive Heat Map -->
               <ng-template #trueBlock>
                 <mat-checkbox
                   (click)="this.toggleCheckbox(i)"
