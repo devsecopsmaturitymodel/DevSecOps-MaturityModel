@@ -36,8 +36,11 @@ export class CircularHeatmapComponent implements OnInit {
   YamlObject: any;
   segment_labels: string[] = [];
   taskDetails: any;
+  showOverlay: boolean;
 
-  constructor(private yaml: ymlService, private router: Router) {}
+  constructor(private yaml: ymlService, private router: Router) {
+    this.showOverlay = false;
+  }
 
   ngOnInit(): void {
     this.yaml.setURI('./assets/YAML/meta.yaml');
@@ -569,11 +572,13 @@ export class CircularHeatmapComponent implements OnInit {
     };
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
 
-    // console.log(navigationExtras.queryParams.dimension);
     this.taskDetails = this.YamlObject[dim][subdim][taskName];
-    // console.log(this.ALL_CARD_DATA);
     console.log(this.taskDetails);
-    // this.router.navigate([this.Routing], navigationExtras);
+    this.showOverlay = true;
+  }
+  closeOverlay() {
+    console.log('hey');
+    this.showOverlay = false;
   }
   SaveEditedYAMLfile() {
     //console.log(this.YamlObject);

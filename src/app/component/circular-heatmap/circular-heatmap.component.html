@@ -2,27 +2,27 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <div class="overlay-details">
+      <div class="overlay-details" [hidden]="!showOverlay">
+        <button class="overlay-close" (click)="closeOverlay()">Close</button>
         <div *ngIf="taskDetails; then trueBlock; else falseBlock"></div>
         <ng-template #trueBlock>
           <div>
-            <!-- <mat-accordion multi="true"> -->
-            <mat-expansion-panel [expanded]="false">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <b>Risk</b>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <ng-template matExpansionPanelContent>
-                <p [innerHTML]="taskDetails.risk"></p>
-              </ng-template>
-            </mat-expansion-panel>
-            <!-- </mat-accordion> -->
+            <mat-accordion multi="true">
+              <mat-expansion-panel [expanded]="false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Risk</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="taskDetails.risk"></p>
+                </ng-template>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </ng-template>
         <ng-template #falseBlock>
           <div>
-            <!-- <mat-accordion multi="true"> -->
             <mat-expansion-panel [expanded]="false" hideToggle disabled>
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -30,7 +30,6 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
             </mat-expansion-panel>
-            <!-- </mat-accordion> -->
           </div>
         </ng-template>
       </div>
@@ -43,7 +42,6 @@
           <mat-card-content *ngFor="let task of tasksData; index as i">
             <div *ngIf="task.ifTaskDone; then trueBlock; else falseBlock"></div>
             <p>
-              <!-- Comprehensive Heat Map -->
               <ng-template #trueBlock>
                 <mat-checkbox
                   (click)="this.toggleCheckbox(i)"
