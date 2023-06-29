@@ -35,6 +35,8 @@ export class CircularHeatmapComponent implements OnInit {
   radial_labels: string[] = [];
   YamlObject: any;
   segment_labels: string[] = [];
+  taskDetails: any;
+
   constructor(private yaml: ymlService, private router: Router) {}
 
   ngOnInit(): void {
@@ -66,7 +68,7 @@ export class CircularHeatmapComponent implements OnInit {
           this.segment_labels.push(allSubDimensionInThisDimension[j]);
         }
       }
-      //console.log(this.segment_labels)
+      // console.log(this.segment_labels);
       for (var l = 0; l < this.maxLevelOfTasks; l++) {
         var allDimensionNames = Object.keys(this.YamlObject);
         for (var i = 0; i < allDimensionNames.length; i++) {
@@ -565,9 +567,13 @@ export class CircularHeatmapComponent implements OnInit {
         taskName: taskName,
       },
     };
-    //console.log(navigationExtras);
-    //console.log(this.ALL_CARD_DATA);
-    this.router.navigate([this.Routing], navigationExtras);
+    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+
+    // console.log(navigationExtras.queryParams.dimension);
+    this.taskDetails = this.YamlObject[dim][subdim][taskName];
+    // console.log(this.ALL_CARD_DATA);
+    console.log(this.taskDetails);
+    // this.router.navigate([this.Routing], navigationExtras);
   }
   SaveEditedYAMLfile() {
     //console.log(this.YamlObject);
