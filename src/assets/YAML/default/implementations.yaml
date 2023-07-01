@@ -716,21 +716,21 @@ implementations:
     url: https://sammancoaching.org/
     description: |
       Security coaches work with software development teams to help them adopt better security practices.
-terraform:
-  name: terraform
-  tags: [IaC]
-  url: https://www.terraform.io/
-  description: |
-    Terraform enables infrastructure automation for provisioning, compliance, and management of any cloud, datacenter, and service.
-packj:
-  name: packj
-  tags: [OpenSource, "Supply Chain", vulnerability]
-  url: https://github.com/ossillate-inc/packj
-  description: |
-    Packj is a tool to detect software supply chain attacks. It can detect malicious, vulnerable, abandoned, typo-squatting, and other "risky" packages from popular open-source package registries, such as NPM, RubyGems, and PyPI.
-apiMyth:
-  name: Top 5 API Security Myths That Are Crushing Your Business
-  tags: [documentation, waf]
-  url: https://thehackernews.com/2022/11/top-5-api-security-myths-that-are.html
-  description: |
-    There are several myths and misconceptions about API security. These myths about securing APIs are crushing your business
+  terraform:
+    name: terraform
+    tags: [IaC]
+    url: https://www.terraform.io/
+    description: |
+      Terraform enables infrastructure automation for provisioning, compliance, and management of any cloud, datacenter, and service.
+  packj:
+    name: packj
+    tags: [OpenSource, "Supply Chain", vulnerability]
+    url: https://github.com/ossillate-inc/packj
+    description: |
+      Packj is a tool to detect software supply chain attacks. It can detect malicious, vulnerable, abandoned, typo-squatting, and other "risky" packages from popular open-source package registries, such as NPM, RubyGems, and PyPI.
+  apiMyth:
+    name: Top 5 API Security Myths That Are Crushing Your Business
+    tags: [documentation, waf]
+    url: https://thehackernews.com/2022/11/top-5-api-security-myths-that-are.html
+    description: |
+      There are several myths and misconceptions about API security. These myths about securing APIs are crushing your business
