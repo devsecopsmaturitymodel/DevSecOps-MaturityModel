@@ -52,10 +52,19 @@
   height: 100%;
 }
 
+.overlay-header {
+  display: grid;
+  grid-template-columns: 1fr 0.1fr;
+}
+
 .overlay-close {
-  margin-left: 100%;
-  transform: translateX(-100%);
+  border: black solid 1px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  color: white;
+  color: black;
+  grid-column: 2/3;
+  grid-row: 1/4;
+  display: grid;
+  justify-content: top;
+  margin-left: auto;
 }
