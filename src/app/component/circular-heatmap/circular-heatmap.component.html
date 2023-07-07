@@ -19,8 +19,8 @@
                     <button class="overlay-close" (click)="closeOverlay()">
                       <mat-icon class="white-icon">close</mat-icon>
                     </button>
-                    <h2>{{ taskDetails.navigationExtras.dimension }} ></h2>
-                    <h3>{{ taskDetails.navigationExtras.subDimension }} ></h3>
+                    <h2>{{ taskDetails.navigationExtras.dimension }}</h2>
+                    <h3>{{ taskDetails.navigationExtras.subDimension }}</h3>
                     <h4>
                       {{ taskDetails.navigationExtras.taskName }}
                     </h4>
@@ -35,6 +35,16 @@
                   </div>
                 </ng-template>
               </div>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Description</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="taskDetails.description"></p>
+                </ng-template>
+              </mat-expansion-panel>
               <mat-expansion-panel [expanded]="true">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
@@ -139,10 +149,10 @@
             <button class="overlay-close" (click)="closeOverlay()">
               <mat-icon class="white-icon">close</mat-icon>
             </button>
-            <mat-expansion-panel [expanded]="true" hideToggle disabled>
+            <mat-expansion-panel [expanded]="false" hideToggle disabled>
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  <b>Nothing to show :P</b>
+                  <b>Nothing to show</b>
                 </mat-panel-title>
               </mat-expansion-panel-header>
             </mat-expansion-panel>
