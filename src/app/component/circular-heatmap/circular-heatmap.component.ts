@@ -59,9 +59,12 @@ export class CircularHeatmapComponent implements OnInit {
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
+      //console.log(this.radial_labels)
       this.YamlObject = data;
+      // console.log(this.YamlObject);
 
       var allDimensionNames = Object.keys(this.YamlObject);
+      // console.log(allDimensionNames);
       for (var i = 0; i < allDimensionNames.length; i++) {
         var allSubDimensionInThisDimension = Object.keys(
           this.YamlObject[allDimensionNames[i]]
@@ -70,6 +73,7 @@ export class CircularHeatmapComponent implements OnInit {
           this.segment_labels.push(allSubDimensionInThisDimension[j]);
         }
       }
+      // console.log(this.segment_labels);
       for (var l = 0; l < this.maxLevelOfTasks; l++) {
         var allDimensionNames = Object.keys(this.YamlObject);
         for (var i = 0; i < allDimensionNames.length; i++) {
@@ -126,6 +130,7 @@ export class CircularHeatmapComponent implements OnInit {
           }
         }
       }
+      // console.log(this.ALL_CARD_DATA);
       this.loadState();
       this.loadCircularHeatMap(
         this.ALL_CARD_DATA,
@@ -138,6 +143,7 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   toggleCheckbox(taskIndex: number) {
+    //console.log('fo')
     let _self = this;
     var index = 0;
     var cnt = 0;
@@ -155,7 +161,9 @@ export class CircularHeatmapComponent implements OnInit {
     } else {
       this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'] = true;
     }
+    // console.log(this.data[i]["Task"][taskIndex]["done"])
     for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
+      console.log(this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']);
       if (this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']) {
         cnt += 1;
       }
@@ -169,6 +177,7 @@ export class CircularHeatmapComponent implements OnInit {
         if (allSubDimensionInThisDimension[j] == this.cardHeader) {
           var taskName =
             this.ALL_CARD_DATA[index]['Task'][taskIndex]['taskName'];
+          // console.log(taskName);
           this.YamlObject[allDimensionNames[i]][
             allSubDimensionInThisDimension[j]
           ][taskName]['isImplemented'] =
@@ -179,6 +188,7 @@ export class CircularHeatmapComponent implements OnInit {
     }
     this.ALL_CARD_DATA[index]['Done%'] =
       cnt / this.ALL_CARD_DATA[index]['Task'].length;
+    // console.log(this.data[index]['Done%'], cnt);
     var color = d3
       .scaleLinear<string, string>()
       .domain([0, 1])
@@ -201,6 +211,9 @@ export class CircularHeatmapComponent implements OnInit {
     radial_labels: string[],
     segment_labels: string[]
   ) {
+    //console.log(segment_labels)
+    //d3.select(dom_element_to_append_to).selectAll('svg').exit()
+    //console.log(dataset)
     let _self = this;
     var margin = {
       top: 50,
@@ -260,25 +273,31 @@ export class CircularHeatmapComponent implements OnInit {
     svg
       .selectAll('path')
       .on('click', function (d) {
+        console.log(d);
         try {
           curr = d.explicitOriginalTarget.__data__;
         } catch {
           curr = d.srcElement.__data__;
         }
+        //console.log(curr);
         _self.currentDimension = curr.Dimension;
         _self.cardSubheader = curr.Level;
         _self.tasksData = curr.Task;
         _self.cardHeader = curr.SubDimension;
         _self.showTaskCard = true;
+        //console.log(_self.tasksData)
       })
       .on('mouseover', function (d) {
+        //console.log(d.toElement.__data__.Name)
         try {
           curr = d.explicitOriginalTarget.__data__;
         } catch {
           curr = d.toElement.__data__;
         }
+        //console.log(curr)
         // increase the segment height of the one being hovered as well as all others of the same date
         // while decreasing the height of all others accordingly
+        //console.log(d)
         if (curr['Done%'] != -1) {
           d3.selectAll(
             '#segment-' +
@@ -290,6 +309,13 @@ export class CircularHeatmapComponent implements OnInit {
       })
 
       .on('mouseout', function (d) {
+        //console.log(d.explicitOriginalTarget.__data__.Day)
+
+        //  var time = d.Time;
+        //  var timeCleaned = time.split(":").join("-");
+        //  var segment = d3.select("#segment-"+d.Day +"-"+timeCleaned); //designate selector variable for brevity
+        //  var fillcolor = segment.select("desc").text();  //access original color from desc
+        //  segment.style("fill", fillcolor);
         if (curr['Done%'] != -1) {
           d3.selectAll(
             '#segment-' +
@@ -302,6 +328,7 @@ export class CircularHeatmapComponent implements OnInit {
               .domain([0, 1])
               .range(['white', 'green']);
             // how to access a function within reusable charts
+            //console.log(color(d.Done));
             return color(curr['Done%']);
           });
         } else {
@@ -332,6 +359,8 @@ export class CircularHeatmapComponent implements OnInit {
       };
     var radialLabels = [];
     var segmentLabels: any[] = [];
+
+    //console.log(segmentLabels)
 
     function chart(selection: any) {
       selection.each(function (this: any, data: any) {
@@ -366,6 +395,7 @@ export class CircularHeatmapComponent implements OnInit {
           .data(data)
           .enter()
           .append('path')
+          // .attr("class","segment")
           .attr('class', function (d: any) {
             return 'segment-' + d.SubDimension.replace(/ /g, '-');
           })
@@ -394,6 +424,7 @@ export class CircularHeatmapComponent implements OnInit {
           });
 
         // Unique id so that the text path defs are unique - is there a better way to do this?
+        // console.log(d3.selectAll(".circular-heat")["_groups"][0].length)
         var id = 1;
 
         //Segment labels
@@ -517,8 +548,11 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   noTasktoGrey(): void {
+    console.log(this.ALL_CARD_DATA);
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
+        console.log(this.ALL_CARD_DATA[x]['SubDimension']);
+        console.log(this.ALL_CARD_DATA[x]['Level']);
         d3.selectAll(
           '#segment-' +
             this.ALL_CARD_DATA[x]['SubDimension'].replace(/ /g, '-') +
@@ -538,15 +572,19 @@ export class CircularHeatmapComponent implements OnInit {
     };
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     this.taskDetails = this.YamlObject[dim][subdim][taskName];
+    console.log(this.YamlObject);
+    console.log(this.YamlObject[dim][subdim]);
     if (this.taskDetails) {
       this.taskDetails.navigationExtras = navigationExtras;
     }
+    console.log(this.taskDetails);
     this.showOverlay = true;
   }
   closeOverlay() {
     this.showOverlay = false;
   }
   SaveEditedYAMLfile() {
+    //console.log(this.YamlObject);
     let yamlStr = yaml.dump(this.YamlObject);
     let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
     var link = document.createElement('a');
