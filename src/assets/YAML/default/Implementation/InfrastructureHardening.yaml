@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-implementation.json
 ---
 Implementation:
   Infrastructure Hardening:

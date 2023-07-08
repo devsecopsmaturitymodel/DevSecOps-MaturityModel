@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-test-and-verification.json
 ---
 Test and Verification:
   Dynamic depth for applications:
