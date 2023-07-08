@@ -22,5 +22,5 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 - We follow the coding style defined by [ESLint](https://eslint.org/). 
 - We also use [Prettier](https://prettier.io/docs/en/index.html) as our opinionated code formatter.
-
+- To validate the schemas of the DSOMM yaml files in the IDE, it is recommended to use the VS Code extension [redhat.vscode-yaml](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). The schemas are stored in /src/assets/YAML/schemas
 
