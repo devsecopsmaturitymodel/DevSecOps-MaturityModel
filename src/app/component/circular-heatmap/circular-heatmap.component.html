@@ -35,7 +35,9 @@
                   </div>
                 </ng-template>
               </div>
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.description">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Description</b>
@@ -45,7 +47,7 @@
                   <p [innerHTML]="taskDetails.description"></p>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel [expanded]="true" *ngIf="taskDetails.risk">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Risk</b>
@@ -55,7 +57,9 @@
                   <p [innerHTML]="taskDetails.risk"></p>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.measure">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Measure</b>
@@ -65,7 +69,9 @@
                   <p [innerHTML]="taskDetails.measure"></p>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.implementation">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Implementation Guide</b>
@@ -79,7 +85,9 @@
                   </ul>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.dependsOn">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Depends On</b>
@@ -89,7 +97,9 @@
                   <p [innerHTML]="taskDetails.dependsOn"></p>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.difficultyOfImplementation">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Difficulty of Implementation</b>
@@ -107,7 +117,9 @@
                   </p>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.references">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>References</b>
