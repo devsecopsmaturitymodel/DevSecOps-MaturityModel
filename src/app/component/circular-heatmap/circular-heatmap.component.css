@@ -1,36 +1,70 @@
 .margin30 {
-    margin-bottom: 30px;
-  }
+  margin-bottom: 30px;
+}
 .axis path,
 .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
-
-button{
+.normal-button {
   background-color: white;
   border: none;
   text-align: left;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .example-card {
   float: right;
-  width:25%;
-  margin:5%;
+  width: 25%;
+  margin: 5%;
   padding: 20px;
 }
-.downloadButtonClass{
+.downloadButtonClass {
   position: absolute;
   padding: 10px;
   bottom: 5%;
   right: 5%;
 }
-.resetButtonClass{
+.resetButtonClass {
   position: absolute;
   padding: 10px;
   bottom: 5%;
   right: 18%;
+}
+.overlay-details {
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.555);
+  backdrop-filter: blur(3px);
+  position: absolute;
+  /* padding: 6em; */
+  /* margin-left: 20%; */
+  width: 60%;
+  min-height: 100%;
+}
+.overlay-modal {
+  /* border: 1px solid black; */
+  margin: 5em;
+  background-color: rgb(238, 238, 238);
+  padding: 1em;
+  border-radius: 1em;
+  height: 100%;
+}
+
+.overlay-header {
+  display: grid;
+  grid-template-columns: 1fr 0.1fr;
+}
+
+.overlay-close {
+  border: black solid 1px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: black;
+  grid-column: 2/3;
+  grid-row: 1/4;
+  display: grid;
+  justify-content: top;
+  margin-left: auto;
 }
