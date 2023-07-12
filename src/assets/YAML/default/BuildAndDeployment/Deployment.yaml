@@ -173,13 +173,12 @@ Build and Deployment:
         exists.
       dependsOn:
       - Defined deployment process
+      - SBOM of components
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 3
       usefulness: 3
-      dependsOn:
-      - SBOM of components
       level: 3
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
