@@ -73,7 +73,7 @@ Test and Verification:
       level: 3
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/example-all-docker
-      comment: By preventing teams from trying out new components, innovation might
+      comments: By preventing teams from trying out new components, innovation might
         be hampered
       references:
         samm2: []
@@ -85,7 +85,6 @@ Test and Verification:
         - 8.8
       isImplemented: false
       evidence: ""
-      comments: ""
       dependsOn:
         - Evaluation of the trust of used components
     Test for unused Resources:
