@@ -4,6 +4,7 @@
     <div class="col-md-6">
       <div class="overlay-details" [hidden]="!showOverlay">
         <div *ngIf="taskDetails; then taskTrue; else taskFalse"></div>
+        <!-- Team Based Assessment -->
         <ng-template #taskTrue>
           <div class="overlay-modal">
             <mat-accordion multi="true" class="overlay-accordion">
