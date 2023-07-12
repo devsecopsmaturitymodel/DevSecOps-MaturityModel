@@ -235,7 +235,7 @@ Test and Verification:
         resources: 1
       usefulness: 4
       level: 1
-      comment: False positive analysis, specially for static analysis, is time consuming.
+      comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
         - I-DM-2-B
@@ -248,7 +248,6 @@ Test and Verification:
       implementation: []
       isImplemented: false
       evidence: ""
-      comments: ""
     Treatment of defects with severity middle:
       risk: Vulnerabilities with severity middle are not visible.
       measure: Vulnerabilities with severity middle are added to the quality gate.
@@ -258,7 +257,7 @@ Test and Verification:
         resources: 1
       usefulness: 3
       level: 3
-      comment: False positive analysis, specially for static analysis, is time consuming.
+      comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
         - I-DM-2-B
@@ -271,7 +270,6 @@ Test and Verification:
       implementation: []
       isImplemented: false
       evidence: ""
-      comments: ""
     Usage of a vulnerability management system:
       risk: Maintenance of false positives in each tool enforces a high workload.
         In addition a correlation of the same finding from different tools is not
