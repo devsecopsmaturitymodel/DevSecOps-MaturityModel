@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schema for Implementations",
+  "type": "object",
+  "properties": {
+    "implementations": {
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": ""
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "default": "https://"
+            },
+            "description": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "required": [
+            "name",
+            "tags",
+            "url",
+            "description"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "implementations"
+  ],
+  "additionalProperties": false
+}

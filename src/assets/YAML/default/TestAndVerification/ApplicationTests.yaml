@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-test-and-verification.json
 ---
 Test and Verification:
   Application tests:
@@ -58,7 +59,7 @@ Test and Verification:
         resources: 2
       usefulness: 3
       level: 2
-      comment: |
+      comments: |
         The integration of module tests takes place during development instead, it highlights vulnerabilities in sub-routines, functions, modules, libraries etc. checked.
         A sample implementation of unit tests are explained in the video [Shift-Left-Security with the Security Test Pyramid - Andreas Falk](https://www.youtube.com/watch?v=TzFZy3f7d8E) starting with minute 9.
       implementation:
@@ -75,7 +76,6 @@ Test and Verification:
         - 8.29
       isImplemented: false
       evidence: ""
-      comments: ""
     Smoke Test:
       risk: During a deployment an error might happen which leads to non-availability
         of the system, a part of the system or a feature.
