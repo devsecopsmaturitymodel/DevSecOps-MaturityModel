@@ -7,6 +7,7 @@ import { Router, NavigationExtras } from '@angular/router';
 export interface taskSchema {
   taskName: string;
   ifTaskDone: boolean;
+  teamsImplemented: any;
 }
 
 export interface cardSchema {
@@ -111,12 +112,17 @@ export class CircularHeatmapComponent implements OnInit {
                     this.YamlObject[allDimensionNames[i]][
                       allSubDimensionInThisDimension[j]
                     ][allTaskInThisSubDimension[k]]['isImplemented'];
+                  var teamStatus: any =
+                    this.YamlObject[allDimensionNames[i]][
+                      allSubDimensionInThisDimension[j]
+                    ][allTaskInThisSubDimension[k]]['teamsImplemented'];
                   if (Status) {
                     totalImplemented += 1;
                   }
                   tempData['Task'].push({
                     taskName: nameOfTask,
                     ifTaskDone: Status,
+                    teamsImplemented: teamStatus,
                   });
                 }
                 if (totalTasks > 0) {
@@ -127,6 +133,7 @@ export class CircularHeatmapComponent implements OnInit {
               }
             }
             this.ALL_CARD_DATA.push(tempData);
+            // console.log(this.ALL_CARD_DATA);
           }
         }
       }
@@ -161,6 +168,7 @@ export class CircularHeatmapComponent implements OnInit {
     } else {
       this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'] = true;
     }
+
     // console.log(this.data[i]["Task"][taskIndex]["done"])
     for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
       console.log(this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']);
@@ -285,7 +293,7 @@ export class CircularHeatmapComponent implements OnInit {
         _self.tasksData = curr.Task;
         _self.cardHeader = curr.SubDimension;
         _self.showTaskCard = true;
-        //console.log(_self.tasksData)
+        console.log(_self.tasksData);
       })
       .on('mouseover', function (d) {
         //console.log(d.toElement.__data__.Name)
@@ -578,6 +586,7 @@ export class CircularHeatmapComponent implements OnInit {
       this.taskDetails.navigationExtras = navigationExtras;
     }
     console.log(this.taskDetails);
+    console.log(this.ALL_CARD_DATA);
     this.showOverlay = true;
   }
   closeOverlay() {
