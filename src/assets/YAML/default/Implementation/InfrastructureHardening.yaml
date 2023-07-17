@@ -243,7 +243,7 @@ Implementation:
       usefulness: 5
       level: 3
       dependsOn:
-      - Audit of systemcalls
+      - Audit of system events
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/seccomp
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/strace
@@ -360,7 +360,7 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    Baseline Hardening of the envirnoment:
+    Baseline Hardening of the environment:
       risk: Using default configurations for a cluster environment leads to potential
         risks.
       measure: Harden environments according to best practices. Level 1 and
@@ -391,7 +391,7 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    Hardening of the Envirnoment:
+    Hardening of the Environment:
       risk: Using default configurations for a cluster environment leads to potential
         risks.
       measure: Harden environments according to best practices. Level 2 and
@@ -452,7 +452,7 @@ Implementation:
       risk: Having security auditing in the same account as infrastructure and applications
         at the cloud provide might cause evil administrators (or threat actors taking
         over an account of an administrator) to alter evidence like audit logs.
-      measure: Usage of a seperate account dedicated for security activities.
+      measure: Usage of a separate account dedicated for security activities.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
@@ -474,7 +474,7 @@ Implementation:
       risk: Evil actors might be able to perform a man in the middle attack and sniff
         confidential information (e.g. authentication factors like passwords)
       measure: By using encryption at the edge of traffic in transit, it is impossible
-        or at least harder to sniff credentials beeing outside of the organization.
+        or at least harder to sniff credentials being outside of the organization.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -514,7 +514,7 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    Usage of internal encryption at tansit:
+    Usage of internal encryption at transit:
       risk: Evil actors within the organization of traffic in transit might be able
         to perform a man in the middle attack and sniff confidential information (e.g.
         authentication factors like passwords)

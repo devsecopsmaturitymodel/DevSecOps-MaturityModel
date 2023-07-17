@@ -28,7 +28,7 @@ Culture and Organization:
       evidence: ""
       comments: ""
     Security Coaching:
-      risk: Training does not change behaviour. Therefore, even if security practices are understood, it's likly that they are not performed.
+      risk: Training does not change behaviour. Therefore, even if security practices are understood, it's likely that they are not performed.
       measure: By coaching teams on security topics using for example the samman coaching method, teams internalize security practices as new habits in their development process.
       difficultyOfImplementation:
         knowledge: 4
@@ -314,7 +314,7 @@ Culture and Organization:
       risk: Employees are not getting excited about security.
       measure: Good communication and transparency encourages cross-organizational
         support. Gamification of security is also known to help, examples include
-        T-Shirts, mugs, cups, giftcards and 'High-Fives'.
+        T-Shirts, mugs, cups, gift cards and 'High-Fives'.
       difficultyOfImplementation:
         knowledge: 3
         time: 2

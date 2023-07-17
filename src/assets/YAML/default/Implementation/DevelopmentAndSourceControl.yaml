@@ -3,7 +3,7 @@
 Implementation:
   Development and Source Control:
     Local development linting & style checks performed:
-      risk: Insecure or unmaintenable code base.
+      risk: Insecure or unmaintainable code base.
       measure: >-
         Integrate static code analysis tools in IDEs.
       difficultyOfImplementation:

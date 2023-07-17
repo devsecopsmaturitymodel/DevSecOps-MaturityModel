@@ -68,7 +68,7 @@ Implementation:
       dependsOn:
         - App. Hardening Level 1 (50%)
       description: |
-        To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jumpstart the development process, but also do so securely.
+        To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jump-start the development process, but also do so securely.
 
         [...]
 
