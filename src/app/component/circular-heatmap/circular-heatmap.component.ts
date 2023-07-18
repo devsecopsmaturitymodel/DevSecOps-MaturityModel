@@ -75,6 +75,7 @@ export class CircularHeatmapComponent implements OnInit {
         }
       }
       // console.log(this.segment_labels);
+      console.log('check');
       for (var l = 0; l < this.maxLevelOfTasks; l++) {
         var allDimensionNames = Object.keys(this.YamlObject);
         for (var i = 0; i < allDimensionNames.length; i++) {
@@ -116,6 +117,12 @@ export class CircularHeatmapComponent implements OnInit {
                     this.YamlObject[allDimensionNames[i]][
                       allSubDimensionInThisDimension[j]
                     ][allTaskInThisSubDimension[k]]['teamsImplemented'];
+                  if (!teamStatus) {
+                    teamStatus = {
+                      V: false,
+                    };
+                    console.log('fails');
+                  }
                   if (Status) {
                     totalImplemented += 1;
                   }
@@ -132,8 +139,9 @@ export class CircularHeatmapComponent implements OnInit {
                 console.log('level for task does not exist');
               }
             }
+            console.log('tempData', tempData);
             this.ALL_CARD_DATA.push(tempData);
-            // console.log(this.ALL_CARD_DATA);
+            // console.log('bitch', this.ALL_CARD_DATA);
           }
         }
       }
@@ -287,13 +295,25 @@ export class CircularHeatmapComponent implements OnInit {
         } catch {
           curr = d.srcElement.__data__;
         }
-        //console.log(curr);
+        var index = 0;
+        var cnt = 0;
+        for (var i = 0; i < _self.ALL_CARD_DATA.length; i++) {
+          if (
+            _self.ALL_CARD_DATA[i]['SubDimension'] === curr.SubDimension &&
+            _self.ALL_CARD_DATA[i]['Level'] === curr.Level
+          ) {
+            index = i;
+            break;
+          }
+        }
+        console.log('index', _self.ALL_CARD_DATA[index]['Task']);
         _self.currentDimension = curr.Dimension;
         _self.cardSubheader = curr.Level;
         _self.tasksData = curr.Task;
         _self.cardHeader = curr.SubDimension;
         _self.showTaskCard = true;
-        console.log(_self.tasksData);
+        console.log('curr', curr.Task);
+        // console.log(_self.tasksData);
       })
       .on('mouseover', function (d) {
         //console.log(d.toElement.__data__.Name)

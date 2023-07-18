@@ -194,9 +194,9 @@
                   ">
                   {{ task['taskName'] }}
                 </button>
-                <ul *ngIf="taskDetails.teamsImplemented">
+                <!-- <ul *ngIf="taskDetails.teamsImplemented">
                   <li *ngFor="let teamName of task.teamsImplemented">1</li>
-                </ul>
+                </ul> -->
               </ng-template>
               <ng-template #falseBlock>
                 <mat-checkbox
@@ -211,9 +211,11 @@
                   ">
                   {{ task['taskName'] }}
                 </button>
-                <ul *ngIf="taskDetails.teamsImplemented">
-                  <li *ngFor="let teamName of task.teamsImplemented">1</li>
-                </ul>
+                <!-- <ul *ngIf="taskDetails.teamsImplemented">
+                  <li *ngFor="let teamName of taskDetails.teamsImplemented">
+                    1
+                  </li>
+                </ul> -->
               </ng-template>
             </p>
           </mat-card-content>
