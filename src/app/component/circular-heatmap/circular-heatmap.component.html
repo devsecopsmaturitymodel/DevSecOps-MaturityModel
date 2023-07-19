@@ -187,19 +187,6 @@
                   [checked]="true"
                   color="primary">
                 </mat-checkbox>
-                <button
-                  class="normal-button"
-                  (click)="
-                    navigate(currentDimension, cardHeader, 1, task['taskName'])
-                  ">
-                  {{ task['taskName'] }}
-                </button>
-                <ul>
-                  <li *ngFor="let item of task.teamsImplemented | keyvalue">
-                    Key: <b>{{ item.key }}</b> and Value:
-                    <b>{{ item.value }}</b>
-                  </li>
-                </ul>
               </ng-template>
               <ng-template #falseBlock>
                 <mat-checkbox
@@ -207,23 +194,25 @@
                   [checked]="false"
                   color="primary">
                 </mat-checkbox>
-                <button
-                  class="normal-button"
-                  (click)="
-                    navigate(currentDimension, cardHeader, 1, task['taskName'])
-                  ">
-                  {{ task['taskName'] }}
-                </button>
-                <!-- <ul *ngFor="let task of tasksData"> -->
-                <ul>
-                  <li *ngFor="let item of task.teamsImplemented | keyvalue">
-                    Key: <b>{{ item.key }}</b> and Value:
-                    <b>{{ item.value }}</b>
-                  </li>
-                </ul>
-                <!-- </ul> -->
               </ng-template>
+              <button
+                class="normal-button"
+                (click)="
+                  navigate(currentDimension, cardHeader, 1, task['taskName'])
+                ">
+                {{ task['taskName'] }}
+              </button>
             </p>
+
+            <ul>
+              <li *ngFor="let item of task.teamsImplemented | keyvalue">
+                <mat-checkbox [checked]="item.value === true" color="primary">
+                  {{ item.key }}
+                </mat-checkbox>
+              </li>
+            </ul>
+            <!-- </p>  -->
+            <!-- </p> -->
           </mat-card-content>
         </mat-card>
         <button
