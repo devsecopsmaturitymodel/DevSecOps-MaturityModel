@@ -194,9 +194,12 @@
                   ">
                   {{ task['taskName'] }}
                 </button>
-                <!-- <ul *ngIf="taskDetails.teamsImplemented">
-                  <li *ngFor="let teamName of task.teamsImplemented">1</li>
-                </ul> -->
+                <ul>
+                  <li *ngFor="let item of task.teamsImplemented | keyvalue">
+                    Key: <b>{{ item.key }}</b> and Value:
+                    <b>{{ item.value }}</b>
+                  </li>
+                </ul>
               </ng-template>
               <ng-template #falseBlock>
                 <mat-checkbox
@@ -211,11 +214,14 @@
                   ">
                   {{ task['taskName'] }}
                 </button>
-                <!-- <ul *ngIf="taskDetails.teamsImplemented">
-                  <li *ngFor="let teamName of taskDetails.teamsImplemented">
-                    1
+                <!-- <ul *ngFor="let task of tasksData"> -->
+                <ul>
+                  <li *ngFor="let item of task.teamsImplemented | keyvalue">
+                    Key: <b>{{ item.key }}</b> and Value:
+                    <b>{{ item.value }}</b>
                   </li>
-                </ul> -->
+                </ul>
+                <!-- </ul> -->
               </ng-template>
             </p>
           </mat-card-content>

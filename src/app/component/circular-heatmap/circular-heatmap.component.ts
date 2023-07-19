@@ -141,11 +141,11 @@ export class CircularHeatmapComponent implements OnInit {
             }
             console.log('tempData', tempData);
             this.ALL_CARD_DATA.push(tempData);
-            // console.log('bitch', this.ALL_CARD_DATA);
+            console.log('new all card data', this.ALL_CARD_DATA);
           }
         }
       }
-      // console.log(this.ALL_CARD_DATA);
+      console.log('check', this.ALL_CARD_DATA);
       this.loadState();
       this.loadCircularHeatMap(
         this.ALL_CARD_DATA,
@@ -307,13 +307,20 @@ export class CircularHeatmapComponent implements OnInit {
           }
         }
         console.log('index', _self.ALL_CARD_DATA[index]['Task']);
+        console.log('dataset', dataset);
         _self.currentDimension = curr.Dimension;
         _self.cardSubheader = curr.Level;
         _self.tasksData = curr.Task;
         _self.cardHeader = curr.SubDimension;
         _self.showTaskCard = true;
-        console.log('curr', curr.Task);
-        // console.log(_self.tasksData);
+        // for (var i = 0; i < _self.tasksData.length; i++) {
+        //   console.log(_self.tasksData[i].teamsImplemented['V']);
+        // }
+        (
+          Object.keys(_self.tasksData) as (keyof typeof _self.tasksData)[]
+        ).forEach((key, index) => {
+          console.log(key, _self.tasksData[key], index);
+        });
       })
       .on('mouseover', function (d) {
         //console.log(d.toElement.__data__.Name)
