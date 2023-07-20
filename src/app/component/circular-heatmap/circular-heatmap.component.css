@@ -13,6 +13,7 @@
   border: none;
   text-align: left;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .example-card {
@@ -31,7 +32,7 @@
   position: fixed;
   padding: 10px;
   bottom: 5%;
-  right: 22%;
+  right: 18%;
 }
 .overlay-details {
   z-index: 2;
@@ -67,4 +68,9 @@
   display: grid;
   justify-content: top;
   margin-left: auto;
+}
+.team-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 1em;
 }

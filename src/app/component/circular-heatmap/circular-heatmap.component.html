@@ -178,41 +178,33 @@
             <mat-card-title>{{ cardHeader }}</mat-card-title>
             <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
           </mat-card-title-group>
-          <mat-card-content *ngFor="let task of tasksData; index as i">
-            <div *ngIf="task.ifTaskDone; then trueBlock; else falseBlock"></div>
-            <p>
-              <ng-template #trueBlock>
-                <mat-checkbox
-                  (click)="this.toggleCheckbox(i)"
-                  [checked]="true"
-                  color="primary">
-                </mat-checkbox>
+          <mat-card-content *ngFor="let task of tasksData; index as taskIndex">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <button
+                    class="normal-button"
+                    (click)="
+                      $event.preventDefault();
+                      navigate(currentDimension, cardHeader, task['taskName'])
+                    ">
+                    {{ task['taskName'] }}
+                  </button>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ng-template matExpansionPanelContent>
+                <ul class="team-list">
+                  <li *ngFor="let item of task.teamsImplemented | keyvalue">
+                    <mat-checkbox
+                      [checked]="item.value === true"
+                      color="primary"
+                      (click)="this.teamCheckbox(taskIndex, item.key)">
+                      {{ item.key }}
+                    </mat-checkbox>
+                  </li>
+                </ul>
               </ng-template>
-              <ng-template #falseBlock>
-                <mat-checkbox
-                  (click)="this.toggleCheckbox(i)"
-                  [checked]="false"
-                  color="primary">
-                </mat-checkbox>
-              </ng-template>
-              <button
-                class="normal-button"
-                (click)="
-                  navigate(currentDimension, cardHeader, 1, task['taskName'])
-                ">
-                {{ task['taskName'] }}
-              </button>
-            </p>
-
-            <ul>
-              <li *ngFor="let item of task.teamsImplemented | keyvalue">
-                <mat-checkbox [checked]="item.value === true" color="primary">
-                  {{ item.key }}
-                </mat-checkbox>
-              </li>
-            </ul>
-            <!-- </p>  -->
-            <!-- </p> -->
+            </mat-expansion-panel>
           </mat-card-content>
         </mat-card>
         <button
