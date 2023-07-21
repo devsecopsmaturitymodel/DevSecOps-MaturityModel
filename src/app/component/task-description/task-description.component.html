@@ -179,13 +179,28 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <b>Implemented</b>
+          <b>Implemented By</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div
-        *ngIf="currentTask.isImplemented; then thenBlock; else elseBlock"></div>
-      <ng-template #thenBlock> Implemented </ng-template>
-      <ng-template #elseBlock> Not Implemented </ng-template>
+        *ngIf="
+          currentTask.teamsImplemented;
+          then thenBlock;
+          else elseBlock
+        "></div>
+      <ng-template #thenBlock>
+        <ul class="teams-implemented-list">
+          <li *ngFor="let item of currentTask.teamsImplemented | keyvalue">
+            <b>{{ item.key }}</b
+            >:{{ item.value }}
+          </li>
+        </ul>
+      </ng-template>
+      <ng-template #elseBlock
+        >teamsImplemented variable not present <br />
+        <p *ngIf="currentTask.isImplemented === false">Not Implemented</p>
+        <p *ngIf="currentTask.isImplemented === true">Implemented</p>
+      </ng-template>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>

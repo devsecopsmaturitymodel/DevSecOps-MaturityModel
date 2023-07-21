@@ -33,6 +33,7 @@ export interface taskDescription {
   assessment: string;
   comments: string;
   isImplemented: boolean;
+  teamsImplemented: Object;
 }
 
 @Component({
@@ -64,6 +65,7 @@ export class TaskDescriptionComponent implements OnInit {
     evidence: '',
     comments: '',
     isImplemented: false,
+    teamsImplemented: {},
   };
 
   YamlObject: any;
@@ -184,6 +186,7 @@ export class TaskDescriptionComponent implements OnInit {
         data['isImplemented'],
         false
       );
+      this.currentTask.teamsImplemented = data['teamsImplemented'];
       this.openall();
     });
   }
@@ -263,6 +266,7 @@ export class TaskDescriptionComponent implements OnInit {
     this.accordion.forEach(element => {
       element.openAll();
     });
+    console.log(this.currentTask.teamsImplemented);
   }
 
   // Close all function
