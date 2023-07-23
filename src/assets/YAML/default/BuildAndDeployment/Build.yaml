@@ -74,12 +74,12 @@ Build and Deployment:
       comments: ""
     Pinning of artifacts:
       risk: Unauthorized manipulation of artifacts might be difficult to spot. For
-        example, this may result in using images with malicious code. Also, intendend
+        example, this may result in using images with malicious code. Also, intended
         major changes, which are automatically used in an image used might break the
         functionality.
       measure: Pinning of artifacts ensure that changes are performed only when intended.
       comment: The usage of pinning requires a good processes for patching. Therefore,
-        choose this activity wisly.
+        choose this activity wisely.
       meta:
         implementationGuide: Pinning artifacts in Dockerfile refers to the practice of using specific,
           immutable versions of base images and dependencies in your build process. Instead of using the
@@ -142,7 +142,7 @@ Build and Deployment:
     Signing of artifacts:
       risk: &execution-maliciuous Execution or usage of malicious code or data e.g. via executables, libraries or container images.
       measure: Digitally signing artifacts for all steps during the build and especially
-        docker images, helps to ensure their integrity and autenticity.
+        docker images, helps to ensure their integrity and authenticity.
       difficultyOfImplementation:
         knowledge: 2
         time: 2

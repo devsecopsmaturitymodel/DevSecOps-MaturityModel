@@ -59,7 +59,7 @@ Test and Verification:
           - 5.10
       isImplemented: false
       evidence: ""
-      comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
+      comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [Github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
     Generation of Patch Management Statistics:
       risk: Delays in patch response lead to an increased attack surface through longer exposure of known vulnerabilities.
       measure: Average time to patch is visualized per component/project/team.

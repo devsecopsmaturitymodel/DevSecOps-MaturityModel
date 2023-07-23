@@ -52,7 +52,7 @@ Information Gathering:
       comments: ""
     Audit of system events:
       risk: System events (system calls) trends and attacks are not detected.
-      measure: Gathering of systemcalls.
+      measure: Gathering of system calls.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -227,10 +227,10 @@ Information Gathering:
       evidence: ""
       comments: ""
     Monitoring of costs:
-      risk: Not monitorig costs might lead to unexpected high resource consumption
+      risk: Not monitoring costs might lead to unexpected high resource consumption
         and a high invoice.
       measure: Implement cost budgets. Setting of an alert threshold and sending out errors when it is reached. In the 
-        best case, a second treshold with a limit is set so that the cost can not go higher.
+        best case, a second threshold with a limit is set so that the cost can not go higher.
       difficultyOfImplementation:
         knowledge: 1
         time: 2

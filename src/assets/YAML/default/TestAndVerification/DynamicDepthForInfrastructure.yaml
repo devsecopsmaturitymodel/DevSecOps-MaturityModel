@@ -33,7 +33,7 @@ Test and Verification:
         leading to world open cluster management ports.
       measure: With the help of tools the network configuration of unintentional exposed
         cluster(s) are tested. To identify clusters, all subdomains might need to
-        be identified with a tool like OWASP Amass to perform portscans based o the
+        be identified with a tool like OWASP Amass to perform port scans based o the
         result.
       difficultyOfImplementation:
         knowledge: 1

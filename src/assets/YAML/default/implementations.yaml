@@ -503,7 +503,7 @@ implementations:
   clusterscanner:
     url: https://github.com/SDA-SE/clusterscanner
     name: ClusterScanner
-    tags: [docker, image, container, vulnerability, misconfiguration, securiity-tools, scanning]
+    tags: [docker, image, container, vulnerability, misconfiguration, security-tools, scanning]
     description: Discover vulnerabilities and container image misconfiguration in production environments.
   dockerfile-with-hado:
     name: Dockerfile with hadolint

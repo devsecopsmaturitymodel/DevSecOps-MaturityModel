@@ -56,7 +56,7 @@ Test and Verification:
         resources: 1
       usefulness: 4
       level: 4
-      description: Subscribing to github projects and reading release notes might help. Software Composition Analysis for infrastructe might help, but is often too fine-granular.
+      description: Subscribing to Github projects and reading release notes might help. Software Composition Analysis for infrastructure might help, but is often too fine-granular.
       implementation:
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-github-com-a
       - $ref: src/assets/YAML/default/implementations.yaml#/implementations/registries-like-quay

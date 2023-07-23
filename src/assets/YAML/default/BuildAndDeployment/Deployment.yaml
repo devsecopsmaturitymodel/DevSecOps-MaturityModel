@@ -312,7 +312,7 @@ Build and Deployment:
       comments: ""
     Evaluation of the trust of used components:
       risk: 
-        Application and system components like Open Source libraies or images can have implementation flaws or deployment flaws. 
+        Application and system components like Open Source libraries or images can have implementation flaws or deployment flaws. 
         Developers or operations might start random images in the production cluster which have malicious code or known vulnerabilities.
       measure:
         Each components source is evaluated to be trusted. For example the source, number of developers included, email configuration used by maintainers to prevent maintainer account theft, typo-squatting, ...
