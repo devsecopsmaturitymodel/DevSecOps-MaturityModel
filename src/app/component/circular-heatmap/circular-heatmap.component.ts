@@ -35,6 +35,7 @@ export class CircularHeatmapComponent implements OnInit {
   ALL_CARD_DATA: cardSchema[] = [];
   radial_labels: string[] = [];
   YamlObject: any;
+  metaData: any;
   segment_labels: string[] = [];
   taskDetails: any;
   showOverlay: boolean;
@@ -55,8 +56,8 @@ export class CircularHeatmapComponent implements OnInit {
         this.radial_labels.push('Level ' + y);
         this.maxLevelOfTasks = y;
       }
+      this.metaData = this.YamlObject;
     });
-
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
@@ -94,8 +95,8 @@ export class CircularHeatmapComponent implements OnInit {
               'Done%': -1,
               Task: [],
             };
-            var totalImplemented: number = 0;
-            var totalTasks: number = 0;
+            var totalTeamsImplemented: number = 0;
+            var totalTaskTeams: number = 0;
             tempData['Dimension'] = allDimensionNames[i];
             tempData['SubDimension'] = allSubDimensionInThisDimension[j];
             tempData['Level'] = 'Level ' + (l + 1);
@@ -106,33 +107,52 @@ export class CircularHeatmapComponent implements OnInit {
                     allSubDimensionInThisDimension[j]
                   ][allTaskInThisSubDimension[k]]['level'];
                 if (lvlOfCurrentTask == l + 1) {
-                  totalTasks += 1;
+                  totalTaskTeams += 1;
                   var nameOfTask: string = allTaskInThisSubDimension[k];
                   var Status: boolean =
                     this.YamlObject[allDimensionNames[i]][
                       allSubDimensionInThisDimension[j]
                     ][allTaskInThisSubDimension[k]]['isImplemented'];
-                  var teamStatus: any =
+                  // Create an object from an array from meta data
+                  const teams = this.metaData['strings']['en']['teams'];
+
+                  var teamStatus: { [key: string]: boolean } = {};
+
+                  teams.forEach((singleTeam: any) => {
+                    teamStatus[singleTeam] = false;
+                  });
+                  console.log('check', teamStatus);
+
+                  var teamsImplemented: any =
                     this.YamlObject[allDimensionNames[i]][
                       allSubDimensionInThisDimension[j]
                     ][allTaskInThisSubDimension[k]]['teamsImplemented'];
-                  if (!teamStatus) {
-                    teamStatus = {
-                      V: false,
-                    };
-                    console.log('Adding dummy team name');
+                  if (teamsImplemented) {
+                    teamStatus = teamsImplemented;
                   }
-                  if (Status) {
-                    totalImplemented += 1;
-                  }
+                  // if (Status) {
+                  //   totalImplemented += 1;
+                  // }
+                  // Calculating %done
+                  (
+                    Object.keys(teamStatus) as (keyof typeof teamStatus)[]
+                  ).forEach((key, index) => {
+                    // 👇️ name Bobby Hadz 0, country Chile 1
+                    console.log(key, teamStatus[key], index);
+                    totalTaskTeams += 1;
+                    if (teamStatus[key] === true) {
+                      totalTeamsImplemented += 1;
+                    }
+                  });
+
                   tempData['Task'].push({
                     taskName: nameOfTask,
                     ifTaskDone: Status,
                     teamsImplemented: teamStatus,
                   });
                 }
-                if (totalTasks > 0) {
-                  tempData['Done%'] = totalImplemented / totalTasks;
+                if (totalTaskTeams > 0) {
+                  tempData['Done%'] = totalTeamsImplemented / totalTaskTeams;
                 }
               } catch {
                 console.log('level for task does not exist');
@@ -640,11 +660,11 @@ export class CircularHeatmapComponent implements OnInit {
     }
   }
 
-  navigate(dim: string, subdim: string,  taskName: string) {
+  navigate(dim: string, subdim: string, taskName: string) {
     let navigationExtras = {
       dimension: dim,
       subDimension: subdim,
-      
+
       taskName: taskName,
     };
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
