@@ -186,6 +186,20 @@
         </ng-template>
       </div>
       <div id="chart" class="heatmapClass">
+        <div class="team-filter">
+          <mat-form-field class="team-chip-list">
+            <mat-label>TeamList Filter</mat-label>
+            <mat-chip-list #teams selectable multiple>
+              <mat-chip
+                #c="matChip"
+                *ngFor="let team of filterTeamList"
+                [value]="team"
+                selected>
+                {{ team }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
         <mat-card class="example-card" *ngIf="showTaskCard">
           <mat-card-title-group>
             <mat-card-title>{{ cardHeader }}</mat-card-title>
@@ -220,6 +234,7 @@
             </mat-expansion-panel>
           </mat-card-content>
         </mat-card>
+
         <button
           class="normal-button"
           mat-raised-button

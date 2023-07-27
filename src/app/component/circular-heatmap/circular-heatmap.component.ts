@@ -35,7 +35,8 @@ export class CircularHeatmapComponent implements OnInit {
   ALL_CARD_DATA: cardSchema[] = [];
   radial_labels: string[] = [];
   YamlObject: any;
-  metaData: any;
+  teamList: any;
+  filterTeamList: any;
   segment_labels: string[] = [];
   taskDetails: any;
   showOverlay: boolean;
@@ -56,7 +57,14 @@ export class CircularHeatmapComponent implements OnInit {
         this.radial_labels.push('Level ' + y);
         this.maxLevelOfTasks = y;
       }
-      this.metaData = this.YamlObject;
+      this.teamList = this.YamlObject['strings']['en']['teams'];
+      this.filterTeamList = ['All'];
+      for (let i = 0; i < this.teamList.length; i += 1) {
+        this.filterTeamList.push(this.teamList[i]);
+      }
+
+      console.log(this.filterTeamList);
+      // this.filterTeamList = ["All,"...teamList]
     });
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
@@ -114,7 +122,7 @@ export class CircularHeatmapComponent implements OnInit {
                       allSubDimensionInThisDimension[j]
                     ][allTaskInThisSubDimension[k]]['isImplemented'];
                   // Create an object from an array from meta data
-                  const teams = this.metaData['strings']['en']['teams'];
+                  const teams = this.teamList;
 
                   var teamStatus: { [key: string]: boolean } = {};
 
