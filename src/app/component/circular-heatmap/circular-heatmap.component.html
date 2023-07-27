@@ -98,6 +98,7 @@
                   <p [innerHTML]="taskDetails.dependsOn"></p>
                 </ng-template>
               </mat-expansion-panel>
+
               <mat-expansion-panel
                 [expanded]="true"
                 *ngIf="taskDetails.difficultyOfImplementation">
@@ -116,6 +117,18 @@
                     Resources:
                     {{ taskDetails.difficultyOfImplementation.resources }}
                   </p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="true" *ngIf="taskDetails.tags">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Tags</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <ul *ngFor="let tag of taskDetails.tags">
+                    <li [innerHTML]="tag"></li>
+                  </ul>
                 </ng-template>
               </mat-expansion-panel>
               <mat-expansion-panel
