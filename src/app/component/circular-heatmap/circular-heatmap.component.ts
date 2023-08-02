@@ -174,9 +174,7 @@ export class CircularHeatmapComponent implements OnInit {
 
   toggleTeamSelection(chip: MatChip) {
     chip.toggleSelected();
-    this.filteredTeamView = chip.value;
-    console.log(this.filteredTeamView);
-    console.log(this.teamList);
+    this.filteredTeamView = chip.value.replace(/\s/g, '');
 
     // Update heatmap based on selection
     this.reColorHeatmap();
@@ -634,9 +632,18 @@ export class CircularHeatmapComponent implements OnInit {
         teamList = this.ALL_CARD_DATA[index]['Task'][i]['teamsImplemented'];
         (Object.keys(teamList) as (keyof typeof teamList)[]).forEach(
           (key, index) => {
-            if (teamList[key] === true) {
-              cntTrue += 1;
+            if (
+              this.filteredTeamView === 'All' ||
+              key === this.filteredTeamView
+            ) {
+              console.log('Yes');
+              if (teamList[key] === true) {
+                cntTrue += 1;
+              }
+            } else {
+              console.log('No');
             }
+
             cntAll += 1;
           }
         );
