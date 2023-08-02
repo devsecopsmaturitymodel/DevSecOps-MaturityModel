@@ -3,6 +3,7 @@ import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
 import { Router, NavigationExtras } from '@angular/router';
+import { MatChip } from '@angular/material/chips';
 
 export interface taskSchema {
   taskName: string;
@@ -36,7 +37,7 @@ export class CircularHeatmapComponent implements OnInit {
   radial_labels: string[] = [];
   YamlObject: any;
   teamList: any;
-  filterTeamList: any;
+  filteredTeamView: string = 'All';
   segment_labels: string[] = [];
   taskDetails: any;
   showOverlay: boolean;
@@ -58,13 +59,6 @@ export class CircularHeatmapComponent implements OnInit {
         this.maxLevelOfTasks = y;
       }
       this.teamList = this.YamlObject['strings']['en']['teams'];
-      this.filterTeamList = ['All'];
-      for (let i = 0; i < this.teamList.length; i += 1) {
-        this.filterTeamList.push(this.teamList[i]);
-      }
-
-      console.log(this.filterTeamList);
-      // this.filterTeamList = ["All,"...teamList]
     });
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
@@ -117,10 +111,7 @@ export class CircularHeatmapComponent implements OnInit {
                 if (lvlOfCurrentTask == l + 1) {
                   totalTaskTeams += 1;
                   var nameOfTask: string = allTaskInThisSubDimension[k];
-                  var Status: boolean =
-                    this.YamlObject[allDimensionNames[i]][
-                      allSubDimensionInThisDimension[j]
-                    ][allTaskInThisSubDimension[k]]['isImplemented'];
+
                   // Create an object from an array from meta data
                   const teams = this.teamList;
 
@@ -178,6 +169,19 @@ export class CircularHeatmapComponent implements OnInit {
       this.noTasktoGrey();
     });
   }
+
+  // Team Filter BEGINS
+
+  toggleTeamSelection(chip: MatChip) {
+    chip.toggleSelected();
+    this.filteredTeamView = chip.value;
+    console.log(this.filteredTeamView);
+    console.log(this.teamList);
+
+    // Update heatmap based on selection
+    this.reColorHeatmap();
+  }
+  // Team Filter ENDS
 
   teamCheckbox(taskIndex: number, teamKey: any) {
     let _self = this;

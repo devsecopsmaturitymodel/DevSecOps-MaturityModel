@@ -186,54 +186,62 @@
         </ng-template>
       </div>
       <div id="chart" class="heatmapClass">
-        <div class="team-filter">
-          <mat-form-field class="team-chip-list">
-            <mat-label>TeamList Filter</mat-label>
-            <mat-chip-list #teams selectable multiple>
-              <mat-chip
-                #c="matChip"
-                *ngFor="let team of filterTeamList"
-                [value]="team"
-                selected>
-                {{ team }}
-              </mat-chip>
-            </mat-chip-list>
-          </mat-form-field>
+        <div class="right-panel">
+          <div class="team-filter">
+            <mat-form-field class="team-chip-list">
+              <mat-label>Team Filter</mat-label>
+              <mat-chip-list selectable>
+                <mat-chip
+                  #c="matChip"
+                  (click)="toggleTeamSelection(c)"
+                  selected>
+                  All
+                </mat-chip>
+                <mat-chip
+                  #c="matChip"
+                  *ngFor="let team of teamList"
+                  (click)="toggleTeamSelection(c)">
+                  {{ team }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+          <mat-card class="example-card" *ngIf="showTaskCard">
+            <mat-card-title-group>
+              <mat-card-title>{{ cardHeader }}</mat-card-title>
+              <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-content
+              *ngFor="let task of tasksData; index as taskIndex">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <button
+                      class="normal-button"
+                      (click)="
+                        $event.preventDefault();
+                        navigate(currentDimension, cardHeader, task['taskName'])
+                      ">
+                      {{ task['taskName'] }}
+                    </button>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <ul class="team-list">
+                    <li *ngFor="let item of task.teamsImplemented | keyvalue">
+                      <mat-checkbox
+                        [checked]="item.value === true"
+                        color="primary"
+                        (click)="this.teamCheckbox(taskIndex, item.key)">
+                        {{ item.key }}
+                      </mat-checkbox>
+                    </li>
+                  </ul>
+                </ng-template>
+              </mat-expansion-panel>
+            </mat-card-content>
+          </mat-card>
         </div>
-        <mat-card class="example-card" *ngIf="showTaskCard">
-          <mat-card-title-group>
-            <mat-card-title>{{ cardHeader }}</mat-card-title>
-            <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
-          </mat-card-title-group>
-          <mat-card-content *ngFor="let task of tasksData; index as taskIndex">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <button
-                    class="normal-button"
-                    (click)="
-                      $event.preventDefault();
-                      navigate(currentDimension, cardHeader, task['taskName'])
-                    ">
-                    {{ task['taskName'] }}
-                  </button>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <ng-template matExpansionPanelContent>
-                <ul class="team-list">
-                  <li *ngFor="let item of task.teamsImplemented | keyvalue">
-                    <mat-checkbox
-                      [checked]="item.value === true"
-                      color="primary"
-                      (click)="this.teamCheckbox(taskIndex, item.key)">
-                      {{ item.key }}
-                    </mat-checkbox>
-                  </li>
-                </ul>
-              </ng-template>
-            </mat-expansion-panel>
-          </mat-card-content>
-        </mat-card>
 
         <button
           class="normal-button"

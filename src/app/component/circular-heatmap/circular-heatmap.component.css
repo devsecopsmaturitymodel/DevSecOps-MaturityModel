@@ -16,7 +16,7 @@
   font-weight: 700;
 }
 
-.example-card {
+.right-panel {
   float: right;
   width: 25%;
   margin: 5%;
@@ -74,13 +74,10 @@
   margin: 0;
   padding: 0 1em;
 }
-.team-filter {
-  /* padding: 1em; */
+/* .team-filter {
   padding: 0;
-  /* margin: 0 2em; */
   width: 60%;
-  /* position: absolute; */
-}
+} */
 .team-filter > .mat-form-field {
   display: block;
 }
