@@ -3,10 +3,13 @@
 Information Gathering:
   Logging:
     Centralized application logging:
-      risk: Local stored logs can be unauthorized manipulated by attackers with system
+      uuid: fe875e17-ae4a-45f8-a359-244aa4fcbc04
+      risk:
+        Local stored logs can be unauthorized manipulated by attackers with system
         access or might be corrupt after an incident. In addition, it is hard to perform
         an correlation of logs. This leads attacks, which can be performed silently.
-      measure: A centralized logging system is used and applications logs (including
+      measure:
+        A centralized logging system is used and applications logs (including
         application exceptions) are shipped to it.
       difficultyOfImplementation:
         knowledge: 1
@@ -15,26 +18,29 @@ Information Gathering:
       usefulness: 5
       level: 3
       dependsOn:
-      - Visualized logging
-      - Alerting
+        - Visualized logging
+        - Alerting
       implementation: []
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 12.4.1
+          - Not explicitly covered by ISO 27001 - too specific
+          - 12.4.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 8.15
+          - Not explicitly covered by ISO 27001 - too specific
+          - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
     Centralized system logging:
-      risk: Local stored system logs can be unauthorized manipulated by attackers
+      uuid: 4eced38a-7904-4c45-adb0-50b663065540
+      risk:
+        Local stored system logs can be unauthorized manipulated by attackers
         or might be corrupt after an incident. In addition, it is hard to perform
         a aggregation of logs.
-      measure: By using centralized logging logs are protected against unauthorized
+      measure:
+        By using centralized logging logs are protected against unauthorized
         modification.
       difficultyOfImplementation:
         knowledge: 1
@@ -43,24 +49,27 @@ Information Gathering:
       usefulness: 2
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rsyslog
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rsyslog
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 12.4.1
+          - Not explicitly covered by ISO 27001 - too specific
+          - 12.4.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 8.15
+          - Not explicitly covered by ISO 27001 - too specific
+          - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
     Correlation of security events:
-      risk: Detection of security related events with hints on different systems/tools/metrics
+      uuid: ccf4561d-253f-4762-adcb-bc4622fd6fc5
+      risk:
+        Detection of security related events with hints on different systems/tools/metrics
         is not possible.
-      measure: Events are correlated on one system. For example the correlation and
+      measure:
+        Events are correlated on one system. For example the correlation and
         visualization of failed login attempts combined with successful login attempts.
       difficultyOfImplementation:
         knowledge: 4
@@ -69,22 +78,23 @@ Information Gathering:
       usefulness: 3
       level: 5
       dependsOn:
-      - Visualized logging
-      - Alerting
+        - Visualized logging
+        - Alerting
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 12.4.1
+          - Not explicitly covered by ISO 27001 - too specific
+          - 12.4.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 8.15
+          - Not explicitly covered by ISO 27001 - too specific
+          - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
     Logging of security events:
+      uuid: ccfdd0a8-991e-4269-ad77-c0a54ca655cb
       description: |
         Implement logging of security relevant events. The following events tend to be security relevant:
           - successful/failed login/logout
@@ -93,7 +103,8 @@ Information Gathering:
           - exceptions and errors with security in their name
           - transactions of value (e.g., financial transactions, costly operations)
           - :unicorn: (special things of your application)
-      measure: Security-relevant events like login/logout or creation, change, deletion
+      measure:
+        Security-relevant events like login/logout or creation, change, deletion
         of users should be logged.
       assessment: |
         - Show which events are logged.
@@ -107,17 +118,17 @@ Information Gathering:
       credits: |
         [AppSecure-nrw](https://github.com/AppSecure-nrw/security-belts/blob/master/orange/logging-of-security-events.md)
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fluentd
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/bash
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-logging-cheats
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fluentd
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/bash
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-logging-cheats
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - 12.4.1
+          - 12.4.1
         iso27001-2022:
-        - 8.15
+          - 8.15
       risk: |-
         * No track of security-relevant events makes it harder to analyze an incident.
         * Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
@@ -125,7 +136,9 @@ Information Gathering:
       evidence: ""
       comments: ""
     PII logging concept:
-      risk: Personal identifiable information (PII) is logged and the privacy law (e.g. General Data Protection Regulation)
+      uuid: 613a73dc-4f60-49db-a6ce-4fb7bf8519f9
+      risk:
+        Personal identifiable information (PII) is logged and the privacy law (e.g. General Data Protection Regulation)
         is not followed.
       measure: A concept how to log PII is documented and applied.
       difficultyOfImplementation:
@@ -135,30 +148,33 @@ Information Gathering:
       usefulness: 1
       level: 5
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rsyslog
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fluentd
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/bash
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rsyslog
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fluentd
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/bash
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 12.4.1
-        - 18.1.1
+          - Not explicitly covered by ISO 27001 - too specific
+          - 12.4.1
+          - 18.1.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 8.15
-        - 5.31
+          - Not explicitly covered by ISO 27001 - too specific
+          - 8.15
+          - 5.31
       isImplemented: false
       evidence: ""
       comments: ""
     Visualized logging:
-      risk: System and application protocols are not visualized properly which leads
+      uuid: 7c735089-6a83-419f-8b27-c1e676cedea1
+      risk:
+        System and application protocols are not visualized properly which leads
         to no or very limited logging assessment. Specially developers might have
         difficulty to read applications logs with unusually tools like the Linux tool
         'cat'
-      measure: Protocols are visualized in a simple to use real time monitoring system.
+      measure:
+        Protocols are visualized in a simple to use real time monitoring system.
         The GUI gives the ability to search for special attributes in the protocol.
       difficultyOfImplementation:
         knowledge: 1
@@ -167,20 +183,19 @@ Information Gathering:
       usefulness: 4
       level: 2
       dependsOn:
-      - Centralized system logging
-      - Centralized application logging
+        - Centralized system logging
+        - Centralized application logging
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/elk-stack
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/elk-stack
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 12.4.1
+          - Not explicitly covered by ISO 27001 - too specific
+          - 12.4.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 8.15
+          - Not explicitly covered by ISO 27001 - too specific
+          - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
-...

@@ -3,9 +3,12 @@
 Test and Verification:
   Application tests:
     High coverage of security related module and integration tests:
-      risk: Vulnerabilities are rising due to code changes in a complex microservice
+      uuid: 67667c97-c33e-4306-a4e5-e7b1d8e10c5a
+      risk:
+        Vulnerabilities are rising due to code changes in a complex microservice
         environment in not important components.
-      measure: Implementation of security related tests via unit tests and integration
+      measure:
+        Implementation of security related tests via unit tests and integration
         tests. Including the test of libraries, in case the are not tested already.
       difficultyOfImplementation:
         knowledge: 5
@@ -16,20 +19,23 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-3-B
+          - V-ST-3-B
         iso27001-2017:
-        - 14.2.3
-        - 14.2.8
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
     Security integration tests for important components:
-      risk: Vulnerabilities are rising due to code changes in a complex microservice
+      uuid: f57d55f2-dc05-4b34-9d1f-f8ce5bfb0715
+      risk:
+        Vulnerabilities are rising due to code changes in a complex microservice
         environment.
-      measure: Implementation of essential security related integration tests. For
+      measure:
+        Implementation of essential security related integration tests. For
         example for authentication and authorization.
       difficultyOfImplementation:
         knowledge: 3
@@ -39,19 +45,21 @@ Test and Verification:
       level: 3
       references:
         samm2:
-        - V-ST-3-B
+          - V-ST-3-B
         iso27001-2017:
-        - 14.2.3
-        - 14.2.8
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
     Security unit tests for important components:
+      uuid: eb2c7f9d-d0bd-4253-a2ba-cff2ace4a075
       risk: Vulnerabilities are rising due to code changes.
-      measure: Usage of unit tests to test important security related features like
+      measure:
+        Usage of unit tests to test important security related features like
         authentication and authorization.
       difficultyOfImplementation:
         knowledge: 3
@@ -63,23 +71,26 @@ Test and Verification:
         The integration of module tests takes place during development instead, it highlights vulnerabilities in sub-routines, functions, modules, libraries etc. checked.
         A sample implementation of unit tests are explained in the video [Shift-Left-Security with the Security Test Pyramid - Andreas Falk](https://www.youtube.com/watch?v=TzFZy3f7d8E) starting with minute 9.
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/junit
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/karma
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/junit
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/karma
       references:
         samm2:
-        - V-ST-3-B
+          - V-ST-3-B
         iso27001-2017:
-        - 14.2.3
-        - 14.2.8
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       isImplemented: false
       evidence: ""
     Smoke Test:
-      risk: During a deployment an error might happen which leads to non-availability
+      uuid: 73aaae0b-5d68-4953-9fa4-fd25bf665f2a
+      risk:
+        During a deployment an error might happen which leads to non-availability
         of the system, a part of the system or a feature.
-      measure: Integration tests are performed against the production environment
+      measure:
+        Integration tests are performed against the production environment
         after each deployment.
       difficultyOfImplementation:
         knowledge: 2
@@ -89,17 +100,16 @@ Test and Verification:
       level: 4
       implementation: []
       dependsOn:
-      - Defined deployment process
+        - Defined deployment process
       references:
         samm2:
-        - V-ST-3-B
+          - V-ST-3-B
         iso27001-2017:
-        - 14.2.3
-        - 14.2.8
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
-...
