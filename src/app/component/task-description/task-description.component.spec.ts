@@ -40,7 +40,18 @@ describe('TaskDescriptionComponent', () => {
     expect(heading.textContent).toContain(testSubDimension);
   });
 
-  it('check if description is being genenrated', () => {
+  it('check if UUID is being genenrated', () => {
+    const testUUID = '00000000-0000-0000-0000-000000000000';
+    component.currentTask.description = testUUID;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[0].textContent).toContain(
+      testUUID
+    );
+  });
+
+ it('check if description is being genenrated', () => {
     const testDescription = 'Sample Description';
     component.currentTask.description = testDescription;
     fixture.detectChanges();

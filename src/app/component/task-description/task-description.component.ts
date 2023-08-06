@@ -15,6 +15,7 @@ export interface taskDescription {
   subDimension: string;
   level: string;
   taskName: string;
+  uuid: string;
   description: string;
   risk: string;
   measure: string;
@@ -45,6 +46,7 @@ export class TaskDescriptionComponent implements OnInit {
     subDimension: '',
     level: '',
     taskName: '',
+    uuid: '',
     description: '',
     risk: '',
     measure: '',
@@ -105,6 +107,7 @@ export class TaskDescriptionComponent implements OnInit {
         data['description'],
         ''
       );
+      this.currentTask.uuid = this.defineStringValues(data['uuid'], '');
       this.currentTask.risk = this.defineStringValues(data['risk'], '');
       this.currentTask.measure = this.defineStringValues(data['measure'], '');
       try {
