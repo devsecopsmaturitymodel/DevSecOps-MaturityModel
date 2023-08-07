@@ -42,7 +42,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if UUID is being genenrated', () => {
     const testUUID = '00000000-0000-0000-0000-000000000000';
-    component.currentTask.description = testUUID;
+    component.currentTask.uuid = testUUID;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
