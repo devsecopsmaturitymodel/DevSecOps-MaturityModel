@@ -37,7 +37,7 @@ export class CircularHeatmapComponent implements OnInit {
   radial_labels: string[] = [];
   YamlObject: any;
   teamList: any;
-  filteredTeamView: string = 'All';
+  filteredTeamView: string[] = [];
   segment_labels: string[] = [];
   taskDetails: any;
   showOverlay: boolean;
@@ -174,7 +174,18 @@ export class CircularHeatmapComponent implements OnInit {
 
   toggleTeamSelection(chip: MatChip) {
     chip.toggleSelected();
-    this.filteredTeamView = chip.value.replace(/\s/g, '');
+    // this.filteredTeamView = chip.value.replace(/\s/g, '');
+    if (chip.selected) {
+      this.filteredTeamView = [
+        ...this.filteredTeamView,
+        chip.value.replace(/\s/g, ''),
+      ];
+    } else {
+      this.filteredTeamView = this.filteredTeamView.filter(
+        o => o !== chip.value.replace(/\s/g, '')
+      );
+    }
+    console.log(this.filteredTeamView);
 
     // Update heatmap based on selection
     this.reColorHeatmap();
@@ -633,8 +644,8 @@ export class CircularHeatmapComponent implements OnInit {
         (Object.keys(teamList) as (keyof typeof teamList)[]).forEach(
           (key, index) => {
             if (
-              this.filteredTeamView === 'All' ||
-              key === this.filteredTeamView
+              this.filteredTeamView[0] === 'All' ||
+              key === this.filteredTeamView[0]
             ) {
               // console.log('Yes');
               if (teamList[key] === true) {
