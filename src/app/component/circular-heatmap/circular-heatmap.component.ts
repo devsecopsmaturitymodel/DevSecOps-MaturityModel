@@ -636,12 +636,12 @@ export class CircularHeatmapComponent implements OnInit {
               this.filteredTeamView === 'All' ||
               key === this.filteredTeamView
             ) {
-              console.log('Yes');
+              // console.log('Yes');
               if (teamList[key] === true) {
                 cntTrue += 1;
               }
             } else {
-              console.log('No');
+              // console.log('No');
             }
 
             cntAll += 1;
