@@ -46,12 +46,10 @@ describe('TaskDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[0].textContent).toContain(
-      testUUID
-    );
+    expect(contentDisplayedinParagraphTag[0].textContent).toContain(testUUID);
   });
 
- it('check if description is being genenrated', () => {
+  it('check if description is being genenrated', () => {
     const testDescription = 'Sample Description';
     component.currentTask.description = testDescription;
     fixture.detectChanges();
