@@ -12,6 +12,10 @@
             "^.*$": {
               "type": "object",
               "properties": {
+                "uuid": {
+                  "type": "string",
+                  "format": "uuid"
+                },
                 "description": {
                   "type": "string"
                 },
@@ -142,6 +146,7 @@
                 }
               },
               "required": [
+                "uuid",
                 "description",
                 "risk",
                 "measure",

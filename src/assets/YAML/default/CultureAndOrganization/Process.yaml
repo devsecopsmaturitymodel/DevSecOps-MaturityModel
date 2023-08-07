@@ -3,9 +3,12 @@
 Culture and Organization:
   Process:
     Approval by reviewing any new version:
-      risk: An individual might forget to implement security measures to protect source
+      uuid: 3f63bdbc-c75f-4780-a941-e6ad42e894e1
+      risk:
+        An individual might forget to implement security measures to protect source
         code or infrastructure components.
-      measure: On each new version (e.g. Pull Request) of source code or infrastructure
+      measure:
+        On each new version (e.g. Pull Request) of source code or infrastructure
         components a security peer review of the changes is performed (two eyes principle)
         and approval given by the reviewer.
       difficultyOfImplementation:
@@ -18,18 +21,20 @@ Culture and Organization:
       references:
         samm2: []
         iso27001-2017:
-        - Peer review - four eyes principle is not explicitly required by ISO 27001
-        - 6.1.2
-        - 14.2.1
+          - Peer review - four eyes principle is not explicitly required by ISO 27001
+          - 6.1.2
+          - 14.2.1
         iso27001-2022:
-        - Peer review - four eyes principle is not explicitly required by ISO 27001
-        - 5.3
-        - 8.25
+          - Peer review - four eyes principle is not explicitly required by ISO 27001
+          - 5.3
+          - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
     Definition of a change management process:
-      risk: The impact of a change is not controlled because these are not recorded
+      uuid: b4193d32-3948-47e2-a326-3748c48019a1
+      risk:
+        The impact of a change is not controlled because these are not recorded
         or documented.
       measure: Each change of a system is automatically recorded and adequately logged.
       difficultyOfImplementation:
@@ -42,19 +47,22 @@ Culture and Organization:
       references:
         samm2: []
         iso27001-2017:
-        - 14.2.2
-        - 12.1.2
-        - 12.4.1
+          - 14.2.2
+          - 12.1.2
+          - 12.4.1
         iso27001-2022:
-        - 8.32
-        - 8.15
+          - 8.32
+          - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
     Definition of simple BCDR practices for critical components:
-      risk: In case of an emergency, like a power outage, DR actions to perform are
+      uuid: c72da779-86cc-45b1-a339-190ce5093171
+      risk:
+        In case of an emergency, like a power outage, DR actions to perform are
         not clear. This leads to reaction and remediation delays.
-      measure: By understanding and documenting a business continuity and disaster
+      measure:
+        By understanding and documenting a business continuity and disaster
         recovery (BCDR) plan, the overall availability of systems and applications
         is increased. Success factors like responsibilities, Service Level Agreements,
         Recovery Point Objectives, Recovery Time Objectives or Failover must be fully
@@ -69,11 +77,9 @@ Culture and Organization:
       references:
         samm2: []
         iso27001-2017:
-        - 17.1.1
+          - 17.1.1
         iso27001-2022:
-        - 5.29
+          - 5.29
       isImplemented: false
       evidence: ""
       comments: ""
-
-...

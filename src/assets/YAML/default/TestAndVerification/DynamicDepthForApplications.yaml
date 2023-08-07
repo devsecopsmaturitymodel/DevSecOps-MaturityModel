@@ -3,6 +3,7 @@
 Test and Verification:
   Dynamic depth for applications:
     Coverage analysis:
+      uuid: d0ba0be5-c573-405f-b905-b7a8f87a9cc7
       risk: Parts of the service are not still covered by tests.
       measure: Check that there are no missing paths in the application with coverage-tools.
       difficultyOfImplementation:
@@ -12,23 +13,26 @@ Test and Verification:
       usefulness: 4
       level: 5
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-code-pulse
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/coveragepy
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-code-pulse
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/coveragepy
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
-        - part of periodic review, PDCA
+          - not explicitly covered by ISO 27001 - too specific
+          - part of periodic review, PDCA
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+          - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
     Coverage of client side dynamic components:
-      risk: Parts of the service are not covered during the scan, because JavaScript
+      uuid: 9711f871-f79d-4573-8d4f-d2c98fd0d18e
+      risk:
+        Parts of the service are not covered during the scan, because JavaScript
         is not getting executed. Therefore, the co
-      measure: Usage of a spider which executes dynamic content like JavaScript, e.g.
+      measure:
+        Usage of a spider which executes dynamic content like JavaScript, e.g.
         via Selenium.
       difficultyOfImplementation:
         knowledge: 3
@@ -37,24 +41,26 @@ Test and Verification:
       usefulness: 4
       level: 2
       dependsOn:
-      - Usage of different roles
+        - Usage of different roles
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - 14.2.3
-        - 14.2.8
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ajax-spider
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ajax-spider
       isImplemented: false
       evidence: ""
       comments: ""
     Coverage of hidden endpoints:
+      uuid: 6a9cb303-0f98-48a8-bdcd-56d41c0012b8
       risk: Hidden endpoints of the service are not getting tracked.
-      measure: Hidden endpoints are getting detected and included in the vulnerability
+      measure:
+        Hidden endpoints are getting detected and included in the vulnerability
         scan.
       difficultyOfImplementation:
         knowledge: 3
@@ -63,27 +69,30 @@ Test and Verification:
       usefulness: 5
       level: 3
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/curl
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openapi
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-zap
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/schemathesis
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/curl
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openapi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-zap
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/schemathesis
       dependsOn:
-      - Usage of different roles
+        - Usage of different roles
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+          - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+          - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
     Coverage of more input vectors:
-      risk: Parts of the service are not covered. For example specially formatted
+      uuid: 5e0ff85b-ec89-4ef0-96b1-5695fa0025dc
+      risk:
+        Parts of the service are not covered. For example specially formatted
         or coded parameters are not getting detected as parameter (e.g. parameters
         in REST-like URLs, parameters in JSON-Format or base64-coded parameters).
-      measure: Special parameter and special encodings are defined, so that they get
+      measure:
+        Special parameter and special encodings are defined, so that they get
         fuzzed by the used vulnerability scanners.
       difficultyOfImplementation:
         knowledge: 5
@@ -92,23 +101,26 @@ Test and Verification:
       usefulness: 4
       level: 3
       dependsOn:
-      - Usage of different roles
+        - Usage of different roles
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+          - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+          - ISO 27001:2022 mapping is missing
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/schemathesis
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/schemathesis
       isImplemented: false
       evidence: ""
       comments: ""
     Coverage of sequential operations:
-      risk: Sequential operations like workflows (e.g. login -> put products in the
+      uuid: 845f06ec-148c-4c67-9755-7041911dcca5
+      risk:
+        Sequential operations like workflows (e.g. login -> put products in the
         basket
-      measure: Sequential operations are defined and checked by the vulnerability
+      measure:
+        Sequential operations are defined and checked by the vulnerability
         scanner in the defined order.
       difficultyOfImplementation:
         knowledge: 3
@@ -117,22 +129,23 @@ Test and Verification:
       usefulness: 5
       level: 3
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/curl
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/curl
       dependsOn:
-      - Usage of different roles
+        - Usage of different roles
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - 14.2.8
-        - 14.2.3
+          - 14.2.8
+          - 14.2.3
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
     Coverage of service to service communication:
+      uuid: 22aab0ef-76ce-4b8c-979c-3699784330db
       risk: Service to service communication is not covered.
       measure: Service to service communication is dumped and checked.
       difficultyOfImplementation:
@@ -142,27 +155,30 @@ Test and Verification:
       usefulness: 3
       level: 5
       dependsOn:
-      - Simple Scan
+        - Simple Scan
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - 14.2.3
-        - 14.2.8
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pact-io
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/citrusframework
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pact-io
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/citrusframework
       isImplemented: false
       evidence: ""
       comments: ""
     Simple Scan:
-      risk: Deficient security tests are performed. Simple vulnerabilities are not
+      uuid: 07796811-37f9-467c-9ff2-48f346e77ff3
+      risk:
+        Deficient security tests are performed. Simple vulnerabilities are not
         detected and missing security configurations (e.g. headers) are not set. Fast
         feedback is not given.
-      measure: A simple scan is performed to get a security baseline. In case the
+      measure:
+        A simple scan is performed to get a security baseline. In case the
         test is done in under 10 minutes, it should be part of the build and deployment
         process.
       difficultyOfImplementation:
@@ -172,24 +188,26 @@ Test and Verification:
       usefulness: 1
       level: 2
       dependsOn:
-      - Defined build process
+        - Defined build process
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-zap
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/arachni
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-zap
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/arachni
       references:
         samm2:
-        - V-ST-1-A
+          - V-ST-1-A
         iso27001-2017:
-        - 14.2.3
-        - 14.2.8
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       isImplemented: false
       evidence: ""
       comments: ""
     Usage of different roles:
-      risk: Parts of the service are not covered during the scan, because a login
+      uuid: 65a2d7d9-5441-46bf-a4e3-f76919857750
+      risk:
+        Parts of the service are not covered during the scan, because a login
         is not performed.
       measure: Integration of authentication with all roles used in the service.
       difficultyOfImplementation:
@@ -199,27 +217,30 @@ Test and Verification:
       usefulness: 2
       level: 2
       dependsOn:
-      - Simple Scan
+        - Simple Scan
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
-        - 14.2.3
-        - 14.2.8
+          - not explicitly covered by ISO 27001 - too specific
+          - 14.2.3
+          - 14.2.8
         iso27001-2022:
-        - 8.32
-        - 8.29
+          - 8.32
+          - 8.29
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/zest
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/zest
       isImplemented: false
       assessment: "For REST APIs, multiple OAuth2 scopes are used."
       evidence: ""
       comments: ""
     Usage of multiple scanners:
-      risk: Each vulnerability scanner has different opportunities. By using just
+      uuid: 5b5a1eb2-113f-41fb-a3d6-06af4fdc9cea
+      risk:
+        Each vulnerability scanner has different opportunities. By using just
         one scanner, some vulnerabilities might not be found.
-      measure: Usage of multiple spiders and scanner enhance the coverage and the
+      measure:
+        Usage of multiple spiders and scanner enhance the coverage and the
         vulnerabilities.
       difficultyOfImplementation:
         knowledge: 3
@@ -228,19 +249,18 @@ Test and Verification:
       usefulness: 1
       level: 4
       dependsOn:
-      - Usage of different roles
+        - Usage of different roles
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-securecodebox
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-securecodebox
       references:
         samm2:
-        - V-ST-2-A
+          - V-ST-2-A
         iso27001-2017:
-        - 12.6.1
-        - 14.2.5
+          - 12.6.1
+          - 14.2.5
         iso27001-2022:
-        - 8.8
-        - 8.27
+          - 8.8
+          - 8.27
       isImplemented: false
       evidence: ""
       comments: ""
-...
