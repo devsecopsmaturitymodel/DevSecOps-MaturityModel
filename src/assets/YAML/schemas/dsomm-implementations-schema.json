@@ -9,6 +9,10 @@
         ".*": {
           "type": "object",
           "properties": {
+            "uuid": {
+              "type": "string",
+              "format": "uuid"
+            },
             "name": {
               "type": "string",
               "default": ""
@@ -31,6 +35,7 @@
             }
           },
           "required": [
+            "uuid",
             "name",
             "tags",
             "url",
