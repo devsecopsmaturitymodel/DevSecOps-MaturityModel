@@ -16,6 +16,7 @@ export interface taskDescription {
   level: string;
   tags: string[];
   taskName: string;
+  uuid: string;
   description: string;
   risk: string;
   measure: string;
@@ -47,6 +48,7 @@ export class TaskDescriptionComponent implements OnInit {
     level: '',
     tags: [''],
     taskName: '',
+    uuid: '',
     description: '',
     risk: '',
     measure: '',
@@ -107,6 +109,7 @@ export class TaskDescriptionComponent implements OnInit {
         data['description'],
         ''
       );
+      this.currentTask.uuid = this.defineStringValues(data['uuid'], '');
       this.currentTask.risk = this.defineStringValues(data['risk'], '');
       this.currentTask.tags = this.defineStringArrayValues(data['tags'], []);
       this.currentTask.measure = this.defineStringValues(data['measure'], '');
