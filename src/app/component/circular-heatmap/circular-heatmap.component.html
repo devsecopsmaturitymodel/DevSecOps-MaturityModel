@@ -2,6 +2,175 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
+      <div class="overlay-details" [hidden]="!showOverlay">
+        <div *ngIf="taskDetails; then taskTrue; else taskFalse"></div>
+        <ng-template #taskTrue>
+          <div class="overlay-modal">
+            <mat-accordion multi="true" class="overlay-accordion">
+              <div
+                *ngIf="
+                  taskDetails.navigationExtras;
+                  then navigationTrue;
+                  else navigationFalse
+                "></div>
+              <div>
+                <ng-template #navigationTrue>
+                  <div class="overlay-header">
+                    <button class="overlay-close" (click)="closeOverlay()">
+                      <mat-icon class="white-icon">close</mat-icon>
+                    </button>
+                    <h2>{{ taskDetails.navigationExtras.dimension }}</h2>
+                    <h3>{{ taskDetails.navigationExtras.subDimension }}</h3>
+                    <h4>
+                      {{ taskDetails.navigationExtras.taskName }}
+                    </h4>
+                  </div>
+                </ng-template>
+                <ng-template #navigationFalse>
+                  <div class="overlay-header">
+                    <button class="overlay-close" (click)="closeOverlay()">
+                      <mat-icon class="white-icon">close</mat-icon>
+                    </button>
+                    <h2>Nothing to show</h2>
+                  </div>
+                </ng-template>
+              </div>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.description">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Description</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="taskDetails.description"></p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="true" *ngIf="taskDetails.risk">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Risk</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="taskDetails.risk"></p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.measure">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Measure</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="taskDetails.measure"></p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.implementation">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Implementation Guide</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <ul>
+                    <li *ngFor="let implement of taskDetails.implementation">
+                      <a href="{{ implement.url }}">{{ implement.name }}</a>
+                    </li>
+                  </ul>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.dependsOn">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Depends On</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="taskDetails.dependsOn"></p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.difficultyOfImplementation">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Difficulty of Implementation</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p>
+                    Knowledge:
+                    {{ taskDetails.difficultyOfImplementation.knowledge }}
+                  </p>
+                  <p>Time: {{ taskDetails.difficultyOfImplementation.time }}</p>
+                  <p>
+                    Resources:
+                    {{ taskDetails.difficultyOfImplementation.resources }}
+                  </p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="taskDetails.references">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>References</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <b>ISO 27001-2017:</b>
+
+                  <ul>
+                    <li
+                      *ngFor="
+                        let iso of taskDetails.references['iso27001-2017']
+                      ">
+                      {{ iso }}
+                    </li>
+                  </ul>
+                  <b>ISO 27001-2022:</b>
+
+                  <ul>
+                    <li
+                      *ngFor="
+                        let iso of taskDetails.references['iso27001-2022']
+                      ">
+                      {{ iso }}
+                    </li>
+                  </ul>
+                  <!-- </p> -->
+                  <p>
+                    <b>Resources:</b>
+                    {{ taskDetails.references.samm2 }}
+                  </p>
+                </ng-template>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </ng-template>
+        <ng-template #taskFalse>
+          <div class="overlay-modal">
+            <button class="overlay-close" (click)="closeOverlay()">
+              <mat-icon class="white-icon">close</mat-icon>
+            </button>
+            <mat-expansion-panel [expanded]="false" hideToggle disabled>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Nothing to show</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+          </div>
+        </ng-template>
+      </div>
       <div id="chart" class="heatmapClass">
         <mat-card class="example-card" *ngIf="showTaskCard">
           <mat-card-title-group>
@@ -18,6 +187,7 @@
                   color="primary">
                 </mat-checkbox>
                 <button
+                  class="normal-button"
                   (click)="
                     navigate(currentDimension, cardHeader, 1, task['taskName'])
                   ">
@@ -31,6 +201,7 @@
                   color="primary">
                 </mat-checkbox>
                 <button
+                  class="normal-button"
                   (click)="
                     navigate(currentDimension, cardHeader, 1, task['taskName'])
                   ">
@@ -41,12 +212,14 @@
           </mat-card-content>
         </mat-card>
         <button
+          class="normal-button"
           mat-raised-button
           class="downloadButtonClass"
           (click)="SaveEditedYAMLfile()">
           Download edited YAML file
         </button>
         <button
+          class="normal-button"
           mat-raised-button
           class="resetButtonClass"
           (click)="ResetIsImplemented()">

@@ -35,7 +35,12 @@ export class CircularHeatmapComponent implements OnInit {
   radial_labels: string[] = [];
   YamlObject: any;
   segment_labels: string[] = [];
-  constructor(private yaml: ymlService, private router: Router) {}
+  taskDetails: any;
+  showOverlay: boolean;
+
+  constructor(private yaml: ymlService, private router: Router) {
+    this.showOverlay = false;
+  }
 
   ngOnInit(): void {
     this.yaml.setURI('./assets/YAML/meta.yaml');
@@ -56,8 +61,10 @@ export class CircularHeatmapComponent implements OnInit {
     this.yaml.getJson().subscribe(data => {
       //console.log(this.radial_labels)
       this.YamlObject = data;
+      // console.log(this.YamlObject);
+
       var allDimensionNames = Object.keys(this.YamlObject);
-      //console.log(allDimensionNames)
+      // console.log(allDimensionNames);
       for (var i = 0; i < allDimensionNames.length; i++) {
         var allSubDimensionInThisDimension = Object.keys(
           this.YamlObject[allDimensionNames[i]]
@@ -66,7 +73,7 @@ export class CircularHeatmapComponent implements OnInit {
           this.segment_labels.push(allSubDimensionInThisDimension[j]);
         }
       }
-      //console.log(this.segment_labels)
+      // console.log(this.segment_labels);
       for (var l = 0; l < this.maxLevelOfTasks; l++) {
         var allDimensionNames = Object.keys(this.YamlObject);
         for (var i = 0; i < allDimensionNames.length; i++) {
@@ -123,7 +130,7 @@ export class CircularHeatmapComponent implements OnInit {
           }
         }
       }
-      //console.log(this.ALL_CARD_DATA);
+      // console.log(this.ALL_CARD_DATA);
       this.loadState();
       this.loadCircularHeatMap(
         this.ALL_CARD_DATA,
@@ -154,7 +161,7 @@ export class CircularHeatmapComponent implements OnInit {
     } else {
       this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'] = true;
     }
-    //console.log(this.data[i]["Task"][taskIndex]["done"])
+    // console.log(this.data[i]["Task"][taskIndex]["done"])
     for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
       console.log(this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']);
       if (this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']) {
@@ -170,7 +177,7 @@ export class CircularHeatmapComponent implements OnInit {
         if (allSubDimensionInThisDimension[j] == this.cardHeader) {
           var taskName =
             this.ALL_CARD_DATA[index]['Task'][taskIndex]['taskName'];
-          //console.log(taskName)
+          // console.log(taskName);
           this.YamlObject[allDimensionNames[i]][
             allSubDimensionInThisDimension[j]
           ][taskName]['isImplemented'] =
@@ -181,7 +188,7 @@ export class CircularHeatmapComponent implements OnInit {
     }
     this.ALL_CARD_DATA[index]['Done%'] =
       cnt / this.ALL_CARD_DATA[index]['Task'].length;
-    //console.log(this.data[index]['Done%'],cnt)
+    // console.log(this.data[index]['Done%'], cnt);
     var color = d3
       .scaleLinear<string, string>()
       .domain([0, 1])
@@ -557,17 +564,24 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   navigate(dim: string, subdim: string, lvl: Number, taskName: string) {
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        dimension: dim,
-        subDimension: subdim,
-        level: lvl,
-        taskName: taskName,
-      },
+    let navigationExtras = {
+      dimension: dim,
+      subDimension: subdim,
+      level: lvl,
+      taskName: taskName,
     };
-    //console.log(navigationExtras);
-    //console.log(this.ALL_CARD_DATA);
-    this.router.navigate([this.Routing], navigationExtras);
+    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    this.taskDetails = this.YamlObject[dim][subdim][taskName];
+    console.log(this.YamlObject);
+    console.log(this.YamlObject[dim][subdim]);
+    if (this.taskDetails) {
+      this.taskDetails.navigationExtras = navigationExtras;
+    }
+    console.log(this.taskDetails);
+    this.showOverlay = true;
+  }
+  closeOverlay() {
+    this.showOverlay = false;
   }
   SaveEditedYAMLfile() {
     //console.log(this.YamlObject);
