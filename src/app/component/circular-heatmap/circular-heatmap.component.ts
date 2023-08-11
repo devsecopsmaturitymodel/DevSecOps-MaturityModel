@@ -232,18 +232,19 @@ export class CircularHeatmapComponent implements OnInit {
         teamKey
       ];
     // Creating counter for %done
-    for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
-      var teamList: any;
-      teamList = this.ALL_CARD_DATA[index]['Task'][i]['teamsImplemented'];
-      (Object.keys(teamList) as (keyof typeof teamList)[]).forEach(
-        (key, index) => {
-          if (teamList[key] === true) {
-            cntTrue += 1;
-          }
-          cntAll += 1;
-        }
-      );
-    }
+    // for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
+    //   var teamList: any;
+    //   teamList = this.ALL_CARD_DATA[index]['Task'][i]['teamsImplemented'];
+    //   // (Object.keys(teamList) as (keyof typeof teamList)[]).forEach(
+    //   //   (key, index) => {
+    //   //     if (teamList[key] === true) {
+    //   //       cntTrue += 1;
+    //   //     }
+    //   //     cntAll += 1;
+    //   //   }
+    //   // );
+
+    // }
 
     this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
     console.log(this.ALL_CARD_DATA[index]['Done%'], cntTrue);
@@ -261,6 +262,7 @@ export class CircularHeatmapComponent implements OnInit {
       return color(_self.ALL_CARD_DATA[index]['Done%']);
     });
     this.saveState();
+    this.reColorHeatmap();
   }
 
   loadCircularHeatMap(
@@ -400,6 +402,7 @@ export class CircularHeatmapComponent implements OnInit {
           ).attr('fill', '#DCDCDC');
         }
       });
+    this.reColorHeatmap();
   }
 
   circularHeatChart(num_of_segments: number) {
@@ -659,23 +662,31 @@ export class CircularHeatmapComponent implements OnInit {
       let cntTrue: number = 0;
       var _self = this;
       for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
-        var teamList: any;
-        teamList = this.ALL_CARD_DATA[index]['Task'][i]['teamsImplemented'];
-        (Object.keys(teamList) as (keyof typeof teamList)[]).forEach(
+        var taskTeamList: any;
+        taskTeamList = this.ALL_CARD_DATA[index]['Task'][i]['teamsImplemented'];
+        (Object.keys(taskTeamList) as (keyof typeof taskTeamList)[]).forEach(
           (key, index) => {
-            if (
-              this.selectedTeamChips[0] === 'All' ||
-              key === this.selectedTeamChips[0]
-            ) {
-              // console.log('Yes');
-              if (teamList[key] === true) {
-                cntTrue += 1;
+            if (typeof key === 'string') {
+              if (this.teamVisible.includes(key)) {
+                if (taskTeamList[key] === true) {
+                  cntTrue += 1;
+                }
+                cntAll += 1;
               }
-            } else {
-              // console.log('No');
             }
+            // if (
+            //   this.selectedTeamChips[0] === 'All' ||
+            //   key === this.selectedTeamChips[0]
+            // ) {
+            //   // console.log('Yes');
+            //   if (taskTeamList[key] === true) {
+            //     cntTrue += 1;
+            //   }
+            // } else {
+            //   // console.log('No');
+            // }
 
-            cntAll += 1;
+            // cntAll += 1;
           }
         );
       }
