@@ -37,7 +37,9 @@ export class CircularHeatmapComponent implements OnInit {
   radial_labels: string[] = [];
   YamlObject: any;
   teamList: any;
-  filteredTeamView: string[] = [];
+  teamGroups: any;
+  selectedTeamChips: string[] = ['All'];
+  teamVisible: string[] = [];
   segment_labels: string[] = [];
   taskDetails: any;
   showOverlay: boolean;
@@ -59,6 +61,8 @@ export class CircularHeatmapComponent implements OnInit {
         this.maxLevelOfTasks = y;
       }
       this.teamList = this.YamlObject['strings']['en']['teams'];
+      this.teamGroups = this.YamlObject['strings']['en']['teamGroups'];
+      this.teamVisible = this.teamList;
     });
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
@@ -120,7 +124,6 @@ export class CircularHeatmapComponent implements OnInit {
                   teams.forEach((singleTeam: any) => {
                     teamStatus[singleTeam] = false;
                   });
-                  console.log('check', teamStatus);
 
                   var teamsImplemented: any =
                     this.YamlObject[allDimensionNames[i]][
@@ -135,7 +138,6 @@ export class CircularHeatmapComponent implements OnInit {
                     Object.keys(teamStatus) as (keyof typeof teamStatus)[]
                   ).forEach((key, index) => {
                     // 👇️ name Bobby Hadz 0, country Chile 1
-                    console.log(key, teamStatus[key], index);
                     totalTaskTeams += 1;
                     if (teamStatus[key] === true) {
                       totalTeamsImplemented += 1;
@@ -174,18 +176,36 @@ export class CircularHeatmapComponent implements OnInit {
 
   toggleTeamSelection(chip: MatChip) {
     chip.toggleSelected();
-    // this.filteredTeamView = chip.value.replace(/\s/g, '');
+    let currChipValue = chip.value.replace(/\s/g, '');
+    let visibilityUpdated = false;
     if (chip.selected) {
-      this.filteredTeamView = [
-        ...this.filteredTeamView,
-        chip.value.replace(/\s/g, ''),
-      ];
+      this.selectedTeamChips = [...this.selectedTeamChips, currChipValue];
+      if (currChipValue == 'All') {
+        this.teamVisible = this.teamList;
+        console.log('All', this.teamList);
+        visibilityUpdated = true;
+      } else {
+        this.teamVisible = [];
+
+        (
+          Object.keys(this.teamGroups) as (keyof typeof this.teamGroups)[]
+        ).forEach((key, index) => {
+          if (key === currChipValue) {
+            this.teamVisible = this.teamGroups[key];
+            visibilityUpdated = true;
+          }
+        });
+        if (!visibilityUpdated) {
+          this.teamVisible.push(currChipValue);
+        }
+      }
     } else {
-      this.filteredTeamView = this.filteredTeamView.filter(
-        o => o !== chip.value.replace(/\s/g, '')
+      this.selectedTeamChips = this.selectedTeamChips.filter(
+        o => o !== currChipValue
       );
     }
-    console.log(this.filteredTeamView);
+    console.log('Selected Chips', this.selectedTeamChips);
+    console.log('Team Visible', this.teamVisible);
 
     // Update heatmap based on selection
     this.reColorHeatmap();
@@ -644,8 +664,8 @@ export class CircularHeatmapComponent implements OnInit {
         (Object.keys(teamList) as (keyof typeof teamList)[]).forEach(
           (key, index) => {
             if (
-              this.filteredTeamView[0] === 'All' ||
-              key === this.filteredTeamView[0]
+              this.selectedTeamChips[0] === 'All' ||
+              key === this.selectedTeamChips[0]
             ) {
               // console.log('Yes');
               if (teamList[key] === true) {

@@ -185,7 +185,6 @@
           </div>
         </ng-template>
       </div>
-      <!-- Trying a change -->
       <div id="chart" class="heatmapClass">
         <div class="right-panel">
           <div class="team-filter">
@@ -197,6 +196,12 @@
                   (click)="toggleTeamSelection(c)"
                   selected>
                   All
+                </mat-chip>
+                <mat-chip
+                  #c="matChip"
+                  *ngFor="let group of teamGroups | keyvalue"
+                  (click)="toggleTeamSelection(c)">
+                  {{ group.key }}
                 </mat-chip>
                 <mat-chip
                   #c="matChip"
