@@ -215,8 +215,6 @@ export class CircularHeatmapComponent implements OnInit {
   teamCheckbox(taskIndex: number, teamKey: any) {
     let _self = this;
     var index = 0;
-    var cntTrue = 0;
-    var cntAll = 0;
     for (var i = 0; i < this.ALL_CARD_DATA.length; i++) {
       if (
         this.ALL_CARD_DATA[i]['SubDimension'] === this.cardHeader &&
@@ -231,36 +229,7 @@ export class CircularHeatmapComponent implements OnInit {
       !this.ALL_CARD_DATA[index]['Task'][taskIndex]['teamsImplemented'][
         teamKey
       ];
-    // Creating counter for %done
-    // for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
-    //   var teamList: any;
-    //   teamList = this.ALL_CARD_DATA[index]['Task'][i]['teamsImplemented'];
-    //   // (Object.keys(teamList) as (keyof typeof teamList)[]).forEach(
-    //   //   (key, index) => {
-    //   //     if (teamList[key] === true) {
-    //   //       cntTrue += 1;
-    //   //     }
-    //   //     cntAll += 1;
-    //   //   }
-    //   // );
 
-    // }
-
-    this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
-    console.log(this.ALL_CARD_DATA[index]['Done%'], cntTrue);
-    var color = d3
-      .scaleLinear<string, string>()
-      .domain([0, 1])
-      .range(['white', 'green']);
-
-    d3.selectAll(
-      '#segment-' +
-        this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
-        '-' +
-        this.ALL_CARD_DATA[index]['Level'].replace(' ', '-')
-    ).attr('fill', function (p) {
-      return color(_self.ALL_CARD_DATA[index]['Done%']);
-    });
     this.saveState();
     this.reColorHeatmap();
   }
@@ -674,25 +643,11 @@ export class CircularHeatmapComponent implements OnInit {
                 cntAll += 1;
               }
             }
-            // if (
-            //   this.selectedTeamChips[0] === 'All' ||
-            //   key === this.selectedTeamChips[0]
-            // ) {
-            //   // console.log('Yes');
-            //   if (taskTeamList[key] === true) {
-            //     cntTrue += 1;
-            //   }
-            // } else {
-            //   // console.log('No');
-            // }
-
-            // cntAll += 1;
           }
         );
       }
       if (cntAll !== 0) {
         this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
-        // console.log(this.ALL_CARD_DATA[index]['Done%'], cntTrue);
         var color = d3
           .scaleLinear<string, string>()
           .domain([0, 1])
