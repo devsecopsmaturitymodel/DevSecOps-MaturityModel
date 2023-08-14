@@ -68,20 +68,9 @@
                 (click)="
                   navigate(element.Dimension, element.SubDimension, i + 1, task)
                 ">
-                <div
-                  *ngIf="
-                    YamlObject[element.Dimension][element.SubDimension][task][
-                      'isImplemented'
-                    ];
-                    then thenBlock;
-                    else elseBlock
-                  "></div>
-                <ng-template #thenBlock>
-                  <p style="color: green; margin: 0">{{ task }}</p>
-                </ng-template>
-                <ng-template #elseBlock>
+                <div>
                   <p style="margin: 0">{{ task }}</p>
-                </ng-template>
+                </div>
                 <span class="tags-task">
                   [
                   <span
