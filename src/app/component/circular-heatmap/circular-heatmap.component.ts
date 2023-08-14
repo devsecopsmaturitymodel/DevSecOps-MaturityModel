@@ -179,7 +179,7 @@ export class CircularHeatmapComponent implements OnInit {
     let currChipValue = chip.value.replace(/\s/g, '');
     let visibilityUpdated = false;
     if (chip.selected) {
-      this.selectedTeamChips = [...this.selectedTeamChips, currChipValue];
+      this.selectedTeamChips = [currChipValue];
       if (currChipValue == 'All') {
         this.teamVisible = this.teamList;
         console.log('All', this.teamList);
