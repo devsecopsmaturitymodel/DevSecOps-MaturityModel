@@ -12,14 +12,23 @@ export class SidenavButtonsComponent {
     'Mappings',
     'Usage',
     'About Us',
+    'Teams',
   ];
-  Icons: string[] = ['table_chart', 'pie_chart', 'timeline', 'info', 'people'];
+  Icons: string[] = [
+    'table_chart',
+    'pie_chart',
+    'timeline',
+    'info',
+    'people',
+    'people',
+  ];
   Routing: string[] = [
     '/',
     '/circular-heatmap',
     '/mapping',
     '/usage',
     '/about',
+    '/teams',
   ];
   constructor() {}
 }

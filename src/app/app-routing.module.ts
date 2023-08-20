@@ -6,6 +6,7 @@ import { MappingComponent } from './component/mapping/mapping.component';
 import { MatrixComponent } from './component/matrix/matrix.component';
 import { TaskDescriptionComponent } from './component/task-description/task-description.component';
 import { UsageComponent } from './component/usage/usage.component';
+import { Teams } from './component/teams/teams.component';
 
 const routes: Routes = [
   { path: '', component: MatrixComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'mapping', component: MappingComponent },
   { path: 'usage', component: UsageComponent },
   { path: 'about', component: AboutUsComponent },
+  { path: 'teams', component: Teams },
 ];
 
 @NgModule({
