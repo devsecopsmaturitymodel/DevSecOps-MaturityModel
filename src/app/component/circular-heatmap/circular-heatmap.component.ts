@@ -25,8 +25,6 @@ export interface cardSchema {
   styleUrls: ['./circular-heatmap.component.css'],
 })
 export class CircularHeatmapComponent implements OnInit {
-  Routing: string = '/task-description';
-
   maxLevelOfTasks: number = -1;
   showTaskCard: boolean = false;
   cardHeader: string = '';
@@ -60,8 +58,14 @@ export class CircularHeatmapComponent implements OnInit {
         this.radial_labels.push('Level ' + y);
         this.maxLevelOfTasks = y;
       }
-      this.teamList = this.YamlObject['strings']['en']['teams'];
-      this.teamGroups = this.YamlObject['strings']['en']['teamGroups'];
+    });
+    // Team Data
+    this.yaml.setURI('./assets/YAML/teams.yaml');
+    this.yaml.getJson().subscribe(data => {
+      this.YamlObject = data;
+
+      this.teamList = this.YamlObject['teams'];
+      this.teamGroups = this.YamlObject['teamGroups'];
       this.teamVisible = this.teamList;
     });
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');

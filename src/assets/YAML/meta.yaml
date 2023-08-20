@@ -22,11 +22,6 @@ strings:
         description: |-
           ISO 27001:2022
     labels: ['Very Low', 'Low', 'Medium', 'High', 'Very High']
-    teams: ['A', 'B', 'C']
-    teamGroups:
-      AB: ['A', 'B']
-      BC: ['B', 'C']
-      AC: ['A', 'C']
     KnowledgeLabels:
       [
         'Very Low (one discipline)',
