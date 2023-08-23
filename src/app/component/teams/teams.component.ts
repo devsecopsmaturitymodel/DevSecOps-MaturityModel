@@ -4,12 +4,12 @@ import * as yaml from 'js-yaml';
 
 @Component({
   selector: 'app-teams',
-  templateUrl: './Teams.component.html',
-  styleUrls: ['./Teams.component.css'],
+  templateUrl: './teams.component.html',
+  styleUrls: ['./teams.component.css'],
 })
 export class Teams implements OnInit {
   YamlObject: any;
-  teamList: string[] = [];
+  teamList: any;
   teamGroups: any;
 
   constructor(private yaml: ymlService) {}

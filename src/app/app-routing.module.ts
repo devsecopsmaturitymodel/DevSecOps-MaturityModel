@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'task-description', component: TaskDescriptionComponent },
   { path: 'mapping', component: MappingComponent },
   { path: 'usage', component: UsageComponent },
-  { path: 'about', component: AboutUsComponent },
   { path: 'teams', component: Teams },
+  { path: 'about', component: AboutUsComponent },
 ];
 
 @NgModule({
