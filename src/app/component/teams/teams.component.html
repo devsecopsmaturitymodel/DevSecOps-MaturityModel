@@ -6,40 +6,12 @@
     </ul>
   </div>
   <h2>Team Group</h2>
-  <h3>Group 123</h3>
-  <div class="team-list">
-    <ul>
-      <li>Team 1</li>
-      <li>Team 2</li>
-      <li>Team 3</li>
-    </ul>
-  </div>
-  <h3>Group 123</h3>
-  <div class="team-list">
-    <ul>
-      <li>Team 1</li>
-      <li>Team 2</li>
-      <li>Team 3</li>
-      <li>Team 1</li>
-      <li>Team 2</li>
-      <li>Team 3</li>
-      <li>Team 1</li>
-      <li>Team 2</li>
-      <li>Team 3</li>
-      <li>Team 1</li>
-      <li>Team 2</li>
-      <li>Team 3</li>
-      <li>Team 1</li>
-      <li>Team 2</li>
-      <li>Team 3</li>
-    </ul>
-  </div>
-  <h3>Group 123</h3>
-  <div class="team-list">
-    <ul>
-      <li>Team 1</li>
-      <li>Team 2</li>
-      <li>Team 3</li>
-    </ul>
+  <div class="group-expand" *ngFor="let group of teamGroups | keyvalue">
+    <h3>{{ group.key }}</h3>
+    <div class="team-list">
+      <ul>
+        <li *ngFor="let team of group.value">{{ team }}</li>
+      </ul>
+    </div>
   </div>
 </div>

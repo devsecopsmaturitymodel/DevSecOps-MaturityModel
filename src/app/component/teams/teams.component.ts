@@ -10,7 +10,7 @@ import * as yaml from 'js-yaml';
 export class Teams implements OnInit {
   YamlObject: any;
   teamList: any;
-  teamGroups: any;
+  teamGroups: Map<string, string[]> = new Map();
 
   constructor(private yaml: ymlService) {}
   ngOnInit(): void {
@@ -26,5 +26,8 @@ export class Teams implements OnInit {
       console.log('teamList', this.teamList);
       console.log('teamGroups', this.teamGroups);
     });
+  }
+  getTeamArray(key: string): string[] {
+    return this.teamGroups.get(key) || [];
   }
 }

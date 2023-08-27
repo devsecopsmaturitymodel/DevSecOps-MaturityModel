@@ -19,6 +19,7 @@ import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html
 import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
+import { Teams } from './component/teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DependencyGraphComponent } from './component/dependency-graph/dependenc
     UsageComponent,
     AboutUsComponent,
     DependencyGraphComponent,
+    Teams,
   ],
   imports: [
     BrowserModule,
