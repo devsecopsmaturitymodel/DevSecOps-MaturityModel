@@ -189,7 +189,7 @@
         <div class="right-panel">
           <div class="team-filter">
             <mat-form-field class="team-chip-list">
-              <mat-label>Team Filter</mat-label>
+              <mat-label>Team Group Filter</mat-label>
               <mat-chip-list selectable>
                 <mat-chip
                   #c="matChip"
@@ -203,6 +203,11 @@
                   (click)="toggleTeamSelection(c)">
                   {{ group.key }}
                 </mat-chip>
+              </mat-chip-list>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Team Filter</mat-label>
+              <mat-chip-list selectable>
                 <mat-chip
                   #c="matChip"
                   *ngFor="let team of teamList"
