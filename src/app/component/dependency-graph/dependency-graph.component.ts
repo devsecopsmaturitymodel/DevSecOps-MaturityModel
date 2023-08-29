@@ -43,8 +43,12 @@ export class DependencyGraphComponent implements OnInit {
     this.yaml.getJson().subscribe(data => {
       this.graphData = { nodes: [], links: [] };
       this.YamlObject = data[this.dimension][this.subDimension];
-      this.populateGraphWithActivitiesCurrentActivityDependsOn(this.activityName);
-      this.populateGraphWithActivitiesThatDependsOnCurrentActivity(this.activityName);
+      this.populateGraphWithActivitiesCurrentActivityDependsOn(
+        this.activityName
+      );
+      this.populateGraphWithActivitiesThatDependsOnCurrentActivity(
+        this.activityName
+      );
       //console.log({...this.graphData['nodes']})
 
       console.log({ ...this.graphData });
@@ -55,9 +59,16 @@ export class DependencyGraphComponent implements OnInit {
   populateGraphWithActivitiesCurrentActivityDependsOn(activity: string): void {
     this.checkIfNodeHasBeenGenerated(activity);
     try {
-      var activitysThatCurrenActivityIsDependentOn = this.YamlObject[activity]['dependsOn'];
-      for (var j = 0; j < activitysThatCurrenActivityIsDependentOn.length; j++) {
-        this.checkIfNodeHasBeenGenerated(activitysThatCurrenActivityIsDependentOn[j]);
+      var activitysThatCurrenActivityIsDependentOn =
+        this.YamlObject[activity]['dependsOn'];
+      for (
+        var j = 0;
+        j < activitysThatCurrenActivityIsDependentOn.length;
+        j++
+      ) {
+        this.checkIfNodeHasBeenGenerated(
+          activitysThatCurrenActivityIsDependentOn[j]
+        );
         this.graphData['links'].push({
           source: activitysThatCurrenActivityIsDependentOn[j],
           target: activity,
@@ -77,7 +88,10 @@ export class DependencyGraphComponent implements OnInit {
       try {
         if (this.YamlObject[allActivitys[i]]['dependsOn'].includes(activity)) {
           this.checkIfNodeHasBeenGenerated(allActivitys[i]);
-          this.graphData['links'].push({ source: activity, target: allActivitys[i] });
+          this.graphData['links'].push({
+            source: activity,
+            target: allActivitys[i],
+          });
         }
       } catch {
         continue;

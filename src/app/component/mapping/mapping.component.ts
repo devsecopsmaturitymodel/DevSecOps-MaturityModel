@@ -213,9 +213,13 @@ export class MappingComponent implements OnInit {
     //console.log(this.temp)
     this.allMappingDataSortedByActivity.push(this.temporaryMappingElement);
     if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-      this.performedMappingDataSortedByActivity.push(this.temporaryMappingElement);
+      this.performedMappingDataSortedByActivity.push(
+        this.temporaryMappingElement
+      );
     } else {
-      this.plannedMappingDataSortedByActivity.push(this.temporaryMappingElement);
+      this.plannedMappingDataSortedByActivity.push(
+        this.temporaryMappingElement
+      );
     }
   }
 
@@ -289,7 +293,8 @@ export class MappingComponent implements OnInit {
     var CurrentDescription: string =
       this.YamlObject[dim][subDim][activity]['description'];
     var CurrentRisk: string = this.YamlObject[dim][subDim][activity]['risk'];
-    var CurrentMeasure: string = this.YamlObject[dim][subDim][activity]['measure'];
+    var CurrentMeasure: string =
+      this.YamlObject[dim][subDim][activity]['measure'];
     var CurrentKnowledge: string =
       this.knowledgeLabels[
         this.YamlObject[dim][subDim][activity]['difficultyOfImplementation'][
@@ -298,7 +303,9 @@ export class MappingComponent implements OnInit {
       ];
     var CurrentTime: string =
       this.generalLabels[
-        this.YamlObject[dim][subDim][activity]['difficultyOfImplementation']['time']
+        this.YamlObject[dim][subDim][activity]['difficultyOfImplementation'][
+          'time'
+        ]
       ];
     var CurrentResources: string =
       this.generalLabels[
@@ -400,7 +407,8 @@ export class MappingComponent implements OnInit {
     var CurrentDescription: string =
       this.YamlObject[dim][subDim][activity]['description'];
     var CurrentRisk: string = this.YamlObject[dim][subDim][activity]['risk'];
-    var CurrentMeasure: string = this.YamlObject[dim][subDim][activity]['measure'];
+    var CurrentMeasure: string =
+      this.YamlObject[dim][subDim][activity]['measure'];
     var CurrentKnowledge: string =
       this.knowledgeLabels[
         this.YamlObject[dim][subDim][activity]['difficultyOfImplementation'][
@@ -409,7 +417,9 @@ export class MappingComponent implements OnInit {
       ];
     var CurrentTime: string =
       this.generalLabels[
-        this.YamlObject[dim][subDim][activity]['difficultyOfImplementation']['time']
+        this.YamlObject[dim][subDim][activity]['difficultyOfImplementation'][
+          'time'
+        ]
       ];
     var CurrentResources: string =
       this.generalLabels[

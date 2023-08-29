@@ -111,8 +111,14 @@ export class ActivityDescriptionComponent implements OnInit {
       );
       this.currentActivity.uuid = this.defineStringValues(data['uuid'], '');
       this.currentActivity.risk = this.defineStringValues(data['risk'], '');
-      this.currentActivity.tags = this.defineStringArrayValues(data['tags'], []);
-      this.currentActivity.measure = this.defineStringValues(data['measure'], '');
+      this.currentActivity.tags = this.defineStringArrayValues(
+        data['tags'],
+        []
+      );
+      this.currentActivity.measure = this.defineStringValues(
+        data['measure'],
+        ''
+      );
       try {
         data['meta'];
         this.currentActivity.implementatonGuide = this.defineStringValues(
@@ -175,9 +181,15 @@ export class ActivityDescriptionComponent implements OnInit {
         data['implementation']
       );
 
-      this.currentActivity.evidence = this.defineStringValues(data['evidence'], '');
+      this.currentActivity.evidence = this.defineStringValues(
+        data['evidence'],
+        ''
+      );
 
-      this.currentActivity.comments = this.defineStringValues(data['comments'], '');
+      this.currentActivity.comments = this.defineStringValues(
+        data['comments'],
+        ''
+      );
 
       this.currentActivity.assessment = this.defineStringValues(
         data['assessment'],

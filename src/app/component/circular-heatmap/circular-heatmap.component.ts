@@ -156,10 +156,14 @@ export class CircularHeatmapComponent implements OnInit {
         break;
       }
     }
-    if (this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone']) {
-      this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'] = false;
+    if (
+      this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone']
+    ) {
+      this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'] =
+        false;
     } else {
-      this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'] = true;
+      this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'] =
+        true;
     }
     // console.log(this.data[i]["Activity"][activityIndex]["done"])
     for (var i = 0; i < this.ALL_CARD_DATA[index]['Activity'].length; i++) {
@@ -176,12 +180,16 @@ export class CircularHeatmapComponent implements OnInit {
       for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
         if (allSubDimensionInThisDimension[j] == this.cardHeader) {
           var activityName =
-            this.ALL_CARD_DATA[index]['Activity'][activityIndex]['activityName'];
+            this.ALL_CARD_DATA[index]['Activity'][activityIndex][
+              'activityName'
+            ];
           // console.log(activityName);
           this.YamlObject[allDimensionNames[i]][
             allSubDimensionInThisDimension[j]
           ][activityName]['isImplemented'] =
-            this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'];
+            this.ALL_CARD_DATA[index]['Activity'][activityIndex][
+              'ifActivityDone'
+            ];
           break;
         }
       }
