@@ -1,7 +1,7 @@
 <div class="content-box">
   <h1>
-    {{ currentTask.dimension }} -> {{ currentTask.subDimension }}:
-    {{ currentTask.taskName }}
+    {{ currentActivity.dimension }} -> {{ currentActivity.subDimension }}:
+    {{ currentActivity.activityName }}
   </h1>
 
   <div class="example-action-buttons">
@@ -16,7 +16,7 @@
           <b>UUID</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.uuid"></p>
+      <p [innerHTML]="currentActivity.uuid"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel [expanded]="true">
@@ -25,7 +25,7 @@
           <b>Description</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.description"></p>
+      <p [innerHTML]="currentActivity.description"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -34,7 +34,7 @@
           <b>Risk</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.risk"></p>
+      <p [innerHTML]="currentActivity.risk"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -43,16 +43,16 @@
           <b>Measure</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.measure"></p>
+      <p [innerHTML]="currentActivity.measure"></p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel *ngIf="currentTask.implementatonGuide">
+    <mat-expansion-panel *ngIf="currentActivity.implementatonGuide">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Implementation Guide</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.implementatonGuide"></p>
+      <p [innerHTML]="currentActivity.implementatonGuide"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -61,18 +61,18 @@
           <b>Difficulty of Implementation</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Knowledge: {{ this.KnowledgeLabels[this.currentTask.knowledge] }}</p>
-      <p>Time: {{ this.GeneralLabels[this.currentTask.time] }}</p>
-      <p>Resources: {{ this.GeneralLabels[this.currentTask.resources] }}</p>
+      <p>Knowledge: {{ this.KnowledgeLabels[this.currentActivity.knowledge] }}</p>
+      <p>Time: {{ this.GeneralLabels[this.currentActivity.time] }}</p>
+      <p>Resources: {{ this.GeneralLabels[this.currentActivity.resources] }}</p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel *ngIf="currentTask.usefulness !== -1">
+    <mat-expansion-panel *ngIf="currentActivity.usefulness !== -1">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Usefulness</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>{{ this.GeneralLabels[this.currentTask.usefulness] }}</p>
+      <p>{{ this.GeneralLabels[this.currentActivity.usefulness] }}</p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -81,7 +81,7 @@
           <b>Evidence</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.evidence"></p>
+      <p [innerHTML]="currentActivity.evidence"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -90,7 +90,7 @@
           <b>Assessment</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.assessment"></p>
+      <p [innerHTML]="currentActivity.assessment"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -102,7 +102,7 @@
       <p>
         <mat-accordion multi="true">
           <mat-expansion-panel
-            *ngFor="let implement of this.currentTask.implementation">
+            *ngFor="let implement of this.currentActivity.implementation">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <b [innerHTML]="implement['name']"></b>
@@ -157,7 +157,7 @@
                 <b>{{ SAMMVersion }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let samm of currentTask.samm">
+            <ul *ngFor="let samm of currentActivity.samm">
               <li>{{ samm }}</li>
             </ul>
           </mat-expansion-panel>
@@ -167,7 +167,7 @@
                 <b>{{ ISOVersion }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let iso of currentTask.iso">
+            <ul *ngFor="let iso of currentActivity.iso">
               <li>{{ iso }}</li>
             </ul>
           </mat-expansion-panel>
@@ -177,7 +177,7 @@
                 <b>{{ ISO22Version }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let iso22 of currentTask.iso22">
+            <ul *ngFor="let iso22 of currentActivity.iso22">
               <li>{{ iso22 }}</li>
             </ul>
           </mat-expansion-panel>
@@ -192,7 +192,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div
-        *ngIf="currentTask.isImplemented; then thenBlock; else elseBlock"></div>
+        *ngIf="currentActivity.isImplemented; then thenBlock; else elseBlock"></div>
       <ng-template #thenBlock> Implemented </ng-template>
       <ng-template #elseBlock> Not Implemented </ng-template>
     </mat-expansion-panel>
@@ -203,9 +203,9 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <app-dependency-graph
-        dimension="{{ currentTask.dimension }}"
-        subDimension="{{ currentTask.subDimension }}"
-        taskName="{{ currentTask.taskName }}"></app-dependency-graph>
+        dimension="{{ currentActivity.dimension }}"
+        subDimension="{{ currentActivity.subDimension }}"
+        activityName="{{ currentActivity.activityName }}"></app-dependency-graph>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -214,7 +214,7 @@
           <b>Comments</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentTask.comments"></p>
+      <p [innerHTML]="currentActivity.comments"></p>
     </mat-expansion-panel>
   </mat-accordion>
 
@@ -224,6 +224,6 @@
         <b>Tags</b>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p [innerHTML]="currentTask.tags"></p>
+    <p [innerHTML]="currentActivity.tags"></p>
   </mat-expansion-panel>
 </div>

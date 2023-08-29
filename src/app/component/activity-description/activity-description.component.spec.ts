@@ -4,22 +4,22 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { sample } from 'rxjs';
 import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
 
-import { TaskDescriptionComponent } from './task-description.component';
+import { ActivityDescriptionComponent } from './activity-description.component';
 
-describe('TaskDescriptionComponent', () => {
-  let component: TaskDescriptionComponent;
-  let fixture: ComponentFixture<TaskDescriptionComponent>;
+describe('ActivityDescriptionComponent', () => {
+  let component: ActivityDescriptionComponent;
+  let fixture: ComponentFixture<ActivityDescriptionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [ymlService, HttpClient, HttpHandler],
       imports: [RouterTestingModule],
-      declarations: [TaskDescriptionComponent],
+      declarations: [ActivityDescriptionComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaskDescriptionComponent);
+    fixture = TestBed.createComponent(ActivityDescriptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -31,8 +31,8 @@ describe('TaskDescriptionComponent', () => {
   it('check if header is being genenrated', () => {
     const testDimension = 'Sample Dimension';
     const testSubDimension = 'Sample subDimension';
-    component.currentTask.dimension = testDimension;
-    component.currentTask.subDimension = testSubDimension;
+    component.currentActivity.dimension = testDimension;
+    component.currentActivity.subDimension = testSubDimension;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const heading = HTMLElement.querySelector('h1')!;
@@ -42,7 +42,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if UUID is being genenrated', () => {
     const testUUID = '00000000-0000-0000-0000-000000000000';
-    component.currentTask.uuid = testUUID;
+    component.currentActivity.uuid = testUUID;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -51,7 +51,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if description is being genenrated', () => {
     const testDescription = 'Sample Description';
-    component.currentTask.description = testDescription;
+    component.currentActivity.description = testDescription;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -62,7 +62,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if risk is being genenrated', () => {
     const testRisk = 'Sample Risk';
-    component.currentTask.risk = testRisk;
+    component.currentActivity.risk = testRisk;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -71,7 +71,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if measure is being genenrated', () => {
     const testMeasure = 'Sample Measure';
-    component.currentTask.measure = testMeasure;
+    component.currentActivity.measure = testMeasure;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -82,7 +82,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if implementation guide is being genenrated', () => {
     const testImplementationGuide = 'Sample Implementation Guide';
-    component.currentTask.implementatonGuide = testImplementationGuide;
+    component.currentActivity.implementatonGuide = testImplementationGuide;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -93,7 +93,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if evidence is being genenrated', () => {
     const testEvidence = 'Sample Evidence';
-    component.currentTask.evidence = testEvidence;
+    component.currentActivity.evidence = testEvidence;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -104,7 +104,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if assessment is being genenrated', () => {
     const testAssessment = 'Sample Assessment';
-    component.currentTask.assessment = testAssessment;
+    component.currentActivity.assessment = testAssessment;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -115,7 +115,7 @@ describe('TaskDescriptionComponent', () => {
 
   it('check if comments is being genenrated', () => {
     const testComments = 'Sample Comments';
-    component.currentTask.comments = testComments;
+    component.currentActivity.comments = testComments;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -128,9 +128,9 @@ describe('TaskDescriptionComponent', () => {
     const testSAMM = [' Sample SAMM '];
     const testISO = [' Sample ISO'];
     const testISO22 = [' Sample ISO22'];
-    component.currentTask.samm = testSAMM;
-    component.currentTask.iso = testISO;
-    component.currentTask.iso22 = testISO22;
+    component.currentActivity.samm = testSAMM;
+    component.currentActivity.iso = testISO;
+    component.currentActivity.iso22 = testISO22;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;

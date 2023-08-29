@@ -37,7 +37,7 @@
       <section class="sort-section">
         <mat-button-toggle-group [formControl]="SortCtrl" aria-label="Sort By">
           <mat-button-toggle
-            value="sortByTask"
+            value="sortByActivity"
             (click)="changeTableBasedOnCurrentSort()"
             >Activity</mat-button-toggle
           >
@@ -75,9 +75,9 @@
       <td mat-cell *matCellDef="let element">{{ element.subDimension }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="taskName">
+    <ng-container matColumnDef="activityName">
       <th mat-header-cell *matHeaderCellDef>Activity</th>
-      <td mat-cell *matCellDef="let element">{{ element.taskName }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.activityName }}</td>
     </ng-container>
 
     <ng-container matColumnDef="samm2">
@@ -85,7 +85,7 @@
         <th mat-header-cell *matHeaderCellDef>SAMM</th>
         <td mat-cell *matCellDef="let element">{{ element.samm2 }}</td>
       </ng-container>
-      <ng-container *ngIf="currentlySortingByTask || currentlySortingByISO || currentlySortingByISO22">
+      <ng-container *ngIf="currentlySortingByActivity || currentlySortingByISO || currentlySortingByISO22">
         <th mat-header-cell *matHeaderCellDef>SAMM</th>
         <td mat-cell *matCellDef="let element">
           <ul>
@@ -103,7 +103,7 @@
         <td mat-cell *matCellDef="let element">{{ element.ISO }}</td>
       </ng-container>
 
-      <ng-container *ngIf="currentlySortingByTask || currentlySortingBySAMM || currentlySortingByISO22">
+      <ng-container *ngIf="currentlySortingByActivity || currentlySortingBySAMM || currentlySortingByISO22">
         <th mat-header-cell *matHeaderCellDef>ISO 27001:2017</th>
         <td mat-cell *matCellDef="let element">
           <ul>
@@ -121,7 +121,7 @@
         <td mat-cell *matCellDef="let element">{{ element.ISO22 }}</td>
       </ng-container>
 
-      <ng-container *ngIf="currentlySortingByTask || currentlySortingBySAMM || currentlySortingByISO">
+      <ng-container *ngIf="currentlySortingByActivity || currentlySortingBySAMM || currentlySortingByISO">
         <th mat-header-cell *matHeaderCellDef>ISO 27001:2022</th>
         <td mat-cell *matCellDef="let element">
           <ul>
@@ -162,7 +162,7 @@
       <!-- checking if item is defined and set & truncating at 32767 characters per cell to fit to excel limitations-->
       <td><ng-container *ngIf="item.dimension && item.dimension.length>0"> {{ item.dimension | slice:0:32767 }}</ng-container></td> 
       <td><ng-container *ngIf="item.subDimension && item.subDimension.length>0"> {{ item.subDimension | slice:0:32767 }}</ng-container></td>
-      <td><ng-container *ngIf="item.taskName && item.taskName.length>0"> {{ item.taskName | slice:0:32767 }}</ng-container></td>
+      <td><ng-container *ngIf="item.activityName && item.activityName.length>0"> {{ item.activityName | slice:0:32767 }}</ng-container></td>
       <td><ng-container *ngIf="item.description && item.description.length>0"> {{ item.description | slice:0:32767 }}</ng-container></td>
       <td><ng-container *ngIf="item.risk && item.risk.length>0"> {{ item.risk | slice:0:32767 }}</ng-container></td>
       <td><ng-container *ngIf="item.measure && item.measure.length>0"> {{ item.measure | slice:0:32767 }}</ng-container></td>

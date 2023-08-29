@@ -4,9 +4,9 @@ import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
 import { Router, NavigationExtras } from '@angular/router';
 
-export interface taskSchema {
-  taskName: string;
-  ifTaskDone: boolean;
+export interface activitySchema {
+  activityName: string;
+  ifActivityDone: boolean;
 }
 
 export interface cardSchema {
@@ -14,7 +14,7 @@ export interface cardSchema {
   SubDimension: string;
   Level: string;
   'Done%': number;
-  Task: taskSchema[];
+  Activity: activitySchema[];
 }
 
 @Component({
@@ -23,19 +23,19 @@ export interface cardSchema {
   styleUrls: ['./circular-heatmap.component.css'],
 })
 export class CircularHeatmapComponent implements OnInit {
-  Routing: string = '/task-description';
+  Routing: string = '/activity-description';
 
-  maxLevelOfTasks: number = -1;
-  showTaskCard: boolean = false;
+  maxLevelOfActivities: number = -1;
+  showActivityCard: boolean = false;
   cardHeader: string = '';
   cardSubheader: string = '';
   currentDimension: string = '';
-  tasksData: any[] = [];
+  activityData: any[] = [];
   ALL_CARD_DATA: cardSchema[] = [];
   radial_labels: string[] = [];
   YamlObject: any;
   segment_labels: string[] = [];
-  taskDetails: any;
+  activityDetails: any;
   showOverlay: boolean;
 
   constructor(private yaml: ymlService, private router: Router) {
@@ -52,7 +52,7 @@ export class CircularHeatmapComponent implements OnInit {
       for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
         var y = parseInt(x) + 1;
         this.radial_labels.push('Level ' + y);
-        this.maxLevelOfTasks = y;
+        this.maxLevelOfActivities = y;
       }
     });
 
@@ -74,14 +74,14 @@ export class CircularHeatmapComponent implements OnInit {
         }
       }
       // console.log(this.segment_labels);
-      for (var l = 0; l < this.maxLevelOfTasks; l++) {
+      for (var l = 0; l < this.maxLevelOfActivities; l++) {
         var allDimensionNames = Object.keys(this.YamlObject);
         for (var i = 0; i < allDimensionNames.length; i++) {
           var allSubDimensionInThisDimension = Object.keys(
             this.YamlObject[allDimensionNames[i]]
           );
           for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
-            var allTaskInThisSubDimension = Object.keys(
+            var allActivityInThisSubDimension = Object.keys(
               this.YamlObject[allDimensionNames[i]][
                 allSubDimensionInThisDimension[j]
               ]
@@ -91,39 +91,39 @@ export class CircularHeatmapComponent implements OnInit {
               SubDimension: '',
               Level: '',
               'Done%': -1,
-              Task: [],
+              Activity: [],
             };
             var totalImplemented: number = 0;
-            var totalTasks: number = 0;
+            var totalActivitys: number = 0;
             tempData['Dimension'] = allDimensionNames[i];
             tempData['SubDimension'] = allSubDimensionInThisDimension[j];
             tempData['Level'] = 'Level ' + (l + 1);
-            for (var k = 0; k < allTaskInThisSubDimension.length; k++) {
+            for (var k = 0; k < allActivityInThisSubDimension.length; k++) {
               try {
-                var lvlOfCurrentTask =
+                var lvlOfCurrentActivity =
                   this.YamlObject[allDimensionNames[i]][
                     allSubDimensionInThisDimension[j]
-                  ][allTaskInThisSubDimension[k]]['level'];
-                if (lvlOfCurrentTask == l + 1) {
-                  totalTasks += 1;
-                  var nameOfTask: string = allTaskInThisSubDimension[k];
+                  ][allActivityInThisSubDimension[k]]['level'];
+                if (lvlOfCurrentActivity == l + 1) {
+                  totalActivitys += 1;
+                  var nameOfActivity: string = allActivityInThisSubDimension[k];
                   var Status: boolean =
                     this.YamlObject[allDimensionNames[i]][
                       allSubDimensionInThisDimension[j]
-                    ][allTaskInThisSubDimension[k]]['isImplemented'];
+                    ][allActivityInThisSubDimension[k]]['isImplemented'];
                   if (Status) {
                     totalImplemented += 1;
                   }
-                  tempData['Task'].push({
-                    taskName: nameOfTask,
-                    ifTaskDone: Status,
+                  tempData['Activity'].push({
+                    activityName: nameOfActivity,
+                    ifActivityDone: Status,
                   });
                 }
-                if (totalTasks > 0) {
-                  tempData['Done%'] = totalImplemented / totalTasks;
+                if (totalActivitys > 0) {
+                  tempData['Done%'] = totalImplemented / totalActivitys;
                 }
               } catch {
-                console.log('level for task does not exist');
+                console.log('level for activity does not exist');
               }
             }
             this.ALL_CARD_DATA.push(tempData);
@@ -138,11 +138,11 @@ export class CircularHeatmapComponent implements OnInit {
         this.radial_labels,
         this.segment_labels
       );
-      this.noTasktoGrey();
+      this.noActivitytoGrey();
     });
   }
 
-  toggleCheckbox(taskIndex: number) {
+  toggleCheckbox(activityIndex: number) {
     //console.log('fo')
     let _self = this;
     var index = 0;
@@ -156,15 +156,15 @@ export class CircularHeatmapComponent implements OnInit {
         break;
       }
     }
-    if (this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone']) {
-      this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'] = false;
+    if (this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone']) {
+      this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'] = false;
     } else {
-      this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'] = true;
+      this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'] = true;
     }
-    // console.log(this.data[i]["Task"][taskIndex]["done"])
-    for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
-      console.log(this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']);
-      if (this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']) {
+    // console.log(this.data[i]["Activity"][activityIndex]["done"])
+    for (var i = 0; i < this.ALL_CARD_DATA[index]['Activity'].length; i++) {
+      console.log(this.ALL_CARD_DATA[index]['Activity'][i]['ifActivityDone']);
+      if (this.ALL_CARD_DATA[index]['Activity'][i]['ifActivityDone']) {
         cnt += 1;
       }
     }
@@ -175,19 +175,19 @@ export class CircularHeatmapComponent implements OnInit {
       );
       for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
         if (allSubDimensionInThisDimension[j] == this.cardHeader) {
-          var taskName =
-            this.ALL_CARD_DATA[index]['Task'][taskIndex]['taskName'];
-          // console.log(taskName);
+          var activityName =
+            this.ALL_CARD_DATA[index]['Activity'][activityIndex]['activityName'];
+          // console.log(activityName);
           this.YamlObject[allDimensionNames[i]][
             allSubDimensionInThisDimension[j]
-          ][taskName]['isImplemented'] =
-            this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'];
+          ][activityName]['isImplemented'] =
+            this.ALL_CARD_DATA[index]['Activity'][activityIndex]['ifActivityDone'];
           break;
         }
       }
     }
     this.ALL_CARD_DATA[index]['Done%'] =
-      cnt / this.ALL_CARD_DATA[index]['Task'].length;
+      cnt / this.ALL_CARD_DATA[index]['Activity'].length;
     // console.log(this.data[index]['Done%'], cnt);
     var color = d3
       .scaleLinear<string, string>()
@@ -282,10 +282,10 @@ export class CircularHeatmapComponent implements OnInit {
         //console.log(curr);
         _self.currentDimension = curr.Dimension;
         _self.cardSubheader = curr.Level;
-        _self.tasksData = curr.Task;
+        _self.activityData = curr.Activity;
         _self.cardHeader = curr.SubDimension;
-        _self.showTaskCard = true;
-        //console.log(_self.tasksData)
+        _self.showActivityCard = true;
+        //console.log(_self.activityData)
       })
       .on('mouseover', function (d) {
         //console.log(d.toElement.__data__.Name)
@@ -547,7 +547,7 @@ export class CircularHeatmapComponent implements OnInit {
     return chart;
   }
 
-  noTasktoGrey(): void {
+  noActivitytoGrey(): void {
     console.log(this.ALL_CARD_DATA);
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
@@ -563,21 +563,21 @@ export class CircularHeatmapComponent implements OnInit {
     }
   }
 
-  navigate(dim: string, subdim: string, lvl: Number, taskName: string) {
+  navigate(dim: string, subdim: string, lvl: Number, activityName: string) {
     let navigationExtras = {
       dimension: dim,
       subDimension: subdim,
       level: lvl,
-      taskName: taskName,
+      activityName: activityName,
     };
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
-    this.taskDetails = this.YamlObject[dim][subdim][taskName];
+    this.activityDetails = this.YamlObject[dim][subdim][activityName];
     console.log(this.YamlObject);
     console.log(this.YamlObject[dim][subdim]);
-    if (this.taskDetails) {
-      this.taskDetails.navigationExtras = navigationExtras;
+    if (this.activityDetails) {
+      this.activityDetails.navigationExtras = navigationExtras;
     }
-    console.log(this.taskDetails);
+    console.log(this.activityDetails);
     this.showOverlay = true;
   }
   closeOverlay() {
@@ -598,8 +598,8 @@ export class CircularHeatmapComponent implements OnInit {
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] > 0) {
         this.ALL_CARD_DATA[x]['Done%'] = 0;
-        for (var y = 0; y < this.ALL_CARD_DATA[x]['Task'].length; y++) {
-          this.ALL_CARD_DATA[x]['Task'][y]['ifTaskDone'] = false;
+        for (var y = 0; y < this.ALL_CARD_DATA[x]['Activity'].length; y++) {
+          this.ALL_CARD_DATA[x]['Activity'][y]['ifActivityDone'] = false;
         }
         d3.selectAll(
           '#segment-' +
