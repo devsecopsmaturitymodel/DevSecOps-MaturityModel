@@ -33,7 +33,7 @@ export class DependencyGraphComponent implements OnInit {
 
   @Input() dimension: string = '';
   @Input() subDimension: string = '';
-  @Input() taskName: string = '';
+  @Input() activityName: string = '';
 
   constructor(private yaml: ymlService) {}
 
@@ -43,27 +43,38 @@ export class DependencyGraphComponent implements OnInit {
     this.yaml.getJson().subscribe(data => {
       this.graphData = { nodes: [], links: [] };
       this.YamlObject = data[this.dimension][this.subDimension];
-      this.populateGraphWithActivitiesCurrentTaskDependsOn(this.taskName);
-      this.populateGraphWithActivitiesThatDependsOnCurrentTask(this.taskName);
+      this.populateGraphWithActivitiesCurrentActivityDependsOn(
+        this.activityName
+      );
+      this.populateGraphWithActivitiesThatDependsOnCurrentActivity(
+        this.activityName
+      );
       //console.log({...this.graphData['nodes']})
 
       console.log({ ...this.graphData });
-      this.generateGraph(this.taskName);
+      this.generateGraph(this.activityName);
     });
   }
 
-  populateGraphWithActivitiesCurrentTaskDependsOn(task: string): void {
-    this.checkIfNodeHasBeenGenerated(task);
+  populateGraphWithActivitiesCurrentActivityDependsOn(activity: string): void {
+    this.checkIfNodeHasBeenGenerated(activity);
     try {
-      var tasksThatCurrenTaskIsDependentOn = this.YamlObject[task]['dependsOn'];
-      for (var j = 0; j < tasksThatCurrenTaskIsDependentOn.length; j++) {
-        this.checkIfNodeHasBeenGenerated(tasksThatCurrenTaskIsDependentOn[j]);
+      var activitysThatCurrenActivityIsDependentOn =
+        this.YamlObject[activity]['dependsOn'];
+      for (
+        var j = 0;
+        j < activitysThatCurrenActivityIsDependentOn.length;
+        j++
+      ) {
+        this.checkIfNodeHasBeenGenerated(
+          activitysThatCurrenActivityIsDependentOn[j]
+        );
         this.graphData['links'].push({
-          source: tasksThatCurrenTaskIsDependentOn[j],
-          target: task,
+          source: activitysThatCurrenActivityIsDependentOn[j],
+          target: activity,
         });
-        this.populateGraphWithActivitiesCurrentTaskDependsOn(
-          tasksThatCurrenTaskIsDependentOn[j]
+        this.populateGraphWithActivitiesCurrentActivityDependsOn(
+          activitysThatCurrenActivityIsDependentOn[j]
         );
       }
     } catch (e) {
@@ -71,13 +82,16 @@ export class DependencyGraphComponent implements OnInit {
     }
     //console.log({...this.graphData['nodes']})
   }
-  populateGraphWithActivitiesThatDependsOnCurrentTask(task: string) {
-    var allTasks = Object.keys(this.YamlObject);
-    for (var i = 0; i < allTasks.length; i++) {
+  populateGraphWithActivitiesThatDependsOnCurrentActivity(activity: string) {
+    var allActivitys = Object.keys(this.YamlObject);
+    for (var i = 0; i < allActivitys.length; i++) {
       try {
-        if (this.YamlObject[allTasks[i]]['dependsOn'].includes(task)) {
-          this.checkIfNodeHasBeenGenerated(allTasks[i]);
-          this.graphData['links'].push({ source: task, target: allTasks[i] });
+        if (this.YamlObject[allActivitys[i]]['dependsOn'].includes(activity)) {
+          this.checkIfNodeHasBeenGenerated(allActivitys[i]);
+          this.graphData['links'].push({
+            source: activity,
+            target: allActivitys[i],
+          });
         }
       } catch {
         continue;
@@ -85,14 +99,14 @@ export class DependencyGraphComponent implements OnInit {
     }
   }
 
-  checkIfNodeHasBeenGenerated(task: string) {
-    if (!this.visited.includes(task)) {
-      this.graphData['nodes'].push({ id: task });
-      this.visited.push(task);
+  checkIfNodeHasBeenGenerated(activity: string) {
+    if (!this.visited.includes(activity)) {
+      this.graphData['nodes'].push({ id: activity });
+      this.visited.push(activity);
     }
   }
 
-  generateGraph(task: string): void {
+  generateGraph(activity: string): void {
     let svg = d3.select('svg'),
       width = +svg.attr('width'),
       height = +svg.attr('height');
@@ -147,7 +161,7 @@ export class DependencyGraphComponent implements OnInit {
       .append('circle')
       .attr('r', 10)
       .attr('fill', function (d) {
-        if (d.id == task) return 'yellow';
+        if (d.id == activity) return 'yellow';
         else return defaultNodeColor;
       });
 
