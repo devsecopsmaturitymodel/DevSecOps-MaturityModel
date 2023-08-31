@@ -11,24 +11,24 @@ export class SidenavButtonsComponent {
     'Implementation Levels',
     'Mappings',
     'Usage',
-    'About Us',
     'Teams',
+    'About Us',
   ];
   Icons: string[] = [
     'table_chart',
     'pie_chart',
     'timeline',
+    'description',
+    'people',
     'info',
-    'people',
-    'people',
   ];
   Routing: string[] = [
     '/',
     '/circular-heatmap',
     '/mapping',
     '/usage',
-    '/about',
     '/teams',
+    '/about',
   ];
   constructor() {}
 }
