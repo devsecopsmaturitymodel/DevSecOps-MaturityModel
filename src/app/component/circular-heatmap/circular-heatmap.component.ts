@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChildren,
+  QueryList,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
@@ -42,7 +48,11 @@ export class CircularHeatmapComponent implements OnInit {
   taskDetails: any;
   showOverlay: boolean;
 
-  constructor(private yaml: ymlService, private router: Router) {
+  constructor(
+    private yaml: ymlService,
+    private router: Router,
+    private changeDetector: ChangeDetectorRef
+  ) {
     this.showOverlay = false;
   }
 
@@ -178,16 +188,18 @@ export class CircularHeatmapComponent implements OnInit {
 
   // Team Filter BEGINS
 
-  toggleTeamSelection(chip: MatChip) {
+  @ViewChildren(MatChip) chips!: QueryList<MatChip>;
+
+  // Define an array to store MatChip components
+  matChipsArray: MatChip[] = [];
+  toggleTeamGroupSelection(chip: MatChip) {
     chip.toggleSelected();
     let currChipValue = chip.value.replace(/\s/g, '');
-    let visibilityUpdated = false;
+
     if (chip.selected) {
       this.selectedTeamChips = [currChipValue];
       if (currChipValue == 'All') {
         this.teamVisible = this.teamList;
-        console.log('All', this.teamList);
-        visibilityUpdated = true;
       } else {
         this.teamVisible = [];
 
@@ -195,13 +207,10 @@ export class CircularHeatmapComponent implements OnInit {
           Object.keys(this.teamGroups) as (keyof typeof this.teamGroups)[]
         ).forEach((key, index) => {
           if (key === currChipValue) {
+            console.log('group selected');
             this.teamVisible = this.teamGroups[key];
-            visibilityUpdated = true;
           }
         });
-        if (!visibilityUpdated) {
-          this.teamVisible.push(currChipValue);
-        }
       }
     } else {
       this.selectedTeamChips = this.selectedTeamChips.filter(
@@ -210,9 +219,40 @@ export class CircularHeatmapComponent implements OnInit {
     }
     console.log('Selected Chips', this.selectedTeamChips);
     console.log('Team Visible', this.teamVisible);
+    console.log('All chips', this.matChipsArray);
 
     // Update heatmap based on selection
+    this.updateChips(true);
     this.reColorHeatmap();
+  }
+
+  toggleTeamSelection(chip: MatChip) {
+    chip.toggleSelected();
+    let currChipValue = chip.value.replace(/\s/g, '');
+    let visibilityUpdated = false;
+    if (chip.selected) {
+      this.teamVisible.push(currChipValue);
+      this.selectedTeamChips = [];
+    } else {
+      this.teamVisible = this.teamVisible.filter(o => o !== currChipValue);
+    }
+    console.log('Selected Chips', this.selectedTeamChips);
+    console.log('Team Visible', this.teamVisible);
+    console.log('All chips', this.matChipsArray);
+    // Update heatmap based on selection
+    this.updateChips(false);
+    this.reColorHeatmap();
+  }
+
+  ngAfterViewInit() {
+    // Putting all the chips inside an array
+
+    setTimeout(() => {
+      this.matChipsArray = this.chips.toArray();
+    }, 100);
+  }
+  updateChips(fromTeamGroup: boolean) {
+    console.log('updating chips');
   }
   // Team Filter ENDS
 

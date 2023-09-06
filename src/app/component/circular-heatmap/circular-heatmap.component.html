@@ -193,21 +193,21 @@
               <mat-chip-list selectable>
                 <mat-chip
                   #c="matChip"
-                  (click)="toggleTeamSelection(c)"
+                  (click)="toggleTeamGroupSelection(c)"
                   selected>
                   All
                 </mat-chip>
                 <mat-chip
                   #c="matChip"
                   *ngFor="let group of teamGroups | keyvalue"
-                  (click)="toggleTeamSelection(c)">
+                  (click)="toggleTeamGroupSelection(c)">
                   {{ group.key }}
                 </mat-chip>
               </mat-chip-list>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Team Filter</mat-label>
-              <mat-chip-list selectable>
+              <mat-chip-list selectable multiple>
                 <mat-chip
                   #c="matChip"
                   *ngFor="let team of teamList"
