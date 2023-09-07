@@ -209,7 +209,7 @@ export class CircularHeatmapComponent implements OnInit {
         ).forEach((key, index) => {
           if (key === currChipValue) {
             console.log('group selected');
-            this.teamVisible = this.teamGroups[key];
+            this.teamVisible = [...this.teamGroups[key]];
           }
         });
       }
@@ -235,6 +235,7 @@ export class CircularHeatmapComponent implements OnInit {
       this.teamVisible.push(currChipValue);
       this.selectedTeamChips = [];
     } else {
+      this.selectedTeamChips = [];
       this.teamVisible = this.teamVisible.filter(o => o !== currChipValue);
     }
     console.log('Selected Chips', this.selectedTeamChips);
