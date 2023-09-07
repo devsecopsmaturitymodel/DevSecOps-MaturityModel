@@ -10,6 +10,7 @@ import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
 import { Router, NavigationExtras } from '@angular/router';
 import { MatChip } from '@angular/material/chips';
+import { from, single } from 'rxjs';
 
 export interface taskSchema {
   taskName: string;
@@ -76,7 +77,7 @@ export class CircularHeatmapComponent implements OnInit {
 
       this.teamList = this.YamlObject['teams'];
       this.teamGroups = this.YamlObject['teamGroups'];
-      this.teamVisible = this.teamList;
+      this.teamVisible = [...this.teamList];
     });
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
@@ -199,7 +200,7 @@ export class CircularHeatmapComponent implements OnInit {
     if (chip.selected) {
       this.selectedTeamChips = [currChipValue];
       if (currChipValue == 'All') {
-        this.teamVisible = this.teamList;
+        this.teamVisible = [...this.teamList];
       } else {
         this.teamVisible = [];
 
@@ -229,7 +230,7 @@ export class CircularHeatmapComponent implements OnInit {
   toggleTeamSelection(chip: MatChip) {
     chip.toggleSelected();
     let currChipValue = chip.value.replace(/\s/g, '');
-    let visibilityUpdated = false;
+    let prevSelectedChip = this.selectedTeamChips;
     if (chip.selected) {
       this.teamVisible.push(currChipValue);
       this.selectedTeamChips = [];
@@ -238,9 +239,10 @@ export class CircularHeatmapComponent implements OnInit {
     }
     console.log('Selected Chips', this.selectedTeamChips);
     console.log('Team Visible', this.teamVisible);
+    console.log('Team List', this.teamList);
     console.log('All chips', this.matChipsArray);
     // Update heatmap based on selection
-    this.updateChips(false);
+    this.updateChips(prevSelectedChip);
     this.reColorHeatmap();
   }
 
@@ -249,10 +251,24 @@ export class CircularHeatmapComponent implements OnInit {
 
     setTimeout(() => {
       this.matChipsArray = this.chips.toArray();
+      this.updateChips(true);
     }, 100);
   }
-  updateChips(fromTeamGroup: boolean) {
-    console.log('updating chips');
+  updateChips(fromTeamGroup: any) {
+    console.log('updating chips', fromTeamGroup);
+    // Re select chips
+    this.matChipsArray.forEach(chip => {
+      let currChipValue = chip.value.replace(/\s/g, '');
+
+      if (this.teamVisible.includes(currChipValue)) {
+        console.log(currChipValue);
+        chip.selected = true;
+      } else {
+        if (!this.selectedTeamChips.includes(currChipValue)) {
+          chip.selected = false;
+        }
+      }
+    });
   }
   // Team Filter ENDS
 
