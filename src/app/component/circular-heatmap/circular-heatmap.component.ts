@@ -224,7 +224,6 @@ export class CircularHeatmapComponent implements OnInit {
 
     // Update heatmap based on selection
     this.updateChips(true);
-    this.reColorHeatmap();
   }
 
   toggleTeamSelection(chip: MatChip) {
@@ -244,7 +243,6 @@ export class CircularHeatmapComponent implements OnInit {
     console.log('All chips', this.matChipsArray);
     // Update heatmap based on selection
     this.updateChips(prevSelectedChip);
-    this.reColorHeatmap();
   }
 
   ngAfterViewInit() {
@@ -253,6 +251,7 @@ export class CircularHeatmapComponent implements OnInit {
     setTimeout(() => {
       this.matChipsArray = this.chips.toArray();
       this.updateChips(true);
+      this.reColorHeatmap();
     }, 100);
   }
   updateChips(fromTeamGroup: any) {
@@ -270,6 +269,7 @@ export class CircularHeatmapComponent implements OnInit {
         }
       }
     });
+    this.reColorHeatmap();
   }
   // Team Filter ENDS
 
@@ -687,6 +687,7 @@ export class CircularHeatmapComponent implements OnInit {
     link.remove();
   }
   reColorHeatmap() {
+    console.log('recolor');
     for (var index = 0; index < this.ALL_CARD_DATA.length; index += 1) {
       let cntAll: number = 0;
       let cntTrue: number = 0;
@@ -709,20 +710,22 @@ export class CircularHeatmapComponent implements OnInit {
       }
       if (cntAll !== 0) {
         this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
-        var color = d3
-          .scaleLinear<string, string>()
-          .domain([0, 1])
-          .range(['white', 'green']);
-
-        d3.selectAll(
-          '#segment-' +
-            this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
-            '-' +
-            this.ALL_CARD_DATA[index]['Level'].replace(' ', '-')
-        ).attr('fill', function (p) {
-          return color(_self.ALL_CARD_DATA[index]['Done%']);
-        });
+      } else {
+        this.ALL_CARD_DATA[index]['Done%'] = 0;
       }
+      var color = d3
+        .scaleLinear<string, string>()
+        .domain([0, 1])
+        .range(['white', 'green']);
+
+      d3.selectAll(
+        '#segment-' +
+          this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
+          '-' +
+          this.ALL_CARD_DATA[index]['Level'].replace(' ', '-')
+      ).attr('fill', function (p) {
+        return color(_self.ALL_CARD_DATA[index]['Done%']);
+      });
     }
     // this.noTasktoGrey();
   }
