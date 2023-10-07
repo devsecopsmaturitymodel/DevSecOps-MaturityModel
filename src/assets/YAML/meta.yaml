@@ -39,3 +39,9 @@ strings:
         'Level 4: Very high adoption of security practices',
         'Level 5: Advanced deployment of security practices at scale',
       ]
+# Default team
+teams: ['Default', 'B', 'C']
+teamGroups:
+  GroupA: ['Default', 'B']
+  GroupB: ['B', 'C']
+  GroupC: ['Default', 'C']

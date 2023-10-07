@@ -71,7 +71,7 @@ export class CircularHeatmapComponent implements OnInit {
       }
     });
     // Team Data
-    this.yaml.setURI('./assets/YAML/teams.yaml');
+    this.yaml.setURI('./assets/YAML/meta.yaml');
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
 
