@@ -82,7 +82,8 @@
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
                   <ul>
-                    <li *ngFor="let implement of activityDetails.implementation">
+                    <li
+                      *ngFor="let implement of activityDetails.implementation">
                       <a href="{{ implement.url }}">{{ implement.name }}</a>
                     </li>
                   </ul>
@@ -114,7 +115,9 @@
                     Knowledge:
                     {{ activityDetails.difficultyOfImplementation.knowledge }}
                   </p>
-                  <p>Time: {{ activityDetails.difficultyOfImplementation.time }}</p>
+                  <p>
+                    Time: {{ activityDetails.difficultyOfImplementation.time }}
+                  </p>
                   <p>
                     Resources:
                     {{ activityDetails.difficultyOfImplementation.resources }}
@@ -227,7 +230,7 @@
               <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content
-              *ngFor="let activity of activitysData; index as activityIndex">
+              *ngFor="let activity of activityData; index as activityIndex">
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
