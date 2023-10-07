@@ -1,0 +1,17 @@
+.content-box {
+  margin: 20px;
+  width: 95%;
+  /*height: 100%;*/
+  /*background-color: paleturquoise;*/
+}
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-raised-button {
+  margin-right: 8px;
+}
+.teams-implemented-list {
+  list-style: none;
+}

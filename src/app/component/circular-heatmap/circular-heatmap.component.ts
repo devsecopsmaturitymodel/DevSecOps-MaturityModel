@@ -1,12 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChildren,
+  QueryList,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
 import { Router, NavigationExtras } from '@angular/router';
+import { MatChip } from '@angular/material/chips';
+import { from, single } from 'rxjs';
 
-export interface taskSchema {
-  taskName: string;
-  ifTaskDone: boolean;
+export interface activitySchema {
+  activityName: string;
+  // ifActivityDone: boolean;
+  teamsImplemented: any;
 }
 
 export interface cardSchema {
@@ -14,7 +23,7 @@ export interface cardSchema {
   SubDimension: string;
   Level: string;
   'Done%': number;
-  Task: taskSchema[];
+  Activity: activitySchema[];
 }
 
 @Component({
@@ -23,22 +32,28 @@ export interface cardSchema {
   styleUrls: ['./circular-heatmap.component.css'],
 })
 export class CircularHeatmapComponent implements OnInit {
-  Routing: string = '/task-description';
-
-  maxLevelOfTasks: number = -1;
-  showTaskCard: boolean = false;
+  maxLevelOfActivitys: number = -1;
+  showActivityCard: boolean = false;
   cardHeader: string = '';
   cardSubheader: string = '';
   currentDimension: string = '';
-  tasksData: any[] = [];
+  activitysData: any[] = [];
   ALL_CARD_DATA: cardSchema[] = [];
   radial_labels: string[] = [];
   YamlObject: any;
+  teamList: any;
+  teamGroups: any;
+  selectedTeamChips: string[] = ['All'];
+  teamVisible: string[] = [];
   segment_labels: string[] = [];
-  taskDetails: any;
+  activityDetails: any;
   showOverlay: boolean;
 
-  constructor(private yaml: ymlService, private router: Router) {
+  constructor(
+    private yaml: ymlService,
+    private router: Router,
+    private changeDetector: ChangeDetectorRef
+  ) {
     this.showOverlay = false;
   }
 
@@ -52,10 +67,18 @@ export class CircularHeatmapComponent implements OnInit {
       for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
         var y = parseInt(x) + 1;
         this.radial_labels.push('Level ' + y);
-        this.maxLevelOfTasks = y;
+        this.maxLevelOfActivitys = y;
       }
     });
+    // Team Data
+    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.getJson().subscribe(data => {
+      this.YamlObject = data;
 
+      this.teamList = this.YamlObject['teams'];
+      this.teamGroups = this.YamlObject['teamGroups'];
+      this.teamVisible = [...this.teamList];
+    });
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
@@ -74,14 +97,14 @@ export class CircularHeatmapComponent implements OnInit {
         }
       }
       // console.log(this.segment_labels);
-      for (var l = 0; l < this.maxLevelOfTasks; l++) {
+      for (var l = 0; l < this.maxLevelOfActivitys; l++) {
         var allDimensionNames = Object.keys(this.YamlObject);
         for (var i = 0; i < allDimensionNames.length; i++) {
           var allSubDimensionInThisDimension = Object.keys(
             this.YamlObject[allDimensionNames[i]]
           );
           for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
-            var allTaskInThisSubDimension = Object.keys(
+            var allActivityInThisSubDimension = Object.keys(
               this.YamlObject[allDimensionNames[i]][
                 allSubDimensionInThisDimension[j]
               ]
@@ -91,46 +114,69 @@ export class CircularHeatmapComponent implements OnInit {
               SubDimension: '',
               Level: '',
               'Done%': -1,
-              Task: [],
+              Activity: [],
             };
-            var totalImplemented: number = 0;
-            var totalTasks: number = 0;
+            var totalTeamsImplemented: number = 0;
+            var totalActivityTeams: number = 0;
             tempData['Dimension'] = allDimensionNames[i];
             tempData['SubDimension'] = allSubDimensionInThisDimension[j];
             tempData['Level'] = 'Level ' + (l + 1);
-            for (var k = 0; k < allTaskInThisSubDimension.length; k++) {
+            for (var k = 0; k < allActivityInThisSubDimension.length; k++) {
               try {
-                var lvlOfCurrentTask =
+                var lvlOfCurrentActivity =
                   this.YamlObject[allDimensionNames[i]][
                     allSubDimensionInThisDimension[j]
-                  ][allTaskInThisSubDimension[k]]['level'];
-                if (lvlOfCurrentTask == l + 1) {
-                  totalTasks += 1;
-                  var nameOfTask: string = allTaskInThisSubDimension[k];
-                  var Status: boolean =
+                  ][allActivityInThisSubDimension[k]]['level'];
+                if (lvlOfCurrentActivity == l + 1) {
+                  totalActivityTeams += 1;
+                  var nameOfActivity: string = allActivityInThisSubDimension[k];
+
+                  // Create an object from an array from meta data
+                  const teams = this.teamList;
+
+                  var teamStatus: { [key: string]: boolean } = {};
+
+                  teams.forEach((singleTeam: any) => {
+                    teamStatus[singleTeam] = false;
+                  });
+
+                  var teamsImplemented: any =
                     this.YamlObject[allDimensionNames[i]][
                       allSubDimensionInThisDimension[j]
-                    ][allTaskInThisSubDimension[k]]['isImplemented'];
-                  if (Status) {
-                    totalImplemented += 1;
+                    ][allActivityInThisSubDimension[k]]['teamsImplemented'];
+                  if (teamsImplemented) {
+                    teamStatus = teamsImplemented;
                   }
-                  tempData['Task'].push({
-                    taskName: nameOfTask,
-                    ifTaskDone: Status,
+
+                  // Calculating %done
+                  (
+                    Object.keys(teamStatus) as (keyof typeof teamStatus)[]
+                  ).forEach((key, index) => {
+                    // 👇️ name Bobby Hadz 0, country Chile 1
+                    totalActivityTeams += 1;
+                    if (teamStatus[key] === true) {
+                      totalTeamsImplemented += 1;
+                    }
+                  });
+
+                  tempData['Activity'].push({
+                    activityName: nameOfActivity,
+                    teamsImplemented: teamStatus,
                   });
                 }
-                if (totalTasks > 0) {
-                  tempData['Done%'] = totalImplemented / totalTasks;
+                if (totalActivityTeams > 0) {
+                  tempData['Done%'] =
+                    totalTeamsImplemented / totalActivityTeams;
                 }
               } catch {
-                console.log('level for task does not exist');
+                console.log('level for activity does not exist');
               }
             }
             this.ALL_CARD_DATA.push(tempData);
           }
         }
       }
-      // console.log(this.ALL_CARD_DATA);
+      console.log('ALL CARD DATA', this.ALL_CARD_DATA);
       this.loadState();
       this.loadCircularHeatMap(
         this.ALL_CARD_DATA,
@@ -138,15 +184,99 @@ export class CircularHeatmapComponent implements OnInit {
         this.radial_labels,
         this.segment_labels
       );
-      this.noTasktoGrey();
+      this.noActivitytoGrey();
     });
   }
 
-  toggleCheckbox(taskIndex: number) {
-    //console.log('fo')
+  // Team Filter BEGINS
+
+  @ViewChildren(MatChip) chips!: QueryList<MatChip>;
+
+  // Define an array to store MatChip components
+  matChipsArray: MatChip[] = [];
+  toggleTeamGroupSelection(chip: MatChip) {
+    chip.toggleSelected();
+    let currChipValue = chip.value.replace(/\s/g, '');
+
+    if (chip.selected) {
+      this.selectedTeamChips = [currChipValue];
+      if (currChipValue == 'All') {
+        this.teamVisible = [...this.teamList];
+      } else {
+        this.teamVisible = [];
+
+        (
+          Object.keys(this.teamGroups) as (keyof typeof this.teamGroups)[]
+        ).forEach((key, index) => {
+          if (key === currChipValue) {
+            console.log('group selected');
+            this.teamVisible = [...this.teamGroups[key]];
+          }
+        });
+      }
+    } else {
+      this.selectedTeamChips = this.selectedTeamChips.filter(
+        o => o !== currChipValue
+      );
+    }
+    console.log('Selected Chips', this.selectedTeamChips);
+    console.log('Team Visible', this.teamVisible);
+    console.log('All chips', this.matChipsArray);
+
+    // Update heatmap based on selection
+    this.updateChips(true);
+  }
+
+  toggleTeamSelection(chip: MatChip) {
+    chip.toggleSelected();
+    let currChipValue = chip.value.replace(/\s/g, '');
+    let prevSelectedChip = this.selectedTeamChips;
+    if (chip.selected) {
+      this.teamVisible.push(currChipValue);
+      this.selectedTeamChips = [];
+    } else {
+      this.selectedTeamChips = [];
+      this.teamVisible = this.teamVisible.filter(o => o !== currChipValue);
+    }
+    console.log('Selected Chips', this.selectedTeamChips);
+    console.log('Team Visible', this.teamVisible);
+    console.log('Team List', this.teamList);
+    console.log('All chips', this.matChipsArray);
+    // Update heatmap based on selection
+    this.updateChips(prevSelectedChip);
+  }
+
+  ngAfterViewInit() {
+    // Putting all the chips inside an array
+
+    setTimeout(() => {
+      this.matChipsArray = this.chips.toArray();
+      this.updateChips(true);
+      this.reColorHeatmap();
+    }, 100);
+  }
+  updateChips(fromTeamGroup: any) {
+    console.log('updating chips', fromTeamGroup);
+    // Re select chips
+    this.matChipsArray.forEach(chip => {
+      let currChipValue = chip.value.replace(/\s/g, '');
+
+      if (this.teamVisible.includes(currChipValue)) {
+        console.log(currChipValue);
+        chip.selected = true;
+      } else {
+        if (!this.selectedTeamChips.includes(currChipValue)) {
+          chip.selected = false;
+        }
+      }
+    });
+    this.reColorHeatmap();
+  }
+  // Team Filter ENDS
+
+  teamCheckbox(activityIndex: number, teamKey: any) {
     let _self = this;
     var index = 0;
-    var cnt = 0;
     for (var i = 0; i < this.ALL_CARD_DATA.length; i++) {
       if (
         this.ALL_CARD_DATA[i]['SubDimension'] === this.cardHeader &&
@@ -156,53 +286,16 @@ export class CircularHeatmapComponent implements OnInit {
         break;
       }
     }
-    if (this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone']) {
-      this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'] = false;
-    } else {
-      this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'] = true;
-    }
-    // console.log(this.data[i]["Task"][taskIndex]["done"])
-    for (var i = 0; i < this.ALL_CARD_DATA[index]['Task'].length; i++) {
-      console.log(this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']);
-      if (this.ALL_CARD_DATA[index]['Task'][i]['ifTaskDone']) {
-        cnt += 1;
-      }
-    }
-    var allDimensionNames = Object.keys(this.YamlObject);
-    for (var i = 0; i < allDimensionNames.length; i++) {
-      var allSubDimensionInThisDimension = Object.keys(
-        this.YamlObject[allDimensionNames[i]]
-      );
-      for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
-        if (allSubDimensionInThisDimension[j] == this.cardHeader) {
-          var taskName =
-            this.ALL_CARD_DATA[index]['Task'][taskIndex]['taskName'];
-          // console.log(taskName);
-          this.YamlObject[allDimensionNames[i]][
-            allSubDimensionInThisDimension[j]
-          ][taskName]['isImplemented'] =
-            this.ALL_CARD_DATA[index]['Task'][taskIndex]['ifTaskDone'];
-          break;
-        }
-      }
-    }
-    this.ALL_CARD_DATA[index]['Done%'] =
-      cnt / this.ALL_CARD_DATA[index]['Task'].length;
-    // console.log(this.data[index]['Done%'], cnt);
-    var color = d3
-      .scaleLinear<string, string>()
-      .domain([0, 1])
-      .range(['white', 'green']);
 
-    d3.selectAll(
-      '#segment-' +
-        this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
-        '-' +
-        this.ALL_CARD_DATA[index]['Level'].replace(' ', '-')
-    ).attr('fill', function (p) {
-      return color(_self.ALL_CARD_DATA[index]['Done%']);
-    });
+    this.ALL_CARD_DATA[index]['Activity'][activityIndex]['teamsImplemented'][
+      teamKey
+    ] =
+      !this.ALL_CARD_DATA[index]['Activity'][activityIndex]['teamsImplemented'][
+        teamKey
+      ];
+
     this.saveState();
+    this.reColorHeatmap();
   }
 
   loadCircularHeatMap(
@@ -213,7 +306,6 @@ export class CircularHeatmapComponent implements OnInit {
   ) {
     //console.log(segment_labels)
     //d3.select(dom_element_to_append_to).selectAll('svg').exit()
-    //console.log(dataset)
     let _self = this;
     var margin = {
       top: 50,
@@ -279,13 +371,23 @@ export class CircularHeatmapComponent implements OnInit {
         } catch {
           curr = d.srcElement.__data__;
         }
-        //console.log(curr);
+        var index = 0;
+        var cnt = 0;
+        for (var i = 0; i < _self.ALL_CARD_DATA.length; i++) {
+          if (
+            _self.ALL_CARD_DATA[i]['SubDimension'] === curr.SubDimension &&
+            _self.ALL_CARD_DATA[i]['Level'] === curr.Level
+          ) {
+            index = i;
+            break;
+          }
+        }
+        console.log('index', _self.ALL_CARD_DATA[index]['Activity']);
         _self.currentDimension = curr.Dimension;
         _self.cardSubheader = curr.Level;
-        _self.tasksData = curr.Task;
+        _self.activitysData = curr.Activity;
         _self.cardHeader = curr.SubDimension;
-        _self.showTaskCard = true;
-        //console.log(_self.tasksData)
+        _self.showActivityCard = true;
       })
       .on('mouseover', function (d) {
         //console.log(d.toElement.__data__.Name)
@@ -294,10 +396,8 @@ export class CircularHeatmapComponent implements OnInit {
         } catch {
           curr = d.toElement.__data__;
         }
-        //console.log(curr)
         // increase the segment height of the one being hovered as well as all others of the same date
         // while decreasing the height of all others accordingly
-        //console.log(d)
         if (curr['Done%'] != -1) {
           d3.selectAll(
             '#segment-' +
@@ -311,11 +411,6 @@ export class CircularHeatmapComponent implements OnInit {
       .on('mouseout', function (d) {
         //console.log(d.explicitOriginalTarget.__data__.Day)
 
-        //  var time = d.Time;
-        //  var timeCleaned = time.split(":").join("-");
-        //  var segment = d3.select("#segment-"+d.Day +"-"+timeCleaned); //designate selector variable for brevity
-        //  var fillcolor = segment.select("desc").text();  //access original color from desc
-        //  segment.style("fill", fillcolor);
         if (curr['Done%'] != -1) {
           d3.selectAll(
             '#segment-' +
@@ -340,6 +435,7 @@ export class CircularHeatmapComponent implements OnInit {
           ).attr('fill', '#DCDCDC');
         }
       });
+    this.reColorHeatmap();
   }
 
   circularHeatChart(num_of_segments: number) {
@@ -547,7 +643,7 @@ export class CircularHeatmapComponent implements OnInit {
     return chart;
   }
 
-  noTasktoGrey(): void {
+  noActivitytoGrey(): void {
     console.log(this.ALL_CARD_DATA);
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
@@ -563,28 +659,28 @@ export class CircularHeatmapComponent implements OnInit {
     }
   }
 
-  navigate(dim: string, subdim: string, lvl: Number, taskName: string) {
+  navigate(dim: string, subdim: string, activityName: string) {
     let navigationExtras = {
       dimension: dim,
       subDimension: subdim,
-      level: lvl,
-      taskName: taskName,
+
+      activityName: activityName,
     };
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
-    this.taskDetails = this.YamlObject[dim][subdim][taskName];
+    this.activityDetails = this.YamlObject[dim][subdim][activityName];
     console.log(this.YamlObject);
     console.log(this.YamlObject[dim][subdim]);
-    if (this.taskDetails) {
-      this.taskDetails.navigationExtras = navigationExtras;
+    if (this.activityDetails) {
+      this.activityDetails.navigationExtras = navigationExtras;
     }
-    console.log(this.taskDetails);
+    console.log(this.activityDetails);
+    console.log(this.ALL_CARD_DATA);
     this.showOverlay = true;
   }
   closeOverlay() {
     this.showOverlay = false;
   }
   SaveEditedYAMLfile() {
-    //console.log(this.YamlObject);
     let yamlStr = yaml.dump(this.YamlObject);
     let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
     var link = document.createElement('a');
@@ -593,20 +689,67 @@ export class CircularHeatmapComponent implements OnInit {
     link.click();
     link.remove();
   }
+  reColorHeatmap() {
+    console.log('recolor');
+    for (var index = 0; index < this.ALL_CARD_DATA.length; index += 1) {
+      let cntAll: number = 0;
+      let cntTrue: number = 0;
+      var _self = this;
+      for (var i = 0; i < this.ALL_CARD_DATA[index]['Activity'].length; i++) {
+        var activityTeamList: any;
+        activityTeamList =
+          this.ALL_CARD_DATA[index]['Activity'][i]['teamsImplemented'];
+        (
+          Object.keys(activityTeamList) as (keyof typeof activityTeamList)[]
+        ).forEach((key, index) => {
+          if (typeof key === 'string') {
+            if (this.teamVisible.includes(key)) {
+              if (activityTeamList[key] === true) {
+                cntTrue += 1;
+              }
+              cntAll += 1;
+            }
+          }
+        });
+      }
+      if (cntAll !== 0) {
+        this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
+      } else {
+        this.ALL_CARD_DATA[index]['Done%'] = 0;
+      }
+      var color = d3
+        .scaleLinear<string, string>()
+        .domain([0, 1])
+        .range(['white', 'green']);
+
+      d3.selectAll(
+        '#segment-' +
+          this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
+          '-' +
+          this.ALL_CARD_DATA[index]['Level'].replace(' ', '-')
+      ).attr('fill', function (p) {
+        return color(_self.ALL_CARD_DATA[index]['Done%']);
+      });
+    }
+    // this.noActivitytoGrey();
+  }
 
   ResetIsImplemented() {
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] > 0) {
-        this.ALL_CARD_DATA[x]['Done%'] = 0;
-        for (var y = 0; y < this.ALL_CARD_DATA[x]['Task'].length; y++) {
-          this.ALL_CARD_DATA[x]['Task'][y]['ifTaskDone'] = false;
+        // this.ALL_CARD_DATA[x]['Done%'] = 0;
+        for (var y = 0; y < this.ALL_CARD_DATA[x]['Activity'].length; y++) {
+          var currActivityTeamsImplemented =
+            this.ALL_CARD_DATA[x]['Activity'][y]['teamsImplemented'];
+          (
+            Object.keys(
+              currActivityTeamsImplemented
+            ) as (keyof typeof currActivityTeamsImplemented)[]
+          ).forEach((key, index) => {
+            currActivityTeamsImplemented[key] = false;
+          });
         }
-        d3.selectAll(
-          '#segment-' +
-            this.ALL_CARD_DATA[x]['SubDimension'].replace(/ /g, '-') +
-            '-' +
-            this.ALL_CARD_DATA[x]['Level'].replace(' ', '-')
-        ).attr('fill', 'white');
+        this.reColorHeatmap();
       }
     }
     this.saveState();

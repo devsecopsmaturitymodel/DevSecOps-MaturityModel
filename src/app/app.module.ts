@@ -10,7 +10,7 @@ import { LogoComponent } from './component/logo/logo.component';
 import { MatrixComponent } from './component/matrix/matrix.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 import { TopHeaderComponent } from './component/top-header/top-header.component';
-import { TaskDescriptionComponent } from './component/task-description/task-description.component';
+import { ActivityDescriptionComponent } from './component/activity-description/activity-description.component';
 import { ymlService } from './service/yaml-parser/yaml-parser.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
@@ -19,6 +19,7 @@ import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html
 import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
+import { Teams } from './component/teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,14 @@ import { DependencyGraphComponent } from './component/dependency-graph/dependenc
     MatrixComponent,
     SidenavButtonsComponent,
     TopHeaderComponent,
-    TaskDescriptionComponent,
+    ActivityDescriptionComponent,
     CircularHeatmapComponent,
     MappingComponent,
     ReadmeToHtmlComponent,
     UsageComponent,
     AboutUsComponent,
     DependencyGraphComponent,
+    Teams,
   ],
   imports: [
     BrowserModule,
