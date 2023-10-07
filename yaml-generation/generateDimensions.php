@@ -90,7 +90,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (array_key_exists("isImplemented", $activity)) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
             }
-	    }
+        }
     }
 }
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
