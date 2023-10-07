@@ -10,12 +10,12 @@ export interface implementation {
   url: string;
   description: string;
 }
-export interface taskDescription {
+export interface activityDescription {
   dimension: string;
   subDimension: string;
   level: string;
   tags: string[];
-  taskName: string;
+  activityName: string;
   description: string;
   risk: string;
   measure: string;
@@ -37,17 +37,17 @@ export interface taskDescription {
 }
 
 @Component({
-  selector: 'app-task-description',
-  templateUrl: './task-description.component.html',
-  styleUrls: ['./task-description.component.css'],
+  selector: 'app-activity-description',
+  templateUrl: './activity-description.component.html',
+  styleUrls: ['./activity-description.component.css'],
 })
-export class TaskDescriptionComponent implements OnInit {
-  currentTask: taskDescription = {
+export class ActivityDescriptionComponent implements OnInit {
+  currentActivity: activityDescription = {
     dimension: '',
     subDimension: '',
     level: '',
     tags: [''],
-    taskName: '',
+    activityName: '',
     description: '',
     risk: '',
     measure: '',
@@ -81,10 +81,10 @@ export class TaskDescriptionComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.currentTask.dimension = params['dimension'];
-      this.currentTask.subDimension = params['subDimension'];
-      this.currentTask.level = 'level-' + params['level'];
-      this.currentTask.taskName = params['taskName'];
+      this.currentActivity.dimension = params['dimension'];
+      this.currentActivity.subDimension = params['subDimension'];
+      this.currentActivity.level = 'level-' + params['level'];
+      this.currentActivity.activityName = params['activityName'];
     });
 
     //gets value from sample file
@@ -102,19 +102,25 @@ export class TaskDescriptionComponent implements OnInit {
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
       var data =
-        this.YamlObject[this.currentTask.dimension][
-          this.currentTask.subDimension
-        ][this.currentTask.taskName];
-      this.currentTask.description = this.defineStringValues(
+        this.YamlObject[this.currentActivity.dimension][
+          this.currentActivity.subDimension
+        ][this.currentActivity.activityName];
+      this.currentActivity.description = this.defineStringValues(
         data['description'],
         ''
       );
-      this.currentTask.risk = this.defineStringValues(data['risk'], '');
-      this.currentTask.tags = this.defineStringArrayValues(data['tags'], []);
-      this.currentTask.measure = this.defineStringValues(data['measure'], '');
+      this.currentActivity.risk = this.defineStringValues(data['risk'], '');
+      this.currentActivity.tags = this.defineStringArrayValues(
+        data['tags'],
+        []
+      );
+      this.currentActivity.measure = this.defineStringValues(
+        data['measure'],
+        ''
+      );
       try {
         data['meta'];
-        this.currentTask.implementatonGuide = this.defineStringValues(
+        this.currentActivity.implementatonGuide = this.defineStringValues(
           data['meta']['implementationGuide'],
           ''
         );
@@ -123,7 +129,7 @@ export class TaskDescriptionComponent implements OnInit {
       }
       try {
         data['usefulness'];
-        this.currentTask.usefulness = this.defineIntegerValues(
+        this.currentActivity.usefulness = this.defineIntegerValues(
           data['usefulness'],
           -1
         );
@@ -132,15 +138,15 @@ export class TaskDescriptionComponent implements OnInit {
       }
       try {
         data['difficultyOfImplementation'];
-        this.currentTask.knowledge = this.defineIntegerValues(
+        this.currentActivity.knowledge = this.defineIntegerValues(
           data['difficultyOfImplementation']['knowledge'],
           -1
         );
-        this.currentTask.time = this.defineIntegerValues(
+        this.currentActivity.time = this.defineIntegerValues(
           data['difficultyOfImplementation']['time'],
           -1
         );
-        this.currentTask.resources = this.defineIntegerValues(
+        this.currentActivity.resources = this.defineIntegerValues(
           data['difficultyOfImplementation']['resources'],
           -1
         );
@@ -149,15 +155,15 @@ export class TaskDescriptionComponent implements OnInit {
       }
       try {
         data['references'];
-        this.currentTask.iso = this.defineStringArrayValues(
+        this.currentActivity.iso = this.defineStringArrayValues(
           data['references']['iso27001-2017'],
           []
         );
-        this.currentTask.iso22 = this.defineStringArrayValues(
+        this.currentActivity.iso22 = this.defineStringArrayValues(
           data['references']['iso27001-2022'],
           []
         );
-        this.currentTask.samm = this.defineStringArrayValues(
+        this.currentActivity.samm = this.defineStringArrayValues(
           data['references']['samm2'],
           []
         );
@@ -165,28 +171,34 @@ export class TaskDescriptionComponent implements OnInit {
         console.log('references does not exist');
       }
 
-      this.currentTask.dependsOn = this.defineStringArrayValues(
+      this.currentActivity.dependsOn = this.defineStringArrayValues(
         data['dependsOn'],
         []
       );
 
-      this.currentTask.implementation = this.defineImplementationObject(
+      this.currentActivity.implementation = this.defineImplementationObject(
         data['implementation']
       );
 
-      this.currentTask.evidence = this.defineStringValues(data['evidence'], '');
+      this.currentActivity.evidence = this.defineStringValues(
+        data['evidence'],
+        ''
+      );
 
-      this.currentTask.comments = this.defineStringValues(data['comments'], '');
+      this.currentActivity.comments = this.defineStringValues(
+        data['comments'],
+        ''
+      );
 
-      this.currentTask.assessment = this.defineStringValues(
+      this.currentActivity.assessment = this.defineStringValues(
         data['assessment'],
         ''
       );
-      this.currentTask.isImplemented = this.defineBooleanValues(
+      this.currentActivity.isImplemented = this.defineBooleanValues(
         data['isImplemented'],
         false
       );
-      this.currentTask.teamsImplemented = data['teamsImplemented'];
+      this.currentActivity.teamsImplemented = data['teamsImplemented'];
       this.openall();
     });
   }
@@ -266,7 +278,7 @@ export class TaskDescriptionComponent implements OnInit {
     this.accordion.forEach(element => {
       element.openAll();
     });
-    console.log(this.currentTask.teamsImplemented);
+    console.log(this.currentActivity.teamsImplemented);
   }
 
   // Close all function

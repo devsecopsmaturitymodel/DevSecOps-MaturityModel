@@ -24,7 +24,7 @@ export interface MatrixElement {
 export class MatrixComponent implements OnInit {
   MATRIX_DATA: MatrixElement[] = [];
 
-  Routing: string = '/task-description';
+  Routing: string = '/activity-description';
 
   YamlObject: any;
   levels: string[] = [];
@@ -307,15 +307,15 @@ export class MatrixComponent implements OnInit {
     );
   }
 
-  // task description routing + providing parameters
+  // activity description routing + providing parameters
 
-  navigate(dim: string, subdim: string, lvl: Number, taskName: string) {
+  navigate(dim: string, subdim: string, lvl: Number, activityName: string) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         dimension: dim,
         subDimension: subdim,
         level: lvl,
-        taskName: taskName,
+        activityName: activityName,
       },
     };
     this.router.navigate([this.Routing], navigationExtras);

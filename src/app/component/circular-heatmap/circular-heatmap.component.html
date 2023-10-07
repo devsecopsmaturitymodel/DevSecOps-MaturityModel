@@ -3,14 +3,15 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
       <div class="overlay-details" [hidden]="!showOverlay">
-        <div *ngIf="taskDetails; then taskTrue; else taskFalse"></div>
+        <div
+          *ngIf="activityDetails; then activityTrue; else activityFalse"></div>
         <!-- Team Based Assessment -->
-        <ng-template #taskTrue>
+        <ng-template #activityTrue>
           <div class="overlay-modal">
             <mat-accordion multi="true" class="overlay-accordion">
               <div
                 *ngIf="
-                  taskDetails.navigationExtras;
+                  activityDetails.navigationExtras;
                   then navigationTrue;
                   else navigationFalse
                 "></div>
@@ -20,10 +21,10 @@
                     <button class="overlay-close" (click)="closeOverlay()">
                       <mat-icon class="white-icon">close</mat-icon>
                     </button>
-                    <h2>{{ taskDetails.navigationExtras.dimension }}</h2>
-                    <h3>{{ taskDetails.navigationExtras.subDimension }}</h3>
+                    <h2>{{ activityDetails.navigationExtras.dimension }}</h2>
+                    <h3>{{ activityDetails.navigationExtras.subDimension }}</h3>
                     <h4>
-                      {{ taskDetails.navigationExtras.taskName }}
+                      {{ activityDetails.navigationExtras.activityName }}
                     </h4>
                   </div>
                 </ng-template>
@@ -38,41 +39,43 @@
               </div>
               <mat-expansion-panel
                 [expanded]="true"
-                *ngIf="taskDetails.description">
+                *ngIf="activityDetails.description">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Description</b>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="taskDetails.description"></p>
+                  <p [innerHTML]="activityDetails.description"></p>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true" *ngIf="taskDetails.risk">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="activityDetails.risk">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Risk</b>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="taskDetails.risk"></p>
+                  <p [innerHTML]="activityDetails.risk"></p>
                 </ng-template>
               </mat-expansion-panel>
               <mat-expansion-panel
                 [expanded]="true"
-                *ngIf="taskDetails.measure">
+                *ngIf="activityDetails.measure">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Measure</b>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="taskDetails.measure"></p>
+                  <p [innerHTML]="activityDetails.measure"></p>
                 </ng-template>
               </mat-expansion-panel>
               <mat-expansion-panel
                 [expanded]="true"
-                *ngIf="taskDetails.implementation">
+                *ngIf="activityDetails.implementation">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Implementation Guide</b>
@@ -80,7 +83,8 @@
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
                   <ul>
-                    <li *ngFor="let implement of taskDetails.implementation">
+                    <li
+                      *ngFor="let implement of activityDetails.implementation">
                       <a href="{{ implement.url }}">{{ implement.name }}</a>
                     </li>
                   </ul>
@@ -88,20 +92,20 @@
               </mat-expansion-panel>
               <mat-expansion-panel
                 [expanded]="true"
-                *ngIf="taskDetails.dependsOn">
+                *ngIf="activityDetails.dependsOn">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Depends On</b>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="taskDetails.dependsOn"></p>
+                  <p [innerHTML]="activityDetails.dependsOn"></p>
                 </ng-template>
               </mat-expansion-panel>
 
               <mat-expansion-panel
                 [expanded]="true"
-                *ngIf="taskDetails.difficultyOfImplementation">
+                *ngIf="activityDetails.difficultyOfImplementation">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Difficulty of Implementation</b>
@@ -110,30 +114,34 @@
                 <ng-template matExpansionPanelContent>
                   <p>
                     Knowledge:
-                    {{ taskDetails.difficultyOfImplementation.knowledge }}
+                    {{ activityDetails.difficultyOfImplementation.knowledge }}
                   </p>
-                  <p>Time: {{ taskDetails.difficultyOfImplementation.time }}</p>
+                  <p>
+                    Time: {{ activityDetails.difficultyOfImplementation.time }}
+                  </p>
                   <p>
                     Resources:
-                    {{ taskDetails.difficultyOfImplementation.resources }}
+                    {{ activityDetails.difficultyOfImplementation.resources }}
                   </p>
                 </ng-template>
               </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true" *ngIf="taskDetails.tags">
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="activityDetails.tags">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>Tags</b>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
-                  <ul *ngFor="let tag of taskDetails.tags">
+                  <ul *ngFor="let tag of activityDetails.tags">
                     <li [innerHTML]="tag"></li>
                   </ul>
                 </ng-template>
               </mat-expansion-panel>
               <mat-expansion-panel
                 [expanded]="true"
-                *ngIf="taskDetails.references">
+                *ngIf="activityDetails.references">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <b>References</b>
@@ -145,7 +153,7 @@
                   <ul>
                     <li
                       *ngFor="
-                        let iso of taskDetails.references['iso27001-2017']
+                        let iso of activityDetails.references['iso27001-2017']
                       ">
                       {{ iso }}
                     </li>
@@ -155,7 +163,7 @@
                   <ul>
                     <li
                       *ngFor="
-                        let iso of taskDetails.references['iso27001-2022']
+                        let iso of activityDetails.references['iso27001-2022']
                       ">
                       {{ iso }}
                     </li>
@@ -163,14 +171,14 @@
                   <!-- </p> -->
                   <p>
                     <b>Resources:</b>
-                    {{ taskDetails.references.samm2 }}
+                    {{ activityDetails.references.samm2 }}
                   </p>
                 </ng-template>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
         </ng-template>
-        <ng-template #taskFalse>
+        <ng-template #activityFalse>
           <div class="overlay-modal">
             <button class="overlay-close" (click)="closeOverlay()">
               <mat-icon class="white-icon">close</mat-icon>
@@ -217,13 +225,13 @@
               </mat-chip-list>
             </mat-form-field>
           </div>
-          <mat-card class="example-card" *ngIf="showTaskCard">
+          <mat-card class="example-card" *ngIf="showActivityCard">
             <mat-card-title-group>
               <mat-card-title>{{ cardHeader }}</mat-card-title>
               <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content
-              *ngFor="let task of tasksData; index as taskIndex">
+              *ngFor="let activity of activitysData; index as activityIndex">
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
@@ -231,19 +239,24 @@
                       class="normal-button"
                       (click)="
                         $event.preventDefault();
-                        navigate(currentDimension, cardHeader, task['taskName'])
+                        navigate(
+                          currentDimension,
+                          cardHeader,
+                          activity['activityName']
+                        )
                       ">
-                      {{ task['taskName'] }}
+                      {{ activity['activityName'] }}
                     </button>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
                   <ul class="team-list">
-                    <li *ngFor="let item of task.teamsImplemented | keyvalue">
+                    <li
+                      *ngFor="let item of activity.teamsImplemented | keyvalue">
                       <mat-checkbox
                         [checked]="item.value === true"
                         color="primary"
-                        (click)="this.teamCheckbox(taskIndex, item.key)">
+                        (click)="this.teamCheckbox(activityIndex, item.key)">
                         {{ item.key }}
                       </mat-checkbox>
                     </li>

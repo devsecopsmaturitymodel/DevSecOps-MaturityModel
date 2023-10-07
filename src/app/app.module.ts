@@ -10,7 +10,7 @@ import { LogoComponent } from './component/logo/logo.component';
 import { MatrixComponent } from './component/matrix/matrix.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 import { TopHeaderComponent } from './component/top-header/top-header.component';
-import { TaskDescriptionComponent } from './component/task-description/task-description.component';
+import { ActivityDescriptionComponent } from './component/activity-description/activity-description.component';
 import { ymlService } from './service/yaml-parser/yaml-parser.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
@@ -28,7 +28,7 @@ import { Teams } from './component/teams/teams.component';
     MatrixComponent,
     SidenavButtonsComponent,
     TopHeaderComponent,
-    TaskDescriptionComponent,
+    ActivityDescriptionComponent,
     CircularHeatmapComponent,
     MappingComponent,
     ReadmeToHtmlComponent,
