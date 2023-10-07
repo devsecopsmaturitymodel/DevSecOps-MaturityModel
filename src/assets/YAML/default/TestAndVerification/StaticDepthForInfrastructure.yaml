@@ -157,7 +157,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Test for stored Secrets:
+    Test for stored secrets:
       uuid: c6e3c812-56e2-41b0-ae01-b7afc41a004c
       risk:
         Stored secrets in git history, in container images or directly in code
