@@ -1,8 +1,11 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-test-and-verification.json
 ---
 Test and Verification:
   Consolidation:
     Advanced visualization of defects:
-      risk: Correlation of the vulnerabilities of different tools to have an overview
+      uuid: 7a82020c-94d1-471c-bbd3-5f7fe7df4876
+      risk:
+        Correlation of the vulnerabilities of different tools to have an overview
         of the the overall security level per component/project/team is not given.
       measure: Findings are visualized per component/project/team.
       difficultyOfImplementation:
@@ -12,26 +15,27 @@ Test and Verification:
       usefulness: 2
       level: 4
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
       references:
         samm2:
-        - I-DM-3-B
+          - I-DM-3-B
         iso27001-2017:
-        - 16.1.4
-        - 8.2.1
-        - 8.2.2
-        - 8.2.3
+          - 16.1.4
+          - 8.2.1
+          - 8.2.2
+          - 8.2.3
         iso27001-2022:
-        - 5.25
-        - 5.12
-        - 5.13
-        - 5.10
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
       isImplemented: false
       evidence: ""
       comments: ""
     Generation of Response Statistics:
+      uuid: c922981b-65ed-40f3-a947-96fee9a0125f
       risk: No or delayed reaction to findings leads to potential exploitation of findings.
       measure: Creation and response statistics of findings. This is also referred to as _Mean Time to Resolve_.
       difficultyOfImplementation:
@@ -58,8 +62,9 @@ Test and Verification:
           - 5.10
       isImplemented: false
       evidence: ""
-      comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
+      comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [Github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
     Generation of Patch Management Statistics:
+      uuid: 785e34ef-40c6-487a-984c-3e7706c9bc1f
       risk: Delays in patch response lead to an increased attack surface through longer exposure of known vulnerabilities.
       measure: Average time to patch is visualized per component/project/team.
       difficultyOfImplementation:
@@ -69,24 +74,26 @@ Test and Verification:
       usefulness: 2
       level: 3
       dependsOn:
-      - A patch policy is defined
-      - Automated PRs for patches      
+        - A patch policy is defined
+        - Automated PRs for patches
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
       references:
         samm2:
-        - I-DM-3-B
+          - I-DM-3-B
         iso27001-2017:
-        - 16.1.4
+          - 16.1.4
         iso27001-2022:
-        - 5.25
+          - 5.25
       isImplemented: false
       evidence: ""
       comments: ""
     Integration of vulnerability issues into the development process:
-      risk: To read console output of the build server to search for vulnerabilities
+      uuid: ce970c9b-da94-41cf-bd78-8c15357b7e8e
+      risk:
+        To read console output of the build server to search for vulnerabilities
         might be difficult. Also, to check a vulnerability management system might
         not be a daily task for a developer.
       measure: Vulnerabilities are tracked in the teams issue system (e.g. jira).
@@ -97,28 +104,31 @@ Test and Verification:
       usefulness: 2
       level: 3
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sast
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dast
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sast
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dast
       references:
         samm2:
-        - I-DM-2-B
+          - I-DM-2-B
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 16.1.4
-        - 16.1.5
-        - 16.1.6
+          - Not explicitly covered by ISO 27001 - too specific
+          - 16.1.4
+          - 16.1.5
+          - 16.1.6
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 5.25
-        - 5.26
-        - 5.27
+          - Not explicitly covered by ISO 27001 - too specific
+          - 5.25
+          - 5.26
+          - 5.27
       isImplemented: false
       evidence: ""
       comments: ""
     Reproducible defect tickets:
-      risk: Vulnerability descriptions are hard to understand by staff from operations
+      uuid: 27337442-e4b1-4e87-8dc9-ce86fbb79a39
+      risk:
+        Vulnerability descriptions are hard to understand by staff from operations
         and development.
-      measure: Vulnerabilities include the test procedure to give the staff from operations
+      measure:
+        Vulnerabilities include the test procedure to give the staff from operations
         and development the ability to reproduce vulnerabilities. This enhances the
         understanding of vulnerabilities and therefore the fix have a higher quality.
       difficultyOfImplementation:
@@ -130,24 +140,27 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - I-DM-2-B
+          - I-DM-2-B
         iso27001-2017:
-        - 16.1.4
-        - 8.2.1
-        - 8.2.2
-        - 8.2.3
+          - 16.1.4
+          - 8.2.1
+          - 8.2.2
+          - 8.2.3
         iso27001-2022:
-        - 5.25
-        - 5.12
-        - 5.13
-        - 5.10
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
       isImplemented: false
       evidence: ""
       comments: ""
     Simple false positive treatment:
-      risk: As false positive occur during each test, all vulnerabilities might be
+      uuid: c1acc8af-312e-4503-a817-a26220c993a0
+      risk:
+        As false positive occur during each test, all vulnerabilities might be
         ignored.
-      measure: False positives are suppressed so they will not show up on the next
+      measure:
+        False positives are suppressed so they will not show up on the next
         tests again. Most security tools have the possibility to suppress false positives.
         A Vulnerability Management System might be used.
       difficultyOfImplementation:
@@ -157,22 +170,24 @@ Test and Verification:
       usefulness: 4
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defect-dojo
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defect-dojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
       references:
         samm2:
-        - I-DM-2-A
+          - I-DM-2-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 16.1.6
+          - Not explicitly covered by ISO 27001 - too specific
+          - 16.1.6
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 5.27
+          - Not explicitly covered by ISO 27001 - too specific
+          - 5.27
       isImplemented: false
       evidence: ""
       comments: ""
     Simple visualization of defects:
-      risk: The security level of a component is not visible. Therefore, the motivation
+      uuid: 55f4c916-3a34-474d-ad96-9a9f7a4f6a83
+      risk:
+        The security level of a component is not visible. Therefore, the motivation
         to enhance the security is not give.
       measure: Vulnerabilities are simple visualized.
       difficultyOfImplementation:
@@ -182,27 +197,28 @@ Test and Verification:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dependency-che
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logparser-jenkins-pl
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dependency-che
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logparser-jenkins-pl
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
       references:
         samm2:
-        - I-DM-1-B
+          - I-DM-1-B
         iso27001-2017:
-        - 16.1.4
-        - 8.2.1
-        - 8.2.2
-        - 8.2.3
+          - 16.1.4
+          - 8.2.1
+          - 8.2.2
+          - 8.2.3
         iso27001-2022:
-        - 5.25
-        - 5.12
-        - 5.13
-        - 5.10
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
       isImplemented: false
       evidence: ""
       comments: ""
     Treatment of all defects:
+      uuid: b2f77606-3e6c-41e9-b72d-7c0b1d3d581d
       risk: Vulnerabilities with severity low are not visible.
       measure: All vulnerabilities are added to the quality gate.
       difficultyOfImplementation:
@@ -214,19 +230,21 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - I-DM-2-B
+          - I-DM-2-B
         iso27001-2017:
-        - 16.1.4
-        - 12.6.1
+          - 16.1.4
+          - 12.6.1
         iso27001-2022:
-        - 8.8
-        - 5.25
+          - 8.8
+          - 5.25
       isImplemented: false
       evidence: ""
       comments: ""
     Treatment of defects with severity high or higher:
+      uuid: 44f2c8a9-4aaa-4c72-942d-63f78b89f385
       risk: Vulnerabilities with severity high or higher are not visible.
-      measure: Vulnerabilities with severity high or higher are added to the quality
+      measure:
+        Vulnerabilities with severity high or higher are added to the quality
         gate.
       difficultyOfImplementation:
         knowledge: 2
@@ -234,21 +252,21 @@ Test and Verification:
         resources: 1
       usefulness: 4
       level: 1
-      comment: False positive analysis, specially for static analysis, is time consuming.
+      comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
-        - I-DM-2-B
+          - I-DM-2-B
         iso27001-2017:
-        - 16.1.4
-        - 12.6.1
+          - 16.1.4
+          - 12.6.1
         iso27001-2022:
-        - 8.8
-        - 5.25
+          - 8.8
+          - 5.25
       implementation: []
       isImplemented: false
       evidence: ""
-      comments: ""
     Treatment of defects with severity middle:
+      uuid: 9cac3341-fe83-4079-bef2-bfc4279eb594
       risk: Vulnerabilities with severity middle are not visible.
       measure: Vulnerabilities with severity middle are added to the quality gate.
       difficultyOfImplementation:
@@ -257,25 +275,27 @@ Test and Verification:
         resources: 1
       usefulness: 3
       level: 3
-      comment: False positive analysis, specially for static analysis, is time consuming.
+      comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
-        - I-DM-2-B
+          - I-DM-2-B
         iso27001-2017:
-        - 16.1.4
-        - 12.6.1
+          - 16.1.4
+          - 12.6.1
         iso27001-2022:
-        - 8.8
-        - 5.25
+          - 8.8
+          - 5.25
       implementation: []
       isImplemented: false
       evidence: ""
-      comments: ""
     Usage of a vulnerability management system:
-      risk: Maintenance of false positives in each tool enforces a high workload.
+      uuid: 85ba5623-84be-4219-8892-808837be582d
+      risk:
+        Maintenance of false positives in each tool enforces a high workload.
         In addition a correlation of the same finding from different tools is not
         possible.
-      measure: Aggregation of vulnerabilities in one tool reduce the workload to mark
+      measure:
+        Aggregation of vulnerabilities in one tool reduce the workload to mark
         false positives.
       difficultyOfImplementation:
         knowledge: 3
@@ -284,24 +304,23 @@ Test and Verification:
       usefulness: 2
       level: 4
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
       references:
         samm2:
-        - I-DM-1-B
+          - I-DM-1-B
         iso27001-2017:
-        - 12.6.1
-        - 16.1.3
-        - 16.1.4
-        - 16.1.5
-        - 16.1.6
+          - 12.6.1
+          - 16.1.3
+          - 16.1.4
+          - 16.1.5
+          - 16.1.6
         iso27001-2022:
-        - 8.8
-        - 6.8
-        - 5.25
-        - 5.26
-        - 5.27
+          - 8.8
+          - 6.8
+          - 5.25
+          - 5.26
+          - 5.27
       isImplemented: false
       evidence: ""
       comments: ""
-...

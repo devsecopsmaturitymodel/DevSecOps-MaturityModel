@@ -40,13 +40,22 @@ describe('ActivityDescriptionComponent', () => {
     expect(heading.textContent).toContain(testSubDimension);
   });
 
+  it('check if UUID is being genenrated', () => {
+    const testUUID = '00000000-0000-0000-0000-000000000000';
+    component.currentActivity.uuid = testUUID;
+    fixture.detectChanges();
+    const HTMLElement: HTMLElement = fixture.nativeElement;
+    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
+    expect(contentDisplayedinParagraphTag[0].textContent).toContain(testUUID);
+  });
+
   it('check if description is being genenrated', () => {
     const testDescription = 'Sample Description';
     component.currentActivity.description = testDescription;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[0].textContent).toContain(
+    expect(contentDisplayedinParagraphTag[1].textContent).toContain(
       testDescription
     );
   });
@@ -57,7 +66,7 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[1].textContent).toContain(testRisk);
+    expect(contentDisplayedinParagraphTag[2].textContent).toContain(testRisk);
   });
 
   it('check if measure is being genenrated', () => {
@@ -66,7 +75,7 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[2].textContent).toContain(
+    expect(contentDisplayedinParagraphTag[3].textContent).toContain(
       testMeasure
     );
   });
@@ -77,7 +86,7 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[3].textContent).toContain(
+    expect(contentDisplayedinParagraphTag[4].textContent).toContain(
       testImplementationGuide
     );
   });
@@ -88,7 +97,7 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[6].textContent).toContain(
+    expect(contentDisplayedinParagraphTag[7].textContent).toContain(
       testEvidence
     );
   });
@@ -99,7 +108,7 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[7].textContent).toContain(
+    expect(contentDisplayedinParagraphTag[8].textContent).toContain(
       testAssessment
     );
   });
@@ -110,7 +119,7 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[10].textContent).toContain(
+    expect(contentDisplayedinParagraphTag[11].textContent).toContain(
       testComments
     );
   });
@@ -125,7 +134,7 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[9].textContent).toContain(
+    expect(contentDisplayedinParagraphTag[10].textContent).toContain(
       component.SAMMVersion +
         testSAMM[0] +
         component.ISOVersion +

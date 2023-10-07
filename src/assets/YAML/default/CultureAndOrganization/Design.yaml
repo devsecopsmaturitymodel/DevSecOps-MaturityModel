@@ -1,9 +1,12 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-culture-and-organization.json
 ---
 Culture and Organization:
   Design:
     Conduction of advanced threat modeling:
+      uuid: ae22dafd-bcd6-41ee-ba01-8b7fe6fc1ad9
       risk: Inadequate identification of business and technical risks.
-      measure: Threat modeling is performed by using reviewing user stories and producing
+      measure:
+        Threat modeling is performed by using reviewing user stories and producing
         security driven data flow diagrams.
       difficultyOfImplementation:
         knowledge: 4
@@ -12,8 +15,8 @@ Culture and Organization:
       usefulness: 3
       level: 4
       dependsOn:
-      - Conduction of simple threat modeling on technical level
-      - Creation of threat modeling processes and standards
+        - Conduction of simple threat modeling on technical level
+        - Creation of threat modeling processes and standards
       description: |
         **Example High Maturity Scenario:**
 
@@ -28,33 +31,36 @@ Culture and Organization:
 
         Source: OWASP Project Integration Project
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/whiteboard
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/miro-or-any-other-c
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threagile
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/whiteboard
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/miro-or-any-other-c
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threagile
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
       references:
         samm2:
-        - D-TA-2-B
+          - D-TA-2-B
         iso27001-2017:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 8.2.1
-        - 14.2.1
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 8.2.1
+          - 14.2.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 5.12
-        - 8.25
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 5.12
+          - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
     Conduction of simple threat modeling on business level:
-      risk: Business related threats are discovered too late in the development and
+      uuid: 48f97f31-931c-46eb-9b3e-e2fec0cd0426
+      risk:
+        Business related threats are discovered too late in the development and
         deployment process.
-      measure: Threat modeling of business functionality is performed during the product
+      measure:
+        Threat modeling of business functionality is performed during the product
         backlog creation to facilitate early detection of security defects.
       difficultyOfImplementation:
         knowledge: 2
@@ -65,24 +71,27 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - D-TA-2-B
+          - D-TA-2-B
         iso27001-2017:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 8.2.1
-        - 14.2.1
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 8.2.1
+          - 14.2.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 5.12
-        - 8.25
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 5.12
+          - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
     Conduction of simple threat modeling on technical level:
-      risk: Technical related threats are discovered too late in the development and
+      uuid: 47419324-e263-415b-815d-e7161b6b905e
+      risk:
+        Technical related threats are discovered too late in the development and
         deployment process.
-      measure: Threat modeling of technical features is performed during the product
+      measure:
+        Threat modeling of technical features is performed during the product
         sprint planning.
       difficultyOfImplementation:
         knowledge: 2
@@ -91,12 +100,12 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/whiteboard
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/miro-or-any-other-c
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/whiteboard
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/miro-or-any-other-c
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
       description: |
         # OWASP SAMM Description
         Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
@@ -142,22 +151,24 @@ Culture and Organization:
         Source: OWASP Project Integration Project
       references:
         samm2:
-        - D-TA-2-B
+          - D-TA-2-B
         iso27001-2017:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 8.2.1
-        - 14.2.1
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 8.2.1
+          - 14.2.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 5.12
-        - 8.25
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 5.12
+          - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
     Creation of advanced abuse stories:
-      risk: Simple user stories are not going deep enough. Relevant security considerations
+      uuid: 0a929c3e-ab9a-4206-8761-adf84b74622e
+      risk:
+        Simple user stories are not going deep enough. Relevant security considerations
         are performed. Security flaws are discovered too late in the development and
         deployment process
       measure: Advanced abuse stories are created as part of threat modeling activities.
@@ -168,29 +179,31 @@ Culture and Organization:
       usefulness: 4
       level: 5
       dependsOn:
-      - Creation of simple abuse stories
+        - Creation of simple abuse stories
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-u
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-u
       references:
         samm2:
-        - D-TA-2-B
+          - D-TA-2-B
         iso27001-2017:
-        - Not explicitly covered by ISO 27001
-        - May be part of project management
-        - 6.1.5
-        - May be part of risk assessment
-        - 8.1.2
+          - Not explicitly covered by ISO 27001
+          - May be part of project management
+          - 6.1.5
+          - May be part of risk assessment
+          - 8.1.2
         iso27001-2022:
-        - Not explicitly covered by ISO 27001
-        - May be part of project management
-        - 5.8
-        - May be part of risk assessment
-        - 5.9
+          - Not explicitly covered by ISO 27001
+          - May be part of project management
+          - 5.8
+          - May be part of risk assessment
+          - 5.9
       isImplemented: false
       evidence: ""
       comments: ""
     Creation of simple abuse stories:
-      risk: User stories mostly don't consider security implications. Security flaws
+      uuid: bacf85b6-5bc0-405d-b5ba-a5d971467cc1
+      risk:
+        User stories mostly don't consider security implications. Security flaws
         are discovered too late in the development and deployment process.
       measure: Abuse stories are created during the creation of user stories.
       difficultyOfImplementation:
@@ -200,31 +213,33 @@ Culture and Organization:
       usefulness: 4
       level: 3
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-u
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-u
       dependsOn:
-      - Conduction of simple threat modeling on technical level
-      - Creation of threat modeling processes and standards
+        - Conduction of simple threat modeling on technical level
+        - Creation of threat modeling processes and standards
       references:
         samm2:
-        - D-TA-2-B
+          - D-TA-2-B
         iso27001-2017:
-        - Not explicitly covered by ISO 27001
-        - May be part of project management
-        - 6.1.5
-        - May be part of risk assessment
-        - 8.1.2
+          - Not explicitly covered by ISO 27001
+          - May be part of project management
+          - 6.1.5
+          - May be part of risk assessment
+          - 8.1.2
         iso27001-2022:
-        - Not explicitly covered by ISO 27001
-        - May be part of project management
-        - 5.8
-        - May be part of risk assessment
-        - 5.9
+          - Not explicitly covered by ISO 27001
+          - May be part of project management
+          - 5.8
+          - May be part of risk assessment
+          - 5.9
       isImplemented: false
       evidence: ""
       comments: ""
     Creation of threat modeling processes and standards:
+      uuid: dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e
       risk: Inadequate identification of business and technical risks.
-      measure: Creation of threat modeling processes and standards through the organization
+      measure:
+        Creation of threat modeling processes and standards through the organization
         helps to enhance the security culture and provide more structure to the threat
         model exercises.
       difficultyOfImplementation:
@@ -235,31 +250,34 @@ Culture and Organization:
       level: 3
       description: ""
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
       dependsOn:
-      - Conduction of simple threat modeling on technical level
+        - Conduction of simple threat modeling on technical level
       references:
         samm2:
-        - D-TA-3-B
+          - D-TA-3-B
         iso27001-2017:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 8.2.1
-        - 14.2.1
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 8.2.1
+          - 14.2.1
         iso27001-2022:
-        - Not explicitly covered by ISO 27001
-        - May be part of risk assessment
-        - 5.12
-        - 8.25
+          - Not explicitly covered by ISO 27001
+          - May be part of risk assessment
+          - 5.12
+          - 8.25
       isImplemented: false
       evidence: ""
       comments: ""
     Information security targets are communicated:
-      risk: Employees don't known their organizations security targets. Therefore
+      uuid: 1b9281b9-48e2-4c01-9ac6-9db9931c4885
+      risk:
+        Employees don't known their organizations security targets. Therefore
         security is not considered during development and administration as much as
         it should be.
-      measure: Transparent and timely communication of the security targets by senior
+      measure:
+        Transparent and timely communication of the security targets by senior
         management is essential to ensure teams' buy-in and support.
       difficultyOfImplementation:
         knowledge: 1
@@ -271,12 +289,11 @@ Culture and Organization:
       references:
         samm2: []
         iso27001-2017:
-        - 5.1.1
-        - 7.2.1
+          - 5.1.1
+          - 7.2.1
         iso27001-2022:
-        - 5.1
-        - 5.4
+          - 5.1
+          - 5.4
       isImplemented: false
       evidence: ""
       comments: ""
-...

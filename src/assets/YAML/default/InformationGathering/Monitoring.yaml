@@ -1,9 +1,12 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-information-gathering.json
 ---
 Information Gathering:
   Monitoring:
     Advanced availability and stability metrics:
+      uuid: ed715b38-c34b-40cd-83fd-ce807f306fc1
       risk: Trends and advanced attacks are not detected.
-      measure: Advanced metrics are gathered in relation to availability and stability.
+      measure:
+        Advanced metrics are gathered in relation to availability and stability.
         For example unplanned downtime's per year.
       difficultyOfImplementation:
         knowledge: 3
@@ -12,21 +15,23 @@ Information Gathering:
       usefulness: 4
       level: 3
       dependsOn:
-      - Simple application metrics
-      - Visualized metrics
+        - Simple application metrics
+        - Visualized metrics
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - 12.1.3
+          - 12.1.3
         iso27001-2022:
-        - 8.6
+          - 8.6
       isImplemented: false
       evidence: ""
       comments: ""
     Advanced app. metrics:
-      risk: People are not looking into tests results. Vulnerabilities not recolonized,
+      uuid: d03bc410-74a7-4e92-82cb-d01a020cb6bf
+      risk:
+        People are not looking into tests results. Vulnerabilities not recolonized,
         even they are detected by tools.
       measure: All defects from the dimension Test- and Verification are instrumented.
       difficultyOfImplementation:
@@ -36,22 +41,23 @@ Information Gathering:
       usefulness: 4
       level: 4
       dependsOn:
-      - Simple application metrics
-      - Visualized metrics
+        - Simple application metrics
+        - Visualized metrics
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - 12.6.1
+          - 12.6.1
         iso27001-2022:
-        - 8.8
+          - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
     Audit of system events:
+      uuid: 1cd5e4b8-be36-4726-adc7-d8f843f47ac8
       risk: System events (system calls) trends and attacks are not detected.
-      measure: Gathering of systemcalls.
+      measure: Gathering of system calls.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -64,15 +70,16 @@ Information Gathering:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/falco
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - 12.6.1
+          - 12.6.1
         iso27001-2022:
-        - 8.8
+          - 8.8
       isImplemented: false
       evidence: ""
       comments: ""
     Alerting:
+      uuid: 8a442d8e-0eb1-4793-a513-571aef982edd
       risk: Incidents are discovered after they happened.
       measure: |
         Thresholds for metrics are set. In case the thresholds are reached, alarms are send out. Which should get attention due to the critically.
@@ -83,26 +90,29 @@ Information Gathering:
       usefulness: 5
       level: 2
       dependsOn:
-      - Visualized metrics
+        - Visualized metrics
       implementation: []
       references:
         samm2:
-        - I-DM-A 3
+          - I-DM-A 3
         iso27001-2017:
-        - 16.1.2
-        - 16.1.4
-        - 12.1.4
+          - 16.1.2
+          - 16.1.4
+          - 12.1.4
         iso27001-2022:
-        - 6.8
-        - 5.25
-        - 8.31
+          - 6.8
+          - 5.25
+          - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
     Coverage and control metrics:
-      risk: The effectiveness of configuration, patch and vulnerability management
+      uuid: d0d681e7-d6de-4829-ac64-a9eb2546aa0d
+      risk:
+        The effectiveness of configuration, patch and vulnerability management
         is unknown.
-      measure: "Usage of Coverage- and control-metrics to show the effectiveness of
+      measure:
+        "Usage of Coverage- and control-metrics to show the effectiveness of
         the security program. Coverage is the degree in \n        which a specific
         security control for a specific target group is applied with all resources.\n
         \       The control degree shows the actual application of security standards
@@ -115,20 +125,21 @@ Information Gathering:
       usefulness: 4
       level: 4
       dependsOn:
-      - Visualized metrics
+        - Visualized metrics
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-ht-transpare
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-ht-transpare
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001 - too specific
+          - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+          - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
     Deactivation of unused metrics:
+      uuid: 7f36b9ba-bc05-4fd6-9a2a-73344c249722
       risk: High resources are used while gathering unused metrics.
       measure: Deactivation of unused metrics helps to free resources.
       difficultyOfImplementation:
@@ -138,22 +149,24 @@ Information Gathering:
       usefulness: 5
       level: 3
       dependsOn:
-      - Visualized metrics
+        - Visualized metrics
       implementation: []
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 12.1.3
+          - Not explicitly covered by ISO 27001 - too specific
+          - 12.1.3
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 8.6
+          - Not explicitly covered by ISO 27001 - too specific
+          - 8.6
       isImplemented: false
       evidence: ""
       comments: ""
     Defense metrics:
-      risk: IDS/IPS systems like packet- or application-firewalls detect and prevent
+      uuid: e808028c-351c-42f1-bcd9-fba738d1fc55
+      risk:
+        IDS/IPS systems like packet- or application-firewalls detect and prevent
         attacks. It is not known how many attacks has been detected and blocked.
       measure: |
         Gathering of defense metrics like TCP/UDP sources enables to assume the geographic location of the request.
@@ -165,22 +178,23 @@ Information Gathering:
       usefulness: 4
       level: 4
       dependsOn:
-      - Visualized metrics
-      - Filter outgoing traffic
+        - Visualized metrics
+        - Filter outgoing traffic
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - 12.4.1
-        - 13.1.1
+          - 12.4.1
+          - 13.1.1
         iso27001-2022:
-        - 8.15
-        - 8.20
+          - 8.15
+          - 8.20
       isImplemented: false
       evidence: ""
       comments: ""
     Grouping of metrics:
+      uuid: 42170a71-d4c8-47af-bd71-bf36875fd05b
       risk: The analysis of metrics takes long.
       measure: Meaningful grouping of metrics helps to speed up analysis.
       difficultyOfImplementation:
@@ -192,18 +206,18 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 12.1.3
+          - Not explicitly covered by ISO 27001 - too specific
+          - 12.1.3
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 8.6
+          - Not explicitly covered by ISO 27001 - too specific
+          - 8.6
       isImplemented: false
       evidence: ""
       comments: ""
-
     Metrics are combined with tests:
+      uuid: 71699daf-b2a4-466b-a0b2-89f7dbb18506
       risk: Changes might cause high load due to programming errors.
       measure: Metrics during tests helps to identify programming errors.
       difficultyOfImplementation:
@@ -213,23 +227,26 @@ Information Gathering:
       usefulness: 5
       level: 5
       dependsOn:
-      - Grouping of metrics
+        - Grouping of metrics
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - not explicitly covered by ISO 27001
+          - not explicitly covered by ISO 27001
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+          - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
     Monitoring of costs:
-      risk: Not monitorig costs might lead to unexpected high resource consumption
+      uuid: 10e23a8c-22ff-4487-a706-87ccc9d0798e
+      risk:
+        Not monitoring costs might lead to unexpected high resource consumption
         and a high invoice.
-      measure: Implement cost budgets. Setting of an alert threshold and sending out errors when it is reached. In the 
-        best case, a second treshold with a limit is set so that the cost can not go higher.
+      measure:
+        Implement cost budgets. Setting of an alert threshold and sending out errors when it is reached. In the
+        best case, a second threshold with a limit is set so that the cost can not go higher.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -237,22 +254,24 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-      - Simple application metrics
-      - Simple system metrics
+        - Simple application metrics
+        - Simple system metrics
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - 12.1.3
+          - 12.1.3
         iso27001-2022:
-        - 8.6
+          - 8.6
       isImplemented: false
       evidence: ""
       comments: ""
     Screens with metric visualization:
+      uuid: 8746647c-638c-473f-8e17-82c068e4c311
       risk: Security related information is discovered too late during an incident.
-      measure: By having an internal accessible screen with a security related dashboards
+      measure:
+        By having an internal accessible screen with a security related dashboards
         helps to visualize incidents.
       difficultyOfImplementation:
         knowledge: 2
@@ -261,23 +280,25 @@ Information Gathering:
       usefulness: 5
       level: 4
       dependsOn:
-      - Grouping of metrics
+        - Grouping of metrics
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 16.1.5
+          - Not explicitly covered by ISO 27001 - too specific
+          - 16.1.5
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 5.26
+          - Not explicitly covered by ISO 27001 - too specific
+          - 5.26
       isImplemented: false
       evidence: ""
       comments: ""
     Simple application metrics:
+      uuid: e9a6d403-a467-445e-b98a-74f0c29da0b1
       risk: Attacks on an application are not recognized.
-      measure: Gathering of application metrics helps to identify incidents like brute
+      measure:
+        Gathering of application metrics helps to identify incidents like brute
         force attacks, login/logout.
       difficultyOfImplementation:
         knowledge: 2
@@ -286,21 +307,24 @@ Information Gathering:
       usefulness: 5
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/prometheus
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/prometheus
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - 12.4.1
+          - 12.4.1
         iso27001-2022:
-        - 8.15
+          - 8.15
       isImplemented: false
       evidence: ""
       comments: ""
     Simple budget metrics:
-      risk: Not getting notified about reaching the end of the budget (e.g. due to
+      uuid: f08a3219-6941-43ec-8762-4aff739f4664
+      risk:
+        Not getting notified about reaching the end of the budget (e.g. due to
         a denial of service) creates unexpected costs.
-      measure: Cloud providers often provide insight into budgets. A threshold and
+      measure:
+        Cloud providers often provide insight into budgets. A threshold and
         alarming for the budget is set.
       difficultyOfImplementation:
         knowledge: 1
@@ -309,22 +333,25 @@ Information Gathering:
       usefulness: 5
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/collected
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/collected
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - 12.1.3
+          - 12.1.3
         iso27001-2022:
-        - 8.6
+          - 8.6
       isImplemented: false
       evidence: ""
       comments: ""
     Simple system metrics:
-      risk: Without simple metrics analysis of incidents are hard. In case an application
+      uuid: 3d1f4c3b-f713-46d9-933a-54a014a26c03
+      risk:
+        Without simple metrics analysis of incidents are hard. In case an application
         uses a lot of CPU from time to time, it is hard for a developer to find out
         the source with Linux commands.
-      measure: Gathering of system metrics helps to identify incidents and specially
+      measure:
+        Gathering of system metrics helps to identify incidents and specially
         bottlenecks like in CPU usage, memory usage and hard disk usage.
       difficultyOfImplementation:
         knowledge: 2
@@ -335,21 +362,24 @@ Information Gathering:
         Are system metrics gathered?
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/collected
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/collected
       references:
         samm2:
-        - O-IM-1-A
+          - O-IM-1-A
         iso27001-2017:
-        - 12.1.3
+          - 12.1.3
         iso27001-2022:
-        - 8.6
+          - 8.6
       isImplemented: false
       evidence: ""
       comments: ""
     Targeted alerting:
-      risk: People are bored (ignorant) of incident alarm messages, as they are not
+      uuid: d6f06ae8-401a-4f44-85df-1079247fa030
+      risk:
+        People are bored (ignorant) of incident alarm messages, as they are not
         responsible to react.
-      measure: By the definition of target groups for incidents people are only getting
+      measure:
+        By the definition of target groups for incidents people are only getting
         alarms for incidents they are in charge for.
       difficultyOfImplementation:
         knowledge: 2
@@ -358,21 +388,22 @@ Information Gathering:
       usefulness: 5
       level: 3
       dependsOn:
-      - Alerting
+        - Alerting
       implementation: []
       references:
         samm2:
-        - I-DM-A 3
+          - I-DM-A 3
         iso27001-2017:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 16.1.5
+          - Not explicitly covered by ISO 27001 - too specific
+          - 16.1.5
         iso27001-2022:
-        - Not explicitly covered by ISO 27001 - too specific
-        - 5.26
+          - Not explicitly covered by ISO 27001 - too specific
+          - 5.26
       isImplemented: false
       evidence: ""
       comments: ""
     Visualized metrics:
+      uuid: ded39bcf-4eaa-4c5f-9c94-09acde0a4734
       risk: Not visualized metrics lead to restricted usage of metrics.
       measure: Metrics are visualized in real time in a user friendly way.
       difficultyOfImplementation:
@@ -382,17 +413,16 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-      - Simple application metrics
-      - Simple system metrics
+        - Simple application metrics
+        - Simple system metrics
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+          - O-IM-2-A
         iso27001-2017:
-        - 12.1.3
+          - 12.1.3
         iso27001-2022:
-        - 8.6
+          - 8.6
       isImplemented: false
       evidence: ""
       comments: ""
-...

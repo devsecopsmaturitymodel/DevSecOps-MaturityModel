@@ -10,6 +10,15 @@
   </div>
 
   <mat-accordion multi="true">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>UUID</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="currentActivity.uuid"></p>
+    </mat-expansion-panel>
+
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>

@@ -1,7 +1,9 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-build-and-deployment.json
 ---
 Build and Deployment:
   Build:
     Building and testing of artifacts in virtual environments:
+      uuid: a340f46b-6360-4cb8-847b-a0d3483d09d3
       description: |-
         While building and testing artifacts, third party systems, application frameworks
         and 3rd party libraries are used. These might be malicious as a result of
@@ -10,10 +12,12 @@ Build and Deployment:
         While building and testing artifacts, third party systems, application frameworks
         and 3rd party libraries are used. These might be malicious as a result of
         vulnerable libraries or because they are altered during the delivery phase.
-      measure: Each step during within the build and testing phase is performed in
+      measure:
+        Each step during within the build and testing phase is performed in
         a separate virtual environments, which is destroyed afterward.
       meta:
-        implementationGuide: Depending on your environment, usage of virtual machines
+        implementationGuide:
+          Depending on your environment, usage of virtual machines
           or container technology is a good way. After the build, the filesystem should
           not be used again in other builds.
       difficultyOfImplementation:
@@ -23,22 +27,25 @@ Build and Deployment:
       usefulness: 2
       level: 2
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
       references:
         samm2:
-        - I-SB-2-A
+          - I-SB-2-A
         iso27001-2017:
-        - 14.2.6
+          - 14.2.6
         iso27001-2022:
-        - 8.31
+          - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
     Defined build process:
-      risk: Performing builds without a defined process is error prone; for example,
+      uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
+      risk:
+        Performing builds without a defined process is error prone; for example,
         as a result of incorrect security related configuration.
-      measure: A well defined build process lowers the possibility of errors during
+      measure:
+        A well defined build process lowers the possibility of errors during
         the build process.
       description: |
         Sample evidence as an attribute in the yaml: The build process is defined in [REPLACE-ME Pipeline](https://replace-me/jenkins/job)
@@ -57,30 +64,34 @@ Build and Deployment:
 
         Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
       references:
         samm2:
-        - I-SB-1-A
+          - I-SB-1-A
         iso27001-2017:
-        - 12.1.1
-        - 14.2.2
+          - 12.1.1
+          - 14.2.2
         iso27001-2022:
-        - 5.37
-        - 8.32
+          - 5.37
+          - 8.32
       isImplemented: false
       evidence: ""
       comments: ""
     Pinning of artifacts:
-      risk: Unauthorized manipulation of artifacts might be difficult to spot. For
-        example, this may result in using images with malicious code. Also, intendend
+      uuid: f3c4971e-9f4d-4e59-8ed0-f0bdb6262477
+      risk:
+        Unauthorized manipulation of artifacts might be difficult to spot. For
+        example, this may result in using images with malicious code. Also, intended
         major changes, which are automatically used in an image used might break the
         functionality.
       measure: Pinning of artifacts ensure that changes are performed only when intended.
-      comment: The usage of pinning requires a good processes for patching. Therefore,
-        choose this activity wisly.
+      comment:
+        The usage of pinning requires a good processes for patching. Therefore,
+        choose this activity wisely.
       meta:
-        implementationGuide: Pinning artifacts in Dockerfile refers to the practice of using specific,
+        implementationGuide:
+          Pinning artifacts in Dockerfile refers to the practice of using specific,
           immutable versions of base images and dependencies in your build process. Instead of using the
           latest tag for your base image, select a specific version or digest. For example, replace FROM node:latest,
           to FROM node@sha256:abcdef12.
@@ -91,35 +102,38 @@ Build and Deployment:
       usefulness: 3
       level: 2
       implementation:
-      - Container technology automatically creates a hash for images, which can be
-        used.
-      - Immutable images are an other way, e.g. by using a registry, which doesn't
-        allow overriding of images.
+        - Container technology automatically creates a hash for images, which can be
+          used.
+        - Immutable images are an other way, e.g. by using a registry, which doesn't
+          allow overriding of images.
       dependsOn:
-      - Defined build process
+        - Defined build process
       references:
         samm2:
-        - I-SB-1-A
+          - I-SB-1-A
         iso27001-2017:
-        - 14.2.6
+          - 14.2.6
         iso27001-2022:
-        - 8.31
+          - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
     SBOM of components:
+      uuid: 2858ac12-0179-40d9-9acf-1b839c030473
       description: |-
-       SBOM (Software Bill of Materials) is a document that lists all components, libraries,
-       and dependencies used in a software application or container image. Creating an SBOM
-       during the build process can help ensure transparency, security, and license compliance
-       for your application.
-      risk: In case a vulnerability of severity high or critical exists, it needs
+        SBOM (Software Bill of Materials) is a document that lists all components, libraries,
+        and dependencies used in a software application or container image. Creating an SBOM
+        during the build process can help ensure transparency, security, and license compliance
+        for your application.
+      risk:
+        In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts with that vulnerability is deployed with which
         dependencies.
-      measure: Creation of an SBOM of components (e.g. application and container image
+      measure:
+        Creation of an SBOM of components (e.g. application and container image
         content) during build.
       dependsOn:
-      - Defined build process
+        - Defined build process
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -130,18 +144,20 @@ Build and Deployment:
       references:
         samm2: []
         iso27001-2017:
-        - 8.1
-        - 8.2
+          - 8.1
+          - 8.2
         iso27001-2022:
-        - 5.9
-        - 5.12
+          - 5.9
+          - 5.12
       isImplemented: false
       evidence: ""
       comments: ""
     Signing of artifacts:
+      uuid: 5786959d-0c6f-46a6-8e1c-a32ff1a50222
       risk: &execution-maliciuous Execution or usage of malicious code or data e.g. via executables, libraries or container images.
-      measure: Digitally signing artifacts for all steps during the build and especially
-        docker images, helps to ensure their integrity and autenticity.
+      measure:
+        Digitally signing artifacts for all steps during the build and especially
+        docker images, helps to ensure their integrity and authenticity.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -149,24 +165,26 @@ Build and Deployment:
       usefulness: 4
       level: 5
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-content-trust
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/in-toto
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-content-trust
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/in-toto
       dependsOn:
-      - Defined build process
-      - Pinning of artifacts
+        - Defined build process
+        - Pinning of artifacts
       references:
         samm2:
-        - I-SB-1-A
+          - I-SB-1-A
         iso27001-2017:
-        - 14.2.6
+          - 14.2.6
         iso27001-2022:
-        - 8.31
+          - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
     Signing of code:
+      uuid: 9f107927-61e9-4574-85ad-3f2b4bca8665
       risk: *execution-maliciuous
-      measure: Digitally signing commits helps to prevent unauthorized manipulation
+      measure:
+        Digitally signing commits helps to prevent unauthorized manipulation
         of source code.
       difficultyOfImplementation:
         knowledge: 2
@@ -175,18 +193,17 @@ Build and Deployment:
       usefulness: 3
       level: 3
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits-protection
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits-protection
       dependsOn:
-      - Defined build process
+        - Defined build process
       references:
         samm2:
-        - I-SB-2-A
+          - I-SB-2-A
         iso27001-2017:
-        - 14.2.6
+          - 14.2.6
         iso27001-2022:
-        - 8.31
+          - 8.31
       isImplemented: false
       evidence: ""
       comments: ""
-...

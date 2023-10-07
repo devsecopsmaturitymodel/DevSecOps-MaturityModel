@@ -10,14 +10,12 @@ Attackers are intelligent and creative, equipped with new technologies and purpo
 
 # Usage
 
-Go to https://dsomm.timo-pagel.de.
+Go to https://dsomm.owasp.org.
 
 * _matrix_ shows the dimensions, subdimensions and activities are described.
-* _Implementation Levels_ can be used to measure the current implementation level by clicking on the specific activities which have been performed.
-* _Ease and Value of Implementation_ is used for the maturity model development to see the ease and value of each activity to be able to compare it with activities within the subdimension and activities from other subdimensions.
-* _Dependenies_ shows the dependencies between activities
-* _Useage_ describes the dimensions
-* _Full Report_ prints all activities to be able to print it
+* _Implementation Levels_ can be used to show the current implementation level by clicking on the specific activities which have been performed (it is recommended to use a gitops-like flow)
+* _Mappings_ Shows mappings to other standards and provides the ability to download an excel sheet
+* _Useage_ describes how to use DSOMM
 
 In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describes different strategic approaches for your secure DevOps strategy. The use OWASP DSOMM in combination with [OWASP SAMM](https//owaspsamm.org) is explained.
 

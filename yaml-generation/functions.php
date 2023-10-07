@@ -76,8 +76,12 @@ function getDimensions($filename = "data/generated/dimensions.yaml") {
                 unset($content["iso27001-2022"]);
                 //echo var_dump($elements[$activityName]);
                 //echo "<hr>";
-                $elements[$activityName] = $content;
 
+                if (!array_key_exists("tags", $content)) {
+                    $content["tags"] = array();
+                }
+
+                $elements[$activityName] = $content;
             }
             $newElements = $elements;
             ksort($newElements);

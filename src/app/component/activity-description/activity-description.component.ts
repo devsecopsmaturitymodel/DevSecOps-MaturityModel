@@ -16,6 +16,7 @@ export interface activityDescription {
   level: string;
   tags: string[];
   activityName: string;
+  uuid: string;
   description: string;
   risk: string;
   measure: string;
@@ -48,6 +49,7 @@ export class ActivityDescriptionComponent implements OnInit {
     level: '',
     tags: [''],
     activityName: '',
+    uuid: '',
     description: '',
     risk: '',
     measure: '',
@@ -109,6 +111,7 @@ export class ActivityDescriptionComponent implements OnInit {
         data['description'],
         ''
       );
+      this.currentActivity.uuid = this.defineStringValues(data['uuid'], '');
       this.currentActivity.risk = this.defineStringValues(data['risk'], '');
       this.currentActivity.tags = this.defineStringArrayValues(
         data['tags'],
@@ -278,7 +281,6 @@ export class ActivityDescriptionComponent implements OnInit {
     this.accordion.forEach(element => {
       element.openAll();
     });
-    console.log(this.currentActivity.teamsImplemented);
   }
 
   // Close all function

@@ -14,7 +14,6 @@ import { from, single } from 'rxjs';
 
 export interface activitySchema {
   activityName: string;
-  // ifActivityDone: boolean;
   teamsImplemented: any;
 }
 
@@ -32,12 +31,13 @@ export interface cardSchema {
   styleUrls: ['./circular-heatmap.component.css'],
 })
 export class CircularHeatmapComponent implements OnInit {
-  maxLevelOfActivitys: number = -1;
+  Routing: string = '/activity-description';
+  maxLevelOfActivities: number = -1;
   showActivityCard: boolean = false;
   cardHeader: string = '';
   cardSubheader: string = '';
   currentDimension: string = '';
-  activitysData: any[] = [];
+  activityData: any[] = [];
   ALL_CARD_DATA: cardSchema[] = [];
   radial_labels: string[] = [];
   YamlObject: any;
@@ -67,7 +67,7 @@ export class CircularHeatmapComponent implements OnInit {
       for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
         var y = parseInt(x) + 1;
         this.radial_labels.push('Level ' + y);
-        this.maxLevelOfActivitys = y;
+        this.maxLevelOfActivities = y;
       }
     });
     // Team Data
@@ -97,7 +97,7 @@ export class CircularHeatmapComponent implements OnInit {
         }
       }
       // console.log(this.segment_labels);
-      for (var l = 0; l < this.maxLevelOfActivitys; l++) {
+      for (var l = 0; l < this.maxLevelOfActivities; l++) {
         var allDimensionNames = Object.keys(this.YamlObject);
         for (var i = 0; i < allDimensionNames.length; i++) {
           var allSubDimensionInThisDimension = Object.keys(
@@ -286,14 +286,12 @@ export class CircularHeatmapComponent implements OnInit {
         break;
       }
     }
-
     this.ALL_CARD_DATA[index]['Activity'][activityIndex]['teamsImplemented'][
       teamKey
     ] =
       !this.ALL_CARD_DATA[index]['Activity'][activityIndex]['teamsImplemented'][
         teamKey
       ];
-
     this.saveState();
     this.reColorHeatmap();
   }
@@ -385,9 +383,10 @@ export class CircularHeatmapComponent implements OnInit {
         console.log('index', _self.ALL_CARD_DATA[index]['Activity']);
         _self.currentDimension = curr.Dimension;
         _self.cardSubheader = curr.Level;
-        _self.activitysData = curr.Activity;
+        _self.activityData = curr.Activity;
         _self.cardHeader = curr.SubDimension;
         _self.showActivityCard = true;
+        //console.log(_self.activityData)
       })
       .on('mouseover', function (d) {
         //console.log(d.toElement.__data__.Name)
@@ -658,12 +657,10 @@ export class CircularHeatmapComponent implements OnInit {
       }
     }
   }
-
   navigate(dim: string, subdim: string, activityName: string) {
     let navigationExtras = {
       dimension: dim,
       subDimension: subdim,
-
       activityName: activityName,
     };
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
@@ -737,7 +734,6 @@ export class CircularHeatmapComponent implements OnInit {
   ResetIsImplemented() {
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] > 0) {
-        // this.ALL_CARD_DATA[x]['Done%'] = 0;
         for (var y = 0; y < this.ALL_CARD_DATA[x]['Activity'].length; y++) {
           var currActivityTeamsImplemented =
             this.ALL_CARD_DATA[x]['Activity'][y]['teamsImplemented'];

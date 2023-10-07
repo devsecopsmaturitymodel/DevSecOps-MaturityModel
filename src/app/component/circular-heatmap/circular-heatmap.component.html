@@ -5,7 +5,6 @@
       <div class="overlay-details" [hidden]="!showOverlay">
         <div
           *ngIf="activityDetails; then activityTrue; else activityFalse"></div>
-        <!-- Team Based Assessment -->
         <ng-template #activityTrue>
           <div class="overlay-modal">
             <mat-accordion multi="true" class="overlay-accordion">
@@ -83,8 +82,7 @@
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
                   <ul>
-                    <li
-                      *ngFor="let implement of activityDetails.implementation">
+                    <li *ngFor="let implement of activityDetails.implementation">
                       <a href="{{ implement.url }}">{{ implement.name }}</a>
                     </li>
                   </ul>
@@ -116,9 +114,7 @@
                     Knowledge:
                     {{ activityDetails.difficultyOfImplementation.knowledge }}
                   </p>
-                  <p>
-                    Time: {{ activityDetails.difficultyOfImplementation.time }}
-                  </p>
+                  <p>Time: {{ activityDetails.difficultyOfImplementation.time }}</p>
                   <p>
                     Resources:
                     {{ activityDetails.difficultyOfImplementation.resources }}

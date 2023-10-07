@@ -1,11 +1,15 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-culture-and-organization.json
 ---
 Culture and Organization:
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:
-      risk: Understanding security is hard and personnel needs to be trained on it.
+      uuid: 12c90cc6-3d58-4d9b-82ff-d469d2a0c298
+      risk:
+        Understanding security is hard and personnel needs to be trained on it.
         Otherwise, flaws like an SQL Injection might be introduced into the software
         which might get exploited.
-      measure: Provide security awareness training for all personnel involved in software
+      measure:
+        Provide security awareness training for all personnel involved in software
         development Ad-Hoc.
       difficultyOfImplementation:
         knowledge: 2
@@ -14,20 +18,21 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
       references:
         samm2:
-        - G-EG-1-A
+          - G-EG-1-A
         iso27001-2017:
-        - 7.2.2
+          - 7.2.2
         iso27001-2022:
-        - 6.3
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
     Security Coaching:
-      risk: Training does not change behaviour. Therefore, even if security practices are understood, it's likly that they are not performed.
+      uuid: f7b215dc-73a4-4c61-9e49-b3a3af1c9ac3
+      risk: Training does not change behaviour. Therefore, even if security practices are understood, it's likely that they are not performed.
       measure: By coaching teams on security topics using for example the samman coaching method, teams internalize security practices as new habits in their development process.
       difficultyOfImplementation:
         knowledge: 4
@@ -43,15 +48,18 @@ Culture and Organization:
         iso27001-2017:
           - 7.1.1
         iso27001-2022:
-        - 6.1
+          - 6.1
       isImplemented: false
       evidence: ""
       comments: ""
     Aligning security in teams:
-      risk: The concept of Security Champions might suggest that only he/she is responsible
+      uuid: f994a55d-71bb-45a4-a887-0a213d72c504
+      risk:
+        The concept of Security Champions might suggest that only he/she is responsible
         for security. However, everyone in the project team should be responsible
         for security.
-      measure: By aligning security Subject Matter Experts with project teams, a higher security standard
+      measure:
+        By aligning security Subject Matter Experts with project teams, a higher security standard
         can be achieved.
       difficultyOfImplementation:
         knowledge: 4
@@ -59,23 +67,26 @@ Culture and Organization:
         resources: 1
       usefulness: 5
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/involve-security-sme
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/involve-security-sme
       level: 4
       references:
         samm2:
-        - G-EG-3-B
+          - G-EG-3-B
         iso27001-2017:
-        - 7.1.1
+          - 7.1.1
         iso27001-2022:
-        - 6.1
+          - 6.1
       isImplemented: false
       evidence: ""
       comments: ""
     Conduction of build-it, break-it, fix-it contests:
-      risk: Understanding security is hard, even for security champions and the conduction
+      uuid: bfdb576e-a416-4ec6-96fe-a078d58b2ff8
+      risk:
+        Understanding security is hard, even for security champions and the conduction
         of security training often focuses on breaking a component instead of building
         a component secure.
-      measure: The build-it, break-it, fix-it contest allows to train people with
+      measure:
+        The build-it, break-it, fix-it contest allows to train people with
         security related roles like security champions the build, break and fix part
         of a secure application. This increases the learning of building secure components.
       difficultyOfImplementation:
@@ -85,21 +96,23 @@ Culture and Organization:
       usefulness: 3
       level: 3
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/build-it-break-it-fi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/build-it-break-it-fi
       references:
         samm2:
-        - G-EG-2-A
+          - G-EG-2-A
         iso27001-2017:
-        - 7.2.2
+          - 7.2.2
         iso27001-2022:
-        - 6.3
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
-    Conduction of collaborative security checks with developers and system administrators:
-      risk: Security checks by external companies do not increase the understanding
+    ? Conduction of collaborative security checks with developers and system administrators
+    : risk:
+        Security checks by external companies do not increase the understanding
         of an application/system for internal employees.
-      measure: Periodically security reviews of source code (SCA), in which security
+      measure:
+        Periodically security reviews of source code (SCA), in which security
         SME, developers and operations are involved, are effective at increasing the
         robustness of software and the security knowledge of the teams involved.
       difficultyOfImplementation:
@@ -111,25 +124,27 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-EG-2-A
+          - G-EG-2-A
         iso27001-2017:
-        - Mutual review of source code is not explicitly required in ISO 27001 may
-          be
-        - 7.2.2
-        - 12.6.1
-        - 12.7.1
+          - Mutual review of source code is not explicitly required in ISO 27001 may
+            be
+          - 7.2.2
+          - 12.6.1
+          - 12.7.1
         iso27001-2022:
-        - Mutual review of source code is not explicitly required in ISO 27001 may
-          be
-        - 6.3
-        - 8.8
-        - 8.34
+          - Mutual review of source code is not explicitly required in ISO 27001 may
+            be
+          - 6.3
+          - 8.8
+          - 8.34
       isImplemented: false
       evidence: ""
       comments: ""
     Conduction of collaborative team security checks:
+      uuid: 35446784-7610-40d9-af9e-d43f3173bf8c
       risk: Development teams limited insight over security practices.
-      measure: Mutual security testing the security of other teams project enhances
+      measure:
+        Mutual security testing the security of other teams project enhances
         security awareness and knowledge.
       difficultyOfImplementation:
         resources: 2
@@ -140,20 +155,22 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-EG-1-A
-        - G-EG-2-A
+          - G-EG-1-A
+          - G-EG-2-A
         iso27001-2017:
-        - Mutual security testing is not explicitly required in ISO 27001 may be
-        - 7.2.2
+          - Mutual security testing is not explicitly required in ISO 27001 may be
+          - 7.2.2
         iso27001-2022:
-        - Mutual security testing is not explicitly required in ISO 27001 may be
-        - 6.3
+          - Mutual security testing is not explicitly required in ISO 27001 may be
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
     Conduction of war games:
+      uuid: 534f60bf-0995-4314-bb9c-f0f2bf204694
       risk: Understanding incident response plans during an incident is hard and ineffective.
-      measure: War Games like activities help train for incidents. Security SMEs create
+      measure:
+        War Games like activities help train for incidents. Security SMEs create
         attack scenarios in a testing environment enabling the trainees to learn how
         to react in case of an incident.
       difficultyOfImplementation:
@@ -165,24 +182,27 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-EG-2-A
+          - G-EG-2-A
         iso27001-2017:
-        - War games are not explicitly required in ISO 27001 may be
-        - 7.2.2
-        - 16.1
-        - 16.1.5
+          - War games are not explicitly required in ISO 27001 may be
+          - 7.2.2
+          - 16.1
+          - 16.1.5
         iso27001-2022:
-        - War games are not explicitly required in ISO 27001 may be
-        - 6.3
-        - 5.24
-        - 5.26
+          - War games are not explicitly required in ISO 27001 may be
+          - 6.3
+          - 5.24
+          - 5.26
       isImplemented: false
       evidence: ""
       comments: ""
     Each team has a security champion:
-      risk: No one feels directly responsible for security and the security champion
+      uuid: 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
+      risk:
+        No one feels directly responsible for security and the security champion
         does not have enough time to allocate to each team.
-      measure: Each team defines an individual to be responsible for security. These
+      measure:
+        Each team defines an individual to be responsible for security. These
         individuals are often referred to as 'security champions'
       difficultyOfImplementation:
         knowledge: 3
@@ -190,7 +210,8 @@ Culture and Organization:
         resources: 1
       usefulness: 4
       level: 2
-      description: "Implement a program where each software development team has a
+      description:
+        "Implement a program where each software development team has a
         member considered a \u201CSecurity Champion\u201D who is the liaison between
         Information Security and developers. Depending on the size and structure of
         the team the \u201CSecurity Champion\u201D may be a software developer, tester,
@@ -210,25 +231,27 @@ Culture and Organization:
         architecture of the application more resilient and reducing the attack threat
         surface.\nSource: [OWASP SAMM](https://owaspsamm.org/model/governance/education-and-guidance/stream-b/)\n"
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-security-champ
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-security-champ
       references:
         samm2:
-        - G-EG-1-B
-        - G-EG-2-B
+          - G-EG-1-B
+          - G-EG-2-B
         iso27001-2017:
-        - Security champions are missing in ISO 27001 most likely
-        - 7.2.1
-        - 7.2.2
+          - Security champions are missing in ISO 27001 most likely
+          - 7.2.1
+          - 7.2.2
         iso27001-2022:
-        - Security champions are missing in ISO 27001 most likely
-        - 5.4
-        - 6.3
+          - Security champions are missing in ISO 27001 most likely
+          - 5.4
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
     Regular security training for all:
+      uuid: 9768f154-357a-4c06-af6f-d66570677c9b
       risk: Understanding security is hard.
-      measure: Provide security awareness training for all internal personnel involved
+      measure:
+        Provide security awareness training for all internal personnel involved
         in software development on a regular basis like twice in a year for 1-3 days.
       difficultyOfImplementation:
         knowledge: 3
@@ -245,21 +268,23 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
       references:
         samm2:
-        - G-EG-1-A
+          - G-EG-1-A
         iso27001-2017:
-        - 7.2.2
+          - 7.2.2
         iso27001-2022:
-        - 6.3
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
     Regular security training for externals:
+      uuid: 31833d56-35af-4ef3-9300-f23d27646ce7
       risk: Understanding security is hard.
-      measure: Provide security awareness training for all personnel including externals
+      measure:
+        Provide security awareness training for all personnel including externals
         involved in software development on a regular basis.
       difficultyOfImplementation:
         knowledge: 3
@@ -268,19 +293,20 @@ Culture and Organization:
       usefulness: 4
       level: 4
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-cheatsheetse
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-cheatsheetse
       references:
         samm2:
-        - G-EG-3-A
+          - G-EG-3-A
         iso27001-2017:
-        - 7.2.2
+          - 7.2.2
         iso27001-2022:
-        - 6.3
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
     Regular security training of security champions:
+      uuid: f88d1b17-3d7d-4c3d-8139-ad44fc4942d4
       risk: Understanding security is hard, even for security champions.
       measure: Regular security training of security champions.
       assessment: |
@@ -293,27 +319,29 @@ Culture and Organization:
       usefulness: 5
       level: 2
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
       dependsOn:
-      - Each team has a security champion
+        - Each team has a security champion
       references:
         samm2:
-        - D-TA-2-B
-        - G-EG-1-A
+          - D-TA-2-B
+          - G-EG-1-A
         iso27001-2017:
-        - Security champions are missing in ISO 27001
-        - 7.2.2
+          - Security champions are missing in ISO 27001
+          - 7.2.2
         iso27001-2022:
-        - Security champions are missing in ISO 27001
-        - 6.3
+          - Security champions are missing in ISO 27001
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
     Reward of good communication:
+      uuid: 91b6f75b-9f4a-4d77-95a2-af7ad3222c7c
       risk: Employees are not getting excited about security.
-      measure: Good communication and transparency encourages cross-organizational
+      measure:
+        Good communication and transparency encourages cross-organizational
         support. Gamification of security is also known to help, examples include
-        T-Shirts, mugs, cups, giftcards and 'High-Fives'.
+        T-Shirts, mugs, cups, gift cards and 'High-Fives'.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
@@ -321,21 +349,22 @@ Culture and Organization:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/motivate-people
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-top-10-maturit
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/motivate-people
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-top-10-maturit
       references:
         samm2:
-        - G-EG-1-B
+          - G-EG-1-B
         iso27001-2017:
-        - not required by ISO 27001
-        - interestingly enough A7.2.3 is requiring a process to handle misconduct
-          but nothing to promote good behavior.
+          - not required by ISO 27001
+          - interestingly enough A7.2.3 is requiring a process to handle misconduct
+            but nothing to promote good behavior.
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+          - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
     Security code review:
+      uuid: 7121b0c7-6ace-4d6b-95d0-94535dbccb57
       risk: Understanding security is hard.
       measure: |
         The following areas of code tend to have a high-risk of containing security vulnerabilities:
@@ -359,23 +388,26 @@ Culture and Organization:
       usefulness: 3
       level: 2
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cwe25
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cwe25
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       references:
         samm2:
-        - V-ST-1-B
+          - V-ST-1-B
         iso27001-2017:
-        - ISO 27001:2017 mapping is missing
+          - ISO 27001:2017 mapping is missing
         iso27001-2022:
-        - ISO 27001:2022 mapping is missing
+          - ISO 27001:2022 mapping is missing
       isImplemented: false
       evidence: ""
       comments: ""
     Security consulting on request:
-      risk: Not asking a security expert when questions regarding security appear
+      uuid: 0b28367b-75a0-4bae-a926-3725c1bf9bb0
+      risk:
+        Not asking a security expert when questions regarding security appear
         might lead to flaws.
-      measure: Security consulting to teams is given on request. The security consultants
+      measure:
+        Security consulting to teams is given on request. The security consultants
         can be internal or external.
       difficultyOfImplementation:
         knowledge: 3
@@ -384,26 +416,28 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
       references:
         samm2:
-        - G-EG-1-A
+          - G-EG-1-A
         iso27001-2017:
-        - security consulting is missing in ISO 27001 may be
-        - 6.1.1
-        - 6.1.4
-        - 6.1.5
+          - security consulting is missing in ISO 27001 may be
+          - 6.1.1
+          - 6.1.4
+          - 6.1.5
         iso27001-2022:
-        - Security consulting is missing in ISO 27001 may be
-        - 5.2
-        - 5.6
-        - 5.8
+          - Security consulting is missing in ISO 27001 may be
+          - 5.2
+          - 5.6
+          - 5.8
       isImplemented: false
       evidence: ""
       comments: ""
     Security-Lessoned-Learned:
+      uuid: 58c46807-fee9-448b-b6dd-8050c464ab52
       risk: After an incident, a similar incident might reoccur.
-      measure: Running a 'lessons learned' session after an incident helps drive continuous
+      measure:
+        Running a 'lessons learned' session after an incident helps drive continuous
         improvement. Regular meetings with security champions are a good place to
         share and discuss lessons learned.
       difficultyOfImplementation:
@@ -415,15 +449,16 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - O-IM-3-B
+          - O-IM-3-B
         iso27001-2017:
-        - 16.1.6
+          - 16.1.6
         iso27001-2022:
-        - 5.27
+          - 5.27
       isImplemented: false
       evidence: ""
       comments: ""
     Simple mob hacking:
+      uuid: 535f301a-e8e8-4eda-ad77-a08b035c92de
       risk: Understanding security is hard.
       measure: |
         Participate with your whole team in a simple mob hacking session organized by the Security Champion Guild.
@@ -450,16 +485,15 @@ Culture and Organization:
       credits: |
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/damn-vulnerable-web
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/damn-vulnerable-web
       references:
         samm2:
-        - G-EG-1-A
+          - G-EG-1-A
         iso27001-2017:
-        - 7.2.2
+          - 7.2.2
         iso27001-2022:
-        - 6.3
+          - 6.3
       isImplemented: false
       evidence: ""
       comments: ""
-...

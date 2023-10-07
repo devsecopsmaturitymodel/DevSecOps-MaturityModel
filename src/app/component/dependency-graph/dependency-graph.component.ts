@@ -43,10 +43,10 @@ export class DependencyGraphComponent implements OnInit {
     this.yaml.getJson().subscribe(data => {
       this.graphData = { nodes: [], links: [] };
       this.YamlObject = data[this.dimension][this.subDimension];
-      this.populateGraphWithActivitiesCurrentactivityDependsOn(
+      this.populateGraphWithActivitiesCurrentActivityDependsOn(
         this.activityName
       );
-      this.populateGraphWithActivitiesThatDependsOnCurrentactivity(
+      this.populateGraphWithActivitiesThatDependsOnCurrentActivity(
         this.activityName
       );
       //console.log({...this.graphData['nodes']})
@@ -56,25 +56,25 @@ export class DependencyGraphComponent implements OnInit {
     });
   }
 
-  populateGraphWithActivitiesCurrentactivityDependsOn(activity: string): void {
+  populateGraphWithActivitiesCurrentActivityDependsOn(activity: string): void {
     this.checkIfNodeHasBeenGenerated(activity);
     try {
-      var activitysThatCurrenactivityIsDependentOn =
+      var activitysThatCurrenActivityIsDependentOn =
         this.YamlObject[activity]['dependsOn'];
       for (
         var j = 0;
-        j < activitysThatCurrenactivityIsDependentOn.length;
+        j < activitysThatCurrenActivityIsDependentOn.length;
         j++
       ) {
         this.checkIfNodeHasBeenGenerated(
-          activitysThatCurrenactivityIsDependentOn[j]
+          activitysThatCurrenActivityIsDependentOn[j]
         );
         this.graphData['links'].push({
-          source: activitysThatCurrenactivityIsDependentOn[j],
+          source: activitysThatCurrenActivityIsDependentOn[j],
           target: activity,
         });
-        this.populateGraphWithActivitiesCurrentactivityDependsOn(
-          activitysThatCurrenactivityIsDependentOn[j]
+        this.populateGraphWithActivitiesCurrentActivityDependsOn(
+          activitysThatCurrenActivityIsDependentOn[j]
         );
       }
     } catch (e) {
@@ -82,15 +82,15 @@ export class DependencyGraphComponent implements OnInit {
     }
     //console.log({...this.graphData['nodes']})
   }
-  populateGraphWithActivitiesThatDependsOnCurrentactivity(activity: string) {
-    var allactivitys = Object.keys(this.YamlObject);
-    for (var i = 0; i < allactivitys.length; i++) {
+  populateGraphWithActivitiesThatDependsOnCurrentActivity(activity: string) {
+    var allActivitys = Object.keys(this.YamlObject);
+    for (var i = 0; i < allActivitys.length; i++) {
       try {
-        if (this.YamlObject[allactivitys[i]]['dependsOn'].includes(activity)) {
-          this.checkIfNodeHasBeenGenerated(allactivitys[i]);
+        if (this.YamlObject[allActivitys[i]]['dependsOn'].includes(activity)) {
+          this.checkIfNodeHasBeenGenerated(allActivitys[i]);
           this.graphData['links'].push({
             source: activity,
-            target: allactivitys[i],
+            target: allActivitys[i],
           });
         }
       } catch {
