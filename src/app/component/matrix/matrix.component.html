@@ -66,22 +66,16 @@
               <button
                 style="margin-bottom: 1em"
                 (click)="
-                  navigate(element.Dimension, element.SubDimension, i + 1, activity)
+                  navigate(
+                    element.Dimension,
+                    element.SubDimension,
+                    i + 1,
+                    activity
+                  )
                 ">
-                <div
-                  *ngIf="
-                    YamlObject[element.Dimension][element.SubDimension][activity][
-                      'isImplemented'
-                    ];
-                    then thenBlock;
-                    else elseBlock
-                  "></div>
-                <ng-template #thenBlock>
-                  <p style="color: green; margin: 0">{{ activity }}</p>
-                </ng-template>
-                <ng-template #elseBlock>
+                <div>
                   <p style="margin: 0">{{ activity }}</p>
-                </ng-template>
+                </div>
                 <span class="tags-activity">
                   [
                   <span

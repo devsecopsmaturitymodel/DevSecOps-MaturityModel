@@ -2,6 +2,18 @@
 
 require_once "functions.php";
 
+$metadata = readYaml("src/assets/YAML/meta.yaml");
+$teams = $metadata["teams"];
+if(sizeof($teams)  == 0) {
+    echo "Warning: No teams defined";
+}
+$teamsImplemented = array();
+foreach($teams as $team) {
+    $teamsImplemented[$team] = false;
+}
+
+
+
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions=array();
 foreach ($files as $filename) {
@@ -50,9 +62,6 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
         }
 
         foreach ($elements as $activityName => $activity) {
-            if(array_key_exists("evidence", $activity) && $activity["evidence"] != "" && IS_IMPLEMENTED_WHEN_EVIDENCE) {
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["isImplemented"] = true;
-            }
             if (!array_key_exists("level", $activity)) {
                 echo "'$activityName' is not complete!";
                 echo "<pre>";
@@ -63,7 +72,25 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (!array_key_exists("tags", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = [ "none" ];
             }
-	}
+            if (!array_key_exists("teamsImplemented", $activity)) {
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array();
+            }
+            $evidenceImplemented = array();
+            if(array_key_exists("evidence", $activity) && is_array($activity["evidence"]) && IS_IMPLEMENTED_WHEN_EVIDENCE) {
+                foreach($activity["evidence"] as $team => $evidenceForTeam) {
+                    if(strlen($activity["evidence"][$team]) > 0) {
+                        $evidenceImplemented[$team] = true;
+                    }else {
+                        echo "Warning: '$activityName -> evidence -> $team' has no evidence set but should have";
+                    }
+                }
+            }
+            $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array_merge($teamsImplemented, $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"], $evidenceImplemented);
+            // can be removed in 2024
+            if (array_key_exists("isImplemented", $activity)) {
+                unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
+            }
+        }
     }
 }
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {

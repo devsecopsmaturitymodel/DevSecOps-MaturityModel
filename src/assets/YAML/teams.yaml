@@ -1,0 +1,9 @@
+---
+#
+# Teams
+#
+teams: ['A', 'B', 'C']
+teamGroups:
+  AB: ['A', 'B']
+  BC: ['B', 'C']
+  AC: ['A', 'C']

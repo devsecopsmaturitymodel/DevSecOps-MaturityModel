@@ -61,7 +61,9 @@
           <b>Difficulty of Implementation</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Knowledge: {{ this.KnowledgeLabels[this.currentActivity.knowledge] }}</p>
+      <p>
+        Knowledge: {{ this.KnowledgeLabels[this.currentActivity.knowledge] }}
+      </p>
       <p>Time: {{ this.GeneralLabels[this.currentActivity.time] }}</p>
       <p>Resources: {{ this.GeneralLabels[this.currentActivity.resources] }}</p>
     </mat-expansion-panel>
@@ -188,13 +190,28 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <b>Implemented</b>
+          <b>Implemented By</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div
-        *ngIf="currentActivity.isImplemented; then thenBlock; else elseBlock"></div>
-      <ng-template #thenBlock> Implemented </ng-template>
-      <ng-template #elseBlock> Not Implemented </ng-template>
+        *ngIf="
+          currentActivity.teamsImplemented;
+          then thenBlock;
+          else elseBlock
+        "></div>
+      <ng-template #thenBlock>
+        <ul class="teams-implemented-list">
+          <li *ngFor="let item of currentActivity.teamsImplemented | keyvalue">
+            <b>{{ item.key }}</b
+            >:{{ item.value }}
+          </li>
+        </ul>
+      </ng-template>
+      <ng-template #elseBlock
+        >teamsImplemented variable not present <br />
+        <p *ngIf="currentActivity.isImplemented === false">Not Implemented</p>
+        <p *ngIf="currentActivity.isImplemented === true">Implemented</p>
+      </ng-template>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -205,7 +222,9 @@
       <app-dependency-graph
         dimension="{{ currentActivity.dimension }}"
         subDimension="{{ currentActivity.subDimension }}"
-        activityName="{{ currentActivity.activityName }}"></app-dependency-graph>
+        activityName="{{
+          currentActivity.activityName
+        }}"></app-dependency-graph>
     </mat-expansion-panel>
 
     <mat-expansion-panel>

@@ -34,6 +34,7 @@ export interface activityDescription {
   assessment: string;
   comments: string;
   isImplemented: boolean;
+  teamsImplemented: Object;
 }
 
 @Component({
@@ -66,6 +67,7 @@ export class ActivityDescriptionComponent implements OnInit {
     evidence: '',
     comments: '',
     isImplemented: false,
+    teamsImplemented: {},
   };
 
   YamlObject: any;
@@ -199,6 +201,7 @@ export class ActivityDescriptionComponent implements OnInit {
         data['isImplemented'],
         false
       );
+      this.currentActivity.teamsImplemented = data['teamsImplemented'];
       this.openall();
     });
   }
