@@ -302,7 +302,7 @@ Test and Verification:
         time: 3
         resources: 2
       usefulness: 2
-      level: 4
+      level: 3
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
