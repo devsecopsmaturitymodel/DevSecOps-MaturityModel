@@ -9,7 +9,7 @@
 }
 
 .normal-button {
-  background-color: white;
+  background-color: inherit;
   border: none;
   text-align: left;
   cursor: pointer;
