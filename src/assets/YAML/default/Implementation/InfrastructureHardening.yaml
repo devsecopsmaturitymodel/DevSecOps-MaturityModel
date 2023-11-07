@@ -713,7 +713,7 @@ Implementation:
         The threat from malicious inputs remains high, with exploits seeking to exploit any vulnerabilities present at the various points of entry to the application.
       measure:
         A WAF deployed with a medium level of protection strengthens the security posture by striking a more advanced balance between the detection of genuine threats and the minimization of false alarms.
-      description:
+      description: |
         A medium-level WAF configuration builds upon the baseline to offer a more nuanced and responsive defense mechanism against a wider array of threats.
 
         Steps:
