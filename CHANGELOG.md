@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/compare/v3.5.0...v3.5.1) (2023-11-07)
+
+
+### Bug Fixes
+
+* YAML ([889422b](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/889422b791cf141838e2ec637406a14d8849ff6a))
+
 # [3.5.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/compare/v3.4.0...v3.5.0) (2023-11-07)
 
 
