@@ -50,8 +50,34 @@ Implementation:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 8.22
       isImplemented: false
-      evidence: ""
       comments: ""
+    Contextualized Encoding:
+      identifier: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
+      hazard:
+        The generation of interpreter directives from user-provided data poses difficulties and can introduce vulnerabilities to injection attacks.
+      remediation: |
+        Implementing contextualized encoding, such as employing object-relational mapping tools or utilizing prepared statements, nearly removes the threat of injection vulnerabilities.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 1
+      description: |
+        Bear in mind that utilizing frameworks is a recommended approach; however, they can develop known security weaknesses over time. Diligent and regular patching is crucial.
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-asvs
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-masvs
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apimaturity
+      references:
+        samm2:
+          - D-SR-1-A
+        iso27001-2017:
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 13.1.3
+        iso27001-2022:
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 8.22
     App. Hardening Level 1:
       uuid: cf819225-30cb-4702-8e32-60225eedc33d
       risk:
@@ -101,8 +127,6 @@ Implementation:
         iso27001-2022:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 8.22
-      isImplemented: false
-      evidence: ""
       comments: ""
     App. Hardening Level 2 (75%):
       uuid: 03643ca2-03c2-472b-8e19-956bf02fe9b7
