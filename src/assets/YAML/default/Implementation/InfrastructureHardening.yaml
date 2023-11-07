@@ -676,3 +676,107 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
+    WAF baseline:
+      uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b
+      risk:
+        Vulnerable input, such as exploits, can infiltrate the application via numerous entry points, posing a significant security threat.
+      measure:
+        Implementing a web application firewall (WAF) is a critical security control. At a baseline level, the objective is to finely balance the reduction of false positives, maintaining user experience, against a potential increase in the less noticeable false negatives.
+      description:
+        A baseline WAF configuration provides essential defense against common vulnerabilities, acting as a first line of automated threat detection and response.
+        Steps:
+          - Configure WAF in alert mode to establish traffic patterns
+          - Analyze alerts and adjust sensitivity to optimize for fewer false positives
+          - Gradually switch to a proactive blocking stance as confidence in the accuracy of the rules increases
+
+        It's crucial to monitor and update the WAF configuration to adapt to evolving threats and minimize the potential for both false positives and false negatives.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 4
+        resources: 3
+      usefulness: 3
+      level: 3
+      description: |
+        Begin with the WAF in a monitoring state to understand the traffic and threats. Progressively enforce blocking actions based on intelligence gathered, ensuring minimal disruption to legitimate traffic.
+      dependsOn:
+        - Contextualized encoding
+      implementation: []
+      references:
+        samm2:
+          - TODO: Identify and implement SAMM security practices relevant to WAF configuration.
+        iso27001-2022:
+          - TODO: Integrate WAF deployment with ISO 27001 controls for system hardening.
+      comments: 
+    WAF medium:
+      uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b
+      risk:
+        The threat from malicious inputs remains high, with exploits seeking to exploit any vulnerabilities present at the various points of entry to the application.
+      measure:
+        A WAF deployed with a medium level of protection strengthens the security posture by striking a more advanced balance between the detection of genuine threats and the minimization of false alarms.
+      description:
+        A medium-level WAF configuration builds upon the baseline to offer a more nuanced and responsive defense mechanism against a wider array of threats.
+
+        Steps:
+          - Implement an enhanced set of WAF rules based on baseline data
+          - Continuous monitoring and fine-tuning of the WAF configuration
+          - Develop a strategic incident response plan utilizing WAF insights        
+          
+        The medium configuration requires diligent management and continuous improvement to address new vulnerabilities while maintaining the integrity of application access.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 5
+        resources: 4
+      usefulness: 3
+      level: 4
+      description: |
+        Maintain the WAF in alert mode initially to ensure a comprehensive understanding of potential threats. With a medium-level configuration, the WAF settings are refined for greater precision in threat detection, with a stronger emphasis on security without significantly impacting legitimate traffic.
+      dependsOn:
+        - WAF baseline
+      implementation: []
+      references:
+        samm2:
+          - TODO: Establish advanced SAMM security practices for WAF management.
+        iso27001-2022:
+          - TODO: Ensure WAF processes are integrated into the overall security management in accordance with ISO 27001 standards.
+      comments: 
+        
+    WAF Advanced:
+      uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b-advanced
+      risk:
+        The presence of sophisticated threats necessitates a robust defense strategy where application inputs are meticulously scrutinized for security breaches, including advanced persistent threats and zero-day vulnerabilities.
+      measure:
+        An advanced WAF protection level includes rigorous input validation, rejecting any parameters not explicitly required, and custom rule sets that are dynamically updated in response to emerging threats.
+      description: |
+        This advanced configuration goes beyond typical WAF implementations by enforcing strict input format checks and parameter validation to prevent any unauthorized or malformed data from compromising the application.
+
+        Steps:
+          - Implement strict data type and format validation rules to ensure only correctly formatted data is processed.
+          - Establish a denylist for all parameters that are not explicitly required, blocking them by default.
+          - Develop and continuously refine custom rulesets based on the application's traffic patterns, user behavior, and known vulnerabilities.
+          - Integrate machine learning algorithms to enhance anomaly detection and automatic rule adjustment.
+          - Correlate and analyze WAF logs with other security systems like SIEM for comprehensive threat intelligence.
+          - Conduct regular red team exercises to test and validate the effectiveness of the WAF configurations against simulated advanced attack scenarios.
+          - Activate automated threat response mechanisms to immediately neutralize detected threats.
+
+        Embracing an advanced WAF setup requires a proactive approach, with continuous improvement and updating of security measures to ensure all inputs are scrutinized and validated, thus maintaining a resilient security posture against sophisticated attacks.
+      difficultyOfImplementation:
+        knowledge: 5
+        time: 5
+        resources: 5
+      usefulness: 4
+      level: 5
+      description: |
+        The advanced WAF setup is designed to ensure all data is in the correct format and any superfluous input parameters are automatically rejected. It includes machine learning algorithms to detect anomalies, custom-developed rules for real-time traffic analysis, and seamless integration with existing security infrastructures to adapt to the ever-changing threat landscape.
+      dependsOn:
+        - WAF medium
+      implementation: []
+      references:
+        samm2:
+          - TODO: Develop an advanced threat management framework that includes rigorous input validation strategies.
+        iso27001-2022:
+          - TODO: Incorporate advanced WAF input validation processes into the organization's ISMS.
+      comments: 
+        
+
+
+
