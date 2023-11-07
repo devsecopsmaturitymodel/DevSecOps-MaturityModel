@@ -37,15 +37,6 @@ jobs:
           platforms: amd64,arm64
       - name: setup buildx
         uses: docker/setup-buildx-action@v2
-      - name: create version string
-        id: version
-        run: |
-          if [ "${GITHUB_REF##*/}" == "master" ]; then
-            echo "VERSION=3.3.0-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
-          else
-            BRANCH_TO_DOCKER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]//g')
-            echo "VERSION=${BRANCH_TO_DOCKER}-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
-          fi
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -58,11 +49,11 @@ jobs:
           push: true
           file: Dockerfile-yaml
           platforms: linux/amd64,linux/arm64
-          tags: wurstbrot/dsomm-yaml-generation:${{ env.VERSION }},wurstbrot/dsomm-yaml-generation:latest
+          tags: wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }},wurstbrot/dsomm-yaml-generation:latest
       - name: create and push dsomm image
         uses: docker/build-push-action@v3
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: wurstbrot/dsomm:${{ env.VERSION }},wurstbrot/dsomm:latest
+          tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
   
