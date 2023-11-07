@@ -25,7 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
         id: get-version
-        run: echo "::set-output name=version::$(grep -oP '(?<=\[v\d+\.\d+\.\d+\]).*' CHANGELOG.md | awk '{$1=$1};1')"
+        run: echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' /tmp/C | tr -d '[]')"
 
       - name: show version
         run: |
