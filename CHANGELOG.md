@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/compare/v3.4.0...v3.5.0) (2023-11-07)
+
+
+### Features
+
+* add WAF ([a98947d](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/a98947da41691e23af255cad8778208db09ccc53))
+
 # [3.4.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/compare/v3.3.0...v3.4.0) (2023-11-07)
 
 
