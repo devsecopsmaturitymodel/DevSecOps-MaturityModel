@@ -682,7 +682,7 @@ Implementation:
         Vulnerable input, such as exploits, can infiltrate the application via numerous entry points, posing a significant security threat.
       measure:
         Implementing a web application firewall (WAF) is a critical security control. At a baseline level, the objective is to finely balance the reduction of false positives, maintaining user experience, against a potential increase in the less noticeable false negatives.
-      description:
+      description: |
         A baseline WAF configuration provides essential defense against common vulnerabilities, acting as a first line of automated threat detection and response.
         Steps:
           - Configure WAF in alert mode to establish traffic patterns
