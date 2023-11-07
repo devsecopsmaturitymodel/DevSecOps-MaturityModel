@@ -25,8 +25,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
         id: get-version
-        run: echo "::set-output name=version::$(sed -n '1p' CHANGELOG.md | awk '{print $NF}')"
-  
+        run: |
+          npx semantic-release --dry-run
+          echo "::set-output name=version::${{ steps.get-version.outputs.version }}"  
       - name: show version
         run: |
           echo "Semantic Release Version: ${{ steps.get-version.outputs.version }}"
