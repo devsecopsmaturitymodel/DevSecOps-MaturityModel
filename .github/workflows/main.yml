@@ -16,8 +16,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      # Commit all changed files back to the repository with code signing, shouldn't be something, but loads signing
+      - uses: planetscale/ghcommit-action@v0.1.8
+        with:
+          commit_message: "🤖 fmt"
+          repo: ${{ github.repository }}
+          branch: ${{ github.head_ref || github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         with:
@@ -57,12 +64,4 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
-      - uses: actions/checkout@v3
-      # Commit all changed files back to the repository with code signing
-      - uses: planetscale/ghcommit-action@v0.1.8
-        with:
-          commit_message: "🤖 fmt"
-          repo: ${{ github.repository }}
-          branch: ${{ github.head_ref || github.ref_name }}
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
