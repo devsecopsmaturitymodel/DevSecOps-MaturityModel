@@ -13,12 +13,6 @@
     ],
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
-    [
-      "@semantic-release/git",
-      {
-        "message": "chore(release): ${nextRelease.version} ${nextRelease.notes}"
-      }
-    ],
     "@semantic-release/github"
   ]
 }
