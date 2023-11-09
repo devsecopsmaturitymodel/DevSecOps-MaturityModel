@@ -25,6 +25,14 @@ jobs:
           branch: 'master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Commit all changed files back to the repository
+      - uses: planetscale/ghcommit-action@v0.1.6
+        with:
+          commit_message: "🤖 fmt"
+          repo: ${{ github.repository }}
+          branch: ${{ github.head_ref || github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
       - name: Get Semantic Release Version
         id: get-version
         run: echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
@@ -58,11 +66,3 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
-      # Commit all changed files back to the repository
-      - uses: planetscale/ghcommit-action@v0.1.6
-        with:
-          commit_message: "🤖 fmt"
-          repo: ${{ github.repository }}
-          branch: ${{ github.head_ref || github.ref_name }}
-        env:
-          GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
