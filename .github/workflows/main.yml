@@ -13,11 +13,11 @@ permissions:
 
 
 jobs:
-  permissions:
-    # Give the default GITHUB_TOKEN write permission to commit and push the
-    # added or changed files to the repository.
-    contents: write
   build:
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,10 +65,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
       - uses: actions/checkout@v3
-
-      # Run steps that make changes to the local repo here.
-
-      # Commit all changed files back to the repository
+      # Commit all changed files back to the repository with code signing
       - uses: planetscale/ghcommit-action@v0.1.8
         with:
           commit_message: "🤖 fmt"
