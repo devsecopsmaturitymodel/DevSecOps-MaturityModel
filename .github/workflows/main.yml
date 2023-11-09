@@ -19,16 +19,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           persist-credentials: false # This is important if you have branch protection rules!
-      - name: Import bot's GPG key for signing commits
-        id: import-gpg
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.BOT_GPG_PRIVATE_KEY }}
-          passphrase: ""
-          git_config_global: true
-          git_user_signingkey: true
-          git_commit_gpgsign: true
       - name: Semantic Release
+        continue-on-error: true
         uses: cycjimmy/semantic-release-action@v4
         with:
           branch: 'master'
@@ -41,6 +33,15 @@ jobs:
       - name: show version
         run: |
           echo "Semantic Release Version: ${{ steps.get-version.outputs.version }}"
+
+      # Commit all changed files back to the repository
+      - uses: planetscale/ghcommit-action@v0.1.6
+        with:
+          commit_message: "🤖 fmt"
+          repo: ${{ github.repository }}
+          branch: ${{ github.head_ref || github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: setup qemu for multi-arch build
         uses: docker/setup-qemu-action@v2
@@ -68,3 +69,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
 
+      - uses: actions/checkout@v3

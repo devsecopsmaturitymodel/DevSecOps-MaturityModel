@@ -20,6 +20,5 @@
       }
     ],
     "@semantic-release/github"
-  ],
-  "ci": false
+  ]
 }
