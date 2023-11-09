@@ -158,6 +158,11 @@ Build and Deployment:
       measure:
         Digitally signing artifacts for all steps during the build and especially
         docker images, helps to ensure their integrity and authenticity.
+      description: |
+        ## Github
+        You need to be authenticated to perform a push to a Github repository. Github doesn't check if the authenticated user and the mail address in the commit corresponds. 
+        To highlight to reviewers who performed a commit, signing is needed.
+        Be aware that github actions like [semantic-release-action](https://github.com/cycjimmy/semantic-release-action) will not sign commits and will fail. You find an example working configuration to use semantic release action together with [planetscale/ghcommit-action](https://github.com/planetscale/ghcommit-action) in the [workflow folder](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/blob/master/.github/workflows/main.yml) of DSOMM.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
