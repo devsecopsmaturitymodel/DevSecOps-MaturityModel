@@ -10,7 +10,7 @@ on:
 permissions:
   contents: write
   issues: read
-  pull-requests: write # to be able to comment on released pull requests
+  #pull-requests: write # to be able to comment on released pull requests
 
 jobs:
   build:
@@ -22,10 +22,6 @@ jobs:
         uses: cycjimmy/semantic-release-action@v4
         with:
           branch: 'master'
-          publish: false
-          extra_plugins: |
-            @semantic-release/commit-analyzer
-            @semantic-release/release-notes-generator
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
