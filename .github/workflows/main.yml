@@ -13,6 +13,10 @@ permissions:
 
 
 jobs:
+  permissions:
+    # Give the default GITHUB_TOKEN write permission to commit and push the
+    # added or changed files to the repository.
+    contents: write
   build:
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +29,6 @@ jobs:
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/release-notes-generator
-            @semantic-release/git        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
@@ -61,4 +64,15 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
-  
+      - uses: actions/checkout@v3
+
+      # Run steps that make changes to the local repo here.
+
+      # Commit all changed files back to the repository
+      - uses: planetscale/ghcommit-action@v0.1.8
+        with:
+          commit_message: "🤖 fmt"
+          repo: ${{ github.repository }}
+          branch: ${{ github.head_ref || github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
