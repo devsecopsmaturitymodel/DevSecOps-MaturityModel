@@ -1,3 +1,11 @@
+# [3.10.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/compare/v3.9.0...v3.10.0) (2023-11-10)
+
+
+### Features
+
+* decouple yaml-data and application ([45611e8](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/45611e8ee58ec7e9ed8ecf5bb1c54b5bfcb8e885))
+* enhance signing description ([231a5e9](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/231a5e97b66a49b95bbc14147ea43d5ce9646788))
+
 # [3.9.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/compare/v3.8.0...v3.9.0) (2023-11-09)
 
 
