@@ -309,9 +309,10 @@ export class MatrixComponent implements OnInit {
 
   // activity description routing + providing parameters
 
-  navigate(dim: string, subdim: string, lvl: Number, activityName: string) {
+  navigate(uuid: String, dim: string, subdim: string, lvl: Number, activityName: string) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
+        uuid: uuid,
         dimension: dim,
         subDimension: subdim,
         level: lvl,

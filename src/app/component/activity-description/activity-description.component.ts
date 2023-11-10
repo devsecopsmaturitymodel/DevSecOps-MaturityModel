@@ -83,10 +83,7 @@ export class ActivityDescriptionComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.currentActivity.dimension = params['dimension'];
-      this.currentActivity.subDimension = params['subDimension'];
-      this.currentActivity.level = 'level-' + params['level'];
-      this.currentActivity.activityName = params['activityName'];
+      this.currentActivity.uuid = params['uuid'];
     });
 
     //gets value from sample file
@@ -103,10 +100,65 @@ export class ActivityDescriptionComponent implements OnInit {
     // Function sets data
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
-      var data =
-        this.YamlObject[this.currentActivity.dimension][
-          this.currentActivity.subDimension
-        ][this.currentActivity.activityName];
+
+      var allDimensionNames = Object.keys(this.YamlObject);
+      for (let i = 0; i < allDimensionNames.length; i++) {
+        var subdimensionsInCurrentDimension = Object.keys(
+          this.YamlObject[allDimensionNames[i]]
+        );
+
+        for (let j = 0; j < subdimensionsInCurrentDimension.length; j++) {
+          var temp: any = {
+            Dimension: allDimensionNames[i],
+            SubDimension: subdimensionsInCurrentDimension[j],
+          };
+          var activityInCurrentSubDimension: string[] = Object.keys(
+            this.YamlObject[allDimensionNames[i]][
+              subdimensionsInCurrentDimension[j]
+            ]
+          );
+
+          for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
+            var currentActivityName = activityInCurrentSubDimension[a];
+
+            try {
+              console.log(this.currentActivity.uuid, this.currentActivity.uuid);
+              console.log(
+                'uuid',
+                this.YamlObject[allDimensionNames[i]][
+                  subdimensionsInCurrentDimension[j]
+                ][currentActivityName].uuid
+              );
+              console.log(
+                'currentActivityName',
+                this.YamlObject[allDimensionNames[i]][
+                  subdimensionsInCurrentDimension[j]
+                ][currentActivityName]
+              );
+              if (
+                this.YamlObject[allDimensionNames[i]][
+                  subdimensionsInCurrentDimension[j]
+                ][currentActivityName].uuid == this.currentActivity.uuid
+              ) {
+                data =
+                  this.YamlObject[allDimensionNames[i]][
+                    subdimensionsInCurrentDimension[j]
+                  ][currentActivityName];
+                this.currentActivity = data;
+                this.currentActivity.dimension = allDimensionNames[i];
+                this.currentActivity.subDimension =
+                  subdimensionsInCurrentDimension[j];
+                this.currentActivity.activityName = currentActivityName;
+                console.log('found');
+                break;
+              }
+            } catch {
+              console.log('Level for activity does not exist');
+            }
+          }
+        }
+      }
+
       this.currentActivity.description = this.defineStringValues(
         data['description'],
         ''
