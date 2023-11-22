@@ -143,7 +143,7 @@ describe('ActivityDescriptionComponent', () => {
         testISO[0] +
         component.ISO22Version +
         testISO22[0] +
-        component.openCRE +
+        component.openCREVersion +
         testOpenCRE[0]
     );
   });
