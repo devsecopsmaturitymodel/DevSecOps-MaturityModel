@@ -128,9 +128,11 @@ describe('ActivityDescriptionComponent', () => {
     const testSAMM = [' Sample SAMM '];
     const testISO = [' Sample ISO'];
     const testISO22 = [' Sample ISO22'];
+    const testOpenCRE = [' Sample openCRE'];
     component.currentActivity.samm = testSAMM;
     component.currentActivity.iso = testISO;
     component.currentActivity.iso22 = testISO22;
+    component.currentActivity.openCRE = testOpenCRE;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -140,7 +142,9 @@ describe('ActivityDescriptionComponent', () => {
         component.ISOVersion +
         testISO[0] +
         component.ISO22Version +
-        testISO22[0]
+        testISO22[0] +
+        component.openCRE +
+        testOpenCRE[0]
     );
   });
 });

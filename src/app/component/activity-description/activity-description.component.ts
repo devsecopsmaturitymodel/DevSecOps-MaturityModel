@@ -24,6 +24,7 @@ export interface activityDescription {
   iso: string[];
   iso22: string[];
   samm: string[];
+  openCRE: string[];
   knowledge: number;
   resources: number;
   time: number;
@@ -57,6 +58,7 @@ export class ActivityDescriptionComponent implements OnInit {
     samm: [''],
     iso: [''],
     iso22: [''],
+    openCRE: [''],
     knowledge: -1,
     resources: -1,
     time: -1,
@@ -78,6 +80,7 @@ export class ActivityDescriptionComponent implements OnInit {
   SAMMVersion: string = 'OWASP SAMM VERSION 2';
   ISOVersion: string = 'ISO 27001:2017';
   ISO22Version: string = 'ISO 27001:2022';
+  openCREVersion: string = 'OpenCRE';
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
   constructor(private route: ActivatedRoute, private yaml: ymlService) {}
 
@@ -168,6 +171,10 @@ export class ActivityDescriptionComponent implements OnInit {
         );
         this.currentActivity.samm = this.defineStringArrayValues(
           data['references']['samm2'],
+          []
+        );
+        this.currentActivity.openCRE = this.defineStringArrayValues(
+          data['references']['openCRE'],
           []
         );
       } catch {

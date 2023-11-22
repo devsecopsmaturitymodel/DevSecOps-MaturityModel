@@ -183,6 +183,20 @@
               <li>{{ iso22 }}</li>
             </ul>
           </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b>{{ openCREVersion }}</b>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul *ngFor="let openCRE of currentActivity.openCRE">
+              <li>
+                <a target="_blank" href="{{ openCRE }}">
+                  <div [innerHTML]="currentActivity.uuid"></div>
+                </a>
+              </li>
+            </ul>
+          </mat-expansion-panel>
         </mat-accordion>
       </p>
     </mat-expansion-panel>
