@@ -124,15 +124,17 @@ describe('ActivityDescriptionComponent', () => {
     );
   });
 
-  it('check if references is being genenrated', () => {
+  it('check if references is being generated', () => {
     const testSAMM = [' Sample SAMM '];
     const testISO = [' Sample ISO'];
     const testISO22 = [' Sample ISO22'];
-    const testOpenCRE = [' Sample openCRE'];
+    const uuid = 'abcd'; // for openCRE
+
     component.currentActivity.samm = testSAMM;
     component.currentActivity.iso = testISO;
     component.currentActivity.iso22 = testISO22;
-    component.currentActivity.openCRE = testOpenCRE;
+    component.currentActivity.uuid = uuid;
+
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
@@ -144,7 +146,7 @@ describe('ActivityDescriptionComponent', () => {
         component.ISO22Version +
         testISO22[0] +
         component.openCREVersion +
-        testOpenCRE[0]
+        uuid
     );
   });
 });
