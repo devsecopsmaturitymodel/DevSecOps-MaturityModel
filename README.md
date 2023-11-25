@@ -106,6 +106,16 @@ cp src/assets/YAML/meta.yaml .
 cp $(pwd)/src/assets/YAML/generated/generated.yaml .
 docker run -v  $(pwd)/meta.yaml:/usr/share/nginx/html/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/usr/share/nginx/html/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
 ```
+
+In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/YAML/default), use:
+```
+[...]
+      teamsImplemented:
+        Default: false
+        C: true
+      evidence:
+        B: Showed Jenkinsfile
+```
 # Credits
 
 * The dimension _Test and Verification_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
