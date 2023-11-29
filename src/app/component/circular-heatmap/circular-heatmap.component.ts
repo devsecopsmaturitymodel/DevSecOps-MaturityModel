@@ -712,7 +712,7 @@ export class CircularHeatmapComponent implements OnInit {
       if (cntAll !== 0) {
         this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
       } else {
-        this.ALL_CARD_DATA[index]['Done%'] = 0;
+        this.ALL_CARD_DATA[index]['Done%'] = -1;
       }
       var color = d3
         .scaleLinear<string, string>()
@@ -728,7 +728,7 @@ export class CircularHeatmapComponent implements OnInit {
         return color(_self.ALL_CARD_DATA[index]['Done%']);
       });
     }
-    // this.noActivitytoGrey();
+    this.noActivitytoGrey();
   }
 
   ResetIsImplemented() {
