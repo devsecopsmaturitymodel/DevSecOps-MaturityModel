@@ -20,7 +20,7 @@ import { UsageComponent } from './component/usage/usage.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
 import { Teams } from './component/teams/teams.component';
-import { ToStringValuePipe } from 'src/pipe/to-string-value.pipe';
+import { ToStringValuePipe } from 'src/app/pipe/to-string-value.pipe';
 
 @NgModule({
   declarations: [
