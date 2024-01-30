@@ -37,6 +37,7 @@ import { ToStringValuePipe } from './pipe/to-string-value.pipe';
     AboutUsComponent,
     DependencyGraphComponent,
     Teams,
+    ToStringValuePipe,
   ],
   imports: [
     BrowserModule,
