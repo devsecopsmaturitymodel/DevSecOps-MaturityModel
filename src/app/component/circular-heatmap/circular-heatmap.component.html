@@ -254,12 +254,17 @@
                       *ngFor="let item of activity.teamsImplemented | keyvalue">
                       <mat-checkbox
                         [checked]="item.value === true"
+                        *ngIf="teamVisible.includes(item.key | ToStringValue)"
                         color="primary"
                         (click)="this.teamCheckbox(activityIndex, item.key)">
                         {{ item.key }}
                       </mat-checkbox>
                     </li>
                   </ul>
+                  <b *ngIf="teamVisible.length === 0">
+                    No Teams Selected, Please select a team from the filters
+                    above.
+                  </b>
                 </ng-template>
               </mat-expansion-panel>
             </mat-card-content>
