@@ -2,10 +2,23 @@
 
 ## Development server
 
-- Clone the repo 
-- `cd DevSecOps-MaturityModel`
-- `npm install`
-- `curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml -o src/assets/YAML/generated/generated.yaml # Download the generated.yaml and put it in here`
+- Clone the repo
+```
+git clone https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel.git
+```
+- Change directory to DSOMM
+```
+cd DevSecOps-MaturityModel
+```
+- Install Dependencies
+```
+npm install
+```
+- Downloads the generated.yaml and put it in the required folder
+```
+curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml -o src/assets/YAML/generated/generated.yaml
+```
+  
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 
