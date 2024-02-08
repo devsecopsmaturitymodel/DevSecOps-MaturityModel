@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import * as XLSX from 'xlsx';
 
+import { Title } from '@angular/platform-browser';
+
+
+
 export interface MappingElementSortedByActivity {
   dimension: string;
   subDimension: string;
@@ -124,7 +128,9 @@ export class MappingComponent implements OnInit {
 
   @ViewChild('chipInput') chipInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private yaml: ymlService) {
+  constructor(private yaml: ymlService,
+    private titleService: Title) {
+      titleService.setTitle(' DSOMM - Mapping'),
     this.filteredChips = this.FilterCtrl.valueChanges.pipe(
       startWith(null),
       map((x: string | null) => (x ? this._filter(x) : this.allChips.slice()))

@@ -9,13 +9,13 @@ import { UsageComponent } from './component/usage/usage.component';
 import { Teams } from './component/teams/teams.component';
 
 const routes: Routes = [
-  { path: '', component: MatrixComponent },
-  { path: 'circular-heatmap', component: CircularHeatmapComponent },
-  { path: 'activity-description', component: ActivityDescriptionComponent },
-  { path: 'mapping', component: MappingComponent },
-  { path: 'usage', component: UsageComponent },
-  { path: 'teams', component: Teams },
-  { path: 'about', component: AboutUsComponent },
+  { path: '', component: MatrixComponent, title: 'DSOMM - Matrix' },
+  { path: 'circular-heatmap', component: CircularHeatmapComponent, title: ' DSOMM - Circular Heatmap' },
+  { path: 'activity-description', component: ActivityDescriptionComponent , title:'DSOMM - Activity-Description' },
+  { path: 'mapping', component: MappingComponent , title: ' DSOMM - Mapping'},
+  { path: 'usage', component: UsageComponent , title: 'DSOMM-Usage'},
+  { path: 'teams', component: Teams , title: 'DSOMM - Teams'},
+  { path: 'about', component: AboutUsComponent , title: 'DSOMM - About'},
 ];
 
 @NgModule({

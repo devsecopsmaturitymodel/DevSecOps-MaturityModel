@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
 import * as yaml from 'js-yaml';
 
+import { Title } from '@angular/platform-browser';
+
+
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
@@ -12,7 +15,9 @@ export class Teams implements OnInit {
   teamList: any;
   teamGroups: Map<string, string[]> = new Map();
 
-  constructor(private yaml: ymlService) {}
+  constructor(private yaml: ymlService, 
+    private titleService: Title)
+     { titleService.setTitle('DSOMM - Teams')}
   ngOnInit(): void {
     this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets column header

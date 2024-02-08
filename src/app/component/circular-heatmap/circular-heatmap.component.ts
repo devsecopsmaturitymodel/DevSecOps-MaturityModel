@@ -11,6 +11,9 @@ import * as yaml from 'js-yaml';
 import { Router, NavigationExtras } from '@angular/router';
 import { MatChip } from '@angular/material/chips';
 import { from, single } from 'rxjs';
+import { Title } from '@angular/platform-browser';
+
+
 
 export interface activitySchema {
   activityName: string;
@@ -52,9 +55,11 @@ export class CircularHeatmapComponent implements OnInit {
   constructor(
     private yaml: ymlService,
     private router: Router,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private titleService: Title
   ) {
     this.showOverlay = false;
+    titleService.setTitle ( ' DSOMM - Circular Heatmap')
   }
 
   ngOnInit(): void {

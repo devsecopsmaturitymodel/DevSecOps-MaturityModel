@@ -11,6 +11,10 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { MatChip, MatChipList } from '@angular/material/chips';
 
+import { Title } from '@angular/platform-browser';
+
+
+
 export interface MatrixElement {
   Dimension: string;
   SubDimension: string;
@@ -38,7 +42,8 @@ export class MatrixComponent implements OnInit {
   activityVisible: string[] = [];
   allDimensionNames: string[] = [];
 
-  constructor(private yaml: ymlService, private router: Router) {
+  constructor(private yaml: ymlService, private router: Router, private titleService: Title) {
+    titleService.setTitle (' DSOMM - Matrix')
     this.filteredSubDimension = this.rowCtrl.valueChanges.pipe(
       startWith(null),
       map((row: string | null) =>

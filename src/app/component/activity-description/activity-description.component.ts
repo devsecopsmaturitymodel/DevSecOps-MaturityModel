@@ -4,6 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as md from 'markdown-it';
 
+import { Title } from '@angular/platform-browser';
+
+
+
 export interface implementation {
   name: string;
   tags: string[];
@@ -82,7 +86,7 @@ export class ActivityDescriptionComponent implements OnInit {
   ISO22Version: string = 'ISO 27001:2022';
   openCREVersion: string = 'OpenCRE';
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
-  constructor(private route: ActivatedRoute, private yaml: ymlService) {}
+  constructor(private route: ActivatedRoute, private yaml: ymlService, private titleService: Title) { titleService.setTitle (' DSOMM - Activity Description')}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
