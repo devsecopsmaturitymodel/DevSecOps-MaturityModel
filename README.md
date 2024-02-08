@@ -15,7 +15,7 @@ Go to https://dsomm.owasp.org.
 * _matrix_ shows the dimensions, subdimensions and activities are described.
 * _Implementation Levels_ can be used to show the current implementation level by clicking on the specific activities which have been performed (it is recommended to use a gitops-like flow)
 * _Mappings_ Shows mappings to other standards and provides the ability to download an excel sheet
-* _Useage_ describes how to use DSOMM
+* _Usage_ describes how to use DSOMM
 
 In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describes different strategic approaches for your secure DevOps strategy. The use OWASP DSOMM in combination with [OWASP SAMM](https//owaspsamm.org) is explained.
 
