@@ -22,17 +22,24 @@
   margin: 5%;
   padding: 20px;
 }
-.downloadButtonClass {
-  position: fixed;
+
+.Download{
   padding: 10px;
   bottom: 5%;
   right: 5%;
 }
-.resetButtonClass {
-  position: fixed;
+
+
+.Reset{
   padding: 10px;
   bottom: 5%;
-  right: 18%;
+  right: 5%;
+}
+
+.button{
+  margin-top: 230px;
+  justify-content: center;
+ 
 }
 .overlay-details {
   z-index: 2;
@@ -52,6 +59,7 @@
   border-radius: 1em;
   height: 100%;
 }
+
 
 .overlay-header {
   display: grid;
