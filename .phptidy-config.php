@@ -1,4 +1,0 @@
-<?php
-
-$indent_char = "  ";
-?>
