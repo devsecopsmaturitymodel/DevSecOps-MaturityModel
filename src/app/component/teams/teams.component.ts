@@ -14,7 +14,7 @@ export class Teams implements OnInit {
 
   constructor(private yaml: ymlService) {}
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.setURI('./assets/yaml/meta.yaml');
     // Function sets column header
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;

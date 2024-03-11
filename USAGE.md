@@ -1,8 +1,9 @@
----
+# Usage of DSOMM
+
 This article explains the usage of DSOMM, the dimensions and
  corresponding sub-dimensions.
 
-# Pre-Requirements
+## Pre-Requirements
 
 Before you start, there is kind of maturity level 0.
 
@@ -15,7 +16,8 @@ The pre-requirements are highly based (mostly copied) on
 
 > a measure of the extent to which an entity is threatened by a potential
 circumstance or event, and typically is a function of:
-> 1.  the adverse impact, or magnitude of harm, that would arise
+>
+> 1. the adverse impact, or magnitude of harm, that would arise
 >    if the circumstance or event occurs; and
 > 2. the likelihood of occurrence.
 
@@ -131,10 +133,11 @@ This helps to eradicate misunderstandings of security belt activities early.
 - Early feedback before the belt assessment.
 
 ## Utilize Pairing when starting an activity
+
 When implementing a security belt activity, approach a peer
 from the Security Champion Guild to get you started.
 
-## Benefits
+### Benefits
 
 - Knowledge how to implement security belt activities is spread,
   so everyone benefits of prior knowledge.
@@ -142,7 +145,7 @@ from the Security Champion Guild to get you started.
 - The team is improving its software security while avoiding previously
   made mistakes.
 
-# Dimensions
+## Dimensions
 
 This section describes the various dimensions
 and the corresponding sub dimension.
@@ -150,7 +153,7 @@ and the corresponding sub dimension.
 The descriptions are highly based (mostly copied)
 on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md).
 
-## Implementation
+### Implementation
 
 This dimension covers topic of "traditional"
 hardening of software and infrastructure components.
@@ -216,7 +219,7 @@ with a similar process.
 Pentests are conducted against features released on every release
 and also periodically against the whole software stack.
 
-# Culture and Organization
+## Culture and Organization
 
 This section covers topics related to culture and organization like
 processes, education and the design phase.
@@ -229,7 +232,7 @@ This presents an opportunity for both threat modeling
 and attaching security considerations
 to every ticket and epic that is the outcome of this stage.
 
-### Design
+## Design
 
 There is some great advice on threat modeling out there
 *e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/)
@@ -246,8 +249,8 @@ There's a few projects that can help with creating Threat Models
 at this stage, [PyTM](https://github.com/izar/pytm) is one,
 [ThreatSpec](https://github.com/threatspec/threatspec) is another.
 
-> Note: _A threat model can be as simple as a data flow diagram with attack vectors on every flow and asset and equivalent remediations.
-An example can be found below._
+> Note: *A threat model can be as simple as a data flow diagram with attack vectors on every flow and asset and equivalent remediations.
+An example can be found below.*
 
 ![Threat Model](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/threat_model.png "Threat Model")
 
@@ -269,20 +272,20 @@ All communication between backend systems is plaintext.
 Frontend serves data over GraphQL as a thin layer between caching system and end user.
 
 GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries.
-Access to data is protected with basic auth set to _1234:1234_ for development purposes.
+Access to data is protected with basic auth set to *1234:1234* for development purposes.
 
 **Example High Maturity Scenario:**
 
 Based on a detailed threat model defined and updated through code, the team decides the following:
 
-* Local encrypted caches need to expire and auto-purged.
-* Communication channels encrypted and authenticated.
-* All secrets persisted in shared secrets store.
-* Frontend designed with permissions model integration.
-* Permissions matrix defined.
-* Input is escaped output is encoded appropriately using well established libraries.
+- Local encrypted caches need to expire and auto-purged.
+- Communication channels encrypted and authenticated.
+- All secrets persisted in shared secrets store.
+- Frontend designed with permissions model integration.
+- Permissions matrix defined.
+- Input is escaped output is encoded appropriately using well established libraries.
 
-### Education and Guidence
+## Education and Guidence
 
 Metrics won't necessarily improve without training engineering teams and somehow building a security-minded culture.
 Security training is a long and complicated discussion.
@@ -310,14 +313,14 @@ on Heroku with one click, it offers both CTF functionality and a self-service
 
 ![Juice Shop](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/juiceshop.png "Juice Shop")
 
-### Process
+## Process
 
 **Example High Maturity Scenario:**
 
 Business continuity and Security teams run incident management drills
  periodically to refresh incident playbook knowledge.
 
-# Test and Verification
+## Test and Verification
 
 At any maturity level, linters can be introduced to ensure that consistent
  code is being added.
@@ -369,7 +372,7 @@ The remediation effort was significant.
 The application features received Dynamic Automated testing when each reached staging, a trained QA team validated business requirements that involved security checks.
 A security team performed an adequate pentest and gave a sign-off.
 
-# Build and Deployment
+## Build and Deployment
 
 Secure configuration standards can be enforced during the deployment using the [Open Policy Agent](https://www.openpolicyagent.org/).
 
@@ -377,7 +380,7 @@ Secure configuration standards can be enforced during the deployment using the [
 
 **Example Low Maturity scenario:**
 
-_please create a PR_
+*please create a PR*
 
 **Example High Maturity scenario:**
 
@@ -414,4 +417,3 @@ Logging from all components gets aggregated in dashboards and alerts
 are raised based on several Thresholds and events.
 There are canary values and events fired against monitoring
 from time to time to validate it works.
-

@@ -38,7 +38,7 @@ export class DependencyGraphComponent implements OnInit {
   constructor(private yaml: ymlService) {}
 
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    this.yaml.setURI('./assets/yaml/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
       this.graphData = { nodes: [], links: [] };

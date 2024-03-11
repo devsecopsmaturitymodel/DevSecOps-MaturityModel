@@ -133,7 +133,7 @@ export class MappingComponent implements OnInit {
 
   ngOnInit(): void {
     //gets value from meta folder
-    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.setURI('./assets/yaml/meta.yaml');
     // Function sets label data
     this.yaml.getJson().subscribe(data => {
       //console.log(data)
@@ -141,7 +141,7 @@ export class MappingComponent implements OnInit {
       this.generalLabels = data['strings']['en']['labels'];
     });
     //gets value from generated folder
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    this.yaml.setURI('./assets/yaml/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;

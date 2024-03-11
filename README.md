@@ -1,16 +1,18 @@
-# Introduction
+# DSOMM
+
+## Introduction
 
 From a startup to a multinational corporation the software development industry is currently dominated by agile frameworks and product teams and as part of it DevOps strategies. It has been observed that during the implementation, security aspects are usually neglected or are at least not sufficient taken account of. It is often the case that standard safety requirements of the production environment are not utilized or applied to the build pipeline in the continuous integration environment with containerization or concrete docker. Therefore, the docker registry is often not secured which might result in the theft of the entire company’s source code.
 
 The OWASP DevSecOps Maturity Model provides opportunities to harden DevOps strategies and shows how these can be prioritized.
 
-With the help of DevOps strategies security can also be enhanced. For example, each component such as application libraries and operating system libraries in docker images can be tested for known vulnerabilities. 
+With the help of DevOps strategies security can also be enhanced. For example, each component such as application libraries and operating system libraries in docker images can be tested for known vulnerabilities.
 
 Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking DevSecOps Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
 
-# Usage
+## Usage
 
-Go to https://dsomm.owasp.org.
+Go to <https://dsomm.owasp.org>.
 
 * _matrix_ shows the dimensions, subdimensions and activities are described.
 * _Implementation Levels_ can be used to show the current implementation level by clicking on the specific activities which have been performed (it is recommended to use a gitops-like flow)
@@ -24,11 +26,13 @@ You can switch on to show open TODO's for evidence by changing IS_SHOW_EVIDENCE_
 
 This page uses the Browser's localStorage to store the state of the circular headmap.
 
-# Community
-Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw#/).
-Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
+## Community
 
-# Slides and talks
+Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw#/).
+Create issues or even better Pull Requests on [Github](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel).
+
+## Slides and talks
+
 * [Video: OWASP (DevSecOps) Projects, 2021-04-28, OWASP Stammtisch Frankfurt](https://www.youtube.com/watch?v=8webiYnF56A)
 * [Video: DSOMM Enhancement Workshop at Open Security Summit, 2021-04-16](https://youtu.be/H2BA6gaeKBE)
 * [Video: Strategic Usage of the OWASP Software Assurance Maturity Model and the OWASP DevSecOps Maturity Model, OWASP Jakarta](https://m.youtube.com/watch?v=lLMLGIzl56M)
@@ -43,7 +47,7 @@ Create issues or even better Pull Requests in [github](https://github.com/wurstb
 * [Security in DevOps-Strategies](https://www.youtube.com/watch?v=gWjGWebWahE&t=448s), 28.09.2017, Hamburg, Germany
 * [DevSecOps Maturity Model](https://docs.google.com/presentation/d/1rrbyXqxy3LXAJNPFrVH99mj_BNaJKymMsXZItYArWEM/edit?usp=sharing), 2017
 
-# Assessment
+## Assessment
 
 In case you would like to perform a DevSecOps assessment, the following tools are available:
 
@@ -55,91 +59,77 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 
 1. Install [Docker](https://www.docker.com)
 2. Run `docker pull wurstbrot/dsomm:latest && docker run --rm -p 8080:8080 wurstbrot/dsomm:latest`
-3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
-   of the native docker installation)
+3. Browse to <http://localhost:8080>
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
+For customized DSOMM, take a look at <https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-custom>. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
 
-You can download your current state from the circular headmap and mount it again via 
+You can download your current state from the circular headmap and mount it again via
 
 ```bash
-wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
-docker run -p 8080:8080 -v /tmp/generated.yaml:/usr/share/nginx/html/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
+curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/yaml/generated/generated.yaml -o ./generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
+docker run --rm -p 8080:8080 -v ./generated.yaml:/usr/share/nginx/html/assets/yaml/generated/generated.yaml wurstbrot/dsomm:latest
 ```
-
-.
 
 This approach also allows teams to perform self assessment with changes tracked in a repository.
 
-## Amazon EC2 Instance
-
-1. In the _EC2_ sidenav select _Instances_ and click _Launch Instance_
-2. In _Step 1: Choose an Amazon Machine Image (AMI)_ choose an _Amazon
-   Linux AMI_ or _Amazon Linux 2 AMI_
-3. In _Step 3: Configure Instance Details_ unfold _Advanced Details_ and
-   copy the script below into _User Data_
-4. In _Step 6: Configure Security Group_ add a _Rule_ that opens port 80
-   for HTTP
-5. Launch your instance
-6. Browse to your instance's public DNS
-
-```bash
-#!/bin/bash
-service docker start
-docker run -d -p 80:8080 wurstbrot/dsomm:latest
-```
-
 ## Activity Definitions
-The definition of the activities are in the [data-repository](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data). 
+
+The definition of the activities are in the [data-repository](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data).
 
 ## Teams and Groups
-To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml)  file with your unique team definitions.
+
+To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml) file with your unique team definitions.
 
 Assessments within the framework can be based on either a team or a specific application, which can be referred to as the context. Depending on how you define the context or teams, you may want to group them together.
 
 Here are a couple of examples to illustrate this, in breakers the DSOMM word:
-- Multiple applications (teams) can belong to a single overarching team (application).
-- Multiple teams (teams) can belong to a larger department (group).
+
+* Multiple applications (teams) can belong to a single overarching team (application).
+* Multiple teams (teams) can belong to a larger department (group).
 
 Feel free to create your own [meta.yaml](src/assets/meta.yaml) file to tailor the framework to your specific needs and mount it in your environment (e.g. kubernetes or docker).
 Here is an example to start docker with customized meta.yaml:
-```
+
+```bash
 # Customized meta.yaml
-cp src/assets/YAML/meta.yaml .
-docker run -v $(pwd)meta.yaml:/usr/share/nginx/html/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm
+cp src/assets/yaml/meta.yaml .
+docker run --rm -v ./meta.yaml:/usr/share/nginx/html/assets/yaml/meta.yaml -p 8080:8080 wurstbrot/dsomm
 
 # Customized meta.yaml and generated.yaml
-cp src/assets/YAML/meta.yaml .
-cp $(pwd)/src/assets/YAML/generated/generated.yaml .
-docker run -v  $(pwd)/meta.yaml:/usr/share/nginx/html/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/usr/share/nginx/html/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
+cp ./src/assets/yaml/meta.yaml .
+cp ./src/assets/yaml/generated/generated.yaml .
+docker run --rm -v ./meta.yaml:/usr/share/nginx/html/assets/yaml/meta.yaml -v ./generated.yaml:/usr/share/nginx/html/assets/yaml/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
 ```
 
-In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/YAML/default), use:
-```
-[...]
+In the corresponding [dimension yamls](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/yaml/default), use:
+
+```yaml
+# [...]
       teamsImplemented:
         Default: false
         C: true
       evidence:
         B: Showed Jenkinsfile
+# [...]
 ```
-# Credits
+
+## Credits
 
 * The dimension _Test and Verification_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
-* The sub-dimension <i>Process</i> has been added after a discussion with [Francois Raynaud](https://www.linkedin.com/in/francoisraynaud/) that reactive activities are missing.
+* The sub-dimension _Process_ has been added after a discussion with [Francois Raynaud](https://www.linkedin.com/in/francoisraynaud/) that reactive activities are missing.
 * Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
 * Adding ISO 27001:2017 mapping, [Andre Baumeier](https://github.com/AndreBaumeier).
 * Providing a documentation of how to use `docker` in the Juice Shop for simple copy&paste, [Björn Kimminich](https://github.com/bkimminich/).
-* [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md) for providing documentation on different DevSecOps practices which are copied&pasted/ (and adopted) (https://github.com/northdpole, https://github.com/ThunderSon)
+* [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md) for providing documentation on different DevSecOps practices which are copied&pasted/ (and adopted) (<https://github.com/northdpole>, <https://github.com/ThunderSon>)
 * The requirements from [level 0](https://github.com/AppSecure-nrw/security-belts/blob/master/white/) are based on/copied from [AppSecure NRW](https://appsecure.nrw/)
 
-# Back link
+## Back link
 
-- [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
-- [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
-- [OWASP](https://owasp.org)
+* [OWASP DevSecOps maturity model page](https://dsomm.owasp.org/)
+* [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
+* [OWASP](https://owasp.org)
 
-# Your help is needed to perform
+## Your help is needed to perform
 
 * Adding a manual on how to use DSOMM
 * Integration of Incident Response
@@ -148,26 +138,26 @@ In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel
 * CAMS Categorization
 * Adding assessment questions
 
-# Multilanguage support
+## Multilanguage support
+
 Multilanguage support is not given currently and not planned.
 
-# Sponsors
+## Sponsors
 
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro)
 
-[![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
+[![Apprio Inc](https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
 
-
-# Donations
+## Donations
 
 If you are using the model or you are inspired by it, want to help but don't want to create pull requests? You can donate at the [OWASP Project Wiki Page](https://owasp.org/donate/?reponame=www-project-devsecops-maturity-model&title=OWASP+Devsecops+Maturity+Model). Donations might be used for the design of logos/images/design or travels.
 
-# License
+## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [GPL 3](https://www.gnu.org/licenses/) license.
 
 The intellectual property (content in the _data_ folder) is licensed under Attribution-ShareAlike.
 An example attribution by changing the content:
-> This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.timo-pagel.de).
+> This work is based on the [OWASP DevSecOps Maturity Model](https://pagel.pro/).
 
-The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2022.
+The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2024.
