@@ -60,7 +60,7 @@ export class MatrixComponent implements OnInit {
   // function to initialize if level columns exists
 
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.setURI('./assets/yaml/meta.yaml');
     // Function sets column header
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
@@ -76,7 +76,7 @@ export class MatrixComponent implements OnInit {
     var activitySet = new Set();
 
     //gets value from generated folder
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    this.yaml.setURI('./assets/yaml/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;

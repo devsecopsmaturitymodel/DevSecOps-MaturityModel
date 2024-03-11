@@ -58,7 +58,7 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.setURI('./assets/yaml/meta.yaml');
     // Function sets column header
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
@@ -71,7 +71,7 @@ export class CircularHeatmapComponent implements OnInit {
       }
     });
     // Team Data
-    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.setURI('./assets/yaml/meta.yaml');
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
 
@@ -79,7 +79,7 @@ export class CircularHeatmapComponent implements OnInit {
       this.teamGroups = this.YamlObject['teamGroups'];
       this.teamVisible = [...this.teamList];
     });
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    this.yaml.setURI('./assets/yaml/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
       //console.log(this.radial_labels)
@@ -152,7 +152,6 @@ export class CircularHeatmapComponent implements OnInit {
                   (
                     Object.keys(teamStatus) as (keyof typeof teamStatus)[]
                   ).forEach((key, index) => {
-                    // 👇️ name Bobby Hadz 0, country Chile 1
                     totalActivityTeams += 1;
                     if (teamStatus[key] === true) {
                       totalTeamsImplemented += 1;
@@ -663,7 +662,7 @@ export class CircularHeatmapComponent implements OnInit {
       subDimension: subdim,
       activityName: activityName,
     };
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    this.yaml.setURI('./assets/yaml/generated/generated.yaml');
     this.activityDetails = this.YamlObject[dim][subdim][activityName];
     console.log(this.YamlObject);
     console.log(this.YamlObject[dim][subdim]);

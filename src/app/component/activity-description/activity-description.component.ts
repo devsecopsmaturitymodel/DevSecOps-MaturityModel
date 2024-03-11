@@ -90,7 +90,7 @@ export class ActivityDescriptionComponent implements OnInit {
     });
 
     //gets value from sample file
-    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.setURI('./assets/yaml/meta.yaml');
     // Function sets label data
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
@@ -99,7 +99,7 @@ export class ActivityDescriptionComponent implements OnInit {
         this.YamlObject['strings']['en']['KnowledgeLabels'];
     });
     //gets value from generated folder
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    this.yaml.setURI('./assets/yaml/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
