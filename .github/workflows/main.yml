@@ -80,4 +80,3 @@ jobs:
           heroku_app_name: "dsomm"
           heroku_email: timo.pagel@owasp.org
           branch: ${{ env.HEROKU_BRANCH }}
-          usedocker: true
