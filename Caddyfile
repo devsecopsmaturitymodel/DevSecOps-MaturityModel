@@ -1,0 +1,9 @@
+{
+    http_port {$PORT}
+}
+
+localhost:{$PORT} {
+    encode gzip
+    log stdout
+    file_server
+}
