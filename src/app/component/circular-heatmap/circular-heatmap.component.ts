@@ -758,7 +758,7 @@ export class CircularHeatmapComponent implements OnInit {
     var content = localStorage.getItem('dataset');
     // @ts-ignore
     if (this.ALL_CARD_DATA[0]['Task'] != null) {
-      console.log("Found outdated dataset, removing")
+      console.log('Found outdated dataset, removing')
       localStorage.removeItem('dataset');
     }
     if (content != null) {
