@@ -8,9 +8,8 @@ import {
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatChip } from '@angular/material/chips';
-import { from, single } from 'rxjs';
 
 export interface activitySchema {
   activityName: string;
@@ -24,6 +23,14 @@ export interface cardSchema {
   'Done%': number;
   Activity: activitySchema[];
 }
+
+type ProjectData = {
+  Activity: activitySchema[];
+  Dimension: string;
+  Done: number;
+  Level: string;
+  SubDimension: string;
+}[];
 
 @Component({
   selector: 'app-circular-heatmap',
@@ -58,124 +65,116 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/meta.yaml');
-    // Function sets column header
-    this.yaml.getJson().subscribe(data => {
-      this.YamlObject = data;
+    this.LoadMaturityLevels();
+    this.LoadTeamsFromMetaYaml();
+    this.LoadMaturityDataFromGeneratedYaml();
+  }
 
-      // Levels header
-      for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
-        var y = parseInt(x) + 1;
-        this.radial_labels.push('Level ' + y);
-        this.maxLevelOfActivities = y;
-      }
-    });
-    // Team Data
-    this.yaml.setURI('./assets/YAML/meta.yaml');
-    this.yaml.getJson().subscribe(data => {
-      this.YamlObject = data;
+  @ViewChildren(MatChip) chips!: QueryList<MatChip>;
+  matChipsArray: MatChip[] = [];
 
-      this.teamList = this.YamlObject['teams'];
-      this.teamGroups = this.YamlObject['teamGroups'];
-      this.teamVisible = [...this.teamList];
-    });
+  private LoadMaturityDataFromGeneratedYaml() {
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
-    // Function sets data
-    this.yaml.getJson().subscribe(data => {
-      //console.log(this.radial_labels)
-      this.YamlObject = data;
-      // console.log(this.YamlObject);
 
+    this.yaml.getJson().subscribe(data => {
+      this.YamlObject = data;
       var allDimensionNames = Object.keys(this.YamlObject);
-      // console.log(allDimensionNames);
-      for (var i = 0; i < allDimensionNames.length; i++) {
-        var allSubDimensionInThisDimension = Object.keys(
-          this.YamlObject[allDimensionNames[i]]
-        );
-        for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
-          this.segment_labels.push(allSubDimensionInThisDimension[j]);
-        }
-      }
-      // console.log(this.segment_labels);
+      var totalTeamsImplemented: number = 0;
+      var totalActivityTeams: number = 0;
+
+      this.AddSegmentLabels(allDimensionNames);
+
       for (var l = 0; l < this.maxLevelOfActivities; l++) {
-        var allDimensionNames = Object.keys(this.YamlObject);
-        for (var i = 0; i < allDimensionNames.length; i++) {
+        for (var d = 0; d < allDimensionNames.length; d++) {
           var allSubDimensionInThisDimension = Object.keys(
-            this.YamlObject[allDimensionNames[i]]
+            this.YamlObject[allDimensionNames[d]]
           );
-          for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
+          for (var s = 0; s < allSubDimensionInThisDimension.length; s++) {
             var allActivityInThisSubDimension = Object.keys(
-              this.YamlObject[allDimensionNames[i]][
-                allSubDimensionInThisDimension[j]
+              this.YamlObject[allDimensionNames[d]][
+                allSubDimensionInThisDimension[s]
               ]
             );
-            var tempData: cardSchema = {
-              Dimension: '',
-              SubDimension: '',
-              Level: '',
-              'Done%': -1,
-              Activity: [],
-            };
-            var totalTeamsImplemented: number = 0;
-            var totalActivityTeams: number = 0;
-            tempData['Dimension'] = allDimensionNames[i];
-            tempData['SubDimension'] = allSubDimensionInThisDimension[j];
-            tempData['Level'] = 'Level ' + (l + 1);
-            for (var k = 0; k < allActivityInThisSubDimension.length; k++) {
+            var level = 'Level ' + (l + 1);
+            var activity: activitySchema[] = [];
+            var activityCompletionStatus: number = -1;
+
+            for (var a = 0; a < allActivityInThisSubDimension.length; a++) {
               try {
                 var lvlOfCurrentActivity =
-                  this.YamlObject[allDimensionNames[i]][
-                    allSubDimensionInThisDimension[j]
-                  ][allActivityInThisSubDimension[k]]['level'];
-                if (lvlOfCurrentActivity == l + 1) {
-                  totalActivityTeams += 1;
-                  var nameOfActivity: string = allActivityInThisSubDimension[k];
+                  this.YamlObject[allDimensionNames[d]][
+                    allSubDimensionInThisDimension[s]
+                  ][allActivityInThisSubDimension[a]]['level'];
 
-                  // Create an object from an array from meta data
+                if (lvlOfCurrentActivity == l + 1) {
+                  var nameOfActivity: string = allActivityInThisSubDimension[a];
+                  var teamStatus: { [key: string]: boolean } = {};
                   const teams = this.teamList;
 
-                  var teamStatus: { [key: string]: boolean } = {};
+                  totalActivityTeams += 1;
 
                   teams.forEach((singleTeam: any) => {
                     teamStatus[singleTeam] = false;
                   });
 
                   var teamsImplemented: any =
-                    this.YamlObject[allDimensionNames[i]][
-                      allSubDimensionInThisDimension[j]
-                    ][allActivityInThisSubDimension[k]]['teamsImplemented'];
+                    this.YamlObject[allDimensionNames[d]][
+                      allSubDimensionInThisDimension[s]
+                    ][allActivityInThisSubDimension[a]]['teamsImplemented'];
+
                   if (teamsImplemented) {
                     teamStatus = teamsImplemented;
                   }
 
-                  // Calculating %done
+                  var localStorageData = this.getFromBrowserState();
+
+                  if (localStorageData != null && localStorageData.length > 0) {
+                    this.YamlObject[allDimensionNames[d]][
+                      allSubDimensionInThisDimension[s]
+                    ][allActivityInThisSubDimension[a]]['teamsImplemented'] =
+                      this.getTeamImplementedFromJson(
+                        localStorageData,
+                        allActivityInThisSubDimension[a]
+                      );
+                  }
+
                   (
                     Object.keys(teamStatus) as (keyof typeof teamStatus)[]
                   ).forEach((key, index) => {
-                    // 👇️ name Bobby Hadz 0, country Chile 1
                     totalActivityTeams += 1;
                     if (teamStatus[key] === true) {
                       totalTeamsImplemented += 1;
                     }
                   });
 
-                  tempData['Activity'].push({
+                  activity.push({
                     activityName: nameOfActivity,
                     teamsImplemented: teamStatus,
                   });
                 }
+
                 if (totalActivityTeams > 0) {
-                  tempData['Done%'] =
+                  activityCompletionStatus =
                     totalTeamsImplemented / totalActivityTeams;
                 }
               } catch {
                 console.log('level for activity does not exist');
               }
             }
-            this.ALL_CARD_DATA.push(tempData);
+
+            var cardSchemaData: cardSchema = {
+              Dimension: allDimensionNames[d],
+              SubDimension: allSubDimensionInThisDimension[s],
+              Level: level,
+              'Done%': activityCompletionStatus,
+              Activity: activity,
+            };
+
+            this.ALL_CARD_DATA.push(cardSchemaData);
           }
         }
       }
+
       console.log('ALL CARD DATA', this.ALL_CARD_DATA);
       this.loadState();
       this.loadCircularHeatMap(
@@ -188,12 +187,62 @@ export class CircularHeatmapComponent implements OnInit {
     });
   }
 
-  // Team Filter BEGINS
+  private getTeamImplementedFromJson(
+    data: ProjectData,
+    activityName: string
+  ): any | undefined {
+    const activity = data.find(project =>
+      project.Activity.find(activity => activity.activityName === activityName)
+    );
 
-  @ViewChildren(MatChip) chips!: QueryList<MatChip>;
+    if (activity) {
+      return activity.Activity.find(
+        activity => activity.activityName === activityName
+      )?.teamsImplemented;
+    }
 
-  // Define an array to store MatChip components
-  matChipsArray: MatChip[] = [];
+    return undefined;
+  }
+
+  private AddSegmentLabels(allDimensionNames: string[]) {
+    console.log(allDimensionNames);
+    for (var i = 0; i < allDimensionNames.length; i++) {
+      var allSubDimensionInThisDimension = Object.keys(
+        this.YamlObject[allDimensionNames[i]]
+      );
+      for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
+        this.segment_labels.push(allSubDimensionInThisDimension[j]);
+      }
+    }
+    console.log(this.segment_labels);
+  }
+
+  private LoadTeamsFromMetaYaml() {
+    this.yaml.setURI('./assets/YAML/meta.yaml');
+    this.yaml.getJson().subscribe(data => {
+      this.YamlObject = data;
+
+      this.teamList = this.YamlObject['teams'];
+      this.teamGroups = this.YamlObject['teamGroups'];
+      this.teamVisible = [...this.teamList];
+    });
+  }
+
+  private LoadMaturityLevels() {
+    this.yaml.setURI('./assets/YAML/meta.yaml');
+    // Function sets column header
+    this.yaml.getJson().subscribe(data => {
+      this.YamlObject = data;
+
+      // Levels header
+      for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
+        var y = parseInt(x) + 1;
+        this.radial_labels.push('Level ' + y);
+        this.maxLevelOfActivities = y;
+      }
+    });
+  }
+
   toggleTeamGroupSelection(chip: MatChip) {
     chip.toggleSelected();
     let currChipValue = chip.value.replace(/\s/g, '');
@@ -255,6 +304,7 @@ export class CircularHeatmapComponent implements OnInit {
       this.reColorHeatmap();
     }, 100);
   }
+
   updateChips(fromTeamGroup: any) {
     console.log('updating chips', fromTeamGroup);
     // Re select chips
@@ -292,6 +342,7 @@ export class CircularHeatmapComponent implements OnInit {
       !this.ALL_CARD_DATA[index]['Activity'][activityIndex]['teamsImplemented'][
         teamKey
       ];
+
     this.saveState();
     this.reColorHeatmap();
   }
@@ -657,6 +708,7 @@ export class CircularHeatmapComponent implements OnInit {
       }
     }
   }
+
   navigate(dim: string, subdim: string, activityName: string) {
     let navigationExtras = {
       dimension: dim,
@@ -674,9 +726,11 @@ export class CircularHeatmapComponent implements OnInit {
     console.log(this.ALL_CARD_DATA);
     this.showOverlay = true;
   }
+
   closeOverlay() {
     this.showOverlay = false;
   }
+
   SaveEditedYAMLfile() {
     let yamlStr = yaml.dump(this.YamlObject);
     let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
@@ -686,6 +740,7 @@ export class CircularHeatmapComponent implements OnInit {
     link.click();
     link.remove();
   }
+
   reColorHeatmap() {
     console.log('recolor');
     for (var index = 0; index < this.ALL_CARD_DATA.length; index++) {
@@ -754,15 +809,23 @@ export class CircularHeatmapComponent implements OnInit {
   saveState() {
     localStorage.setItem('dataset', JSON.stringify(this.ALL_CARD_DATA));
   }
+
   loadState() {
     var content = localStorage.getItem('dataset');
     // @ts-ignore
     if (this.ALL_CARD_DATA[0]['Task'] != null) {
-      console.log('Found outdated dataset, removing')
+      console.log('Found outdated dataset, removing');
       localStorage.removeItem('dataset');
     }
     if (content != null) {
       this.ALL_CARD_DATA = JSON.parse(content);
+    }
+  }
+
+  getFromBrowserState(): any {
+    var content = localStorage.getItem('dataset');
+    if (content != null) {
+      return JSON.parse(content);
     }
   }
 }
