@@ -116,6 +116,7 @@
   },
   "defaultProject": "DSOMM",
   "cli": {
+    "analytics": "c2f4e0c8-d08b-4ecc-b2c9-ba87bf702f30",
     "defaultCollection": "@angular-eslint/schematics"
   }
 }
