@@ -28,7 +28,7 @@ describe('ActivityDescriptionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('check if header is being genenrated', () => {
+  it('check if header is being generated', () => {
     const testDimension = 'Sample Dimension';
     const testSubDimension = 'Sample subDimension';
     component.currentActivity.dimension = testDimension;
@@ -40,88 +40,89 @@ describe('ActivityDescriptionComponent', () => {
     expect(heading.textContent).toContain(testSubDimension);
   });
 
-  it('check if UUID is being genenrated', () => {
+  it('check if UUID is being generated', () => {
     const testUUID = '00000000-0000-0000-0000-000000000000';
     component.currentActivity.uuid = testUUID;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[0].textContent).toContain(testUUID);
+    const contentDisplayedinParagraphTag = HTMLElement.querySelector('#uuid')!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(testUUID);
   });
 
-  it('check if description is being genenrated', () => {
+  it('check if description is being generated', () => {
     const testDescription = 'Sample Description';
     component.currentActivity.description = testDescription;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[1].textContent).toContain(
+    const contentDisplayedinParagraphTag =
+      HTMLElement.querySelector('#description')!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(
       testDescription
     );
   });
 
-  it('check if risk is being genenrated', () => {
+  it('check if risk is being generated', () => {
     const testRisk = 'Sample Risk';
     component.currentActivity.risk = testRisk;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[2].textContent).toContain(testRisk);
+    const contentDisplayedinParagraphTag = HTMLElement.querySelector('#risk')!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(testRisk);
   });
 
-  it('check if measure is being genenrated', () => {
+  it('check if measure is being generated', () => {
     const testMeasure = 'Sample Measure';
     component.currentActivity.measure = testMeasure;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[3].textContent).toContain(
-      testMeasure
-    );
+    const contentDisplayedinParagraphTag =
+      HTMLElement.querySelector('#measure')!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(testMeasure);
   });
 
-  it('check if implementation guide is being genenrated', () => {
+  it('check if implementation guide is being generated', () => {
     const testImplementationGuide = 'Sample Implementation Guide';
     component.currentActivity.implementatonGuide = testImplementationGuide;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[4].textContent).toContain(
+    const contentDisplayedinParagraphTag = HTMLElement.querySelector(
+      '#implementatonGuide'
+    )!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(
       testImplementationGuide
     );
   });
 
-  it('check if evidence is being genenrated', () => {
+  it('check if evidence is being generated', () => {
     const testEvidence = 'Sample Evidence';
     component.currentActivity.evidence = testEvidence;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[7].textContent).toContain(
-      testEvidence
-    );
+    const contentDisplayedinParagraphTag =
+      HTMLElement.querySelector('#evidence')!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(testEvidence);
   });
 
-  it('check if assessment is being genenrated', () => {
+  it('check if assessment is being generated', () => {
     const testAssessment = 'Sample Assessment';
     component.currentActivity.assessment = testAssessment;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[8].textContent).toContain(
+    const contentDisplayedinParagraphTag =
+      HTMLElement.querySelector('#assessment')!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(
       testAssessment
     );
   });
 
-  it('check if comments is being genenrated', () => {
+  it('check if comments is being generated', () => {
     const testComments = 'Sample Comments';
     component.currentActivity.comments = testComments;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[11].textContent).toContain(
-      testComments
-    );
+    const contentDisplayedinParagraphTag =
+      HTMLElement.querySelector('#comments')!;
+    expect(contentDisplayedinParagraphTag.textContent).toContain(testComments);
   });
 
   it('check if references is being generated', () => {

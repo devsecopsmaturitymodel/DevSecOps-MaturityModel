@@ -9,15 +9,9 @@ RUN npm run build
 
 FROM wurstbrot/dsomm-yaml-generation as yaml
 
-FROM nginx:alpine
+FROM caddy
+ENV PORT 8080
 
-RUN chown -R nginx:nginx /var/cache/nginx \
- && chown -R nginx:nginx /var/log/nginx \
- && touch /var/run/nginx.pid \
- && chown -R nginx:nginx /var/run/nginx.pid
-
-COPY --from=yaml ["/var/www/html/src/assets/YAML/generated/generated.yaml", "/usr/share/nginx/html/assets/YAML/generated/generated.yaml"]
-COPY ["nginx/default.conf", "/etc/nginx/conf.d/"]
-COPY --from=build ["/usr/src/app/dist/dsomm/", "/usr/share/nginx/html/"]
-
-USER nginx
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY --from=build ["/usr/src/app/dist/dsomm/", "/srv"]
+COPY --from=yaml ["/var/www/html/src/assets/YAML/generated/generated.yaml", "/srv/assets/YAML/generated/generated.yaml"]

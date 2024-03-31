@@ -16,7 +16,7 @@
           <b>UUID</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.uuid"></p>
+      <p id="uuid" [innerHTML]="currentActivity.uuid"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel [expanded]="true">
@@ -25,7 +25,7 @@
           <b>Description</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.description"></p>
+      <p id="description" [innerHTML]="currentActivity.description"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -34,7 +34,7 @@
           <b>Risk</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.risk"></p>
+      <p id="risk" [innerHTML]="currentActivity.risk"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -43,7 +43,7 @@
           <b>Measure</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.measure"></p>
+      <p id="measure" [innerHTML]="currentActivity.measure"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="currentActivity.implementatonGuide">
@@ -52,7 +52,9 @@
           <b>Implementation Guide</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.implementatonGuide"></p>
+      <p
+        id="implementatonGuide"
+        [innerHTML]="currentActivity.implementatonGuide"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -83,7 +85,7 @@
           <b>Evidence</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.evidence"></p>
+      <p id="evidence" [innerHTML]="currentActivity.evidence"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -92,7 +94,7 @@
           <b>Assessment</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.assessment"></p>
+      <p id="assessment" [innerHTML]="currentActivity.assessment"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -247,7 +249,7 @@
           <b>Comments</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="currentActivity.comments"></p>
+      <p id="comments" [innerHTML]="currentActivity.comments"></p>
     </mat-expansion-panel>
   </mat-accordion>
 

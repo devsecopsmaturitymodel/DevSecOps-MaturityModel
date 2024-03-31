@@ -7,12 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "heroku-postbuild": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^13.0.0",
     "@angular/cdk": "^13.0.0",
+    "@angular/cli": "^13.0.0",
     "@angular/common": "^13.0.0",
     "@angular/compiler": "^13.0.0",
     "@angular/core": "^13.0.0",
@@ -39,7 +41,6 @@
     "@angular-eslint/eslint-plugin-template": "^13.0.0",
     "@angular-eslint/schematics": "^13.0.0",
     "@angular-eslint/template-parser": "^13.0.0",
-    "@angular/cli": "^13.0.0",
     "@angular/compiler-cli": "^13.0.0",
     "@types/d3": "^7.4.0",
     "@types/jasmine": "~3.10.0",

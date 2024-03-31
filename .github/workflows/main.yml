@@ -59,3 +59,25 @@ jobs:
           branch: ${{ github.head_ref || github.ref_name }}
         env:
           GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
+  heroku:
+    if: github.repository == 'devsecopsmaturitymodel/DevSecOps-MaturityModel' && github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check out Git repository"
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac #v4.0.0
+      - name: "Set Heroku app & branch for ${{ github.ref }}"
+        run: |
+          echo $GITHUB_REF
+          if [ "$GITHUB_REF" == "refs/heads/master" ]; then
+            echo "HEROKU_APP=" >> $GITHUB_ENV
+            echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
+          fi
+          echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
+      - name: "Deploy ${{ github.ref }} to Heroku"
+        uses: akhileshns/heroku-deploy@9fd0f9faae4aa93a38d6f5e25b9128589f1371b0 #v3.12.14
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "dsomm"
+          heroku_email: timo.pagel@owasp.org
+          branch: ${{ env.HEROKU_BRANCH }}
+          usedocker: true
