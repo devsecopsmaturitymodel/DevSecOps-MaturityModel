@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { Title } from '@angular/platform-browser';
 
@@ -8,7 +8,7 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
   let titleService: Title;
-  let router: Router; 
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
     titleService = TestBed.inject(Title);
-    router = TestBed.inject(Router); 
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 

@@ -9,13 +9,41 @@ import { UsageComponent } from './component/usage/usage.component';
 import { Teams } from './component/teams/teams.component';
 
 const routes: Routes = [
-  { path: '', component: MatrixComponent, data: { title: 'Matrix' } },
-  { path: 'circular-heatmap', component: CircularHeatmapComponent, data: { title: 'Circular Heatmap' } },
-  { path: 'activity-description', component: ActivityDescriptionComponent, data: { title: 'Activity Description' } },
-  { path: 'mapping', component: MappingComponent, data: { title: 'Mapping' } },
-  { path: 'usage', component: UsageComponent, data: { title: 'Usage' } },
-  { path: 'teams', component: Teams, data: { title: 'Teams' } },
-  { path: 'about', component: AboutUsComponent, data: { title: 'About Us' } },
+  {
+    path: '',
+    component: MatrixComponent,
+    data: { title: 'Matrix' },
+  },
+  {
+    path: 'circular-heatmap',
+    component: CircularHeatmapComponent,
+    data: { title: 'Implementation Levels' },
+  },
+  {
+    path: 'activity-description',
+    component: ActivityDescriptionComponent,
+    data: { title: 'Activity Description' },
+  },
+  {
+    path: 'mapping',
+    component: MappingComponent,
+    data: { title: 'Mappings' },
+  },
+  {
+    path: 'usage',
+    component: UsageComponent,
+    data: { title: 'Usage' },
+  },
+  {
+    path: 'teams',
+    component: Teams,
+    data: { title: 'Teams' },
+  },
+  {
+    path: 'about',
+    component: AboutUsComponent,
+    data: { title: 'About Us' },
+  },
 ];
 
 @NgModule({

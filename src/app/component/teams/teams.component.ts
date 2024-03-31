@@ -7,6 +7,7 @@ import * as yaml from 'js-yaml';
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css'],
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class Teams implements OnInit {
   YamlObject: any;
   teamList: any;

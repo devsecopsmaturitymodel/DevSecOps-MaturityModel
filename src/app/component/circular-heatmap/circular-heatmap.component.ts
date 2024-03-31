@@ -295,6 +295,7 @@ export class CircularHeatmapComponent implements OnInit {
     this.updateChips(prevSelectedChip);
   }
 
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngAfterViewInit() {
     // Putting all the chips inside an array
 
