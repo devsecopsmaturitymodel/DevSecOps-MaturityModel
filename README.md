@@ -64,7 +64,7 @@ You can download your current state from the circular headmap and mount it again
 
 ```bash
 wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
-docker run -p 8080:8080 -v /tmp/generated.yaml:/usr/share/nginx/html/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
+docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
 ```
 
 .
@@ -106,12 +106,12 @@ Here is an example to start docker with customized meta.yaml:
 ```
 # Customized meta.yaml
 cp src/assets/YAML/meta.yaml .
-docker run -v $(pwd)meta.yaml:/usr/share/nginx/html/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm
+docker run -v $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm
 
 # Customized meta.yaml and generated.yaml
 cp src/assets/YAML/meta.yaml .
 cp $(pwd)/src/assets/YAML/generated/generated.yaml .
-docker run -v  $(pwd)/meta.yaml:/usr/share/nginx/html/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/usr/share/nginx/html/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
+docker run -v  $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
 ```
 
 In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/YAML/default), use:
