@@ -14,7 +14,7 @@ export interface MappingElementSortedByActivity {
   subDimension: string;
   activityName: string;
   samm2: string[];
-  ISO: string[];
+  ISO17: string[];
   ISO22: string[];
 }
 
@@ -23,12 +23,12 @@ export interface MappingElementSortedBySAMM {
   dimension: string;
   subDimension: string;
   activityName: string;
-  ISO: string[];
+  ISO17: string[];
   ISO22: string[];
 }
 
-export interface MappingElementSortedByISO {
-  ISO: string;
+export interface MappingElementSortedByISO17 {
+  ISO17: string;
   ISO22: string[];
   dimension: string;
   subDimension: string;
@@ -46,27 +46,18 @@ export interface MappingElementSortedByISO {
   comments: string;
   assessment: string;
   implementation: any;
+  teamImplementation: {
+    [key: string]: boolean;
+  };
 }
 
 export interface MappingElementSortedByISO22 {
-  ISO: string[];
+  ISO17: string[];
   ISO22: string;
   dimension: string;
   subDimension: string;
   activityName: string;
   samm2: string[];
-  description: string;
-  risk: string;
-  measure: string;
-  knowledge: string;
-  resources: string;
-  time: string;
-  usefulness: string;
-  dependsOn: string[];
-  evidence: string;
-  comments: string;
-  assessment: string;
-  implementation: any;
 }
 
 @Component({
@@ -85,10 +76,10 @@ export class MappingComponent implements OnInit {
   performedMappingDataSortedBySAMM: MappingElementSortedBySAMM[] = [];
   currentlySortingBySAMM: boolean = false;
 
-  allMappingDataSortedByISO: MappingElementSortedByISO[] = [];
-  plannedMappingDataSortedByISO: MappingElementSortedByISO[] = [];
-  performedMappingDataSortedByISO: MappingElementSortedByISO[] = [];
-  currentlySortingByISO: boolean = false;
+  allMappingDataSortedByISO17: MappingElementSortedByISO17[] = [];
+  plannedMappingDataSortedByISO17: MappingElementSortedByISO17[] = [];
+  performedMappingDataSortedByISO17: MappingElementSortedByISO17[] = [];
+  currentlySortingByISO17: boolean = false;
 
   allMappingDataSortedByISO22: MappingElementSortedByISO22[] = [];
   plannedMappingDataSortedByISO22: MappingElementSortedByISO22[] = [];
@@ -98,14 +89,17 @@ export class MappingComponent implements OnInit {
   dataSource: any = new MatTableDataSource<MappingElementSortedByActivity>(
     this.allMappingDataSortedByActivity
   );
+
   YamlObject: any;
+
+  allTeams: string[] = [];
 
   displayedColumns: string[] = [
     'dimension',
     'subDimension',
     'activityName',
     'samm2',
-    'ISO',
+    'ISO17',
     'ISO22',
   ];
   allDimensionNames: string[] = [];
@@ -157,6 +151,13 @@ export class MappingComponent implements OnInit {
             ]
           );
           for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
+            if (a == 0) {
+              this.allTeams = Object.keys(
+                this.YamlObject[this.allDimensionNames[i]][
+                  subdimensionsInCurrentDimension[j]
+                ][activityInCurrentSubDimension[a]]['teamsImplemented']
+              );
+            }
             this.setValueandAppendToDatasetSortedbyActivity(
               this.allDimensionNames[i],
               subdimensionsInCurrentDimension[j],
@@ -167,7 +168,7 @@ export class MappingComponent implements OnInit {
               subdimensionsInCurrentDimension[j],
               activityInCurrentSubDimension[a]
             );
-            this.setValueandAppendToDatasetandSortbyISO(
+            this.setValueandAppendToDatasetandSortbyISO17(
               this.allDimensionNames[i],
               subdimensionsInCurrentDimension[j],
               activityInCurrentSubDimension[a]
@@ -206,7 +207,7 @@ export class MappingComponent implements OnInit {
       dimension: dim,
       subDimension: subDim,
       activityName: activity,
-      ISO: ISOArray,
+      ISO17: ISOArray,
       ISO22: ISO22Array,
       samm2: SAMMArray,
     };
@@ -239,7 +240,7 @@ export class MappingComponent implements OnInit {
       dimension: dim,
       subDimension: subDim,
       activityName: activity,
-      ISO: ISOArray,
+      ISO17: ISOArray,
       ISO22: ISO22Array,
       samm2: '',
     };
@@ -278,8 +279,8 @@ export class MappingComponent implements OnInit {
     //console.log(this.temp)
   }
 
-  //Sets dataSource value sorted by ISO 27001:2017 - to also be used by download functionality
-  setValueandAppendToDatasetandSortbyISO(
+  //Sets dataSource value sorted by ISO17 27001:2017 - to also be used by download functionality
+  setValueandAppendToDatasetandSortbyISO17(
     dim: string,
     subDim: string,
     activity: string
@@ -327,6 +328,7 @@ export class MappingComponent implements OnInit {
 
     var CurrentDependsOn: string[] =
       this.YamlObject[dim][subDim][activity]['dependsOn'];
+
     try {
       var CurrentImplementation: any = JSON.stringify(
         this.YamlObject[dim][subDim][activity]['implementation']
@@ -338,11 +340,14 @@ export class MappingComponent implements OnInit {
       CurrentImplementation = '';
     }
 
+    var CurrentTeamsAndImplementation =
+      this.YamlObject[dim][subDim][activity]['teamsImplemented'];
+
     this.temporaryMappingElement = {
       dimension: dim,
       subDimension: subDim,
       activityName: activity,
-      ISO: '',
+      ISO17: '',
       ISO22: ISO22Array,
       samm2: SAMMArray,
       description: CurrentDescription,
@@ -357,42 +362,47 @@ export class MappingComponent implements OnInit {
       evidence: CurrentEvidence,
       comments: CurrentComments,
       assessment: CurrentAssessment,
+      teamImplementation: CurrentTeamsAndImplementation,
     };
+
+    console.log(this.temporaryMappingElement);
     if (ISOArray.length == 0) {
-      this.allMappingDataSortedByISO.push(this.temporaryMappingElement);
+      this.allMappingDataSortedByISO17.push(this.temporaryMappingElement);
       if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedByISO.push(this.temporaryMappingElement);
+        this.performedMappingDataSortedByISO17.push(
+          this.temporaryMappingElement
+        );
       } else {
-        this.plannedMappingDataSortedByISO.push(this.temporaryMappingElement);
+        this.plannedMappingDataSortedByISO17.push(this.temporaryMappingElement);
       }
     }
     for (var i = 0; i < ISOArray.length; i++) {
       const newTempElement = JSON.parse(
         JSON.stringify(this.temporaryMappingElement)
       );
-      newTempElement['ISO'] = ISOArray[i];
+      newTempElement['ISO17'] = ISOArray[i];
       //console.log(newTempElement);
-      this.allMappingDataSortedByISO.push(newTempElement);
+      this.allMappingDataSortedByISO17.push(newTempElement);
       if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedByISO.push(newTempElement);
+        this.performedMappingDataSortedByISO17.push(newTempElement);
       } else {
-        this.plannedMappingDataSortedByISO.push(newTempElement);
+        this.plannedMappingDataSortedByISO17.push(newTempElement);
       }
     }
     //sorting by descending order
-    this.allMappingDataSortedByISO.sort(
-      (first, second) => 0 - (first['ISO'] > second['ISO'] ? 1 : -1)
+    this.allMappingDataSortedByISO17.sort(
+      (first, second) => 0 - (first['ISO17'] > second['ISO17'] ? 1 : -1)
     );
-    this.performedMappingDataSortedByISO.sort(
-      (first, second) => 0 - (first['ISO'] > second['ISO'] ? 1 : -1)
+    this.performedMappingDataSortedByISO17.sort(
+      (first, second) => 0 - (first['ISO17'] > second['ISO17'] ? 1 : -1)
     );
-    this.plannedMappingDataSortedByISO.sort(
-      (first, second) => 0 - (first['ISO'] > second['ISO'] ? 1 : -1)
+    this.plannedMappingDataSortedByISO17.sort(
+      (first, second) => 0 - (first['ISO17'] > second['ISO17'] ? 1 : -1)
     );
     //console.log(this.temp)
   }
 
-  //Sets dataSource value sorted by ISO 27001:2022
+  //Sets dataSource value sorted by ISO17 27001:2022
   setValueandAppendToDatasetandSortbyISO22(
     dim: string,
     subDim: string,
@@ -404,73 +414,14 @@ export class MappingComponent implements OnInit {
       this.YamlObject[dim][subDim][activity]['references']['iso27001-2022'];
     var SAMMArray: string[] =
       this.YamlObject[dim][subDim][activity]['references']['samm2'];
-    var CurrentDescription: string =
-      this.YamlObject[dim][subDim][activity]['description'];
-    var CurrentRisk: string = this.YamlObject[dim][subDim][activity]['risk'];
-    var CurrentMeasure: string =
-      this.YamlObject[dim][subDim][activity]['measure'];
-    var CurrentKnowledge: string =
-      this.knowledgeLabels[
-        this.YamlObject[dim][subDim][activity]['difficultyOfImplementation'][
-          'knowledge'
-        ]
-      ];
-    var CurrentTime: string =
-      this.generalLabels[
-        this.YamlObject[dim][subDim][activity]['difficultyOfImplementation'][
-          'time'
-        ]
-      ];
-    var CurrentResources: string =
-      this.generalLabels[
-        this.YamlObject[dim][subDim][activity]['difficultyOfImplementation'][
-          'resources'
-        ]
-      ];
-    var CurrentUsefulness: string =
-      this.generalLabels[this.YamlObject[dim][subDim][activity]['usefulness']];
-
-    var CurrentEvidence: string =
-      this.YamlObject[dim][subDim][activity]['evidence'];
-
-    var CurrentComments: string =
-      this.YamlObject[dim][subDim][activity]['comments'];
-
-    var CurrentAssessment: string =
-      this.YamlObject[dim][subDim][activity]['assessment'];
-
-    var CurrentDependsOn: string[] =
-      this.YamlObject[dim][subDim][activity]['dependsOn'];
-    try {
-      var CurrentImplementation: any = JSON.stringify(
-        this.YamlObject[dim][subDim][activity]['implementation']
-      );
-      if (CurrentImplementation.length == 2) {
-        CurrentImplementation = '';
-      }
-    } catch {
-      CurrentImplementation = '';
-    }
 
     this.temporaryMappingElement = {
       dimension: dim,
       subDimension: subDim,
       activityName: activity,
-      ISO: ISOArray,
+      ISO17: ISOArray,
       ISO22: '',
       samm2: SAMMArray,
-      description: CurrentDescription,
-      risk: CurrentRisk,
-      measure: CurrentMeasure,
-      knowledge: CurrentKnowledge,
-      time: CurrentTime,
-      resources: CurrentResources,
-      usefulness: CurrentUsefulness,
-      dependsOn: CurrentDependsOn,
-      implementation: CurrentImplementation,
-      evidence: CurrentEvidence,
-      comments: CurrentComments,
-      assessment: CurrentAssessment,
     };
     if (ISO22Array.length == 0) {
       this.allMappingDataSortedByISO22.push(this.temporaryMappingElement);
@@ -540,7 +491,7 @@ export class MappingComponent implements OnInit {
   ): void {
     if (this.currentlySortingByActivity) {
       this.dataSource = activityData;
-    } else if (this.currentlySortingByISO) {
+    } else if (this.currentlySortingByISO17) {
       this.dataSource = ISOData;
     } else if (this.currentlySortingByISO22) {
       this.dataSource = ISO22Data;
@@ -556,7 +507,7 @@ export class MappingComponent implements OnInit {
       //Check current sort value
       this.checkSortValueAndChangeTableData(
         this.allMappingDataSortedByActivity,
-        this.allMappingDataSortedByISO,
+        this.allMappingDataSortedByISO17,
         this.allMappingDataSortedByISO22,
         this.allMappingDataSortedBySAMM
       );
@@ -566,7 +517,7 @@ export class MappingComponent implements OnInit {
       //Check current sort value
       this.checkSortValueAndChangeTableData(
         this.plannedMappingDataSortedByActivity,
-        this.plannedMappingDataSortedByISO,
+        this.plannedMappingDataSortedByISO17,
         this.plannedMappingDataSortedByISO22,
         this.plannedMappingDataSortedBySAMM
       );
@@ -574,7 +525,7 @@ export class MappingComponent implements OnInit {
       //Check current sort value
       this.checkSortValueAndChangeTableData(
         this.performedMappingDataSortedByActivity,
-        this.performedMappingDataSortedByISO,
+        this.performedMappingDataSortedByISO17,
         this.performedMappingDataSortedByISO22,
         this.performedMappingDataSortedBySAMM
       );
@@ -588,7 +539,7 @@ export class MappingComponent implements OnInit {
     if (this.SortCtrl.value == 'sortByActivity') {
       this.currentlySortingByActivity = true;
       this.currentlySortingBySAMM = false;
-      this.currentlySortingByISO = false;
+      this.currentlySortingByISO17 = false;
       this.currentlySortingByISO22 = false;
 
       //Checking filters
@@ -607,7 +558,7 @@ export class MappingComponent implements OnInit {
     } else if (this.SortCtrl.value == 'sortBySAMM') {
       this.currentlySortingByActivity = false;
       this.currentlySortingBySAMM = true;
-      this.currentlySortingByISO = false;
+      this.currentlySortingByISO17 = false;
       this.currentlySortingByISO22 = false;
 
       //Checking filters
@@ -626,26 +577,26 @@ export class MappingComponent implements OnInit {
     } else if (this.SortCtrl.value == 'sortByISO') {
       this.currentlySortingByActivity = false;
       this.currentlySortingBySAMM = false;
-      this.currentlySortingByISO = true;
+      this.currentlySortingByISO17 = true;
       this.currentlySortingByISO22 = false;
 
       //Checking filters
       if (this.currentChip.length > 1 || this.currentChip.length == 0) {
         // both planned and performed actvities are selected
-        this.dataSource = this.allMappingDataSortedByISO;
+        this.dataSource = this.allMappingDataSortedByISO17;
       } else {
         if (this.currentChip[0] == 'Planned Activities') {
           // planned actvities shows planned data
-          this.dataSource = this.plannedMappingDataSortedByISO;
+          this.dataSource = this.plannedMappingDataSortedByISO17;
         } else {
           // performed actvities shows performed data
-          this.dataSource = this.performedMappingDataSortedByISO;
+          this.dataSource = this.performedMappingDataSortedByISO17;
         }
       }
     } else {
       this.currentlySortingByActivity = false;
       this.currentlySortingBySAMM = false;
-      this.currentlySortingByISO = false;
+      this.currentlySortingByISO17 = false;
       this.currentlySortingByISO22 = true;
 
       //Checking filters
@@ -674,7 +625,7 @@ export class MappingComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
     //save to file
-    XLSX.writeFile(wb, 'Planned-Activities-Sorted-By-ISO.xlsx');
+    XLSX.writeFile(wb, 'Planned-Activities-Sorted-By-ISO17.xlsx');
     //console.log(this.allMappingDataSortedByISO)
   }
 }
