@@ -6,6 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { stringify } from "qs";
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -325,6 +326,6 @@ export class MatrixComponent implements OnInit {
         activityName: activityName,
       },
     };
-    this.router.navigate([this.Routing], navigationExtras);
+    return `${this.Routing}?${stringify(navigationExtras.queryParams)}`;
   }
 }

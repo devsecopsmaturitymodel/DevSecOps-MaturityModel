@@ -63,21 +63,23 @@
         <td mat-cell *matCellDef="let element">
           <ul>
             <li *ngFor="let activity of element[lvl]; index as j">
-              <button
-                style="margin-bottom: 1em"
-                (click)="
-                  navigate(
-                    YamlObject[element.Dimension][element.SubDimension][activity].uuid,
-                    element.Dimension,
-                    element.SubDimension,
-                    i + 1,
-                    activity
-                  )
-                ">
+              <div>
                 <div>
                   <p style="margin: 0">{{ activity }}</p>
                 </div>
-                <span class="tags-activity">
+                <a
+                  href=" {{
+                    navigate(
+                      YamlObject[element.Dimension][element.SubDimension][
+                        activity
+                      ].uuid,
+                      element.Dimension,
+                      element.SubDimension,
+                      i + 1,
+                      activity
+                    )
+                  }}"
+                  class="tags-activity">
                   [
                   <span
                     *ngFor="
@@ -98,8 +100,8 @@
                     </span>
                   </span>
                   ]
-                </span>
-              </button>
+                </a>
+              </div>
             </li>
           </ul>
         </td>

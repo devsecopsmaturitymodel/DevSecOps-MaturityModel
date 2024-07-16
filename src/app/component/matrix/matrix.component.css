@@ -34,13 +34,6 @@
   max-width: 9%;
 }
 
-button {
-  background-color: white;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-}
-
 .tags-activity {
   font-weight: 800;
   font-style: italic;
