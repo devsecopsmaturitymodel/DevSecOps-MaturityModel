@@ -1,8 +1,8 @@
 name: Deploy Heroku
 
 on:
-  schedule:
-    - cron: "0 7 9 9 9"
+  workflow_dispatch:
+
 
 
 jobs:
