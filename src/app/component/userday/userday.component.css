@@ -1,0 +1,8 @@
+table :is(td, th) {
+    border: 1px solid black;
+    padding: 0.3em;
+}
+
+tr:nth-child(even) {
+    background-color: #66bb6a;
+}
