@@ -7,19 +7,18 @@ Hyatt Regency San Francisco
 Address: 5 Embarcadero Center San Francisco, CA 94111 United States 
 Room: To be announced.
 
-## Agenda
+## Agenda (DRAFT)
+Please expect changes in the timeline.
 
-| Time  | Title                                                 | Speaker             |
-|-------|-------------------------------------------------------|---------------------|
-| 9:00  | Welcome                                               | Timo Pagel          |
-| 9:05  | Key Steps to Achieving an Application Security Program | Timo Pagel          |
-| 10:00 | Workshop?                                | Jannik H            |
-| 10:00 | XXX                                                   | Chris K             |
-| 12:00 | Lunch Break                                           | /                   |
-| 13:30 | Utilizing DSOMM app to define your own program        | Timo Pagel          |
-| 14:00 | Workshop: Build your own program                      | Francesco Cipollone |
-| 16:00 | Wrap Up                                               | Timo Pagel          |
-
+| Time  | Title                                                                    | Speaker             |
+|-------|--------------------------------------------------------------------------|---------------------|
+| 9:00  | Welcome                                                                  | Timo Pagel          |
+| 9:05  | Key Steps to Achieving an Application Security Program                   | Timo Pagel          |
+| 10:00 | Reach your Dynamic Depth with OWASP secureCodeBox                        | Jannik Hollenbach   |
+| 12:00 | Lunch Break                                                              | /                   |
+| 13:30 | Workshop: Utilizing DSOMM app to define your own program                 | Timo Pagel          |
+| 14:00 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map | Francesco Cipollone |
+| 16:00 | Wrap Up                                                                  | Timo Pagel          |
 
 ### Talk Descriptions
 #### Key Steps to Achieving an Application Security Program
@@ -28,4 +27,19 @@ While briefly touching on foundational elements, the presentation focuses on dev
 
 #### Workshop secureCodeBox?
 
-#### Workshop: Build your own program
+#### Workshop: Utilizing DSOMM app to define your own program
+Get to know the DSOMM application and how to customize it to distribute your AppSec Program as a maturity model.
+
+Requirements:
+- Docker
+
+Linux is recommended.
+
+#### Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map
+Organizations face an ever-increasing risk of cyberattacks and data breaches. Vulnerabilities are getting discovered faster than ever, with a 34% YoY increase of vulnerability discovery. Vulnerabilities are often tackled as they come from security scanners, leading to burnout of security professionals, with 50% of security engineers considering changing their profession entirely. This workshop explores the vulnerability management process that applies to application, cloud, and infrastructure security.
+
+To mitigate these risks, vulnerability management and triage have become essential components of an effective cybersecurity program. Vulnerability triage, in particular, plays a critical role in identifying, prioritizing, and remediating vulnerabilities to minimize the organization's attack surface across applications, cloud and infrastructure. However, the process of vulnerability triage is not a one-size-fits-all approach and requires a maturity model that reflects the organization's current state of readiness. In this workshop, you will explore the evolution of vulnerability management and triage process maturity and how organizations can enhance their capabilities to manage and mitigate cybersecurity risks effectively.
+
+Why we created the vulnerability management process?
+We created the vulnerability maturity model to provide a quick and easy assessment method to define where you are in the vulnerability assessment process from triage.
+The VMM is mapped back to both SAMM, and DSOMM.
