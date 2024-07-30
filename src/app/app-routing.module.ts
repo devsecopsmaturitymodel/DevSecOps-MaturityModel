@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './component/about-us/about-us.component';
+import { UserdayComponent } from './component/userday/userday.component';
 import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
 import { MappingComponent } from './component/mapping/mapping.component';
 import { MatrixComponent } from './component/matrix/matrix.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'usage', component: UsageComponent },
   { path: 'teams', component: Teams },
   { path: 'about', component: AboutUsComponent },
+  { path: 'userday', component: UserdayComponent },
 ];
 
 @NgModule({

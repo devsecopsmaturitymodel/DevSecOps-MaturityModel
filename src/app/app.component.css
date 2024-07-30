@@ -1,22 +1,22 @@
 
-  .main-container {
-    width: 100%;
-    height: 100%;
-    /*border: 10px solid yellow;*/
-  }
-  
-  .sidenav-content {
-    display: flex;
-    padding: 10px;
-    align-items: left;
-    justify-content: left;
-    /*background-color: red;*/
-  }
-  
-  .example-sidenav {
-    padding: 20px;
-  }
-  
-  .github-fork-ribbon:before { 
-    background-color: #333; 
-  }
+.main-container {
+  width: 100%;
+  height: 100%;
+  /*border: 10px solid yellow;*/
+}
+
+.sidenav-content {
+  display: flex;
+  padding: 10px;
+  align-items: left;
+  justify-content: left;
+  /*background-color: red;*/
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.github-fork-ribbon:before {
+  background-color: #333;
+}
