@@ -31,9 +31,9 @@ While briefly touching on foundational elements, the presentation focuses on dev
 Get to know the DSOMM application and how to customize it to distribute your AppSec Program as a maturity model.
 
 Requirements:
+- Laptop
 - Docker
-
-Linux is recommended.
+- Linux is recommended
 
 ### Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map
 Organizations face an ever-increasing risk of cyberattacks and data breaches. Vulnerabilities are getting discovered faster than ever, with a 34% YoY increase of vulnerability discovery. Vulnerabilities are often tackled as they come from security scanners, leading to burnout of security professionals, with 50% of security engineers considering changing their profession entirely. This workshop explores the vulnerability management process that applies to application, cloud, and infrastructure security.
@@ -43,3 +43,9 @@ To mitigate these risks, vulnerability management and triage have become essenti
 Why we created the vulnerability management process?
 We created the vulnerability maturity model to provide a quick and easy assessment method to define where you are in the vulnerability assessment process from triage.
 The VMM is mapped back to both SAMM, and DSOMM.
+
+Requirements:
+- Laptop
+- An outline of your organization's software development lifecycle (real or hypothetical)
+- Examples of potential security vulnerabilities relevant to your organization (real or hypothetical)
+
