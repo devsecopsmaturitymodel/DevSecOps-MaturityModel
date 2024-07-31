@@ -65,21 +65,22 @@
             <li *ngFor="let activity of element[lvl]; index as j">
               <div>
                 <div>
-                  <p style="margin: 0">{{ activity }}</p>
-                </div>
-                <a
-                  href=" {{
-                    navigate(
-                      YamlObject[element.Dimension][element.SubDimension][
+                  <a
+                    href=" {{
+                      navigate(
+                        YamlObject[element.Dimension][element.SubDimension][
+                          activity
+                        ].uuid,
+                        element.Dimension,
+                        element.SubDimension,
+                        i + 1,
                         activity
-                      ].uuid,
-                      element.Dimension,
-                      element.SubDimension,
-                      i + 1,
-                      activity
-                    )
-                  }}"
-                  class="tags-activity">
+                      )
+                    }}"
+                    >{{ activity }}</a
+                  >
+                </div>
+                <span class="tags-activity">
                   [
                   <span
                     *ngFor="
@@ -100,7 +101,7 @@
                     </span>
                   </span>
                   ]
-                </a>
+                </span>
               </div>
             </li>
           </ul>
