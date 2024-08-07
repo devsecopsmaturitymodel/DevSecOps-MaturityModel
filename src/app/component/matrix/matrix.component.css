@@ -29,16 +29,33 @@
   font-weight: bold;
 }
 
+.mat-cell ul.activity-list {
+  list-style-type: disclosure-closed;
+}
+
+.mat-cell-activity {
+  margin-bottom: 1em;
+  position: relative;
+}
+.mat-cell-activity a.activity-title {
+  text-decoration: unset;
+  margin: 0;
+}
+.mat-cell-activity a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.mat-cell-activity a.activity-title:link {
+  color: inherit;
+}
+
 .table-small-width {
   width: 5%;
   max-width: 9%;
-}
-
-button {
-  background-color: white;
-  border: none;
-  text-align: left;
-  cursor: pointer;
 }
 
 .tags-activity {
