@@ -32,9 +32,8 @@ Everyone is invited to join the conversation. Please bring your questions!
 
 #### Reach your Dynamic Depth with OWASP secureCodeBox
 
-#### Workshop: Utilizing DSOMM app to define your own program
-Get to know the DSOMM application and how to customize it to distribute your AppSec Program as a maturity model.
-
+#### Workshop: Utilize DSOMM App to Define and Deliver Your Own Program
+Timo will present the DSOMM application. He guides you to customize and distribute your AppSec Program. You will learn how to use "inheritance" of the DSOMM content to save time during the definition for example by gaining automatic mapping to frameworks like SAMM and ISO 27001.
 Requirements:
 - Docker
 
