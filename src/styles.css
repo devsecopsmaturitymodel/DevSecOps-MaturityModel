@@ -3,3 +3,17 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.userday table :is(td, th) {
+    border: 1px solid black;
+    padding: 0.3em;
+}
+
+.userday tr:nth-child(even) {
+    background-color: #66bb6a;
+}
+
+.userday img {
+    max-height: 100px;
+    float: left;
+    margin-right: 10px;
+}
