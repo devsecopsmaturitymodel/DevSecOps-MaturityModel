@@ -67,6 +67,8 @@ Francesco is recognized as a motivational, influential leader who guides high-pe
 [Linkedin](https://www.linkedin.com/in/fracipo/)
 
 #### Bio Jannik
+Jannik Hollenbach is a Software Security Engineer at iteratec GmbH, working on and with open source security testing tools to continuously detect security vulnerabilities in the companies software and systems. He is also a member of the OWASP secureCodeBox & OWASp Juice Shop project team.
+
 **Social Networks**
 [Github](https://github.com/J12934)
 
