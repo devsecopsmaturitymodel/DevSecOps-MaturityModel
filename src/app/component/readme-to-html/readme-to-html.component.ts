@@ -9,7 +9,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ReadmeToHtmlComponent implements OnInit {
   @Input() MDFile: string = '';
-  markdown: md = md();
+  markdown: md = md({
+    html: true
+  });
   markdownURI: any;
   toRender: string = '';
   constructor(private http: HttpClient) {}
