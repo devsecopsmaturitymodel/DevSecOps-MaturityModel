@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class ReadmeToHtmlComponent implements OnInit {
   @Input() MDFile: string = '';
   markdown: md = md({
-    html: true
+    html: true,
   });
   markdownURI: any;
   toRender: string = '';
