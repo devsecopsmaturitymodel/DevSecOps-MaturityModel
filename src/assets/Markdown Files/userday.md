@@ -72,10 +72,16 @@ Previously, Francesco headed HSBC’s application and cloud security and was Sen
 [Press](https://www.nsc42.co.uk/press)
 
 ## Bio Jannik
-Jannik Hollenbach is a Software Security Engineer at iteratec GmbH, working on and with open source security testing tools to continuously detect security vulnerabilities in the companies software and systems. He is also a member of the OWASP secureCodeBox & OWASP Juice Shop project team.
+
+![Jannik Hollenbach](/assets/images/userday/Jannik.jpg)
+
+Jannik Hollenbach is a Software Security Engineer at iteratec GmbH, working on and with open source security testing tools to continuously detect security vulnerabilities in the companies software and systems.
+
+He is also a member of the OWASP secureCodeBox & OWASP Juice Shop project teams.
 
 **References**
 [Github](https://github.com/J12934)
+[Mastadon](https://infosec.exchange/@jannik)
 [iteratec](https://www.iteratec.com/en/)
 
 ## Bio Timo
