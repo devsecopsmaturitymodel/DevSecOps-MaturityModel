@@ -57,11 +57,13 @@ The VMM is mapped back to both SAMM, and DSOMM.
 # Speakers
 
 ## Bio Brook
-Brook is the author of "Secrets Of A Cyber Security Architect" (Auerbach, 2019) and "Securing Systems: Applied Security Architecture and Threat Models" (CRC Press, 2015), co-author of "Building In Security At Agile Speed" (Auerbach, 2021) and contributing author to "Core Software Security" (CRC Press, 2014). Brook is a passionate security architect with decades of technical leadership experience. Currently providing security architecture leadership for three security consultancies, Brook is also an advisor to True Positives, LLC and Resilient Software Security, LLC. Brook supplies technical leadership and strategy to the consultancies as well as contributes to clients' holistic software security programmes and secure design/threat modeling efforts.
-Brook is interested in rethinking approaches to security problems, questioning assumptions and current "industry practices" wisdom. Brook hopes that many of the more intractable security problems can begin to be solved with architectural approaches, by making security part of the architecture fabric of systems and interconnectedness.
+![Brook](/assets/images/userday/Brook.png)
+
+Books by Brook S.E. Schoenfield include Building In Security At Agile Speed (Auerbach, 2021, co-authored with James Ransome), Secrets Of A Cyber Security Architect (Auerbach, 2019) and Securing Systems: Applied Security Architecture and Threat Models (CRC Press, 2015). He co-authored The Threat Modeling Manifesto (2020), Threat Modeling Capabilities (2023), Avoiding the Top 10 Security Design Flaws (IEEE, 2014) and Tactical Threat Modeling (SAFECode, 2017). He has taught 100’s of security architects, and 1000’s have attended his threat modelling trainings. He technically led five AppSec/software security programs and 4 consulting practices. Currently, Mr. Schoenfield works with organizations to improve their software security practices as CTO and Chief Security Architect at Resilient Software Security. He also teaches at the University of Montana. He regularly speaks at conferences and appears in podcasts/webinars. Please see https://www.linkedin.com/in/brookschoenfield/ or brookschoenfield.com for details.
 
 **References**
 [LinkedIn](https://www.linkedin.com/in/brookschoenfield/)
+[Website](https://brookschoenfield.com)
 
 ## Bio Francesco
 ![Francesco](/assets/images/userday/Francesco.png)
