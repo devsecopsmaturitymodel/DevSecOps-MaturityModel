@@ -32,6 +32,12 @@ Everyone is invited to join the conversation. Please bring your questions!
 
 ## Reach your Dynamic Depth with OWASP secureCodeBox
 
+Implementing automated scanning for applications within an organization presents a complex task due to various factors. While configuring the scans themselves poses a challenge (DSOMM subdimension "Dynamic depth for applications"), interpreting and utilizing the resulting data in a meaningful way is often even more challenging (DSOMM subdimension "Consolidation").
+
+This presentation aims to provide guidance on how to utilize the [OWASP secureCodeBox](https://www.securecodebox.io/) project as a tool to automate dynamic scans, leveraging tools such as ZAP, Nuclei, and SSLyze. Specifically, it will demonstrate how to either schedule regular scans or automatically create them via the [AutoDiscovery](https://www.securecodebox.io/docs/auto-discovery/overview) feature of the secureCodeBox. The talk will also highlight the ability to utilize the secureCodeBox for automated creation of scans on Kubernetes deployments.
+
+Furthermore, this presentation will showcase how the secureCodeBox can be used to automatically upload and organize scan results to [OWASP DefectDojo](https://defectdojo.com/), streamlining your security workflow.
+
 ## Workshop: Utilize DSOMM App to Define and Deliver Your Own Program
 Timo will present the DSOMM application. He guides you to customize and distribute your AppSec Program. You will learn how to use "inheritance" of the DSOMM content to save time during the definition for example by gaining automatic mapping to frameworks like SAMM and ISO 27001.
 Requirements:
@@ -72,10 +78,16 @@ Previously, Francesco headed HSBC’s application and cloud security and was Sen
 [Press](https://www.nsc42.co.uk/press)
 
 ## Bio Jannik
-Jannik Hollenbach is a Software Security Engineer at iteratec GmbH, working on and with open source security testing tools to continuously detect security vulnerabilities in the companies software and systems. He is also a member of the OWASP secureCodeBox & OWASP Juice Shop project team.
+
+![Jannik Hollenbach](/assets/images/userday/Jannik.jpg)
+
+Jannik Hollenbach is a Software Security Engineer at iteratec GmbH, working on and with open source security testing tools to continuously detect security vulnerabilities in the companies software and systems.
+
+He is also a member of the OWASP secureCodeBox & OWASP Juice Shop project teams.
 
 **References**
 [Github](https://github.com/J12934)
+[Mastadon](https://infosec.exchange/@jannik)
 [iteratec](https://www.iteratec.com/en/)
 
 ## Bio Timo
