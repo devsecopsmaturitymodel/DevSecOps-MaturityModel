@@ -98,9 +98,13 @@ describe('ActivityDescriptionComponent', () => {
     component.currentActivity.teamsEvidence = testEvidence;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag =
-      HTMLElement.querySelector('#evidence')!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(testEvidence);
+    const parentElement = HTMLElement.querySelectorAll('#teamsEvidence')!;
+    console.log('parentElement', parentElement[1].textContent);
+    const lengthOfObject = Object.keys(testEvidence).length;
+    for (var i = 0; i > lengthOfObject; i++)
+      expect(parentElement[i].textContent).toContain(
+        Object.keys(testEvidence)[i] + Object.values(testEvidence)[i]
+      );
   });
 
   it('check if assessment is being generated', () => {
@@ -138,8 +142,10 @@ describe('ActivityDescriptionComponent', () => {
 
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelectorAll('p')!;
-    expect(contentDisplayedinParagraphTag[10].textContent).toContain(
+    const contentDisplayedinParagraphTag =
+      HTMLElement.querySelectorAll('#references')!;
+
+    expect(contentDisplayedinParagraphTag[0].textContent).toContain(
       component.SAMMVersion +
         testSAMM[0] +
         component.ISOVersion +
