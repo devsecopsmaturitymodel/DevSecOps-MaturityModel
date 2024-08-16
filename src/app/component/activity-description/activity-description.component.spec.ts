@@ -94,8 +94,8 @@ describe('ActivityDescriptionComponent', () => {
   });
 
   it('check if evidence is being generated', () => {
-    const testEvidence = 'Sample Evidence';
-    component.currentActivity.evidence = testEvidence;
+    const testEvidence = { A: 'Sample Evidence', Default: 'Sample evidence 2' };
+    component.currentActivity.teamsEvidence = testEvidence;
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const contentDisplayedinParagraphTag =
