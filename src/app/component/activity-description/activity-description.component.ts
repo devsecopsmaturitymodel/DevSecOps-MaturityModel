@@ -32,6 +32,7 @@ export interface activityDescription {
   implementation: implementation[];
   usefulness: number;
   evidence: string;
+  teamsEvidence: Object;
   assessment: string;
   comments: string;
   isImplemented: boolean;
@@ -67,6 +68,7 @@ export class ActivityDescriptionComponent implements OnInit {
     usefulness: -1,
     assessment: '',
     evidence: '',
+    teamsEvidence: {},
     comments: '',
     isImplemented: false,
     teamsImplemented: {},
@@ -261,6 +263,8 @@ export class ActivityDescriptionComponent implements OnInit {
         false
       );
       this.currentActivity.teamsImplemented = data['teamsImplemented'];
+      this.currentActivity.teamsEvidence = data['teamsEvidence'];
+      console.log("data['teamsEvidence']", data['teamsEvidence']);
       this.openall();
     });
   }

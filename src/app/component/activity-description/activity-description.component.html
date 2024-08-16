@@ -82,10 +82,20 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <b>Evidence</b>
+          <b>Teams Evidence</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p id="evidence" [innerHTML]="currentActivity.evidence"></p>
+      <mat-accordion multi="true">
+        <mat-expansion-panel
+          *ngFor="let item of this.currentActivity.teamsEvidence | keyvalue">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b [innerHTML]="item.key"></b>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p [innerHTML]="item.value"></p>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
