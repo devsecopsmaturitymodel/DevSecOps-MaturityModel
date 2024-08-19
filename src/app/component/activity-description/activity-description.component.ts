@@ -263,8 +263,10 @@ export class ActivityDescriptionComponent implements OnInit {
         false
       );
       this.currentActivity.teamsImplemented = data['teamsImplemented'];
-      this.currentActivity.teamsEvidence = data['teamsEvidence'];
-      console.log("data['teamsEvidence']", data['teamsEvidence']);
+      this.currentActivity.teamsEvidence = this.defineEvidenceObject(
+        data['teamsEvidence']
+      );
+      // console.log("data['teamsEvidence']", data['teamsEvidence']);
       this.openall();
     });
   }
@@ -311,6 +313,14 @@ export class ActivityDescriptionComponent implements OnInit {
     } catch {
       return valueOfDataIfUndefined;
     }
+  }
+
+  defineEvidenceObject(dataToCheck: { [key: string]: string }): Object {
+    var dataToReturn: { [key: string]: string } = {};
+    for (var key in dataToCheck) {
+      dataToReturn[key] = this.defineStringValues(dataToCheck[key], '');
+    }
+    return dataToReturn;
   }
 
   defineImplementationObject(dataToCheck: implementation[]): implementation[] {
