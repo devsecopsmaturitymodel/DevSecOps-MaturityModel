@@ -32,6 +32,7 @@ export interface activityDescription {
   implementation: implementation[];
   usefulness: number;
   evidence: string;
+  teamsEvidence: Object;
   assessment: string;
   comments: string;
   isImplemented: boolean;
@@ -67,6 +68,7 @@ export class ActivityDescriptionComponent implements OnInit {
     usefulness: -1,
     assessment: '',
     evidence: '',
+    teamsEvidence: {},
     comments: '',
     isImplemented: false,
     teamsImplemented: {},
@@ -261,6 +263,10 @@ export class ActivityDescriptionComponent implements OnInit {
         false
       );
       this.currentActivity.teamsImplemented = data['teamsImplemented'];
+      this.currentActivity.teamsEvidence = this.defineEvidenceObject(
+        data['teamsEvidence']
+      );
+      // console.log("data['teamsEvidence']", data['teamsEvidence']);
       this.openall();
     });
   }
@@ -307,6 +313,14 @@ export class ActivityDescriptionComponent implements OnInit {
     } catch {
       return valueOfDataIfUndefined;
     }
+  }
+
+  defineEvidenceObject(dataToCheck: { [key: string]: string }): Object {
+    var dataToReturn: { [key: string]: string } = {};
+    for (var key in dataToCheck) {
+      dataToReturn[key] = this.defineStringValues(dataToCheck[key], '');
+    }
+    return dataToReturn;
   }
 
   defineImplementationObject(dataToCheck: implementation[]): implementation[] {
