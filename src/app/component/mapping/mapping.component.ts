@@ -49,6 +49,7 @@ export interface MappingElementSortedByISO17 {
   teamImplementation: {
     [key: string]: boolean;
   };
+  level: string;
 }
 
 export interface MappingElementSortedByISO22 {
@@ -343,6 +344,8 @@ export class MappingComponent implements OnInit {
     var CurrentTeamsAndImplementation =
       this.YamlObject[dim][subDim][activity]['teamsImplemented'];
 
+    var CurrentLevel = this.YamlObject[dim][subDim][activity]['level'];
+
     this.temporaryMappingElement = {
       dimension: dim,
       subDimension: subDim,
@@ -363,6 +366,7 @@ export class MappingComponent implements OnInit {
       comments: CurrentComments,
       assessment: CurrentAssessment,
       teamImplementation: CurrentTeamsAndImplementation,
+      level: CurrentLevel,
     };
 
     console.log(this.temporaryMappingElement);
