@@ -178,9 +178,7 @@
     <tr *ngFor="let item of allMappingDataSortedByISO17">
       <!-- checking if item is defined and set & truncating at 32767 characters per cell to fit to excel limitations-->
       <td>
-        <ng-container *ngIf="item.level && item.level.length > 0">
-          {{ item.level | slice : 0 : 32767 }}</ng-container
-        >
+        {{ item.level }}
       </td>
       <td>
         <ng-container *ngIf="item.dimension && item.dimension.length > 0">
