@@ -35,7 +35,7 @@ Please expect changes in the timeline.
 | 12:30 | Lunch Break (w/ Juice Shop Ask-us-Anything Session)                                                              | Björn Kimminich & Jannik Hollenbach & Timo Pagel |
 | 13:30 | Welcome: DSOMM Afternoon | Björn Kimminich & Timo Pagel                     |
 | 13:35 | Application Security Program Experiences / Ask Anything	| Brook Schoenfield & Timo Pagel | 
-| 14:30 | DSOMM Live Assessment for the OWASP Juice Shop Application |Björn Kimminich & Jannik Hollenbach & Timo Pagel | 
+| 14:30 | DSOMM Live Assessment for the OWASP Juice Shop Application | Björn Kimminich & Jannik Hollenbach & Timo Pagel | 
 | 15:30 | Reach your Dynamic Depth with OWASP secureCodeBox	| Jannik Hollenbach                                      |
 | 16:30 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map | Francesco Cipollone                                          |
 | 18:30 | Wrap Up                                                                  | Timo Pagel                    |
@@ -43,6 +43,9 @@ Please expect changes in the timeline.
 ## Application Security Program Experiences / Ask Anything
 Brook and Timo will talk about their experiences with Application Security Programs.
 Everyone is invited to join the conversation. Please bring your questions!
+
+# DSOMM Live Assessment for the OWASP Juice Shop Application 
+In this session, Timo will perform an assessment of the OWASP Juice Shop by interviewing other Juice Shop Core Members by filling out custom yaml files. Learn how to lead a DSOMM interview and at the same time fill out the DSOMM yaml files to document the assessment.
 
 ## Reach your Dynamic Depth with OWASP secureCodeBox
 Implementing automated scanning for applications within an organization presents a complex task due to various factors. While configuring the scans themselves poses a challenge (DSOMM subdimension "Dynamic depth for applications"), interpreting and utilizing the resulting data in a meaningful way is often even more challenging (DSOMM subdimension "Consolidation").
