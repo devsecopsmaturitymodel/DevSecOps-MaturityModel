@@ -40,6 +40,9 @@ Please expect changes in the timeline.
 | 16:30 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map | Francesco Cipollone                                          |
 | 18:30 | Wrap Up                                                                  | Timo Pagel                    |
 
+## Shake Logger XSS Demo
+Cross-Site Scripting (XSS) demonstrations in secure coding training often rely on simple alert boxes, which can understate the true risks of this vulnerability. This session will show you how to effectively illustrate the damage potential of XSS to both developers and non-technical audiences, providing a more realistic and compelling demonstration of its impact.
+
 ## Application Security Program Experiences / Ask Anything
 Brook and Timo will talk about their experiences with Application Security Programs.
 Everyone is invited to join the conversation. Please bring your questions!
@@ -53,13 +56,6 @@ Implementing automated scanning for applications within an organization presents
 This presentation aims to provide guidance on how to utilize the [OWASP secureCodeBox](https://www.securecodebox.io/) project as a tool to automate dynamic scans, leveraging tools such as ZAP, Nuclei, and SSLyze. Specifically, it will demonstrate how to either schedule regular scans or automatically create them via the [AutoDiscovery](https://www.securecodebox.io/docs/auto-discovery/overview) feature of the secureCodeBox. The talk will also highlight the ability to utilize the secureCodeBox for automated creation of scans on Kubernetes deployments.
 
 Furthermore, this presentation will showcase how the secureCodeBox can be used to automatically upload and organize scan results to [OWASP DefectDojo](https://defectdojo.com/), streamlining your security workflow.
-
-## Workshop: Utilize DSOMM App to Define and Deliver Your Own Program
-Timo will present the DSOMM application. He guides you to customize and distribute your AppSec Program. You will learn how to use "inheritance" of the DSOMM content to save time during the definition for example by gaining automatic mapping to frameworks like SAMM and ISO 27001.
-Requirements:
-- Docker
-
-Linux is recommended.
 
 ## Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map
 Organizations face an ever-increasing risk of cyberattacks and data breaches. Vulnerabilities are getting discovered faster than ever, with a 34% YoY increase of vulnerability discovery. Vulnerabilities are often tackled as they come from security scanners, leading to burnout of security professionals, with 50% of security engineers considering changing their profession entirely. This workshop explores the vulnerability management process that applies to application, cloud, and infrastructure security.
