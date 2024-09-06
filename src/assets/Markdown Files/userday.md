@@ -40,6 +40,7 @@ Please expect changes in the timeline.
 | 16:30 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map | Francesco Cipollone                                          |
 | 18:30 | Wrap Up                                                                  | Timo Pagel                    |
 
+# Talk Descriptions
 ## Shake Logger XSS Demo
 Cross-Site Scripting (XSS) demonstrations in secure coding training often rely on simple alert boxes, which can understate the true risks of this vulnerability. This session will show you how to effectively illustrate the damage potential of XSS to both developers and non-technical audiences, providing a more realistic and compelling demonstration of its impact.
 
@@ -47,7 +48,7 @@ Cross-Site Scripting (XSS) demonstrations in secure coding training often rely o
 Brook and Timo will talk about their experiences with Application Security Programs.
 Everyone is invited to join the conversation. Please bring your questions!
 
-# DSOMM Live Assessment for the OWASP Juice Shop Application 
+## DSOMM Live Assessment for the OWASP Juice Shop Application 
 In this session, Timo will perform an assessment of the OWASP Juice Shop by interviewing other Juice Shop Core Members by filling out custom yaml files. Learn how to lead a DSOMM interview and at the same time fill out the DSOMM yaml files to document the assessment.
 
 ## Reach your Dynamic Depth with OWASP secureCodeBox
