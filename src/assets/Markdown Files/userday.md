@@ -1,37 +1,51 @@
 # Description
 
-The OWASP DSOMM team is happy to announce its upcoming User Day on Wednesday, September 25th 2024. It is part of the OWASP AppSec San Francisco.
+In this combined User Day you will learn & have the chance to discuss with peers about two of OWASP’s major projects: DevSecOps Maturity Model (DSOMM) and Juice Shop!
+
+In the morning, explore techniques for delivering effective secure coding workshops using Juice Shop. Then, in the afternoon, discover strategies for tailoring application security initiatives with the DevSecOps Maturity Model (DSOMM).
+
+OWASP Juice Shop is - even after 10 years - still probably the most modern and sophisticated insecure web application. It encompasses vulnerabilities from the entire OWASP Top Ten along with many other security flaws, packaged in a realistic and fully functional web shop. We will offer the following sessions about Juice Shop:
+Beginner-friendly introduction session to the project, its features, and its use cases
+Fun live demo of a very practical XSS exploit
+Introduction of a way to run Juice Shop conveniently from an on-brand LEGO brick tower filled with Raspberry Pis
+Fully hosted just-for-fun (and bragging rights) Capture the Flag event
+
+Finally, you will have the chance to ask us any questions you may still have well into and during the lunch break!
+
+The OWASP DSOMM User Day is an event centered on application security programs and related topics for startups and enterprises. It features a talk on building and optimizing AppSec programs, emphasizing custom organizational maturity models. The event includes a discussion on AppSec program experiences, as well as a presentation on using OWASP secureCodeBox for automating dynamic scans. Two workshops are offered: one on utilizing the DSOMM application to customize and distribute AppSec programs, and another on the Application and Vulnerability Maturity Model. Throughout the event, there's a focus on practical implementation, automation, and maturity models in the context of cloud and application security.
+
 
 # Location
 Hyatt Regency San Francisco
 Address: 5 Embarcadero Center San Francisco, CA 94111 United States 
 Room: To be announced.
 
+
+
 # Agenda (DRAFT)
 Please expect changes in the timeline.
 
 | Time  | Title                                                                    | Speaker                                                                          |
 |-------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| 9:00  | Welcome                                                                  | Timo Pagel                                                                       |
-| 9:05  | Key Steps to Achieving an Application Security Program                   | Timo Pagel                                                                       |
-| 10:00 | Conversation about Application Security Program Experiences              | Brook Schoenfield and Timo Pagel |
-| 11:00 | Reach your Dynamic Depth with OWASP secureCodeBox                        | Jannik Hollenbach                                      |
-| 12:00 | Lunch Break                                                              | /                                                                                |
-| 13:30 | Workshop: Utilizing DSOMM App to Define Your Own Program                 | Timo Pagel                     |
-| 14:00 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map | Francesco Cipollone                                          |
-| 16:00 | Wrap Up                                                                  | Timo Pagel                    |
+| 9:00  | Welcome: Juice Shop Morning                                                                  | Björn Kimminich & Timo Pagel                                                                       |
+| 9:05  | Juice Shop Introduction                   | Björn Kimminich                                                                       |
+| 09:30 | Shake Logger XSS Demo             | Timo Pagel |
+| 09:45 | Multi Juicer Introduction                       | Jannik Hollenbach                                      |
+| 10:30 | Just-for-fun-CTF w/ Multi Juicer                       | Jannik Hollenbach                                      |
+| 12:30 | Lunch Break (w/ Juice Shop Ask-us-Anything Session)                                                              | Björn Kimminich & Jannik Hollenbach & Timo Pagel |
 
-# Talk Descriptions
-## Key Steps to Achieving an Application Security Program
-This talk outlines a practical approach to building and optimizing application security (AppSec) programs for organizations of all sizes. 
-While briefly touching on foundational elements, the presentation focuses on developing and implementing a custom organizational maturity model that resonates with development and operations teams. Moving beyond traditional frameworks, attendees will learn to design tailored models that account for diverse operating environments. The talk provides strategies for avoiding common pitfalls, implementing effective metrics, and creating a scalable AppSec approach adaptable to an organization’s evolving needs. Through actionable advice and real-world examples, participants will gain insights applicable to both new and existing AppSec programs.
+| 13:30 | Welcome: DSOMM Afternoon | Björn Kimminich & Timo Pagel                     |
+| 13:35 | Application Security Program Experiences / Ask Anything	| Brook Schoenfield & Timo Pagel | 
+| 14:30 | DSOMM Live Assessment for the OWASP Juice Shop Application |Björn Kimminich & Jannik Hollenbach & Timo Pagel | 
+| 15:30 | Reach your Dynamic Depth with OWASP secureCodeBox	| Jannik Hollenbach                                      |
+| 16:30 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map | Francesco Cipollone                                          |
+| 18:30 | Wrap Up                                                                  | Timo Pagel                    |
 
-## Conversation about Application Security Program Experiences
+## Application Security Program Experiences / Ask Anything
 Brook and Timo will talk about their experiences with Application Security Programs.
 Everyone is invited to join the conversation. Please bring your questions!
 
 ## Reach your Dynamic Depth with OWASP secureCodeBox
-
 Implementing automated scanning for applications within an organization presents a complex task due to various factors. While configuring the scans themselves poses a challenge (DSOMM subdimension "Dynamic depth for applications"), interpreting and utilizing the resulting data in a meaningful way is often even more challenging (DSOMM subdimension "Consolidation").
 
 This presentation aims to provide guidance on how to utilize the [OWASP secureCodeBox](https://www.securecodebox.io/) project as a tool to automate dynamic scans, leveraging tools such as ZAP, Nuclei, and SSLyze. Specifically, it will demonstrate how to either schedule regular scans or automatically create them via the [AutoDiscovery](https://www.securecodebox.io/docs/auto-discovery/overview) feature of the secureCodeBox. The talk will also highlight the ability to utilize the secureCodeBox for automated creation of scans on Kubernetes deployments.
