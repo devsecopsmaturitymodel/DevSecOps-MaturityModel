@@ -33,7 +33,6 @@ Please expect changes in the timeline.
 | 09:45 | Multi Juicer Introduction                       | Jannik Hollenbach                                      |
 | 10:30 | Just-for-fun-CTF w/ Multi Juicer                       | Jannik Hollenbach                                      |
 | 12:30 | Lunch Break (w/ Juice Shop Ask-us-Anything Session)                                                              | Björn Kimminich & Jannik Hollenbach & Timo Pagel |
-
 | 13:30 | Welcome: DSOMM Afternoon | Björn Kimminich & Timo Pagel                     |
 | 13:35 | Application Security Program Experiences / Ask Anything	| Brook Schoenfield & Timo Pagel | 
 | 14:30 | DSOMM Live Assessment for the OWASP Juice Shop Application |Björn Kimminich & Jannik Hollenbach & Timo Pagel | 
