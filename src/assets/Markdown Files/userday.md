@@ -41,8 +41,18 @@ Please expect changes in the timeline.
 | 18:30 | Wrap Up                                                                  | Timo Pagel                    |
 
 # Talk Descriptions
+
+## Juice Shop Introduction
+In the brief session, you will learn all the basics of the OWASP Juice Shop project: Why it exists, what it can do, where you can get it from, and how to get it running! This session will make sure that newcomers and experts alike can enjoy and follow in the subsequent Juice Shop sessions!
+
 ## Shake Logger XSS Demo
 Cross-Site Scripting (XSS) demonstrations in secure coding training often rely on simple alert boxes, which can understate the true risks of this vulnerability. This session will show you how to effectively illustrate the damage potential of XSS to both developers and non-technical audiences, providing a more realistic and compelling demonstration of its impact.
+
+## Multi Juicer Introduction
+_Coming soon..._
+
+## Just-for-fun-CTF w/ Multi Juicer
+_Coming soon..._
 
 ## Application Security Program Experiences / Ask Anything
 Brook and Timo will talk about their experiences with Application Security Programs.
@@ -120,3 +130,13 @@ Additionally, Timo provides training and mentorship on security in web applicati
 [Github](https://github.com/wurstbrot)
 [AppSec Program](https://appsec-program.com)
 [PagelShield](https://pagel.pro)
+
+## Bio Björn
+![Bjoern](https://gravatar.com/avatar/3b08332a92f5c0710d425a931025f1ab?size=256)
+Bjoern Kimminich works as Product Group Lead Application Ecosystem at Kuehne + Nagel, responsible – among other things – for the Application Security program in the corporate IT. He is an OWASP Lifetime Member, the project leader of the OWASP Juice Shop, and a co-chapter leader for the OWASP Germany Chapter. Björn also currently chairs the OWASP Project Committee.
+
+**References**
+[LinkedIn](https://www.linkedin.com/in/bkimminich)
+[Github](https://github.com/bkimminich)
+[Twitter](https://x.com/bkimminich)
+[Mastodon](https://infosec.exchange/@bkimminich)
