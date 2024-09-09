@@ -49,10 +49,13 @@ In the brief session, you will learn all the basics of the OWASP Juice Shop proj
 Cross-Site Scripting (XSS) demonstrations in secure coding training often rely on simple alert boxes, which can understate the true risks of this vulnerability. This session will show you how to effectively illustrate the damage potential of XSS to both developers and non-technical audiences, providing a more realistic and compelling demonstration of its impact.
 
 ## Multi Juicer Introduction
-_Coming soon..._
+Running CTFs and security trainings with OWASP Juice Shop is usually quite tricky, as Juice Shop isn't intended to be used by multiple users at the same time.
+MultiJuicer is a Juice Shop sub-project designed to make running trainings and CTFs with Juice Shop as easy and effective as possible.
+This session introduces the project and provides tips and tricks for setting it up in various cloud or on-prem environments.
 
-## Just-for-fun-CTF w/ Multi Juicer
-_Coming soon..._
+## Just-for-fun CTF w/ MultiJuicer
+In this session, we will use MultiJuicer to host a short CTF on a live MultiJuicer environment to demonstrate how it can be used for trainings and CTFs.
+This will be a hands-on session, so be sure to bring your laptops!
 
 ## Application Security Program Experiences / Ask Anything
 Brook and Timo will talk about their experiences with Application Security Programs.
