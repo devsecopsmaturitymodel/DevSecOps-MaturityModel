@@ -49,7 +49,7 @@ export interface MappingElementSortedByISO17 {
     [key: string]: boolean;
   };
   teamsEvidence: {
-    [key: string]: string | undefined;
+    [key: string]: string;
   };
 }
 
