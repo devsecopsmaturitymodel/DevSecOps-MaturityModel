@@ -42,12 +42,14 @@ export interface MappingElementSortedByISO17 {
   time: string;
   usefulness: string;
   dependsOn: string[];
-  evidence: string;
   comments: string;
   assessment: string;
   implementation: any;
   teamImplementation: {
     [key: string]: boolean;
+  };
+  teamsEvidence: {
+    [key: string]: string;
   };
 }
 
@@ -317,9 +319,6 @@ export class MappingComponent implements OnInit {
     var CurrentUsefulness: string =
       this.generalLabels[this.YamlObject[dim][subDim][activity]['usefulness']];
 
-    var CurrentEvidence: string =
-      this.YamlObject[dim][subDim][activity]['evidence'];
-
     var CurrentComments: string =
       this.YamlObject[dim][subDim][activity]['comments'];
 
@@ -343,6 +342,9 @@ export class MappingComponent implements OnInit {
     var CurrentTeamsAndImplementation =
       this.YamlObject[dim][subDim][activity]['teamsImplemented'];
 
+    var CurrentTeamsEvidence =
+      this.YamlObject[dim][subDim][activity]['teamsEvidence'];
+
     this.temporaryMappingElement = {
       dimension: dim,
       subDimension: subDim,
@@ -359,10 +361,10 @@ export class MappingComponent implements OnInit {
       usefulness: CurrentUsefulness,
       dependsOn: CurrentDependsOn,
       implementation: CurrentImplementation,
-      evidence: CurrentEvidence,
       comments: CurrentComments,
       assessment: CurrentAssessment,
       teamImplementation: CurrentTeamsAndImplementation,
+      teamsEvidence: CurrentTeamsEvidence,
     };
 
     console.log(this.temporaryMappingElement);
