@@ -155,6 +155,7 @@
       <th>Dimension</th>
       <th>Sub Dimension</th>
       <th>Activity</th>
+      <th>Level</th>
       <th>Description</th>
       <th>Risk</th>
       <th>Measure</th>
@@ -191,6 +192,11 @@
       <td>
         <ng-container *ngIf="item.activityName && item.activityName.length > 0">
           {{ item.activityName | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.level">
+          {{ '' + item.level | slice : 0 : 32767 }}
         </ng-container>
       </td>
       <td>
