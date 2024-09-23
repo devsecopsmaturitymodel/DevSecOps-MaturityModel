@@ -44,6 +44,7 @@ export interface MappingElementSortedByISO17 {
   dependsOn: string[];
   comments: string;
   assessment: string;
+  level: number;
   implementation: any;
   teamImplementation: {
     [key: string]: boolean;
@@ -345,6 +346,8 @@ export class MappingComponent implements OnInit {
     var CurrentTeamsEvidence =
       this.YamlObject[dim][subDim][activity]['teamsEvidence'];
 
+    var CurrentActivityLevel = this.YamlObject[dim][subDim][activity]['level'];
+
     this.temporaryMappingElement = {
       dimension: dim,
       subDimension: subDim,
@@ -360,6 +363,7 @@ export class MappingComponent implements OnInit {
       resources: CurrentResources,
       usefulness: CurrentUsefulness,
       dependsOn: CurrentDependsOn,
+      level: CurrentActivityLevel,
       implementation: CurrentImplementation,
       comments: CurrentComments,
       assessment: CurrentAssessment,
