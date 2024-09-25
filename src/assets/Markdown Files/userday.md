@@ -22,8 +22,7 @@ Room: To be announced.
 
 
 
-# Agenda (DRAFT)
-Please expect changes in the timeline.
+# Agenda
 
 | Time  | Title                                                                    | Speaker                                                                          |
 |-------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------|
@@ -34,11 +33,12 @@ Please expect changes in the timeline.
 | 10:30 | Just-for-fun-CTF w/ Multi Juicer                       | Jannik Hollenbach                                      |
 | 12:30 | Lunch Break (w/ Juice Shop Ask-us-Anything Session)                                                              | Björn Kimminich & Jannik Hollenbach & Timo Pagel |
 | 13:30 | Welcome: DSOMM Afternoon | Björn Kimminich & Timo Pagel                     |
-| 13:35 | Application Security Program Experiences / Ask Anything	| Brook Schoenfield & Timo Pagel | 
-| 14:30 | DSOMM Live Assessment for the OWASP Juice Shop Application | Björn Kimminich & Jannik Hollenbach & Timo Pagel | 
-| 15:30 | Reach your Dynamic Depth with OWASP secureCodeBox	| Jannik Hollenbach                                      |
-| 16:30 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map | Francesco Cipollone                                          |
-| 18:30 | Wrap Up                                                                  | Timo Pagel                    |
+| 13:45 | Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map	| Francesco Cipollone | 
+| 15:00 | Break | Break |
+| 15:30 | DSOMM Live Assessment for the OWASP Juice Shop Application | Björn Kimminich & Jannik Hollenbach & Timo Pagel | 
+| 16:15 | Reach your Dynamic Depth with OWASP secureCodeBox	| Jannik Hollenbach                                      |
+| 17:15 | Application Security Program Experiences / Ask Anything |                                      Brook Schoenfield & Timo Pagel     |
+| 18:15 | Wrap Up                                                                  | Timo Pagel                    |
 
 # Talk Descriptions
 
