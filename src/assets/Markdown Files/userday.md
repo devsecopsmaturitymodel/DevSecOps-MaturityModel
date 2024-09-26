@@ -71,6 +71,8 @@ This presentation aims to provide guidance on how to utilize the [OWASP secureCo
 
 Furthermore, this presentation will showcase how the secureCodeBox can be used to automatically upload and organize scan results to [OWASP DefectDojo](https://defectdojo.com/), streamlining your security workflow.
 
+[Presentation slides](/assets/presentations/userday-sf-2024-reach-your-dynamic-depth-with-owasp-securecodebox.pdf)
+
 ## Workshop: Application and Vulnerability maturity Model (VMM) - DSOMM Map
 Organizations face an ever-increasing risk of cyberattacks and data breaches. Vulnerabilities are getting discovered faster than ever, with a 34% YoY increase of vulnerability discovery. Vulnerabilities are often tackled as they come from security scanners, leading to burnout of security professionals, with 50% of security engineers considering changing their profession entirely. This workshop explores the vulnerability management process that applies to application, cloud, and infrastructure security.
 
