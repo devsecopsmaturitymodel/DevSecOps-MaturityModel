@@ -788,7 +788,7 @@ export class CircularHeatmapComponent implements OnInit {
 
   ResetIsImplemented() {
     localStorage.removeItem('dataset');
-    loadState()
+    this.loadState()
   }
 
   saveState() {
