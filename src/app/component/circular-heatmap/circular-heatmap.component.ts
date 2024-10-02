@@ -787,23 +787,8 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   ResetIsImplemented() {
-    for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
-      if (this.ALL_CARD_DATA[x]['Done%'] > 0) {
-        for (var y = 0; y < this.ALL_CARD_DATA[x]['Activity'].length; y++) {
-          var currActivityTeamsImplemented =
-            this.ALL_CARD_DATA[x]['Activity'][y]['teamsImplemented'];
-          (
-            Object.keys(
-              currActivityTeamsImplemented
-            ) as (keyof typeof currActivityTeamsImplemented)[]
-          ).forEach((key, index) => {
-            currActivityTeamsImplemented[key] = false;
-          });
-        }
-        this.reColorHeatmap();
-      }
-    }
-    this.saveState();
+    localStorage.removeItem('dataset');
+    loadState()
   }
 
   saveState() {
