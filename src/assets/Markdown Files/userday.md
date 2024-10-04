@@ -82,6 +82,7 @@ Why we created the vulnerability management process?
 We created the vulnerability maturity model to provide a quick and easy assessment method to define where you are in the vulnerability assessment process from triage.
 The VMM is mapped back to both SAMM, and DSOMM.
 
+[Presentation Slides](https://phoenix.security/media/OWASP-24-workshop.pdf)
 # Speakers
 
 ## Bio Brook
