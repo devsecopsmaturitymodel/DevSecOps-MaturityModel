@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { MatChip } from '@angular/material/chips';
 
 export interface activitySchema {
+  uuid: string;
   activityName: string;
   teamsImplemented: any;
 }
@@ -101,6 +102,11 @@ export class CircularHeatmapComponent implements OnInit {
 
             for (var a = 0; a < allActivityInThisSubDimension.length; a++) {
               try {
+                var uuid =
+                  this.YamlObject[allDimensionNames[d]][
+                    allSubDimensionInThisDimension[s]
+                  ][allActivityInThisSubDimension[a]]['uuid'];
+
                 var lvlOfCurrentActivity =
                   this.YamlObject[allDimensionNames[d]][
                     allSubDimensionInThisDimension[s]
@@ -148,6 +154,7 @@ export class CircularHeatmapComponent implements OnInit {
                   });
 
                   activity.push({
+                    uuid: uuid,
                     activityName: nameOfActivity,
                     teamsImplemented: teamStatus,
                   });
@@ -788,7 +795,7 @@ export class CircularHeatmapComponent implements OnInit {
 
   ResetIsImplemented() {
     localStorage.removeItem('dataset');
-    this.loadState()
+    this.loadState();
   }
 
   saveState() {
