@@ -11,18 +11,6 @@ export interface implementation {
   description: string;
 }
 
-export interface cardSchema {
-  UUID: string;
-  Dimension: string;
-  SubDimension: string;
-  Level: string;
-  'Done%': number;
-  Activity: activitySchema[];
-}
-export interface activitySchema {
-  activityName: string;
-  teamsImplemented: any;
-}
 export interface activityDescription {
   dimension: string;
   subDimension: string;
