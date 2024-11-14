@@ -397,7 +397,8 @@ export class CircularHeatmapComponent implements OnInit {
       .enter()
       .append('svg')
       .attr('width', '60%') // 70% forces the heatmap down
-      .attr('height', height + margin.top + margin.bottom)
+      .attr('height', 'auto')
+      .attr('viewBox', '0 0 1150 1150') 
       .append('g')
       .attr(
         'transform',
