@@ -10,6 +10,7 @@ export interface implementation {
   url: string;
   description: string;
 }
+
 export interface activityDescription {
   dimension: string;
   subDimension: string;
@@ -127,19 +128,6 @@ export class ActivityDescriptionComponent implements OnInit {
             var currentActivityName = activityInCurrentSubDimension[a];
 
             try {
-              console.log(this.currentActivity.uuid, this.currentActivity.uuid);
-              console.log(
-                'uuid',
-                this.YamlObject[allDimensionNames[i]][
-                  subdimensionsInCurrentDimension[j]
-                ][currentActivityName].uuid
-              );
-              console.log(
-                'currentActivityName',
-                this.YamlObject[allDimensionNames[i]][
-                  subdimensionsInCurrentDimension[j]
-                ][currentActivityName]
-              );
               if (
                 this.YamlObject[allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
@@ -149,7 +137,7 @@ export class ActivityDescriptionComponent implements OnInit {
                   this.YamlObject[allDimensionNames[i]][
                     subdimensionsInCurrentDimension[j]
                   ][currentActivityName];
-                this.currentActivity = data;
+                this.currentActivity = JSON.parse(JSON.stringify(data)); // Creates a deep copy of current activity to keep two seperate versions - with and without martkdown
                 this.currentActivity.dimension = allDimensionNames[i];
                 this.currentActivity.subDimension =
                   subdimensionsInCurrentDimension[j];
@@ -262,7 +250,35 @@ export class ActivityDescriptionComponent implements OnInit {
         data['isImplemented'],
         false
       );
-      this.currentActivity.teamsImplemented = data['teamsImplemented'];
+      const dataFromLocalStorage = localStorage.getItem('dataset');
+      if (dataFromLocalStorage !== null) {
+        var parsedDataFromLocalStorage = JSON.parse(dataFromLocalStorage);
+        var index = -1;
+        for (var i = 0; i < parsedDataFromLocalStorage.length; i++) {
+          for (
+            var j = 0;
+            j < parsedDataFromLocalStorage[i]['Activity'].length;
+            j++
+          ) {
+            if (
+              parsedDataFromLocalStorage[i]['Activity'][j]['uuid'] ===
+              data['uuid']
+            ) {
+              console.log('test', parsedDataFromLocalStorage[i]['Activity'][j]);
+
+              index = i;
+              this.currentActivity.teamsImplemented =
+                parsedDataFromLocalStorage[i]['Activity'][j][
+                  'teamsImplemented'
+                ];
+
+              break;
+            }
+          }
+        }
+        // this.currentActivity.teamsEvidence = this.defineEvidenceObject();
+      } else this.currentActivity.teamsImplemented = data['teamsImplemented'];
+
       this.currentActivity.teamsEvidence = this.defineEvidenceObject(
         data['teamsEvidence']
       );
