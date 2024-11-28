@@ -78,11 +78,15 @@ export class CircularHeatmapComponent implements OnInit {
 
   private LoadMaturityDataFromGeneratedYaml() {
     return new Promise<void>((resolve, reject) => {
-      console.log(`${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Fetch`);
+      console.log(
+        `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Fetch`
+      );
       this.yaml.setURI('./assets/YAML/generated/generated.yaml');
 
       this.yaml.getJson().subscribe(data => {
-        console.log(`${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Downloaded`);
+        console.log(
+          `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Downloaded`
+        );
         this.YamlObject = data;
         var allDimensionNames = Object.keys(this.YamlObject);
         var totalTeamsImplemented: number = 0;
@@ -118,7 +122,7 @@ export class CircularHeatmapComponent implements OnInit {
                     ][allActivityInThisSubDimension[a]]['level'];
 
                   if (lvlOfCurrentActivity == l + 1) {
-                    var nameOfActivity: string = 
+                    var nameOfActivity: string =
                       allActivityInThisSubDimension[a];
                     var teamStatus: { [key: string]: boolean } = {};
                     const teams = this.teamList;
@@ -200,7 +204,9 @@ export class CircularHeatmapComponent implements OnInit {
           this.segment_labels
         );
         this.noActivitytoGrey();
-        console.log(`${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml End`);
+        console.log(
+          `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml End`
+        );
         resolve();
       });
     });
@@ -240,15 +246,15 @@ export class CircularHeatmapComponent implements OnInit {
     return new Promise<void>((resolve, reject) => {
       console.log(`${this.perfNow()}s: LoadTeamsFromMetaYaml Fetch`);
       this.yaml.setURI('./assets/YAML/meta.yaml');
-      this.yaml.getJson().subscribe(data => { 
-      console.log(`${this.perfNow()}s: LoadTeamsFromMetaYaml Downloaded`);
+      this.yaml.getJson().subscribe(data => {
+        console.log(`${this.perfNow()}s: LoadTeamsFromMetaYaml Downloaded`);
         this.YamlObject = data;
 
         this.teamList = this.YamlObject['teams'];
         this.teamGroups = this.YamlObject['teamGroups'];
         this.teamVisible = [...this.teamList];
         console.log(`${this.perfNow()}s: LoadTeamsFromMetaYaml End`);
-        resolve(); // Resolve the promise, and allow the next Load to run
+        resolve();
       });
     });
   }
@@ -269,7 +275,7 @@ export class CircularHeatmapComponent implements OnInit {
           this.maxLevelOfActivities = y;
         }
         console.log(`${this.perfNow()}s: LoadMaturityLevels End`);
-        resolve(); // Resolve the promise, and allow the next Load to run
+        resolve();
       });
     });
   }
@@ -844,6 +850,6 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   perfNow(): string {
-    return (performance.now()/1000).toFixed(3);
+    return (performance.now() / 1000).toFixed(3);
   }
 }
