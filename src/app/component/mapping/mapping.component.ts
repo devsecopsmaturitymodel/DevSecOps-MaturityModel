@@ -256,7 +256,9 @@ export class MappingComponent implements OnInit {
             this.temporaryMappingElement
           );
         } else {
-          this.plannedMappingDataSortedBySAMM.push(this.temporaryMappingElement);
+          this.plannedMappingDataSortedBySAMM.push(
+            this.temporaryMappingElement
+          );
         }
       }
       for (var i = 0; i < SAMMArray.length; i++) {
@@ -383,7 +385,9 @@ export class MappingComponent implements OnInit {
             this.temporaryMappingElement
           );
         } else {
-          this.plannedMappingDataSortedByISO17.push(this.temporaryMappingElement);
+          this.plannedMappingDataSortedByISO17.push(
+            this.temporaryMappingElement
+          );
         }
       }
       for (var i = 0; i < ISOArray.length; i++) {
@@ -434,7 +438,7 @@ export class MappingComponent implements OnInit {
       ISO22: '',
       samm2: SAMMArray,
     };
-    
+
     if (ISO22Array) {
       if (ISO22Array.length == 0) {
         this.allMappingDataSortedByISO22.push(this.temporaryMappingElement);
@@ -443,7 +447,9 @@ export class MappingComponent implements OnInit {
             this.temporaryMappingElement
           );
         } else {
-          this.plannedMappingDataSortedByISO22.push(this.temporaryMappingElement);
+          this.plannedMappingDataSortedByISO22.push(
+            this.temporaryMappingElement
+          );
         }
       }
       for (var i = 0; i < ISO22Array.length; i++) {
