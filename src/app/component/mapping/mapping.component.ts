@@ -154,12 +154,18 @@ export class MappingComponent implements OnInit {
             ]
           );
           for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
-            if (a == 0) {
-              this.allTeams = Object.keys(
+            if (!this.allTeams || this.allTeams.length == 0) {
+              if (
                 this.YamlObject[this.allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
                 ][activityInCurrentSubDimension[a]]['teamsImplemented']
-              );
+              ) {
+                this.allTeams = Object.keys(
+                  this.YamlObject[this.allDimensionNames[i]][
+                    subdimensionsInCurrentDimension[j]
+                  ][activityInCurrentSubDimension[a]]['teamsImplemented']
+                );
+              }
             }
             this.setValueandAppendToDatasetSortedbyActivity(
               this.allDimensionNames[i],
