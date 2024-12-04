@@ -271,7 +271,7 @@
         </ng-container>
       </td>
       <td *ngFor="let key of allTeams">
-        <ng-container>
+        <ng-container *ngIf="item.teamImplementation">
           {{ item.teamImplementation[key] }}
         </ng-container>
       </td>

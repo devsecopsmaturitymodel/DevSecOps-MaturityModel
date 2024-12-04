@@ -247,26 +247,29 @@ export class MappingComponent implements OnInit {
       ISO22: ISO22Array,
       samm2: '',
     };
-    if (SAMMArray.length == 0) {
-      this.allMappingDataSortedBySAMM.push(this.temporaryMappingElement);
-      if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedBySAMM.push(
-          this.temporaryMappingElement
-        );
-      } else {
-        this.plannedMappingDataSortedBySAMM.push(this.temporaryMappingElement);
+
+    if (SAMMArray) {
+      if (SAMMArray.length == 0) {
+        this.allMappingDataSortedBySAMM.push(this.temporaryMappingElement);
+        if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
+          this.performedMappingDataSortedBySAMM.push(
+            this.temporaryMappingElement
+          );
+        } else {
+          this.plannedMappingDataSortedBySAMM.push(this.temporaryMappingElement);
+        }
       }
-    }
-    for (var i = 0; i < SAMMArray.length; i++) {
-      const newTempElement = JSON.parse(
-        JSON.stringify(this.temporaryMappingElement)
-      );
-      newTempElement['samm2'] = SAMMArray[i];
-      this.allMappingDataSortedBySAMM.push(newTempElement);
-      if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedBySAMM.push(newTempElement);
-      } else {
-        this.plannedMappingDataSortedBySAMM.push(newTempElement);
+      for (var i = 0; i < SAMMArray.length; i++) {
+        const newTempElement = JSON.parse(
+          JSON.stringify(this.temporaryMappingElement)
+        );
+        newTempElement['samm2'] = SAMMArray[i];
+        this.allMappingDataSortedBySAMM.push(newTempElement);
+        if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
+          this.performedMappingDataSortedBySAMM.push(newTempElement);
+        } else {
+          this.plannedMappingDataSortedBySAMM.push(newTempElement);
+        }
       }
     }
     //sorting by descending order
@@ -372,27 +375,29 @@ export class MappingComponent implements OnInit {
     };
 
     console.log(this.temporaryMappingElement);
-    if (ISOArray.length == 0) {
-      this.allMappingDataSortedByISO17.push(this.temporaryMappingElement);
-      if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedByISO17.push(
-          this.temporaryMappingElement
-        );
-      } else {
-        this.plannedMappingDataSortedByISO17.push(this.temporaryMappingElement);
+    if (ISOArray) {
+      if (ISOArray.length == 0) {
+        this.allMappingDataSortedByISO17.push(this.temporaryMappingElement);
+        if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
+          this.performedMappingDataSortedByISO17.push(
+            this.temporaryMappingElement
+          );
+        } else {
+          this.plannedMappingDataSortedByISO17.push(this.temporaryMappingElement);
+        }
       }
-    }
-    for (var i = 0; i < ISOArray.length; i++) {
-      const newTempElement = JSON.parse(
-        JSON.stringify(this.temporaryMappingElement)
-      );
-      newTempElement['ISO17'] = ISOArray[i];
-      //console.log(newTempElement);
-      this.allMappingDataSortedByISO17.push(newTempElement);
-      if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedByISO17.push(newTempElement);
-      } else {
-        this.plannedMappingDataSortedByISO17.push(newTempElement);
+      for (var i = 0; i < ISOArray.length; i++) {
+        const newTempElement = JSON.parse(
+          JSON.stringify(this.temporaryMappingElement)
+        );
+        newTempElement['ISO17'] = ISOArray[i];
+        //console.log(newTempElement);
+        this.allMappingDataSortedByISO17.push(newTempElement);
+        if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
+          this.performedMappingDataSortedByISO17.push(newTempElement);
+        } else {
+          this.plannedMappingDataSortedByISO17.push(newTempElement);
+        }
       }
     }
     //sorting by descending order
@@ -429,27 +434,30 @@ export class MappingComponent implements OnInit {
       ISO22: '',
       samm2: SAMMArray,
     };
-    if (ISO22Array.length == 0) {
-      this.allMappingDataSortedByISO22.push(this.temporaryMappingElement);
-      if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedByISO22.push(
-          this.temporaryMappingElement
-        );
-      } else {
-        this.plannedMappingDataSortedByISO22.push(this.temporaryMappingElement);
+    
+    if (ISO22Array) {
+      if (ISO22Array.length == 0) {
+        this.allMappingDataSortedByISO22.push(this.temporaryMappingElement);
+        if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
+          this.performedMappingDataSortedByISO22.push(
+            this.temporaryMappingElement
+          );
+        } else {
+          this.plannedMappingDataSortedByISO22.push(this.temporaryMappingElement);
+        }
       }
-    }
-    for (var i = 0; i < ISO22Array.length; i++) {
-      const newTempElement = JSON.parse(
-        JSON.stringify(this.temporaryMappingElement)
-      );
-      newTempElement['ISO22'] = ISO22Array[i];
-      //console.log(newTempElement);
-      this.allMappingDataSortedByISO22.push(newTempElement);
-      if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
-        this.performedMappingDataSortedByISO22.push(newTempElement);
-      } else {
-        this.plannedMappingDataSortedByISO22.push(newTempElement);
+      for (var i = 0; i < ISO22Array.length; i++) {
+        const newTempElement = JSON.parse(
+          JSON.stringify(this.temporaryMappingElement)
+        );
+        newTempElement['ISO22'] = ISO22Array[i];
+        //console.log(newTempElement);
+        this.allMappingDataSortedByISO22.push(newTempElement);
+        if (this.YamlObject[dim][subDim][activity]['isImplemented']) {
+          this.performedMappingDataSortedByISO22.push(newTempElement);
+        } else {
+          this.plannedMappingDataSortedByISO22.push(newTempElement);
+        }
       }
     }
     //sorting by descending order
