@@ -66,131 +66,149 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.LoadMaturityLevels();
-    this.LoadTeamsFromMetaYaml();
-    this.LoadMaturityDataFromGeneratedYaml();
+    // Ensure that Levels and Teams load before MaturityData
+    // using promises, since ngOnInit does not support async/await
+    this.LoadMaturityLevels()
+      .then(() => this.LoadTeamsFromMetaYaml())
+      .then(() => this.LoadMaturityDataFromGeneratedYaml());
   }
 
   @ViewChildren(MatChip) chips!: QueryList<MatChip>;
   matChipsArray: MatChip[] = [];
 
   private LoadMaturityDataFromGeneratedYaml() {
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+    return new Promise<void>((resolve, reject) => {
+      console.log(
+        `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Fetch`
+      );
+      this.yaml.setURI('./assets/YAML/generated/generated.yaml');
 
-    this.yaml.getJson().subscribe(data => {
-      this.YamlObject = data;
-      var allDimensionNames = Object.keys(this.YamlObject);
-      var totalTeamsImplemented: number = 0;
-      var totalActivityTeams: number = 0;
+      this.yaml.getJson().subscribe(data => {
+        console.log(
+          `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Downloaded`
+        );
+        this.YamlObject = data;
+        var allDimensionNames = Object.keys(this.YamlObject);
+        var totalTeamsImplemented: number = 0;
+        var totalActivityTeams: number = 0;
 
-      this.AddSegmentLabels(allDimensionNames);
+        this.AddSegmentLabels(allDimensionNames);
 
-      for (var l = 0; l < this.maxLevelOfActivities; l++) {
-        for (var d = 0; d < allDimensionNames.length; d++) {
-          var allSubDimensionInThisDimension = Object.keys(
-            this.YamlObject[allDimensionNames[d]]
-          );
-          for (var s = 0; s < allSubDimensionInThisDimension.length; s++) {
-            var allActivityInThisSubDimension = Object.keys(
-              this.YamlObject[allDimensionNames[d]][
-                allSubDimensionInThisDimension[s]
-              ]
+        for (var l = 0; l < this.maxLevelOfActivities; l++) {
+          for (var d = 0; d < allDimensionNames.length; d++) {
+            var allSubDimensionInThisDimension = Object.keys(
+              this.YamlObject[allDimensionNames[d]]
             );
-            var level = 'Level ' + (l + 1);
-            var activity: activitySchema[] = [];
-            var activityCompletionStatus: number = -1;
+            for (var s = 0; s < allSubDimensionInThisDimension.length; s++) {
+              var allActivityInThisSubDimension = Object.keys(
+                this.YamlObject[allDimensionNames[d]][
+                  allSubDimensionInThisDimension[s]
+                ]
+              );
+              var level = 'Level ' + (l + 1);
+              var activity: activitySchema[] = [];
+              var activityCompletionStatus: number = -1;
 
-            for (var a = 0; a < allActivityInThisSubDimension.length; a++) {
-              try {
-                var uuid =
-                  this.YamlObject[allDimensionNames[d]][
-                    allSubDimensionInThisDimension[s]
-                  ][allActivityInThisSubDimension[a]]['uuid'];
-
-                var lvlOfCurrentActivity =
-                  this.YamlObject[allDimensionNames[d]][
-                    allSubDimensionInThisDimension[s]
-                  ][allActivityInThisSubDimension[a]]['level'];
-
-                if (lvlOfCurrentActivity == l + 1) {
-                  var nameOfActivity: string = allActivityInThisSubDimension[a];
-                  var teamStatus: { [key: string]: boolean } = {};
-                  const teams = this.teamList;
-
-                  totalActivityTeams += 1;
-
-                  teams.forEach((singleTeam: any) => {
-                    teamStatus[singleTeam] = false;
-                  });
-
-                  var teamsImplemented: any =
+              for (var a = 0; a < allActivityInThisSubDimension.length; a++) {
+                try {
+                  var uuid =
                     this.YamlObject[allDimensionNames[d]][
                       allSubDimensionInThisDimension[s]
-                    ][allActivityInThisSubDimension[a]]['teamsImplemented'];
+                    ][allActivityInThisSubDimension[a]]['uuid'];
 
-                  if (teamsImplemented) {
-                    teamStatus = teamsImplemented;
-                  }
-
-                  var localStorageData = this.getFromBrowserState();
-
-                  if (localStorageData != null && localStorageData.length > 0) {
+                  var lvlOfCurrentActivity =
                     this.YamlObject[allDimensionNames[d]][
                       allSubDimensionInThisDimension[s]
-                    ][allActivityInThisSubDimension[a]]['teamsImplemented'] =
-                      this.getTeamImplementedFromJson(
-                        localStorageData,
-                        allActivityInThisSubDimension[a]
-                      );
-                  }
+                    ][allActivityInThisSubDimension[a]]['level'];
 
-                  (
-                    Object.keys(teamStatus) as (keyof typeof teamStatus)[]
-                  ).forEach((key, index) => {
+                  if (lvlOfCurrentActivity == l + 1) {
+                    var nameOfActivity: string =
+                      allActivityInThisSubDimension[a];
+                    var teamStatus: { [key: string]: boolean } = {};
+                    const teams = this.teamList;
+
                     totalActivityTeams += 1;
-                    if (teamStatus[key] === true) {
-                      totalTeamsImplemented += 1;
+
+                    teams.forEach((singleTeam: any) => {
+                      teamStatus[singleTeam] = false;
+                    });
+
+                    var teamsImplemented: any =
+                      this.YamlObject[allDimensionNames[d]][
+                        allSubDimensionInThisDimension[s]
+                      ][allActivityInThisSubDimension[a]]['teamsImplemented'];
+
+                    if (teamsImplemented) {
+                      teamStatus = teamsImplemented;
                     }
-                  });
 
-                  activity.push({
-                    uuid: uuid,
-                    activityName: nameOfActivity,
-                    teamsImplemented: teamStatus,
-                  });
-                }
+                    var localStorageData = this.getFromBrowserState();
 
-                if (totalActivityTeams > 0) {
-                  activityCompletionStatus =
-                    totalTeamsImplemented / totalActivityTeams;
+                    if (
+                      localStorageData != null &&
+                      localStorageData.length > 0
+                    ) {
+                      this.YamlObject[allDimensionNames[d]][
+                        allSubDimensionInThisDimension[s]
+                      ][allActivityInThisSubDimension[a]]['teamsImplemented'] =
+                        this.getTeamImplementedFromJson(
+                          localStorageData,
+                          allActivityInThisSubDimension[a]
+                        );
+                    }
+
+                    (
+                      Object.keys(teamStatus) as (keyof typeof teamStatus)[]
+                    ).forEach((key, index) => {
+                      totalActivityTeams += 1;
+                      if (teamStatus[key] === true) {
+                        totalTeamsImplemented += 1;
+                      }
+                    });
+
+                    activity.push({
+                      uuid: uuid,
+                      activityName: nameOfActivity,
+                      teamsImplemented: teamStatus,
+                    });
+                  }
+
+                  if (totalActivityTeams > 0) {
+                    activityCompletionStatus =
+                      totalTeamsImplemented / totalActivityTeams;
+                  }
+                } catch {
+                  console.log('level for activity does not exist');
                 }
-              } catch {
-                console.log('level for activity does not exist');
               }
+
+              var cardSchemaData: cardSchema = {
+                Dimension: allDimensionNames[d],
+                SubDimension: allSubDimensionInThisDimension[s],
+                Level: level,
+                'Done%': activityCompletionStatus,
+                Activity: activity,
+              };
+
+              this.ALL_CARD_DATA.push(cardSchemaData);
             }
-
-            var cardSchemaData: cardSchema = {
-              Dimension: allDimensionNames[d],
-              SubDimension: allSubDimensionInThisDimension[s],
-              Level: level,
-              'Done%': activityCompletionStatus,
-              Activity: activity,
-            };
-
-            this.ALL_CARD_DATA.push(cardSchemaData);
           }
         }
-      }
 
-      console.log('ALL CARD DATA', this.ALL_CARD_DATA);
-      this.loadState();
-      this.loadCircularHeatMap(
-        this.ALL_CARD_DATA,
-        '#chart',
-        this.radial_labels,
-        this.segment_labels
-      );
-      this.noActivitytoGrey();
+        console.log('ALL CARD DATA', this.ALL_CARD_DATA);
+        this.loadState();
+        this.loadCircularHeatMap(
+          this.ALL_CARD_DATA,
+          '#chart',
+          this.radial_labels,
+          this.segment_labels
+        );
+        this.noActivitytoGrey();
+        console.log(
+          `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml End`
+        );
+        resolve();
+      });
     });
   }
 
@@ -225,28 +243,40 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   private LoadTeamsFromMetaYaml() {
-    this.yaml.setURI('./assets/YAML/meta.yaml');
-    this.yaml.getJson().subscribe(data => {
-      this.YamlObject = data;
+    return new Promise<void>((resolve, reject) => {
+      console.log(`${this.perfNow()}s: LoadTeamsFromMetaYaml Fetch`);
+      this.yaml.setURI('./assets/YAML/meta.yaml');
+      this.yaml.getJson().subscribe(data => {
+        console.log(`${this.perfNow()}s: LoadTeamsFromMetaYaml Downloaded`);
+        this.YamlObject = data;
 
-      this.teamList = this.YamlObject['teams'];
-      this.teamGroups = this.YamlObject['teamGroups'];
-      this.teamVisible = [...this.teamList];
+        this.teamList = this.YamlObject['teams'];
+        this.teamGroups = this.YamlObject['teamGroups'];
+        this.teamVisible = [...this.teamList];
+        console.log(`${this.perfNow()}s: LoadTeamsFromMetaYaml End`);
+        resolve();
+      });
     });
   }
 
   private LoadMaturityLevels() {
-    this.yaml.setURI('./assets/YAML/meta.yaml');
-    // Function sets column header
-    this.yaml.getJson().subscribe(data => {
-      this.YamlObject = data;
+    return new Promise<void>((resolve, reject) => {
+      console.log(`${this.perfNow()}s: LoadMaturityLevels Fetch`);
+      this.yaml.setURI('./assets/YAML/meta.yaml');
+      // Function sets column header
+      this.yaml.getJson().subscribe(data => {
+        console.log(`${this.perfNow()}s: LoadMaturityLevels Downloaded`);
+        this.YamlObject = data;
 
-      // Levels header
-      for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
-        var y = parseInt(x) + 1;
-        this.radial_labels.push('Level ' + y);
-        this.maxLevelOfActivities = y;
-      }
+        // Levels header
+        for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
+          var y = parseInt(x) + 1;
+          this.radial_labels.push('Level ' + y);
+          this.maxLevelOfActivities = y;
+        }
+        console.log(`${this.perfNow()}s: LoadMaturityLevels End`);
+        resolve();
+      });
     });
   }
 
@@ -702,11 +732,8 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   noActivitytoGrey(): void {
-    console.log(this.ALL_CARD_DATA);
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
-        console.log(this.ALL_CARD_DATA[x]['SubDimension']);
-        console.log(this.ALL_CARD_DATA[x]['Level']);
         d3.selectAll(
           '#segment-' +
             this.ALL_CARD_DATA[x]['SubDimension'].replace(/ /g, '-') +
@@ -820,5 +847,9 @@ export class CircularHeatmapComponent implements OnInit {
     if (content != null) {
       return JSON.parse(content);
     }
+  }
+
+  perfNow(): string {
+    return (performance.now() / 1000).toFixed(3);
   }
 }
