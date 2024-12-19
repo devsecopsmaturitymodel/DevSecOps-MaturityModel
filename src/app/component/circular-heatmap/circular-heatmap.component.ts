@@ -10,6 +10,7 @@ import * as d3 from 'd3';
 import * as yaml from 'js-yaml';
 import { Router } from '@angular/router';
 import { MatChip } from '@angular/material/chips';
+import * as md from 'markdown-it';
 
 export interface activitySchema {
   uuid: string;
@@ -56,6 +57,7 @@ export class CircularHeatmapComponent implements OnInit {
   segment_labels: string[] = [];
   activityDetails: any;
   showOverlay: boolean;
+  markdown: md = md();
 
   constructor(
     private yaml: ymlService,
