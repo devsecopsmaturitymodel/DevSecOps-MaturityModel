@@ -230,7 +230,9 @@
                 <mat-chip
                   #c="matChip"
                   *ngFor="let team of teamList"
-                  (click)="toggleTeamSelection(c)">
+                  (click)="toggleTeamSelection(c)"
+                  selected
+                  >
                   {{ team }}
                 </mat-chip>
               </mat-chip-list>
