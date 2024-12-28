@@ -288,7 +288,7 @@ export class CircularHeatmapComponent implements OnInit {
 
   toggleTeamGroupSelection(chip: MatChip) {
     chip.toggleSelected();
-    let currChipValue = chip.value.replace(/\s/g, '');
+    let currChipValue = chip.value.trim();
 
     if (chip.selected) {
       this.selectedTeamChips = [currChipValue];
@@ -321,7 +321,7 @@ export class CircularHeatmapComponent implements OnInit {
 
   toggleTeamSelection(chip: MatChip) {
     chip.toggleSelected();
-    let currChipValue = chip.value.replace(/\s/g, '');
+    let currChipValue = chip.value.trim();
     let prevSelectedChip = this.selectedTeamChips;
     if (chip.selected) {
       this.teamVisible.push(currChipValue);
@@ -342,7 +342,7 @@ export class CircularHeatmapComponent implements OnInit {
     console.log('updating chips', fromTeamGroup);
     // Re select chips
     this.matChipsArray.forEach(chip => {
-      let currChipValue = chip.value.replace(/\s/g, '');
+      let currChipValue = chip.value.trim();
 
       if (this.teamVisible.includes(currChipValue)) {
         console.log(currChipValue);
