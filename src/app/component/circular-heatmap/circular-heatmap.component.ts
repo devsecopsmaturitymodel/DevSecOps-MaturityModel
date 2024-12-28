@@ -75,11 +75,10 @@ export class CircularHeatmapComponent implements OnInit {
       .then(() => this.LoadTeamsFromMetaYaml())
       .then(() => this.LoadMaturityDataFromGeneratedYaml())
       .then(() => {
-          console.log(`${this.perfNow()}s: set filters: ${this.chips?.length}`);
-          this.matChipsArray = this.chips.toArray();
+        console.log(`${this.perfNow()}s: set filters: ${this.chips?.length}`);
+        this.matChipsArray = this.chips.toArray();
       });
   }
-
 
   @ViewChildren(MatChip) chips!: QueryList<MatChip>;
   matChipsArray: MatChip[] = [];
