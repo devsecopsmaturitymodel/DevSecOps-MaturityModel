@@ -230,7 +230,8 @@
                 <mat-chip
                   #c="matChip"
                   *ngFor="let team of teamList"
-                  (click)="toggleTeamSelection(c)">
+                  (click)="toggleTeamSelection(c)"
+                  selected>
                   {{ team }}
                 </mat-chip>
               </mat-chip-list>
@@ -247,7 +248,7 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <button
-                      class="normal-button"
+                      class="title-button"
                       (click)="
                         $event.preventDefault();
                         navigate(
