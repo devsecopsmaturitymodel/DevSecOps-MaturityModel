@@ -739,21 +739,21 @@ export class CircularHeatmapComponent implements OnInit {
     }
   }
 
-  navigate(dim: string, subdim: string, activityName: string) {
+  openActivityDetails(dim: string, subdim: string, activityName: string) {
     let navigationExtras = {
       dimension: dim,
       subDimension: subdim,
       activityName: activityName,
     };
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
-    this.activityDetails = this.YamlObject[dim][subdim][activityName];
-    console.log(this.YamlObject);
-    console.log(this.YamlObject[dim][subdim]);
+    this.activityDetails = Object.assign(
+      {},
+      this.YamlObject[dim][subdim][activityName]
+    );
+
     if (this.activityDetails) {
       this.activityDetails.navigationExtras = navigationExtras;
     }
     console.log(this.activityDetails);
-    console.log(this.ALL_CARD_DATA);
     this.showOverlay = true;
   }
 
