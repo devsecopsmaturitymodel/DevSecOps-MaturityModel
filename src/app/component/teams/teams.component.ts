@@ -7,7 +7,7 @@ import * as yaml from 'js-yaml';
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css'],
 })
-export class Teams implements OnInit {
+export class TeamsComponent implements OnInit {
   YamlObject: any;
   teamList: any;
   teamGroups: Map<string, string[]> = new Map();

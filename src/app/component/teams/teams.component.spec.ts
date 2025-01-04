@@ -6,22 +6,22 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
 import { MatChip } from '@angular/material/chips';
 
-import { Teams } from './teams.component';
+import { TeamsComponent } from './teams.component';
 
-describe('Teams', () => {
-  let component: Teams;
-  let fixture: ComponentFixture<Teams>;
+describe('TeamsComponent', () => {
+  let component: TeamsComponent;
+  let fixture: ComponentFixture<TeamsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [ymlService, HttpClientTestingModule],
       imports: [RouterTestingModule, HttpClientModule],
-      declarations: [Teams, MatChip],
+      declarations: [TeamsComponent, MatChip],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Teams);
+    fixture = TestBed.createComponent(TeamsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
