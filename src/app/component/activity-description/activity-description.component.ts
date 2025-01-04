@@ -78,6 +78,7 @@ export class ActivityDescriptionComponent implements OnInit {
   YamlObject: any;
   GeneralLabels: string[] = [];
   KnowledgeLabels: string[] = [];
+  TeamList: string[] = [];
   rowIndex: number = 0;
   markdown: md = md();
   SAMMVersion: string = 'OWASP SAMM VERSION 2';
@@ -98,6 +99,9 @@ export class ActivityDescriptionComponent implements OnInit {
     console.log(this.perfNow() + 's: meta.yaml fetch');
     this.yaml.getJson().subscribe(data => {
       console.log(this.perfNow() + 's: meta.yaml');
+      this.GeneralLabels = data['strings']['en']['labels'];
+      this.KnowledgeLabels = data['strings']['en']['KnowledgeLabels'];
+      this.TeamList = data['teams']; // Genuine teams (the true source)
       console.log(this.perfNow() + 's: meta.yaml processed');
     });
     //gets value from generated folder
