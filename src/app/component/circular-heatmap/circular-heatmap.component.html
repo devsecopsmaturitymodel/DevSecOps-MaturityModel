@@ -218,7 +218,7 @@
                 </mat-chip>
                 <mat-chip
                   #c="matChip"
-                  *ngFor="let group of teamGroups | keyvalue"
+                  *ngFor="let group of teamGroups | keyvalue : unsorted"
                   (click)="toggleTeamGroupSelection(c)">
                   {{ group.key }}
                 </mat-chip>
@@ -264,13 +264,12 @@
                 <ng-template matExpansionPanelContent>
                   <ul class="team-list">
                     <li
-                      *ngFor="let item of activity.teamsImplemented | keyvalue">
+                    *ngFor="let teamname of teamVisible">
                       <mat-checkbox
-                        [checked]="item.value === true"
-                        *ngIf="teamVisible.includes(item.key | ToStringValue)"
+                      [checked]="activity.teamsImplemented[teamname]"
                         color="primary"
-                        (click)="this.teamCheckbox(activityIndex, item.key)">
-                        {{ item.key }}
+                      (click)="this.teamCheckbox(activityIndex, teamname); $event.preventDefault()">
+                      {{ teamname }}
                       </mat-checkbox>
                     </li>
                   </ul>

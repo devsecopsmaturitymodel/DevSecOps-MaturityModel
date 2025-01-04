@@ -828,4 +828,8 @@ export class CircularHeatmapComponent implements OnInit {
   perfNow(): string {
     return (performance.now() / 1000).toFixed(3);
   }
+
+  unsorted() {
+    return 0;
+  }
 }
