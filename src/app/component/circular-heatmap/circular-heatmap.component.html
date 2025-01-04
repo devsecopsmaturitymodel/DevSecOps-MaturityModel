@@ -263,13 +263,15 @@
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
                   <ul class="team-list">
-                    <li
-                    *ngFor="let teamname of teamVisible">
+                    <li *ngFor="let teamname of teamVisible">
                       <mat-checkbox
-                      [checked]="activity.teamsImplemented[teamname]"
+                        [checked]="activity.teamsImplemented[teamname]"
                         color="primary"
-                      (click)="this.teamCheckbox(activityIndex, teamname); $event.preventDefault()">
-                      {{ teamname }}
+                        (click)="
+                          this.teamCheckbox(activityIndex, teamname);
+                          $event.preventDefault()
+                        ">
+                        {{ teamname }}
                       </mat-checkbox>
                     </li>
                   </ul>
