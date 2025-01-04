@@ -236,14 +236,10 @@ export class CircularHeatmapComponent implements OnInit {
     return undefined;
   }
 
-  private AddSegmentLabels(allDimensionNames: string[]) {
-    console.log(allDimensionNames);
-    for (var i = 0; i < allDimensionNames.length; i++) {
-      var allSubDimensionInThisDimension = Object.keys(
-        this.YamlObject[allDimensionNames[i]]
-      );
-      for (var j = 0; j < allSubDimensionInThisDimension.length; j++) {
-        this.segment_labels.push(allSubDimensionInThisDimension[j]);
+  private AddSegmentLabels(yampObject: any[]) {
+    for (let dim in yampObject) {
+      for (let subdim in yampObject[dim]) {
+        this.segment_labels.push(subdim);
       }
     }
     console.log(this.segment_labels);
