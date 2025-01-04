@@ -41,7 +41,7 @@ type ProjectData = {
 })
 export class CircularHeatmapComponent implements OnInit {
   Routing: string = '/activity-description';
-  maxLevelOfActivities: number = -1;
+  maxLevelOfMaturity: number = -1;
   showActivityCard: boolean = false;
   cardHeader: string = '';
   cardSubheader: string = '';
@@ -95,7 +95,7 @@ export class CircularHeatmapComponent implements OnInit {
 
         // Initialize the card array
         let segmentTotalCount = this.segment_labels.length;
-        let cardTotalCount = segmentTotalCount * this.maxLevelOfActivities;
+        let cardTotalCount = segmentTotalCount * this.maxLevelOfMaturity;
         this.ALL_CARD_DATA = new Array(cardTotalCount).fill(null);
 
         // Process each card / sector
@@ -112,7 +112,7 @@ export class CircularHeatmapComponent implements OnInit {
 
             for (
               let level: number = 1;
-              level <= this.maxLevelOfActivities;
+              level <= this.maxLevelOfMaturity;
               level++
             ) {
               // Create and store each card (with activities for that level)
@@ -257,7 +257,7 @@ export class CircularHeatmapComponent implements OnInit {
         for (let x in this.YamlObject['strings']['en']['maturity_levels']) {
           var y = parseInt(x) + 1;
           this.radial_labels.push('Level ' + y);
-          this.maxLevelOfActivities = y;
+          this.maxLevelOfMaturity = y;
         }
         resolve();
       });
@@ -354,7 +354,7 @@ export class CircularHeatmapComponent implements OnInit {
         teamKey
       ];
 
-    this.saveState();
+    this.saveDataset();
     this.reColorHeatmap();
   }
 
@@ -449,7 +449,6 @@ export class CircularHeatmapComponent implements OnInit {
         _self.activityData = curr.Activity;
         _self.cardHeader = curr.SubDimension;
         _self.showActivityCard = true;
-        //console.log(_self.activityData)
       })
       .on('mouseover', function (d) {
         //console.log(d.toElement.__data__.Name)
@@ -797,14 +796,14 @@ export class CircularHeatmapComponent implements OnInit {
 
   ResetIsImplemented() {
     localStorage.removeItem('dataset');
-    this.loadState();
+    this.loadDataset();
   }
 
-  saveState() {
+  saveDataset() {
     localStorage.setItem('dataset', JSON.stringify(this.ALL_CARD_DATA));
   }
 
-  loadState() {
+  loadDataset() {
     var content = this.getDatasetFromBrowserStorage();
     if (content != null) {
       this.ALL_CARD_DATA = content;
