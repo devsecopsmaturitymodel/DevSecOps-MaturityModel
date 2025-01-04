@@ -37,7 +37,7 @@ export interface activityDescription {
   assessment: string;
   comments: string;
   isImplemented: boolean;
-  teamsImplemented: Object;
+  teamsImplemented: Record<string, any>;
 }
 
 @Component({
@@ -255,34 +255,41 @@ export class ActivityDescriptionComponent implements OnInit {
         data['isImplemented'],
         false
       );
-      const dataFromLocalStorage = localStorage.getItem('dataset');
+      let combinedTeamsImplemented: any = {};
+      const dataFromLocalStorage: string | null =
+        localStorage.getItem('dataset');
       if (dataFromLocalStorage !== null) {
-        var parsedDataFromLocalStorage = JSON.parse(dataFromLocalStorage);
-        var index = -1;
-        for (var i = 0; i < parsedDataFromLocalStorage.length; i++) {
-          for (
-            var j = 0;
-            j < parsedDataFromLocalStorage[i]['Activity'].length;
-            j++
-          ) {
-            if (
-              parsedDataFromLocalStorage[i]['Activity'][j]['uuid'] ===
-              data['uuid']
-            ) {
-              console.log('test', parsedDataFromLocalStorage[i]['Activity'][j]);
+        let localData = JSON.parse(dataFromLocalStorage);
+        let localDataActivity = null;
 
-              index = i;
-              this.currentActivity.teamsImplemented =
-                parsedDataFromLocalStorage[i]['Activity'][j][
-                  'teamsImplemented'
-                ];
-
+        // Find the activity with the correct uuid
+        for (let subdim of localData) {
+          for (let activity of subdim?.Activity) {
+            if (activity?.uuid === data?.uuid) {
+              console.log('Found', activity);
+              localDataActivity = activity;
               break;
             }
           }
+          if (localDataActivity) break;
         }
-        // this.currentActivity.teamsEvidence = this.defineEvidenceObject();
-      } else this.currentActivity.teamsImplemented = data['teamsImplemented'];
+
+        // Combine teams status from local storage and loaded yaml file
+        combinedTeamsImplemented = Object.assign(
+          {},
+          localDataActivity?.teamsImplemented,
+          this.currentActivity?.teamsImplemented
+        );
+      } else {
+        combinedTeamsImplemented = data['teamsImplemented'];
+      }
+
+      // Only keep genuine teams
+      this.currentActivity.teamsImplemented = {};
+      for (let team of this.TeamList) {
+        this.currentActivity.teamsImplemented[team] =
+          combinedTeamsImplemented[team];
+      }
 
       this.currentActivity.teamsEvidence = this.defineEvidenceObject(
         data['teamsEvidence']
