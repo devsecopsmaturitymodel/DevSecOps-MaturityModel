@@ -85,15 +85,10 @@ export class CircularHeatmapComponent implements OnInit {
 
   private LoadMaturityDataFromGeneratedYaml() {
     return new Promise<void>((resolve, reject) => {
-      console.log(
-        `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Fetch`
-      );
+      console.log(`${this.perfNow()}s: LoadMaturityData Fetch`);
       this.yaml.setURI('./assets/YAML/generated/generated.yaml');
-
       this.yaml.getJson().subscribe(data => {
-        console.log(
-          `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml Downloaded`
-        );
+        console.log(`${this.perfNow()}s: LoadMaturityData Downloaded`);
         this.YamlObject = data;
         this.AddSegmentLabels(this.YamlObject);
         const localStorageData = this.getDatasetFromBrowserStorage();
@@ -144,9 +139,7 @@ export class CircularHeatmapComponent implements OnInit {
           this.segment_labels
         );
         this.noActivitytoGrey();
-        console.log(
-          `${this.perfNow()}s: LoadMaturityDataFromGeneratedYaml End`
-        );
+        console.log(`${this.perfNow()}s: LoadMaturityData End`);
         resolve();
       });
     });
