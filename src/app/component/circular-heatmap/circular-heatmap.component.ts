@@ -739,14 +739,36 @@ export class CircularHeatmapComponent implements OnInit {
     this.showOverlay = false;
   }
 
-  SaveEditedYAMLfile() {
+  saveEditedYAMLfile() {
+    this.setTeamsStatus(this.YamlObject, this.teamList, this.ALL_CARD_DATA);
     let yamlStr = yaml.dump(this.YamlObject);
+
     let file = new Blob([yamlStr], { type: 'text/csv;charset=utf-8' });
     var link = document.createElement('a');
     link.href = window.URL.createObjectURL(file);
     link.download = 'generated.yaml';
     link.click();
     link.remove();
+  }
+
+  setTeamsStatus(yamlObject: any, teamList: string[], card_data: cardSchema[]) {
+    // Loop through all activities from the card_data
+    for (let card of card_data) {
+      for (let activity of card.Activity) {
+        let dim: string = card.Dimension;
+        let subdim: string = card.SubDimension;
+        let activityName: string = activity.activityName;
+        let teamsImplemented: any = {};
+
+        // Get the state for all genuine teams of the activity
+        for (let team of teamList) {
+          teamsImplemented[team] = activity?.teamsImplemented[team] || false;
+        }
+        // Save the teams' state to the yaml object
+        yamlObject[dim][subdim][activityName].teamsImplemented =
+          teamsImplemented;
+      }
+    }
   }
 
   reColorHeatmap() {
