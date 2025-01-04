@@ -95,16 +95,17 @@ export class ActivityDescriptionComponent implements OnInit {
     //gets value from sample file
     this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets label data
+    console.log(this.perfNow() + 's: meta.yaml fetch');
     this.yaml.getJson().subscribe(data => {
-      this.YamlObject = data;
-      this.GeneralLabels = this.YamlObject['strings']['en']['labels'];
-      this.KnowledgeLabels =
-        this.YamlObject['strings']['en']['KnowledgeLabels'];
+      console.log(this.perfNow() + 's: meta.yaml');
+      console.log(this.perfNow() + 's: meta.yaml processed');
     });
     //gets value from generated folder
+    console.log(this.perfNow() + 's: generated.yaml fetch');
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
+      console.log(this.perfNow() + 's: generated.yaml downloaded');
       this.YamlObject = data;
 
       var allDimensionNames = Object.keys(this.YamlObject);
@@ -284,6 +285,7 @@ export class ActivityDescriptionComponent implements OnInit {
       );
       // console.log("data['teamsEvidence']", data['teamsEvidence']);
       this.openall();
+      console.log(this.perfNow() + 's: generated.yaml processed');
     });
   }
 
@@ -377,5 +379,9 @@ export class ActivityDescriptionComponent implements OnInit {
     this.accordion.forEach(element => {
       element.closeAll();
     });
+  }
+
+  perfNow() {
+    return (performance.now() / 1000).toFixed(3);
   }
 }
