@@ -27,7 +27,7 @@ export class TeamsComponent implements OnInit {
       console.log('teamGroups', this.teamGroups);
     });
   }
-  
+
   getTeamArray(key: string): string[] {
     return this.teamGroups.get(key) || [];
   }
