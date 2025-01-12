@@ -20,7 +20,7 @@ import { UsageComponent } from './component/usage/usage.component';
 import { UserdayComponent } from './component/userday/userday.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
-import { Teams } from './component/teams/teams.component';
+import { TeamsComponent } from './component/teams/teams.component';
 import { ToStringValuePipe } from './pipe/to-string-value.pipe';
 
 @NgModule({
@@ -37,7 +37,7 @@ import { ToStringValuePipe } from './pipe/to-string-value.pipe';
     UsageComponent,
     AboutUsComponent,
     DependencyGraphComponent,
-    Teams,
+    TeamsComponent,
     ToStringValuePipe,
     UserdayComponent,
   ],

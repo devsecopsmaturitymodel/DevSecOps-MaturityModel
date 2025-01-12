@@ -62,7 +62,9 @@
         <th mat-header-cell *matHeaderCellDef>{{ levels[i] }}</th>
         <td mat-cell *matCellDef="let element">
           <ul class="activity-list">
-            <li class="mat-cell-activity" *ngFor="let activity of element[lvl]; index as j">
+            <li
+              class="mat-cell-activity"
+              *ngFor="let activity of element[lvl]; index as j">
               <div>
                 <div>
                   <a

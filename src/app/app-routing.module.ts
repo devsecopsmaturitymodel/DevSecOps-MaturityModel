@@ -7,7 +7,7 @@ import { MappingComponent } from './component/mapping/mapping.component';
 import { MatrixComponent } from './component/matrix/matrix.component';
 import { ActivityDescriptionComponent } from './component/activity-description/activity-description.component';
 import { UsageComponent } from './component/usage/usage.component';
-import { Teams } from './component/teams/teams.component';
+import { TeamsComponent } from './component/teams/teams.component';
 
 const routes: Routes = [
   { path: '', component: MatrixComponent },
@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'activity-description', component: ActivityDescriptionComponent },
   { path: 'mapping', component: MappingComponent },
   { path: 'usage', component: UsageComponent },
-  { path: 'teams', component: Teams },
+  { path: 'teams', component: TeamsComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'userday', component: UserdayComponent },
 ];
