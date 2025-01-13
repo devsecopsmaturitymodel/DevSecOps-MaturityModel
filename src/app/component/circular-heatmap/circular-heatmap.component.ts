@@ -746,6 +746,17 @@ export class CircularHeatmapComponent implements OnInit {
     }
   }
 
+  defineStringValues(
+    dataToCheck: string,
+    valueOfDataIfUndefined: string
+  ): string {
+    try {
+      return this.markdown.render(dataToCheck);
+    } catch {
+      return valueOfDataIfUndefined;
+    }
+  }
+
   navigate(dim: string, subdim: string, activityName: string) {
     let navigationExtras = {
       dimension: dim,
@@ -754,6 +765,18 @@ export class CircularHeatmapComponent implements OnInit {
     };
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     this.activityDetails = this.YamlObject[dim][subdim][activityName];
+    this.activityDetails.description = this.defineStringValues(
+      this.activityDetails.description,
+      this.activityDetails.description
+    );
+    this.activityDetails.risk = this.defineStringValues(
+      this.activityDetails.risk,
+      this.activityDetails.risk
+    );
+    this.activityDetails.measure = this.defineStringValues(
+      this.activityDetails.measure,
+      this.activityDetails.measure
+    );
     console.log(this.YamlObject);
     console.log(this.YamlObject[dim][subdim]);
     if (this.activityDetails) {
