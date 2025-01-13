@@ -8,8 +8,8 @@
   shape-rendering: crispEdges;
 }
 
-.normal-button {
-  background-color: white;
+.title-button {
+  background-color: transparent;
   border: none;
   text-align: left;
   cursor: pointer;

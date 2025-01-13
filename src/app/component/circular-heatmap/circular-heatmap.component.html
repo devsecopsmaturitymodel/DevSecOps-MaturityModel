@@ -206,7 +206,7 @@
                 </mat-chip>
                 <mat-chip
                   #c="matChip"
-                  *ngFor="let group of teamGroups | keyvalue"
+                  *ngFor="let group of teamGroups | keyvalue : unsorted"
                   (click)="toggleTeamGroupSelection(c)">
                   {{ group.key }}
                 </mat-chip>
@@ -218,7 +218,8 @@
                 <mat-chip
                   #c="matChip"
                   *ngFor="let team of teamList"
-                  (click)="toggleTeamSelection(c)">
+                  (click)="toggleTeamSelection(c)"
+                  selected>
                   {{ team }}
                 </mat-chip>
               </mat-chip-list>
@@ -235,10 +236,10 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <button
-                      class="normal-button"
+                      class="title-button"
                       (click)="
                         $event.preventDefault();
-                        navigate(
+                        openActivityDetails(
                           currentDimension,
                           cardHeader,
                           activity['activityName']
@@ -250,14 +251,15 @@
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
                   <ul class="team-list">
-                    <li
-                      *ngFor="let item of activity.teamsImplemented | keyvalue">
+                    <li *ngFor="let teamname of teamVisible">
                       <mat-checkbox
-                        [checked]="item.value === true"
-                        *ngIf="teamVisible.includes(item.key | ToStringValue)"
+                        [checked]="activity.teamsImplemented[teamname]"
                         color="primary"
-                        (click)="this.teamCheckbox(activityIndex, item.key)">
-                        {{ item.key }}
+                        (click)="
+                          this.teamCheckbox(activityIndex, teamname);
+                          $event.preventDefault()
+                        ">
+                        {{ teamname }}
                       </mat-checkbox>
                     </li>
                   </ul>
@@ -275,7 +277,7 @@
           class="normal-button"
           mat-raised-button
           class="downloadButtonClass"
-          (click)="SaveEditedYAMLfile()">
+          (click)="saveEditedYAMLfile()">
           Download edited YAML file
         </button>
         <button

@@ -6,7 +6,7 @@
     </ul>
   </div>
   <h2>Team Group</h2>
-  <div class="group-expand" *ngFor="let group of teamGroups | keyvalue">
+  <div class="group-expand" *ngFor="let group of teamGroups | keyvalue : unsorted">
     <h3>{{ group.key }}</h3>
     <div class="team-list">
       <ul>

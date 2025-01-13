@@ -37,7 +37,7 @@ export interface activityDescription {
   assessment: string;
   comments: string;
   isImplemented: boolean;
-  teamsImplemented: Object;
+  teamsImplemented: Record<string, any>;
 }
 
 @Component({
@@ -78,6 +78,7 @@ export class ActivityDescriptionComponent implements OnInit {
   YamlObject: any;
   GeneralLabels: string[] = [];
   KnowledgeLabels: string[] = [];
+  TeamList: string[] = [];
   rowIndex: number = 0;
   markdown: md = md();
   SAMMVersion: string = 'OWASP SAMM VERSION 2';
@@ -95,16 +96,20 @@ export class ActivityDescriptionComponent implements OnInit {
     //gets value from sample file
     this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets label data
+    console.log(this.perfNow() + 's: meta.yaml fetch');
     this.yaml.getJson().subscribe(data => {
-      this.YamlObject = data;
-      this.GeneralLabels = this.YamlObject['strings']['en']['labels'];
-      this.KnowledgeLabels =
-        this.YamlObject['strings']['en']['KnowledgeLabels'];
+      console.log(this.perfNow() + 's: meta.yaml');
+      this.GeneralLabels = data['strings']['en']['labels'];
+      this.KnowledgeLabels = data['strings']['en']['KnowledgeLabels'];
+      this.TeamList = data['teams']; // Genuine teams (the true source)
+      console.log(this.perfNow() + 's: meta.yaml processed');
     });
     //gets value from generated folder
+    console.log(this.perfNow() + 's: generated.yaml fetch');
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
     // Function sets data
     this.yaml.getJson().subscribe(data => {
+      console.log(this.perfNow() + 's: generated.yaml downloaded');
       this.YamlObject = data;
 
       var allDimensionNames = Object.keys(this.YamlObject);
@@ -250,40 +255,48 @@ export class ActivityDescriptionComponent implements OnInit {
         data['isImplemented'],
         false
       );
-      const dataFromLocalStorage = localStorage.getItem('dataset');
+      let combinedTeamsImplemented: any = {};
+      const dataFromLocalStorage: string | null =
+        localStorage.getItem('dataset');
       if (dataFromLocalStorage !== null) {
-        var parsedDataFromLocalStorage = JSON.parse(dataFromLocalStorage);
-        var index = -1;
-        for (var i = 0; i < parsedDataFromLocalStorage.length; i++) {
-          for (
-            var j = 0;
-            j < parsedDataFromLocalStorage[i]['Activity'].length;
-            j++
-          ) {
-            if (
-              parsedDataFromLocalStorage[i]['Activity'][j]['uuid'] ===
-              data['uuid']
-            ) {
-              console.log('test', parsedDataFromLocalStorage[i]['Activity'][j]);
+        let localData = JSON.parse(dataFromLocalStorage);
+        let localDataActivity = null;
 
-              index = i;
-              this.currentActivity.teamsImplemented =
-                parsedDataFromLocalStorage[i]['Activity'][j][
-                  'teamsImplemented'
-                ];
-
+        // Find the activity with the correct uuid
+        for (let subdim of localData) {
+          for (let activity of subdim?.Activity) {
+            if (activity?.uuid === data?.uuid) {
+              console.log('Found', activity);
+              localDataActivity = activity;
               break;
             }
           }
+          if (localDataActivity) break;
         }
-        // this.currentActivity.teamsEvidence = this.defineEvidenceObject();
-      } else this.currentActivity.teamsImplemented = data['teamsImplemented'];
+
+        // Combine teams status from local storage and loaded yaml file
+        combinedTeamsImplemented = Object.assign(
+          {},
+          localDataActivity?.teamsImplemented,
+          this.currentActivity?.teamsImplemented
+        );
+      } else {
+        combinedTeamsImplemented = data['teamsImplemented'];
+      }
+
+      // Only keep genuine teams
+      this.currentActivity.teamsImplemented = {};
+      for (let team of this.TeamList) {
+        this.currentActivity.teamsImplemented[team] =
+          combinedTeamsImplemented[team];
+      }
 
       this.currentActivity.teamsEvidence = this.defineEvidenceObject(
         data['teamsEvidence']
       );
       // console.log("data['teamsEvidence']", data['teamsEvidence']);
       this.openall();
+      console.log(this.perfNow() + 's: generated.yaml processed');
     });
   }
 
@@ -377,5 +390,9 @@ export class ActivityDescriptionComponent implements OnInit {
     this.accordion.forEach(element => {
       element.closeAll();
     });
+  }
+
+  perfNow() {
+    return (performance.now() / 1000).toFixed(3);
   }
 }

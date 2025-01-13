@@ -61,21 +61,23 @@ export class DependencyGraphComponent implements OnInit {
     try {
       var activitysThatCurrenActivityIsDependentOn =
         this.YamlObject[activity]['dependsOn'];
-      for (
-        var j = 0;
-        j < activitysThatCurrenActivityIsDependentOn.length;
-        j++
-      ) {
-        this.checkIfNodeHasBeenGenerated(
-          activitysThatCurrenActivityIsDependentOn[j]
-        );
-        this.graphData['links'].push({
-          source: activitysThatCurrenActivityIsDependentOn[j],
-          target: activity,
-        });
-        this.populateGraphWithActivitiesCurrentActivityDependsOn(
-          activitysThatCurrenActivityIsDependentOn[j]
-        );
+      if (activitysThatCurrenActivityIsDependentOn) {
+        for (
+          var j = 0;
+          j < activitysThatCurrenActivityIsDependentOn.length;
+          j++
+        ) {
+          this.checkIfNodeHasBeenGenerated(
+            activitysThatCurrenActivityIsDependentOn[j]
+          );
+          this.graphData['links'].push({
+            source: activitysThatCurrenActivityIsDependentOn[j],
+            target: activity,
+          });
+          this.populateGraphWithActivitiesCurrentActivityDependsOn(
+            activitysThatCurrenActivityIsDependentOn[j]
+          );
+        }
       }
     } catch (e) {
       console.log(e);
