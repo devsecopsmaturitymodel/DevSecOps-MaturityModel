@@ -206,7 +206,7 @@ export class CircularHeatmapComponent implements OnInit {
         )
       );
 
-      if (card) {        
+      if (card) {
         return card.Activity.find(
           activity => activity.activityName === activityName
         )?.teamsImplemented;
