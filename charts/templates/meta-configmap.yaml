@@ -1,0 +1,9 @@
+# templates/meta-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: meta-config
+  namespace: {{ .Values.namespace }}
+data:
+  meta.yaml: |
+{{ .Values.meta | toYaml | indent 4 }}

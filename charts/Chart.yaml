@@ -1,0 +1,6 @@
+apiVersion: v2
+name: devsecops-maturitymodel
+description: A Helm chart for deploying the OWASP DevSecOps-MaturityModel
+type: application
+version: 1.0.0
+version: v1.19.1

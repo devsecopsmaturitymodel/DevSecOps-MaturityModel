@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dsomm-deployment
+  labels:
+    app: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      initContainers:
+      - name: update-generated
+        image: "0xj4f/dsomm:util"
+        command: ["python", "/app/update_teams.py"]
+        volumeMounts:
+          - name: meta-vol
+            mountPath: /app/meta.yaml
+            subPath: meta.yaml
+          - name: generated-vol
+            mountPath: /app/generated.yaml
+            subPath: generated.yaml
+          - name: out-vol
+            mountPath: /mnt/out
+
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        volumeMounts:
+        - name: caddy-config
+          mountPath: /etc/caddy/Caddyfile
+          subPath: Caddyfile
+        - name: out-vol
+          mountPath: /srv/assets/YAML/generated/generated.yaml
+          subPath: updated.yaml
+        - name: meta-vol
+          mountPath: /srv/assets/YAML/meta.yaml
+          subPath: meta.yaml
+      volumes:
+      - name: caddy-config
+        configMap:
+          name: caddy-config
+      - name: meta-vol
+        configMap:
+          name: meta-config
+      - name: generated-vol
+        configMap:
+          name: generated-config
+      - name: out-vol
+        emptyDir: {}
