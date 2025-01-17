@@ -198,14 +198,19 @@ export class CircularHeatmapComponent implements OnInit {
     data: ProjectData,
     activityName: string
   ): any | undefined {
-    const activity = data.find(project =>
-      project.Activity.find(activity => activity.activityName === activityName)
-    );
+    if (data) {
+      // Find the activity in data that matches the activityName
+      const card = data.find(project =>
+        project.Activity.find(
+          activity => activity.activityName === activityName
+        )
+      );
 
-    if (activity) {
-      return activity.Activity.find(
-        activity => activity.activityName === activityName
-      )?.teamsImplemented;
+      if (card) {
+        return card.Activity.find(
+          activity => activity.activityName === activityName
+        )?.teamsImplemented;
+      }
     }
 
     return undefined;
