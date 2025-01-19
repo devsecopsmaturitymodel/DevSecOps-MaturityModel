@@ -433,7 +433,6 @@ export class CircularHeatmapComponent implements OnInit {
     svg
       .selectAll('path')
       .on('click', function (d) {
-        _self.console_log_event('click', d);
         _self.setSectorCursor(svg, '#hover', '');
 
         var clickedId = d.currentTarget.id;
@@ -454,7 +453,6 @@ export class CircularHeatmapComponent implements OnInit {
         }
       })
       .on('mouseover', function (d) {
-        _self.console_log_event('mouseover', d);
         curr = d.currentTarget.__data__;
 
         if (curr && curr['Done%'] != -1) {
@@ -464,7 +462,6 @@ export class CircularHeatmapComponent implements OnInit {
       })
 
       .on('mouseout', function (d) {
-        _self.console_log_event('mouseout', d);
         _self.setSectorCursor(svg, '#hover', '');
       });
     this.reColorHeatmap();
@@ -866,27 +863,5 @@ export class CircularHeatmapComponent implements OnInit {
 
   unsorted() {
     return 0;
-  }
-
-  console_log_event(type: string, event: any) {
-    console.log(this.perfNow() + ': --- ' + type + ' ---');
-    console.log(`${this.perfNow()}: ${this.eventstr('currentTarget', event)}`);
-    // eslint-disable-next-line
-    console.log(`${this.perfNow()}: ${this.eventstr('explicitOriginalTarget', event)}`);
-    console.log(`${this.perfNow()}: ${this.eventstr('srcElement', event)}`);
-    console.log(`${this.perfNow()}: ${this.eventstr('toElement', event)}`);
-    console.log(`${this.perfNow()}: ${this.eventstr('relatedTarget', event)}`);
-  }
-  eventstr(name: string, event: any): string {
-    let str: string = ': ' + name + ': ';
-    if (event[name]) {
-      str +=
-        `<${event[name]?.localName} id="${event[name]?.id}" ` +
-        `class="${event[name]?.classList?.toString()}">`;
-    } else {
-      str += event[name];
-    }
-
-    return str;
   }
 }
