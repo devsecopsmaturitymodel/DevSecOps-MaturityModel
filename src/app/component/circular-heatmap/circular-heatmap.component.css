@@ -101,13 +101,6 @@
   margin: 0;
   padding: 0 1em;
 }
-/* .team-filter {
-  padding: 0;
-  width: 60%;
-} */
-.team-filter > .mat-form-field {
-  display: block;
-}
 .mat-chip-list {
   display: flex;
   flex-direction: row;
