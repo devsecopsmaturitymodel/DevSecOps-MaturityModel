@@ -22,6 +22,12 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
 import { TeamsComponent } from './component/teams/teams.component';
 import { ToStringValuePipe } from './pipe/to-string-value.pipe';
+import { ModalMessageComponent } from './component/modal-message/modal-message.component';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -40,16 +46,23 @@ import { ToStringValuePipe } from './pipe/to-string-value.pipe';
     TeamsComponent,
     ToStringValuePipe,
     UserdayComponent,
+    ModalMessageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ymlService],
+  providers: [
+    ymlService,
+    ModalMessageComponent,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: { close: (dialogResult: any) => {} } },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
