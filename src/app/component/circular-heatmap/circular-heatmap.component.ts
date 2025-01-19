@@ -57,6 +57,7 @@ export class CircularHeatmapComponent implements OnInit {
   segment_labels: string[] = [];
   activityDetails: any;
   showOverlay: boolean;
+  showFilters: boolean;
   markdown: md = md();
 
   constructor(
@@ -65,6 +66,7 @@ export class CircularHeatmapComponent implements OnInit {
     private changeDetector: ChangeDetectorRef
   ) {
     this.showOverlay = false;
+    this.showFilters = true;
   }
 
   ngOnInit(): void {
@@ -405,9 +407,9 @@ export class CircularHeatmapComponent implements OnInit {
       .data([dataset])
       .enter()
       .append('svg')
-      .attr('width', '60%') // 70% forces the heatmap down
-      .attr('height', 'auto')
-      .attr('viewBox', '0 0 1150 1150')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', '0 0 1200 1200')
       .append('g')
       .attr(
         'transform',
@@ -764,6 +766,10 @@ export class CircularHeatmapComponent implements OnInit {
 
   closeOverlay() {
     this.showOverlay = false;
+  }
+
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
   }
 
   saveEditedYAMLfile() {

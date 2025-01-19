@@ -17,22 +17,34 @@
 }
 
 .right-panel {
-  float: right;
-  width: 25%;
   margin: 5%;
   padding: 20px;
+  height: 80vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
+
+.heatmapClass {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 6fr 4fr;
+  height: 100%;
+  width: 100%;
+}
+
+.heatmapChart {
+  grid-row: 1/4;
+  display: grid;
+  justify-items: center;
+  align-content: space-between;
+}
+#chart {
+  width: 100%;
+  max-width: min(100vh - 60px, 100vw - 60px);
+}
+
 .downloadButtonClass {
-  position: fixed;
-  padding: 10px;
-  bottom: 5%;
-  right: 5%;
-}
-.resetButtonClass {
-  position: fixed;
-  padding: 10px;
-  bottom: 5%;
-  right: 18%;
+  margin: 10px 0;
 }
 .overlay-details {
   z-index: 2;
@@ -69,6 +81,21 @@
   justify-content: top;
   margin-left: auto;
 }
+.team-filter {
+  padding: 0.4rem;
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-filter.hidden {
+  height: 0;
+  visibility: collapse;
+}
+
+.filter-toggle .hidden {
+  display: none;
+}
 .team-list {
   list-style-type: none;
   margin: 0;
@@ -81,3 +108,34 @@
 .team-filter > .mat-form-field {
   display: block;
 }
+.mat-chip-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1rem;  
+}
+.filter-container {
+  position: relative;
+}
+button.filter-toggle {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  border: 0;
+  background-color: transparent;
+  z-index: 1;
+  padding: 0;
+  min-width: 0;
+  line-height: 24px;
+}
+
+.footer-buttons {
+  grid-column: 2/3;
+  place-self: flex-end;
+  margin: 0 1rem;
+  padding-top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
