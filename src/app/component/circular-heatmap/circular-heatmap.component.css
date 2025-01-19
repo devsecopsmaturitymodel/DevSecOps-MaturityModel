@@ -139,3 +139,35 @@ button.filter-toggle {
   flex-direction: column;
 }
 
+@media only screen and (max-width: 750px) {
+  .heatmapClass {
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-columns: 1fr;
+  }
+  
+  .team-filter, .heatmapChart, .footer-buttons {
+      grid-column: 1;
+  }
+  
+  .team-filter {
+      grid-row: 1;
+      padding: 0.4rem;
+  }
+  
+  .mat-chip-list {
+      padding: 0.4rem;
+  }
+
+  .heatmapChart {
+      grid-row: 2;
+  }
+
+  #chart {
+      max-width: max(60vh, 60vw);
+  }
+  
+  .overlay-details {
+    width: 100%;
+  }  
+
+}
