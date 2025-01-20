@@ -1,6 +1,6 @@
 ---
 image:
-  repository: 0xj4f/dsomm
+  repository: wurstbrot/dsomm
   tag: latest
   pullPolicy: IfNotPresent
 
