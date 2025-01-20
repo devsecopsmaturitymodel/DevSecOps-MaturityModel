@@ -1,7 +1,7 @@
 ---
 image:
   repository: 0xj4f/dsomm
-  tag: stable-20241229
+  tag: latest
   pullPolicy: IfNotPresent
 
 # Application port
@@ -9,8 +9,6 @@ service:
   port: 8080
   type: ClusterIP
 replicaCount: 1
-
-
 
 # original meta.yaml
 meta:
@@ -48,10 +46,8 @@ meta:
         - "Level 4: Very high adoption of security practices"
         - "Level 5: Advanced deployment of security practices at scale"
 
-  teams: ['Default', 'B', 'C', 'D', '1', '2', '3']
+  teams: ['Front End Web', 'Back End Web', 'Mobile', 'Infrastructure']
   teamGroups:
-    GroupA: ['Default', 'B', 'C', D']
-    GroupB: ['B', 'C']
-    GroupC: ['Default', 'C']
-    GroupX: ['1', '2', '3', 'D']
-    GroupY: ['B', 'C', 'D']
+    GroupA: ['Front End Web', 'Back End Web']
+    GroupB: ['Front End Web', 'Mobile']
+    GroupC: ['Back End Web', 'Infrastructure']
