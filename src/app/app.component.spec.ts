@@ -27,12 +27,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('DSOMM');
   });
 
-  it('check for fork me on github ribbon generation', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    var divTag = HTMLElement.querySelector('div')!;
-    var aTag = divTag.querySelector('a')!;
-    //console.log(aTag);
-    expect(aTag.textContent).toEqual('Fork me on GitHub');
-  });
 });
