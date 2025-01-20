@@ -2,6 +2,7 @@
 
 import re
 import yaml
+import argparse
 
 def parse_meta_yaml(meta_file_path):
     """Parse the meta.yaml file and extract the teams array."""
@@ -28,17 +29,14 @@ def update_generated_yaml(input_file_path, output_file_path, teams_block):
         output_file.write(updated_content)
 
 if __name__ == "__main__":
-    meta_file = "/app/meta.yaml"
-    generated_file = "/app/generated.yaml"
-    updated_file = "/mnt/out/updated.yaml"
+    parser = argparse.ArgumentParser(description="Update teamsImplemented block in YAML file.")
+    parser.add_argument("--meta", default="/app/meta.yaml", help="Path to the meta.yaml file")
+    parser.add_argument("--generated", default="/app/generated.yaml", help="Path to the generated.yaml file")
+    parser.add_argument("--updated", default="/mnt/out/updated.yaml", help="Path to save the updated YAML file")
+    args = parser.parse_args()
 
-    # Extract teams
-    teams_array = parse_meta_yaml(meta_file)
-
-    # Generate replacement
+    teams_array = parse_meta_yaml(args.meta)
     teams_implemented_block = generate_teams_implemented(teams_array)
+    update_generated_yaml(args.generated, args.updated, teams_implemented_block)
 
-    # Do the replacement
-    update_generated_yaml(generated_file, updated_file, teams_implemented_block)
-
-    print(f"Updated YAML has been saved to {updated_file}")
+    print(f"Updated YAML has been saved to {args.updated}")
