@@ -100,7 +100,7 @@ The first steps for deploying DSOMM are then the following:
 
 - The "Risk Manager" is aware that all software have security vulnerabilities,
   and that the related risks should be minimized
-- Knowing the risk appetite XXXXXX
+- Knowing the risk appetite helps the organization align its security efforts with its overall strategic goals
 - Resources must be allocated to improve security and
   to avoid, detect and fix vulnerabilities
 - Management can perform well informed risk decisions

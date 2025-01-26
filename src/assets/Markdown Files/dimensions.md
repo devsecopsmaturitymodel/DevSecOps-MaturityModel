@@ -37,7 +37,7 @@ This presents an opportunity for both threat modeling
 and attaching security considerations
 to every ticket and epic that is the outcome of this stage.
 
-### Design
+## Design
 
 There is some great advice on threat modeling out there
 *e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/)
@@ -59,7 +59,7 @@ An example can be found below._
 
 ![Threat Model](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/threat_model.png "Threat Model")
 
-Last, if the organisation maps Features to Epics, the Security Knowledge Framework (SKF) can be used to facilitate this process by leveraging it's questionnaire function.
+Last, if the organization maps Features to Epics, the Security Knowledge Framework (SKF) can be used to facilitate this process by leveraging it's questionnaire function.
 
 ![SKF](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/skf_qs.png "SKF")
 
@@ -90,7 +90,7 @@ Based on a detailed threat model defined and updated through code, the team deci
 * Permissions matrix defined.
 * Input is escaped output is encoded appropriately using well established libraries.
 
-### Education and Guidence
+## Education and Guidence
 
 Metrics won't necessarily improve without training engineering teams and somehow building a security-minded culture.
 Security training is a long and complicated discussion.
@@ -103,7 +103,7 @@ can be used to setup a code based challenge.
 
 ![Remediate the Flag](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/rtf.png "Remediate the Flag")
 
-However, if questionnaires are the preferred medium, or if the organisation
+However, if questionnaires are the preferred medium, or if the organization
  is looking for self-service testing, [Secure Coding Dojo](https://github.com/trendmicro/SecureCodingDojo) is an interesting solution.
 
 More on the self-service side, the Security Knowledge Framework has released
@@ -118,7 +118,7 @@ on Heroku with one click, it offers both CTF functionality and a self-service
 
 ![Juice Shop](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/juiceshop.png "Juice Shop")
 
-### Process
+## Process
 
 **Example High Maturity Scenario:**
 
@@ -135,7 +135,7 @@ hardening of software and infrastructure components.
 There is an abundance of libraries and frameworks implementing
 secure defaults.
 For frontend development, [ReactJS](https://reactjs.org/) seems to be
-the latest favourite in the Javascript world.
+the latest favorite in the Javascript world.
 
 On the database side, there are [ORM](https://sequelize.org/) libraries
 and [Query Builders](https://github.com/kayak/pypika) for most languages.
@@ -214,7 +214,7 @@ and [Prometheus](https://prometheus.io/docs/introduction/overview/) can be used 
 However, no matter the WAFs, Logging, and secure configuration enforced
 at this stage, incidents will occur eventually.
 Incident management is a complicated and high stress process.
-To prepare organisations for this, SAMM includes a section on [incident management](https://owaspsamm.org/model/operations/incident-management/) involving simple questions for stakeholders to answer so you can determine incident preparedness accurately.
+To prepare organizations for this, SAMM includes a section on [incident management](https://owaspsamm.org/model/operations/incident-management/) involving simple questions for stakeholders to answer so you can determine incident preparedness accurately.
 
 **Example High Maturity scenario:**
 
@@ -252,7 +252,7 @@ Instructions can be found [here](https://owaspsamm.org/model/verification/) and 
 ![SAMM Testing](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/samm_testing.png "SAMM Testing")
 
 Testing can be performed several ways and it highly depends on the nature
-of the software, the organisation's cadence, and the regulatory requirements among other things.
+of the software, the organization's cadence, and the regulatory requirements among other things.
 
 If available, automation is a good idea as it allows detection of easy to find vulnerabilities without much human interaction.
 
