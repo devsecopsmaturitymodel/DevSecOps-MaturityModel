@@ -10,24 +10,26 @@ Attackers are intelligent and creative, equipped with new technologies and purpo
 
 # Usage
 
-Go to https://dsomm.timo-pagel.de or clone [this repository](https://github.com/wurstbrot/DevSecOps-MaturityModel/) and run `startDocker.bash`.
+Go to https://dsomm.owasp.org.
 
 * _matrix_ shows the dimensions, subdimensions and activities are described.
-* _Implementation Levels_ can be used to measure the current implementation level by clicking on the specific activities which have been performed.
-* _Ease and Value of Implementation_ is used for the maturity model development to see the ease and value of each activity to be able to compare it with activities within the subdimension and activities from other subdimensions.
-* _Dependenies_ shows the dependencies between activities
-* _Useage_ describes the dimensions
-* _Full Report_ prints all activities to be able to print it
+* _Implementation Levels_ can be used to show the current implementation level by clicking on the specific activities which have been performed (it is recommended to use a gitops-like flow)
+* _Mappings_ Shows mappings to other standards and provides the ability to download an excel sheet
+* _Usage_ describes how to use DSOMM
 
 In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describes different strategic approaches for your secure DevOps strategy. The use OWASP DSOMM in combination with [OWASP SAMM](https//owaspsamm.org) is explained.
 
 In case you have evidence or review questions to gather evidence, you can add the attribute "evidence" to an activity which will be attached to an activity to provide it to your CISO or your customer's CISO.
 You can switch on to show open TODO's for evidence by changing IS_SHOW_EVIDENCE_TODO to true 'bib.php' `define(IS_SHOW_EVIDENCE_TODO, true);`
 
+This page uses the Browser's localStorage to store the state of the circular headmap.
+
+# Changes
+Changes to the application are displayed at the release page of [DevSecOps-MaturityModel](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/releases).
+
+Changes to the maturity model content are displayed at the release page of [DevSecOps-MaturityModel-data](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/releases).
+
 # Community
-
-Code Freeze: Currently, with the Google Summer student Aryan Prasad we develop a new Angular frontend version, therefore, we do not accept any code changes right now.
-
 Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw#/).
 Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
 
@@ -57,31 +59,22 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 ## Container
 
 1. Install [Docker](https://www.docker.com)
-2. Run `docker run --rm -p 8080:8080 wurstbrot/dsomm:latest`
+2. Run `docker pull wurstbrot/dsomm:latest && docker run --rm -p 8080:8080 wurstbrot/dsomm:latest`
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
-In case the application should be visible, but the "Implementation Level" shouldn't be changeable, consider the following code:
+For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
+
+You can download your current state from the circular headmap and mount it again via 
 
 ```bash
-#!/bin/bash
-set -xe
-
-IMAGE_NAME="<YOUR ORGANIZATION>/dsomm:latest"
-
-rm -Rf DevSecOps-MaturityModel || true
-git clone git@github.com:wurstbrot/DevSecOps-MaturityModel.git
-cp  data/* DevSecOps-MaturityModel/data
-cp -a selectedData.csv DevSecOps-MaturityModel/selectedData.csv
-
-cd DevSecOps-MaturityModel
-docker build -t $IMAGE_NAME .
-docker push $IMAGE_NAME
+wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
+docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
 ```
 
-This approach also allows teams to perform self assessment with changes tracked in a repository.
+.
 
+This approach also allows teams to perform self assessment with changes tracked in a repository.
 
 ## Amazon EC2 Instance
 
@@ -97,29 +90,44 @@ This approach also allows teams to perform self assessment with changes tracked 
 
 ```bash
 #!/bin/bash
-yum update -y
-yum install -y docker
 service docker start
-docker run -d -p 80:80 wurstbrot/dsomm:latest
+docker run -d -p 80:8080 wurstbrot/dsomm:latest
 ```
 
-## Tests
+## Activity Definitions
+The definition of the activities are in the [data-repository](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data). 
 
-To run basic tests just
+## Teams and Groups
+To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml)  file with your unique team definitions.
 
-```bash
-docker-compose -f docker-compose.dev.yaml up test-php
+Assessments within the framework can be based on either a team or a specific application, which can be referred to as the context. Depending on how you define the context or teams, you may want to group them together.
+
+Here are a couple of examples to illustrate this, in breakers the DSOMM word:
+- Multiple applications (teams) can belong to a single overarching team (application).
+- Multiple teams (teams) can belong to a larger department (group).
+
+Feel free to create your own [meta.yaml](src/assets/meta.yaml) file to tailor the framework to your specific needs and mount it in your environment (e.g. kubernetes or docker).
+Here is an example to start docker with customized meta.yaml:
+```
+# Customized meta.yaml
+cp src/assets/YAML/meta.yaml .
+docker run -v $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm
+
+# Customized meta.yaml and generated.yaml
+cp src/assets/YAML/meta.yaml .
+cp $(pwd)/src/assets/YAML/generated/generated.yaml .
+docker run -v  $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
 ```
 
-# Credits
-
-* The dimension _Test and Verification_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
-* The sub-dimension <i>Process</i> has been added after a discussion with [Francois Raynaud](https://www.linkedin.com/in/francoisraynaud/) that reactive activities are missing.
-* Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
-* Adding ISO 27001:2017 mapping, [Andre Baumeier](https://github.com/AndreBaumeier).
-* Providing a documentation of how to use `docker` in the Juice Shop for simple copy&paste, [Björn Kimminich](https://github.com/bkimminich/).
-* [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md) for providing documentation on different DevSecOps practices which are copied&pasted/ (and adopted) (https://github.com/northdpole, https://github.com/ThunderSon)
-* The requirements from [level 0](https://github.com/AppSecure-nrw/security-belts/blob/master/white/) are based on/copied from [AppSecure NRW](https://appsecure.nrw/)
+In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/YAML/default), use:
+```
+[...]
+      teamsImplemented:
+        Default: false
+        C: true
+      evidence:
+        B: Showed Jenkinsfile
+```
 
 # Back link
 
@@ -144,6 +152,8 @@ Multilanguage support is not given currently and not planned.
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro)
 
 [![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
+
+[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
 
 # Donations
 
