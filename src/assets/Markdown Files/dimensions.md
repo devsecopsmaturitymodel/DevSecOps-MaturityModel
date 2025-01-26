@@ -6,71 +6,22 @@ and the corresponding sub dimension.
 The descriptions are highly based (mostly copied)
 on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md).
 
-## Implementation
+# Build and Deployment
 
-This dimension covers topic of "traditional"
-hardening of software and infrastructure components.
+Secure configuration standards can be enforced during the deployment using the [Open Policy Agent](https://www.openpolicyagent.org/).
 
-There is an abundance of libraries and frameworks implementing
-secure defaults.
-For frontend development, [ReactJS](https://reactjs.org/) seems to be
-the latest favourite in the Javascript world.
+![SAMM Release](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/samm_release.png "SAMM Release")
 
-On the database side, there are [ORM](https://sequelize.org/) libraries
-and [Query Builders](https://github.com/kayak/pypika) for most languages.
+**Example Low Maturity scenario:**
 
-If you write in Java,
-the [ESAPI project](https://www.javadoc.io/doc/org.owasp.esapi/esapi/latest/index.html)
-offers several methods to securely implement features,
-ranging from Cryptography to input escaping and output encoding.
+_please create a PR_
 
-**Example low maturity scenario:**
+**Example High Maturity scenario:**
 
-The API was queryable by anyone and GraphQL introspection was enabled since
-all components were left in debug configuration.
+The CI/CD system, when migrating successful QA environments to production, applies appropriate configuration to all components.
+Configuration is tested periodically for drift.
 
-Sensitive API paths were not whitelisted.
-The team found that the application was attacked when the server showed very
-high CPU load.
-The response was to bring the system down, very little information about
-the attack was found apart from the fact that someone
-was mining cryptocurrencies on the server.
-
-**Example Low Maturity Scenario:**
-
-The team attempted to build the requested features using vanilla NodeJS,
-connectivity to backend systems is validated by firing an internal request
-to `/healthcheck?remoteHost=<xx.xx.xx>` which attempts to run a ping
-command against the IP specified.
-All secrets are hard coded.
-The team uses off the shelf GraphQL libraries but versions
-are not checked using [NPM Audit](https://docs.npmjs.com/cli/audit).
-Development is performed by pushing to master which triggers a webhook that
-uses FTP to copy latest master to the development server which will become production once development is finished.
-
-**Example High Maturity Scenario:**
-
-Team members have access to comprehensive documentation
-and a library of code snippets they can use to accelerate development.
-
-Linters are bundled with pre-commit hooks
-and no code reaches master without peer review.
-
-Pre-merge tests are executed before merging code into master.
-Tests run a comprehensive suite of tests covering unit tests,
-service acceptance tests,
-unit tests as well as regression tests.
-
-Once a day a pipeline of specially configured
-static code analysis tools runs against
-the features merged that day, the results are
-triaged by a trained security team and fed to engineering.
-
-There is a cronjob executing Dynamic Analysis tools against Staging
-with a similar process.
-
-Pentests are conducted against features released on every release
-and also periodically against the whole software stack.
+Secrets live in-memory only and are persisted in a dedicated Secrets Storage solution such as Hashicorp Vault.
 
 # Culture and Organization
 
@@ -173,6 +124,105 @@ on Heroku with one click, it offers both CTF functionality and a self-service
 Business continuity and Security teams run incident management drills
  periodically to refresh incident playbook knowledge.
 
+
+
+# Implementation
+
+This dimension covers topic of "traditional"
+hardening of software and infrastructure components.
+
+There is an abundance of libraries and frameworks implementing
+secure defaults.
+For frontend development, [ReactJS](https://reactjs.org/) seems to be
+the latest favourite in the Javascript world.
+
+On the database side, there are [ORM](https://sequelize.org/) libraries
+and [Query Builders](https://github.com/kayak/pypika) for most languages.
+
+If you write in Java,
+the [ESAPI project](https://www.javadoc.io/doc/org.owasp.esapi/esapi/latest/index.html)
+offers several methods to securely implement features,
+ranging from Cryptography to input escaping and output encoding.
+
+**Example low maturity scenario:**
+
+The API was queryable by anyone and GraphQL introspection was enabled since
+all components were left in debug configuration.
+
+Sensitive API paths were not whitelisted.
+The team found that the application was attacked when the server showed very
+high CPU load.
+The response was to bring the system down, very little information about
+the attack was found apart from the fact that someone
+was mining cryptocurrencies on the server.
+
+**Example Low Maturity Scenario:**
+
+The team attempted to build the requested features using vanilla NodeJS,
+connectivity to backend systems is validated by firing an internal request
+to `/healthcheck?remoteHost=<xx.xx.xx>` which attempts to run a ping
+command against the IP specified.
+All secrets are hard coded.
+The team uses off the shelf GraphQL libraries but versions
+are not checked using [NPM Audit](https://docs.npmjs.com/cli/audit).
+Development is performed by pushing to master which triggers a webhook that
+uses FTP to copy latest master to the development server which will become production once development is finished.
+
+**Example High Maturity Scenario:**
+
+Team members have access to comprehensive documentation
+and a library of code snippets they can use to accelerate development.
+
+Linters are bundled with pre-commit hooks
+and no code reaches master without peer review.
+
+Pre-merge tests are executed before merging code into master.
+Tests run a comprehensive suite of tests covering unit tests,
+service acceptance tests,
+unit tests as well as regression tests.
+
+Once a day a pipeline of specially configured
+static code analysis tools runs against
+the features merged that day, the results are
+triaged by a trained security team and fed to engineering.
+
+There is a cronjob executing Dynamic Analysis tools against Staging
+with a similar process.
+
+Pentests are conducted against features released on every release
+and also periodically against the whole software stack.
+
+
+# Information Gathering
+
+Concerning metrics, the community has been quite vocal on what to measure
+and how important it is.
+The OWASP CISO guide offers 3 broad categories of SDLC metrics[1] which can
+ be used to measure effectiveness of security practices.
+Moreover, there is a number of presentations on what could be leveraged
+to improve a security programme, starting from Marcus' Ranum's [keynote](https://www.youtube.com/watch?v=yW7kSVwucSk)
+at Appsec California[1],
+Caroline Wong's similar [presentation](https://www.youtube.com/watch?v=dY8IuQ8rUd4)
+and [this presentation](https://www.youtube.com/watch?v=-XI2DL2Uulo) by J. Rose and R. Sulatycki.
+These among several writeups by private companies all offering their own version of what could be measured.
+
+Projects such as the [ELK stack](https://www.elastic.co/elastic-stack), [Grafana](https://grafana.com/)
+and [Prometheus](https://prometheus.io/docs/introduction/overview/) can be used to aggregate
+ logging and provide observability.
+
+However, no matter the WAFs, Logging, and secure configuration enforced
+at this stage, incidents will occur eventually.
+Incident management is a complicated and high stress process.
+To prepare organisations for this, SAMM includes a section on [incident management](https://owaspsamm.org/model/operations/incident-management/) involving simple questions for stakeholders to answer so you can determine incident preparedness accurately.
+
+**Example High Maturity scenario:**
+
+Logging from all components gets aggregated in dashboards and alerts
+are raised based on several Thresholds and events.
+There are canary values and events fired against monitoring
+from time to time to validate it works.
+
+
 # Test and Verification
 
 At any maturity level, linters can be introduced to ensure that consistent
@@ -225,48 +275,3 @@ The remediation effort was significant.
 The application features received Dynamic Automated testing when each reached staging, a trained QA team validated business requirements that involved security checks.
 A security team performed an adequate pentest and gave a sign-off.
 
-# Build and Deployment
-
-Secure configuration standards can be enforced during the deployment using the [Open Policy Agent](https://www.openpolicyagent.org/).
-
-![SAMM Release](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/samm_release.png "SAMM Release")
-
-**Example Low Maturity scenario:**
-
-_please create a PR_
-
-**Example High Maturity scenario:**
-
-The CI/CD system, when migrating successful QA environments to production, applies appropriate configuration to all components.
-Configuration is tested periodically for drift.
-
-Secrets live in-memory only and are persisted in a dedicated Secrets Storage solution such as Hashicorp Vault.
-
-## Information Gathering
-
-Concerning metrics, the community has been quite vocal on what to measure
-and how important it is.
-The OWASP CISO guide offers 3 broad categories of SDLC metrics[1] which can
- be used to measure effectiveness of security practices.
-Moreover, there is a number of presentations on what could be leveraged
-to improve a security programme, starting from Marcus' Ranum's [keynote](https://www.youtube.com/watch?v=yW7kSVwucSk)
-at Appsec California[1],
-Caroline Wong's similar [presentation](https://www.youtube.com/watch?v=dY8IuQ8rUd4)
-and [this presentation](https://www.youtube.com/watch?v=-XI2DL2Uulo) by J. Rose and R. Sulatycki.
-These among several writeups by private companies all offering their own version of what could be measured.
-
-Projects such as the [ELK stack](https://www.elastic.co/elastic-stack), [Grafana](https://grafana.com/)
-and [Prometheus](https://prometheus.io/docs/introduction/overview/) can be used to aggregate
- logging and provide observability.
-
-However, no matter the WAFs, Logging, and secure configuration enforced
-at this stage, incidents will occur eventually.
-Incident management is a complicated and high stress process.
-To prepare organisations for this, SAMM includes a section on [incident management](https://owaspsamm.org/model/operations/incident-management/) involving simple questions for stakeholders to answer so you can determine incident preparedness accurately.
-
-**Example High Maturity scenario:**
-
-Logging from all components gets aggregated in dashboards and alerts
-are raised based on several Thresholds and events.
-There are canary values and events fired against monitoring
-from time to time to validate it works.

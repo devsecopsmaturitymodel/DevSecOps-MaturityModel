@@ -39,5 +39,21 @@ To prepare you for there are some activities that we recommend you do before you
 See [Maturity level 0](./usage/maturity-level-0) to learn about the important first steps.
 
 
+## Dimensions
+The DSOMM framework categorizes its activities into dimensions, each representing a key area of the software development lifecycle where security can be integrated and matured.
+
+Dimensions Overview:
+ - **Build and Deployment**: Focuses on security practices in the CI/CD pipeline and deployment processes
+ - **Culture and Organization**: Addresses organizational culture, education, and processes that support security initiatives.
+ - **Implementation**: Covers secure coding and infrastructure hardening practices.
+- **Information Gathering**: Involves gathering data for threat analysis, risk assessment, and metrics collection.
+- **Test and Verification**: Focuses on testing practices to validate security measures and ensure continuous improvement.
+
+For detailed information on each dimension, refer to [Dimensions](./usage/dimensions).
+
+
+
+
+
 ## Evidence
 If your CISO requires you to document evidence that an activity is completed, you can edit your `generated.yaml` file as documented in the [README.md](./usage/README) _Teams and Groups_. It is currently not possible to provide evidence directly in the browser.
