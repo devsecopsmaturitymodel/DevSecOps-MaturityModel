@@ -1,13 +1,12 @@
 # DSOMM
 
 ## Development server
-
-The DSOMM is based on [NodeJS](https://nodejs.org/) and [Angular](https://angular.dev/). 
-- If you have not yet installed NodeJS or Angular command line tools, install them now. First NodeJS: https://nodejs.org/en/download, then Angualr:
+The DSOMM is based [Angular](https://angular.dev/) and uses npm for package management.
+- If you have not yet installed npm or the Angular command line tools, install them now. First [NodeJS](https://nodejs.org/en/download) (which provides npm), then Angular:
 ``` 
 npm install -g @angular/cli
 ``` 
-- Clone the repo
+- Clone the DSOMM repo
 ```
 git clone https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel.git
 ```
@@ -19,7 +18,7 @@ cd DevSecOps-MaturityModel
 ```
 npm install
 ```
-- Downloads the generated.yaml and put it in the required folder
+- **NB!** The DSOMM activities are maintained separately. Download the `generated.yaml` and put it in the required folder
 ```
 curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml -o src/assets/YAML/generated/generated.yaml
 ```
