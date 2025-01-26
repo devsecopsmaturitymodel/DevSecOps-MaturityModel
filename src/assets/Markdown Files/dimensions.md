@@ -14,7 +14,8 @@ Secure configuration standards can be enforced during the deployment using the [
 
 **Example Low Maturity scenario:**
 
-_please create a PR_
+The team manually deploys software to production without standardized or automated processes. Secrets, such as passwords and API keys, may have been hardcoded or left in configuration files that are committed to version control, leading to potential exposure and security risks.
+
 
 **Example High Maturity scenario:**
 
