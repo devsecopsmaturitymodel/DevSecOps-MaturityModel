@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class SidenavButtonsComponent {
   Options: string[] = [
+    'Overview',
     'Matrix',
-    'Implementation Levels',
     'Mappings',
     'Usage',
     'Teams',
@@ -16,8 +16,8 @@ export class SidenavButtonsComponent {
     'DSOMM User Day 2024',
   ];
   Icons: string[] = [
-    'table_chart',
     'pie_chart',
+    'table_chart',
     'timeline',
     'description',
     'people',
@@ -25,8 +25,8 @@ export class SidenavButtonsComponent {
     'school',
   ];
   Routing: string[] = [
-    '/',
     '/circular-heatmap',
+    '/matrix',
     '/mapping',
     '/usage',
     '/teams',
