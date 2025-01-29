@@ -124,10 +124,16 @@ In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel
 [...]
       teamsImplemented:
         Default: false
+        B: true
         C: true
-      evidence:
-        B: Showed Jenkinsfile
+      teamsEvidence:
+        B: All team members completed OWASP Secure Coding Dojo training on 2025-01-11. 
+        C: |
+          The pentest report from 2025 has been split into Jira tasks.
+          _2025-04-01:_ All fixes of **critical** findings are deployed to production.
 ```
+The `|` is yaml syntax to indicate that the evidence spans multiple lines. Markdown 
+syntax can be used. The evidence is currently visible on the activity from the Matrix page.
 
 # Back link
 

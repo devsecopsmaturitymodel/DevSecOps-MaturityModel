@@ -3,7 +3,7 @@
 ## What is DSOMM?
 DSOMM is a framework that helps organizations to assess, improve and prioritize security activities in their software development cycle. 
 
-DSOMM is a project in the OWASP family.
+DSOMM is a project of the OWASP Foundation.
 
 ## DSOMM vs OWASP SAMM
 [DSOMM](https://dsomm.owasp.org/) and [OWASP SAMM](https://owaspsamm.org/) are both frameworks that share a common goal of improving security. 
