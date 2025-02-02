@@ -11,11 +11,14 @@ export class UsageComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      let page = params['page'];
-      if (page.match(/^[\w.-]+$/)) {
-        this.page = page;
-      }
-    });
+    if (this.route && this.route.params) {
+      this.route.params.subscribe(params => {
+        let page = params['page'];
+        // CWE-79 - sanitize input
+        if (page.match(/^[\w.-]+$/)) {
+          this.page = page;
+        }
+      });
+    }
   }
 }
