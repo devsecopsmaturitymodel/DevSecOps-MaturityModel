@@ -13,6 +13,7 @@ export class TeamsComponent implements OnInit {
   teamGroups: Map<string, string[]> = new Map();
 
   constructor(private yaml: ymlService) {}
+
   ngOnInit(): void {
     this.yaml.setURI('./assets/YAML/meta.yaml');
     // Function sets column header
