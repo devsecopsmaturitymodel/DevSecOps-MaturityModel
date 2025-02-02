@@ -10,8 +10,6 @@ on the [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-
 
 Secure configuration standards can be enforced during the deployment using the [Open Policy Agent](https://www.openpolicyagent.org/).
 
-![SAMM Release](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/samm_release.png "SAMM Release")
-
 **Example Low Maturity scenario:**
 
 The team manually deploys software to production without standardized or automated processes. Secrets, such as passwords and API keys, may have been hardcoded or left in configuration files that are committed to version control, leading to potential exposure and security risks.

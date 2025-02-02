@@ -63,9 +63,9 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
+For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
 
-You can download your current state from the circular headmap and mount it again via 
+You can download your current state from the circular heatmap and mount it again via 
 
 ```bash
 wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
@@ -129,7 +129,9 @@ In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel
       teamsEvidence:
         B: All team members completed OWASP Secure Coding Dojo training on 2025-01-11. 
         C: |
-          The pentest report from 2025 has been split into Jira tasks.
+          The pentest report from 2025 has been split into Jira tasks under
+          [TODO-123](https://jira.example.com/issues/TODO-123).
+          
           _2025-04-01:_ All fixes of **critical** findings are deployed to production.
 ```
 The `|` is yaml syntax to indicate that the evidence spans multiple lines. Markdown 
