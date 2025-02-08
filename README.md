@@ -4,7 +4,7 @@ From a startup to a multinational corporation the software development industry 
 
 The OWASP DevSecOps Maturity Model provides opportunities to harden DevOps strategies and shows how these can be prioritized.
 
-With the help of DevOps strategies security can also be enhanced. For example, each component such as application libraries and operating system libraries in docker images can be tested for known vulnerabilities. 
+With the help of DevOps strategies security can also be enhanced. For example, each component such as application libraries and operating system libraries in docker images can be tested for known vulnerabilities.
 
 Attackers are intelligent and creative, equipped with new technologies and purpose. Under the guidance of the forward-looking DevSecOps Maturity Model, appropriate principles and measures are at hand implemented which counteract the attacks.
 
@@ -63,9 +63,9 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
+For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
 
-You can download your current state from the circular headmap and mount it again via 
+You can download your current state from the circular heatmap and mount it again via 
 
 ```bash
 wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
@@ -124,10 +124,18 @@ In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel
 [...]
       teamsImplemented:
         Default: false
+        B: true
         C: true
-      evidence:
-        B: Showed Jenkinsfile
+      teamsEvidence:
+        B: All team members completed OWASP Secure Coding Dojo training on 2025-01-11. 
+        C: |
+          The pentest report from 2025 has been split into Jira tasks under
+          [TODO-123](https://jira.example.com/issues/TODO-123).
+          
+          _2025-04-01:_ All fixes of **critical** findings are deployed to production.
 ```
+The `|` is yaml syntax to indicate that the evidence spans multiple lines. Markdown 
+syntax can be used. The evidence is currently visible on the activity from the Matrix page.
 
 # Back link
 

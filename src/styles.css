@@ -17,3 +17,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     float: left;
     margin-right: 10px;
 }
+
+.usage-dimensions img {
+    max-width: 40rem;
+}
