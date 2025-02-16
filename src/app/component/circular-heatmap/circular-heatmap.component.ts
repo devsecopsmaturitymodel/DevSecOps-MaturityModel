@@ -11,6 +11,10 @@ import * as yaml from 'js-yaml';
 import { Router } from '@angular/router';
 import { MatChip } from '@angular/material/chips';
 import * as md from 'markdown-it';
+import {
+  ModalMessageComponent,
+  DialogInfo,
+} from '../modal-message/modal-message.component';
 
 export interface activitySchema {
   uuid: string;
@@ -62,7 +66,7 @@ export class CircularHeatmapComponent implements OnInit {
   constructor(
     private yaml: ymlService,
     private router: Router,
-    private changeDetector: ChangeDetectorRef
+    public modal: ModalMessageComponent
   ) {
     this.showOverlay = false;
   }
@@ -82,6 +86,14 @@ export class CircularHeatmapComponent implements OnInit {
 
   @ViewChildren(MatChip) chips!: QueryList<MatChip>;
   matChipsArray: MatChip[] = [];
+
+  displayMessage(dialogInfo: DialogInfo) {
+    // Remove focus from the button that becomes aria unavailable (avoids ugly console error message)
+    const buttonElement = document.activeElement as HTMLElement;
+    buttonElement.blur();
+
+    this.modal.openDialog(dialogInfo);
+  }
 
   private LoadMaturityDataFromGeneratedYaml() {
     return new Promise<void>((resolve, reject) => {
@@ -843,9 +855,26 @@ export class CircularHeatmapComponent implements OnInit {
     this.noActivitytoGrey();
   }
 
-  ResetIsImplemented() {
-    localStorage.removeItem('dataset');
-    this.loadDataset();
+  deleteLocalTeamsProgress() {
+    // Remove focus from the button that becomes aria unavailable (avoids ugly console error message)
+    const buttonElement = document.activeElement as HTMLElement;
+    buttonElement.blur();
+
+    let title: string = 'Delete local browser data';
+    let message: string =
+      'Do you want to delete all progress for each team?' +
+      '\n\nThis deletes all progress stored in your local browser, but does ' +
+      'not change any progress stored in the yaml file on the server.';
+    let buttons: string[] = ['Cancel', 'Delete'];
+    this.modal
+      .openDialog({ title, message, buttons, template: '' })
+      .afterClosed()
+      .subscribe(data => {
+        if (data === 'Delete') {
+          localStorage.removeItem('dataset');
+          location.reload(); // Make sure all load routines are initialized
+        }
+      });
   }
 
   saveDataset() {
