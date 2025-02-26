@@ -9,7 +9,7 @@ This guide walks you through **setting up the project locally**, making contribu
 
 ## **Project Setup**
 
-### Development Server :-
+### Development Server
 
 The DSOMM is based [Angular](https://angular.dev/) and uses npm for package management.
 
@@ -45,20 +45,28 @@ curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-Maturity
   
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-### Code scaffolding :-
+## Code Scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-### Build :-
+## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### Running unit tests :-
+## Running Unit Tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### Coding Style Conventions :-
+## Coding Style Conventions
 
 - We follow the coding style defined by [ESLint](https://eslint.org/).
 - We also use [Prettier](https://prettier.io/docs/en/index.html) as our opinionated code formatter.
-- To validate the schemas of the DSOMM yaml files in the IDE, it is recommended to use the VS Code extension [redhat.vscode-yaml](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). The schemas are stored in /src/assets/YAML/schemas
+- To validate the schemas of the DSOMM yaml files in the IDE, it is recommended to use the VS Code extension [redhat.vscode-yaml](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). The schemas are stored in `/src/assets/YAML/schemas`
+
+### Running Linter
+
+Run `ng lint` to run the linter from the command line.  
+If you want to lint only a specific component, use:
+
+```bash
+ng lint --lint-file-patterns .\src\app\component\xxxxxx\

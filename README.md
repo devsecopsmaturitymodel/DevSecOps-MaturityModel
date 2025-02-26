@@ -94,6 +94,29 @@ service docker start
 docker run -d -p 80:8080 wurstbrot/dsomm:latest
 ```
 
+## Generating the `generated.yaml` File
+
+The `generated.yaml` file is dynamically created during the build process. If you don’t see this file after setup, follow these steps to generate it:
+
+**1. Clone the Required Repository:**
+The `generated.yaml` file is built via the DevSecOps-MaturityModel-data repository. Make sure you have cloned and set it up correctly.
+
+**2. Run the Build Command:**
+Navigate to the project directory and run the following command:
+- *Using npm:*
+
+```sh
+npm run build
+````
+
+- *Using yarn:*
+
+```sh
+yarn build
+```
+
+*If the file is missing, ensure all dependencies are installed and that you have the correct access to the `DevSecOps-MaturityModel-data` repository.*
+
 ## Activity Definitions
 The definition of the activities are in the [data-repository](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data). 
 
