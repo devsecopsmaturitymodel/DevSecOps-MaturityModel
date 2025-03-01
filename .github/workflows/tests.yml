@@ -13,6 +13,6 @@ jobs:
       with:
         node-version: 16.0
     - name: Install dependencies
-      run: npm install
+      run: npm install --legacy-peer-deps
     - name: Test
       run: npm test -- --watch=false --browsers=ChromeHeadless
