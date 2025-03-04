@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   build:
+    if: github.repository == 'devsecopsmaturitymodel/DevSecOps-MaturityModel'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -73,11 +74,14 @@ jobs:
             echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
           fi
           echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh 
       - name: "Deploy ${{ github.ref }} to Heroku"
-        uses: akhileshns/heroku-deploy@9fd0f9faae4aa93a38d6f5e25b9128589f1371b0 #v3.12.14
+        uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "dsomm"
           heroku_email: timo.pagel@owasp.org
           branch: ${{ env.HEROKU_BRANCH }}
-          usedocker: true
+          usedocker: true          
