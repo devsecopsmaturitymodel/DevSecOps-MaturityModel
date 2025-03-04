@@ -10,7 +10,7 @@ import { UsageComponent } from './component/usage/usage.component';
 import { TeamsComponent } from './component/teams/teams.component';
 
 const routes: Routes = [
-  { path: '', component: CircularHeatmapComponent },
+  { path: '', component: MatrixComponent },
   { path: 'circular-heatmap', component: CircularHeatmapComponent },
   { path: 'matrix', component: MatrixComponent },
   { path: 'activity-description', component: ActivityDescriptionComponent },
