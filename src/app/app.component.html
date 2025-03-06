@@ -16,6 +16,11 @@
       >Fork me on GitHub</a
     >
   </div>
+
+  <!-- Adding the toggle night mode -->
+  <button (click)="toggleTheme()">
+    {{ isNightMode ? 'Switch to Light Mode' : 'Switch to Night Mode' }}
+  </button>
   <mat-divider></mat-divider>
   <router-outlet></router-outlet>
 </mat-drawer-container>
