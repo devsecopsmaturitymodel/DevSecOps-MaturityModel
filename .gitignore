@@ -43,5 +43,4 @@ testem.log
 .DS_Store  
 Thumbs.db 
 /yaml-generation/vendor/
-# Generated YAML EA 2025.03.06 Removing on Purpose
-#/src/assets/YAML/generated/generated.yaml
+/src/assets/YAML/generated/generated.yaml
