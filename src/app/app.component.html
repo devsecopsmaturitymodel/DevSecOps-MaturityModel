@@ -1,18 +1,11 @@
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer
-    #drawer
-    class="sidenav-menu"
-    mode="side"
-    opened="{{ menuIsOpen }}">
-    <button class="menu-close" (click)="toggleMenu()">
-      <mat-icon class="white-icon">close</mat-icon>
-    </button>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
     <a routerLink="/"><app-logo></app-logo></a>
     <app-sidenav-buttons></app-sidenav-buttons>
   </mat-drawer>
 
   <div class="sidenav-content">
-    <button type="button" mat-button (click)="toggleMenu()" color="primary">
+    <button type="button" mat-button (click)="drawer.toggle()" color="primary">
       <mat-icon>menu</mat-icon>
     </button>
     <a
@@ -20,9 +13,14 @@
       href="https://github.com/wurstbrot/DevSecOps-MaturityModel"
       data-ribbon="Fork me on GitHub"
       title="Fork me on GitHub"
-      >Fork me on GitHub</a
+    >Fork me on GitHub</a
     >
   </div>
+
+  <!-- Adding the toggle night mode -->
+  <button (click)="toggleTheme()">
+    {{ isNightMode ? 'Switch to Light Mode' : 'Switch to Night Mode' }}
+  </button>
   <mat-divider></mat-divider>
   <router-outlet></router-outlet>
 </mat-drawer-container>

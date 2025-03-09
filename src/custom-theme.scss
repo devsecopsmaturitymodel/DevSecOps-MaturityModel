@@ -1,44 +1,80 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-
-$custom-typography: mat.define-typography-level(
-  $font-family: montserrat,
-  $font-weight: 400,
-  $font-size: 1rem,
-  $line-height: 1,
-  $letter-spacing: normal,
+// ----------------------------------------------
+// Custom Theme Maps for Body Styles
+// ----------------------------------------------
+$light-theme: (
+        background: white,
+        text: black,
+        link: blue
 );
 
+$custom-dark-theme: ( // renamed to avoid conflict with Angular Material variables
+        background: #2c2c2c,
+        text: #e0e0e0,
+        link: #bb86fc
+);
+
+// ----------------------------------------------
+// Angular Material Core Styles & Typography
+// ----------------------------------------------
+$custom-typography: mat.define-typography-level(
+        $font-family: montserrat,
+        $font-weight: 400,
+        $font-size: 1rem,
+        $line-height: 1,
+        $letter-spacing: normal,
+);
 @include mat.core($custom-typography);
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$DSOMM-primary: mat.define-palette(mat.$green-palette,400);
+// ----------------------------------------------
+// Angular Material Palettes
+// ----------------------------------------------
+$DSOMM-primary: mat.define-palette(mat.$green-palette, 400);
 $DSOMM-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
 $DSOMM-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$DSOMM-theme: mat.define-light-theme((
-  color: (
-    primary: $DSOMM-primary,
-    accent: $DSOMM-accent,
-    warn: $DSOMM-warn,
-  )
+// ----------------------------------------------
+// Define Angular Material Light and Dark Themes
+// ----------------------------------------------
+$DSOMM-light-theme: mat.define-light-theme((
+        color: (
+                primary: $DSOMM-primary,
+                accent: $DSOMM-accent,
+                warn: $DSOMM-warn,
+        )
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($DSOMM-theme);
+$DSOMM-dark-theme: mat.define-dark-theme((
+        color: (
+                primary: $DSOMM-primary,  // using the same palette; adjust if needed
+                accent: $DSOMM-accent,
+                warn: $DSOMM-warn,
+        )
+));
 
+// Include Angular Material styles for the light theme by default
+@include mat.all-component-themes($DSOMM-light-theme);
+
+// ----------------------------------------------
+// Mixin to Apply Custom Body Styles
+// ----------------------------------------------
+@mixin apply-theme($theme) {
+  background-color: map-get($theme, background);
+  color: map-get($theme, text);
+
+  a {
+    color: map-get($theme, link);
+  }
+}
+
+// Apply custom light theme styles to the body by default
+body {
+  @include apply-theme($light-theme);
+}
+
+// When night mode is active, override with custom dark theme styles and include Angular Material dark theme
+body.night-mode {
+  @include apply-theme($custom-dark-theme);
+  @include mat.all-component-themes($DSOMM-dark-theme);
+}
