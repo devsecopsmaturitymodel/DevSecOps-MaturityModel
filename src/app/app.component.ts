@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // Load menu state
     let menuState: string | null = localStorage.getItem('state.menuIsOpen');
+
     if (menuState === 'false') {
       setTimeout(() => {
         this.menuIsOpen = false;
