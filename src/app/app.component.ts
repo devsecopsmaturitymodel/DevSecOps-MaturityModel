@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']  // This is for component-specific styles.
+  styleUrls: ['./app.component.css'], // This is for component-specific styles.
 })
 export class AppComponent {
   title = 'DSOMM';
