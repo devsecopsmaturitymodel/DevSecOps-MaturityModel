@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
     }
 
     // Load night mode state
-    let nightModeState: string | null = localStorage.getItem('state.isNightMode');
+    let nightModeState: string | null =
+      localStorage.getItem('state.isNightMode');
+
     if (nightModeState === 'true') {
       this.isNightMode = true;
       document.body.classList.add('night-mode');
