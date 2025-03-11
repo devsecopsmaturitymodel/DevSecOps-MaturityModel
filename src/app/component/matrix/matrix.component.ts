@@ -1,4 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -16,6 +23,7 @@ export interface MatrixElement {
   Dimension: string;
   SubDimension: string;
 }
+
 @UntilDestroy()
 @Component({
   selector: 'app-matrix',
@@ -24,20 +32,31 @@ export interface MatrixElement {
 })
 export class MatrixComponent implements OnInit {
   MATRIX_DATA: MatrixElement[] = [];
-
   Routing: string = '/activity-description';
-
   YamlObject: any;
   levels: string[] = [];
-
   displayedColumns: string[] = ['Dimension', 'SubDimension'];
-
   lvlColumn: string[] = [];
   allRows: string[] = [];
   dataSource: any = new MatTableDataSource<MatrixElement>(this.MATRIX_DATA);
   subDimensionVisible: string[] = [];
   activityVisible: string[] = [];
   allDimensionNames: string[] = [];
+
+  // For autocomplete filters
+  filteredSubDimension: Observable<string[]>;
+  filteredActivities: Observable<string[]>;
+  autoCompeteResults: string[] = [];
+  autoCompleteActivityResults: string[] = [];
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  rowCtrl = new FormControl('');
+  rowCtrlActivity = new FormControl('');
+
+  listTags: string[] = [];
+  currentTags: string[] = [];
+
+  listSubDimension: string[] = [];
+  currentSubDimensions: string[] = [];
 
   constructor(private yaml: ymlService, private router: Router) {
     this.filteredSubDimension = this.rowCtrl.valueChanges.pipe(
@@ -55,61 +74,53 @@ export class MatrixComponent implements OnInit {
       )
     );
   }
+
   reload() {
     window.location.reload();
   }
-  // function to initialize if level columns exists
 
   ngOnInit(): void {
     this.yaml.setURI('./assets/YAML/meta.yaml');
-    // Function sets column header
+    // Set column header information
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
-      // Levels header
       this.levels = this.YamlObject['strings']['en']['maturity_levels'];
-      // pushes Levels in displayed column
       for (let k = 1; k <= this.levels.length; k++) {
         this.displayedColumns.push('level' + k);
         this.lvlColumn.push('level' + k);
       }
     });
 
-    var activitySet = new Set();
+    const activitySet = new Set();
 
-    //gets value from generated folder
+    // Load generated data
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
-    // Function sets data
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
-
       this.allDimensionNames = Object.keys(this.YamlObject);
       for (let i = 0; i < this.allDimensionNames.length; i++) {
-        var subdimensionsInCurrentDimension = Object.keys(
+        const subdimensionsInCurrentDimension = Object.keys(
           this.YamlObject[this.allDimensionNames[i]]
         );
-
         for (let j = 0; j < subdimensionsInCurrentDimension.length; j++) {
-          var temp: any = {
+          let temp: any = {
             Dimension: this.allDimensionNames[i],
             SubDimension: subdimensionsInCurrentDimension[j],
           };
 
           for (let k = 0; k < this.levels.length; k++) {
-            temp = {
-              ...temp,
-              [this.lvlColumn[k] as keyof number]: [],
-            };
+            temp = { ...temp, [this.lvlColumn[k] as keyof number]: [] };
           }
 
-          var activityInCurrentSubDimension: string[] = Object.keys(
+          const activityInCurrentSubDimension: string[] = Object.keys(
             this.YamlObject[this.allDimensionNames[i]][
               subdimensionsInCurrentDimension[j]
             ]
           );
 
           for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
-            var currentActivityName = activityInCurrentSubDimension[a];
-            var tagsInCurrentActivity: string[] =
+            const currentActivityName = activityInCurrentSubDimension[a];
+            const tagsInCurrentActivity: string[] =
               this.YamlObject[this.allDimensionNames[i]][
                 subdimensionsInCurrentDimension[j]
               ][currentActivityName].tags;
@@ -120,11 +131,10 @@ export class MatrixComponent implements OnInit {
             }
 
             try {
-              var lvlOfActivity: number =
+              const lvlOfActivity: number =
                 this.YamlObject[this.allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
                 ][currentActivityName]['level'];
-
               (
                 temp[
                   this.lvlColumn[lvlOfActivity - 1] as keyof number
@@ -150,9 +160,13 @@ export class MatrixComponent implements OnInit {
   chipsControl = new FormControl(['chipsControl']);
   chipList!: MatChipList;
 
-  // @ViewChild(MatChip)
-  listTags: string[] = [];
-  currentTags: string[] = [];
+  @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('activityInput') activityInput!: ElementRef<HTMLInputElement>;
+
+  // Query only the subdimension chips using the unique template reference (e.g. "chipRef")
+  @ViewChildren('chipRef') subChips!: QueryList<MatChip>;
+
+  // --- Tag Chips Methods ---
   createActivityTags(activitySet: Set<any>): void {
     activitySet.forEach(tag => {
       this.listTags.push(tag);
@@ -167,16 +181,15 @@ export class MatrixComponent implements OnInit {
     if (chip.selected) {
       this.currentTags = [...this.currentTags, chip.value];
       this.activityVisible = this.currentTags;
-      this.updateActivitesBeingDisplayed();
     } else {
       this.currentTags = this.currentTags.filter(o => o !== chip.value);
       this.activityVisible = this.currentTags;
-      this.updateActivitesBeingDisplayed();
     }
+    this.updateActivitesBeingDisplayed();
   }
 
-  listSubDimension: string[] = [];
-  currentSubDimensions: string[] = [];
+  // --- SubDimension Chips Methods ---
+
   createSubDimensionList(): void {
     let i = 0;
     while (i < this.MATRIX_DATA.length) {
@@ -190,61 +203,103 @@ export class MatrixComponent implements OnInit {
     }
   }
 
-  toggleSubDimensionSelection(chip: MatChip) {
-    chip.toggleSelected();
-    if (chip.selected) {
-      this.currentSubDimensions = [...this.currentSubDimensions, chip.value];
-      this.subDimensionVisible = this.currentSubDimensions;
-      this.selectedSubDimension(chip.value);
-    } else {
+  // Toggle subdimension selection based on its string value
+  toggleSubDimensionSelection(subDimension: string): void {
+    if (this.currentSubDimensions.includes(subDimension)) {
+      // Remove the subdimension from the filter
       this.currentSubDimensions = this.currentSubDimensions.filter(
-        o => o !== chip.value
+        sd => sd !== subDimension
       );
-      this.subDimensionVisible = this.currentSubDimensions;
-      this.removeSubDimensionFromFilter(chip.value);
+      this.removeSubDimensionFromFilter(subDimension);
+    } else {
+      // Add the subdimension to the filter
+      this.currentSubDimensions = [...this.currentSubDimensions, subDimension];
+      this.selectedSubDimension(subDimension);
     }
+    // Update the filter and displayed activities
+    this.subDimensionVisible = this.currentSubDimensions;
+    this.updateActivitesBeingDisplayed();
   }
 
-  //chips
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  rowCtrl = new FormControl('');
-  rowCtrlActivity = new FormControl('');
-  filteredSubDimension: Observable<string[]>;
-  filteredActivities: Observable<string[]>;
-  autoCompeteResults: string[] = [];
-  autoCompleteActivityResults: string[] = [];
+  // Method to reset/deselect all subdimension filters
+  resetSubDimensionFilters(): void {
+    this.subChips.forEach((chip: MatChip) => {
+      chip.selected = false;
+    });
+    // Also clear the filter arrays and update the table
+    this.currentSubDimensions = [];
+    this.subDimensionVisible = [];
+    this.updateActivitesBeingDisplayed();
+  }
 
-  @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('activityInput') activityInput!: ElementRef<HTMLInputElement>;
+  // When a subdimension is selected manually, update the visible filter
+  selectedSubDimension(value: string): void {
+    if (!this.subDimensionVisible.includes(value)) {
+      this.subDimensionVisible.push(value);
+    }
+    this.updateActivitesBeingDisplayed();
+  }
 
+  // Method to select all subdimension filters
+  selectAllSubDimensionFilters(): void {
+    // Set the current filters to include all subdimensions
+    this.currentSubDimensions = [...this.listSubDimension];
+    // Update the visible filters
+    this.subDimensionVisible = [...this.listSubDimension];
+    // Loop through each chip and mark it as selected
+    this.subChips.forEach((chip: MatChip) => {
+      chip.selected = true;
+    });
+    // Refresh the activities displayed in the table
+    this.updateActivitesBeingDisplayed();
+  }
+
+  removeSubDimensionFromFilter(value: string): void {
+    const index = this.subDimensionVisible.indexOf(value);
+    if (index >= 0) {
+      this.subDimensionVisible.splice(index, 1);
+    }
+    this.autoCompeteResults.push(value);
+    this.updateActivitesBeingDisplayed();
+  }
+
+  // --- Filtering Methods (for autocomplete) ---
+  private filterSubDimension(value: string): string[] {
+    return this.autoCompeteResults.filter(
+      row => row.toLowerCase().indexOf(value.toLowerCase()) === 0
+    );
+  }
+
+  private filterActivity(value: string): string[] {
+    return this.autoCompleteActivityResults.filter(
+      activity => activity.toLowerCase().indexOf(value.toLowerCase()) === 0
+    );
+  }
+
+  // --- Table Data Update ---
   updateActivitesBeingDisplayed(): void {
-    // Iterate over all objects and create new MATRIX_DATA
-    var updatedActivities: any = [];
+    const updatedActivities: any = [];
 
     for (let i = 0; i < this.allDimensionNames.length; i++) {
-      var subdimensionsInCurrentDimension = Object.keys(
+      const subdimensionsInCurrentDimension = Object.keys(
         this.YamlObject[this.allDimensionNames[i]]
       );
-
       for (let j = 0; j < subdimensionsInCurrentDimension.length; j++) {
-        var temp: any = {
+        let temp: any = {
           Dimension: this.allDimensionNames[i],
           SubDimension: subdimensionsInCurrentDimension[j],
         };
         for (let k = 0; k < this.levels.length; k++) {
-          temp = {
-            ...temp,
-            [this.lvlColumn[k] as keyof number]: [],
-          };
+          temp = { ...temp, [this.lvlColumn[k] as keyof number]: [] };
         }
-        var activityInCurrentSubDimension: string[] = Object.keys(
+        const activityInCurrentSubDimension: string[] = Object.keys(
           this.YamlObject[this.allDimensionNames[i]][
             subdimensionsInCurrentDimension[j]
           ]
         );
         for (let a = 0; a < activityInCurrentSubDimension.length; a++) {
-          var currentActivityName = activityInCurrentSubDimension[a];
-          var tagsInCurrentActivity: string[] =
+          const currentActivityName = activityInCurrentSubDimension[a];
+          const tagsInCurrentActivity: string[] =
             this.YamlObject[this.allDimensionNames[i]][
               subdimensionsInCurrentDimension[j]
             ][currentActivityName].tags;
@@ -258,11 +313,10 @@ export class MatrixComponent implements OnInit {
           }
           if (flag === 1) {
             try {
-              var lvlOfActivity: number =
+              const lvlOfActivity: number =
                 this.YamlObject[this.allDimensionNames[i]][
                   subdimensionsInCurrentDimension[j]
                 ][currentActivityName]['level'];
-
               (
                 temp[
                   this.lvlColumn[lvlOfActivity - 1] as keyof number
@@ -278,38 +332,10 @@ export class MatrixComponent implements OnInit {
         }
       }
     }
-
     this.dataSource.data = JSON.parse(JSON.stringify(updatedActivities));
   }
 
-  removeSubDimensionFromFilter(row: string): void {
-    let index = this.subDimensionVisible.indexOf(row);
-    if (index >= 0) {
-      this.subDimensionVisible.splice(index, 1);
-    }
-    this.autoCompeteResults.push(row);
-    this.updateActivitesBeingDisplayed();
-  }
-
-  //Add chips
-  selectedSubDimension(value: string): void {
-    this.subDimensionVisible.push(value);
-    this.updateActivitesBeingDisplayed();
-  }
-
-  private filterSubDimension(value: string): string[] {
-    return this.autoCompeteResults.filter(
-      row => row.toLowerCase().indexOf(value.toLowerCase()) === 0
-    );
-  }
-  private filterActivity(value: string): string[] {
-    return this.autoCompleteActivityResults.filter(
-      activity => activity.toLowerCase().indexOf(value.toLowerCase()) === 0
-    );
-  }
-
-  // activity description routing + providing parameters
-
+  // --- Routing ---
   navigate(
     uuid: String,
     dim: string,
@@ -317,7 +343,7 @@ export class MatrixComponent implements OnInit {
     lvl: Number,
     activityName: string
   ) {
-    let navigationExtras: NavigationExtras = {
+    const navigationExtras: NavigationExtras = {
       queryParams: {
         uuid: uuid,
         dimension: dim,

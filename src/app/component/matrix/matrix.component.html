@@ -6,13 +6,26 @@
       <mat-chip
         #c="matChip"
         *ngFor="let subDimension of listSubDimension"
-        (click)="toggleSubDimensionSelection(c)"
+        (click)="toggleSubDimensionSelection(subDimension)"
         [value]="subDimension"
-        selected>
+        [selected]="currentSubDimensions.includes(subDimension)">
         {{ subDimension }}
       </mat-chip>
     </mat-chip-list>
   </mat-form-field>
+
+  <button
+    class="clear-subdimension-button"
+    (click)="resetSubDimensionFilters()">
+    Clear SubDimension Filters
+  </button>
+
+  <button
+    class="select-all-subdimension-button"
+    (click)="selectAllSubDimensionFilters()">
+    Select All SubDimension Filters
+  </button>
+
   <mat-form-field class="activity-chip-list">
     <mat-label>Activity Tag Filter</mat-label>
     <mat-chip-list selectable multiple>
