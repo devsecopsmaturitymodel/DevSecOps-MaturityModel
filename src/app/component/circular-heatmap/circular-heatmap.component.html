@@ -192,9 +192,18 @@
           </div>
         </ng-template>
       </div>
-      <div id="chart" class="heatmapClass">
-        <div class="right-panel">
-          <div class="team-filter">
+      <div class="heatmapClass">
+        <div id="chart" class="heatmapChart"></div>
+        <div class="filter-container">
+          <button
+            class="filter-toggle"
+            mat-button
+            color="primary"
+            (click)="toggleFilters()">
+            <mat-icon [class.hidden]="!showFilters">keyboard_arrow_up</mat-icon>
+            <mat-icon [class.hidden]="showFilters">filter_alt</mat-icon>
+          </button>
+          <div class="team-filter" [class.hidden]="!showFilters">
             <mat-form-field class="team-chip-list">
               <mat-label>Team Group Filter</mat-label>
               <mat-chip-list selectable>
@@ -225,68 +234,69 @@
               </mat-chip-list>
             </mat-form-field>
           </div>
-          <mat-card class="example-card" *ngIf="showActivityCard">
-            <mat-card-title-group>
-              <mat-card-title>{{ cardHeader }}</mat-card-title>
-              <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
-            </mat-card-title-group>
-            <mat-card-content
-              *ngFor="let activity of activityData; index as activityIndex">
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <button
-                      class="title-button"
-                      (click)="
-                        $event.preventDefault();
-                        openActivityDetails(
-                          currentDimension,
-                          cardHeader,
-                          activity['activityName']
-                        )
-                      ">
-                      {{ activity['activityName'] }}
-                    </button>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <ul class="team-list">
-                    <li *ngFor="let teamname of teamVisible">
-                      <mat-checkbox
-                        [checked]="activity.teamsImplemented[teamname]"
-                        color="primary"
-                        (click)="
-                          this.teamCheckbox(activityIndex, teamname);
-                          $event.preventDefault()
-                        ">
-                        {{ teamname }}
-                      </mat-checkbox>
-                    </li>
-                  </ul>
-                  <b *ngIf="teamVisible.length === 0">
-                    No Teams Selected, Please select a team from the filters
-                    above.
-                  </b>
-                </ng-template>
-              </mat-expansion-panel>
-            </mat-card-content>
-          </mat-card>
         </div>
-
-        <button
-          class="normal-button"
-          mat-raised-button
-          class="downloadButtonClass"
-          (click)="saveEditedYAMLfile()">
-          Download edited YAML file
-        </button>
-        <button
-          class="normal-button"
-          mat-raised-button
-          class="resetButtonClass"
-          (click)="deleteLocalTeamsProgress()">
-          Delete team progress
-        </button>
+        <mat-card class="example-card" *ngIf="showActivityCard">
+          <mat-card-title-group>
+            <mat-card-title>{{ cardHeader }}</mat-card-title>
+            <mat-card-subtitle>{{ cardSubheader }}</mat-card-subtitle>
+          </mat-card-title-group>
+          <mat-card-content
+            *ngFor="let activity of activityData; index as activityIndex">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <button
+                    class="title-button"
+                    (click)="
+                      $event.preventDefault();
+                      openActivityDetails(
+                        currentDimension,
+                        cardHeader,
+                        activity['activityName']
+                      )
+                    ">
+                    {{ activity['activityName'] }}
+                  </button>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ng-template matExpansionPanelContent>
+                <ul class="team-list">
+                  <li *ngFor="let teamname of teamVisible">
+                    <mat-checkbox
+                      [checked]="activity.teamsImplemented[teamname]"
+                      color="primary"
+                      (click)="
+                        this.teamCheckbox(activityIndex, teamname);
+                        $event.preventDefault()
+                      ">
+                      {{ teamname }}
+                    </mat-checkbox>
+                  </li>
+                </ul>
+                <b *ngIf="teamVisible.length === 0">
+                  No Teams Selected, Please select a team from the filters
+                  above.
+                </b>
+              </ng-template>
+            </mat-expansion-panel>
+          </mat-card-content>
+        </mat-card>
+        <div class="footer-buttons">
+          <button
+            class="normal-button"
+            mat-raised-button
+            class="downloadButtonClass"
+            (click)="saveEditedYAMLfile()">
+            Download edited YAML file
+          </button>
+          <button
+            class="normal-button"
+            mat-raised-button
+            class="resetButtonClass"
+            (click)="deleteLocalTeamsProgress()">
+            Reset Implemented
+          </button>
+        </div>
       </div>
     </div>
     <div class="col-md-3"></div>

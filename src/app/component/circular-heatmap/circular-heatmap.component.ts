@@ -61,6 +61,7 @@ export class CircularHeatmapComponent implements OnInit {
   segment_labels: string[] = [];
   activityDetails: any;
   showOverlay: boolean;
+  showFilters: boolean;
   markdown: md = md();
 
   constructor(
@@ -69,6 +70,7 @@ export class CircularHeatmapComponent implements OnInit {
     public modal: ModalMessageComponent
   ) {
     this.showOverlay = false;
+    this.showFilters = true;
   }
 
   ngOnInit(): void {
@@ -417,9 +419,9 @@ export class CircularHeatmapComponent implements OnInit {
       .data([dataset])
       .enter()
       .append('svg')
-      .attr('width', '60%') // 70% forces the heatmap down
-      .attr('height', 'auto')
-      .attr('viewBox', '0 0 1150 1150')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', '0 0 1200 1200')
       .append('g')
       .attr(
         'transform',
@@ -443,75 +445,36 @@ export class CircularHeatmapComponent implements OnInit {
     svg
       .selectAll('path')
       .on('click', function (d) {
-        console.log(d);
-        try {
-          curr = d.explicitOriginalTarget.__data__;
-        } catch {
-          curr = d.srcElement.__data__;
+        _self.setSectorCursor(svg, '#hover', '');
+
+        var clickedId = d.currentTarget.id;
+        var index = parseInt(clickedId.replace('index-', ''));
+        curr = _self.ALL_CARD_DATA[index];
+        console.log('index', curr['Activity']);
+
+        if (curr['Done%'] == -1) {
+          _self.showActivityCard = false;
+          _self.setSectorCursor(svg, '#selected', '');
+        } else {
+          _self.showActivityCard = true;
+          _self.currentDimension = curr.Dimension;
+          _self.cardSubheader = curr.Level;
+          _self.activityData = curr.Activity;
+          _self.cardHeader = curr.SubDimension;
+          _self.setSectorCursor(svg, '#selected', clickedId);
         }
-        var index = 0;
-        var cnt = 0;
-        for (var i = 0; i < _self.ALL_CARD_DATA.length; i++) {
-          if (
-            _self.ALL_CARD_DATA[i]['SubDimension'] === curr.SubDimension &&
-            _self.ALL_CARD_DATA[i]['Level'] === curr.Level
-          ) {
-            index = i;
-            break;
-          }
-        }
-        console.log('index', _self.ALL_CARD_DATA[index]['Activity']);
-        _self.currentDimension = curr.Dimension;
-        _self.cardSubheader = curr.Level;
-        _self.activityData = curr.Activity;
-        _self.cardHeader = curr.SubDimension;
-        _self.showActivityCard = true;
       })
       .on('mouseover', function (d) {
-        //console.log(d.toElement.__data__.Name)
-        try {
-          curr = d.explicitOriginalTarget.__data__;
-        } catch {
-          curr = d.toElement.__data__;
-        }
-        // increase the segment height of the one being hovered as well as all others of the same date
-        // while decreasing the height of all others accordingly
-        if (curr['Done%'] != -1) {
-          d3.selectAll(
-            '#segment-' +
-              curr.SubDimension.replace(/ /g, '-') +
-              '-' +
-              curr.Level.replaceAll(' ', '-')
-          ).attr('fill', 'yellow');
+        curr = d.currentTarget.__data__;
+
+        if (curr && curr['Done%'] != -1) {
+          var clickedId = d.srcElement.id;
+          _self.setSectorCursor(svg, '#hover', clickedId);
         }
       })
 
       .on('mouseout', function (d) {
-        //console.log(d.explicitOriginalTarget.__data__.Day)
-
-        if (curr['Done%'] != -1) {
-          d3.selectAll(
-            '#segment-' +
-              curr.SubDimension.replace(/ /g, '-') +
-              '-' +
-              curr.Level.replaceAll(' ', '-')
-          ).attr('fill', function (p) {
-            var color = d3
-              .scaleLinear<string, string>()
-              .domain([0, 1])
-              .range(['white', 'green']);
-            // how to access a function within reusable charts
-            //console.log(color(d.Done));
-            return color(curr['Done%']);
-          });
-        } else {
-          d3.selectAll(
-            '#segment-' +
-              curr.SubDimension.replace(/ /g, '-') +
-              '-' +
-              curr.Level.replaceAll(' ', '-')
-          ).attr('fill', '#DCDCDC');
-        }
+        _self.setSectorCursor(svg, '#hover', '');
       });
     this.reColorHeatmap();
   }
@@ -573,13 +536,8 @@ export class CircularHeatmapComponent implements OnInit {
           .attr('class', function (d: any) {
             return 'segment-' + d.SubDimension.replace(/ /g, '-');
           })
-          .attr('id', function (d: any) {
-            return (
-              'segment-' +
-              d.SubDimension.replace(/ /g, '-') +
-              '-' +
-              d.Level.replaceAll(' ', '-')
-            );
+          .attr('id', function (d: any, i: number) {
+            return 'index-' + i;
           })
           .attr(
             'd',
@@ -590,9 +548,7 @@ export class CircularHeatmapComponent implements OnInit {
               .startAngle(sa)
               .endAngle(ea)
           )
-          .attr('stroke', function (d) {
-            return '#252525';
-          })
+          .attr('stroke', '#252525')
           .attr('fill', function (d) {
             return color(accessor(d));
           });
@@ -640,6 +596,31 @@ export class CircularHeatmapComponent implements OnInit {
           .text(function (d: any) {
             return d;
           });
+        var cursors = svg
+          .append('g')
+          .classed('cursors', true)
+          .attr(
+            'transform',
+            'translate(' +
+              (margin.left + offset) +
+              ',' +
+              (margin.top + offset) +
+              ')'
+          );
+        cursors
+          .append('path')
+          .attr('id', 'hover')
+          .attr('pointer-events', 'none')
+          .attr('stroke', 'green')
+          .attr('stroke-width', '7')
+          .attr('fill', 'transparent');
+        cursors
+          .append('path')
+          .attr('id', 'selected')
+          .attr('pointer-events', 'none')
+          .attr('stroke', '#232323')
+          .attr('stroke-width', '4')
+          .attr('fill', 'transparent');
       });
     }
 
@@ -721,15 +702,21 @@ export class CircularHeatmapComponent implements OnInit {
     return chart;
   }
 
+  setSectorCursor(svg: any, cursor: string, targetId: string): void {
+    let element = svg.select(cursor);
+    let path: string = '';
+    if (targetId) {
+      if (targetId[0] != '#') targetId = '#' + targetId;
+      path = svg.select(targetId).attr('d');
+    }
+
+    svg.select(cursor).attr('d', path);
+  }
+
   noActivitytoGrey(): void {
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
-        d3.selectAll(
-          '#segment-' +
-            this.ALL_CARD_DATA[x]['SubDimension'].replace(/ /g, '-') +
-            '-' +
-            this.ALL_CARD_DATA[x]['Level'].replace(' ', '-')
-        ).attr('fill', '#DCDCDC');
+        d3.select('#index-' + x).attr('fill', '#DCDCDC');
       }
     }
   }
@@ -778,6 +765,10 @@ export class CircularHeatmapComponent implements OnInit {
     this.showOverlay = false;
   }
 
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
+  }
+
   saveEditedYAMLfile() {
     this.setTeamsStatus(this.YamlObject, this.teamList, this.ALL_CARD_DATA);
     let yamlStr = yaml.dump(this.YamlObject);
@@ -812,47 +803,39 @@ export class CircularHeatmapComponent implements OnInit {
 
   reColorHeatmap() {
     console.log('recolor');
+    var teamsCount = this.teamVisible.length;
+
     for (var index = 0; index < this.ALL_CARD_DATA.length; index++) {
-      let cntAll: number = 0;
+      var activities = this.ALL_CARD_DATA[index]['Activity'];
+      let cntAll: number = teamsCount * activities.length;
       let cntTrue: number = 0;
       var _self = this;
-      for (var i = 0; i < this.ALL_CARD_DATA[index]['Activity'].length; i++) {
-        var activityTeamList: any;
-        activityTeamList =
-          this.ALL_CARD_DATA[index]['Activity'][i]['teamsImplemented'];
-        (
-          Object.keys(activityTeamList) as (keyof typeof activityTeamList)[]
-        ).forEach((key, index) => {
-          if (typeof key === 'string') {
-            if (this.teamVisible.includes(key)) {
-              if (activityTeamList[key] === true) {
-                cntTrue += 1;
-              }
-              cntAll += 1;
-            }
+      for (var i = 0; i < activities.length; i++) {
+        for (var teamname of this.teamVisible) {
+          if (activities[i]['teamsImplemented'][teamname]) {
+            cntTrue++;
+            // console.log(`Counting ${activities[i].activityName}: ${teamname} (${cntTrue})`);
           }
-        });
+        }
       }
-      if (cntAll !== 0) {
-        this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
-      } else {
-        this.ALL_CARD_DATA[index]['Done%'] = -1;
-      }
-      var color = d3
+
+      var colorSector = d3
         .scaleLinear<string, string>()
         .domain([0, 1])
         .range(['white', 'green']);
 
-      d3.selectAll(
-        '#segment-' +
-          this.ALL_CARD_DATA[index]['SubDimension'].replace(/ /g, '-') +
-          '-' +
-          this.ALL_CARD_DATA[index]['Level'].replace(' ', '-')
-      ).attr('fill', function (p) {
-        return color(_self.ALL_CARD_DATA[index]['Done%']);
-      });
+      if (cntAll !== 0) {
+        this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
+        // console.log(`${this.ALL_CARD_DATA[index].SubDimension} ${this.ALL_CARD_DATA[index].Level} Done: ${cntTrue}/${cntAll} = ${(cntTrue / cntAll*100).toFixed(1)}%`);
+        d3.select('#index-' + index).attr('fill', function (p) {
+          return colorSector(_self.ALL_CARD_DATA[index]['Done%']);
+        });
+      } else {
+        this.ALL_CARD_DATA[index]['Done%'] = -1;
+        // console.log(`${this.ALL_CARD_DATA[index].SubDimension} ${this.ALL_CARD_DATA[index].Level} None`);
+        d3.select('#index-' + index).attr('fill', '#DCDCDC');
+      }
     }
-    this.noActivitytoGrey();
   }
 
   deleteLocalTeamsProgress() {
