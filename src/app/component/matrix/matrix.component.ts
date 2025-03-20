@@ -327,5 +327,6 @@ export class MatrixComponent implements OnInit {
       },
     };
     return `${this.Routing}?${stringify(navigationExtras.queryParams)}`;
+
   }
 }
