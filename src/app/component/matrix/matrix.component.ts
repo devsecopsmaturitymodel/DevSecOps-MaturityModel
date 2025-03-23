@@ -6,7 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { ymlService } from '../../service/yaml-parser/yaml-parser.service';
 import { Router, NavigationExtras } from '@angular/router';
-import { stringify } from 'qs';
+import { stringify } from 'querystring';
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -82,7 +82,8 @@ export class MatrixComponent implements OnInit {
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
 
-      this.allDimensionNames = Object.keys(this.YamlObject);
+      this.allDimensionNames = this.YamlObject ? Object.keys(this.YamlObject) : [];
+
       for (let i = 0; i < this.allDimensionNames.length; i++) {
         var subdimensionsInCurrentDimension = Object.keys(
           this.YamlObject[this.allDimensionNames[i]]
@@ -311,12 +312,13 @@ export class MatrixComponent implements OnInit {
   // activity description routing + providing parameters
 
   navigate(
-    uuid: String,
+    uuid: string,
     dim: string,
     subdim: string,
-    lvl: Number,
+    lvl: number,
     activityName: string
   ) {
+  
     let navigationExtras: NavigationExtras = {
       queryParams: {
         uuid: uuid,
@@ -326,6 +328,12 @@ export class MatrixComponent implements OnInit {
         activityName: activityName,
       },
     };
+
     return `${this.Routing}?${stringify(navigationExtras.queryParams)}`;
+
+    this.router.navigate([this.Routing], navigationExtras);
+
+
+
   }
 }
