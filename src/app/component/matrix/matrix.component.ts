@@ -82,7 +82,8 @@ export class MatrixComponent implements OnInit {
     this.yaml.getJson().subscribe(data => {
       this.YamlObject = data;
 
-      this.allDimensionNames = Object.keys(this.YamlObject);
+      this.allDimensionNames = this.YamlObject ? Object.keys(this.YamlObject) : [];
+
       for (let i = 0; i < this.allDimensionNames.length; i++) {
         var subdimensionsInCurrentDimension = Object.keys(
           this.YamlObject[this.allDimensionNames[i]]
