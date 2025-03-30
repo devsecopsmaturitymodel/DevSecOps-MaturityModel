@@ -66,13 +66,13 @@ export class CircularHeatmapComponent implements OnInit {
   theme: string;
   theme_colors: Record<string, string>;
   themes: Record<string, Record<string, string>> = {
-    'light': {
+    light: {
       background: '#ffffff',
       disabled: '#dddddd',
       filled: 'green',
       cursor: 'green',
     },
-    'night': {
+    night: {
       background: '#dddddd',
       disabled: '#888888',
       filled: 'green',
