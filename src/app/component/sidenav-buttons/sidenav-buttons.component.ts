@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemeService } from '../../service/theme.service';
 
 @Component({
   selector: 'app-sidenav-buttons',
@@ -36,18 +37,20 @@ export class SidenavButtonsComponent implements OnInit {
 
   isNightMode = false;
 
-  constructor() {}
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {
     const themePref = localStorage.getItem('theme');
-    this.isNightMode = themePref === 'night';
+    this.isNightMode = themePref === 'dark';
     this.applyTheme();
   }
 
   toggleTheme(): void {
+    console.log('[toggleTheme] Triggered');
+
     this.isNightMode = !this.isNightMode;
-    this.applyTheme();
-    localStorage.setItem('theme', this.isNightMode ? 'night' : 'light');
+    const newTheme = this.isNightMode ? 'dark' : 'light';
+    this.themeService.setTheme(newTheme);
   }
 
   private applyTheme(): void {

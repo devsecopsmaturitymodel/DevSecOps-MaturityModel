@@ -66,8 +66,6 @@ $DSOMM-dark-theme: mat.define-dark-theme((
 // Light Mode Styles
 // ----------------------------------------------
 body {
-  @include apply-theme($light-theme);
-  @include mat.all-component-themes($DSOMM-light-theme);
 
   .title-button,
   h1, h2, h3, h4, h5, h6 {
@@ -75,10 +73,20 @@ body {
   }
 }
 
+.light-theme {
+  --heatmap-filled: #4caf50;
+  --heatmap-disabled: #888888;
+  --heatmap-cursor: #3f51b5;
+  --heatmap-background: white;
+  --heatmap-stroke: black;
+
+  @include mat.all-component-themes($DSOMM-light-theme);
+}
+
 // ----------------------------------------------
 // Dark Mode Styles
 // ----------------------------------------------
-body.night-mode {
+body.dark-theme {
   @include apply-theme($custom-dark-theme);
   @include mat.all-component-themes($DSOMM-dark-theme);
 
@@ -86,6 +94,7 @@ body.night-mode {
   h1, h2, h3, h4, h5, h6 {
     color: map-get($custom-dark-theme, text);
   }
+
 
   // Common containers
   mat-card,
@@ -126,15 +135,26 @@ body.night-mode {
   }
 
   // Circular heatmap (radar chart)
-  .circular-heat text,
-  .labels.segment text {
-    fill: #ffffff !important;
-  }
+
 
   .circular-heat line,
   .circular-heat path {
     stroke: #000000;
   }
+}
+
+.dark-theme {
+
+
+  --heatmap-filled: #4caf50;
+  --heatmap-disabled: #666666;
+  --heatmap-cursor: #80deea;
+  --heatmap-background: #bbbbbb;
+  --heatmap-stroke: #000000;
+
+
+
+  @include mat.all-component-themes($DSOMM-dark-theme);
 }
 
 .button-container {

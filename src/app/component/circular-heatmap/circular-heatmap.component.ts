@@ -15,6 +15,7 @@ import {
   ModalMessageComponent,
   DialogInfo,
 } from '../modal-message/modal-message.component';
+import { ThemeService } from '../../service/theme.service';
 
 export interface activitySchema {
   uuid: string;
@@ -83,28 +84,53 @@ export class CircularHeatmapComponent implements OnInit {
   constructor(
     private yaml: ymlService,
     private router: Router,
+    private themeService: ThemeService,
     public modal: ModalMessageComponent
   ) {
     this.showOverlay = false;
     this.showFilters = true;
     this.theme = 'light';
+    this.theme = this.themeService.getTheme();
+
     this.theme_colors = this.themes[this.theme];
   }
 
   ngOnInit(): void {
-    console.log(`${this.perfNow()}s: ngOnInit`);
-    this.theme = localStorage.getItem('theme') || 'light';
-    this.theme_colors = this.themes[this.theme];
+    const savedTheme = this.themeService.getTheme() || 'light';
+    this.themeService.setTheme(savedTheme); // sets .light-theme or .dark-theme
 
-    // Ensure that Levels and Teams load before MaturityData
-    // using promises, since ngOnInit does not support async/await
-    this.LoadMaturityLevels()
-      .then(() => this.LoadTeamsFromMetaYaml())
-      .then(() => this.LoadMaturityDataFromGeneratedYaml())
-      .then(() => {
-        console.log(`${this.perfNow()}s: set filters: ${this.chips?.length}`);
-        this.matChipsArray = this.chips.toArray();
-      });
+    requestAnimationFrame(() => {
+      // Now the DOM has the correct class and CSS vars are live
+      const css = getComputedStyle(document.body);
+      this.theme_colors = {
+        background: css.getPropertyValue('--heatmap-background').trim(),
+        filled: css.getPropertyValue('--heatmap-filled').trim(),
+        disabled: css.getPropertyValue('--heatmap-disabled').trim(),
+        cursor: css.getPropertyValue('--heatmap-cursor').trim(),
+        stroke: css.getPropertyValue('--heatmap-stroke').trim(),
+      };
+
+      this.LoadMaturityLevels()
+        .then(() => this.LoadTeamsFromMetaYaml())
+        .then(() => this.LoadMaturityDataFromGeneratedYaml())
+        .then(() => {
+          this.matChipsArray = this.chips.toArray();
+        });
+    });
+
+    // Reactively handle theme changes (if user toggles later)
+    this.themeService.theme$.subscribe((theme: string) => {
+      const css = getComputedStyle(document.body);
+      this.theme_colors = {
+        background: css.getPropertyValue('--heatmap-background').trim(),
+        filled: css.getPropertyValue('--heatmap-filled').trim(),
+        disabled: css.getPropertyValue('--heatmap-disabled').trim(),
+        cursor: css.getPropertyValue('--heatmap-cursor').trim(),
+        stroke: css.getPropertyValue('--heatmap-stroke').trim(),
+      };
+
+      this.reColorHeatmap(); // repaint segments with new theme
+    });
   }
 
   @ViewChildren(MatChip) chips!: QueryList<MatChip>;
@@ -569,7 +595,7 @@ export class CircularHeatmapComponent implements OnInit {
               .startAngle(sa)
               .endAngle(ea)
           )
-          .attr('stroke', '#252525')
+          .attr('stroke', _self.theme_colors['stroke'])
           .attr('fill', function (d) {
             return color(accessor(d));
           });
