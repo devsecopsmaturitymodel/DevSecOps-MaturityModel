@@ -63,6 +63,22 @@ export class CircularHeatmapComponent implements OnInit {
   showOverlay: boolean;
   showFilters: boolean;
   markdown: md = md();
+  theme: string;
+  theme_colors: Record<string, string>;
+  themes: Record<string, Record<string, string>> = {
+    light: {
+      background: '#ffffff',
+      disabled: '#dddddd',
+      filled: 'green',
+      cursor: 'green',
+    },
+    night: {
+      background: '#dddddd',
+      disabled: '#888888',
+      filled: 'green',
+      cursor: 'green',
+    },
+  };
 
   constructor(
     private yaml: ymlService,
@@ -71,10 +87,15 @@ export class CircularHeatmapComponent implements OnInit {
   ) {
     this.showOverlay = false;
     this.showFilters = true;
+    this.theme = 'light';
+    this.theme_colors = this.themes[this.theme];
   }
 
   ngOnInit(): void {
     console.log(`${this.perfNow()}s: ngOnInit`);
+    this.theme = localStorage.getItem('theme') || 'light';
+    this.theme_colors = this.themes[this.theme];
+
     // Ensure that Levels and Teams load before MaturityData
     // using promises, since ngOnInit does not support async/await
     this.LoadMaturityLevels()
@@ -405,7 +426,6 @@ export class CircularHeatmapComponent implements OnInit {
       .innerRadius(innerRadius)
       .segmentHeight(segmentHeight)
       .domain([0, 1])
-      .range(['white', 'green'])
       .radialLabels(radial_labels)
       .segmentLabels(segment_labels);
 
@@ -498,6 +518,7 @@ export class CircularHeatmapComponent implements OnInit {
     var segmentLabels: any[] = [];
 
     //console.log(segmentLabels)
+    let _self: any = this;
 
     function chart(selection: any) {
       selection.each(function (this: any, data: any) {
@@ -611,7 +632,7 @@ export class CircularHeatmapComponent implements OnInit {
           .append('path')
           .attr('id', 'hover')
           .attr('pointer-events', 'none')
-          .attr('stroke', 'green')
+          .attr('stroke', _self.theme_colors['cursor'])
           .attr('stroke-width', '7')
           .attr('fill', 'transparent');
         cursors
@@ -716,7 +737,7 @@ export class CircularHeatmapComponent implements OnInit {
   noActivitytoGrey(): void {
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
-        d3.select('#index-' + x).attr('fill', '#DCDCDC');
+        d3.select('#index-' + x).attr('fill', this.theme_colors['disabled']);
       }
     }
   }
@@ -822,7 +843,7 @@ export class CircularHeatmapComponent implements OnInit {
       var colorSector = d3
         .scaleLinear<string, string>()
         .domain([0, 1])
-        .range(['white', 'green']);
+        .range([this.theme_colors['background'], this.theme_colors['filled']]);
 
       if (cntAll !== 0) {
         this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
@@ -833,7 +854,10 @@ export class CircularHeatmapComponent implements OnInit {
       } else {
         this.ALL_CARD_DATA[index]['Done%'] = -1;
         // console.log(`${this.ALL_CARD_DATA[index].SubDimension} ${this.ALL_CARD_DATA[index].Level} None`);
-        d3.select('#index-' + index).attr('fill', '#DCDCDC');
+        d3.select('#index-' + index).attr(
+          'fill',
+          this.theme_colors['disabled']
+        );
       }
     }
   }
