@@ -6,10 +6,7 @@ export class ThemeService {
   private themeSubject = new BehaviorSubject<string>('light');
   public readonly theme$ = this.themeSubject.asObservable();
 
-  constructor() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    this.setTheme(savedTheme);
-  }
+  constructor() {}
 
   initTheme(): void {
     const saved = localStorage.getItem('theme') || 'light';
@@ -19,12 +16,8 @@ export class ThemeService {
   setTheme(theme: string): void {
     document.body.classList.remove('light-theme', 'dark-theme');
     document.body.classList.add(`${theme}-theme`);
-
-    // Force this before other reads
-    requestAnimationFrame(() => {
-      this.themeSubject.next(theme);
-      localStorage.setItem('theme', theme);
-    });
+    localStorage.setItem('theme', theme);
+    this.themeSubject.next(theme);
   }
 
   getTheme(): string {

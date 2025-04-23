@@ -75,10 +75,14 @@ body {
 
 .light-theme {
   --heatmap-filled: #4caf50;
-  --heatmap-disabled: #888888;
-  --heatmap-cursor: #3f51b5;
+  --heatmap-disabled: #dddddd;
+  --heatmap-cursor: green;
   --heatmap-background: white;
   --heatmap-stroke: black;
+  --heatmap-cursor-selected:var(--heatmap-cursor);
+  --heatmap-cursor-hover: transparent;
+
+
 
   @include mat.all-component-themes($DSOMM-light-theme);
 }
@@ -129,12 +133,6 @@ body.dark-theme {
     }
   }
 
-  // Matrix override
-  .matrix-output p,
-  .matrix-output span,
-  .matrix-output div {
-    color: #e0e0e0;
-  }
 
   // Circular heatmap (radar chart)
   .circular-heat text,
@@ -145,24 +143,61 @@ body.dark-theme {
 
   .circular-heat line,
   .circular-heat path {
-    stroke: #000000;
+    stroke: var(--heatmap-stroke);
   }
 }
 
-.dark-theme {
+body.dark-theme {
   --heatmap-filled: #4caf50;
   --heatmap-disabled: #666666;
-  --heatmap-cursor: #80deea;
+  --heatmap-cursor: green;
   --heatmap-background: #bbbbbb;
   --heatmap-stroke: #000000;
+  --heatmap-cursor-selected:var(--heatmap-cursor);
+  --heatmap-cursor-hover: transparent;
+
+  app-matrix a:visited {
+    color: #d4baf4;
+  }
+
+  app-matrix .tags-activity,
+  app-matrix .tags-activity span {
+    color: #397af4;
+  }
+
+  .mat-chip.mat-standard-chip {
+    color: #ababab;
+  }
+
+  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    background-color: #74b277;
+  }
+}
+
 
 
 
   @include mat.all-component-themes($DSOMM-dark-theme);
-}
+
 
 .button-container {
   display: flex;
   flex-direction: column; // Vertical alignment
   gap: 10px; // Space between buttons
 }
+
+svg .cursors path {
+  fill: transparent;
+  pointer-events: none;
+}
+
+svg .cursors #hover {
+  stroke: var(--heatmap-cursor);
+  stroke-width: 7px;
+}
+
+svg .cursors #selected {
+  stroke: var(--heatmap-cursor-selected, #000000); // optional fallback
+  stroke-width: 7px;
+}
+

@@ -40,24 +40,13 @@ export class SidenavButtonsComponent implements OnInit {
   constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {
-    const themePref = localStorage.getItem('theme');
-    this.isNightMode = themePref === 'dark';
-    this.applyTheme();
+    const currentTheme = this.themeService.getTheme();
+    this.isNightMode = currentTheme === 'dark';
   }
 
   toggleTheme(): void {
-    console.log('[toggleTheme] Triggered');
-
     this.isNightMode = !this.isNightMode;
     const newTheme = this.isNightMode ? 'dark' : 'light';
     this.themeService.setTheme(newTheme);
-  }
-
-  private applyTheme(): void {
-    if (this.isNightMode) {
-      document.body.classList.add('night-mode');
-    } else {
-      document.body.classList.remove('night-mode');
-    }
   }
 }

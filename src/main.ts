@@ -1,3 +1,8 @@
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.body.classList.remove('light-theme', 'dark-theme');
+document.body.classList.add(`${savedTheme}-theme`);
+console.log('[main.ts] Theme set to:', savedTheme); //
+
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

@@ -65,21 +65,7 @@ export class CircularHeatmapComponent implements OnInit {
   showFilters: boolean;
   markdown: md = md();
   theme: string;
-  theme_colors: Record<string, string>;
-  themes: Record<string, Record<string, string>> = {
-    light: {
-      background: '#ffffff',
-      disabled: '#dddddd',
-      filled: 'green',
-      cursor: 'green',
-    },
-    night: {
-      background: '#dddddd',
-      disabled: '#888888',
-      filled: 'green',
-      cursor: 'green',
-    },
-  };
+  theme_colors!: Record<string, string>;
 
   constructor(
     private yaml: ymlService,
@@ -89,10 +75,7 @@ export class CircularHeatmapComponent implements OnInit {
   ) {
     this.showOverlay = false;
     this.showFilters = true;
-    this.theme = 'light';
     this.theme = this.themeService.getTheme();
-
-    this.theme_colors = this.themes[this.theme];
   }
 
   ngOnInit(): void {
@@ -657,17 +640,11 @@ export class CircularHeatmapComponent implements OnInit {
         cursors
           .append('path')
           .attr('id', 'hover')
-          .attr('pointer-events', 'none')
-          .attr('stroke', _self.theme_colors['cursor'])
-          .attr('stroke-width', '7')
-          .attr('fill', 'transparent');
+          .attr('pointer-events', 'none');
         cursors
           .append('path')
           .attr('id', 'selected')
-          .attr('pointer-events', 'none')
-          .attr('stroke', '#232323')
-          .attr('stroke-width', '4')
-          .attr('fill', 'transparent');
+          .attr('pointer-events', 'none');
       });
     }
 
