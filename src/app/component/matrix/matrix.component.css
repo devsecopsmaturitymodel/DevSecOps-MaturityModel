@@ -61,9 +61,20 @@
 .tags-activity {
   font-weight: 800;
   font-style: italic;
-  color: rgb(0, 113, 151);
   font-size: 12px;
 }
+/*tag activity - light */
+:host-context(body.light-theme) .tags-activity,
+:host-context(body.light-theme) .tags-activity span {
+  color: rgb(0, 113, 151);
+}
+
+/*tag activity - dark */
+:host-context(body.dark-theme) .tags-activity,
+:host-context(body.dark-theme) .tags-activity span {
+  color: #397af4;
+}
+
 .reset-button {
   background-color: #66bb6a;
   display: block;

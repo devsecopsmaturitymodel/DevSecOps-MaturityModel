@@ -6,13 +6,13 @@
 $light-theme: (
         background: white,
         text: black,
-        link: blue
+        link: blue,
 );
 
 $custom-dark-theme: (
         background: #2c2c2c,
         text: #e0e0e0,
-        link: #bb86fc
+        link: #bb86fc,
 );
 
 $custom-typography: mat.define-typography-level(
@@ -60,6 +60,9 @@ $DSOMM-dark-theme: mat.define-dark-theme((
   a {
     color: map-get($theme, link);
   }
+  a:visited {
+    color: map-get($theme, visited-link);
+  }
 }
 
 // ----------------------------------------------
@@ -100,7 +103,10 @@ body.dark-theme {
 
 
   }
-
+  // General properties
+  p, li, tr {
+    color: #e0e0e0;
+  }
 
   // Common containers
   mat-card,
@@ -108,7 +114,7 @@ body.dark-theme {
   .mat-expansion-panel,
   .mat-accordion,
   .overlay-wrapper {
-    background-color: #2c2c2c !important;
+    background-color: #2c2c2c;
     color: #e0e0e0;
   }
 
@@ -120,16 +126,16 @@ body.dark-theme {
 
   // Modal override
   .overlay-modal {
-    background-color: #2c2c2c !important;
+    background-color: #2c2c2c;
     color: #e0e0e0;
     border-radius: 6px;
 
     mat-card {
-      background-color: transparent !important;
+      background-color: transparent;
     }
 
     h1, h2, h3, h4, h5, h6 {
-      color: #e0e0e0 !important;
+      color: #e0e0e0;
     }
   }
 
@@ -137,7 +143,7 @@ body.dark-theme {
   // Circular heatmap (radar chart)
   .circular-heat text,
   .labels.segment text {
-    fill: #ffffff !important;
+    fill: #ffffff;
   }
 
 
@@ -156,14 +162,6 @@ body.dark-theme {
   --heatmap-cursor-selected:var(--heatmap-cursor);
   --heatmap-cursor-hover: transparent;
 
-  app-matrix a:visited {
-    color: #d4baf4;
-  }
-
-  app-matrix .tags-activity,
-  app-matrix .tags-activity span {
-    color: #397af4;
-  }
 
   .mat-chip.mat-standard-chip {
     color: #ababab;

@@ -78,7 +78,8 @@
   grid-column: 2/3;
   grid-row: 1/4;
   display: grid;
-  justify-content: top;
+  justify-content: center;
+  align-items: start;
   margin-left: auto;
 }
 .team-filter {
@@ -161,6 +162,6 @@ button.filter-toggle {
   
   .overlay-details {
     width: 100%;
-  }  
+  }
 
 }
