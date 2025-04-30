@@ -73,7 +73,6 @@
 .overlay-close {
   border: black solid 1px;
   background-color: rgba(0, 0, 0, 0);
-  border: none;
   color: black;
   grid-column: 2/3;
   grid-row: 1/4;
