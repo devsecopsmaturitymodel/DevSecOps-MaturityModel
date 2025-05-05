@@ -71,9 +71,8 @@
 }
 
 .overlay-close {
-  border: black solid 1px;
+  border: none;
   background-color: rgba(0, 0, 0, 0);
-  color: black;
   grid-column: 2/3;
   grid-row: 1/4;
   display: grid;
@@ -81,6 +80,17 @@
   align-items: start;
   margin-left: auto;
 }
+
+/* overlay-close - light theme */
+:host-context(body.light-theme) .overlay-close {
+  color: black;
+}
+
+/* overlay-close - dark theme */
+:host-context(body.dark-theme) .overlay-close {
+  color: white;
+}
+
 .team-filter {
   padding: 0.4rem;
   grid-column: 2/3;
