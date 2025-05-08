@@ -85,8 +85,6 @@ body {
   --heatmap-cursor-selected:var(--heatmap-cursor);
   --heatmap-cursor-hover: transparent;
 
-
-
   @include mat.all-component-themes($DSOMM-light-theme);
 }
 
@@ -97,12 +95,19 @@ body.dark-theme {
   @include apply-theme($custom-dark-theme);
   @include mat.all-component-themes($DSOMM-dark-theme);
 
+  --heatmap-filled: #007700;
+  --heatmap-disabled: #666666;
+  --heatmap-cursor: green;
+  --heatmap-background: #bbbbbb;
+  --heatmap-stroke: #000000;
+  --heatmap-cursor-selected:var(--heatmap-cursor);
+  --heatmap-cursor-hover: transparent;
+
   .title-button,
   h1, h2, h3, h4, h5, h6 {
     color: map-get($custom-dark-theme, text);
-
-
   }
+
   // General properties
   p, li, tr {
     color: #e0e0e0;
@@ -139,29 +144,16 @@ body.dark-theme {
     }
   }
 
-
   // Circular heatmap (radar chart)
   .circular-heat text,
   .labels.segment text {
     fill: #ffffff;
   }
 
-
   .circular-heat line,
   .circular-heat path {
     stroke: var(--heatmap-stroke);
   }
-}
-
-body.dark-theme {
-  --heatmap-filled: #007700;
-  --heatmap-disabled: #666666;
-  --heatmap-cursor: green;
-  --heatmap-background: #bbbbbb;
-  --heatmap-stroke: #000000;
-  --heatmap-cursor-selected:var(--heatmap-cursor);
-  --heatmap-cursor-hover: transparent;
-
 
   .mat-chip.mat-standard-chip {
     color: #ababab;
@@ -172,11 +164,7 @@ body.dark-theme {
   }
 }
 
-
-
-
-  @include mat.all-component-themes($DSOMM-dark-theme);
-
+@include mat.all-component-themes($DSOMM-dark-theme);
 
 .button-container {
   display: flex;
@@ -198,4 +186,3 @@ svg .cursors #selected {
   stroke: var(--heatmap-cursor-selected, #000000); // optional fallback
   stroke-width: 7px;
 }
-
