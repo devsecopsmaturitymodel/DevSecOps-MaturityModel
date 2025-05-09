@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemeService } from './service/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'DSOMM';
   menuIsOpen: boolean = true;
+
+  constructor(private themeService: ThemeService) {
+    this.themeService.initTheme();
+  }
 
   ngOnInit(): void {
     let menuState: string | null = localStorage.getItem('state.menuIsOpen');

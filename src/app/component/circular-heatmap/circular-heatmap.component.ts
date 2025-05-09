@@ -15,6 +15,7 @@ import {
   ModalMessageComponent,
   DialogInfo,
 } from '../modal-message/modal-message.component';
+import { ThemeService } from '../../service/theme.service';
 
 export interface activitySchema {
   uuid: string;
@@ -63,27 +64,56 @@ export class CircularHeatmapComponent implements OnInit {
   showOverlay: boolean;
   showFilters: boolean;
   markdown: md = md();
+  theme: string;
+  theme_colors!: Record<string, string>;
 
   constructor(
     private yaml: ymlService,
     private router: Router,
+    private themeService: ThemeService,
     public modal: ModalMessageComponent
   ) {
     this.showOverlay = false;
     this.showFilters = true;
+    this.theme = this.themeService.getTheme();
   }
 
   ngOnInit(): void {
-    console.log(`${this.perfNow()}s: ngOnInit`);
-    // Ensure that Levels and Teams load before MaturityData
-    // using promises, since ngOnInit does not support async/await
-    this.LoadMaturityLevels()
-      .then(() => this.LoadTeamsFromMetaYaml())
-      .then(() => this.LoadMaturityDataFromGeneratedYaml())
-      .then(() => {
-        console.log(`${this.perfNow()}s: set filters: ${this.chips?.length}`);
-        this.matChipsArray = this.chips.toArray();
-      });
+    const savedTheme = this.themeService.getTheme() || 'light';
+    this.themeService.setTheme(savedTheme); // sets .light-theme or .dark-theme
+
+    requestAnimationFrame(() => {
+      // Now the DOM has the correct class and CSS vars are live
+      const css = getComputedStyle(document.body);
+      this.theme_colors = {
+        background: css.getPropertyValue('--heatmap-background').trim(),
+        filled: css.getPropertyValue('--heatmap-filled').trim(),
+        disabled: css.getPropertyValue('--heatmap-disabled').trim(),
+        cursor: css.getPropertyValue('--heatmap-cursor').trim(),
+        stroke: css.getPropertyValue('--heatmap-stroke').trim(),
+      };
+
+      this.LoadMaturityLevels()
+        .then(() => this.LoadTeamsFromMetaYaml())
+        .then(() => this.LoadMaturityDataFromGeneratedYaml())
+        .then(() => {
+          this.matChipsArray = this.chips.toArray();
+        });
+    });
+
+    // Reactively handle theme changes (if user toggles later)
+    this.themeService.theme$.subscribe((theme: string) => {
+      const css = getComputedStyle(document.body);
+      this.theme_colors = {
+        background: css.getPropertyValue('--heatmap-background').trim(),
+        filled: css.getPropertyValue('--heatmap-filled').trim(),
+        disabled: css.getPropertyValue('--heatmap-disabled').trim(),
+        cursor: css.getPropertyValue('--heatmap-cursor').trim(),
+        stroke: css.getPropertyValue('--heatmap-stroke').trim(),
+      };
+
+      this.reColorHeatmap(); // repaint segments with new theme
+    });
   }
 
   @ViewChildren(MatChip) chips!: QueryList<MatChip>;
@@ -405,7 +435,6 @@ export class CircularHeatmapComponent implements OnInit {
       .innerRadius(innerRadius)
       .segmentHeight(segmentHeight)
       .domain([0, 1])
-      .range(['white', 'green'])
       .radialLabels(radial_labels)
       .segmentLabels(segment_labels);
 
@@ -498,6 +527,7 @@ export class CircularHeatmapComponent implements OnInit {
     var segmentLabels: any[] = [];
 
     //console.log(segmentLabels)
+    let _self: any = this;
 
     function chart(selection: any) {
       selection.each(function (this: any, data: any) {
@@ -548,7 +578,7 @@ export class CircularHeatmapComponent implements OnInit {
               .startAngle(sa)
               .endAngle(ea)
           )
-          .attr('stroke', '#252525')
+          .attr('stroke', _self.theme_colors['stroke'])
           .attr('fill', function (d) {
             return color(accessor(d));
           });
@@ -610,17 +640,11 @@ export class CircularHeatmapComponent implements OnInit {
         cursors
           .append('path')
           .attr('id', 'hover')
-          .attr('pointer-events', 'none')
-          .attr('stroke', 'green')
-          .attr('stroke-width', '7')
-          .attr('fill', 'transparent');
+          .attr('pointer-events', 'none');
         cursors
           .append('path')
           .attr('id', 'selected')
-          .attr('pointer-events', 'none')
-          .attr('stroke', '#232323')
-          .attr('stroke-width', '4')
-          .attr('fill', 'transparent');
+          .attr('pointer-events', 'none');
       });
     }
 
@@ -716,7 +740,7 @@ export class CircularHeatmapComponent implements OnInit {
   noActivitytoGrey(): void {
     for (var x = 0; x < this.ALL_CARD_DATA.length; x++) {
       if (this.ALL_CARD_DATA[x]['Done%'] == -1) {
-        d3.select('#index-' + x).attr('fill', '#DCDCDC');
+        d3.select('#index-' + x).attr('fill', this.theme_colors['disabled']);
       }
     }
   }
@@ -822,7 +846,7 @@ export class CircularHeatmapComponent implements OnInit {
       var colorSector = d3
         .scaleLinear<string, string>()
         .domain([0, 1])
-        .range(['white', 'green']);
+        .range([this.theme_colors['background'], this.theme_colors['filled']]);
 
       if (cntAll !== 0) {
         this.ALL_CARD_DATA[index]['Done%'] = cntTrue / cntAll;
@@ -833,7 +857,10 @@ export class CircularHeatmapComponent implements OnInit {
       } else {
         this.ALL_CARD_DATA[index]['Done%'] = -1;
         // console.log(`${this.ALL_CARD_DATA[index].SubDimension} ${this.ALL_CARD_DATA[index].Level} None`);
-        d3.select('#index-' + index).attr('fill', '#DCDCDC');
+        d3.select('#index-' + index).attr(
+          'fill',
+          this.theme_colors['disabled']
+        );
       }
     }
   }

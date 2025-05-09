@@ -71,16 +71,26 @@
 }
 
 .overlay-close {
-  border: black solid 1px;
-  background-color: rgba(0, 0, 0, 0);
   border: none;
-  color: black;
+  background-color: rgba(0, 0, 0, 0);
   grid-column: 2/3;
   grid-row: 1/4;
   display: grid;
-  justify-content: top;
+  justify-content: center;
+  align-items: start;
   margin-left: auto;
 }
+
+/* overlay-close - light theme */
+:host-context(body.light-theme) .overlay-close {
+  color: black;
+}
+
+/* overlay-close - dark theme */
+:host-context(body.dark-theme) .overlay-close {
+  color: white;
+}
+
 .team-filter {
   padding: 0.4rem;
   grid-column: 2/3;
@@ -161,6 +171,6 @@ button.filter-toggle {
   
   .overlay-details {
     width: 100%;
-  }  
+  }
 
 }

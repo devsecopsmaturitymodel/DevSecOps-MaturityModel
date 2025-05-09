@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import * as d3 from 'd3';
 import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
+import { Subscription } from 'rxjs';
+import { ThemeService } from '../../service/theme.service';
 
 export interface graphNodes {
   id: string;
@@ -35,10 +37,24 @@ export class DependencyGraphComponent implements OnInit {
   @Input() subDimension: string = '';
   @Input() activityName: string = '';
 
-  constructor(private yaml: ymlService) {}
+  private themeSub: Subscription | undefined;
+  currentTheme: string = 'light'; // default
+
+  constructor(
+    private yaml: ymlService,
+    private elementRef: ElementRef,
+    private themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
     this.yaml.setURI('./assets/YAML/generated/generated.yaml');
+
+    this.currentTheme = this.themeService.getTheme();
+    this.themeSub = this.themeService.theme$.subscribe(theme => {
+      this.currentTheme = theme;
+      this.applyTextColor(theme);
+    });
+
     // Function sets data
     this.yaml.getJson().subscribe(data => {
       this.graphData = { nodes: [], links: [] };
@@ -108,7 +124,26 @@ export class DependencyGraphComponent implements OnInit {
     }
   }
 
+  applyTextColor(theme: string): void {
+    const fill = theme === 'dark' ? '#ffffff' : '#000000';
+    const selectedNodeColor = theme === 'dark' ? '#666666' : 'yellow';
+    const defaultNodeColor = this.COLOR_OF_NODE;
+
+    d3.select(this.elementRef.nativeElement)
+      .selectAll('text')
+      .attr('fill', fill);
+
+    d3.select(this.elementRef.nativeElement)
+      .selectAll('circle')
+      .attr('fill', (d: any) =>
+        d.id === this.activityName ? selectedNodeColor : defaultNodeColor
+      );
+  }
+
   generateGraph(activity: string): void {
+    const selectedNodeColor =
+      this.currentTheme === 'dark' ? '#666666' : 'yellow';
+
     let svg = d3.select('svg'),
       width = +svg.attr('width'),
       height = +svg.attr('height');
@@ -162,10 +197,9 @@ export class DependencyGraphComponent implements OnInit {
     node
       .append('circle')
       .attr('r', 10)
-      .attr('fill', function (d) {
-        if (d.id == activity) return 'yellow';
-        else return defaultNodeColor;
-      });
+      .attr('fill', (d: any) =>
+        d.id === this.activityName ? selectedNodeColor : defaultNodeColor
+      );
 
     node
       .append('text')
@@ -174,6 +208,8 @@ export class DependencyGraphComponent implements OnInit {
       .text(function (d) {
         return d.id;
       });
+
+    this.applyTextColor(this.currentTheme);
 
     this.simulation.nodes(this.graphData['nodes']).on('tick', ticked);
 

@@ -32,7 +32,7 @@ describe('SidenavButtonsComponent', () => {
 
   it('check for navigation names being shown in the same order as options array', () => {
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const NavigationList = HTMLElement.querySelectorAll('h3')!;
+    const NavigationList = HTMLElement.querySelectorAll('a > h3')!;
     let NavigationNamesBeingShown = [];
     for (var x = 0; x < NavigationList.length; x += 1) {
       NavigationNamesBeingShown.push(NavigationList[x].textContent);

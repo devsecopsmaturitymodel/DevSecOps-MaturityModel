@@ -8,6 +8,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 0.3em;
 }
 
+.dark-theme .userday table :is(td, th) {
+    border-color: #e0e0e0;
+}
+.dark-theme .userday tr:nth-child(even) {
+    background-color: #365d36;
+}
+
 .userday tr:nth-child(even) {
     background-color: #66bb6a;
 }

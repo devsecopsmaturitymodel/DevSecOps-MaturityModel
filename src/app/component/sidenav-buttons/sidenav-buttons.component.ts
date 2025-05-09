@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ThemeService } from '../../service/theme.service';
 
 @Component({
   selector: 'app-sidenav-buttons',
   templateUrl: './sidenav-buttons.component.html',
   styleUrls: ['./sidenav-buttons.component.css'],
 })
-export class SidenavButtonsComponent {
+export class SidenavButtonsComponent implements OnInit {
   Options: string[] = [
     'Overview',
     'Matrix',
@@ -33,5 +34,19 @@ export class SidenavButtonsComponent {
     '/about',
     '/userday',
   ];
-  constructor() {}
+
+  isNightMode = false;
+
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit(): void {
+    const currentTheme = this.themeService.getTheme();
+    this.isNightMode = currentTheme === 'dark';
+  }
+
+  toggleTheme(): void {
+    this.isNightMode = !this.isNightMode;
+    const newTheme = this.isNightMode ? 'dark' : 'light';
+    this.themeService.setTheme(newTheme);
+  }
 }
