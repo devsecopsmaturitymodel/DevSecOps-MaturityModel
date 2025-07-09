@@ -14,7 +14,7 @@ export class SidenavButtonsComponent implements OnInit {
     'Usage',
     'Teams',
     'About Us',
-    'DSOMM User Day 2024',
+    'DSOMM User Day 2025',
   ];
   Icons: string[] = [
     'pie_chart',
