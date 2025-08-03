@@ -27,7 +27,7 @@ You can export the progress of the different activities as a `generated.yaml` fi
 
 
 ## How to setup your own DSOMM
-The DSOMM application can be run as a Docker image, an Amazon EC2 instance, or as a standalone Angular application using NodeJS. Please see [INSTALL.md](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/blob/master/INSTALL.md) for further instructions.
+The DSOMM application can be run as a Docker image, an Amazon EC2 instance, or as a standalone Angular application using NodeJS. Please see [README.md](./usage/README) for further instructions.
 
 The DSOMM application is currently still a lightweight frontend only application, without a backend to store changes of progress. Any changes are stored in the browser. However, as above, you can export the `generated.yaml` and update your own site with this.
 
