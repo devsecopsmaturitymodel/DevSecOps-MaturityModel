@@ -1,3 +1,6 @@
+<details>
+<summary>DSOMM User Day 2024</summary>
+
 # Description
 
 In this combined User Day you will learn & have the chance to discuss with peers about two of OWASP’s major projects: DevSecOps Maturity Model (DSOMM) and Juice Shop!
@@ -146,3 +149,5 @@ Bjoern Kimminich works as Product Group Lead Application Ecosystem at Kuehne + N
 [Github](https://github.com/bkimminich)
 [Twitter](https://x.com/bkimminich)
 [Mastodon](https://infosec.exchange/@bkimminich)
+
+</details>
