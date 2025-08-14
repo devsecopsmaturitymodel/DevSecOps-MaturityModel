@@ -1,15 +1,18 @@
-FROM node:18.7-alpine AS build
+FROM node:18.7.0-alpine3.18 AS build
 
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
+
 RUN apk add --upgrade python3 build-base \
- && npm install
+    && npm install
 COPY . .
 RUN npm run build
 
-FROM wurstbrot/dsomm-yaml-generation as yaml
+# dsomm-yaml-generation 1.15.3 is a release (not built everyday as 1.16.0)
+FROM wurstbrot/dsomm-yaml-generation:1.15.3 as yaml
 
-FROM caddy
+# Caddt v2.10.0 is latest release
+FROM caddy:2.10.0
 ENV PORT 8080
 
 COPY Caddyfile /etc/caddy/Caddyfile
