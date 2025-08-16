@@ -91,6 +91,9 @@ export class ActivityDescriptionComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.currentActivity.uuid = params['uuid'];
+      if (params['action']) {
+        this.currentActivity.uuid = params['action']; //backwords compatibility, e.g. for openCRE
+      }
     });
 
     //gets value from sample file
