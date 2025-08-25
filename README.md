@@ -121,7 +121,7 @@ yarn build
 The definition of the activities are in the [data-repository](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data). 
 
 ## Teams and Groups
-To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml)  file with your unique team definitions.
+To customize these teams, you can create your own [meta.yaml](src/assets/YAML/meta.yaml)  file with your unique team definitions.
 
 Assessments within the framework can be based on either a team or a specific application, which can be referred to as the context. Depending on how you define the context or teams, you may want to group them together.
 
@@ -129,7 +129,7 @@ Here are a couple of examples to illustrate this, in breakers the DSOMM word:
 - Multiple applications (teams) can belong to a single overarching team (application).
 - Multiple teams (teams) can belong to a larger department (group).
 
-Feel free to create your own [meta.yaml](src/assets/meta.yaml) file to tailor the framework to your specific needs and mount it in your environment (e.g. kubernetes or docker).
+Feel free to create your own [meta.yaml](src/assets/YAML/meta.yaml) file to tailor the framework to your specific needs and mount it in your environment (e.g. kubernetes or docker).
 Here is an example to start docker with customized meta.yaml:
 ```
 # Customized meta.yaml
