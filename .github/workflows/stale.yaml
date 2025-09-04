@@ -17,7 +17,7 @@ jobs:
             recent activity. :calendar: It will be _closed automatically_ in two weeks if no further activity occurs.
           close-issue-message: This issue was closed because it has been stalled for 7 days with no activity.
           close-pr-message: This PR was closed because it has been stalled for 20 days with no activity.
-          days-before-stale: 20
+          days-before-stale: 35
           days-before-close: 7
           days-before-pr-close: 20
           exempt-issue-labels: 'critical,technical debt'
