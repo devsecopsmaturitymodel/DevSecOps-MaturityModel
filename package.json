@@ -60,7 +60,7 @@
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.1.0",
+    "karma-coverage": "~2.2.1",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "prettier": "^2.7.1",
