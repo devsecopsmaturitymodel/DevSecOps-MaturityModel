@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "0 7 * * *"
@@ -23,7 +23,7 @@ jobs:
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         with:
-          branch: 'master'
+          branch: 'main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
@@ -61,7 +61,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
   heroku:
-    if: github.repository == 'devsecopsmaturitymodel/DevSecOps-MaturityModel' && github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.repository == 'devsecopsmaturitymodel/DevSecOps-MaturityModel' && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: "Check out Git repository"
@@ -69,11 +69,11 @@ jobs:
       - name: "Set Heroku app & branch for ${{ github.ref }}"
         run: |
           echo $GITHUB_REF
-          if [ "$GITHUB_REF" == "refs/heads/master" ]; then
+          if [ "$GITHUB_REF" == "refs/heads/main" ]; then
             echo "HEROKU_APP=" >> $GITHUB_ENV
-            echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
+            echo "HEROKU_BRANCH=main" >> $GITHUB_ENV
           fi
-          echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
+          echo "HEROKU_BRANCH=main" >> $GITHUB_ENV
       - name: Install Heroku CLI
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh 
