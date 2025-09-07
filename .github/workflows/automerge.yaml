@@ -16,7 +16,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: "${{secrets.GITHUB_TOKEN}}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Auto-merge minor and patch updates
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
