@@ -14,11 +14,10 @@ jobs:
       - name: "Set Heroku app & branch for ${{ github.ref }}"
         run: |
           echo $GITHUB_REF
-          if [ "$GITHUB_REF" == "refs/heads/master" ]; then
+          if [ "$GITHUB_REF" == "refs/heads/main" ]; then
             echo "HEROKU_APP=" >> $GITHUB_ENV
-            echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
           fi
-          echo "HEROKU_BRANCH=master" >> $GITHUB_ENV
+          echo "HEROKU_BRANCH=main" >> $GITHUB_ENV
       - name: Install Heroku CLI
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh 
