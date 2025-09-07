@@ -8,7 +8,7 @@ RUN apk add --upgrade python3 build-base \
 COPY . .
 RUN npm run build
 
-FROM wurstbrot/dsomm-yaml-generation:1.15.3 AS yaml
+FROM wurstbrot/dsomm-yaml-generation:1.16.0 AS yaml
 
 FROM caddy:2.10.0
 ENV PORT=8080
