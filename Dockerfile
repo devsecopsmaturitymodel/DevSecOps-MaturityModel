@@ -6,7 +6,7 @@ COPY package.json package-lock.json ./
 RUN apk add --upgrade python3 build-base \
     && npm install
 COPY . .
-RUN npm run build --configuration production
+RUN npm run build --configuration=production
 
 FROM wurstbrot/dsomm-yaml-generation:1.16.0 AS yaml
 
