@@ -1,0 +1,42 @@
+.editor-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.editor-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 0 0.5rem;
+}
+
+.editor-list-panel {
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 1rem;
+  min-width: 260px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.editor-footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media only screen and (max-width: 750px) {
+  .editor-container {
+    flex-direction: column;
+  }
+}

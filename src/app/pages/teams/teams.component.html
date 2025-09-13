@@ -1,0 +1,88 @@
+<div class="team-section">
+  <app-teams-groups-editor
+    [teams]="teams"
+    [teamGroups]="teamGroups"
+    [canEdit]="canEdit"
+    (selectionChanged)="onSelectionChanged($event)"
+    (namesChanged)="onTeamsChanged($event)"
+    (click)="$event.stopPropagation()"></app-teams-groups-editor>
+  <div class="button-container" *ngIf="dataStore?.meta?.hasLocalStorage">
+    <button mat-raised-button (click)="onExportTeamGroups()">Download team setup</button>
+    <button mat-raised-button (click)="onResetTeamGroups()">Reset team setup</button>
+  </div>
+
+  <div class="team-info">
+    <h2>{{ infoTitle }}</h2>
+    <div class="subheader" *ngIf="infoTeams.length > 1">
+      {{ info[infoTitle]?.teams?.join(', ') }}
+    </div>
+    <div class="info-content">
+      <div class="info-kpis">
+        <div class="info-kpi">
+          <div class="kpi-title">Completed</div>
+          <div class="kpi-value">
+            {{ info[infoTitle]?.uniqueActivitiesCompletedCount }}
+            <span class="kpi-suffix">activities</span>
+          </div>
+          <div class="kpi-subtitle"></div>
+        </div>
+        <div class="info-kpi">
+          <div class="kpi-title">In progress</div>
+          <div class="kpi-value">
+            {{ info[infoTitle]?.uniqueActivitiesInProgressCount }}
+            <span class="kpi-suffix">activities</span>
+          </div>
+          <div class="kpi-subtitle"></div>
+        </div>
+        <div class="info-kpi">
+          <div class="kpi-title">Last updated:</div>
+          <div class="kpi-value">{{ dateStr(info[infoTitle]?.lastUpdated) }}</div>
+          <div class="kpi-subtitle"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Activities in progress</h3>
+    <table mat-table matSort [dataSource]="dataSource || []" class="mat-elevation-z8 teams-table">
+      <ng-container matColumnDef="Team">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="table-small-width">Team</th>
+        <td mat-cell *matCellDef="let element" class="table-small-width">
+          {{ element?.team }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Activity">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="table-small-width">
+          Activity
+        </th>
+        <td mat-cell *matCellDef="let element" class="table-small-width">
+          {{ element?.activity?.name }}
+        </td>
+      </ng-container>
+
+      <ng-container
+        matColumnDef="{{ progressColumn }}"
+        *ngFor="let progressColumn of progressColumnNames">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="progress-col">
+          {{ progressColumn }}
+        </th>
+        <td mat-cell *matCellDef="let element" class="progress-col">
+          <span *ngIf="element?.progress?.[progressColumn]">
+            {{ dateStr(element?.progress?.[progressColumn]) }}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- No data message -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="allColumnNames.length">
+          <em>Currently no activities in progress for {{ info[infoTitle]?.teams?.join(', ') }}</em>
+        </td>
+      </tr>
+
+      <tr mat-header-row *matHeaderRowDef="allColumnNames"></tr>
+      <tr mat-row *matRowDef="let row; columns: allColumnNames"></tr>
+      <tr mat-footer-row></tr>
+    </table>
+  </div>
+</div>

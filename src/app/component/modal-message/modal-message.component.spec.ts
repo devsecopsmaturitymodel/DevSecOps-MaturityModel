@@ -31,22 +31,16 @@ describe('ModalMessageComponent', () => {
 
   it('should render markdown correctly in the dialog', () => {
     const dialogInfo: DialogInfo = new DialogInfo('A **test** markdown.');
-    const dialogRef: MatDialogRef<ModalMessageComponent> =
-      component.openDialog(dialogInfo);
+    const dialogRef: MatDialogRef<ModalMessageComponent> = component.openDialog(dialogInfo);
 
-    expect(dialogRef.componentInstance.data.message).toContain(
-      '<strong>test</strong>'
-    );
+    expect(dialogRef.componentInstance.data.message).toContain('<strong>test</strong>');
   });
 
   it('should render markdown correctly in the dialog', () => {
     const dialogInfo: DialogInfo = new DialogInfo('A **test** markdown.');
-    const dialogRef: MatDialogRef<ModalMessageComponent> =
-      component.openDialog(dialogInfo);
+    const dialogRef: MatDialogRef<ModalMessageComponent> = component.openDialog(dialogInfo);
 
     // Check if markdown rendering is applied
-    expect(dialogRef.componentInstance.data.message).toContain(
-      '<strong>test</strong>'
-    );
+    expect(dialogRef.componentInstance.data.message).toContain('<strong>test</strong>');
   });
 });

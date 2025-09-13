@@ -1,16 +1,16 @@
 <div class="content-box">
   <h1>
-    {{ currentActivity.dimension }} -> {{ currentActivity.subDimension }}:
-    {{ currentActivity.activityName }}
+    {{ currentActivity.category }} -> {{ currentActivity.dimension }}:
+    {{ currentActivity.name }}
   </h1>
 
   <div class="example-action-buttons">
-    <button mat-raised-button (click)="openall()">Expand All</button>
-    <button mat-raised-button (click)="closeall()">Collapse All</button>
+    <button mat-raised-button (click)="openAll()">Expand All</button>
+    <button mat-raised-button (click)="closeAll()">Collapse All</button>
   </div>
 
   <mat-accordion multi="true">
-    <mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>UUID</b>
@@ -19,42 +19,40 @@
       <p id="uuid" [innerHTML]="currentActivity.uuid"></p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel *ngIf="currentActivity.description?.hasContent()">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Description</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p id="description" [innerHTML]="currentActivity.description"></p>
+      <p id="description" [innerHTML]="currentActivity.description?.render()"></p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel *ngIf="currentActivity.risk?.hasContent()">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Risk</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p id="risk" [innerHTML]="currentActivity.risk"></p>
+      <p id="risk" [innerHTML]="currentActivity.risk?.render()"></p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel *ngIf="currentActivity.measure?.hasContent()">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Measure</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p id="measure" [innerHTML]="currentActivity.measure"></p>
+      <p id="measure" [innerHTML]="currentActivity.measure?.render()"></p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel *ngIf="currentActivity.implementatonGuide">
+    <mat-expansion-panel *ngIf="currentActivity.implementationGuide?.hasContent()">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Implementation Guide</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p
-        id="implementatonGuide"
-        [innerHTML]="currentActivity.implementatonGuide"></p>
+      <p id="implementationGuide" [innerHTML]="currentActivity.implementationGuide?.render()"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -63,11 +61,9 @@
           <b>Difficulty of Implementation</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>
-        Knowledge: {{ this.KnowledgeLabels[this.currentActivity.knowledge] }}
-      </p>
-      <p>Time: {{ this.GeneralLabels[this.currentActivity.time] }}</p>
-      <p>Resources: {{ this.GeneralLabels[this.currentActivity.resources] }}</p>
+      <p>Knowledge: {{ this.KnowledgeLabel }}</p>
+      <p>Time: {{ this.TimeLabel }}</p>
+      <p>Resources: {{ this.ResourceLabel }}</p>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="currentActivity.usefulness !== -1">
@@ -76,7 +72,7 @@
           <b>Usefulness</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>{{ this.GeneralLabels[this.currentActivity.usefulness] }}</p>
+      <p>{{ this.UsefulnessLabel }}</p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -99,13 +95,13 @@
       </mat-accordion>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel *ngIf="currentActivity.assessment?.hasContent()">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Assessment</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p id="assessment" [innerHTML]="currentActivity.assessment"></p>
+      <p id="assessment" [innerHTML]="currentActivity.assessment?.render()"></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -116,8 +112,7 @@
       </mat-expansion-panel-header>
       <p>
         <mat-accordion multi="true">
-          <mat-expansion-panel
-            *ngFor="let implement of this.currentActivity.implementation">
+          <mat-expansion-panel *ngFor="let implement of this.currentActivity.implementation">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <b [innerHTML]="implement['name']"></b>
@@ -172,7 +167,7 @@
                 <b>{{ SAMMVersion }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let samm of currentActivity.samm">
+            <ul *ngFor="let samm of currentActivity?.references?.samm2">
               <li>{{ samm }}</li>
             </ul>
           </mat-expansion-panel>
@@ -182,7 +177,7 @@
                 <b>{{ ISOVersion }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let iso of currentActivity.iso">
+            <ul *ngFor="let iso of currentActivity?.references?.iso27001_2017">
               <li>{{ iso }}</li>
             </ul>
           </mat-expansion-panel>
@@ -192,7 +187,7 @@
                 <b>{{ ISO22Version }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let iso22 of currentActivity.iso22">
+            <ul *ngFor="let iso22 of currentActivity?.references?.iso27001_2022">
               <li>{{ iso22 }}</li>
             </ul>
           </mat-expansion-panel>
@@ -202,7 +197,7 @@
                 <b>{{ openCREVersion }}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ul *ngFor="let openCRE of currentActivity.openCRE">
+            <ul *ngFor="let openCRE of currentActivity?.references?.openCRE">
               <li>
                 <a target="_blank" href="{{ openCRE }}">
                   <div [innerHTML]="currentActivity.uuid"></div>
@@ -220,12 +215,7 @@
           <b>Implemented By</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div
-        *ngIf="
-          currentActivity.teamsImplemented;
-          then thenBlock;
-          else elseBlock
-        "></div>
+      <div *ngIf="currentActivity.teamsImplemented; then thenBlock; else elseBlock"></div>
       <ng-template #thenBlock>
         <ul class="teams-implemented-list">
           <li *ngFor="let item of currentActivity.teamsImplemented | keyvalue">
@@ -246,12 +236,9 @@
           <b>Depends on</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-dependency-graph
-        dimension="{{ currentActivity.dimension }}"
-        subDimension="{{ currentActivity.subDimension }}"
-        activityName="{{
-          currentActivity.activityName
-        }}"></app-dependency-graph>
+      <div *ngIf="currentActivity && currentActivity.name">
+        <app-dependency-graph [activityName]="currentActivity.name"></app-dependency-graph>
+      </div>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -260,7 +247,7 @@
           <b>Comments</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p id="comments" [innerHTML]="currentActivity.comments"></p>
+      <p id="comments" [innerHTML]="currentActivity.comments?.render()"></p>
     </mat-expansion-panel>
   </mat-accordion>
 

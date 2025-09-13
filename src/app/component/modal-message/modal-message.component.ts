@@ -40,22 +40,18 @@ export class ModalMessageComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {}
 
-  openDialog(
-    dialogInfo: DialogInfo | string
-  ): MatDialogRef<ModalMessageComponent> {
+  openDialog(dialogInfo: DialogInfo | string): MatDialogRef<ModalMessageComponent> {
+    // Remove focus from the button that becomes aria unavailable (avoids ugly console error message)
+    const buttonElement = document.activeElement as HTMLElement;
+    if (buttonElement) buttonElement.blur();
+
     if (typeof dialogInfo === 'string') {
       dialogInfo = new DialogInfo(dialogInfo);
     }
-    if (
-      dialogInfo.template &&
-      this.meassageTemplates.hasOwnProperty(dialogInfo.template)
-    ) {
+    if (dialogInfo.template && this.meassageTemplates.hasOwnProperty(dialogInfo.template)) {
       let template: DialogInfo = this.meassageTemplates[dialogInfo.template];
       dialogInfo.title = dialogInfo.title || template?.title;
-      dialogInfo.message = template?.message?.replace(
-        '{message}',
-        dialogInfo.message
-      );
+      dialogInfo.message = template?.message?.replace('{message}', dialogInfo.message);
     }
 
     dialogInfo.message = this.markdown.render(dialogInfo.message);

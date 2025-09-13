@@ -6,28 +6,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { CircularHeatmapComponent } from './pages/circular-heatmap/circular-heatmap.component';
+import { MatrixComponent } from './pages/matrix/matrix.component';
+import { MappingComponent } from './pages/mapping/mapping.component';
+import { TeamsComponent } from './pages/teams/teams.component';
+import { UsageComponent } from './pages/usage/usage.component';
+import { UserdayComponent } from './pages/userday/userday.component';
+import { RoadmapComponent } from './pages/roadmap/roadmap.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LogoComponent } from './component/logo/logo.component';
-import { MatrixComponent } from './component/matrix/matrix.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 import { TopHeaderComponent } from './component/top-header/top-header.component';
 import { ActivityDescriptionComponent } from './component/activity-description/activity-description.component';
-import { ymlService } from './service/yaml-parser/yaml-parser.service';
+import { LoaderService } from './service/loader/data-loader.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CircularHeatmapComponent } from './component/circular-heatmap/circular-heatmap.component';
-import { MappingComponent } from './component/mapping/mapping.component';
 import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
-import { UsageComponent } from './component/usage/usage.component';
-import { UserdayComponent } from './component/userday/userday.component';
-import { AboutUsComponent } from './component/about-us/about-us.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
-import { TeamsComponent } from './component/teams/teams.component';
 import { ToStringValuePipe } from './pipe/to-string-value.pipe';
 import { ModalMessageComponent } from './component/modal-message/modal-message.component';
-import {
-  MatDialogModule,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { ProgressSliderComponent } from './component/progress-slider/progress-slider.component';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-groups-editor.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +45,9 @@ import {
     TeamsComponent,
     ToStringValuePipe,
     UserdayComponent,
+    RoadmapComponent,
     ModalMessageComponent,
+    ProgressSliderComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +57,10 @@ import {
     MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TeamsGroupsEditorModule,
   ],
   providers: [
-    ymlService,
+    LoaderService,
     ModalMessageComponent,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: { close: (dialogResult: any) => {} } },

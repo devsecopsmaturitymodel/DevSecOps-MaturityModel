@@ -1,0 +1,120 @@
+h2 {
+  color: #000000;
+  text-align: center;
+  font-weight: 800;
+  font-size: 2em;
+  margin: 1em 1em 0.2em;
+}
+h3 {
+  color: #000000;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2em;
+  font-style: italic;
+  margin: 1em 1em;
+}
+
+.team-list {
+  width: 70%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.team-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Use flex layout */
+}
+
+.team-list ul li {
+  flex: 0 0 150px; /* Set a fixed width */
+  height: 100px;
+  background-color: #66bb6a;
+  border-radius: 10px;
+  margin-right: 20px;
+  display: flex; /* Use flex layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.button-container button {
+    margin: 10px;
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-info .subheader {
+    text-align: center;
+    font-style: italic;
+}
+
+.info-kpis {
+    display: flex;
+    flex-direction: row;
+}
+
+.info-kpi {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: var(--background-secondary);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.info-kpi .kpi-title {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+.info-kpi .kpi-subtitle {
+    font-size: 1em;
+    color: var(--text-secondary);
+}
+.info-kpi .kpi-value {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.info-kpi .kpi-value .kpi-suffix {
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+.info-table{
+  margin: 20px;
+}
+
+.mat-cell, .mat-header-cell{
+  padding: 20px 10px;
+  /* width: 12.5%;   */
+  /* max-width: 12.5%;   */
+  word-wrap: break-word;
+}
+
+.mat-header-cell{
+  font-size: 16px;  
+  font-weight: bold;
+}
+td.mat-cell {
+    padding: 0 20px;
+}
+
+.progress-col {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  text-align: center;
+}

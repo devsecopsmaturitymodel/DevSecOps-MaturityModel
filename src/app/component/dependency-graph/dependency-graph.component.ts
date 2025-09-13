@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import * as d3 from 'd3';
-import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
-import { Subscription } from 'rxjs';
-import { ThemeService } from '../../service/theme.service';
+import { LoaderService } from '../../service/loader/data-loader.service';
+import { Activity } from 'src/app/model/activity-store';
+import { DataStore } from 'src/app/model/data-store';
 
 export interface graphNodes {
   id: string;
@@ -29,121 +29,65 @@ export class DependencyGraphComponent implements OnInit {
   COLOR_OF_NODE: string = '#55bc55';
   BORDER_COLOR_OF_NODE: string = 'black';
   simulation: any;
-  YamlObject: any;
+  dataStore: Partial<DataStore> = {};
   graphData: graph = { nodes: [], links: [] };
-  visited: string[] = [];
+  visited: Set<string> = new Set();
 
-  @Input() dimension: string = '';
-  @Input() subDimension: string = '';
   @Input() activityName: string = '';
 
-  private themeSub: Subscription | undefined;
-  currentTheme: string = 'light'; // default
-
-  constructor(
-    private yaml: ymlService,
-    private elementRef: ElementRef,
-    private themeService: ThemeService
-  ) {}
+  constructor(private loader: LoaderService) {}
 
   ngOnInit(): void {
-    this.yaml.setURI('./assets/YAML/generated/generated.yaml');
-
-    this.currentTheme = this.themeService.getTheme();
-    this.themeSub = this.themeService.theme$.subscribe(theme => {
-      this.currentTheme = theme;
-      this.applyTextColor(theme);
-    });
-
-    // Function sets data
-    this.yaml.getJson().subscribe(data => {
-      this.graphData = { nodes: [], links: [] };
-      this.YamlObject = data[this.dimension][this.subDimension];
-      this.populateGraphWithActivitiesCurrentActivityDependsOn(
-        this.activityName
-      );
-      this.populateGraphWithActivitiesThatDependsOnCurrentActivity(
-        this.activityName
-      );
-      //console.log({...this.graphData['nodes']})
-
-      console.log({ ...this.graphData });
-      this.generateGraph(this.activityName);
-    });
-  }
-
-  populateGraphWithActivitiesCurrentActivityDependsOn(activity: string): void {
-    this.checkIfNodeHasBeenGenerated(activity);
-    try {
-      var activitysThatCurrenActivityIsDependentOn =
-        this.YamlObject[activity]['dependsOn'];
-      if (activitysThatCurrenActivityIsDependentOn) {
-        for (
-          var j = 0;
-          j < activitysThatCurrenActivityIsDependentOn.length;
-          j++
-        ) {
-          this.checkIfNodeHasBeenGenerated(
-            activitysThatCurrenActivityIsDependentOn[j]
-          );
-          this.graphData['links'].push({
-            source: activitysThatCurrenActivityIsDependentOn[j],
-            target: activity,
-          });
-          this.populateGraphWithActivitiesCurrentActivityDependsOn(
-            activitysThatCurrenActivityIsDependentOn[j]
-          );
-        }
+    this.loader.load().then((dataStore: DataStore) => {
+      this.dataStore = this.dataStore;
+      if (!dataStore.activityStore) {
+        throw Error('No activity store loaded');
       }
-    } catch (e) {
-      console.log(e);
-    }
-    //console.log({...this.graphData['nodes']})
+      let activity: Activity = dataStore.activityStore.getActivityByName(this.activityName);
+      if (activity) {
+        this.graphData = { nodes: [], links: [] };
+        this.populateGraphWithActivitiesCurrentActivityDependsOn(activity);
+        this.populateGraphWithActivitiesThatDependsOnCurrentActivity(activity);
+
+        this.generateGraph(this.activityName);
+      }
+    });
   }
-  populateGraphWithActivitiesThatDependsOnCurrentActivity(activity: string) {
-    var allActivitys = Object.keys(this.YamlObject);
-    for (var i = 0; i < allActivitys.length; i++) {
-      try {
-        if (this.YamlObject[allActivitys[i]]['dependsOn'].includes(activity)) {
-          this.checkIfNodeHasBeenGenerated(allActivitys[i]);
-          this.graphData['links'].push({
-            source: activity,
-            target: allActivitys[i],
-          });
-        }
-      } catch {
-        continue;
+
+  populateGraphWithActivitiesCurrentActivityDependsOn(activity: Activity): void {
+    this.addNode(activity.name);
+    if (activity.dependsOn) {
+      for (const prececcor of activity.dependsOn) {
+        this.addNode(prececcor);
+        this.graphData['links'].push({
+          source: prececcor,
+          target: activity.name,
+        });
       }
     }
   }
 
-  checkIfNodeHasBeenGenerated(activity: string) {
-    if (!this.visited.includes(activity)) {
-      this.graphData['nodes'].push({ id: activity });
-      this.visited.push(activity);
+  populateGraphWithActivitiesThatDependsOnCurrentActivity(currentActivity: Activity) {
+    const all: Activity[] = this.dataStore.activityStore?.getAllActivities?.() ?? [];
+    for (const activity of all) {
+      if (activity.dependsOn?.includes(currentActivity.name)) {
+        this.addNode(activity.name);
+        this.graphData['links'].push({
+          source: currentActivity.name,
+          target: activity.name,
+        });
+      }
     }
   }
 
-  applyTextColor(theme: string): void {
-    const fill = theme === 'dark' ? '#ffffff' : '#000000';
-    const selectedNodeColor = theme === 'dark' ? '#666666' : 'yellow';
-    const defaultNodeColor = this.COLOR_OF_NODE;
-
-    d3.select(this.elementRef.nativeElement)
-      .selectAll('text')
-      .attr('fill', fill);
-
-    d3.select(this.elementRef.nativeElement)
-      .selectAll('circle')
-      .attr('fill', (d: any) =>
-        d.id === this.activityName ? selectedNodeColor : defaultNodeColor
-      );
+  addNode(activityName: string) {
+    if (!this.visited.has(activityName)) {
+      this.graphData['nodes'].push({ id: activityName });
+      this.visited.add(activityName);
+    }
   }
 
-  generateGraph(activity: string): void {
-    const selectedNodeColor =
-      this.currentTheme === 'dark' ? '#666666' : 'yellow';
-
+  generateGraph(activityName: string): void {
     let svg = d3.select('svg'),
       width = +svg.attr('width'),
       height = +svg.attr('height');
@@ -185,21 +129,24 @@ export class DependencyGraphComponent implements OnInit {
       .style('stroke', this.COLOR_OF_LINK)
       .attr('marker-end', 'url(#arrowhead)');
 
+    /* eslint-disable */
     let node = svg
-      .append('g')
-      .attr('class', 'nodes')
-      .selectAll('g')
-      .data(this.graphData['nodes'])
-      .enter()
-      .append('g');
+    .append('g')
+    .attr('class', 'nodes')
+    .selectAll('g')
+    .data(this.graphData['nodes'])
+    .enter()
+    .append('g');
+    /* eslint-enable */
 
     var defaultNodeColor = this.COLOR_OF_NODE;
     node
       .append('circle')
       .attr('r', 10)
-      .attr('fill', (d: any) =>
-        d.id === this.activityName ? selectedNodeColor : defaultNodeColor
-      );
+      .attr('fill', function (d) {
+        if (d.id == activityName) return 'yellow';
+        else return defaultNodeColor;
+      });
 
     node
       .append('text')
@@ -208,8 +155,6 @@ export class DependencyGraphComponent implements OnInit {
       .text(function (d) {
         return d.id;
       });
-
-    this.applyTextColor(this.currentTheme);
 
     this.simulation.nodes(this.graphData['nodes']).on('tick', ticked);
 

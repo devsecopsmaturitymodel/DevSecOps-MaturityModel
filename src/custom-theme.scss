@@ -1,5 +1,12 @@
 @use '@angular/material' as mat;
 
+.mat-drawer,
+.mat-drawer-container {
+  transition: background 300ms 
+    cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms 
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 // ----------------------------------------------
 // Theme Colors and Typography
 // ----------------------------------------------
@@ -31,6 +38,8 @@ $DSOMM-primary: mat.define-palette(mat.$green-palette, 400);
 $DSOMM-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $DSOMM-warn: mat.define-palette(mat.$red-palette);
 
+$DSOMM-dark-primary: mat.define-palette(mat.$green-palette, 600);
+
 // ----------------------------------------------
 // Angular Material Themes
 // ----------------------------------------------
@@ -44,7 +53,7 @@ $DSOMM-light-theme: mat.define-light-theme((
 
 $DSOMM-dark-theme: mat.define-dark-theme((
         color: (
-                primary: $DSOMM-primary,
+                primary: $DSOMM-dark-primary,
                 accent: $DSOMM-accent,
                 warn: $DSOMM-warn
         )
@@ -77,6 +86,13 @@ body {
 }
 
 .light-theme {
+  --text-primary: #000000;
+  --text-secondary: #bbbbbb;
+  --background-primary: #f5f5f5;
+  --background-secondary: #fefefe;
+
+  --primary-color: #{mat.get-color-from-palette($DSOMM-primary)};
+
   --heatmap-filled: #4caf50;
   --heatmap-disabled: #dddddd;
   --heatmap-cursor: green;
@@ -94,6 +110,13 @@ body {
 body.dark-theme {
   @include apply-theme($custom-dark-theme);
   @include mat.all-component-themes($DSOMM-dark-theme);
+  
+  --text-primary: #fefefe;
+  --text-secondary: #ababab;
+  --background-primary: #303030;
+  --background-secondary: #424242;
+  
+  --primary-color: #{mat.get-color-from-palette($DSOMM-dark-primary)};
 
   --heatmap-filled: #007700;
   --heatmap-disabled: #666666;
@@ -102,6 +125,7 @@ body.dark-theme {
   --heatmap-stroke: #000000;
   --heatmap-cursor-selected:var(--heatmap-cursor);
   --heatmap-cursor-hover: transparent;
+
 
   .title-button,
   h1, h2, h3, h4, h5, h6 {
@@ -160,7 +184,7 @@ body.dark-theme {
   }
 
   .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
-    background-color: #74b277;
+    background-color: var(--primary-color);
   }
 }
 
