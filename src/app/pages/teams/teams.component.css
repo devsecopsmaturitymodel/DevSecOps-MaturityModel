@@ -14,6 +14,10 @@ h3 {
   margin: 1em 1em;
 }
 
+.team-section {
+  padding: 0 1rem 1rem;
+}
+
 .team-list {
   width: 70%;
   overflow-x: auto;
@@ -65,11 +69,11 @@ h3 {
 .info-kpis {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
 }
 
 .info-kpi {
     flex: 1;
-    margin: 10px;
     padding: 20px;
     background-color: var(--background-secondary);
     border-radius: 8px;
@@ -117,4 +121,8 @@ td.mat-cell {
   min-width: 120px;
   max-width: 120px;
   text-align: center;
+}
+
+.teams-table {
+  box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1);
 }
