@@ -3,7 +3,8 @@ FROM node:24.7.0-alpine3.22 AS build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
-RUN apk add --upgrade python3 build-base \
+RUN apk add --upgrade python3 build-base py3-setuptools py3-pip \
+    && pip3 install --break-system-packages setuptools \
     && npm install
 COPY . .
 RUN npm run build
