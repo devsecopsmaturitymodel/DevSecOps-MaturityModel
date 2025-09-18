@@ -2,8 +2,10 @@
 #
 # Teams
 #
-teams: ['A', 'B', 'C']
+teams: ['B', 'C', 'My page', 'My app', 'Invoice', 'Admin app']
 teamGroups:
-  AB: ['A', 'B']
-  BC: ['B', 'C']
-  AC: ['A', 'C']
+  GroupC: ['B', 'C']
+  Customer: ['My page', 'My app']
+  Internal: ['Invoice', 'Admin app']
+  Mobile: ['My app', 'Admin app']
+

@@ -1,0 +1,17 @@
+
+Build and Deployment:
+  Build:
+    Experimental Build Activity:
+      uuid: 2858ac12-0179-40d9-9acf-1b839c030474
+      level: 1
+      description: |
+        Test activity - Testing Custom Activity Yaml, that ignores the whole pre-existing Build Dimension.
+        But add a new (this) separate custom activity.
+  Deployment:
+    Defined deployment process:
+      description: |
+        Custom description, defined in `custom-experimental.yaml`.
+        But other properties remain as-is.
+Test and Verification:
+  Test-Intensity:
+    ignore: true

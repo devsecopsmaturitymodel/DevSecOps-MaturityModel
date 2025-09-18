@@ -1,0 +1,14 @@
+<div class="progress-container">
+  <mat-slider
+    [min]="0"
+    [max]="steps.length - 1"
+    [step]="1"
+    [value]="currentValue"
+    [tickInterval]="1"
+    (input)="onStepChange($event.value)">
+  </mat-slider>
+  <span class="step-label">{{ steps[currentValue] }} <!-- eslint-disable-line -->
+    <span *ngIf="currentValue > originalValue"> *</span>
+    <span *ngIf="currentValue < originalValue"> **</span>
+  </span>
+</div>

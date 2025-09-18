@@ -22,9 +22,7 @@ export class ReadmeToHtmlComponent implements OnInit {
 
   async loadMarkdownFiles(MDFile: string): Promise<boolean> {
     try {
-      this.markdownURI = await this.http
-        .get(MDFile, { responseType: 'text' })
-        .toPromise();
+      this.markdownURI = await this.http.get(MDFile, { responseType: 'text' }).toPromise();
       this.toRender = this.markdown.render(this.markdownURI);
       return true;
     } catch {

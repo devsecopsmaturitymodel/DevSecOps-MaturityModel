@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SEEK</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!-- eslint-disable -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+    <!-- eslint-enable -->
+    <style>
+      tr > * {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body class="mat-typography">
+    <button onclick="test()">Seek</button>
+    <panel>
+      <value>get ready...</value>
+      <table>
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </panel>
+  </body>
+  <script>
+    const TIME_SPAN = 1000;
+    async function test() {
+      let sizes = [1, 10, 100, 1000, 10_000];
+      // let sizes = [1, 10, 100, 1000, 10_000, 100_000];
+      let results = [];
+
+      await clearResults();
+      await sleep(1);
+      for (let size of sizes) {
+        document.querySelector('value').innerText = size;
+        let [array, arrayObj, hash] = build(size, 8);
+
+        let arrayCount = await seekArray(array, array);
+        let arrayObjCount = await seekArrayObj(arrayObj, array);
+        let hashCount = await seekHash(hash, array);
+        results.push({ size, hashCount, arrayCount, arrayObjCount });
+      }
+
+      document.querySelector('value').innerText = '';
+      await displayResults(results);
+    }
+
+    async function clearResults() {
+      $thead = document.querySelector('thead');
+      $tbody = document.querySelector('tbody');
+      $thead.innerHTML = '';
+      $tbody.innerHTML = '';
+    }
+    async function displayResults(results) {
+      $thead = document.querySelector('thead');
+      $tbody = document.querySelector('tbody');
+      for (let head in results[0]) {
+        let $th = document.createElement('th');
+        $th.innerText = head;
+        $thead.appendChild($th);
+      }
+      for (let row of results) {
+        let $tr = document.createElement('tr');
+        for (let value in row) {
+          let $td = document.createElement('td');
+          $td.innerText = row[value];
+          $tr.appendChild($td);
+        }
+        $tbody.appendChild($tr);
+      }
+    }
+
+    function build(size, key_len) {
+      let hash = {};
+      let array = [];
+      let arrayObj = [];
+
+      for (let i = 0; i < size; i++) {
+        let uuid = crypto.randomUUID();
+        if (key_len > 0) {
+          uuid = uuid.substring(0, key_len);
+        }
+
+        hash[uuid] = i;
+        array.push(uuid);
+        arrayObj.push({ uuid, id: i });
+      }
+
+      return [array, arrayObj, hash];
+    }
+
+    async function seekHash(hash, keys) {
+      let size = keys.length;
+      let stop_time = Date.now() + TIME_SPAN;
+      let count = 0;
+      while (Date.now() < stop_time) {
+        let seek_i = Math.trunc(Math.random() * size);
+        let seek = keys[seek_i];
+        if (hash[seek] == seek_i) count++;
+      }
+      return (count / 1000).toFixed(0) + 'k';
+      // return count;
+    }
+    async function seekArray(array, keys) {
+      let size = keys.length;
+      let stop_time = Date.now() + TIME_SPAN;
+      let count = 0;
+      while (Date.now() < stop_time) {
+        let seek_i = Math.trunc(Math.random() * size);
+        let seek = keys[seek_i];
+        if (array.indexOf(seek) == seek_i) count++;
+      }
+      return (count / 1000).toFixed(0) + 'k';
+    }
+    async function seekArrayObj(array, keys) {
+      let size = keys.length;
+      let stop_time = Date.now() + TIME_SPAN;
+      let count = 0;
+      while (Date.now() < stop_time) {
+        let seek_i = Math.trunc(Math.random() * size);
+        let seek = keys[seek_i];
+        let i = 0;
+        while (array[i].uuid != seek) i++;
+        if (array[i].id == seek_i) count++;
+      }
+      return (count / 1000).toFixed(0) + 'k';
+      // return count;
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  </script>
+</html>
