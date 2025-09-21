@@ -1,5 +1,5 @@
 ---
-teamProgressFile: 'team-progress.yaml' 
+teamProgressFile: 'team-progress-default.yaml' 
 progressDefinition:
   Backlog: 0%
   # Planned: 10%
@@ -20,7 +20,6 @@ activityFiles:
     # - generated/generated.yaml 
     - default/activities.yaml 
     # - custom/custom-activities.yaml  # For customizing your own activities
-    # - custom/test-ignore-activities.yaml
 
 
 #

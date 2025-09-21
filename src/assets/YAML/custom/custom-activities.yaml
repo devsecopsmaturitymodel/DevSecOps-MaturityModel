@@ -1,35 +1,37 @@
-
+# Sample file to show how to customize your own activities, or override existing ones.
+#
 Build and Deployment:
   Build:
     New CUSTOM activity:
-      uuid: f6f7737f-1111-1111-1111-09bf59f29b5b
-      description: 
-        This is a NEW activity
+      uuid: 11111111-1111-1111-1111-111111111111
       level: 1
-    Defined build process:
+      description: 
+        This activity is an example of a custom activity that is specific to your organization.
+      measure:
+        Write your own measure text here, using markdown if needed.
+      risk:
+        See default/activities.yaml for examples of how to write risk statements.
+        
+    Defined OUR build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
       description: 
-        Custom description for: same name and same uuid
+        This is an example with a custom _title_ and _description_ overriding the standard text.
+
     # Pinning of artifacts:
-    #   ignore: true
     #   uuid: f3c4971e-9f4d-4e59-8ed0-f0bdb6111111
     #   description:
-    #     This activity has a two different UUIDs
+    #     This activity has a two different UUIDs for the same name, and will cause an error when loading in the browser.
+
+    SBOM of components:
+      ignore: true
+      description:
+        This will remove this activity from the list of activities in the browser.
 
 
-New test category:
-  Custom tests:
-    NEW SBOM in NEW dimension:
+New CUSTOM dimension:
+  CUSTOM sub-dimension:
+    Re-classify SBOM activity to CUSTOM dimension:
       uuid: 2858ac12-0179-40d9-9acf-1b839c030473
       level: 2
-  Custom tests2:
-    High coverage of security related module and integration tests:
-      uuid: 67667c97-c33e-4306-a4e5-e7b1d8e10c5a
-      level: 1
       description: 
-        This is the description for *High coverage*
-    Security integration tests for important components:
-      uuid: f57d55f2-dc05-4b34-9d1f-f8ce5bfb0715
-      level: 2
-      description: 
-        This is the description for *Security integration tests*
+        This activity has been moved to a custom dimension.
