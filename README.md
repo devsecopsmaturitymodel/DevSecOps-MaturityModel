@@ -37,7 +37,6 @@ Create issues or even better Pull Requests in [github](https://github.com/wurstb
 * [Video: OWASP (DevSecOps) Projects, 2021-04-28, OWASP Stammtisch Frankfurt](https://www.youtube.com/watch?v=8webiYnF56A)
 * [Video: DSOMM Enhancement Workshop at Open Security Summit, 2021-04-16](https://youtu.be/H2BA6gaeKBE)
 * [Video: Strategic Usage of the OWASP Software Assurance Maturity Model and the OWASP DevSecOps Maturity Model, OWASP Jakarta](https://m.youtube.com/watch?v=lLMLGIzl56M)
-* [Slides: DSOMM Overview](https://docs.google.com/presentation/d/1eQcE_AsR1g6uOVf3B2Ehh1g0cHvPknkdLY4BzMYatSw/edit?usp=sharing)
 * [Video: GitHub practical DSOMM snippet on twitch](https://www.twitch.tv/githubenterprise/clip/EsteemedTriumphantMinkFailFish)
 * [Blog: GitHub on DSOMM](https://github.blog/2020-08-06-achieving-devsecops-maturity-with-a-developer-first-community-driven-approach/) 2020
 * [Video: Benutzung vom OWASP DevSecOps Maturity Model (German)](https://vimeo.com/456523229)
