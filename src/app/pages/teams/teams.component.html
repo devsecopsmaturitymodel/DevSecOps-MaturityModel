@@ -21,17 +21,14 @@
         <app-kpi
           [title]="'Completed'"
           [value]="info[infoTitle]?.uniqueActivitiesCompletedCount"
-          [suffix]="'activities'"
-        ></app-kpi>
+          [suffix]="'activities'"></app-kpi>
         <app-kpi
           [title]="'In progress'"
           [value]="info[infoTitle]?.uniqueActivitiesInProgressCount"
-          [suffix]="'activities'"
-        ></app-kpi>
+          [suffix]="'activities'"></app-kpi>
         <app-kpi
           [title]="'Last updated:'"
-          [value]="dateStr(info[infoTitle]?.lastUpdated)"
-        ></app-kpi>
+          [value]="dateStr(info[infoTitle]?.lastUpdated)"></app-kpi>
       </div>
     </div>
 
