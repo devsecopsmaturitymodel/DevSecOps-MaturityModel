@@ -12,6 +12,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 
 const MaterialComponents = [
@@ -29,6 +31,8 @@ const MaterialComponents = [
   MatCardModule,
   MatCheckboxModule,
   MatButtonToggleModule,
+  MatSliderModule,
+  MatSortModule,
 ];
 
 @NgModule({

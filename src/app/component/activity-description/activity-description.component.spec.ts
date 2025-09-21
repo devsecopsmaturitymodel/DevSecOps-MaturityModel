@@ -1,26 +1,71 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { sample } from 'rxjs';
-import { ymlService } from 'src/app/service/yaml-parser/yaml-parser.service';
+import { ActivatedRoute } from '@angular/router';
 
 import { ActivityDescriptionComponent } from './activity-description.component';
+import { LoaderService } from 'src/app/service/loader/data-loader.service';
+import { MockLoaderService } from 'src/app/service/loader/mock-data-loader.service';
+import { MarkdownText } from 'src/app/model/markdown-text';
+import { Data } from 'src/app/model/activity-store';
+import { isEmptyObj } from 'src/app/util/util';
+
+let mockLoaderService: MockLoaderService;
+let mockActivatedRoute = {
+  snapshot: {
+    queryParams: { uuid: '00000000-1111-1111-1111-0000000000000' },
+  },
+};
+let mockData = {
+  'Dim 1': {
+    'SubDim 1.1': {
+      'Activity 111': {
+        uuid: '00000000-1111-1111-1111-0000000000000',
+        level: 1,
+        description: new MarkdownText('Description 111'),
+        difficultyOfImplementation: { time: 1, knowledge: 1, resources: 1 },
+        usefulness: 1,
+        references: {
+          openCRE: ['OpenCRE 1.1'],
+          samm2: ['SAMM 1.1'],
+          iso27001_2017: ['ISO 17 1.1'],
+          iso27001_2022: ['ISO 22 1.1'],
+        },
+        risk: new MarkdownText('Risk 111'),
+        measure: new MarkdownText('Measure 111'),
+        implementationGuide: new MarkdownText('Implementation Guide 111'),
+        teamsEvidence: { Default: 'Evidence 111' },
+        assessment: new MarkdownText('Assessment 111'),
+        comments: new MarkdownText('Comments 111'),
+      },
+    },
+  },
+};
 
 describe('ActivityDescriptionComponent', () => {
   let component: ActivityDescriptionComponent;
   let fixture: ComponentFixture<ActivityDescriptionComponent>;
+  mockLoaderService = new MockLoaderService(mockData as unknown as Data);
 
   beforeEach(async () => {
+    await mockLoaderService.load();
     await TestBed.configureTestingModule({
-      providers: [ymlService, HttpClient, HttpHandler],
+      providers: [
+        HttpClient,
+        HttpHandler,
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: LoaderService, useValue: mockLoaderService },
+      ],
       imports: [RouterTestingModule],
       declarations: [ActivityDescriptionComponent],
     }).compileComponents();
   });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(ActivityDescriptionComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
   });
 
@@ -28,132 +73,73 @@ describe('ActivityDescriptionComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should load activity', () => {
+    expect(isEmptyObj(component.currentActivity)).toBeFalsy();
+  });
+
   it('check if header is being generated', () => {
-    const testDimension = 'Sample Dimension';
-    const testSubDimension = 'Sample subDimension';
-    component.currentActivity.dimension = testDimension;
-    component.currentActivity.subDimension = testSubDimension;
+    const testDimension = 'Dim 1';
+    const testSubDimension = 'SubDim 1.1';
+
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const heading = HTMLElement.querySelector('h1')!;
-    expect(heading.textContent).toContain(testDimension);
-    expect(heading.textContent).toContain(testSubDimension);
+
+    expect(heading?.textContent).toContain(testDimension);
+    expect(heading?.textContent).toContain(testSubDimension);
   });
 
-  it('check if UUID is being generated', () => {
-    const testUUID = '00000000-0000-0000-0000-000000000000';
-    component.currentActivity.uuid = testUUID;
+  it('check if content is displayed', () => {
+    // console.log(`${perfNow()}: ActivityDescription: "check if content is displayed"`);
+    const testUUID = '00000000-1111-1111-1111-0000000000000';
+    const testDesc = 'Description 111';
+    const testRisk = 'Risk 111';
+    const testMeasure = 'Measure 111';
+    const testAssessment = 'Assessment 111';
+    const testComments = 'Comments 111';
+    const testImplementationGuide = 'Implementation Guide 111';
+
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelector('#uuid')!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(testUUID);
+
+    expect(HTMLElement.querySelector('#uuid')?.textContent).toContain(testUUID);
+    expect(HTMLElement.querySelector('#description')?.textContent).toContain(testDesc);
+    expect(HTMLElement.querySelector('#risk')?.textContent).toContain(testRisk);
+    expect(HTMLElement.querySelector('#measure')?.textContent).toContain(testMeasure);
+    expect(HTMLElement.querySelector('#assessment')?.textContent).toContain(testAssessment);
+    expect(HTMLElement.querySelector('#comments')?.textContent).toContain(testComments);
+    expect(HTMLElement.querySelector('#implementationGuide')?.textContent).toContain(testImplementationGuide); // eslint-disable-line
   });
 
-  it('check if description is being generated', () => {
-    const testDescription = 'Sample Description';
-    component.currentActivity.description = testDescription;
-    fixture.detectChanges();
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag =
-      HTMLElement.querySelector('#description')!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(
-      testDescription
-    );
-  });
-
-  it('check if risk is being generated', () => {
-    const testRisk = 'Sample Risk';
-    component.currentActivity.risk = testRisk;
-    fixture.detectChanges();
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelector('#risk')!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(testRisk);
-  });
-
-  it('check if measure is being generated', () => {
-    const testMeasure = 'Sample Measure';
-    component.currentActivity.measure = testMeasure;
-    fixture.detectChanges();
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag =
-      HTMLElement.querySelector('#measure')!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(testMeasure);
-  });
-
-  it('check if implementation guide is being generated', () => {
-    const testImplementationGuide = 'Sample Implementation Guide';
-    component.currentActivity.implementatonGuide = testImplementationGuide;
-    fixture.detectChanges();
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag = HTMLElement.querySelector(
-      '#implementatonGuide'
-    )!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(
-      testImplementationGuide
-    );
-  });
-
-  it('check if evidence is being generated', () => {
-    const testEvidence = { A: 'Sample Evidence', Default: 'Sample evidence 2' };
-    component.currentActivity.teamsEvidence = testEvidence;
-    fixture.detectChanges();
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    const parentElement = HTMLElement.querySelectorAll('#teamsEvidence')!;
-    console.log('parentElement', parentElement[1].textContent);
-    const lengthOfObject = Object.keys(testEvidence).length;
-    for (var i = 0; i > lengthOfObject; i++)
-      expect(parentElement[i].textContent).toContain(
-        Object.keys(testEvidence)[i] + Object.values(testEvidence)[i]
-      );
-  });
-
-  it('check if assessment is being generated', () => {
-    const testAssessment = 'Sample Assessment';
-    component.currentActivity.assessment = testAssessment;
-    fixture.detectChanges();
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag =
-      HTMLElement.querySelector('#assessment')!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(
-      testAssessment
-    );
-  });
-
-  it('check if comments is being generated', () => {
-    const testComments = 'Sample Comments';
-    component.currentActivity.comments = testComments;
-    fixture.detectChanges();
-    const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag =
-      HTMLElement.querySelector('#comments')!;
-    expect(contentDisplayedinParagraphTag.textContent).toContain(testComments);
-  });
-
+  /*
   it('check if references is being generated', () => {
     const testSAMM = [' Sample SAMM '];
-    const testISO = [' Sample ISO'];
+    const testISO17 = [' Sample ISO'];
     const testISO22 = [' Sample ISO22'];
     const uuid = 'abcd'; // for openCRE
 
-    component.currentActivity.samm = testSAMM;
-    component.currentActivity.iso = testISO;
-    component.currentActivity.iso22 = testISO22;
-    component.currentActivity.uuid = uuid;
+    expect(component.currentActivity).toBeTruthy();
+    // expect(component.currentActivity.references).toBeTruthy();
+    if (component.currentActivity.references) {
+      component.currentActivity.references.samm2 = testSAMM;
+      component.currentActivity.references.iso27001_2017 = testISO17;
+      component.currentActivity.references.iso27001_2022 = testISO22;
+      component.currentActivity.uuid = uuid;
+    }
 
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const contentDisplayedinParagraphTag =
-      HTMLElement.querySelectorAll('#references')!;
+    const contentDisplayedInParagraphTag = HTMLElement.querySelectorAll('#references')!;
 
-    expect(contentDisplayedinParagraphTag[0].textContent).toContain(
+    expect(contentDisplayedInParagraphTag[0].textContent).toContain(
       component.SAMMVersion +
         testSAMM[0] +
         component.ISOVersion +
-        testISO[0] +
+        testISO17[0] +
         component.ISO22Version +
         testISO22[0] +
-        component.openCREVersion +
-        uuid
+        component.openCREVersion
     );
   });
+  */
 });

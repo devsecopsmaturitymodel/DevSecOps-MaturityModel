@@ -1,9 +1,5 @@
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer
-    #drawer
-    class="sidenav-menu"
-    mode="side"
-    opened="{{ menuIsOpen }}">
+  <mat-drawer #drawer class="sidenav-menu" mode="side" opened="{{ menuIsOpen }}">
     <button class="menu-close" (click)="toggleMenu()">
       <mat-icon class="white-icon">close</mat-icon>
     </button>
@@ -15,7 +11,13 @@
     <button type="button" mat-button (click)="toggleMenu()" color="primary">
       <mat-icon>menu</mat-icon>
     </button>
+    <div class="tag-line">
+      <div class="tag-title">Alpha v4 edition</div>
+      <div class="tag-subtitle">{{ subtitle }}</div>
+    </div>
+    <div class="dummy"></div>
     <a
+      target="_blank"
       class="github-fork-ribbon"
       href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel"
       data-ribbon="Fork me on GitHub"

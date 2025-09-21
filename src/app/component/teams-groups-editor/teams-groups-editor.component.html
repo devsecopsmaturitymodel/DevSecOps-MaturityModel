@@ -1,0 +1,42 @@
+<!-- Main layout for teams/groups editor -->
+<div class="editor-header">
+  <h2>Teams &amp; Groups</h2>
+</div>
+<div class="editor-container">
+  <div class="editor-list-panel">
+    <app-selectable-list
+      title="Groups"
+      [items]="keys(localCopyTeamGroups)"
+      [selectedItem]="selectedGroup"
+      [highlightedItems]="highlightedGroups"
+      [canEdit]="canEdit"
+      [editMode]="this.editMode === Mode.GROUPS"
+      [relationshipEditMode]="this.editMode === Mode.TEAMS"
+      (itemSelected)="onGroupSelected($event)"
+      (addItem)="onAddGroup()"
+      (renameItem)="onRenameGroup($event)"
+      (deleteItem)="onDeleteGroup($event)"
+      (editModeChange)="onGroupsEditModeChange($event)"
+      (relationshipToggle)="onTeamGroupToggle(selectedTeam, $event)"
+      (save)="onSave()"
+      (cancel)="onCancelEdit()"></app-selectable-list>
+  </div>
+  <div class="editor-list-panel">
+    <app-selectable-list
+      title="Teams"
+      [items]="localCopyTeams"
+      [selectedItem]="selectedTeam"
+      [highlightedItems]="highlightedTeams"
+      [canEdit]="canEdit"
+      [editMode]="editMode === Mode.TEAMS"
+      [relationshipEditMode]="editMode === Mode.GROUPS"
+      (itemSelected)="onTeamSelected($event)"
+      (addItem)="onAddTeam()"
+      (renameItem)="onRenameTeam($event)"
+      (deleteItem)="onDeleteTeam($event)"
+      (editModeChange)="onTeamsEditModeChange($event)"
+      (relationshipToggle)="onTeamGroupToggle($event, selectedGroup)"
+      (save)="onSave()"
+      (cancel)="onCancelEdit()"></app-selectable-list>
+  </div>
+</div>

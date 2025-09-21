@@ -1,0 +1,30 @@
+:host {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-kpi {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--background-secondary);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.info-kpi .kpi-title {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+.info-kpi .kpi-subtitle {
+    font-size: 1em;
+    color: var(--text-secondary);
+}
+.info-kpi .kpi-value {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.info-kpi .kpi-value .kpi-suffix {
+    font-weight: normal;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,104 @@
+h2 {
+  color: #000000;
+  text-align: center;
+  font-weight: 800;
+  font-size: 2em;
+  margin: 1em 1em 0.2em;
+}
+h3 {
+  color: #000000;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2em;
+  font-style: italic;
+  margin: 1em 1em;
+}
+
+.team-section {
+  padding: 0 1rem 1rem;
+}
+
+.team-list {
+  width: 70%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.team-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Use flex layout */
+}
+
+.team-list ul li {
+  flex: 0 0 150px; /* Set a fixed width */
+  height: 100px;
+  background-color: #66bb6a;
+  border-radius: 10px;
+  margin-right: 20px;
+  display: flex; /* Use flex layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.button-container button {
+    margin: 10px;
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-info .subheader {
+    text-align: center;
+    font-style: italic;
+}
+
+.info-kpis {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+
+.info-table{
+  margin: 20px;
+}
+
+.mat-cell, .mat-header-cell{
+  padding: 20px 10px;
+  /* width: 12.5%;   */
+  /* max-width: 12.5%;   */
+  word-wrap: break-word;
+}
+
+.mat-header-cell{
+  font-size: 16px;  
+  font-weight: bold;
+}
+td.mat-cell {
+    padding: 0 20px;
+}
+
+.progress-col {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  text-align: center;
+}
+
+.teams-table {
+  box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1);
+}

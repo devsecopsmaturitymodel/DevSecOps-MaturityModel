@@ -1,37 +1,36 @@
 ---
+teamProgressFile: 'team-progress.yaml' 
+progressDefinition:
+  Backlog: 0%
+  # Planned: 10%
+  Started: 30%
+  Implemented: 100% 
+# progress:
+#   Low maturity: 0%
+#   Medium maturity: 40%
+#   High maturity: 100% 
+
+allowChangeTeamNameInBrowser: true
+teams: 
+  $ref: 'default/teams.yaml#/teams'
+teamGroups:
+  $ref: 'default/teams.yaml#/teamGroups'
+
+activityFiles:
+    # - generated/generated.yaml 
+    - default/activities.yaml 
+    # - custom/custom-activities.yaml  # For customizing your own activities
+    # - custom/test-ignore-activities.yaml
+
+
 #
 # Various strings and messages
 #
+lang: en
 strings:
-  en: &en
-    references:
-      samm2:
-        label: OWASP SAMM VERSION 2
-        description: |-
-          Software Assurance Maturity Model
-          The Software Assurance Maturity Model (SAMM) is an open framework to help organizations formulate
-          and implement a strategy for software security that is tailored
-          to the specific risks facing the organization.
-          https://owaspsamm.org/blog/2020/01/31/samm2-release/
-      iso27001-2017:
-        label: ISO 27001:2017
-        description: |-
-          ISO 27001:2017
-      iso27001-2022:
-        label: ISO 27001:2022
-        description: |-
-          ISO 27001:2022
-    labels: ['Very Low', 'Low', 'Medium', 'High', 'Very High']
-    KnowledgeLabels:
-      [
-        'Very Low (one discipline)',
-        'Low (one discipline)',
-        'Medium (two disciplines)',
-        'High (two disciplines)',
-        'Very High (three or more disciplines)',
-      ]
-    hardness: ['Very soft', 'Soft', 'Medium', 'High', 'Very high']
-    maturity_levels:
+  en:
+    allTeamsGroupName: 'All teams'
+    maturityLevels:
       [
         'Level 1: Basic understanding of security practices',
         'Level 2: Adoption of basic security practices',
@@ -39,9 +38,12 @@ strings:
         'Level 4: Very high adoption of security practices',
         'Level 5: Advanced deployment of security practices at scale',
       ]
-# Default team
-teams: ['Default', 'B', 'C']
-teamGroups:
-  GroupA: ['Default', 'B']
-  GroupB: ['B', 'C']
-  GroupC: ['Default', 'C']
+    labels: ['Very Low', 'Low', 'Medium', 'High', 'Very High']
+    knowledgeLabels:
+      [
+        'Very Low (one discipline)',
+        'Low (one discipline)',
+        'Medium (two disciplines)',
+        'High (two disciplines)',
+        'Very High (three or more disciplines)',
+      ]

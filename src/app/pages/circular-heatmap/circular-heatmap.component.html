@@ -1,0 +1,279 @@
+<div id="cont" class="container-fluid text-center">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="overlay-details" [hidden]="!showOverlay">
+        <div *ngIf="showActivityDetails; then activityTrue; else activityFalse"></div>
+        <ng-template #activityTrue>
+          <div class="overlay-modal">
+            <mat-accordion multi="true" class="overlay-accordion">
+              <div
+                *ngIf="
+                  showActivityDetails?.dimension;
+                  then navigationTrue;
+                  else navigationFalse
+                "></div>
+              <div>
+                <ng-template #navigationTrue>
+                  <div class="overlay-header">
+                    <button class="overlay-close" (click)="closeOverlay()">
+                      <mat-icon class="white-icon">close</mat-icon>
+                    </button>
+                    <h2>
+                      {{ showActivityDetails?.dimension }} <br />
+                      {{ showActivityDetails?.name }}
+                    </h2>
+                  </div>
+                </ng-template>
+                <ng-template #navigationFalse>
+                  <div class="overlay-header">
+                    <button class="overlay-close" (click)="closeOverlay()">
+                      <mat-icon class="white-icon">close</mat-icon>
+                    </button>
+                    <h2>Nothing to show</h2>
+                  </div>
+                </ng-template>
+              </div>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="showActivityDetails?.description?.hasContent()">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Description</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="showActivityDetails?.description?.render()"></p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="showActivityDetails?.risk?.hasContent()">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Risk</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="showActivityDetails?.risk?.render()"></p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="showActivityDetails?.measure?.hasContent()">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Measure</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="showActivityDetails?.measure?.render()"></p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.implementation">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Implementation Guide</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <ul>
+                    <li *ngFor="let implementation of showActivityDetails?.implementation">
+                      <a href="{{ implementation.url }}">{{ implementation.name }}</a>
+                      <span class="smaller-italics" *ngIf="implementation.description">
+                        <br />{{ implementation.description }}
+                      </span>
+                    </li>
+                  </ul>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.dependsOn">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Depends On</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="showActivityDetails?.dependsOn"></p>
+                </ng-template>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="showActivityDetails?.difficultyOfImplementation">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Difficulty of Implementation</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p>
+                    Knowledge:
+                    {{ KnowledgeLabel }}
+                  </p>
+                  <p>Time: {{ TimeLabel }}</p>
+                  <p>
+                    Resources:
+                    {{ ResourceLabel }}
+                  </p>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.tags">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Tags</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <ul *ngFor="let tag of showActivityDetails?.tags">
+                    <li [innerHTML]="tag"></li>
+                  </ul>
+                </ng-template>
+              </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.references">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>References</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p>
+                    <b>SAMM 2.0:</b>
+                    <span
+                      *ngFor="let samm of showActivityDetails?.references?.samm2; let last = last">
+                      {{ samm }}<span *ngIf="!last">, </span>
+                    </span>
+                  </p>
+
+                  <b>ISO 27001-2017:</b>
+                  <ul>
+                    <li *ngFor="let iso of showActivityDetails?.references?.['iso27001_2017']">
+                      {{ iso }}
+                    </li>
+                  </ul>
+
+                  <b>ISO 27001-2022:</b>
+                  <ul>
+                    <li *ngFor="let iso of showActivityDetails?.references?.['iso27001_2022']">
+                      {{ iso }}
+                    </li>
+                  </ul>
+                </ng-template>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </ng-template>
+        <ng-template #activityFalse>
+          <div class="overlay-modal">
+            <button class="overlay-close" (click)="closeOverlay()">
+              <mat-icon class="white-icon">close</mat-icon>
+            </button>
+            <mat-expansion-panel [expanded]="false" hideToggle disabled>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Nothing to show</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+          </div>
+        </ng-template>
+      </div>
+      <div class="heatmapClass">
+        <div id="chart" class="heatmapChart"></div>
+        <div class="filter-container">
+          <button class="filter-toggle" mat-button color="primary" (click)="toggleFilters()">
+            <mat-icon [class.hidden]="!showFilters">keyboard_arrow_up</mat-icon>
+            <mat-icon [class.hidden]="showFilters">filter_alt</mat-icon>
+          </button>
+          <div class="team-filter" [class.hidden]="!showFilters">
+            <mat-form-field class="team-chip-list">
+              <mat-label>Team Group Filter</mat-label>
+              <mat-chip-list selectable>
+                <mat-chip
+                  #chip="matChip"
+                  *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
+                  (click)="toggleTeamGroupFilter(chip)"
+                  [selected]="filtersTeamGroups[group.key]">
+                  {{ group.key }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Team Filter</mat-label>
+              <mat-chip-list selectable multiple>
+                <mat-chip
+                  #chip="matChip"
+                  *ngFor="let team of filtersTeams | keyvalue"
+                  (click)="toggleTeamFilter(chip)"
+                  [value]="team.key"
+                  [selected]="team.value">
+                  {{ team.key }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-card class="activity-card" *ngIf="showActivityCard">
+          <mat-card-title-group>
+            <mat-card-title>{{ showActivityCard.dimension }}</mat-card-title>
+            <mat-card-subtitle>Level {{ showActivityCard.level }}</mat-card-subtitle>
+          </mat-card-title-group>
+          <mat-card-content
+            *ngFor="let activity of showActivityCard.activities; index as activityIndex">
+            <mat-expansion-panel
+              (opened)="onPanelOpened(activity)"
+              (closed)="onPanelClosed(activity)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <button
+                    class="title-button"
+                    (click)="openActivityDetails(showActivityCard.dimension, activity['name'])">
+                    {{ activity['name'] }}
+                  </button>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ng-template matExpansionPanelContent>
+                <ul class="team-list">
+                  <ng-container *ngFor="let team of filtersTeams | keyvalue">
+                    <li *ngIf="team.value || !hasTeamsFilter">
+                      <label class="team-label"> {{ team.key }}: </label>
+                      <app-progress-slider
+                        [DBG_name]="activity['name']"
+                        [steps]="progressStates"
+                        [state]="getTeamProgressState(activity['uuid'], team.key)"
+                        [originalState]="getBackedupTeamProgressState(activity['uuid'], team.key)"
+                        (progressChange)="
+                          onProgressChange(activity['uuid'], team.key, $event)
+                        "></app-progress-slider>
+                    </li>
+                  </ng-container>
+                </ul>
+                <div class="smaller-italics">
+                  <span>* Has been modified</span><br />
+                  <span>** Has been modified to less complete stage than before</span>
+                </div>
+              </ng-template>
+            </mat-expansion-panel>
+          </mat-card-content>
+        </mat-card>
+        <div class="footer-buttons">
+          <button
+            class="normal-button"
+            mat-raised-button
+            class="downloadButtonClass"
+            (click)="exportTeamProgress()">
+            Download team progress
+          </button>
+          <button
+            class="normal-button"
+            mat-raised-button
+            class="resetButtonClass"
+            (click)="deleteLocalTeamsProgress()">
+            Delete team progress
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

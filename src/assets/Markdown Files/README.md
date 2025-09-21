@@ -63,11 +63,16 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
+For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
 
 You can download your current state from the circular heatmap and mount it again via 
 
 ```bash
+wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
+docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
+```
+
+.
 wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
 docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
 ```

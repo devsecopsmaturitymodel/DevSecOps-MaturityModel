@@ -1,0 +1,87 @@
+# version: 1.52.1
+#meta:
+#  version: 1.52.1  
+Ignore this Category by default:
+  ignore: true
+
+Ignore this DEFAULT Category:
+  Should be ignored:
+    This activity should have been ignored:
+      uuid: 99999999-1111-9999-9999-999999999999
+      level: 5
+      description:
+        This is specified in the default activity file, but is removed by the ignore yaml
+
+Build and Deployment:
+  Ignore this dimension by default:
+    ignore: true
+  Ignore this DEFAULT dimension:
+    This activity should also have been ignored:
+      uuid: 99999999-2222-9999-9999-999999999999
+      level: 5
+      description:
+        This is specified in the default activity file, but is removed by the ignore yaml
+  Build:
+    This activity should  have been ignored, too:
+      uuid: 99999999-333-9999-9999-999999999999
+      level: 5
+      description:
+        This is specified in the default activity file, but is removed by the ignore yaml      
+    Building and testing of artifacts in virtual environments:
+      uuid: a340f46b-6360-4cb8-847b-a0d3483d09d3
+      description: >-
+        A DSOMM description.
+      tags:
+        - ci-cd
+        - build
+      level: 3
+    Defined build process:
+      uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
+      description: >
+        DSOMM description without UUID
+      level: 1
+      tags:
+        - ci-cd
+        - build
+    Pinning of artifacts:
+      uuid: f3c4971e-9f4d-4e59-8ed0-f0bdb6262477
+      description:
+        DSOMM description, where uuid is different
+      level: 2
+      tags:
+        - ci-cd
+    SBOM of components:
+      uuid: 2858ac12-0179-40d9-9acf-1b839c030473
+      level: 3
+    Signing of code:
+      level: 5
+      uuid: 9f107927-61e9-4574-85ad-3f2b4bca8665
+      # ignore: true
+  Deployment:
+    Ignore this Activity:
+      ignore: true
+    Defined deployment process:
+      uuid: 74938a3f-1269-49b9-9d0f-c43a79a1985a
+      level: 1
+      description:
+      tags:
+        - ci-cd
+    Handover of confidential parameters:
+      uuid: 94a96f79-8bd6-4904-97c0-994ff88f176a              
+      level: 2
+Test and Verification:
+  Application tests:
+    High coverage of security related module and integration tests:
+      uuid: 67667c97-c33e-4306-a4e5-e7b1d8e10c5a
+      level: 5
+      description: 
+        This is the description for *High coverage*
+      tags:
+        - test
+    Security integration tests for important components:
+      uuid: f57d55f2-dc05-4b34-9d1f-f8ce5bfb0715
+      level: 3
+      description: 
+        This is the description for *Security integration tests*
+      tags:
+        - test
