@@ -43,7 +43,6 @@ docker run -d -p 80:8080 wurstbrot/dsomm:latest
 ```
 
 
-
 ## Any web server - Angular build
 Since DSOMM is a frontend only application, any web server can host DSOMM. 
 - Clone the DSOMM repo
@@ -57,13 +56,6 @@ curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-Maturity
 ng build
 ```
 The files that were created in the subfolder `dist` 
-
-
-
-
-
-
-
 
 ## Teams and Groups
 To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml)  file with your unique team definitions.
