@@ -1,8 +1,4 @@
 ---
-#meta:
-  #source: https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/refs/heads/main/src/assets/YAML/generated/generated.yaml
-  #version: 1.15.2
-
 Build and Deployment:
   Build:
     Building and testing of artifacts in virtual environments:
@@ -56,25 +52,34 @@ Build and Deployment:
         C: false
     Defined build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
-      description: "A *build process* include more than just compiling your source
-        code. \nIt also includes steps such as managing (third party) dependencies,
-        \nenvironment configuration, running the unit tests, etc. \n\nA *defined build
-        process* has automated these steps to ensure consistency.\n\nThis can be done
-        with a Jenkinsfile, Maven, or similar tools.\n"
-      risk: Performing builds without a defined process is error prone; for example,
-        as a result of incorrect security related configuration.
-      measure: A well defined build process lowers the possibility of errors during
-        the build process.
+      description: |
+        A *build process* includes more than just compiling your source code. It also covers:
+        - Managing (third party) dependencies
+        - Environment configuration
+        - Running unit and integration tests
+        - Security scanning and compliance checks
+        - Artifact creation and storage
+        - Deployment preparation
+
+        A *defined build process* automates these steps to ensure consistency, reproducibility, and security. Automation reduces human error and enforces security controls. Use tools such as Jenkins, GitHub Actions, GitLab CI, or Maven to codify the process.
+      risk: Performing builds without a defined and automated process is error-prone
+        and increases the risk of security misconfigurations, unauthorized changes,
+        and supply chain attacks.
+      measure: A well-defined, automated, and auditable build process lowers the possibility
+        of errors and unauthorized changes during the build process. It also enables
+        traceability and rapid response to incidents.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 3
         resources: 2
       usefulness: 4
-      level: 1
       assessment: |
-        - Show your build pipeline and an exemplary job (build + test).
-        - Show that every team member has access.
-        - Show that failed jobs are fixed.
+        - Show your build pipeline configuration (e.g., Jenkinsfile, GitHub Actions workflow) and an exemplary job (build + test + security scan).
+        - Demonstrate that every team member has appropriate access (least privilege).
+        - Show that failed jobs are investigated and fixed promptly.
+        - Provide audit logs or evidence of build runs and changes.
+        - Document how security controls are enforced in the build process.
 
         Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
@@ -184,9 +189,20 @@ Build and Deployment:
         resources: 3
       usefulness: 3
       level: 2
-      implementation: []
+      implementation:
+      - uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
+        name: Trivy
+        tags: []
+        url: https://github.com/aquasecurity/trivy
+      - uuid: 7543a6f2-3850-47a9-bb2f-0987e2af6f6a
+        name: Syft
+        tags:
+        - sbom
+        - dependency
+        url: https://github.com/anchore/syft
       references:
-        samm2: []
+        samm2:
+        - I-SB-1-A
         iso27001-2017:
         - 8.1
         - 8.2
@@ -320,7 +336,7 @@ Build and Deployment:
       - Smoke Test
       references:
         samm2:
-        - TODO
+        - I-SD-2-A
         iso27001-2017:
         - 17.2.1
         - 12.1.1
@@ -381,18 +397,21 @@ Build and Deployment:
         C: false
     Defined deployment process:
       uuid: 74938a3f-1269-49b9-9d0f-c43a79a1985a
-      risk: Deployment of insecure or malfunctioning artifacts.
+      description: |
+        A defined deployment process is a documented and automated set of steps for releasing software into production. It ensures that deployments are consistent, secure, and auditable, reducing the risk of errors and unauthorized changes. This process should include validation, approval, and rollback mechanisms.
+      risk: Deployment based human routines are error prone, and of insecure or malfunctioning
+        artifacts.
       measure: Defining a deployment process ensures that there are established criteria
         in terms of functionalities, security, compliance, and performance, and that
         the artifacts meet them.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 1
       usefulness: 4
-      level: 1
       dependsOn:
-      - Defined build process
+      - f6f7737f-25a9-4317-8de2-09bf59f29b5b
       implementation:
       - uuid: b4bfead3-5fb6-4dd0-ba44-5da713bd22e4
         name: CI/CD tools
@@ -415,6 +434,12 @@ Build and Deployment:
         - 8.32
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/74938a3f-1269-49b9-9d0f-c43a79a1985a
+      assessment: |
+        - Deployment process is documented and available to relevant staff
+        - All deployment steps are automated and version-controlled
+        - Approvals and access controls are enforced for production deployments
+        - Rollback procedures are defined and tested
+        - Deployment logs and evidence are retained for audit purposes
       comments: ""
       tags:
       - none
@@ -568,7 +593,7 @@ Build and Deployment:
         exists (gathered manually or automatically).
       dependsOn:
       - Defined deployment process
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -608,7 +633,7 @@ Build and Deployment:
           Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
       references:
         samm2:
-        - I-SD-2-A
+        - I-SB-1-B
         iso27001-2017:
         - 8.1
         - 8.2
@@ -625,6 +650,8 @@ Build and Deployment:
         C: false
     Inventory of production components:
       uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f
+      description: |
+        An inventory of production components is a complete, up-to-date list of all applications and services running in production. This enables effective vulnerability management, incident response, and compliance. Without it, organizations risk running unmaintained or unauthorized software.
       risk: An organization is unaware of components like applications in production.
         Not knowing existing applications in production leads to not assessing it.
       measure: |-
@@ -632,12 +659,12 @@ Build and Deployment:
         In a kubernetes cluster, namespaces can be automatically gathered and documented, e.g. in a JSON in a S3 bucket/git repository, dependency track.
       dependsOn:
       - Defined deployment process
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
       implementation:
       - uuid: 2210e02b-a856-4da4-8732-5acd77e20fca
         name: Backstage
@@ -671,7 +698,7 @@ Build and Deployment:
           Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
       references:
         samm2:
-        - I-SD-2-A
+        - I-SB-1-B
         iso27001-2017:
         - 8.1
         - 8.2
@@ -680,6 +707,12 @@ Build and Deployment:
         - 5.12
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/2a44b708-734f-4463-b0cb-86dc46344b2f
+      assessment: |
+        - Inventory of all production components exists and is regularly updated
+        - Inventory includes key metadata (e.g., version, owner, deployment date)
+        - Inventory is accessible to security and operations teams
+        - There is a process for adding, updating, and removing components
+        - Inventory reviews are performed and documented
       tags:
       - inventory
       teamsImplemented:
@@ -694,7 +727,7 @@ Build and Deployment:
       measure: A documented inventory of dependencies used in artifacts like container
         images and containers exists.
       dependsOn:
-      - Inventory of production artifacts
+      - 83057028-0b77-4d2e-8135-40969768ae88
       - SBOM of components
       difficultyOfImplementation:
         knowledge: 2
@@ -735,7 +768,9 @@ Build and Deployment:
           Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
       references:
         samm2:
-        - I-SD-2-A
+        - I-SB-3-B
+        - I-SB-2-B
+        - I-SB-1-B
         iso27001-2017:
         - 8.1
         - 8.2
@@ -864,7 +899,8 @@ Build and Deployment:
       dependsOn:
       - Same artifact for environments
       references:
-        samm2: []
+        samm2:
+        - I-SD-2-A
         iso27001-2017:
         - 14.3.1
         - 14.2.8
@@ -888,15 +924,23 @@ Build and Deployment:
   Patch Management:
     A patch policy is defined:
       uuid: 99415139-6b50-441b-89e1-0aa59accd43d
-      risk: Vulnerabilities in running artifacts stay for long and might get exploited.
-      measure: A patch policy for all artifacts (e.g. in images) is defined. How often
-        is an image rebuilt?
+      description: |
+        A patch policy defines how and when software components, images, and dependencies are updated. A patch policy ensures that all these artifacts are regularly reviewed and updated, reducing the window of exposure to known threats. The policy should specify the frequency, responsibilities, and documentation requirements for patching.
+      risk: Vulnerabilities in running artifacts may persist for a long time and might
+        be exploited.
+      measure: Define a patch policy for all artifacts (e.g. in images) is defined.
+        How often is an image rebuilt?
+      assessment: |
+        - Patch policy is documented and accessible to relevant staff.
+        - The policy defines patch frequency and responsible roles.
+        - Patch actions and exceptions are logged and reviewed.
+        - Evidence of regular patching and policy review is available.
+      level: 1
       difficultyOfImplementation:
         knowledge: 3
         time: 1
         resources: 2
       usefulness: 4
-      level: 1
       implementation: []
       references:
         samm2:
@@ -921,17 +965,27 @@ Build and Deployment:
         C: false
     Automated PRs for patches:
       uuid: 8ae0b92c-10e0-4602-ba22-7524d6aed488
-      risk: Components with known (or unknown) vulnerabilities might stay for long
-        and get exploited, even when a patch is available.
-      measure: |-
-        Fast patching of third party component is needed. The DevOps way is to have an automated pull request for new components. This includes
-        * Applications * Virtualized operating system components (e.g. container images) * Operating Systems * Infrastructure as Code/GitOps (e.g. argocd based on a git repository or terraform)
+      description: |
+        Automated PRs for patches ensure that updates for outdated or vulnerable dependencies are created and proposed without manual intervention. Tools continuously monitor for new versions or security advisories and immediately generate pull requests to update affected components in code, container images, or infrastructure. This process ensures that available patches are quickly visible to developers and can be reviewed and merged with minimal delay, reducing the risk window for known vulnerabilities.
+      risk: |
+        Components with known (or unknown) vulnerabilities might persist for a long time and be exploited, even when a patch is available.
+      measure: |
+        Fast patching of third-party components is needed. The DevOps way is to have an automated pull request for new components. This includes:
+        * Applications
+        * Virtualized operating system components (e.g., container images)
+        * Operating systems
+        * Infrastructure as Code/GitOps (e.g., ArgoCD based on a git repository or Terraform)
+      assessment: |
+        - Automated PR tooling is enabled for all relevant repositories.
+        - PRs are created automatically for outdated or vulnerable dependencies.
+        - PRs are reviewed and merged in a timely manner.
+        - Evidence of automated PRs and patching activity is available.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 4
-      level: 1
       implementation:
       - uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
         name: dependabot
@@ -1390,16 +1444,62 @@ Culture and Organization:
         C: false
     Conduction of simple threat modeling on technical level:
       uuid: 47419324-e263-415b-815d-e7161b6b905e
+      description: |
+        # OWASP SAMM Description
+        Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
+
+        Threat modeling is a team exercise, including product owners, architects, security champions, and security testers. At this maturity level, expose teams and stakeholders to threat modeling to increase security awareness and to create a shared vision on the security of the system.
+
+        At maturity level 1, you perform threat modeling ad-hoc for high-risk applications and use simple threat checklists, such as STRIDE. Avoid lengthy workshops and overly detailed lists of low-relevant threats. Perform threat modeling iteratively to align to more iterative development paradigms. If you add new functionality to an existing application, look only into the newly added functions instead of trying to cover the entire scope. A good starting point is the existing diagrams that you annotate during discussion workshops. Always make sure to persist the outcome of a threat modeling discussion for later use.
+
+        Your most important tool to start threat modeling is a whiteboard, smartboard, or a piece of paper. Aim for security awareness, a simple process, and actionable outcomes that you agree upon with your team.      Once requirements are gathered and analysis is performed, implementation specifics need to be defined. The outcome of this stage is usually a diagram outlining data flows and a general system architecture. This presents an opportunity for both threat modeling and attaching security considerations to every ticket and epic that is the outcome of this stage.
+
+        Source: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+        # OWASP Project Integration Description
+        There is some great advice on threat modeling out there *e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/) article or [this](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) one.
+
+        A bite sized primer by Adam Shostack himself can be found [here](https://adam.shostack.org/blog/2018/03/threat-modeling-panel-at-appsec-cali-2018/).
+
+        OWASP includes a short [article](https://wiki.owasp.org/index.php/Category:Threat_Modeling) on Threat Modeling along with a relevant [Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html). Moreover, if you're following OWASP SAMM, it has a short section on [Threat Assessment](https://owaspsamm.org/model/design/threat-assessment/).
+
+        There's a few projects that can help with creating Threat Models at this stage, [PyTM](https://github.com/izar/pytm) is one, [ThreatSpec](https://github.com/threatspec/threatspec) is another.
+
+        > Note: _A threat model can be as simple as a data flow diagram with attack vectors on every flow and asset and equivalent remediations. An example can be found below._
+
+        ![Threat Model](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/threat_model.png "Threat Model")
+
+        Last, if the organizations maps Features to Epics, the Security Knowledge Framework (SKF) can be used to facilitate this process by leveraging it's questionnaire function.
+
+        ![SKF](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/skf_qs.png "SKF")
+
+        This practice has the side effect that it trains non-security specialists to think like attackers.
+
+        The outcomes of this stage should help lay the foundation of secure design and considerations.
+
+        **Example Low Maturity Scenario:**
+
+        Following vague feature requirements the design includes caching data to a local unencrypted database with a hardcoded password.
+
+        Remote data store access secrets are hardcoded in the configuration files. All communication between backend systems is plaintext.
+
+        Frontend serves data over GraphQL as a thin layer between caching system and end user.
+
+        GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries. Access to data is protected with basic auth set to _1234:1234_ for development purposes.
+
+        Source: OWASP Project Integration Project
       risk: Technical related threats are discovered too late in the development and
         deployment process.
-      measure: Threat modeling of technical features is performed during the product
-        sprint planning.
+      measure: |
+        Perform threat modeling of technical features during product sprint planning using simple checklists and diagrams. Document identified threats and mitigations for new or changed functionality.
+      assessment: |
+        - Evidence of threat modeling activities exists for high-risk applications, including annotated diagrams and documented threats/mitigations.
+        - Activities are performed during sprint planning and involve relevant stakeholders. Outcomes are recorded and accessible for review.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 3
         resources: 1
       usefulness: 3
-      level: 1
       implementation:
       - uuid: c0533602-11b7-4838-93cc-a40556398163
         name: Whiteboard
@@ -1447,49 +1547,6 @@ Culture and Organization:
         - storage
         - cluster
         - kubernetes
-      description: |
-        # OWASP SAMM Description
-        Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
-
-        Threat modeling is a team exercise, including product owners, architects, security champions, and security testers. At this maturity level, expose teams and stakeholders to threat modeling to increase security awareness and to create a shared vision on the security of the system.
-
-        At maturity level 1, you perform threat modeling ad-hoc for high-risk applications and use simple threat checklists, such as STRIDE. Avoid lengthy workshops and overly detailed lists of low-relevant threats. Perform threat modeling iteratively to align to more iterative development paradigms. If you add new functionality to an existing application, look only into the newly added functions instead of trying to cover the entire scope. A good starting point is the existing diagrams that you annotate during discussion workshops. Always make sure to persist the outcome of a threat modeling discussion for later use.
-
-        Your most important tool to start threat modeling is a whiteboard, smartboard, or a piece of paper. Aim for security awareness, a simple process, and actionable outcomes that you agree upon with your team.      Once requirements are gathered and analysis is performed, implementation specifics need to be defined. The outcome of this stage is usually a diagram outlining data flows and a general system architecture. This presents an opportunity for both threat modeling and attaching security considerations to every ticket and epic that is the outcome of this stage.
-
-        Source: https://owaspsamm.org/model/design/threat-assessment/stream-b/
-        # OWASP Project Integration Description
-        There is some great advice on threat modeling out there *e.g.* [this](https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/) article or [this](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) one.
-
-        A bite sized primer by Adam Shostack himself can be found [here](https://adam.shostack.org/blog/2018/03/threat-modeling-panel-at-appsec-cali-2018/).
-
-        OWASP includes a short [article](https://wiki.owasp.org/index.php/Category:Threat_Modeling) on Threat Modeling along with a relevant [Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html). Moreover, if you're following OWASP SAMM, it has a short section on [Threat Assessment](https://owaspsamm.org/model/design/threat-assessment/).
-
-        There's a few projects that can help with creating Threat Models at this stage, [PyTM](https://github.com/izar/pytm) is one, [ThreatSpec](https://github.com/threatspec/threatspec) is another.
-
-        > Note: _A threat model can be as simple as a data flow diagram with attack vectors on every flow and asset and equivalent remediations. An example can be found below._
-
-        ![Threat Model](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/threat_model.png "Threat Model")
-
-        Last, if the organizations maps Features to Epics, the Security Knowledge Framework (SKF) can be used to facilitate this process by leveraging it's questionnaire function.
-
-        ![SKF](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/skf_qs.png "SKF")
-
-        This practice has the side effect that it trains non-security specialists to think like attackers.
-
-        The outcomes of this stage should help lay the foundation of secure design and considerations.
-
-        **Example Low Maturity Scenario:**
-
-        Following vague feature requirements the design includes caching data to a local unencrypted database with a hardcoded password.
-
-        Remote data store access secrets are hardcoded in the configuration files. All communication between backend systems is plaintext.
-
-        Frontend serves data over GraphQL as a thin layer between caching system and end user.
-
-        GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries. Access to data is protected with basic auth set to _1234:1234_ for development purposes.
-
-        Source: OWASP Project Integration Project
       references:
         samm2:
         - D-TA-2-B
@@ -1672,7 +1729,8 @@ Culture and Organization:
       level: 2
       implementation: []
       references:
-        samm2: []
+        samm2:
+        - G-PS-2
         iso27001-2017:
         - 5.1.1
         - 7.2.1
@@ -1691,17 +1749,23 @@ Culture and Organization:
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:
       uuid: 12c90cc6-3d58-4d9b-82ff-d469d2a0c298
-      risk: Understanding security is hard and personnel needs to be trained on it.
-        Otherwise, flaws like an SQL Injection might be introduced into the software
-        which might get exploited.
-      measure: Provide security awareness training for all personnel involved in software
-        development Ad-Hoc.
+      description: |
+        Ad-hoc security training provides basic awareness of software security risks and best practices to developers and other personnel involved in software development. These trainings are delivered as needed, without a fixed schedule, to address immediate knowledge gaps or respond to emerging threats.
+      risk: |
+        Without any security training, personnel may lack awareness of common software vulnerabilities (such as SQL Injection and vulnerable dependencies), increasing the risk of introducing exploitable flaws into applications.
+      measure: |
+        Provide security awareness training for all personnel involved in software development on an ad-hoc basis, ensuring that relevant topics are covered when new risks or needs are identified.
+      assessment: |
+        - Conduct security training for developers and relevant personnel
+        - Participants can identify common software security risks addressed in the training
+        - Training materials are available
+        - Attendance records are available
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 1
         resources: 1
       usefulness: 3
-      level: 1
       implementation:
       - uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
         name: OWASP Juice Shop
@@ -1713,6 +1777,7 @@ Culture and Organization:
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       references:
@@ -2005,16 +2070,17 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-      - uuid: 81476121-67dd-4ba9-a67b-e78a23050c28
-        name: OWASP JuiceShop
-        tags: []
+      - uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
+        name: OWASP Juice Shop
+        tags:
+        - training
         url: https://github.com/bkimminich/juice-shop
-        description: |-
-          In case you do not have the budget to hire an external security expert, an option
-          is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
+        description: In case you do not have the budget to hire an external security
+          expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       references:
@@ -2046,15 +2112,15 @@ Culture and Organization:
       usefulness: 4
       level: 4
       implementation:
-      - uuid: 81476121-67dd-4ba9-a67b-e78a23050c28
-        name: OWASP JuiceShop
-        tags: []
+      - uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
+        name: OWASP Juice Shop
+        tags:
+        - training
         url: https://github.com/bkimminich/juice-shop
-        description: |-
-          In case you do not have the budget to hire an external security expert, an option
-          is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
-      - uuid: 99080ac7-60cd-46af-93a1-a53a33597cba
-        name: https://cheatsheetseries.owasp.org/
+        description: In case you do not have the budget to hire an external security
+          expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+      - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
+        name: OWASP Cheatsheet Series
         tags:
         - training
         - secure coding
@@ -2093,6 +2159,7 @@ Culture and Organization:
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       dependsOn:
@@ -2256,20 +2323,25 @@ Culture and Organization:
         C: false
     Security consulting on request:
       uuid: 0b28367b-75a0-4bae-a926-3725c1bf9bb0
-      risk: Not asking a security expert when questions regarding security appear
-        might lead to flaws.
-      measure: Security consulting to teams is given on request. The security consultants
-        can be internal or external.
+      level: 1
+      description: |
+        Security consulting on request allows teams to seek expert advice on security-related questions or challenges as they arise. This support can be provided by internal or external security consultants and helps address specific concerns during software development.
+      risk: |
+        If teams do not consult security experts when questions arise, security flaws may be introduced or remain undetected, increasing the risk of vulnerabilities in the software.
+      measure: |
+        Make security consulting available to teams on request, ensuring that expert advice is accessible when needed to address security concerns during development.
+      assessment: |
+        Records show that teams have access to security consulting services and have used them when needed. Documentation of consultations and resulting actions is available for review.
       difficultyOfImplementation:
         knowledge: 3
         time: 1
         resources: 1
       usefulness: 3
-      level: 1
       implementation:
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       references:
@@ -2448,23 +2520,23 @@ Culture and Organization:
         C: false
     Definition of simple BCDR practices for critical components:
       uuid: c72da779-86cc-45b1-a339-190ce5093171
-      description: A _Business Continuity and Disaster Recovery_ (BCDR) is a plan
-        and a process that helps a business to return to normal operations if a disaster
-        occurs.
-      risk: If the disaster recovery actions are not clear, you risk slow reaction
-        and remediation delays. This applies to cyber attacks as well as natural emergencies,
-        such as a power outage.
-      measure: By understanding and documenting a business continuity and disaster
-        recovery (BCDR) plan, the overall availability of systems and applications
-        is increased. Success factors like responsibilities, Service Level Agreements,
-        Recovery Point Objectives, Recovery Time Objectives or Failover must be fully
-        documented and understood by the people involved in the recovery.
+      description: |
+        Business Continuity and Disaster Recovery (BCDR) is a plan and a process that enable an organization to quickly restore normal operations after a disruptive event, such as a cyberattack or natural disaster.
+      risk: |
+        If the disaster recovery actions are not clear, you risk slow reaction and remediation delays.
+        This applies to cyber attacks as well as natural emergencies, such as a power outage.
+      measure: |
+        Develop, document, and communicate a BCDR plan for all critical components. The plan must define roles and responsibilities, Service Level Agreements (SLAs), Recovery Point Objectives (RPOs), Recovery Time Objectives (RTOs), and failover procedures. Ensure all relevant personnel are trained and the plan is reviewed and updated regularly.
+      assessment: "- The organization has a documented BCDR plan covering all critical
+        components.\n- The plan clearly defines responsibilities, SLAs, RPOs, RTOs,
+        and failover steps. \n- Relevant staff are aware of the plan, and evidence
+        of regular review and testing is available.\n"
+      level: 1
       difficultyOfImplementation:
         knowledge: 4
         time: 3
         resources: 2
       usefulness: 4
-      level: 1
       implementation: []
       references:
         samm2: []
@@ -2496,7 +2568,7 @@ Culture and Organization:
       usefulness: 3
       level: 2
       dependsOn:
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       implementation:
       - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
         name: OWASP DefectDojo
@@ -3104,7 +3176,7 @@ Implementation:
       usefulness: 3
       level: 3
       dependsOn:
-      - Require a PR before merging
+      - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       implementation:
       - uuid: b1b88bc5-5a22-4888-a27b-acce3d9fe29a
         name: Improve code quality with branch policies
@@ -3150,7 +3222,7 @@ Implementation:
       usefulness: 4
       level: 3
       dependsOn:
-      - Require a PR before merging
+      - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       implementation:
       - uuid: b1b88bc5-5a22-4888-a27b-acce3d9fe29a
         name: Improve code quality with branch policies
@@ -3292,7 +3364,7 @@ Implementation:
       usefulness: 4
       level: 3
       dependsOn:
-      - Require a PR before merging
+      - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       implementation:
       - uuid: b1b88bc5-5a22-4888-a27b-acce3d9fe29a
         name: Improve code quality with branch policies
@@ -3476,7 +3548,7 @@ Implementation:
         name: Attack Matrix Containers
         tags:
         - mitre
-        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        url: https://attack.mitre.org/matrices/enterprise/containers/
         description: Attack matrix for containers
       - uuid: 9fbc47ad-82bc-46d1-bba9-66815ab79935
         name: Attack Matrix Kubernetes
@@ -3587,7 +3659,7 @@ Implementation:
         name: Attack Matrix Containers
         tags:
         - mitre
-        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        url: https://attack.mitre.org/matrices/enterprise/containers/
         description: Attack matrix for containers
       - uuid: 9fbc47ad-82bc-46d1-bba9-66815ab79935
         name: Attack Matrix Kubernetes
@@ -4053,7 +4125,7 @@ Implementation:
         Default: false
         B: false
         C: false
-    Usage of a chaos monkey:
+    Usage of a chaos technology:
       uuid: f8e80f18-2503-4e3e-b3bc-7f67bb28defe
       risk: Due to manual changes on a system, they are not replaceable anymore. In
         case of a crash it might happen that a planned redundant system is unavailable.
@@ -4066,7 +4138,18 @@ Implementation:
         resources: 5
       usefulness: 3
       level: 4
-      implementation: []
+      implementation:
+      - uuid: c117e79b-8223-4e55-9da5-efbf5d741c15
+        name: Chaos Monkey
+        tags:
+        - chaos
+        - testing
+        url: https://github.com/Netflix/chaosmonkey
+        description: Chaos Monkey is a resiliency tool that helps applications tolerate
+          random instance failures. Chaos Monkey randomly terminates virtual machine
+          instances and containers that run inside of your production environment.
+          Exposing engineers to failures more frequently incentivizes them to build
+          resilient services.
       references:
         samm2:
         - O-EM-1-A
@@ -4480,17 +4563,20 @@ Information Gathering:
         C: false
     Centralized system logging:
       uuid: 4eced38a-7904-4c45-adb0-50b663065540
-      risk: Local stored system logs can be unauthorized manipulated by attackers
-        or might be corrupt after an incident. In addition, it is hard to perform
-        a aggregation of logs.
-      measure: By using centralized logging logs are protected against unauthorized
-        modification.
+      description: |
+        Centralized system logging involves collecting and storing system logs from multiple sources in a secure, central location. This approach improves log integrity, simplifies monitoring, and enables efficient incident response.
+      risk: |
+        Locally stored system logs can be manipulated by attackers unauthorized or might be corrupt or lost after an incident. In addition, it is hard to perform aggregation of logs.
+      measure: |
+        - Implement a centralized logging solution for all critical systems.
+        - System logs must be securely transmitted and stored in a central repository, protected from unauthorized access and modification.
+        - Ensure that log collection is automated and covers all relevant system events.
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 2
-      level: 1
       implementation:
       - uuid: 79f88310-d63e-471d-8e63-8c77f2281b66
         name: rsyslog
@@ -4794,7 +4880,8 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - I-DM-A 3
+        - O-IM-2-A
+        - I-DM-3-A
         iso27001-2017:
         - 16.1.2
         - 16.1.4
@@ -5081,8 +5168,11 @@ Information Gathering:
         C: false
     Simple application metrics:
       uuid: e9a6d403-a467-445e-b98a-74f0c29da0b1
-      risk: Attacks on an application are not recognized.
-      measure: |-
+      description: |
+        Collecting basic operational data from applications, such as authentication attempts, transaction volumes, and resource usage, will help detect abnormal patterns that may indicate security incidents or system issues.
+      risk: |
+        Without monitoring application metrics, attacks or abnormal behaviors may go undetected, increasing the risk of successful exploitation, data breaches, and delayed incident response.
+      measure: |
         Gathering of application metrics helps to identify incidents like brute force attacks, login/logout patterns, and unusual spikes in activity. Key metrics to monitor include:
           - Authentication attempts (successful/failed logins)
           - Transaction volumes and patterns (e.g. orders, payments)
@@ -5095,12 +5185,14 @@ Information Gathering:
          - A security incident (automated bulk purchase bots, credential stuffing attack)
 
         By monitoring these basic metrics, teams can quickly investigate abnormal patterns and determine if they represent security incidents requiring response.
+      assessment: |
+        - Basic application metrics are collected and reviewed.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 5
-      level: 1
       implementation:
       - uuid: ddf221df-3517-42e4-b23d-c1d9a162744c
         name: Prometheus
@@ -5124,16 +5216,21 @@ Information Gathering:
         C: false
     Simple budget metrics:
       uuid: f08a3219-6941-43ec-8762-4aff739f4664
-      risk: Not getting notified about reaching the end of the budget (e.g. due to
-        a denial of service) creates unexpected costs.
-      measure: Cloud providers often provide insight into budgets. A threshold and
-        alarming for the budget is set.
+      description: |
+        Monitoring resource usage and costs to prevent unexpected expenses. This is especially important in cloud environments where resource consumption can quickly exceed planned budgets.
+      risk: |
+        Failure to monitor budget metrics can result in unexpected costs, financial loss, and potential service disruption due to resource exhaustion or denial-of-service attacks.
+      measure: |
+        Set up budget monitoring and alerting for all critical resources. Use provider tools to track spending and configure alerts when thresholds are reached. Implement hard limits where possible to prevent budget overruns.
+      assessment: |
+        - The organization regularly monitors budget metrics
+        - Alerting outside given thresholds are implemented
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 5
-      level: 1
       implementation:
       - uuid: 73f6a52c-4fc2-45dc-991b-d5911b6c1ef8
         name: collected
@@ -5156,19 +5253,21 @@ Information Gathering:
         C: false
     Simple system metrics:
       uuid: 3d1f4c3b-f713-46d9-933a-54a014a26c03
-      risk: Without simple metrics analysis of incidents are hard. In case an application
-        uses a lot of CPU from time to time, it is hard for a developer to find out
-        the source with Linux commands.
-      measure: Gathering of system metrics helps to identify incidents and specially
-        bottlenecks like in CPU usage, memory usage and hard disk usage.
+      description: |
+        Monitoring basic system performance data, such as CPU, memory, and disk usage, will help identify performance bottlenecks and potential security incidents.
+      risk: |
+        Without monitoring system metrics, it is difficult to detect incidents or performance issues, leading to delayed response, reduced availability, and increased risk of undetected attacks.
+      measure: |
+        Collect and monitor key system metrics, including CPU, memory, and disk usage. Set up alerts for abnormal resource consumption or patterns that may indicate incidents or attacks.
+      assessment: |
+        - Basic system metrics are monitored and reviewed regularly
+        - Alerting outside given thresholds are implemented
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 5
-      assessment: |
-        Are system metrics gathered?
-      level: 1
       implementation:
       - uuid: 73f6a52c-4fc2-45dc-991b-d5911b6c1ef8
         name: collected
@@ -5206,7 +5305,8 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - I-DM-A 3
+        - O-IM-2-A
+        - I-DM-3-A
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 16.1.5
@@ -5303,6 +5403,7 @@ Information Gathering:
       references:
         samm2:
         - I-DM-3-B
+        - I-SB-3-B
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5367,6 +5468,7 @@ Information Gathering:
       references:
         samm2:
         - I-DM-2-B
+        - I-SB-3-B
         iso27001-2017:
         - 16.1.4
         - 8.2.3
@@ -5407,6 +5509,7 @@ Information Gathering:
       references:
         samm2:
         - I-DM-3-B
+        - I-SB-3-B
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5456,6 +5559,7 @@ Information Gathering:
       references:
         samm2:
         - I-DM-3-B
+        - I-SB-3-B
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5492,7 +5596,7 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-      - Automated PRs for patches
+      - 8ae0b92c-10e0-4602-ba22-7524d6aed488
       implementation: []
       references:
         samm2:
@@ -5529,8 +5633,8 @@ Information Gathering:
       usefulness: 3
       level: 4
       dependsOn:
-      - Patching mean time to resolution via PR
-      - Automated PRs for patches
+      - 86d490b9-d798-4a5b-a011-ab9688014c46
+      - 8ae0b92c-10e0-4602-ba22-7524d6aed488
       implementation: []
       references:
         samm2:
@@ -5601,6 +5705,7 @@ Information Gathering:
       references:
         samm2:
         - I-DM-3-B
+        - I-SB-3-B
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5815,6 +5920,77 @@ Test and Verification:
         Default: false
         B: false
         C: false
+    Artifact-based false positive treatment:
+      uuid: 8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f
+      risk: Without artifact-specific false positive handling, teams must repeatedly
+        triage the same findings across different versions or deployments of the same
+        component, leading to inefficient use of security resources.
+      measure: "Implement false positive marking and temporary acceptance of findings
+        \nbased on specific artifacts (applications, components, or repositories).\nThis
+        allows teams to suppress findings for specific versions or builds\nwhile maintaining
+        visibility for future releases."
+      description: |-
+        Artifact-based false positive treatment enables more granular control
+        over finding suppression by linking decisions to specific code artifacts,
+        container images, or application versions. This approach helps maintain
+        security oversight while reducing repeated analysis overhead.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 2
+      dependsOn:
+      - Simple false positive treatment
+      implementation:
+      - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
+        name: OWASP DefectDojo
+        tags:
+        - vulnerability management system
+        - owasp
+        url: https://github.com/DefectDojo/django-DefectDojo
+        description: |
+          DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+      - uuid: d2eb592d-c9b5-4c39-bff7-bb313a58e3a9
+        name: Purify
+        tags:
+        - vulnerability management system
+        url: https://github.com/faloker/purify/
+        description: |
+          The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
+        name: Dependency-Track is an intelligent Component Analysis platform that
+          allows organizations to identify and reduce risk in the software supply
+          chain. Dependency-Track takes a unique and highly beneficial approach by
+          leveraging the capabilities of Software Bill of Materials (SBOM).
+        url: https://github.com/DependencyTrack/dependency-track
+        tags:
+        - sca
+        - inventory
+        - OpenSource
+        - Supply Chain
+        - vulnerability
+        - inventory
+      references:
+        samm2:
+        - I-DM-2-A
+        - I-DM-2-B
+        - I-SB-3-B
+        iso27001-2017:
+        - 16.1.4
+        - 16.1.6
+        iso27001-2022:
+        - 5.25
+        - 5.27
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f
+      tags:
+      - false-positive
+      - defect-management
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
     Fix based on accessibility:
       uuid: 0c10a7f7-f78f-49f2-943d-19fdef248fed
       risk: Overwhelming volume of security findings from automated testing tools.
@@ -5834,12 +6010,13 @@ Test and Verification:
           - The number of network hops required to reach the asset (recommended)
           - Authentication requirements for access (recommended)
       dependsOn:
-      - Treatment of defects with severity high or higher
-      - Inventory of production components
+      - 44f2c8a9-4aaa-4c72-942d-63f78b89f385
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       implementation: ~
       references:
         samm2:
         - I-DM-3-B
+        - I-SB-3-B
         iso27001-2017:
         - 16.1.4
         - 8.2.1
@@ -5854,6 +6031,52 @@ Test and Verification:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/0c10a7f7-f78f-49f2-943d-19fdef248fed
       tags:
       - vuln-action
+      - defect-management
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Global false positive treatment:
+      uuid: 9e3a7c2f-1b4d-4e8a-a5c6-7f2b9d1e3a8c
+      risk: Without centralized false positive management across environments, organizations
+        face inconsistent security decisions, duplicated analysis efforts, and potential
+        security gaps when the same findings are handled differently across applications
+        and teams.
+      measure: "Implement global false positive and acceptance management that applies
+        \nconsistently across all applications. This enables organization-wide security
+        decisions and reduces redundant \nanalysis of common false positives."
+      description: "Global false positive treatment allows (security) teams to make
+        \norganization-wide decisions about specific vulnerabilities or finding \npatterns.
+        When a finding is marked as a false positive or temporarily \naccepted at
+        the global level, this decision automatically applies to \nall applications
+        in the specified environment, ensuring consistency \nand operational efficiency."
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      dependsOn:
+      - 8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f
+      - 85ba5623-84be-4219-8892-808837be582d
+      implementation: ~
+      references:
+        samm2:
+        - I-DM-2-B
+        - I-DM-3-A
+        - I-SB-3-B
+        iso27001-2017:
+        - 16.1.3
+        - 16.1.4
+        - 16.1.6
+        iso27001-2022:
+        - 6.8
+        - 5.25
+        - 5.27
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/9e3a7c2f-1b4d-4e8a-a5c6-7f2b9d1e3a8c
+      tags:
+      - false-positive
       - defect-management
       teamsImplemented:
         Default: false
@@ -6007,6 +6230,7 @@ Test and Verification:
       references:
         samm2:
         - I-DM-2-B
+        - I-SB-3-B
         iso27001-2017:
         - 16.1.4
         - 8.2.1
@@ -6028,9 +6252,17 @@ Test and Verification:
         C: false
     Simple false positive treatment:
       uuid: c1acc8af-312e-4503-a817-a26220c993a0
-      risk: As false positive occur during each test, all vulnerabilities might be
-        ignored. Specially, if tests are automated an run daily.
-      measure: |-
+      description: "Security tests may produce false positives\u2014findings that
+        are incorrectly identified as vulnerabilities.\n\nIt is important distinguish
+        these from true vulnerabilities to avoid wasting time and resources on non-issues.\n\nFalse
+        positive treatment ensures that findings from security tests are triaged and
+        documented, allowing teams to distinguish between real vulnerabilities and
+        false positives. This reduces unnecessary work and helps maintain focus on
+        true risks.\n\nSome positive findings might be considered an accepted risk
+        by the organization. This must also be documented.\n"
+      risk: |
+        If false positives are not managed, teams may ignore all findings, leading to real vulnerabilities being overlooked and increasing the risk of exploitation. Specially, if tests are automated an run daily.
+      measure: |
         Findings from security tests must be triaged and outcomes persisted/documented to:
           - Prevent re-analysis of known issues in subsequent test runs
           - Track accepted risks vs false positives
@@ -6042,17 +6274,23 @@ Test and Verification:
           - [OWASP Dependency Check](https://jeremylong.github.io/DependencyCheck/general/suppression.html)
           - [Kubescape with VEX](https://kubescape.io/blog/2023/12/07/kubescape-support-for-vex-generation/)
           - [OWASP DefectDojo Risk Acceptance](https://docs.defectdojo.com/en/working_with_findings/findings_workflows/risk_acceptances/) and [False Positive Handling](https://docs.defectdojo.com/en/working_with_findings/intro_to_findings/#triage-vulnerabilities-using-finding-status)
+      assessment: |
+        The organization has a process for triaging and documenting false positives and accepted risks
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
       implementation:
-      - uuid: bb9d0f2d-f8bc-46b5-bbc7-7dbcf927191c
-        name: OWASP Defect Dojo
-        tags: []
+      - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
+        name: OWASP DefectDojo
+        tags:
+        - vulnerability management system
+        - owasp
         url: https://github.com/DefectDojo/django-DefectDojo
+        description: |
+          DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
       - uuid: d2eb592d-c9b5-4c39-bff7-bb313a58e3a9
         name: Purify
         tags:
@@ -6164,6 +6402,7 @@ Test and Verification:
       references:
         samm2:
         - I-DM-2-B
+        - I-SB-3-B
         iso27001-2017:
         - 16.1.4
         - 12.6.1
@@ -6253,16 +6492,23 @@ Test and Verification:
         C: false
     Treatment of defects with severity high or higher:
       uuid: 44f2c8a9-4aaa-4c72-942d-63f78b89f385
-      risk: Vulnerabilities with severity high or higher are not visible.
-      measure: Vulnerabilities with severity high or higher are added to the quality
-        gate.
+      description: |
+        All security problems that are rated as "high" or "critical" must be fixed before the software can be released or used in production. This means that if a serious vulnerability is found, it cannot be ignored or postponed.
+      risk: |
+        If serious security problems are not fixed, attackers could exploit them to steal data, disrupt services, or cause other harm. Ignoring these issues puts the organization, its customers, and its reputation at risk.
+      measure: |
+        - Make it a rule that all high or critical security findings must be fixed before the software is approved for release or use.
+        - Track these issues and make sure they are resolved quickly.
+        - Pay extra attention to Known Exploited Vulnerabilities (KEV) from CISA and EPSS scores when prioritizing fixes.
+      assessment: |
+        There is clear evidence that all high or critical security issues are tracked and fixed before release. No high or critical issues remain open in production systems.
+      comments: False positive analysis, specially for static analysis, is time consuming.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 1
       usefulness: 4
-      level: 1
-      comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
         - I-DM-2-B
@@ -6274,7 +6520,24 @@ Test and Verification:
         - 5.25
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/44f2c8a9-4aaa-4c72-942d-63f78b89f385
-      implementation: []
+      implementation:
+      - uuid: aa507341-9531-42cd-95cf-d7b51af47086
+        name: Known Exploited Vulnerabilities
+        tags:
+        - vulnerability
+        url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+        description: A catalog of vulnerabilities that have been exploited.
+      - uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
+        name: Trivy
+        tags: []
+        url: https://github.com/aquasecurity/trivy
+      - uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
+        name: Grype
+        tags:
+        - sbom
+        - dependency
+        - vulnerability
+        url: https://github.com/anchore/grype
       tags:
       - vuln-action
       - defect-management
@@ -6296,6 +6559,7 @@ Test and Verification:
       references:
         samm2:
         - I-DM-2-B
+        - I-SB-3-B
         iso27001-2017:
         - 16.1.4
         - 12.6.1
@@ -6325,9 +6589,9 @@ Test and Verification:
         resources: 2
       usefulness: 2
       dependsOn:
-      - Exploit likelihood estimation
-      - Each team has a security champion
-      - Office Hours
+      - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
+      - 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
+      - 185d5a74-19dc-4422-be07-44ea35226783
       level: 3
       description: "For known vulnerabilities a processes to estimate the exploit
         ability of a vulnerability is recommended.\n\nTo implement a security culture
@@ -6360,6 +6624,8 @@ Test and Verification:
       references:
         samm2:
         - I-DM-1-B
+        - I-SB-2-B
+        - I-SB-3-B
         iso27001-2017:
         - 12.6.1
         - 16.1.3
@@ -6949,7 +7215,7 @@ Test and Verification:
         tags: []
         url: https://github.com/controlplaneio/netassert
       dependsOn:
-      - Isolated networks for virtual environments
+      - 4ce24abd-8ba6-494c-828d-4d193e28e4a1
       references:
         samm2:
         - V-ST-2-A
@@ -7107,7 +7373,7 @@ Test and Verification:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
           depth for applications/017d9e26-42b5-49a4-b945-9f59b308fb99
       dependsOn:
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       tags:
       - none
       teamsImplemented:
@@ -7202,7 +7468,7 @@ Test and Verification:
       usefulness: 4
       level: 3
       dependsOn:
-      - Software Composition Analysis (server side)
+      - d918cd44-a972-43e9-a974-eff3f4a5dcfe
       implementation:
       - uuid: aa507341-9531-42cd-95cf-d7b51af47086
         name: Known Exploited Vulnerabilities
@@ -7220,6 +7486,7 @@ Test and Verification:
       references:
         samm2:
         - V-ST-2-A
+        - I-SB-3-B
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7306,8 +7573,8 @@ Test and Verification:
       level: 3
       dependsOn:
       - Defined build process
-      - Inventory of production components
-      - Exploit likelihood estimation
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
       implementation:
       - uuid: aa54a82c-d628-4d42-9bc8-1aa269cd91c7
         name: retire.js
@@ -7342,6 +7609,7 @@ Test and Verification:
       references:
         samm2:
         - V-ST-2-A
+        - I-SB-2-B
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7372,7 +7640,7 @@ Test and Verification:
       level: 2
       dependsOn:
       - Defined build process
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       implementation:
       - uuid: 06334caf-8be6-487a-96b1-d41c7ed5f207
         name: OWASP Dependency Check
@@ -7412,12 +7680,13 @@ Test and Verification:
         description: |
           Dependabot creates pull requests to keep your dependencies secure and up-to-date.
       - uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
-        name: https://github.com/aquasecurity/trivy
+        name: Trivy
         tags: []
         url: https://github.com/aquasecurity/trivy
       references:
         samm2:
         - V-ST-2-A
+        - I-SB-2-B
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7444,11 +7713,12 @@ Test and Verification:
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       implementation: []
       references:
         samm2:
         - V-ST-2-A
+        - I-SB-3-B
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7508,10 +7778,11 @@ Test and Verification:
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       references:
         samm2:
         - V-ST-2-A
+        - I-SB-3-B
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7575,7 +7846,7 @@ Test and Verification:
         - sast
       dependsOn:
       - Defined build process
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       references:
         samm2:
         - V-ST-2-A
@@ -7637,10 +7908,11 @@ Test and Verification:
         - sast
       dependsOn:
       - Defined build process
-      - Inventory of production components
+      - 2a44b708-734f-4463-b0cb-86dc46344b2f
       references:
         samm2:
         - V-ST-2-A
+        - I-SB-3-B
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7989,7 +8261,7 @@ Test and Verification:
         often too fine-granular.
       implementation:
       - uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
-        name: https://github.com/aquasecurity/trivy
+        name: Trivy
         tags: []
         url: https://github.com/aquasecurity/trivy
       - uuid: 8737c6c0-4e90-400a-bf9a-f8e399913b57
@@ -8187,11 +8459,52 @@ Test and Verification:
         Default: false
         B: false
         C: false
-    Test for stored secrets:
+    Test for stored secrets in build artifacts:
+      uuid: d5e6303c-d5c6-4d59-b258-a3b9de38a07f
+      risk: Stored secrets in container images or other build artifacts shouldn't
+        exists because they might be exposed to unauthorized parties.
+      measure: Test for secrets in container images and other artifacts
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 2
+      level: 1
+      implementation:
+      - uuid: d90fefc9-4e5d-420f-ac87-eeb165bf0ee6
+        name: truffleHog
+        tags: []
+        url: https://github.com/dxa4481/truffleHog
+      - uuid: 382873e2-8604-4410-ae5e-b0f5ccdee835
+        name: go-pillage-registries
+        tags: []
+        url: https://github.com/nccgroup/go-pillage-registries
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 9.4.3
+        - 10.1.2
+        iso27001-2022:
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 5.17
+        - 8.24
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
+          depth for infrastructure/d5e6303c-d5c6-4d59-b258-a3b9de38a07f
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Test for stored secrets in code:
       uuid: c6e3c812-56e2-41b0-ae01-b7afc41a004c
-      risk: Stored secrets in git history, in container images or directly in code
-        shouldn't exists because they might be exposed to unauthorized parties.
-      measure: Test for secrets in code, container images and history
+      risk: Stored secrets in git history or directly in code shouldn't exists because
+        they might be exposed to unauthorized parties.
+      measure: Test for secrets in code and git history
       difficultyOfImplementation:
         knowledge: 2
         time: 1
@@ -8578,6 +8891,7 @@ Test and Verification:
       references:
         samm2:
         - I-SB-3-A
+        - V-ST-3-A
         iso27001-2017:
         - 14.2.3
         - 14.2.8
