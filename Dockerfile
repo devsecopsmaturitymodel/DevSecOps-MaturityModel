@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build --configuration=production
 
 
-FROM wurstbrot/dsomm-yaml-generation:1.16.0 AS yaml
+FROM wurstbrot/dsomm-yaml-generation:1.17.0 AS yaml
 
 FROM caddy:2.10.2
 ENV PORT=8080
