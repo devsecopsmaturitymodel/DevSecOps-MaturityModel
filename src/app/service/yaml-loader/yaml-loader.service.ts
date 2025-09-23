@@ -178,7 +178,7 @@ export class YamlService {
   }
 
   public makeFullPath(relativePath: string, relativeTo: string) {
-    let fullPath = new URL(relativePath, 'https://example.org/.' + relativeTo).pathname;
+    let fullPath = new URL(relativePath, 'https://example.org/' + relativeTo).pathname?.slice(1);
 
     // Make sure the new path does not escape its cage
     let i = relativeTo.lastIndexOf('/');

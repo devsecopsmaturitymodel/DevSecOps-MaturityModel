@@ -23,7 +23,6 @@ If you want to override the default `generated.yaml` you can mount this file whe
 **NB!** Note that the docker command requires an absolute path to the local file. (Hence, the use of the `$PWD` variable. On Windows, substitute `$PWD` with `%CD%`.)
 
 
-
 ## Amazon EC2 Instance
 
 1. In the _EC2_ sidenav select _Instances_ and click _Launch Instance_
@@ -56,6 +55,9 @@ curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-Maturity
 ng build
 ```
 The files that were created in the subfolder `dist` 
+
+If your DSOMM application is having a subfolder in the URL (e.g. https://server.local/our-dsomm), you need to build the Angular application to prepare for this. In that case build the application by using `ng build  --base-href /our-dsomm/`.
+
 
 ## Teams and Groups
 To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml)  file with your unique team definitions.

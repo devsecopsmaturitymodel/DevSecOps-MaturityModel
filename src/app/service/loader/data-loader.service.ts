@@ -14,7 +14,7 @@ export class DataValidationError extends Error {
 
 @Injectable({ providedIn: 'root' })
 export class LoaderService {
-  private META_FILE: string = '/assets/YAML/meta.yaml';
+  private META_FILE: string = 'assets/YAML/meta.yaml';
   private debug: boolean = false;
   private dataStore: DataStore | null = null;
 
