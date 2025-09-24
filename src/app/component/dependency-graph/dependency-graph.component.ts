@@ -7,6 +7,7 @@ import { DataStore } from 'src/app/model/data-store';
 export interface graphNodes {
   id: string;
   relativeLevel: number;
+  relativeCount: number;
 }
 
 export interface graphLinks {
@@ -25,9 +26,10 @@ export interface graph {
   styleUrls: ['./dependency-graph.component.css'],
 })
 export class DependencyGraphComponent implements OnInit {
-  SIZE_OF_NODE: number = 10;
   COLOR_OF_LINK: string = 'black';
-  COLOR_OF_NODE: string = '#55bc55';
+  COLOR_OF_NODE: string = '#66bb6a';
+  COLOR_OF_PREDECESSOR: string = '#deeedeff';
+  COLOR_OF_SUCCESSOR: string = '#fdfdfdff';
   BORDER_COLOR_OF_NODE: string = 'black';
   simulation: any;
   dataStore: Partial<DataStore> = {};
@@ -58,8 +60,9 @@ export class DependencyGraphComponent implements OnInit {
   populateGraphWithActivitiesCurrentActivityDependsOn(activity: Activity): void {
     this.addNode(activity.name);
     if (activity.dependsOn) {
+      let i: number = 1;
       for (const prececcor of activity.dependsOn) {
-        this.addNode(prececcor, -1);
+        this.addNode(prececcor, -1, i++);
         this.graphData['links'].push({
           source: prececcor,
           target: activity.name,
@@ -70,9 +73,10 @@ export class DependencyGraphComponent implements OnInit {
 
   populateGraphWithActivitiesThatDependsOnCurrentActivity(currentActivity: Activity) {
     const all: Activity[] = this.dataStore.activityStore?.getAllActivities?.() ?? [];
+    let i: number = 1;
     for (const activity of all) {
       if (activity.dependsOn?.includes(currentActivity.name)) {
-        this.addNode(activity.name, 1);
+        this.addNode(activity.name, 1, i++);
         this.graphData['links'].push({
           source: currentActivity.name,
           target: activity.name,
@@ -81,9 +85,9 @@ export class DependencyGraphComponent implements OnInit {
     }
   }
 
-  addNode(activityName: string, relativeLevel: number = 0): void {
+  addNode(activityName: string, relativeLevel: number = 0, relativeCount: number = 0): void {
     if (!this.visited.has(activityName)) {
-      this.graphData['nodes'].push({ id: activityName, relativeLevel: relativeLevel });
+      this.graphData['nodes'].push({ id: activityName, relativeLevel, relativeCount });
       this.visited.add(activityName);
     }
   }
@@ -91,18 +95,22 @@ export class DependencyGraphComponent implements OnInit {
   generateGraph(activityName: string): void {
     let svg = d3.select('svg');
 
+
+    // Now that rectWidth is set on each node, set up the simulation
     this.simulation = d3
       .forceSimulation()
       .force('link', d3.forceLink().id(function (d: any) {
           return d.id;
-      }))
+      }).strength(0.1))
       .force('x', d3.forceX((d: any) => {
-        return d.relativeLevel * 300;
-      }).strength(10))
-      .force('y', d3.forceY((d: any) => {
-        return d.relativeLevel * 30;
-      }).strength(10))
-      .force('charge', d3.forceManyBody().strength(-8000))
+        let col: number = 7;        
+        return d.relativeLevel * Math.ceil(d.relativeCount / col)  * 300;
+      }).strength(5))
+      // .force('y', d3.forceY((d: any) => {
+      //   return d.relativeLevel * 30;
+      // }).strength(10))
+      .force('charge', d3.forceManyBody().strength(-80))
+      .force('collide', d3.forceCollide((d: any) => 30))
       .force('center', d3.forceCenter(0, 0));
 
     svg
@@ -110,12 +118,12 @@ export class DependencyGraphComponent implements OnInit {
       .append('marker')
       .attr('id', 'arrowhead')
       .attr('viewBox', '-0 -5 10 10')
-      .attr('refX', 18)
+      .attr('refX', 0)
       .attr('refY', 0)
       .attr('orient', 'auto')
       .attr('markerWidth', 13)
       .attr('markerHeight', 13)
-      .attr('xoverflow', 'visible')
+      .attr('overflow', 'visible')
       .append('svg:path')
       .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
       .attr('fill', this.COLOR_OF_LINK)
@@ -143,7 +151,6 @@ export class DependencyGraphComponent implements OnInit {
 
 
 
-    var defaultNodeColor = this.COLOR_OF_NODE;
     const rectHeight = 30;
     const rectRx = 10;
     const rectRy = 10;
@@ -164,6 +171,7 @@ export class DependencyGraphComponent implements OnInit {
         textWidth = textElem.getBBox().width;
       }
       const rectWidth = textWidth + padding;
+      d.rectWidth = rectWidth; // Store for collision force
       // Insert rect before text
       d3.select(this)
         .insert('rect', 'text')
@@ -173,16 +181,65 @@ export class DependencyGraphComponent implements OnInit {
         .attr('height', rectHeight)
         .attr('rx', rectRx)
         .attr('ry', rectRy)
-        .attr('fill', (d: any) => d.id == activityName ? 'yellow' : defaultNodeColor)
+        .attr('fill', (d: any) => {
+          if (d.relativeLevel == 0) return self.COLOR_OF_NODE;
+          return d.relativeLevel < 0 ? self.COLOR_OF_PREDECESSOR : self.COLOR_OF_SUCCESSOR;
+        })
         .attr('stroke', self.BORDER_COLOR_OF_NODE)
         .attr('stroke-width', 1.5);
     });
 
-    this.simulation.nodes(this.graphData['nodes']).on('tick', ticked);
+    this.simulation.nodes(this.graphData['nodes']).on('tick',() => {
+      self.rectCollide(this.graphData['nodes']);
+      ticked();
+    });
 
     this.simulation.force('link').links(this.graphData['links']);
 
     function ticked() {
+
+
+      // Improved rectangle edge intersection for arrowhead placement
+      function rectEdgeIntersection(sx: number, sy: number, tx: number, ty: number, rectWidth: number, rectHeight: number, offset: number = 0) {
+        // Rectangle centered at (tx, ty)
+        const dx = tx - sx;
+        const dy = ty - sy;
+        const w = rectWidth / 2;
+        const h = rectHeight / 2;
+        // Parametric line: (sx, sy) + t*(dx, dy), t in [0,1]
+        // Find smallest t in (0,1] where line crosses rectangle edge
+        let tMin = 1;
+        // Left/right sides
+        if (dx !== 0) {
+          let t1 = (w - (sx - tx)) / dx;
+          let y1 = sy + t1 * dy;
+          if (t1 > 0 && Math.abs(y1 - ty) <= h) tMin = Math.min(tMin, t1);
+          let t2 = (-w - (sx - tx)) / dx;
+          let y2 = sy + t2 * dy;
+          if (t2 > 0 && Math.abs(y2 - ty) <= h) tMin = Math.min(tMin, t2);
+        }
+        // Top/bottom sides
+        if (dy !== 0) {
+          let t3 = (h - (sy - ty)) / dy;
+          let x3 = sx + t3 * dx;
+          if (t3 > 0 && Math.abs(x3 - tx) <= w) tMin = Math.min(tMin, t3);
+          let t4 = (-h - (sy - ty)) / dy;
+          let x4 = sx + t4 * dx;
+          if (t4 > 0 && Math.abs(x4 - tx) <= w) tMin = Math.min(tMin, t4);
+        }
+        // Clamp tMin to [0,1]
+        tMin = Math.max(0, Math.min(1, tMin));
+        // Move intersection back by 'offset' pixels along the direction from target to source
+        let px = sx + dx * tMin;
+        let py = sy + dy * tMin;
+        if (offset > 0 && (dx !== 0 || dy !== 0)) {
+          const len = Math.sqrt(dx * dx + dy * dy);
+          px -= (dx / len) * offset;
+          py -= (dy / len) * offset;
+        }
+        return { x: px, y: py };
+      }
+
       link
         .attr('x1', function (d: any) {
           return d.source.x;
@@ -191,9 +248,26 @@ export class DependencyGraphComponent implements OnInit {
           return d.source.y;
         })
         .attr('x2', function (d: any) {
+          // If target has rectWidth, adjust arrow to edge minus offset
+          if (d.target.rectWidth) {
+            const pt = rectEdgeIntersection(
+              d.source.x, d.source.y,
+              d.target.x, d.target.y,
+              d.target.rectWidth, 30, 10 // rectHeight, offset
+            );
+            return pt.x;
+          }
           return d.target.x;
         })
         .attr('y2', function (d: any) {
+          if (d.target.rectWidth) {
+            const pt = rectEdgeIntersection(
+              d.source.x, d.source.y,
+              d.target.x, d.target.y,
+              d.target.rectWidth, 30, 10
+            );
+            return pt.y;
+          }
           return d.target.y;
         });
 
@@ -202,4 +276,46 @@ export class DependencyGraphComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * Custom rectangular collision force for D3 simulation.
+   * Pushes nodes apart if their rectangles (boxes) overlap.
+   * Assumes each node has .x, .y, and .rectWidth properties.
+   * Uses a fixed rectHeight of 30 (half = 15).
+   * @param nodes Array of node objects
+   */
+  rectCollide(nodes: any[]) {
+    // Loop through all pairs of nodes
+    let node, nx1, nx2, ny1, ny2, other, ox1, ox2, oy1, oy2, i, n = nodes.length;
+    for (i = 0; i < n; ++i) {
+      node = nodes[i];
+      // Calculate bounding box for node
+      nx1 = node.x - node.rectWidth / 2;
+      nx2 = node.x + node.rectWidth / 2;
+      ny1 = node.y - 15; // rectHeight / 2
+      ny2 = node.y + 15;
+      for (let j = i + 1; j < n; ++j) {
+        other = nodes[j];
+        // Calculate bounding box for other node
+        ox1 = other.x - other.rectWidth / 2;
+        ox2 = other.x + other.rectWidth / 2;
+        oy1 = other.y - 15;
+        oy2 = other.y + 15;
+        // Check for overlap between rectangles
+        if (nx1 < ox2 && nx2 > ox1 && ny1 < oy2 && ny2 > oy1) {
+          // Overlap detected, push nodes apart along the direction between them
+          let dx = (node.x - other.x) || (Math.random() - 0.5);
+          let dy = (node.y - other.y) || (Math.random() - 0.5);
+          let l = Math.sqrt(dx * dx + dy * dy);
+          let moveX = dx / l || 1;
+          let moveY = dy / l || 1;
+          node.x += moveX;
+          node.y += moveY;
+          other.x -= moveX;
+          other.y -= moveY;
+        }
+      }
+    }
+  }
 }
+
