@@ -39,7 +39,7 @@ export class DependencyGraphComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.load().then((dataStore: DataStore) => {
-      this.dataStore = this.dataStore;
+      this.dataStore = dataStore;
       if (!dataStore.activityStore) {
         throw Error('No activity store loaded');
       }
