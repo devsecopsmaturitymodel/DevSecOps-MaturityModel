@@ -25,7 +25,7 @@ describe('YamlLoaderService', () => {
       providers: [YamlService],
     });
     service = TestBed.inject(YamlService);
-    (service as any)._refs['/external.yaml'] = parse(mockReferencedYaml);
+    (service as any)._refs['external.yaml'] = parse(mockReferencedYaml);
   });
 
   it('should be created', () => {
