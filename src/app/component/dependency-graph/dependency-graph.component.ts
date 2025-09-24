@@ -6,6 +6,7 @@ import { DataStore } from 'src/app/model/data-store';
 
 export interface graphNodes {
   id: string;
+  relativeLevel: number;
 }
 
 export interface graphLinks {
@@ -58,7 +59,7 @@ export class DependencyGraphComponent implements OnInit {
     this.addNode(activity.name);
     if (activity.dependsOn) {
       for (const prececcor of activity.dependsOn) {
-        this.addNode(prececcor);
+        this.addNode(prececcor, -1);
         this.graphData['links'].push({
           source: prececcor,
           target: activity.name,
@@ -71,7 +72,7 @@ export class DependencyGraphComponent implements OnInit {
     const all: Activity[] = this.dataStore.activityStore?.getAllActivities?.() ?? [];
     for (const activity of all) {
       if (activity.dependsOn?.includes(currentActivity.name)) {
-        this.addNode(activity.name);
+        this.addNode(activity.name, 1);
         this.graphData['links'].push({
           source: currentActivity.name,
           target: activity.name,
@@ -80,9 +81,9 @@ export class DependencyGraphComponent implements OnInit {
     }
   }
 
-  addNode(activityName: string) {
+  addNode(activityName: string, relativeLevel: number = 0): void {
     if (!this.visited.has(activityName)) {
-      this.graphData['nodes'].push({ id: activityName });
+      this.graphData['nodes'].push({ id: activityName, relativeLevel: relativeLevel });
       this.visited.add(activityName);
     }
   }
@@ -92,13 +93,16 @@ export class DependencyGraphComponent implements OnInit {
 
     this.simulation = d3
       .forceSimulation()
-      .force(
-        'link',
-        d3.forceLink().id(function (d: any) {
+      .force('link', d3.forceLink().id(function (d: any) {
           return d.id;
-        })
-      )
-      .force('charge', d3.forceManyBody().strength(-12000))
+      }))
+      .force('x', d3.forceX((d: any) => {
+        return d.relativeLevel * 300;
+      }).strength(10))
+      .force('y', d3.forceY((d: any) => {
+        return d.relativeLevel * 30;
+      }).strength(10))
+      .force('charge', d3.forceManyBody().strength(-8000))
       .force('center', d3.forceCenter(0, 0));
 
     svg
@@ -137,22 +141,42 @@ export class DependencyGraphComponent implements OnInit {
     .append('g');
     /* eslint-enable */
 
-    var defaultNodeColor = this.COLOR_OF_NODE;
-    node
-      .append('circle')
-      .attr('r', 10)
-      .attr('fill', function (d) {
-        if (d.id == activityName) return 'yellow';
-        else return defaultNodeColor;
-      });
 
-    node
-      .append('text')
-      .attr('dy', '.35em')
+
+    var defaultNodeColor = this.COLOR_OF_NODE;
+    const rectHeight = 30;
+    const rectRx = 10;
+    const rectRy = 10;
+    const padding = 20;
+
+    // Append text first so we can measure it
+    node.append('text')
+      .attr('dy', '0.35em')
       .attr('text-anchor', 'middle')
-      .text(function (d) {
-        return d.id;
-      });
+      .text(function (d) { return d.id; });
+
+    // Now for each node, measure the text and insert a rect behind it
+    const self = this;
+    node.each(function(this: SVGGElement, d: any) {
+      const textElem = d3.select(this).select('text').node() as SVGTextElement;
+      let textWidth = 60; // fallback default
+      if (textElem && textElem.getBBox) {
+        textWidth = textElem.getBBox().width;
+      }
+      const rectWidth = textWidth + padding;
+      // Insert rect before text
+      d3.select(this)
+        .insert('rect', 'text')
+        .attr('x', -rectWidth / 2)
+        .attr('y', -rectHeight / 2)
+        .attr('width', rectWidth)
+        .attr('height', rectHeight)
+        .attr('rx', rectRx)
+        .attr('ry', rectRy)
+        .attr('fill', (d: any) => d.id == activityName ? 'yellow' : defaultNodeColor)
+        .attr('stroke', self.BORDER_COLOR_OF_NODE)
+        .attr('stroke-width', 1.5);
+    });
 
     this.simulation.nodes(this.graphData['nodes']).on('tick', ticked);
 
