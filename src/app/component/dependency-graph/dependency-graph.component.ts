@@ -88,9 +88,7 @@ export class DependencyGraphComponent implements OnInit {
   }
 
   generateGraph(activityName: string): void {
-    let svg = d3.select('svg'),
-      width = +svg.attr('width'),
-      height = +svg.attr('height');
+    let svg = d3.select('svg');
 
     this.simulation = d3
       .forceSimulation()
@@ -101,7 +99,7 @@ export class DependencyGraphComponent implements OnInit {
         })
       )
       .force('charge', d3.forceManyBody().strength(-12000))
-      .force('center', d3.forceCenter(width / 2, height / 2));
+      .force('center', d3.forceCenter(0, 0));
 
     svg
       .append('defs')
