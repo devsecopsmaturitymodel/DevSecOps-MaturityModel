@@ -95,22 +95,35 @@ export class DependencyGraphComponent implements OnInit {
   generateGraph(activityName: string): void {
     let svg = d3.select('svg');
 
-
     // Now that rectWidth is set on each node, set up the simulation
     this.simulation = d3
       .forceSimulation()
-      .force('link', d3.forceLink().id(function (d: any) {
-          return d.id;
-      }).strength(0.1))
-      .force('x', d3.forceX((d: any) => {
-        let col: number = 7;        
-        return d.relativeLevel * Math.ceil(d.relativeCount / col)  * 300;
-      }).strength(5))
+      .force(
+        'link',
+        d3
+          .forceLink()
+          .id(function (d: any) {
+            return d.id;
+          })
+          .strength(0.1)
+      )
+      .force(
+        'x',
+        d3
+          .forceX((d: any) => {
+            let col: number = 7;
+            return d.relativeLevel * Math.ceil(d.relativeCount / col) * 300;
+          })
+          .strength(5)
+      )
       // .force('y', d3.forceY((d: any) => {
       //   return d.relativeLevel * 30;
       // }).strength(10))
       .force('charge', d3.forceManyBody().strength(-80))
-      .force('collide', d3.forceCollide((d: any) => 30))
+      .force(
+        'collide',
+        d3.forceCollide((d: any) => 30)
+      )
       .force('center', d3.forceCenter(0, 0));
 
     svg
@@ -149,22 +162,23 @@ export class DependencyGraphComponent implements OnInit {
     .append('g');
     /* eslint-enable */
 
-
-
     const rectHeight = 30;
     const rectRx = 10;
     const rectRy = 10;
     const padding = 20;
 
     // Append text first so we can measure it
-    node.append('text')
+    node
+      .append('text')
       .attr('dy', '0.35em')
       .attr('text-anchor', 'middle')
-      .text(function (d) { return d.id; });
+      .text(function (d) {
+        return d.id;
+      });
 
     // Now for each node, measure the text and insert a rect behind it
     const self = this;
-    node.each(function(this: SVGGElement, d: any) {
+    node.each(function (this: SVGGElement, d: any) {
       const textElem = d3.select(this).select('text').node() as SVGTextElement;
       let textWidth = 60; // fallback default
       if (textElem && textElem.getBBox) {
@@ -189,7 +203,7 @@ export class DependencyGraphComponent implements OnInit {
         .attr('stroke-width', 1.5);
     });
 
-    this.simulation.nodes(this.graphData['nodes']).on('tick',() => {
+    this.simulation.nodes(this.graphData['nodes']).on('tick', () => {
       self.rectCollide(this.graphData['nodes']);
       ticked();
     });
@@ -197,10 +211,16 @@ export class DependencyGraphComponent implements OnInit {
     this.simulation.force('link').links(this.graphData['links']);
 
     function ticked() {
-
-
       // Improved rectangle edge intersection for arrowhead placement
-      function rectEdgeIntersection(sx: number, sy: number, tx: number, ty: number, rectWidth: number, rectHeight: number, offset: number = 0) {
+      function rectEdgeIntersection(
+        sx: number,
+        sy: number,
+        tx: number,
+        ty: number,
+        rectWidth: number,
+        rectHeight: number,
+        offset: number = 0
+      ) {
         // Rectangle centered at (tx, ty)
         const dx = tx - sx;
         const dy = ty - sy;
@@ -251,9 +271,13 @@ export class DependencyGraphComponent implements OnInit {
           // If target has rectWidth, adjust arrow to edge minus offset
           if (d.target.rectWidth) {
             const pt = rectEdgeIntersection(
-              d.source.x, d.source.y,
-              d.target.x, d.target.y,
-              d.target.rectWidth, 30, 10 // rectHeight, offset
+              d.source.x,
+              d.source.y,
+              d.target.x,
+              d.target.y,
+              d.target.rectWidth,
+              30,
+              10 // rectHeight, offset
             );
             return pt.x;
           }
@@ -262,9 +286,13 @@ export class DependencyGraphComponent implements OnInit {
         .attr('y2', function (d: any) {
           if (d.target.rectWidth) {
             const pt = rectEdgeIntersection(
-              d.source.x, d.source.y,
-              d.target.x, d.target.y,
-              d.target.rectWidth, 30, 10
+              d.source.x,
+              d.source.y,
+              d.target.x,
+              d.target.y,
+              d.target.rectWidth,
+              30,
+              10
             );
             return pt.y;
           }
@@ -286,7 +314,18 @@ export class DependencyGraphComponent implements OnInit {
    */
   rectCollide(nodes: any[]) {
     // Loop through all pairs of nodes
-    let node, nx1, nx2, ny1, ny2, other, ox1, ox2, oy1, oy2, i, n = nodes.length;
+    let node,
+      nx1,
+      nx2,
+      ny1,
+      ny2,
+      other,
+      ox1,
+      ox2,
+      oy1,
+      oy2,
+      i,
+      n = nodes.length;
     for (i = 0; i < n; ++i) {
       node = nodes[i];
       // Calculate bounding box for node
@@ -304,8 +343,8 @@ export class DependencyGraphComponent implements OnInit {
         // Check for overlap between rectangles
         if (nx1 < ox2 && nx2 > ox1 && ny1 < oy2 && ny2 > oy1) {
           // Overlap detected, push nodes apart along the direction between them
-          let dx = (node.x - other.x) || (Math.random() - 0.5);
-          let dy = (node.y - other.y) || (Math.random() - 0.5);
+          let dx = node.x - other.x || Math.random() - 0.5;
+          let dy = node.y - other.y || Math.random() - 0.5;
           let l = Math.sqrt(dx * dx + dy * dy);
           let moveX = dx / l || 1;
           let moveY = dy / l || 1;
@@ -318,4 +357,3 @@ export class DependencyGraphComponent implements OnInit {
     }
   }
 }
-
