@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, SimpleChanges, OnChanges } from '@angular/core';
 import * as d3 from 'd3';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { Activity } from 'src/app/model/activity-store';
@@ -7,7 +7,8 @@ import { DataStore } from 'src/app/model/data-store';
 export interface graphNodes {
   id: string;
   relativeLevel: number;
-  relativeCount: number;
+  index: number;
+  activitycount: number;
 }
 
 export interface graphLinks {
@@ -25,7 +26,7 @@ export interface graph {
   templateUrl: './dependency-graph.component.html',
   styleUrls: ['./dependency-graph.component.css'],
 })
-export class DependencyGraphComponent implements OnInit {
+export class DependencyGraphComponent implements OnInit, OnChanges {
   COLOR_OF_LINK: string = 'black';
   COLOR_OF_NODE: string = '#66bb6a';
   COLOR_OF_PREDECESSOR: string = '#deeedeff';
@@ -43,18 +44,36 @@ export class DependencyGraphComponent implements OnInit {
   ngOnInit(): void {
     this.loader.load().then((dataStore: DataStore) => {
       this.dataStore = dataStore;
+      console.log('Dep-graph: Setting datastore');
       if (!dataStore.activityStore) {
         throw Error('No activity store loaded');
       }
-      let activity: Activity = dataStore.activityStore.getActivityByName(this.activityName);
-      if (activity) {
-        this.graphData = { nodes: [], links: [] };
-        this.populateGraphWithActivitiesCurrentActivityDependsOn(activity);
-        this.populateGraphWithActivitiesThatDependsOnCurrentActivity(activity);
-
-        this.generateGraph(this.activityName);
-      }
+      this.populateGraph(this.activityName);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    if (this.dataStore?.activityStore) {
+      if (changes?.hasOwnProperty('activityName')) {
+        this.populateGraph(changes['activityName'].currentValue);
+      }
+    }
+  }
+
+  populateGraph(activityName: string): void {
+    if (this.simulation) {
+      this.simulation.stop();
+    }
+    this.visited.clear();
+    let activity: Activity | undefined = this.dataStore?.activityStore?.getActivityByName(activityName);
+    if (activity) {
+      this.graphData = { nodes: [], links: [] };
+      this.populateGraphWithActivitiesCurrentActivityDependsOn(activity);
+      this.populateGraphWithActivitiesThatDependsOnCurrentActivity(activity);
+
+      this.generateGraph(this.activityName);
+    }
   }
 
   populateGraphWithActivitiesCurrentActivityDependsOn(activity: Activity): void {
@@ -68,6 +87,7 @@ export class DependencyGraphComponent implements OnInit {
           target: activity.name,
         });
       }
+      this.graphData['nodes'].filter(node => node.relativeLevel == -1).forEach(node => { node.activitycount = i - 1 });
     }
   }
 
@@ -83,48 +103,56 @@ export class DependencyGraphComponent implements OnInit {
         });
       }
     }
+    this.graphData['nodes'].filter(node => node.relativeLevel == 1).forEach(node => {
+      node.activitycount = i -1;
+    });
   }
 
-  addNode(activityName: string, relativeLevel: number = 0, relativeCount: number = 0): void {
+  addNode(activityName: string, relativeLevel: number = 0, index: number = 0): void {
     if (!this.visited.has(activityName)) {
-      this.graphData['nodes'].push({ id: activityName, relativeLevel, relativeCount });
+      let d: any = {
+        id: activityName,
+        relativeLevel,
+        index,
+      };
+      this.graphData['nodes'].push(d);
       this.visited.add(activityName);
     }
   }
 
+  initX(d: any): number {
+    let col: number = 7;
+    if (d.activitycount > col && d.activitycount < col * 2) {
+      col = Math.ceil(d.activitycount / 2);
+    }
+    return d.relativeLevel * Math.ceil(d.index / col) * 300;
+  }
+  initY(d: any): number {
+    return d.relativeLevel * 30;
+  }
+
   generateGraph(activityName: string): void {
     let svg = d3.select('svg');
+    svg.selectAll('*').remove();
 
     // Now that rectWidth is set on each node, set up the simulation
+    /* eslint-disable */
     this.simulation = d3
       .forceSimulation()
+      // .alphaMin(0.11)
       .force(
         'link',
-        d3
-          .forceLink()
-          .id(function (d: any) {
+        d3.forceLink().id(function (d: any) {
             return d.id;
-          })
-          .strength(0.1)
+          }).strength(0.1)
       )
-      .force(
-        'x',
-        d3
-          .forceX((d: any) => {
-            let col: number = 7;
-            return d.relativeLevel * Math.ceil(d.relativeCount / col) * 300;
-          })
-          .strength(5)
+      .force('x', d3.forceX((d: any) => { return self.initX(d) }).strength(5)
       )
-      // .force('y', d3.forceY((d: any) => {
-      //   return d.relativeLevel * 30;
-      // }).strength(10))
-      .force('charge', d3.forceManyBody().strength(-80))
-      .force(
-        'collide',
-        d3.forceCollide((d: any) => 30)
-      )
+      // .force('y', d3.forceY( this.initY ).strength(5))
+      .force('charge', d3.forceManyBody().strength(-30))
+      .force('collide', d3.forceCollide((d: any) => 30))
       .force('center', d3.forceCenter(0, 0));
+    /* eslint-enable */
 
     svg
       .append('defs')
@@ -142,7 +170,7 @@ export class DependencyGraphComponent implements OnInit {
       .attr('fill', this.COLOR_OF_LINK)
       .style('stroke', 'none');
 
-    let link = svg
+    let links = svg
       .append('g')
       .attr('class', 'links')
       .selectAll('line')
@@ -152,15 +180,13 @@ export class DependencyGraphComponent implements OnInit {
       .style('stroke', this.COLOR_OF_LINK)
       .attr('marker-end', 'url(#arrowhead)');
 
-    /* eslint-disable */
-    let node = svg
-    .append('g')
-    .attr('class', 'nodes')
-    .selectAll('g')
-    .data(this.graphData['nodes'])
-    .enter()
-    .append('g');
-    /* eslint-enable */
+    let nodes = svg
+      .append('g')
+      .attr('class', 'nodes')
+      .selectAll('g')
+      .data(this.graphData['nodes'])
+      .enter()
+      .append('g');
 
     const rectHeight = 30;
     const rectRx = 10;
@@ -168,7 +194,7 @@ export class DependencyGraphComponent implements OnInit {
     const padding = 20;
 
     // Append text first so we can measure it
-    node
+    nodes
       .append('text')
       .attr('dy', '0.35em')
       .attr('text-anchor', 'middle')
@@ -178,7 +204,7 @@ export class DependencyGraphComponent implements OnInit {
 
     // Now for each node, measure the text and insert a rect behind it
     const self = this;
-    node.each(function (this: SVGGElement, d: any) {
+    nodes.each(function (this: SVGGElement, d: any) {
       const textElem = d3.select(this).select('text').node() as SVGTextElement;
       let textWidth = 60; // fallback default
       if (textElem && textElem.getBBox) {
@@ -211,98 +237,100 @@ export class DependencyGraphComponent implements OnInit {
     this.simulation.force('link').links(this.graphData['links']);
 
     function ticked() {
-      // Improved rectangle edge intersection for arrowhead placement
-      function rectEdgeIntersection(
-        sx: number,
-        sy: number,
-        tx: number,
-        ty: number,
-        rectWidth: number,
-        rectHeight: number,
-        offset: number = 0
-      ) {
-        // Rectangle centered at (tx, ty)
-        const dx = tx - sx;
-        const dy = ty - sy;
-        const w = rectWidth / 2;
-        const h = rectHeight / 2;
-        // Parametric line: (sx, sy) + t*(dx, dy), t in [0,1]
-        // Find smallest t in (0,1] where line crosses rectangle edge
-        let tMin = 1;
-        // Left/right sides
-        if (dx !== 0) {
-          let t1 = (w - (sx - tx)) / dx;
-          let y1 = sy + t1 * dy;
-          if (t1 > 0 && Math.abs(y1 - ty) <= h) tMin = Math.min(tMin, t1);
-          let t2 = (-w - (sx - tx)) / dx;
-          let y2 = sy + t2 * dy;
-          if (t2 > 0 && Math.abs(y2 - ty) <= h) tMin = Math.min(tMin, t2);
-        }
-        // Top/bottom sides
-        if (dy !== 0) {
-          let t3 = (h - (sy - ty)) / dy;
-          let x3 = sx + t3 * dx;
-          if (t3 > 0 && Math.abs(x3 - tx) <= w) tMin = Math.min(tMin, t3);
-          let t4 = (-h - (sy - ty)) / dy;
-          let x4 = sx + t4 * dx;
-          if (t4 > 0 && Math.abs(x4 - tx) <= w) tMin = Math.min(tMin, t4);
-        }
-        // Clamp tMin to [0,1]
-        tMin = Math.max(0, Math.min(1, tMin));
-        // Move intersection back by 'offset' pixels along the direction from target to source
-        let px = sx + dx * tMin;
-        let py = sy + dy * tMin;
-        if (offset > 0 && (dx !== 0 || dy !== 0)) {
-          const len = Math.sqrt(dx * dx + dy * dy);
-          px -= (dx / len) * offset;
-          py -= (dy / len) * offset;
-        }
-        return { x: px, y: py };
-      }
+      if (self.simulation.alpha() < 1.9) {
+        // Improved rectangle edge intersection for arrowhead placement
+        links
+          .attr('x1', function (d: any) {
+            return d.source.x;
+          })
+          .attr('y1', function (d: any) {
+            return d.source.y;
+          })
+          .attr('x2', function (d: any) {
+            // If target has rectWidth, adjust arrow to edge minus offset
+            if (d.target.rectWidth) {
+              const pt = self.rectEdgeIntersection(
+                d.source.x,
+                d.source.y,
+                d.target.x,
+                d.target.y,
+                d.target.rectWidth,
+                30,
+                10 // rectHeight, offset
+              );
+              return pt.x;
+            }
+            return d.target.x;
+          })
+          .attr('y2', function (d: any) {
+            if (d.target.rectWidth) {
+              const pt = self.rectEdgeIntersection(
+                d.source.x,
+                d.source.y,
+                d.target.x,
+                d.target.y,
+                d.target.rectWidth,
+                30,
+                10
+              );
+              return pt.y;
+            }
+            return d.target.y;
+          });
 
-      link
-        .attr('x1', function (d: any) {
-          return d.source.x;
-        })
-        .attr('y1', function (d: any) {
-          return d.source.y;
-        })
-        .attr('x2', function (d: any) {
-          // If target has rectWidth, adjust arrow to edge minus offset
-          if (d.target.rectWidth) {
-            const pt = rectEdgeIntersection(
-              d.source.x,
-              d.source.y,
-              d.target.x,
-              d.target.y,
-              d.target.rectWidth,
-              30,
-              10 // rectHeight, offset
-            );
-            return pt.x;
-          }
-          return d.target.x;
-        })
-        .attr('y2', function (d: any) {
-          if (d.target.rectWidth) {
-            const pt = rectEdgeIntersection(
-              d.source.x,
-              d.source.y,
-              d.target.x,
-              d.target.y,
-              d.target.rectWidth,
-              30,
-              10
-            );
-            return pt.y;
-          }
-          return d.target.y;
+        nodes.attr('transform', function (d: any) {
+          return 'translate(' + d.x + ',' + d.y + ')';
         });
-
-      node.attr('transform', function (d: any) {
-        return 'translate(' + d.x + ',' + d.y + ')';
-      });
+      }
     }
+  }
+
+  rectEdgeIntersection(
+    sx: number,
+    sy: number,
+    tx: number,
+    ty: number,
+    rectWidth: number,
+    rectHeight: number,
+    offset: number = 0
+  ) {
+    // Rectangle centered at (tx, ty)
+    const dx = tx - sx;
+    const dy = ty - sy;
+    const w = rectWidth / 2;
+    const h = rectHeight / 2;
+    // Parametric line: (sx, sy) + t*(dx, dy), t in [0,1]
+    // Find smallest t in (0,1] where line crosses rectangle edge
+    let tMin = 1;
+    // Left/right sides
+    if (dx !== 0) {
+      let t1 = (w - (sx - tx)) / dx;
+      let y1 = sy + t1 * dy;
+      if (t1 > 0 && Math.abs(y1 - ty) <= h) tMin = Math.min(tMin, t1);
+      let t2 = (-w - (sx - tx)) / dx;
+      let y2 = sy + t2 * dy;
+      if (t2 > 0 && Math.abs(y2 - ty) <= h) tMin = Math.min(tMin, t2);
+    }
+    // Top/bottom sides
+    if (dy !== 0) {
+      let t3 = (h - (sy - ty)) / dy;
+      let x3 = sx + t3 * dx;
+      if (t3 > 0 && Math.abs(x3 - tx) <= w) tMin = Math.min(tMin, t3);
+      let t4 = (-h - (sy - ty)) / dy;
+      let x4 = sx + t4 * dx;
+      if (t4 > 0 && Math.abs(x4 - tx) <= w) tMin = Math.min(tMin, t4);
+    }
+    // Clamp tMin to [0,1]
+    tMin = Math.max(0, Math.min(1, tMin));
+    // Move intersection back by 'offset' pixels along the direction from target to source
+    let px = sx + dx * tMin;
+    let py = sy + dy * tMin;
+    if (offset > 0 && (dx !== 0 || dy !== 0)) {
+      const len = Math.sqrt(dx * dx + dy * dy);
+      px -= (dx / len) * offset;
+      py -= (dy / len) * offset;
+    }
+    return { x: px, y: py };
   }
 
   /**
@@ -329,17 +357,17 @@ export class DependencyGraphComponent implements OnInit {
     for (i = 0; i < n; ++i) {
       node = nodes[i];
       // Calculate bounding box for node
-      nx1 = node.x - node.rectWidth / 2;
-      nx2 = node.x + node.rectWidth / 2;
-      ny1 = node.y - 15; // rectHeight / 2
-      ny2 = node.y + 15;
+      nx1 = node.x - node.rectWidth / 2 - 10;
+      nx2 = node.x + node.rectWidth / 2 + 10;
+      ny1 = node.y - 25;
+      ny2 = node.y + 25;
       for (let j = i + 1; j < n; ++j) {
         other = nodes[j];
         // Calculate bounding box for other node
         ox1 = other.x - other.rectWidth / 2;
         ox2 = other.x + other.rectWidth / 2;
-        oy1 = other.y - 15;
-        oy2 = other.y + 15;
+        oy1 = other.y - 25;
+        oy2 = other.y + 25;
         // Check for overlap between rectangles
         if (nx1 < ox2 && nx2 > ox1 && ny1 < oy2 && ny2 > oy1) {
           // Overlap detected, push nodes apart along the direction between them

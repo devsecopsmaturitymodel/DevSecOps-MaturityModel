@@ -70,6 +70,18 @@
                   <p [innerHTML]="showActivityDetails?.measure?.render()"></p>
                 </ng-template>
               </mat-expansion-panel>
+              <mat-expansion-panel
+                [expanded]="true"
+                *ngIf="showActivityDetails?.assessment?.hasContent()">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Assesment</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                  <p [innerHTML]="showActivityDetails?.assessment?.render()"></p>
+                </ng-template>
+              </mat-expansion-panel>
               <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.implementation">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
@@ -87,6 +99,18 @@
                   </ul>
                 </ng-template>
               </mat-expansion-panel>
+
+              <mat-expansion-panel [expanded]="true" >
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <b>Dependencies</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-dependency-graph [activityName]="showActivityDetails?.name || ''">
+                </app-dependency-graph>
+              </mat-expansion-panel>
+
+
               <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.dependsOn">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
