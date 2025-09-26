@@ -66,7 +66,8 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       this.simulation.stop();
     }
     this.visited.clear();
-    let activity: Activity | undefined = this.dataStore?.activityStore?.getActivityByName(activityName);
+    let activity: Activity | undefined =
+      this.dataStore?.activityStore?.getActivityByName(activityName);
     if (activity) {
       this.graphData = { nodes: [], links: [] };
       this.populateGraphWithActivitiesCurrentActivityDependsOn(activity);
@@ -87,7 +88,11 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
           target: activity.name,
         });
       }
-      this.graphData['nodes'].filter(node => node.relativeLevel == -1).forEach(node => { node.activitycount = i - 1 });
+      this.graphData['nodes']
+        .filter(node => node.relativeLevel == -1)
+        .forEach(node => {
+          node.activitycount = i - 1;
+        });
     }
   }
 
@@ -103,9 +108,11 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
         });
       }
     }
-    this.graphData['nodes'].filter(node => node.relativeLevel == 1).forEach(node => {
-      node.activitycount = i -1;
-    });
+    this.graphData['nodes']
+      .filter(node => node.relativeLevel == 1)
+      .forEach(node => {
+        node.activitycount = i - 1;
+      });
   }
 
   addNode(activityName: string, relativeLevel: number = 0, index: number = 0): void {
