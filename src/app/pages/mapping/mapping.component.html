@@ -1,0 +1,206 @@
+<div class="content">
+  <app-top-header section="Mappings"></app-top-header>
+  <div class="actions-row">
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-label>Search</mat-label>
+      <mat-chip-list #chipList aria-label="Search terms">
+        <mat-chip
+          *ngFor="let term of searchTerms"
+          [selectable]="false"
+          [removable]="true"
+          (removed)="removeSearchTerm(term)">
+          {{ term }}
+          <button matChipRemove><mat-icon>cancel</mat-icon></button>
+        </mat-chip>
+        <input
+          matInput
+          [formControl]="searchCtrl"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (keydown)="applyFilter($event)"
+          placeholder="Type and press Enter..."
+          [matChipInputAddOnBlur]="false" />
+      </mat-chip-list>
+      <button mat-icon-button matSuffix *ngIf="searchTerms.length" (click)="clearFilter()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="export-btn" (click)="exportToExcel()">
+      <mat-icon>file_download</mat-icon>
+      Download
+    </button>
+  </div>
+
+  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 matrix-table">
+    <ng-container matColumnDef="dimension">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Dimension</th>
+      <td mat-cell *matCellDef="let element">{{ element.dimension }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="subDimension">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Sub-Dimension</th>
+      <td mat-cell *matCellDef="let element">{{ element.subDimension }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="activityName">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Activity</th>
+      <td mat-cell *matCellDef="let element">{{ element.activityName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="samm2">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>SAMM</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.samm2">
+          <ul>
+            <li *ngFor="let sammElement of element.samm2">{{ sammElement }}</li>
+          </ul>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ISO17">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>ISO 27001:2017</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.ISO17">
+          <ul>
+            <li *ngFor="let ISOElement of element.ISO17">{{ ISOElement }}</li>
+          </ul>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ISO22">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>ISO 27001:2022</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.ISO22">
+          <ul>
+            <li *ngFor="let ISO22Element of element.ISO22">{{ ISO22Element }}</li>
+          </ul>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <!-- Excel export table remains as is for now -->
+  <table id="excel-table" class="hide">
+    <tr>
+      <th>Dimension</th>
+      <th>Sub Dimension</th>
+      <th>Activity</th>
+      <th>Level</th>
+      <th>Description</th>
+      <th>Risk</th>
+      <th>Measure</th>
+      <th>Knowledge</th>
+      <th>Resources</th>
+      <th>Time</th>
+      <th>Usefulness</th>
+      <th>Assessment</th>
+      <th>Comments</th>
+      <th>Depends On</th>
+      <th>SAMM</th>
+      <th>ISO 27001:2017</th>
+      <th>ISO 27001:2022</th>
+      <th *ngFor="let team of allTeams">
+        {{ team + ' - Status' }}
+      </th>
+    </tr>
+
+    <tr *ngFor="let item of allMappings">
+      <!-- checking if item is defined and set & truncating at 32767 characters per cell to fit to excel limitations-->
+      <td>
+        <ng-container *ngIf="item.dimension && item.dimension.length > 0">
+          {{ item.dimension | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.subDimension && item.subDimension.length > 0">
+          {{ item.subDimension | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.activityName && item.activityName.length > 0">
+          {{ item.activityName | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.level">
+          {{ '' + item.level | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.description && item.description.length > 0">
+          {{ item.description | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.risk && item.risk.length > 0">
+          {{ item.risk | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.measure && item.measure.length > 0">
+          {{ item.measure | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.knowledge && item.knowledge.length > 0">
+          {{ item.knowledge | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.resources && item.resources.length > 0">
+          {{ item.resources | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.time && item.time.length > 0">
+          {{ item.time | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.usefulness && item.usefulness.length > 0">
+          {{ item.usefulness | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.assessment && item.assessment.length > 0">
+          {{ item.assessment | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.comments && item.comments.length > 0">
+          {{ item.comments | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.dependsOn && item.dependsOn.length > 0">
+          {{ item.dependsOn | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.samm2 && item.samm2.length > 0">
+          {{ item.samm2 | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.ISO17 && item.ISO17.length > 0">
+          {{ '\t' + item.ISO17 | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="item.ISO22 && item.ISO22.length > 0">
+          {{ item.ISO22 | slice : 0 : 32767 }}
+        </ng-container>
+      </td>
+      <td *ngFor="let team of allTeams">
+        <ng-container *ngIf="dataStore.progressStore">
+          {{ dataStore.progressStore.getTeamActivityTitle(item.uuid, team) }}
+        </ng-container>
+      </td>
+    </tr>
+  </table>
+</div>

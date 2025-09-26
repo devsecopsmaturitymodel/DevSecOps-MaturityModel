@@ -1,7 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  --slider-primary: #66bb6a;  /* Using the same green as your userday table */
+  --slider-track: #e0e0e0;
+  --slider-thumb: #66bb6a;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-typography h1.mat-display-1 {
+  margin: 0;
+}
+
+/* Slider styling */
+.mat-slider-track-background {
+  background-color: var(--slider-track) !important;
+}
+
+.mat-slider-track-fill {
+  background-color: var(--slider-primary) !important;
+}
+
+.mat-slider-thumb {
+  background-color: var(--slider-thumb) !important;
+}
+
+.mat-slider-thumb-label {
+  background-color: var(--slider-thumb) !important;
+}
 
 .userday table :is(td, th) {
     border: 1px solid black;

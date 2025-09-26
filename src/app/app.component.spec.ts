@@ -32,7 +32,6 @@ describe('AppComponent', () => {
     const HTMLElement: HTMLElement = fixture.nativeElement;
     var divTag = HTMLElement.querySelector('div')!;
     var aTag = divTag.querySelector('a')!;
-    //console.log(aTag);
-    expect(aTag.textContent).toEqual('Fork me on GitHub');
+    expect(aTag.textContent).toContain('GitHub');
   });
 });

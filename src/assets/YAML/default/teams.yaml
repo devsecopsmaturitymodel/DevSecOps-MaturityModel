@@ -1,0 +1,28 @@
+---
+#
+# Teams
+# 
+# This file defines the teams and what groups they belong to.
+#
+# Either edit this file, or you can add your own file 
+# and update the reference in `meta.yaml`.
+#
+teams:
+  - Team A
+  - Team B
+  - Team C
+  - Team D
+
+teamGroups:
+  Customer:
+    - Team A
+    - Team B
+  Internal:
+    - Team C
+    - Team D
+  Cloud:
+    - Team A
+    - Team D
+  On-premise:
+    - Team B
+    - Team C
