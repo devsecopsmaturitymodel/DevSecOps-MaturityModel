@@ -7,8 +7,8 @@ import { DataStore } from 'src/app/model/data-store';
 export interface graphNodes {
   id: string;
   relativeLevel: number;
-  index: number;
-  activitycount: number;
+  activityIndex: number;
+  activityCount: number;
 }
 
 export interface graphLinks {
@@ -70,6 +70,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       this.dataStore?.activityStore?.getActivityByName(activityName);
     if (activity) {
       this.graphData = { nodes: [], links: [] };
+      this.addNode(activity.name);
       this.populateGraphWithActivitiesCurrentActivityDependsOn(activity);
       this.populateGraphWithActivitiesThatDependsOnCurrentActivity(activity);
 
@@ -78,7 +79,6 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   }
 
   populateGraphWithActivitiesCurrentActivityDependsOn(activity: Activity): void {
-    this.addNode(activity.name);
     if (activity.dependsOn) {
       let i: number = 1;
       for (const prececcor of activity.dependsOn) {
@@ -91,7 +91,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       this.graphData['nodes']
         .filter(node => node.relativeLevel == -1)
         .forEach(node => {
-          node.activitycount = i - 1;
+          node.activityCount = i - 1;
         });
     }
   }
@@ -111,16 +111,16 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     this.graphData['nodes']
       .filter(node => node.relativeLevel == 1)
       .forEach(node => {
-        node.activitycount = i - 1;
+        node.activityCount = i - 1;
       });
   }
 
-  addNode(activityName: string, relativeLevel: number = 0, index: number = 0): void {
+  addNode(activityName: string, relativeLevel: number = 0, activityIndex: number = 0): void {
     if (!this.visited.has(activityName)) {
       let d: any = {
         id: activityName,
         relativeLevel,
-        index,
+        activityIndex,
       };
       this.graphData['nodes'].push(d);
       this.visited.add(activityName);
@@ -128,11 +128,11 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   }
 
   initX(d: any): number {
-    let col: number = 7;
-    if (d.activitycount > col && d.activitycount < col * 2) {
-      col = Math.ceil(d.activitycount / 2);
+    let col: number = 8;
+    if (d.activityCount > col && d.activityCount < col * 2) {
+      col = Math.ceil(d.activityCount / 2);
     }
-    return d.relativeLevel * Math.ceil(d.index / col) * 300;
+    return d.relativeLevel * Math.ceil(d.activityIndex / col) * 300;
   }
   initY(d: any): number {
     return d.relativeLevel * 30;
