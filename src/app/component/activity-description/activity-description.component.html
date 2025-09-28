@@ -55,6 +55,17 @@
       <p id="assessment" [innerHTML]="currentActivity.assessment?.render()"></p>
     </mat-expansion-panel>
 
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>Dependencies</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div *ngIf="currentActivity?.name">
+        <app-dependency-graph [activityName]="currentActivity?.name || ''"></app-dependency-graph>
+      </div>
+    </mat-expansion-panel>
+
     <mat-expansion-panel *ngIf="currentActivity.implementationGuide?.hasContent()">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -229,17 +240,6 @@
         <p *ngIf="currentActivity.isImplemented === false">Not Implemented</p>
         <p *ngIf="currentActivity.isImplemented === true">Implemented</p>
       </ng-template>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <b>Dependencies</b>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div *ngIf="currentActivity?.name">
-        <app-dependency-graph [activityName]="currentActivity?.name || ''"></app-dependency-graph>
-      </div>
     </mat-expansion-panel>
 
     <mat-expansion-panel>

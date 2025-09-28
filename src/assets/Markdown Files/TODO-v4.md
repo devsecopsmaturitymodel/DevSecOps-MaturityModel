@@ -1,12 +1,16 @@
 ## Doing
+### Dependency graph
+
+- Heatmap: Handle dependsOn uuid (example)
+  - http://localhost:4200/activity-description?uuid=13e9757e-58e2-4277-bc0f-eadc674891e6
+
+- Dependency graph: Make connecting nodes clickable
+- Heatmap: Add #uuid to URL
+
+## Next
 - Teams: Bug: Reads progress heading from activityStore, not metaStore
 - Team KPI: One KPI per ProgressDefinition
 - KPI: Add Sub-title
-
-## Next
-### Dependency graph
-- Dependency graph: Add to CircularHeatmap Details
-- Matrix: Dependency graph: Render in center of page
 
 ## ToDo
 - Heatmap: Fix: asterisk marks when modified
@@ -70,6 +74,9 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Matrix: Dependency graph: Render in center of page
+- Dependency graph: Add to CircularHeatmap Details
+- Dependency graph: Support dark mode
 - Merge in Dark Mode [PR #381](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/pull/381)
 - Linting
 - Using Angular's built-in DomSanitizer to check [innerHTML]

@@ -100,6 +100,12 @@ body {
   --heatmap-cursor-hover: #1c8b1c;
   --heatmap-cursor-selected:#3d3d3d;
 
+  --dependency-link: #707070;
+  --dependency-border: #222222;
+  --dependency-mainnode-fill: #4caf50;
+  --dependency-predecessor-fill: #deeedeff; 
+  --dependency-successor-fill: #fdfdfdff;
+
   @include mat.all-component-themes($DSOMM-light-theme);
 }
 
@@ -123,7 +129,12 @@ body.dark-theme {
   --heatmap-stroke: #000000;
   --heatmap-cursor-hover: #145e14;
   --heatmap-cursor-selected: #232323;
-
+  
+  --dependency-link: #bbbbbb;
+  --dependency-border: #0e1b0e;
+  --dependency-mainnode-fill: rgb(107, 190, 107); 
+  --dependency-predecessor-fill: rgb(172, 206, 172); 
+  --dependency-successor-fill: rgb(192, 192, 192);
 
   .title-button,
   h1, h2, h3, h4, h5, h6 {

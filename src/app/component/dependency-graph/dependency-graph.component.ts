@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { Activity } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
+import { ThemeService } from 'src/app/service/theme.service';
 
 export interface graphNodes {
   id: string;
@@ -21,17 +22,24 @@ export interface graph {
   links: graphLinks[];
 }
 
+interface ThemeColors {
+  linkColor: string;
+  borderColor: string;
+  mainNodeColor: string;
+  mainNodeFill: string;
+  predecessorFill: string;
+  successorFill: string;
+}
+
 @Component({
   selector: 'app-dependency-graph',
   templateUrl: './dependency-graph.component.html',
   styleUrls: ['./dependency-graph.component.css'],
 })
 export class DependencyGraphComponent implements OnInit, OnChanges {
-  COLOR_OF_LINK: string = 'black';
-  COLOR_OF_NODE: string = '#66bb6a';
-  COLOR_OF_PREDECESSOR: string = '#deeedeff';
-  COLOR_OF_SUCCESSOR: string = '#fdfdfdff';
-  BORDER_COLOR_OF_NODE: string = 'black';
+  css: CSSStyleDeclaration = getComputedStyle(document.body);
+  themeColors: Partial<ThemeColors> = {};
+  theme: string;
   simulation: any;
   dataStore: Partial<DataStore> = {};
   graphData: graph = { nodes: [], links: [] };
@@ -39,7 +47,10 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
 
   @Input() activityName: string = '';
 
-  constructor(private loader: LoaderService) {}
+  constructor(private loader: LoaderService, private themeService: ThemeService) {
+    this.theme = this.themeService.getTheme();
+    this.setThemeColors(this.theme);
+  }
 
   ngOnInit(): void {
     this.loader.load().then((dataStore: DataStore) => {
@@ -50,6 +61,11 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       }
       this.populateGraph(this.activityName);
     });
+
+    // Reactively handle theme changes (if user toggles later)
+    this.themeService.theme$.subscribe((theme: string) => {
+      this.setThemeColors(theme);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -59,6 +75,19 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
         this.populateGraph(changes['activityName'].currentValue);
       }
     }
+  }
+
+  setThemeColors(theme: string) {
+    /* eslint-disable */
+      this.themeColors.mainNodeFill = this.css.getPropertyValue('--heatmap-filled').trim();
+      this.themeColors.mainNodeColor = this.css.getPropertyValue('--text-primary').trim();
+      this.themeColors.linkColor = this.css.getPropertyValue('--dependency-link').trim();
+      this.themeColors.borderColor = this.css.getPropertyValue('--dependency-border').trim();
+      this.themeColors.predecessorFill = this.css.getPropertyValue('--dependency-predecessor-fill').trim();
+      this.themeColors.successorFill = this.css.getPropertyValue('--dependency-successor-fill').trim();
+      /*eslint-enable */
+
+    this.generateGraph();
   }
 
   populateGraph(activityName: string): void {
@@ -74,7 +103,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       this.populateGraphWithActivitiesCurrentActivityDependsOn(activity);
       this.populateGraphWithActivitiesThatDependsOnCurrentActivity(activity);
 
-      this.generateGraph(this.activityName);
+      this.generateGraph();
     }
   }
 
@@ -138,7 +167,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     return d.relativeLevel * 30;
   }
 
-  generateGraph(activityName: string): void {
+  generateGraph(): void {
     let svg = d3.select('svg');
     svg.selectAll('*').remove();
 
@@ -174,7 +203,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       .attr('overflow', 'visible')
       .append('svg:path')
       .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
-      .attr('fill', this.COLOR_OF_LINK)
+      .attr('fill', this.themeColors.linkColor || 'black')
       .style('stroke', 'none');
 
     let links = svg
@@ -184,7 +213,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       .data(this.graphData['links'])
       .enter()
       .append('line')
-      .style('stroke', this.COLOR_OF_LINK)
+      .style('stroke', this.themeColors.linkColor || 'black')
       .attr('marker-end', 'url(#arrowhead)');
 
     let nodes = svg
@@ -229,10 +258,12 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
         .attr('rx', rectRx)
         .attr('ry', rectRy)
         .attr('fill', (d: any) => {
-          if (d.relativeLevel == 0) return self.COLOR_OF_NODE;
-          return d.relativeLevel < 0 ? self.COLOR_OF_PREDECESSOR : self.COLOR_OF_SUCCESSOR;
+          if (d.relativeLevel == 0) return self.themeColors.mainNodeFill || 'green';
+          let col: string | undefined =
+            d.relativeLevel < 0 ? self.themeColors.predecessorFill : self.themeColors.successorFill;
+          return col || 'white';
         })
-        .attr('stroke', self.BORDER_COLOR_OF_NODE)
+        .attr('stroke', self.themeColors.borderColor || 'black')
         .attr('stroke-width', 1.5);
     });
 
@@ -244,51 +275,49 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     this.simulation.force('link').links(this.graphData['links']);
 
     function ticked() {
-      if (self.simulation.alpha() < 1.9) {
-        // Improved rectangle edge intersection for arrowhead placement
-        links
-          .attr('x1', function (d: any) {
-            return d.source.x;
-          })
-          .attr('y1', function (d: any) {
-            return d.source.y;
-          })
-          .attr('x2', function (d: any) {
-            // If target has rectWidth, adjust arrow to edge minus offset
-            if (d.target.rectWidth) {
-              const pt = self.rectEdgeIntersection(
-                d.source.x,
-                d.source.y,
-                d.target.x,
-                d.target.y,
-                d.target.rectWidth,
-                30,
-                10 // rectHeight, offset
-              );
-              return pt.x;
-            }
-            return d.target.x;
-          })
-          .attr('y2', function (d: any) {
-            if (d.target.rectWidth) {
-              const pt = self.rectEdgeIntersection(
-                d.source.x,
-                d.source.y,
-                d.target.x,
-                d.target.y,
-                d.target.rectWidth,
-                30,
-                10
-              );
-              return pt.y;
-            }
-            return d.target.y;
-          });
-
-        nodes.attr('transform', function (d: any) {
-          return 'translate(' + d.x + ',' + d.y + ')';
+      // Improved rectangle edge intersection for arrowhead placement
+      links
+        .attr('x1', function (d: any) {
+          return d.source.x;
+        })
+        .attr('y1', function (d: any) {
+          return d.source.y;
+        })
+        .attr('x2', function (d: any) {
+          // If target has rectWidth, adjust arrow to edge minus offset
+          if (d.target.rectWidth) {
+            const pt = self.rectEdgeIntersection(
+              d.source.x,
+              d.source.y,
+              d.target.x,
+              d.target.y,
+              d.target.rectWidth,
+              30,
+              10 // rectHeight, offset
+            );
+            return pt.x;
+          }
+          return d.target.x;
+        })
+        .attr('y2', function (d: any) {
+          if (d.target.rectWidth) {
+            const pt = self.rectEdgeIntersection(
+              d.source.x,
+              d.source.y,
+              d.target.x,
+              d.target.y,
+              d.target.rectWidth,
+              30,
+              10
+            );
+            return pt.y;
+          }
+          return d.target.y;
         });
-      }
+
+      nodes.attr('transform', function (d: any) {
+        return 'translate(' + d.x + ',' + d.y + ')';
+      });
     }
   }
 
@@ -364,8 +393,8 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     for (i = 0; i < n; ++i) {
       node = nodes[i];
       // Calculate bounding box for node
-      nx1 = node.x - node.rectWidth / 2 - 10;
-      nx2 = node.x + node.rectWidth / 2 + 10;
+      nx1 = node.x - node.rectWidth / 2 - 25;
+      nx2 = node.x + node.rectWidth / 2 + 25;
       ny1 = node.y - 25;
       ny2 = node.y + 25;
       for (let j = i + 1; j < n; ++j) {
