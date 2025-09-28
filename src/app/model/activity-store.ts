@@ -123,8 +123,8 @@ export class ActivityStore {
       this._activityByName = {};
       this._activityByUuid = {};
       this.buildLookups(this._activityList, this._activityByName, this._activityByUuid, errors);
-      this.replaceDependsOnUUids(this._activityList, this._activityByUuid);
     }
+    this.replaceDependsOnUUids(this._activityList, this._activityByUuid);
     this.buildDataHierarchy(this._activityList);
     this.buildDimensionList(this._activityList);
   }
@@ -257,6 +257,7 @@ export class ActivityStore {
         for (let i = 0; i < activity.dependsOn.length; i++) {
           if (activity.dependsOn[i].match(UUID)) {
             if (activityByUuid.hasOwnProperty(activity.dependsOn[i])) {
+              console.log(`Replaces ${activity.dependsOn[i]} with ${activityByUuid[activity.dependsOn[i]].name}`);
               activity.dependsOn[i] = activityByUuid[activity.dependsOn[i]].name;
             }
           }

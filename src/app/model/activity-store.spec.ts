@@ -35,6 +35,8 @@ describe('ActivityStore', () => {
     expect(store.getActivityByUuid('00000000-1111-1111-1111-000000000000')?.name).toBe('Activity 111');
     expect(store.getActivityByName('Activity 111')?.level).toBe(1);
     expect(store.getActivityByName('Activity 121')?.uuid).toBe('00000000-1111-2222-1111-000000000000');
+    expect(store.getActivityByName('Activity 112')?.dependsOn).toContain('Activity 111');
+    expect(store.getActivityByName('Activity 112')?.dependsOn).toContain('Activity 121'); // Substituted uuid
     expect(store.getActivities('Dimension 11', 1)).toHaveSize(2);
     expect(store.getActivities('Dimension 11', 1)?.map(a => a.name)).toContain('Activity 112');
   });

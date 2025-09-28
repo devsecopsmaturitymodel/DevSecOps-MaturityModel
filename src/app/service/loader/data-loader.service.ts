@@ -20,6 +20,10 @@ export class LoaderService {
 
   constructor(private yamlService: YamlService) {}
 
+  get datastore(): DataStore | null {
+    return this.dataStore;
+  }
+
   public async load(): Promise<DataStore> {
     // Return cached data if available
     if (this.dataStore) {
