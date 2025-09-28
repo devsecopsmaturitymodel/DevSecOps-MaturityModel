@@ -1,6 +1,5 @@
 import { appendHashElement } from '../util/ArrayHash';
 import { IgnoreList } from './ignore-list';
-import { Progress } from './types';
 import { MarkdownText } from './markdown-text';
 
 export type Data = Record<string, Category>;
@@ -54,6 +53,8 @@ export interface DifficultyOfImplementation {
   time: number;
   resources: number;
 }
+
+const UUID = /([0-9a-f]{6,}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{6,})/i;
 
 export class ActivityStore {
   public data: Data = {};
@@ -122,6 +123,7 @@ export class ActivityStore {
       this._activityByName = {};
       this._activityByUuid = {};
       this.buildLookups(this._activityList, this._activityByName, this._activityByUuid, errors);
+      this.replaceDependsOnUUids(this._activityList, this._activityByUuid);
     }
     this.buildDataHierarchy(this._activityList);
     this.buildDimensionList(this._activityList);
@@ -243,6 +245,23 @@ export class ActivityStore {
   ) {
     for (let activity of activityList) {
       this.addActivityLookup(activity, activityByName, activityByUuid, errors);
+    }
+  }
+
+  /**
+   * Substitute dependsOn UUIDs with activity names
+   */
+  replaceDependsOnUUids(activityList: Activity[], activityByUuid: Record<string, Activity>) {
+    for (let activity of activityList) {
+      if (activity.dependsOn && activity.dependsOn.length > 0) {
+        for (let i = 0; i < activity.dependsOn.length; i++) {
+          if (activity.dependsOn[i].match(UUID)) {
+            if (activityByUuid.hasOwnProperty(activity.dependsOn[i])) {
+              activity.dependsOn[i] = activityByUuid[activity.dependsOn[i]].name;
+            }
+          }
+        }
+      }
     }
   }
 

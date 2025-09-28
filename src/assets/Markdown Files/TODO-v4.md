@@ -1,9 +1,6 @@
 ## Doing
 ### Dependency graph
 
-- Heatmap: Handle dependsOn uuid (example)
-  - http://localhost:4200/activity-description?uuid=13e9757e-58e2-4277-bc0f-eadc674891e6
-
 - Dependency graph: Make connecting nodes clickable
 - Heatmap: Add #uuid to URL
 
@@ -74,6 +71,7 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Dependency: Handle dependsOn uuid, not just name
 - Matrix: Dependency graph: Render in center of page
 - Dependency graph: Add to CircularHeatmap Details
 - Dependency graph: Support dark mode

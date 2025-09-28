@@ -139,6 +139,7 @@ const baseYaml: any = {
         uuid: '00000000-1111-1111-2222-000000000000',
         level: 1,
         description: 'Description from base yaml',
+        dependsOn: ['Activity 111', '00000000-1111-2222-1111-000000000000'],
       },
     },
     'Dimension 12': {
