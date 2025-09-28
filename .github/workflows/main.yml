@@ -52,6 +52,10 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
+          build-args: |
+            COMMIT_HASH=${{ github.sha }}
+            COMMIT_DATE=${{ github.event.head_commit.timestamp }}
+            GIT_BRANCH=${{ github.ref_name }}
       # Commit all changed files back to the repository
       - uses: planetscale/ghcommit-action@v0.1.6
         with:
@@ -84,4 +88,12 @@ jobs:
           heroku_app_name: "dsomm"
           heroku_email: timo.pagel@owasp.org
           branch: ${{ env.HEROKU_BRANCH }}
-          usedocker: true          
+          usedocker: true
+          docker_build_args: |
+            COMMIT_HASH
+            COMMIT_DATE
+            GIT_BRANCH
+        env:
+          COMMIT_HASH: ${{ github.sha }}
+          COMMIT_DATE: ${{ github.event.head_commit.timestamp }}
+          GIT_BRANCH: ${{ github.ref_name }}          

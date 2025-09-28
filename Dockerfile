@@ -1,5 +1,9 @@
 FROM node:24.7.0-alpine3.22 AS build
 
+ARG COMMIT_HASH
+ARG COMMIT_DATE
+ARG GIT_BRANCH
+
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
@@ -8,6 +12,11 @@ RUN apk add --upgrade python3 build-base py3-setuptools py3-pip \
     && npm install
 COPY . .
 RUN npm run build --configuration=production
+
+RUN mkdir -p /usr/src/app/dist/dsomm/assets && \
+    echo "commit: \"${COMMIT_HASH:-unknown}\"" > /usr/src/app/dist/dsomm/assets/build-info.yaml && \
+    echo "commit_date: \"${COMMIT_DATE:-unknown}\"" >> /usr/src/app/dist/dsomm/assets/build-info.yaml && \
+    echo "branch: \"${GIT_BRANCH:-unknown}\"" >> /usr/src/app/dist/dsomm/assets/build-info.yaml
 
 
 FROM wurstbrot/dsomm-yaml-generation:1.17.0 AS yaml
