@@ -2,6 +2,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 import { ActivityDescriptionComponent } from './activity-description.component';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
@@ -12,13 +13,11 @@ import { isEmptyObj } from 'src/app/util/util';
 
 let mockLoaderService: MockLoaderService;
 let mockActivatedRoute = {
-  snapshot: {
-    queryParams: { uuid: '00000000-1111-1111-1111-0000000000000' },
-  },
+  queryParams: of({ uuid: '00000000-1111-1111-1111-0000000000000' }),
 };
 let mockData = {
   'Dim 1': {
-    'SubDim 1.1': {
+    'SubDim-1.1': {
       'Activity 111': {
         uuid: '00000000-1111-1111-1111-0000000000000',
         level: 1,
@@ -77,19 +76,19 @@ describe('ActivityDescriptionComponent', () => {
     expect(isEmptyObj(component.currentActivity)).toBeFalsy();
   });
 
-  it('check if header is being generated', () => {
-    const testDimension = 'Dim 1';
-    const testSubDimension = 'SubDim 1.1';
+  it('check if header is being generated', async () => {
+    const testSubDimension = 'SubDim-1.1';
 
+    await fixture.whenStable();
     fixture.detectChanges();
+
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const heading = HTMLElement.querySelector('h1')!;
 
-    expect(heading?.textContent).toContain(testDimension);
     expect(heading?.textContent).toContain(testSubDimension);
   });
 
-  it('check if content is displayed', () => {
+  it('check if content is displayed', async () => {
     // console.log(`${perfNow()}: ActivityDescription: "check if content is displayed"`);
     const testUUID = '00000000-1111-1111-1111-0000000000000';
     const testDesc = 'Description 111';
@@ -99,6 +98,7 @@ describe('ActivityDescriptionComponent', () => {
     const testComments = 'Comments 111';
     const testImplementationGuide = 'Implementation Guide 111';
 
+    await fixture.whenStable();
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
 

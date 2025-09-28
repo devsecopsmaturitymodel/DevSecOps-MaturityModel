@@ -62,7 +62,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div *ngIf="currentActivity?.name">
-        <app-dependency-graph [activityName]="currentActivity?.name || ''"></app-dependency-graph>
+        <app-dependency-graph
+          [activityName]="currentActivity?.name || ''"
+          (activityClicked)="onActivityClicked($event)">
+        </app-dependency-graph>
       </div>
     </mat-expansion-panel>
 

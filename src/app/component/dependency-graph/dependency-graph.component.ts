@@ -5,6 +5,8 @@ import { Activity } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
 import { ThemeService } from 'src/app/service/theme.service';
 
+import { Output, EventEmitter } from '@angular/core';
+
 export interface graphNodes {
   id: string;
   relativeLevel: number;
@@ -47,6 +49,8 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
 
   @Input() activityName: string = '';
 
+  @Output() activityClicked = new EventEmitter<string>();
+
   constructor(private loader: LoaderService, private themeService: ThemeService) {
     this.theme = this.themeService.getTheme();
     this.setThemeColors(this.theme);
@@ -55,7 +59,6 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.loader.load().then((dataStore: DataStore) => {
       this.dataStore = dataStore;
-      console.log('Dep-graph: Setting datastore');
       if (!dataStore.activityStore) {
         throw Error('No activity store loaded');
       }
@@ -69,7 +72,6 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if (this.dataStore?.activityStore) {
       if (changes?.hasOwnProperty('activityName')) {
         this.populateGraph(changes['activityName'].currentValue);
@@ -157,11 +159,12 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   }
 
   initX(d: any): number {
-    let col: number = 8;
-    if (d.activityCount > col && d.activityCount < col * 2) {
-      col = Math.ceil(d.activityCount / 2);
+    let colSize: number = 8;
+    if (d.activityCount > colSize && d.activityCount <= colSize * 2.5) {
+      let colCount: number = Math.ceil(d.activityCount / colSize);
+      colSize = Math.ceil(d.activityCount / colCount);
     }
-    return d.relativeLevel * Math.ceil(d.activityIndex / col) * 300;
+    return d.relativeLevel * Math.ceil(d.activityIndex / colSize) * 300;
   }
   initY(d: any): number {
     return d.relativeLevel * 30;
@@ -176,15 +179,8 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     this.simulation = d3
       .forceSimulation()
       // .alphaMin(0.11)
-      .force(
-        'link',
-        d3.forceLink().id(function (d: any) {
-            return d.id;
-          }).strength(0.1)
-      )
-      .force('x', d3.forceX((d: any) => { return self.initX(d) }).strength(5)
-      )
-      // .force('y', d3.forceY( this.initY ).strength(5))
+      .force('link', d3.forceLink().id((d: any) => { return d.id; }).strength(0.1))
+      .force('x', d3.forceX((d: any) => { return self.initX(d) }).strength(5))
       .force('charge', d3.forceManyBody().strength(-30))
       .force('collide', d3.forceCollide((d: any) => 30))
       .force('center', d3.forceCenter(0, 0));
@@ -222,7 +218,24 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       .selectAll('g')
       .data(this.graphData['nodes'])
       .enter()
-      .append('g');
+      .append('g')
+      .on('click', (event: MouseEvent, d: any) => {
+        if (d.relativeLevel != 0) {
+          this.activityClicked.emit(d.id);
+        }
+      })
+      .on('mouseover', (event: MouseEvent, d: any) => {
+        if (this.activityClicked.observed) {
+          if (d.relativeLevel != 0) {
+            d3.select(event.currentTarget as Element).style('cursor', 'pointer');
+          } else {
+            d3.select(event.currentTarget as Element).style('cursor', 'default');
+          }
+        }
+      })
+      .on('mouseout', (event: MouseEvent, d: any) => {
+        d3.select(event.currentTarget as Element).style('cursor', 'default');
+      });
 
     const rectHeight = 30;
     const rectRx = 10;
