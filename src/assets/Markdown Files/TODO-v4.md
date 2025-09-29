@@ -1,25 +1,18 @@
 ## Doing
-### Dependency graph
-
-- Dependency graph: Make connecting nodes clickable
-- Heatmap: Add #uuid to URL
 
 ## Next
-- Teams: Bug: Reads progress heading from activityStore, not metaStore
-- Team KPI: One KPI per ProgressDefinition
-- KPI: Add Sub-title
-
-## ToDo
-- Heatmap: Fix: asterisk marks when modified
-  - ViewController needs to know about changes vs temp storage
-- Heatmap: Bug: Clicking on grey sector leaves cursor on that sector
 ### Settings
 - Settings: Make settings page
 - Settings: Date format (don't rely just on browser language)
-- Settings: Display mode dark/light
 - Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
 - Settings: Set Max maturity level (1-5)
 - Settings: Terms: Allow custom names for: team, group, etc
+
+## ToDo
+### KPI
+- Teams: Bug: Reads progress heading from activityStore, not metaStore
+- Team KPI: One KPI per ProgressDefinition
+- KPI: Add Sub-title
 ### Matrix
 - Matrix: Add a Close/Back button
 ### Teams
@@ -27,12 +20,17 @@
 - Teams: Bug: Editing name, pushes the item last
 - Teams: Allow editing dates for progress stages
 ### Heatmap:
+- Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
+- Heatmap: Fix: asterisk marks when modified
+  - ViewController needs to know about changes vs temp storage
+- Heatmap: Bug: Clicking on grey sector leaves cursor on that sector
 - Heatmap: Bug: Selecting a team group does not always get deselected when flipping teams
 - Heatmap: meta-yaml: If progress definition is missing, default to 0% + 100% 
 - Heatmap: Revert to boolean checkboxes, if definition is only 0% and 100%
 - Heatmap: Read previous local storage for backwards compatibility 
 - Heatmap: Input Teams' evidence
-- Heatmap: Increase subdimension to be two lines (and increase size)
+- Heatmap: Outer rim: Increase subdimension to be two lines (and increase size)
+- Heatmap: Outer rim: Make hover display Dimension (over subdimension)
 ### Documentation
 - Doc: Update `Usage`
 - Doc: Update `README.md`
@@ -71,6 +69,7 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Dependency: Make connecting nodes clickable for navigation
 - Dependency: Handle dependsOn uuid, not just name
 - Matrix: Dependency graph: Render in center of page
 - Dependency graph: Add to CircularHeatmap Details
