@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { UsageComponent } from './pages/usage/usage.component';
 import { UserdayComponent } from './pages/userday/userday.component';
 import { RoadmapComponent } from './pages/roadmap/roadmap.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LogoComponent } from './component/logo/logo.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
@@ -50,6 +51,7 @@ import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-g
     ModalMessageComponent,
     ProgressSliderComponent,
     KpiComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-g
     MaterialModule,
     MatDialogModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     TeamsGroupsEditorModule,
   ],

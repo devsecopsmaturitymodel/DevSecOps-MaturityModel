@@ -16,6 +16,7 @@ export class SidenavButtonsComponent implements OnInit {
     'About Us',
     'DSOMM User Day 2025',
     'Roadmap v4.0',
+    'Settings',
   ];
   Icons: string[] = [
     'pie_chart',
@@ -26,6 +27,7 @@ export class SidenavButtonsComponent implements OnInit {
     'info',
     'school',
     'landscape',
+    'list',
   ];
   Routing: string[] = [
     '/circular-heatmap',
@@ -36,6 +38,7 @@ export class SidenavButtonsComponent implements OnInit {
     '/about',
     '/userday',
     '/roadmap',
+    '/settings',
   ];
 
   isNightMode = false;

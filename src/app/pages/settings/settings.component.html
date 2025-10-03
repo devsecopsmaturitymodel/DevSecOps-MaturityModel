@@ -1,0 +1,16 @@
+<div class="settings-container">
+	<h2>Settings</h2>
+	<mat-card>
+		<mat-card-title>Date Format</mat-card-title>
+		<mat-card-content>
+			<mat-radio-group [(ngModel)]="selectedDateFormat">
+				<mat-radio-button *ngFor="let format of dateFormats" [value]="format.value">
+					{{ format.label }}
+				</mat-radio-button>
+			</mat-radio-group>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="primary" (click)="saveDateFormat()">Save</button>
+		</mat-card-actions>
+	</mat-card>
+</div>

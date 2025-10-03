@@ -9,6 +9,7 @@ import { ActivityDescriptionComponent } from './component/activity-description/a
 import { UsageComponent } from './pages/usage/usage.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { RoadmapComponent } from './pages/roadmap/roadmap.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   { path: '', component: CircularHeatmapComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'about', component: AboutUsComponent },
   { path: 'userday', component: UserdayComponent },
   { path: 'roadmap', component: RoadmapComponent },
+  { path: 'settings', component: SettingsComponent },
 ];
 
 @NgModule({
