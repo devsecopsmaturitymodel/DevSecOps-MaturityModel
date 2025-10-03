@@ -12,6 +12,7 @@ import {
 import { DataStore } from 'src/app/model/data-store';
 import { Uuid } from 'src/app/model/types';
 import { perfNow } from 'src/app/util/util';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 
 const SEPARATOR = '\x1F'; // ASCII Unit Separator
 
@@ -76,7 +77,11 @@ export class MappingComponent implements OnInit, AfterViewInit {
   searchTerms: string[] = [];
   searchCtrl = new FormControl('');
 
-  constructor(private loader: LoaderService, public modal: ModalMessageComponent) {}
+  constructor(
+    private loader: LoaderService,
+    private settings: SettingsService,
+    public modal: ModalMessageComponent
+  ) {}
 
   ngOnInit(): void {
     console.log(`${perfNow()}: Mapping: Loading yamls...`);
@@ -125,7 +130,8 @@ export class MappingComponent implements OnInit, AfterViewInit {
       return [];
     }
 
-    return dataStore.activityStore.getAllActivities().map(activity => {
+    let activities = dataStore.activityStore.getAllActivitiesUpToLevel(this.settings.getMaxLevel());
+    return activities.map(activity => {
       return {
         uuid: activity.uuid || '',
         dimension: activity.category || '',

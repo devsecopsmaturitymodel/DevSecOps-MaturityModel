@@ -1,5 +1,4 @@
 // Create mock LoaderService
-import { F } from '@angular/cdk/keycodes';
 import { Data } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
 import { MetaStore } from 'src/app/model/meta-store';
@@ -33,7 +32,7 @@ export class MockLoaderService {
     console.log('MOCK dataStore:', this.dataStore);
     return Promise.resolve(this.dataStore);
   }
-  getLevels() {
+  getLevelTitles() {
     return ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'];
   }
 }

@@ -17,6 +17,8 @@ import { Sector } from 'src/app/model/sector';
 import { perfNow } from 'src/app/util/util';
 import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
+import { SettingsService } from 'src/app/service/settings/settings.service';
+
 @Component({
   selector: 'app-circular-heatmap',
   templateUrl: './circular-heatmap.component.html',
@@ -25,7 +27,6 @@ import { ThemeService } from '../../service/theme.service';
 export class CircularHeatmapComponent implements OnInit {
   Routing: string = '/activity-description';
   markdown: md = md();
-  maxLevelOfMaturity: number = -1;
   showOverlay: boolean = false;
   showFilters: boolean = true;
   showActivityCard: any = null;
@@ -55,6 +56,7 @@ export class CircularHeatmapComponent implements OnInit {
   constructor(
     private loader: LoaderService,
     private sectorService: SectorService,
+    private settings: SettingsService,
     private themeService: ThemeService,
     public modal: ModalMessageComponent
   ) {
@@ -139,7 +141,7 @@ export class CircularHeatmapComponent implements OnInit {
 
   setYamlData(dataStore: DataStore) {
     this.dataStore = dataStore;
-    this.maxLevel = dataStore.getMaxLevel();
+    this.maxLevel = this.settings?.getMaxLevel() || dataStore.getMaxLevel();
     this.dimensionLabels = dataStore?.activityStore?.getAllDimensionNames() || [];
 
     // Prepare all sectors: one for each (dimension, level) pair
@@ -255,7 +257,7 @@ export class CircularHeatmapComponent implements OnInit {
     var bbWidth = imageWidth - Math.max(margin.left + margin.right, margin.top + margin.bottom) * 2; // bounding box
     var segmentLabelHeight = bbWidth * 0.0155; // Fuzzy number, to match the longest label within one sector
     var outerRadius = bbWidth / 2 - segmentLabelHeight;
-    var innerRadius = outerRadius / 5;
+    var innerRadius = outerRadius / (maxLevel + 1);
     var segmentHeight = (outerRadius - innerRadius) / maxLevel;
 
     var curr: any;

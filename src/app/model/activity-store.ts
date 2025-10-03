@@ -73,6 +73,15 @@ export class ActivityStore {
     return this._activityList;
   }
 
+  public getAllActivitiesUpToLevel(maxLevel: number | null): Activity[] {
+    /* eslint-disable */
+    if (maxLevel == null) 
+      return this._activityList;
+    else
+      return this._activityList.filter(a => a.level <= maxLevel);
+    /* eslint-enable */
+  }
+
   public getAllCategoryNames(): string[] {
     return this._categoryNames;
   }

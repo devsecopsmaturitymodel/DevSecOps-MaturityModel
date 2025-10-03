@@ -20,17 +20,18 @@
 
     <mat-card-content>
       <div style="display: flex; align-items: center; gap: 1em">
-        <label style="white-space: nowrap">Max Maturity Level to display</label>
+        <label style="white-space: nowrap">Max level</label>
         <mat-slider
           id="maxLevelSlider"
-          [min]="1"
-          [max]="5"
-          [step]="1"
+          min="1"
+          [max]="dataStoreMaxLevel || 5"
+          step="1"
           [value]="selectedMaxLevel"
           [tickInterval]="1"
           style="flex: 1"
           (input)="onMaxLevelChange($event.value)">
         </mat-slider>
+        <span class="caption">{{ selectedMaxLevelCaption }}</span>
       </div>
     </mat-card-content>
   </mat-card>

@@ -13,6 +13,7 @@ import {
 } from '../../component/modal-message/modal-message.component';
 import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 
 export interface MatrixRow {
   Category: string;
@@ -47,6 +48,7 @@ export class MatrixComponent implements OnInit {
   /* eslint-disable */
   constructor(
     private loader: LoaderService,
+    private settings: SettingsService,
     private router: Router,
     public modal: ModalMessageComponent
   ) {}
@@ -92,7 +94,7 @@ export class MatrixComponent implements OnInit {
     this.allDimensionNames = dataStore?.activityStore?.getAllDimensionNames() || [];
 
     this.MATRIX_DATA = this.buildMatrixData(dataStore.activityStore);
-    this.levels = this.buildLevels(dataStore.getLevels());
+    this.levels = this.buildLevels(dataStore.getLevelTitles(this.settings.getMaxLevel())); // eslint-disable-line
     this.filtersTag = this.buildFiltersForTag(dataStore.activityStore.getAllActivities());  // eslint-disable-line
     this.filtersDim = this.buildFiltersForDim(this.MATRIX_DATA);
     this.columnNames = ['Category', 'Dimension'];

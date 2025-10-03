@@ -17,7 +17,7 @@ export class SettingsService {
     return this.dateformat;
   }
 
-  setDateFormat(format: string): void {
+  setDateFormat(format: string | null): void {
     this.dateformat = format;
     this.saveSettings(this.KEY_DATEFORMAT, format);
   }
@@ -29,7 +29,7 @@ export class SettingsService {
     return this.maxLevel;
   }
 
-  setMaxLevel(maxLevel: number): void {
+  setMaxLevel(maxLevel: number | null): void {
     this.maxLevel = maxLevel;
     this.saveSettings(this.KEY_MAX_LEVEL, maxLevel);
   }
