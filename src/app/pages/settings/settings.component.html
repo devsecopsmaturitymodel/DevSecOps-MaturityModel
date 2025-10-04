@@ -7,8 +7,8 @@
         <mat-form-field appearance="fill" style="flex: 1; margin: 0">
           <mat-select
             id="dateFormatDropdown"
-            [(ngModel)]="selectedDateFormat"
             name="dateFormat"
+            [(ngModel)]="selectedDateFormat"
             (ngModelChange)="onDateFormatChange()">
             <mat-option *ngFor="let format of dateFormats" [value]="format.value">
               {{ format.label }}

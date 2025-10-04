@@ -15,6 +15,7 @@ import { DataStore } from 'src/app/model/data-store';
 import { TeamActivityProgress as progressStoreMapping } from 'src/app/model/progress-store';
 import { TeamGroups, TeamName, TeamNames, TeamProgress, Uuid } from 'src/app/model/types';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 import { downloadYamlFile } from 'src/app/util/download';
 import { isEmptyObj, perfNow, dateStr, uniqueCount } from 'src/app/util/util';
 
@@ -40,7 +41,11 @@ export class TeamsComponent implements OnInit, AfterViewInit {
   progressColumnNames: string[] = [];
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
-  constructor(private loader: LoaderService, public modal: ModalMessageComponent) {}
+  constructor(
+    private loader: LoaderService,
+    public settings: SettingsService,
+    public modal: ModalMessageComponent
+  ) {}
 
   ngOnInit(): void {
     console.log(`${perfNow()}: Teams: Loading yamls...`);
@@ -214,6 +219,10 @@ export class TeamsComponent implements OnInit, AfterViewInit {
         current > max ? current : max
       ),
     };
+  }
+
+  dateFormat(date: Date | null | undefined): string {
+    return dateStr(date, this.settings?.getDateFormat());
   }
 }
 

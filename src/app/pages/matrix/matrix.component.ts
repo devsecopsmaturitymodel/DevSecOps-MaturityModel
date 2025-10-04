@@ -23,8 +23,10 @@ export interface MatrixRow {
   level3: Activity[];
   level4: Activity[];
   level5: Activity[];
+  level6: Activity[];
+  level7: Activity[];
 }
-type LevelKey = keyof Pick<MatrixRow, 'level1' | 'level2' | 'level3' | 'level4' | 'level5'>;
+type LevelKey = keyof Pick<MatrixRow, 'level1' | 'level2' | 'level3' | 'level4' | 'level5' | 'level6' | 'level7'>;  // eslint-disable-line
 
 @UntilDestroy()
 @Component({
@@ -139,7 +141,7 @@ export class MatrixComponent implements OnInit {
     let matrixData: MatrixRow[] = [];
     for (let dim of this.allDimensionNames) {
       let matrixRow: Partial<MatrixRow> = {};
-      for (let level = 1; level <= 5; level++) {
+      for (let level = 1; level <= activityStore.getMaxLevel(); level++) {
         let activities: Activity[] = activityStore.getActivities(dim, level);
         let levelLabel: LevelKey = `level${level}` as LevelKey;
         matrixRow[levelLabel] = activities;

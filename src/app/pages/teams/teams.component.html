@@ -28,7 +28,7 @@
           [suffix]="'activities'"></app-kpi>
         <app-kpi
           [title]="'Last updated:'"
-          [value]="dateStr(info[infoTitle]?.lastUpdated)"></app-kpi>
+          [value]="dateFormat(info[infoTitle]?.lastUpdated)"></app-kpi>
       </div>
     </div>
 
@@ -58,7 +58,7 @@
         </th>
         <td mat-cell *matCellDef="let element" class="progress-col">
           <span *ngIf="element?.progress?.[progressColumn]">
-            {{ dateStr(element?.progress?.[progressColumn]) }}
+            {{ dateFormat(element?.progress?.[progressColumn]) }}
           </span>
         </td>
       </ng-container>

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../../service/settings/settings.service';
-import { MatSliderChange } from '@angular/material/slider';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { DataStore } from 'src/app/model/data-store';
 import {
   DialogInfo,
   ModalMessageComponent,
 } from 'src/app/component/modal-message/modal-message.component';
+import { dateStr } from 'src/app/util/util';
 
 @Component({
   selector: 'app-settings',
@@ -18,8 +18,9 @@ export class SettingsComponent implements OnInit {
   selectedMaxLevel!: number;
   selectedMaxLevelCaption: String = '';
 
+  private BROWSER_LOCALE = 'BROWSER';
   dateFormats = [
-    { label: 'Browser default (¤¤¤)', value: 'BROWSER' },
+    { label: 'Browser default', value: this.BROWSER_LOCALE },
     { value: 'en-GB' },
     { value: 'de' },
     { value: 'nl' },
@@ -28,7 +29,7 @@ export class SettingsComponent implements OnInit {
     { value: 'ja' },
     { value: 'hu' },
   ];
-  selectedDateFormat: string = this.dateFormats[0].value;
+  selectedDateFormat: string = this.BROWSER_LOCALE;
 
   constructor(
     private loader: LoaderService,
@@ -44,14 +45,16 @@ export class SettingsComponent implements OnInit {
         this.selectedMaxLevel = this.settingsService.getMaxLevel() || this.dataStoreMaxLevel;
         this.updateMaxLevelCaption();
 
+        this.selectedDateFormat = this.settingsService.getDateFormat() || this.BROWSER_LOCALE;
+
         // Init dates
         let date: Date = new Date();
         date = new Date(date.getFullYear(), 0, 31); // 31 Jan current year
         for (let format of this.dateFormats) {
-          if (format.value === 'BROWSER') {
-            format.label = format.label!.replace('¤¤¤', date.toLocaleDateString());
+          if (format.value === this.BROWSER_LOCALE) {
+            format.label += ` (${dateStr(date)})`;
           } else {
-            if (!format.label) format.label = date.toLocaleDateString(format.value);
+            if (!format.label) format.label = dateStr(date, format.value);
           }
         }
       })
@@ -64,7 +67,8 @@ export class SettingsComponent implements OnInit {
   }
 
   onDateFormatChange(): void {
-    this.settingsService.setDateFormat(this.selectedDateFormat);
+    let value: any = this.selectedDateFormat == 'null' ? null : this.selectedDateFormat;
+    this.settingsService.setDateFormat(value);
   }
 
   onMaxLevelChange(value: number | null): void {

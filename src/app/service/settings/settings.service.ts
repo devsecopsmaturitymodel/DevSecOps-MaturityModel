@@ -44,13 +44,14 @@ export class SettingsService {
 
   getSettings(key: string): any {
     const settings = localStorage.getItem(key);
-    return settings ? JSON.parse(settings) : {};
+    if (settings == null) return null;
+    else return settings ? JSON.parse(settings) : {};
   }
 
   saveSettings(key: string, settings: any): void {
     if (settings == null) {
       localStorage.removeItem(key);
-    } else if (settings instanceof String && settings.trim().length == 0) {
+    } else if (typeof settings == 'string' && settings.trim().length == 0) {
       localStorage.removeItem(key);
     } else if (settings instanceof Array && settings.length == 0) {
       localStorage.removeItem(key);

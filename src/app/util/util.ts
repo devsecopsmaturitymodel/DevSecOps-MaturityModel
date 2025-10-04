@@ -37,9 +37,14 @@ export function uniqueCount(array: any[]): number {
   return set.size;
 }
 
-export function dateStr(date: Date | null | undefined): string {
+export function dateStr(
+  date: Date | null | undefined,
+  locale: string | null | undefined = undefined
+): string {
   if (!date) return '';
-  return date.toLocaleDateString(navigator.language, {
+  if (!locale) locale = navigator.language;
+
+  return date.toLocaleDateString(locale, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',

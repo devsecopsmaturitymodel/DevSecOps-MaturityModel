@@ -63,6 +63,12 @@ export class DataStore {
 
   public getLevelTitles(maxLevel: number | null = null): string[] {
     if (maxLevel == null) maxLevel = this.getMaxLevel();
-    return this.getMetaStrings()?.maturityLevels?.slice(0, maxLevel) || [];
+    let titles: string[] = this.getMetaStrings()?.maturityLevels?.slice(0, maxLevel) || [];
+    if (titles.length < maxLevel) {
+      for (let i = titles.length + 1; i <= maxLevel; i++) {
+        titles.push(`Level ${i}`);
+      }
+    }
+    return titles;
   }
 }

@@ -1,7 +1,6 @@
 // Create mock LoaderService
 import { Data } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
-import { MetaStore } from 'src/app/model/meta-store';
 
 /* eslint-disable */
 const FALLBACK_MOCK_META: any = {
