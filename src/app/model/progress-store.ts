@@ -5,7 +5,7 @@ import {
   TeamName,
   TeamProgress,
   Progress,
-  ProgressDefinition,
+  ProgressDefinitions,
   ProgressTitle,
   TeamProgressFile,
 } from './types';
@@ -24,15 +24,15 @@ export class ProgressStore {
   private _activityMap: ActivityMap = {};
   private _progress: Progress = {};
   private _tempProgress: Progress = {};
-  private _progressDefinition: ProgressDefinition | null = null;
+  private _progressDefinition: ProgressDefinitions | null = null;
   private _progressTitles: ProgressTitle[] | null = null;
   private _progressTitlesDescOrder: ProgressTitle[] | null = null;
 
-  public init(progressDefinition: ProgressDefinition): void {
+  public init(progressDefinition: ProgressDefinitions): void {
     // Sort the progress titles, from most completed, to not started
     this._progressDefinition = progressDefinition;
     this._progressTitles = Object.keys(progressDefinition).sort(
-      (a, b) => progressDefinition[a] - progressDefinition[b]
+      (a, b) => progressDefinition[a].value - progressDefinition[b].value
     );
     this._progressTitlesDescOrder = this._progressTitles.slice().reverse();
   }
@@ -251,10 +251,11 @@ export class ProgressStore {
   private getProgressValue(teamProgress: TeamProgress): number {
     if (!this._progressTitlesDescOrder) return 0;
     if (!teamProgress) return 0;
+    if (!this._progressDefinition) return 0;
 
     for (const progressTitle of this._progressTitlesDescOrder || []) {
-      if (teamProgress[progressTitle] !== undefined && this._progressDefinition) {
-        return this._progressDefinition[progressTitle];
+      if (teamProgress[progressTitle] !== undefined) {
+        return this._progressDefinition[progressTitle].value;
       }
     }
     return 0;

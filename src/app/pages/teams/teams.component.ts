@@ -30,6 +30,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
   canEdit: boolean = false;
   teams: TeamNames = [];
   teamGroups: TeamGroups = {};
+  progressTitleImplemented: string = 'Implemented';
 
   // Info panel showing KPIs for teams and groups
   infoTitle: string = '';
@@ -98,6 +99,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     this.teamGroups = dataStore?.meta?.teamGroups || {};
 
     this.progressColumnNames = this.dataStore?.progressStore?.getInProgressTitles() || [];
+    this.progressTitleImplemented = this.dataStore?.progressStore?.getCompletedProgressTitle() || 'Implemented';
     this.allColumnNames = ['Team', 'Activity', ...this.progressColumnNames];
   }
 

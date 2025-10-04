@@ -1,7 +1,4 @@
 ## Doing
-- Settings: Make settings page
-- Settings: Date format (don't rely just on browser language)
-- Settings: Set Max maturity level (1-5)
 - Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
 
 ## Next
@@ -42,6 +39,7 @@
 - Doc: Update `Development.md`
 - Doc: Update `INSTALL.md`
 ### Misc
+- Refactor ProgressDefinitions to MetaStore to get definitions for 0%, 100% etc
 - Move About Us, last, renaming to About DSOMM
 - Move all getMetaString into MetaStore()
 - Add fallbacks for getMetaString in MetaStore()
@@ -74,6 +72,7 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Settings: Make settings page for Date format and Max maturity level
 - Dependency: Make connecting nodes clickable for navigation
 - Dependency: Handle dependsOn uuid, not just name
 - Matrix: Dependency graph: Render in center of page

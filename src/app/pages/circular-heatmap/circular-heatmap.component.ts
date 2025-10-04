@@ -10,7 +10,7 @@ import {
   DialogInfo,
 } from '../../component/modal-message/modal-message.component';
 import { Activity } from 'src/app/model/activity-store';
-import { Uuid, ProgressDefinition, TeamName, ProgressTitle, TeamGroups } from 'src/app/model/types';
+import { Uuid, ProgressDefinitions, TeamName, ProgressTitle, TeamGroups } from 'src/app/model/types';
 import { SectorService } from '../../service/sector-service';
 import { DataStore } from 'src/app/model/data-store';
 import { Sector } from 'src/app/model/sector';
@@ -98,7 +98,7 @@ export class CircularHeatmapComponent implements OnInit {
           this.filtersTeamGroups = this.buildFilters(Object.keys(this.teamGroups));
           this.filtersTeamGroups[allTeamsGroupName] = true;
 
-          let progressDefinition: ProgressDefinition = dataStore.meta?.progressDefinition || {};
+          let progressDefinition: ProgressDefinitions = dataStore.meta?.progressDefinition || {};
           this.sectorService.init(
             dataStore.progressStore,
             dataStore.meta?.teams || [],

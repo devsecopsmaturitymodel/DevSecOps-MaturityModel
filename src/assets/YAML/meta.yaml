@@ -1,11 +1,19 @@
 ---
 teamProgressFile: 'team-progress-default.yaml' 
 progressDefinition:
-  Backlog: 0%
-  # Planned: 10%
-  Started: 30%
-  Implemented: 100% 
-# progress:
+  Not implemented:
+    value: 0%
+    definition: Activity not started and not planned
+  Backlog:
+    value: 20%
+    definition: Activity has been put in the backlog but not yet started
+  Started:
+    value: 40%
+    definition: Activity has been started and is partly implemented
+  Fully implemented:
+    value: 100%
+    definition: Fully implemented 
+# Alternative progress definition:
 #   Low maturity: 0%
 #   Medium maturity: 40%
 #   High maturity: 100% 
