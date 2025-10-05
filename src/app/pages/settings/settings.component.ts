@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
 import { SettingsService } from '../../service/settings/settings.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { DataStore } from 'src/app/model/data-store';
+import { MetaStore } from 'src/app/model/meta-store';
+import { ProgressDefinitions } from 'src/app/model/types';
 import {
   DialogInfo,
   ModalMessageComponent,
@@ -17,6 +20,9 @@ export class SettingsComponent implements OnInit {
   dataStoreMaxLevel!: number;
   selectedMaxLevel!: number;
   selectedMaxLevelCaption: String = '';
+  progressDefinitionsForm!: FormGroup;
+  progressDefinitions: ProgressDefinitions = {};
+  editingProgressDefinitions: boolean = false;
 
   private BROWSER_LOCALE = 'BROWSER';
   dateFormats = [
@@ -34,8 +40,11 @@ export class SettingsComponent implements OnInit {
   constructor(
     private loader: LoaderService,
     private settingsService: SettingsService,
+    private formBuilder: FormBuilder,
     public modal: ModalMessageComponent
-  ) {}
+  ) {
+    this.initProgressDefinitionsForm();
+  }
 
   ngOnInit(): void {
     this.loader
@@ -44,6 +53,12 @@ export class SettingsComponent implements OnInit {
         this.dataStoreMaxLevel = dataStore.getMaxLevel();
         this.selectedMaxLevel = this.settingsService.getMaxLevel() || this.dataStoreMaxLevel;
         this.updateMaxLevelCaption();
+
+        // Load progress definitions
+        if (dataStore.meta) {
+          this.progressDefinitions = dataStore.meta.progressDefinition;
+          this.updateProgressDefinitionsForm();
+        }
 
         this.selectedDateFormat = this.settingsService.getDateFormat() || this.BROWSER_LOCALE;
 
@@ -89,5 +104,86 @@ export class SettingsComponent implements OnInit {
       if (this.selectedMaxLevel == 1) this.selectedMaxLevelCaption = `Maturity level 1 only`;
       else this.selectedMaxLevelCaption = `Maturity levels 1-${this.selectedMaxLevel} only`;
     }
+  }
+
+  private initProgressDefinitionsForm(): void {
+    this.progressDefinitionsForm = this.formBuilder.group({
+      definitions: this.formBuilder.array([]),
+    });
+  }
+
+  get definitionsFormArray() {
+    return this.progressDefinitionsForm.get('definitions') as FormArray;
+  }
+
+  private updateProgressDefinitionsForm(): void {
+    this.definitionsFormArray.clear();
+
+    Object.entries(this.progressDefinitions).forEach(([key, progDef]) => {
+      this.definitionsFormArray.push(
+        this.formBuilder.group({
+          key: [key],
+          weight: [progDef.weight * 100],
+          definition: [progDef.definition],
+          mandatory: progDef.weight == 1 || progDef.weight == 0,
+        })
+      );
+    });
+  }
+
+  addProgressDefinition(): void {
+    this.definitionsFormArray.push(
+      this.formBuilder.group({
+        key: [''],
+        weight: [0],
+        definition: [''],
+      })
+    );
+  }
+
+  removeProgressDefinition(index: number): void {
+    this.definitionsFormArray.removeAt(index);
+    this.saveProgressDefinitions();
+  }
+
+  saveProgressDefinitions(): void {
+    this.editingProgressDefinitions = false;
+    // const formValue = this.definitionsFormArray.value;
+    // if (formValue) {
+    //   const definitions: ProgressDefinitions = {};
+    //   formValue.forEach((item: { key: string; value: number; definition?: string }) => {
+    //     if (item.key && !isNaN(item.value)) {
+    //       definitions[item.key] = {
+    //         value: item.value / 100,
+    //         definition: item.definition || `Progress level ${item.value}`
+    //       };
+    //     }
+    //   });
+    //   this.progressDefinitions = definitions;
+    //   this.loader.load().then((dataStore: DataStore) => {
+    //     if (dataStore.meta) {
+    //       dataStore.meta.saveProgressDefinition(definitions);
+    //     }
+    //   });
+    // }
+  }
+
+  resetProgressDefinitions(): void {
+    // this.loader.load().then((dataStore: DataStore) => {
+    //   if (dataStore.meta) {
+    //     dataStore.meta.resetProgressDefinition();
+    //     this.progressDefinitions = dataStore.meta.progressDefinition;
+    //     this.updateProgressDefinitionsForm();
+    //   }
+    // });
+    this.editingProgressDefinitions = false;
+  }
+
+  toggleProgressDefinitionsEdit(): void {
+    this.editingProgressDefinitions = !this.editingProgressDefinitions;
+  }
+
+  getFormGroupValue(control: AbstractControl, field: string): any {
+    return (control as FormGroup).get(field)?.value;
   }
 }

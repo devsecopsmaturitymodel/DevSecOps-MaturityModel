@@ -16,11 +16,13 @@ const fallbackMetaStrings: MetaStrings = {
 };
 
 const LOCALSTORAGE_KEY: string = 'meta';
+const PROGRESS_DEFINITIONS_KEY: string = 'progressDefinitions';
 
 export class MetaStore {
   private yamlService: YamlService = new YamlService();
 
   public hasLocalStorage: boolean = false;
+  private defaultProgressDefinition: ProgressDefinitions = {};
 
   checkForDsommUpdates: boolean = false;
   lang: string = 'en';
@@ -43,13 +45,42 @@ export class MetaStore {
         metaData.checkForDsommUpdates || this.checkForDsommUpdates || false;
       this.lang = metaData.lang || this.lang || 'en';
       this.strings = metaData.strings || this.strings || fallbackMetaStrings;
-      this.progressDefinition = metaData.progressDefinition || this.progressDefinition || {};
+      // Store default progress definition
+      if (metaData.progressDefinition) {
+        this.defaultProgressDefinition = { ...metaData.progressDefinition };
+      }
+      // Load custom progress definition if exists, otherwise use default
+      this.loadStoredProgressDefinition();
       this.teamGroups = metaData.teamGroups || this.teamGroups || {};
       this.teams = metaData.teams || this.teams || [];
       this.activityFiles = metaData.activityFiles || this.activityFiles || [];
       this.teamProgressFile = metaData.teamProgressFile || this.teamProgressFile || '';
       if (metaData.allowChangeTeamNameInBrowser !== undefined)
         this.allowChangeTeamNameInBrowser = metaData.allowChangeTeamNameInBrowser;
+    }
+  }
+
+  public saveProgressDefinition(definitions: ProgressDefinitions): void {
+    this.progressDefinition = definitions;
+    localStorage.setItem(PROGRESS_DEFINITIONS_KEY, JSON.stringify(definitions));
+  }
+
+  public resetProgressDefinition(): void {
+    this.progressDefinition = { ...this.defaultProgressDefinition };
+    localStorage.removeItem(PROGRESS_DEFINITIONS_KEY);
+  }
+
+  private loadStoredProgressDefinition(): void {
+    const stored = localStorage.getItem(PROGRESS_DEFINITIONS_KEY);
+    if (stored) {
+      try {
+        this.progressDefinition = JSON.parse(stored);
+      } catch (error) {
+        console.error('Failed to load stored progress definitions:', error);
+        this.progressDefinition = { ...this.defaultProgressDefinition };
+      }
+    } else {
+      this.progressDefinition = { ...this.defaultProgressDefinition };
     }
   }
 

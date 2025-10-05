@@ -12,7 +12,10 @@ import {
 } from 'src/app/component/teams-groups-editor/teams-groups-editor.component';
 import { Activity } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
-import { TeamActivityProgress as progressStoreMapping } from 'src/app/model/progress-store';
+import {
+  ProgressStore,
+  TeamActivityProgress as progressStoreMapping,
+} from 'src/app/model/progress-store';
 import { TeamGroups, TeamName, TeamNames, TeamProgress, Uuid } from 'src/app/model/types';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
@@ -98,8 +101,9 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     this.teams = dataStore?.meta?.teams || [];
     this.teamGroups = dataStore?.meta?.teamGroups || {};
 
-    this.progressColumnNames = this.dataStore?.progressStore?.getInProgressTitles() || [];
-    this.progressTitleImplemented = this.dataStore?.progressStore?.getCompletedProgressTitle() || 'Implemented';
+    let progressStore: ProgressStore | null = this.dataStore?.progressStore;
+    this.progressColumnNames = progressStore?.getInProgressTitles() || [];
+    this.progressTitleImplemented = progressStore?.getCompletedProgressTitle() || 'Implemented';
     this.allColumnNames = ['Team', 'Activity', ...this.progressColumnNames];
   }
 

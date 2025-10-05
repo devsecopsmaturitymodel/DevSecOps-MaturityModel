@@ -150,8 +150,8 @@ export class LoaderService {
 
     for (let state of Object.keys(meta.progressDefinition)) {
       let progressDef = meta.progressDefinition[state];
-      let value: string | number = progressDef.value;
-      
+      let value: string | number = progressDef.weight;
+
       if (typeof value === 'string') {
         let isPercentage: boolean = (value as string).includes('%');
         value = parseFloat(value);
@@ -162,11 +162,11 @@ export class LoaderService {
           errors.push(`The progress value for '${state}' must be between 0% and 100%`);
           continue;
         }
-        progressDef.value = value;
+        progressDef.weight = value;
       }
     }
 
-    const values = Object.values(meta.progressDefinition).map(def => def.value);
+    const values = Object.values(meta.progressDefinition).map(def => def.weight);
     if (Math.min(...values) !== 0) {
       errors.push(`The meta.progressDefinition must specify a name for 0% completed`);
     }

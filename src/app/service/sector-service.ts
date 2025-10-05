@@ -29,7 +29,7 @@ export class SectorService {
     this.allProgress = progress;
     this.progressValues = progressStates;
     this.progressStates = Object.keys(progressStates).sort(
-      (a, b) => progressStates[b].value - progressStates[a].value
+      (a, b) => progressStates[b].weight - progressStates[a].weight
     );
   }
 

@@ -10,7 +10,13 @@ import {
   DialogInfo,
 } from '../../component/modal-message/modal-message.component';
 import { Activity } from 'src/app/model/activity-store';
-import { Uuid, ProgressDefinitions, TeamName, ProgressTitle, TeamGroups } from 'src/app/model/types';
+import {
+  Uuid,
+  ProgressDefinitions,
+  TeamName,
+  ProgressTitle,
+  TeamGroups,
+} from 'src/app/model/types';
 import { SectorService } from '../../service/sector-service';
 import { DataStore } from 'src/app/model/data-store';
 import { Sector } from 'src/app/model/sector';

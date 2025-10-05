@@ -32,7 +32,7 @@ export class ProgressStore {
     // Sort the progress titles, from most completed, to not started
     this._progressDefinition = progressDefinition;
     this._progressTitles = Object.keys(progressDefinition).sort(
-      (a, b) => progressDefinition[a].value - progressDefinition[b].value
+      (a, b) => progressDefinition[a].weight - progressDefinition[b].weight
     );
     this._progressTitlesDescOrder = this._progressTitles.slice().reverse();
   }
@@ -255,7 +255,7 @@ export class ProgressStore {
 
     for (const progressTitle of this._progressTitlesDescOrder || []) {
       if (teamProgress[progressTitle] !== undefined) {
-        return this._progressDefinition[progressTitle].value;
+        return this._progressDefinition[progressTitle].weight;
       }
     }
     return 0;

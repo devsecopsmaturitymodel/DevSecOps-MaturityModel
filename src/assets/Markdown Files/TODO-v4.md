@@ -1,5 +1,14 @@
 ## Doing
 - Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
+  - List
+  - UI: Toggle: edit / view
+  - UI: 0% and 100%: No delete, no edit Weight
+  - UI: Edit
+  - 
+  - UI: Add
+  - UI: Delete
+  - Save / Accept
+  - Revert
 
 ## Next
 
