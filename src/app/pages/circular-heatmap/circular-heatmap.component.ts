@@ -261,7 +261,7 @@ export class CircularHeatmapComponent implements OnInit {
       left: marginAll,
     };
     var bbWidth = imageWidth - Math.max(margin.left + margin.right, margin.top + margin.bottom) * 2; // bounding box
-    var segmentLabelHeight = bbWidth * 0.0155; // Fuzzy number, to match the longest label within one sector
+    var segmentLabelHeight = bbWidth * 0.0166; // Magic fudge number. to match the longest label within one sector
     var outerRadius = bbWidth / 2 - segmentLabelHeight;
     var innerRadius = outerRadius / (maxLevel + 1);
     var segmentHeight = (outerRadius - innerRadius) / maxLevel;
