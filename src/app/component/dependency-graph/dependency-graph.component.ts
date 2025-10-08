@@ -171,7 +171,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   }
 
   generateGraph(): void {
-    let svg = d3.select('svg');
+    let svg = d3.select('svg.dependency-graph');
     svg.selectAll('*').remove();
 
     // Now that rectWidth is set on each node, set up the simulation
