@@ -87,7 +87,10 @@
               <ng-container [formGroup]="getDefinitionGroup(i)">
                 <mat-form-field appearance="outline" class="grid-cell progress-key edit">
                   <mat-label>Name</mat-label>
-                  <input matInput formControlName="key" />
+                  <input
+                    matInput
+                    required minlength="1"
+                    formControlName="key" />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="grid-cell progress-score edit">
@@ -95,6 +98,8 @@
                   <input
                     matInput
                     type="number"
+                    min="0"
+                    max="100"
                     class="progress-score"
                     formControlName="score"
                     [disabled]="getDefinitionGroup(i).get('mandatory')?.value" />
@@ -105,6 +110,7 @@
                   <mat-label>Definition</mat-label>
                   <textarea
                     matInput
+                    required minlength="1"
                     formControlName="definition"
                     cdkTextareaAutosize
                     cdkAutosizeMinRows="1"

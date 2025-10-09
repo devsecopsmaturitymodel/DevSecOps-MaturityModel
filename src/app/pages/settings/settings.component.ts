@@ -166,35 +166,40 @@ export class SettingsComponent implements OnInit {
   }
 
   saveProgressDefinitions(): void {
+    if (this.progressDefinitionsForm.invalid) {
+      this.progressDefinitionsForm.markAllAsTouched();
+      
+      this.modal.openDialog(new DialogInfo(
+        'All definitions must have a name, and the score must be between 0% and 100%'
+      ));
+      
+      return; // Exit early if form is invalid
+    }
+
+    // Build new progress definitions from form data
+    const newProgressDefinitions: ProgressDefinitions = {};
+    
+    this.definitionsFormArray.controls.forEach((control) => {
+      const formGroup = control as FormGroup;
+      const key = formGroup.get('key')?.value;
+      const score = formGroup.get('score')?.value / 100; // Convert from percentage back to decimal
+      const definition = formGroup.get('definition')?.value;
+      
+      if (key && key.trim()) { // Only add if key is not empty
+        newProgressDefinitions[key] = {
+          score: score,
+          definition: definition
+        };
+      }
+    });
+
+    // Sort the definitions by score in ascending order
+    this.tempProgressDefinitions = this.sortObjectByScore(newProgressDefinitions);
     this.editingProgressDefinitions = false;
-    // const formValue = this.definitionsFormArray.value;
-    // if (formValue) {
-    //   const definitions: ProgressDefinitions = {};
-    //   formValue.forEach((item: { key: string; value: number; definition?: string }) => {
-    //     if (item.key && !isNaN(item.value)) {
-    //       definitions[item.key] = {
-    //         value: item.value / 100,
-    //         definition: item.definition || `Progress level ${item.value}`
-    //       };
-    //     }
-    //   });
-    //   this.progressDefinitions = definitions;
-    //   this.loader.load().then((dataStore: DataStore) => {
-    //     if (dataStore.meta) {
-    //       dataStore.meta.saveProgressDefinition(definitions);
-    //     }
-    //   });
-    // }
+    this.updateProgressDefinitionsForm();
   }
 
   resetProgressDefinitions(): void {
-    // this.loader.load().then((dataStore: DataStore) => {
-    //   if (dataStore.meta) {
-    //     dataStore.meta.resetProgressDefinition();
-    //     this.progressDefinitions = dataStore.meta.progressDefinition;
-    //     this.updateProgressDefinitionsForm();
-    //   }
-    // });
     this.tempProgressDefinitions = deepCopy(this.meta.progressDefinition);
     this.editingProgressDefinitions = false;
     this.updateProgressDefinitionsForm();
@@ -206,5 +211,17 @@ export class SettingsComponent implements OnInit {
 
   getFormGroupValue(control: AbstractControl, field: string): any {
     return (control as FormGroup).get(field)?.value;
+  }
+
+  /**
+   * Sorts an object by the 'score' attribute of its values and returns a new object with the sorted order
+   * @param obj The object to sort (where values have a 'score' property)
+   * @returns A new object with entries sorted by score in ascending order
+   */
+  sortObjectByScore<T extends { score: number }>(obj: { [key: string]: T }): { [key: string]: T } {
+    const sortedEntries = Object.entries(obj).sort(([, a], [, b]) => a.score - b.score);
+    
+    // Convert back to object
+    return Object.fromEntries(sortedEntries);
   }
 }
