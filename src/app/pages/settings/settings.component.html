@@ -61,7 +61,7 @@
         </span>
       </div>
 
-      <div class="progress-definitions-grid">
+      <div class="progress-definitions-grid" [formGroup]="progressDefinitionsForm">
         <ng-container
           *ngIf="
             editingProgressDefinitions;
@@ -82,48 +82,53 @@
           </ng-container>
         </ng-template>
         <ng-template #editProgress>
-          <ng-container *ngFor="let definition of definitionsFormArray.controls; let i = index">
-            <mat-form-field appearance="outline" class="grid-cell progress-key edit">
-              <mat-label>Name</mat-label>
-              <input matInput [value]="getFormGroupValue(definition, 'key')" />
-            </mat-form-field>
+          <ng-container formArrayName="definitions">
+            <ng-container *ngFor="let definition of definitionsFormArray.controls; let i = index">
+              <ng-container [formGroup]="getDefinitionGroup(i)">
+                <mat-form-field appearance="outline" class="grid-cell progress-key edit">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="key" />
+                </mat-form-field>
 
-            <mat-form-field appearance="outline" class="grid-cell progress-score edit">
-              <mat-label>Score</mat-label>
-              <input
-                matInput
-                class="progress-score"
-                [value]="getFormGroupValue(definition, 'score')"
-                [disabled]="getFormGroupValue(definition, 'mandatory')" />
-              <span matSuffix>%</span>
-            </mat-form-field>
+                <mat-form-field appearance="outline" class="grid-cell progress-score edit">
+                  <mat-label>Score</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    class="progress-score"
+                    formControlName="score"
+                    [disabled]="getDefinitionGroup(i).get('mandatory')?.value" />
+                  <span matSuffix>%</span>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline" class="grid-cell progress-definition edit">
-              <mat-label>Definition</mat-label>
-              <textarea
-                matInput
-                cdkTextareaAutosize
-                cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5"
-                [value]="getFormGroupValue(definition, 'definition')"></textarea>
-            </mat-form-field>
+                <mat-form-field appearance="outline" class="grid-cell progress-definition edit">
+                  <mat-label>Definition</mat-label>
+                  <textarea
+                    matInput
+                    formControlName="definition"
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
 
-            <div class="grid-cell action-buttons edit">
-              <mat-icon
-                title="You cannot remove this definition"
-                *ngIf="definition.get('mandatory')?.value"
-                class="material-icons-outlined mandatory-icon"
-                >lock</mat-icon
-              >
-              <button
-                title="Delete"
-                *ngIf="!definition.get('mandatory')?.value"
-                mat-icon-button
-                (click)="removeProgressDefinition(i)"
-                title="Delete definition">
-                <mat-icon class="material-icons-outlined">delete</mat-icon>
-              </button>
-            </div>
+                <div class="grid-cell action-buttons edit">
+                  <mat-icon
+                    title="You cannot remove this definition"
+                    *ngIf="getDefinitionGroup(i).get('mandatory')?.value"
+                    class="material-icons-outlined mandatory-icon"
+                    >lock</mat-icon
+                  >
+                  <button
+                    title="Delete"
+                    *ngIf="!getDefinitionGroup(i).get('mandatory')?.value"
+                    mat-icon-button
+                    (click)="removeProgressDefinition(i)"
+                    title="Delete definition">
+                    <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </ng-container>
           </ng-container>
         </ng-template>
       </div>

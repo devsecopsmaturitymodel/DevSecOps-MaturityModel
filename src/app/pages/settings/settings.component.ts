@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/for
 import { SettingsService } from '../../service/settings/settings.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { DataStore } from 'src/app/model/data-store';
-import { MetaStore } from 'src/app/model/meta-store';
 import { ProgressDefinitions } from 'src/app/model/types';
 import {
   DialogInfo,
   ModalMessageComponent,
 } from 'src/app/component/modal-message/modal-message.component';
-import { dateStr } from 'src/app/util/util';
+import { dateStr, deepCopy } from 'src/app/util/util';
+import { MetaStore } from 'src/app/model/meta-store';
 
 @Component({
   selector: 'app-settings',
@@ -17,11 +17,12 @@ import { dateStr } from 'src/app/util/util';
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit {
+  meta!: MetaStore;
   dataStoreMaxLevel!: number;
   selectedMaxLevel!: number;
   selectedMaxLevelCaption: String = '';
   progressDefinitionsForm!: FormGroup;
-  progressDefinitions: ProgressDefinitions = {};
+  tempProgressDefinitions: ProgressDefinitions = {};
   editingProgressDefinitions: boolean = false;
 
   private BROWSER_LOCALE = 'BROWSER';
@@ -42,36 +43,16 @@ export class SettingsComponent implements OnInit {
     private settingsService: SettingsService,
     private formBuilder: FormBuilder,
     public modal: ModalMessageComponent
-  ) {
-    this.initProgressDefinitionsForm();
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.initialize();
+    this.initProgressDefinitionsForm();
     this.loader
       .load()
       .then((dataStore: DataStore) => {
-        this.dataStoreMaxLevel = dataStore.getMaxLevel();
-        this.selectedMaxLevel = this.settingsService.getMaxLevel() || this.dataStoreMaxLevel;
-        this.updateMaxLevelCaption();
-
-        // Load progress definitions
-        if (dataStore.meta) {
-          this.progressDefinitions = dataStore.meta.progressDefinition;
-          this.updateProgressDefinitionsForm();
-        }
-
-        this.selectedDateFormat = this.settingsService.getDateFormat() || this.BROWSER_LOCALE;
-
-        // Init dates
-        let date: Date = new Date();
-        date = new Date(date.getFullYear(), 0, 31); // 31 Jan current year
-        for (let format of this.dateFormats) {
-          if (format.value === this.BROWSER_LOCALE) {
-            format.label += ` (${dateStr(date)})`;
-          } else {
-            if (!format.label) format.label = dateStr(date, format.value);
-          }
-        }
+        this.setYamlData(dataStore);
+        this.updateProgressDefinitionsForm();
       })
       .catch(err => {
         this.modal.openDialog(new DialogInfo(err.message, 'An error occurred'));
@@ -79,6 +60,33 @@ export class SettingsComponent implements OnInit {
           console.warn(err);
         }
       });
+  }
+
+  initialize(): void {
+    this.selectedDateFormat = this.settingsService.getDateFormat() || this.BROWSER_LOCALE;
+
+    // Init dates
+    let date: Date = new Date();
+    date = new Date(date.getFullYear(), 0, 31); // 31 Jan current year
+    for (let format of this.dateFormats) {
+      if (format.value === this.BROWSER_LOCALE) {
+        format.label += ` (${dateStr(date)})`;
+      } else {
+        if (!format.label) format.label = dateStr(date, format.value);
+      }
+    }
+  }
+
+  setYamlData(dataStore: DataStore): void {
+    this.dataStoreMaxLevel = dataStore.getMaxLevel();
+    this.selectedMaxLevel = this.settingsService.getMaxLevel() || this.dataStoreMaxLevel;
+    this.updateMaxLevelCaption();
+
+    // Load progress definitions
+    if (dataStore.meta) {
+      this.meta = dataStore.meta;
+      this.tempProgressDefinitions = deepCopy(this.meta.progressDefinition);
+    }
   }
 
   onDateFormatChange(): void {
@@ -97,6 +105,7 @@ export class SettingsComponent implements OnInit {
     this.updateMaxLevelCaption();
   }
 
+  // === Max Level ===
   updateMaxLevelCaption(): void {
     if (this.selectedMaxLevel == this.dataStoreMaxLevel) {
       this.selectedMaxLevelCaption = 'All maturity levels';
@@ -106,20 +115,26 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  // === Progress Definitions ===
   private initProgressDefinitionsForm(): void {
     this.progressDefinitionsForm = this.formBuilder.group({
       definitions: this.formBuilder.array([]),
     });
   }
 
-  get definitionsFormArray() {
+  get definitionsFormArray(): FormArray {
     return this.progressDefinitionsForm.get('definitions') as FormArray;
+  }
+
+  // Return the FormGroup for a specific index in the definitions FormArray.
+  getDefinitionGroup(index: number): FormGroup {
+    return this.definitionsFormArray.at(index) as FormGroup;
   }
 
   private updateProgressDefinitionsForm(): void {
     this.definitionsFormArray.clear();
 
-    Object.entries(this.progressDefinitions).forEach(([key, progDef]) => {
+    Object.entries(this.tempProgressDefinitions).forEach(([key, progDef]) => {
       this.definitionsFormArray.push(
         this.formBuilder.group({
           key: [key],
@@ -132,10 +147,15 @@ export class SettingsComponent implements OnInit {
   }
 
   addProgressDefinition(): void {
-    this.definitionsFormArray.push(
+    let index: number = this.definitionsFormArray.length - 1;
+    let score: number = this.getFormGroupValue(this.definitionsFormArray.at(index - 1), 'score');
+    score = Math.trunc((score + 100) / 2);
+
+    this.definitionsFormArray.insert(
+      index,
       this.formBuilder.group({
         key: [''],
-        score: [0],
+        score: [score],
         definition: [''],
       })
     );
@@ -143,7 +163,6 @@ export class SettingsComponent implements OnInit {
 
   removeProgressDefinition(index: number): void {
     this.definitionsFormArray.removeAt(index);
-    this.saveProgressDefinitions();
   }
 
   saveProgressDefinitions(): void {
@@ -176,7 +195,9 @@ export class SettingsComponent implements OnInit {
     //     this.updateProgressDefinitionsForm();
     //   }
     // });
+    this.tempProgressDefinitions = deepCopy(this.meta.progressDefinition);
     this.editingProgressDefinitions = false;
+    this.updateProgressDefinitionsForm();
   }
 
   toggleProgressDefinitionsEdit(): void {
