@@ -16,7 +16,8 @@
           <b>UUID</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p id="uuid" [innerHTML]="currentActivity.uuid"></p>
+      <p id="uuid">uuid: <span [innerHTML]="currentActivity.uuid"></span></p>
+      <p id="level">Level: <span [innerHTML]="currentActivity.level"></span></p>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="currentActivity.description?.hasContent()">

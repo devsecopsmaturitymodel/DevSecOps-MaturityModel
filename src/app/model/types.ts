@@ -6,7 +6,7 @@ export interface TeamProgressFile {
 }
 
 export interface ProgressDefinition {
-  weight: number;
+  score: number;
   definition: string;
 }
 

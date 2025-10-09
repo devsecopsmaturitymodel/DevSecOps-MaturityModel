@@ -4,13 +4,27 @@
   - UI: Toggle: edit / view
   - UI: 0% and 100%: No delete, no edit Weight
   - UI: Edit
-  - 
+
   - UI: Add
   - UI: Delete
   - Save / Accept
   - Revert
 
+- Settings: Proper text under Progress
+
 ## Next
+- Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
+- Heatmap: Add a "pinching" of heat map colors, to differenciate 0.00 an 0.01
+- Matrix: Search (incl descr search), based on Mapping
+- Reorder menu
+
+### Align DSOMM-data and DSOMM
+- DSOMM-data: Sort linear list of activities (sorted by dim, level)
+- DSOMM-data: Update generated filename and data structure to adhere to this new DSOMM standard
+- DSOMM-data: Include version number in generated yaml file
+- DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, if missing locally
+- DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, to check for any new releases
+
 
 ## ToDo
 ### Settings
@@ -22,17 +36,14 @@
 ### Matrix
 - Matrix: Add a Close/Back button
 - Matrix: Remember filters when returning to matrix page
-- Matrix: Search (incl descr search), based on Mapping
 - Matrix: Filter on Usefulness, and Difficulties
 ### Teams
 - Teams: Allow user to re-order teams and groups
 - Teams: Bug: Editing name, pushes the item last
 - Teams: Allow editing dates for progress stages
 ### Heatmap:
-- Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
 - Heatmap: Fix: asterisk marks when modified
   - ViewController needs to know about changes vs temp storage
-- Heatmap: Bug: Clicking on grey sector leaves cursor on that sector
 - Heatmap: Bug: Selecting a team group does not always get deselected when flipping teams
 - Heatmap: meta-yaml: If progress definition is missing, default to 0% + 100% 
 - Heatmap: Revert to boolean checkboxes, if definition is only 0% and 100%
@@ -52,17 +63,10 @@
 - Move About Us, last, renaming to About DSOMM
 - Move all getMetaString into MetaStore()
 - Add fallbacks for getMetaString in MetaStore()
-- Fix dependsOn that is uuid (e.g. 83057028-0b77-4d2e-8135-40969768ae88)
 - Refactor: Labels for knowledge, time, resources, and usefulness (used by both Matrix and Heatmap)
 - Move META_FILE constant from data service to main app
 - Check if loader can be optimized by load in yaml in parallel
-- Proxy Grafana Faro data: https://grafana.com/docs/grafana-cloud/monitor-applications/frontend-observability/instrument/data-proxy/  
 
-## Align DSOMM-data and DSOMM
-- DSOMM-data: Sort linear list of activities (sorted by dim, level)
-- DSOMM-data: Update generated filename and data structure to adhere to this new DSOMM standard
-- DSOMM-data: Include version number in generated yaml file
-- DSOMM: Read latest "generated.yaml" from DSOMM-data's github repo, to check for any new releases
 
 # Later
 - App: Search activities, across title description etc
@@ -81,6 +85,7 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Fix dependsOn that is uuid (e.g. 83057028-0b77-4d2e-8135-40969768ae88)
 - Settings: Make settings page for Date format and Max maturity level
 - Dependency: Make connecting nodes clickable for navigation
 - Dependency: Handle dependsOn uuid, not just name

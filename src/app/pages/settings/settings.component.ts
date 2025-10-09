@@ -123,9 +123,9 @@ export class SettingsComponent implements OnInit {
       this.definitionsFormArray.push(
         this.formBuilder.group({
           key: [key],
-          weight: [progDef.weight * 100],
+          score: [progDef.score * 100],
           definition: [progDef.definition],
-          mandatory: progDef.weight == 1 || progDef.weight == 0,
+          mandatory: progDef.score == 1 || progDef.score == 0,
         })
       );
     });
@@ -135,7 +135,7 @@ export class SettingsComponent implements OnInit {
     this.definitionsFormArray.push(
       this.formBuilder.group({
         key: [''],
-        weight: [0],
+        score: [0],
         definition: [''],
       })
     );
