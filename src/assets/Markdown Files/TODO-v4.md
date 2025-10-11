@@ -20,7 +20,6 @@
 - Teams: Bug: Editing name, pushes the item last
 - Teams: Allow editing dates for progress stages
 ### Heatmap:
-- Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
 - Heatmap: Fix: asterisk marks when modified
   - ViewController needs to know about changes vs temp storage
 - Heatmap: Bug: Clicking on grey sector leaves cursor on that sector
@@ -69,6 +68,7 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
 - Dependency: Make connecting nodes clickable for navigation
 - Dependency: Handle dependsOn uuid, not just name
 - Matrix: Dependency graph: Render in center of page

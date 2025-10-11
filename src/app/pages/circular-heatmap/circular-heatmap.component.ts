@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { equalArray } from 'src/app/util/util';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { MatChip } from '@angular/material/chips';
+import { Subject } from 'rxjs';
+import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import * as md from 'markdown-it';
 import {
   ModalMessageComponent,
@@ -22,7 +25,7 @@ import { ThemeService } from '../../service/theme.service';
   templateUrl: './circular-heatmap.component.html',
   styleUrls: ['./circular-heatmap.component.css'],
 })
-export class CircularHeatmapComponent implements OnInit {
+export class CircularHeatmapComponent implements OnInit, OnDestroy {
   Routing: string = '/activity-description';
   markdown: md = md();
   maxLevelOfMaturity: number = -1;
@@ -52,10 +55,15 @@ export class CircularHeatmapComponent implements OnInit {
   theme: string;
   theme_colors!: Record<string, string>;
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     private loader: LoaderService,
     private sectorService: SectorService,
     private themeService: ThemeService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location,
     public modal: ModalMessageComponent
   ) {
     this.theme = this.themeService.getTheme();
@@ -110,6 +118,9 @@ export class CircularHeatmapComponent implements OnInit {
           // For now, just draw the sectors (no activities yet)
           this.loadCircularHeatMap('#chart', this.allSectors, this.dimensionLabels, this.maxLevel);
           console.log(`${perfNow()}: Page loaded: Circular Heatmap`);
+
+          // Check if there's a URL fragment and open the corresponding activity
+          this.checkUrlFragmentForActivity();
         })
         .catch(err => {
           this.displayMessage(new DialogInfo(err.message, 'An error occurred'));
@@ -119,7 +130,7 @@ export class CircularHeatmapComponent implements OnInit {
         });
     });
     // Reactively handle theme changes (if user toggles later)
-    this.themeService.theme$.subscribe((theme: string) => {
+    this.themeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme: string) => {
       const css = getComputedStyle(document.body);
       this.theme_colors = {
         background: css.getPropertyValue('--heatmap-background').trim(),
@@ -131,6 +142,22 @@ export class CircularHeatmapComponent implements OnInit {
 
       this.reColorHeatmap(); // repaint segments with new theme
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  checkUrlFragmentForActivity() {
+    // Check if there's a URL fragment that might be an activity UUID
+    this.route.fragment
+      .pipe(takeUntil(this.destroy$), distinctUntilChanged())
+      .subscribe(fragment => {
+        if (fragment && this.dataStore) {
+          this.navigateToActivityByUuid(fragment);
+        }
+      });
   }
 
   displayMessage(dialogInfo: DialogInfo) {
@@ -235,6 +262,14 @@ export class CircularHeatmapComponent implements OnInit {
 
   getSectorProgress(sector: Sector): number {
     return this.sectorService.getSectorProgress(sector.activities);
+  }
+
+  onDependencyClicked(activityName: string) {
+    console.log(`${perfNow()}: Heat: Dependency clicked: '${activityName}'`);
+    const activity = this.dataStore?.activityStore?.getActivityByName(activityName);
+    if (activity?.uuid) {
+      this.navigateToActivityByUuid(activity.uuid);
+    }
   }
 
   loadCircularHeatMap(
@@ -540,38 +575,71 @@ export class CircularHeatmapComponent implements OnInit {
     console.log(`${perfNow()}: Heat: Card Panel closed: '${activity.name}'`);
   }
 
-  openActivityDetails(dimension: string, activityName: string) {
+  openActivityDetails(uuid: string) {
     // Find the activity in the selected sector
-    console.log(`${perfNow()}: Heat: Open Overlay: '${activityName}'`);
-    if (!this.dataStore) {
-      console.error(`Data store is not initialized. Cannot open activity ${activityName}`);
+    if (!this.dataStore || !this.dataStore.activityStore) {
+      console.error(`Data store is not initialized. Cannot open activity ${uuid}`);
       return;
     }
     if (!this.showActivityCard || !this.showActivityCard.activities) {
       this.showOverlay = true;
       return;
     }
-    const activity = this.showActivityCard.activities.find(
-      (a: any) => a.activityName === activityName || a.name === activityName
-    );
+
+    const activity: Activity = this.dataStore.activityStore.getActivityByUuid(uuid);
     if (!activity) {
       this.showOverlay = true;
       return;
     }
+
     // Prepare navigationExtras and details
     /* eslint-disable */
+    console.log(`${perfNow()}: Heat: Open Overlay: '${activity.name}'`);
     this.showActivityDetails = activity;
     this.KnowledgeLabel = this.dataStore.getMetaString('knowledgeLabels', activity.difficultyOfImplementation.knowledge);
     this.TimeLabel = this.dataStore.getMetaString('labels', activity.difficultyOfImplementation.time);
     this.ResourceLabel = this.dataStore.getMetaString('labels', activity.difficultyOfImplementation.resources);
     this.UsefulnessLabel = this.dataStore.getMetaString('labels', activity.usefulness);
     this.showOverlay = true;
+
+    // Update URL with activity UUID as fragment
+    if (activity.uuid) {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        fragment: activity.uuid,
+        queryParamsHandling: 'preserve'
+      });      
+    }
     /* eslint-enable */
   }
 
+  navigateToActivityByUuid(uuid: string) {
+    console.log(`${perfNow()}: Heat: Attempting to open activity with UUID: ${uuid}`);
+    if (!this.dataStore || !this.dataStore.activityStore) {
+      console.error('Data store is not initialized. Cannot open activity by UUID');
+      return;
+    }
+    const activity: Activity = this.dataStore.activityStore.getActivityByUuid(uuid);
+    const sector = this.allSectors.find(s => s.activities.some(a => a.uuid === uuid));
+    if (activity && sector) {
+      this.selectedSector = sector;
+      this.showActivityCard = sector;
+      this.openActivityDetails(activity.uuid);
+    } else {
+      // Only close the overlay, do not update the URL
+      this.showOverlay = false;
+      console.warn(`Heat: Activity with UUID ${uuid} not found.`);
+    }
+  }
+
   closeOverlay() {
+    // Clear the URL fragment when closing overlay
+    this.router.navigate([], {
+      relativeTo: this.route,
+      fragment: undefined,
+      queryParamsHandling: 'preserve',
+    });
     this.showOverlay = false;
-    // console.log(`${perfNow()}: Heat: Close Overlay:  '${this.old_activityDetails.name}'`);
   }
 
   toggleFilters() {
