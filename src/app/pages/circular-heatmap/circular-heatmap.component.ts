@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { equalArray } from 'src/app/util/util';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatChip } from '@angular/material/chips';
+import { Subject } from 'rxjs';
+import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import * as md from 'markdown-it';
 import {
   ModalMessageComponent,
@@ -23,7 +25,7 @@ import { ThemeService } from '../../service/theme.service';
   templateUrl: './circular-heatmap.component.html',
   styleUrls: ['./circular-heatmap.component.css'],
 })
-export class CircularHeatmapComponent implements OnInit {
+export class CircularHeatmapComponent implements OnInit, OnDestroy {
   Routing: string = '/activity-description';
   markdown: md = md();
   maxLevelOfMaturity: number = -1;
@@ -52,6 +54,8 @@ export class CircularHeatmapComponent implements OnInit {
   selectedSector: Sector | null = null;
   theme: string;
   theme_colors!: Record<string, string>;
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private loader: LoaderService,
@@ -126,7 +130,7 @@ export class CircularHeatmapComponent implements OnInit {
         });
     });
     // Reactively handle theme changes (if user toggles later)
-    this.themeService.theme$.subscribe((theme: string) => {
+    this.themeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme: string) => {
       const css = getComputedStyle(document.body);
       this.theme_colors = {
         background: css.getPropertyValue('--heatmap-background').trim(),
@@ -140,13 +144,20 @@ export class CircularHeatmapComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   checkUrlFragmentForActivity() {
     // Check if there's a URL fragment that might be an activity UUID
-    this.route.fragment.subscribe(fragment => {
-      if (fragment && this.dataStore) {
-        this.navigateToActivityByUuid(fragment);
-      }
-    });
+    this.route.fragment
+      .pipe(takeUntil(this.destroy$), distinctUntilChanged())
+      .subscribe(fragment => {
+        if (fragment && this.dataStore) {
+          this.navigateToActivityByUuid(fragment);
+        }
+      });
   }
 
   displayMessage(dialogInfo: DialogInfo) {
@@ -623,7 +634,11 @@ export class CircularHeatmapComponent implements OnInit {
 
   closeOverlay() {
     // Clear the URL fragment when closing overlay
-    this.router.navigate([], { relativeTo: this.route, fragment: undefined, queryParamsHandling: 'preserve' });
+    this.router.navigate([], {
+      relativeTo: this.route,
+      fragment: undefined,
+      queryParamsHandling: 'preserve',
+    });
     this.showOverlay = false;
   }
 
