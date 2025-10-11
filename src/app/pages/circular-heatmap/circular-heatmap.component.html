@@ -106,7 +106,9 @@
                     <b>Dependencies</b>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <app-dependency-graph [activityName]="showActivityDetails?.name || ''">
+                <app-dependency-graph
+                  [activityName]="showActivityDetails?.name || ''"
+                  (activityClicked)="onDependencyClicked($event)">
                 </app-dependency-graph>
               </mat-expansion-panel>
 
@@ -248,9 +250,7 @@
               (closed)="onPanelClosed(activity)">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  <button
-                    class="title-button"
-                    (click)="openActivityDetails(showActivityCard.dimension, activity['name'])">
+                  <button class="title-button" (click)="openActivityDetails(activity['uuid'])">
                     {{ activity['name'] }}
                   </button>
                 </mat-panel-title>
