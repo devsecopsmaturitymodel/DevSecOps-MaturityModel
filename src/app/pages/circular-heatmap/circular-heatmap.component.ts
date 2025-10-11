@@ -593,8 +593,11 @@ export class CircularHeatmapComponent implements OnInit {
 
     // Update URL with activity UUID as fragment
     if (activity.uuid) {
-      const url = this.router.createUrlTree([], { fragment: activity.uuid }).toString();
-      this.location.go(url);
+      this.router.navigate([], {
+        relativeTo: this.route,
+        fragment: activity.uuid,
+        queryParamsHandling: 'preserve'
+      });      
     }
     /* eslint-enable */
   }
@@ -619,10 +622,9 @@ export class CircularHeatmapComponent implements OnInit {
   }
 
   closeOverlay() {
-    this.showOverlay = false;
     // Clear the URL fragment when closing overlay
-    const url = this.router.createUrlTree([]).toString();
-    this.location.go(url);
+    this.router.navigate([], { relativeTo: this.route, fragment: undefined, queryParamsHandling: 'preserve' });
+    this.showOverlay = false;
   }
 
   toggleFilters() {
