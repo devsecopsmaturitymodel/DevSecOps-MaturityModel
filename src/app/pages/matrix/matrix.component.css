@@ -53,6 +53,18 @@
   color: inherit;
 }
 
+.mat-cell .dim-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+}
+.mat-cell .dim-icon mat-icon {
+  font-size: 45px;
+  width: 45px;
+  height: 45px;
+}
+
 .table-small-width {
   width: 5%;
   max-width: 9%;
