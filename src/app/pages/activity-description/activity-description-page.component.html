@@ -1,0 +1,16 @@
+<div class="page-container">
+  <div *ngIf="isLoading" class="loading-container">
+    <p>Loading activity...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-container">
+    <p>⚠️ {{ errorMessage }}</p>
+  </div>
+
+  <app-activity-description
+    *ngIf="currentActivity && !isLoading && !errorMessage"
+    [activity]="currentActivity"
+    [showCloseButton]="false"
+    (activityClicked)="onActivityClicked($event)">
+  </app-activity-description>
+</div>

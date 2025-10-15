@@ -34,10 +34,6 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   showActivityCard: any = null;
 
   showActivityDetails: Activity | null = null;
-  TimeLabel: string = '';
-  KnowledgeLabel: string = '';
-  ResourceLabel: string = '';
-  UsefulnessLabel: string = '';
 
   dataStore: DataStore | null = null;
 
@@ -596,10 +592,6 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     /* eslint-disable */
     console.log(`${perfNow()}: Heat: Open Overlay: '${activity.name}'`);
     this.showActivityDetails = activity;
-    this.KnowledgeLabel = this.dataStore.getMetaString('knowledgeLabels', activity.difficultyOfImplementation.knowledge);
-    this.TimeLabel = this.dataStore.getMetaString('labels', activity.difficultyOfImplementation.time);
-    this.ResourceLabel = this.dataStore.getMetaString('labels', activity.difficultyOfImplementation.resources);
-    this.UsefulnessLabel = this.dataStore.getMetaString('labels', activity.usefulness);
     this.showOverlay = true;
 
     // Update URL with activity UUID as fragment

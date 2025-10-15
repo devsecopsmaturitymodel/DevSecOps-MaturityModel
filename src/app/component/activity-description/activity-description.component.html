@@ -1,8 +1,17 @@
 <div class="content-box">
-  <h1>
-    {{ currentActivity.dimension }}:
-    {{ currentActivity.name }}
-  </h1>
+  <div class="activity-header">
+    <h1>
+      {{ currentActivity.dimension }}:
+      {{ currentActivity.name }}
+    </h1>
+    <button
+      *ngIf="showCloseButton"
+      class="close-button"
+      mat-icon-button
+      (click)="onCloseRequested()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 
   <div class="example-action-buttons">
     <button mat-raised-button (click)="openAll()">Expand All</button>
