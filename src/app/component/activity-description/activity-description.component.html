@@ -212,51 +212,70 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel [expanded]="true" #referencesPanel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <b>References</b>
-          <div class="references-preview">
-            <span class="reference-chip" *ngIf="currentActivity?.references?.samm2?.length">
-              SAMM({{currentActivity?.references?.samm2?.length}})
+          <b>Mapping</b>
+          <div class="references-summary" [class.hidden]="referencesPanel.expanded">
+            <span class="ref-section">
+              <strong>SAMM 2:</strong>
+              <span class="ref-values" *ngIf="currentActivity?.references?.samm2?.length; else sammEmpty">
+                <span *ngFor="let samm of currentActivity?.references?.samm2; let last = last">{{samm}}<span *ngIf="!last">, </span></span>
+              </span>
+              <ng-template #sammEmpty>-</ng-template>
             </span>
-            <span class="reference-chip" *ngIf="currentActivity?.references?.iso27001_2017?.length">
-              ISO-17({{currentActivity?.references?.iso27001_2017?.length}})
+            <span class="ref-section">
+              <strong>ISO 2017:</strong>
+              <span class="ref-values" *ngIf="currentActivity?.references?.iso27001_2017?.length; else iso17Empty">
+                <span *ngFor="let iso of currentActivity?.references?.iso27001_2017; let last = last">{{iso}}<span *ngIf="!last">, </span></span>
+              </span>
+              <ng-template #iso17Empty>-</ng-template>
             </span>
-            <span class="reference-chip" *ngIf="currentActivity?.references?.iso27001_2022?.length">
-              ISO-22({{currentActivity?.references?.iso27001_2022?.length}})
+            <span class="ref-section">
+              <strong>ISO 2022:</strong>
+              <span class="ref-values" *ngIf="currentActivity?.references?.iso27001_2022?.length; else iso22Empty">
+                <span *ngFor="let iso22 of currentActivity?.references?.iso27001_2022; let last = last">{{iso22}}<span *ngIf="!last">, </span></span>
+              </span>
+              <ng-template #iso22Empty>-</ng-template>
             </span>
-            <span class="reference-chip" *ngIf="currentActivity?.references?.openCRE?.length">
-              <mat-icon class="reference-icon">link</mat-icon>CRE
+            <span class="ref-section">
+              <strong>OpenCRE:</strong>
+              <span class="ref-values" *ngIf="currentActivity?.references?.openCRE?.length; else creEmpty">
+                <a href="https://www.opencre.org/" target="_blank" class="cre-link">View OpenCRE</a>
+              </span>
+              <ng-template #creEmpty>-</ng-template>
             </span>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="references-content">
-        <div class="reference-section" *ngIf="currentActivity?.references?.samm2?.length">
-          <h4>{{ SAMMVersion }}</h4>
-          <div class="reference-tags">
-            <span class="reference-tag" *ngFor="let samm of currentActivity?.references?.samm2">{{ samm }}</span>
+      <div class="references-grid">
+        <div class="reference-column">
+          <div class="reference-header">{{ SAMMVersion }}</div>
+          <div class="reference-values">
+            <span class="reference-value" *ngFor="let samm of currentActivity?.references?.samm2">{{ samm }}</span>
+            <span class="no-references" *ngIf="!currentActivity?.references?.samm2?.length">-</span>
           </div>
         </div>
         
-        <div class="reference-section" *ngIf="currentActivity?.references?.iso27001_2017?.length">
-          <h4>{{ ISOVersion }}</h4>
-          <div class="reference-tags">
-            <span class="reference-tag" *ngFor="let iso of currentActivity?.references?.iso27001_2017">{{ iso }}</span>
+        <div class="reference-column">
+          <div class="reference-header">{{ ISOVersion }}</div>
+          <div class="reference-values">
+            <span class="reference-value" *ngFor="let iso of currentActivity?.references?.iso27001_2017">{{ iso }}</span>
+            <span class="no-references" *ngIf="!currentActivity?.references?.iso27001_2017?.length">-</span>
           </div>
         </div>
         
-        <div class="reference-section" *ngIf="currentActivity?.references?.iso27001_2022?.length">
-          <h4>{{ ISO22Version }}</h4>
-          <div class="reference-tags">
-            <span class="reference-tag" *ngFor="let iso22 of currentActivity?.references?.iso27001_2022">{{ iso22 }}</span>
+        <div class="reference-column">
+          <div class="reference-header">{{ ISO22Version }}</div>
+          <div class="reference-values">
+            <span class="reference-value" *ngFor="let iso22 of currentActivity?.references?.iso27001_2022">{{ iso22 }}</span>
+            <span class="no-references" *ngIf="!currentActivity?.references?.iso27001_2022?.length">-</span>
           </div>
         </div>
         
-        <div class="reference-section" *ngIf="currentActivity?.references?.openCRE?.length">
-          <h4>{{ openCREVersion }}</h4>
-          <div class="reference-links">
+        <div class="reference-column">
+          <div class="reference-header">{{ openCREVersion }}</div>
+          <div class="reference-values">
             <a 
               class="reference-link" 
               *ngFor="let openCRE of currentActivity?.references?.openCRE" 
@@ -265,9 +284,11 @@
               <mat-icon>open_in_new</mat-icon>
               View CRE
             </a>
+            <span class="no-references" *ngIf="!currentActivity?.references?.openCRE?.length">-</span>
           </div>
         </div>
       </div>
+      <span>In other frameworks and standards the '{{ currentActivity?.name }}' activity is part of sections above.</span>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
