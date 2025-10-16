@@ -55,7 +55,9 @@ export class ActivityDescriptionPageComponent implements OnInit {
       .catch(err => {
         console.error('Error loading activity data:', err);
         this.isLoading = false;
-        this.displayMessage(new DialogInfo(err.message || 'Failed to load activity', 'An error occurred'));
+        this.displayMessage(
+          new DialogInfo(err.message || 'Failed to load activity', 'An error occurred')
+        );
       });
   }
 

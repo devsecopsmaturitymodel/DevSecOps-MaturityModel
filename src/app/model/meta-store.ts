@@ -99,5 +99,5 @@ export class MetaStore {
 
   getIcon(dimension: string): string {
     return this.dimensionIcons[dimension] || this.dimensionIcons['default'];
-  }    
+  }
 }

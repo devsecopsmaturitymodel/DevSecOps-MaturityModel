@@ -46,8 +46,18 @@
 .difficulty-summary {
   display: flex;
   gap: 15px;
-  margin-left: 20px;
+  margin-left: auto;
+  margin-right: 0;
   align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.difficulty-summary.hidden {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  gap: 0;
 }
 
 .difficulty-indicator {
@@ -58,7 +68,7 @@
 
 .difficulty-icon {
   font-size: 16px;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .difficulty-level {
@@ -69,18 +79,24 @@
 }
 
 .difficulty-details {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
   padding: 10px 0;
 }
 
 .difficulty-detail-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   margin-bottom: 10px;
+  flex: 0 0 auto;
+  min-width: fit-content;
 }
 
 .detail-label {
-  min-width: 80px;
   font-weight: 500;
 }
 
@@ -92,18 +108,42 @@
 }
 
 /* Level-based coloring for difficulty */
-.level-1 { background-color: #e8f5e8; color: #2e7d32; }
-.level-2 { background-color: #fff3e0; color: #ef6c00; }
-.level-3 { background-color: #fff8e1; color: #f57c00; }
-.level-4 { background-color: #ffebee; color: #c62828; }
-.level-5 { background-color: #fce4ec; color: #ad1457; }
+.level-1 { background-color: #e8f5e8; color: #2e7d32; }  /* Light green */
+.level-2 { background-color: #e0f2e7; color: #388e3c; }  /* Medium green */
+.level-3 { background-color: #fff8e1; color: #f57c00; }  /* Light orange */
+.level-4 { background-color: #fff3e0; color: #ef6c00; }  /* Medium orange */
+.level-5 { background-color: #ffebee; color: #c62828; }  /* Light red */
 
 /* Usefulness Section Styling */
+.usefulness-section {
+  margin: 16px 0 0;
+  padding: 16px 24px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.usefulness-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.usefulness-section h3 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--mat-expansion-panel-header-text-color, inherit);
+}
+
+mat-icon.mat-icon {
+    width: fit-content;
+    height: fit-content;
+}
 .usefulness-stars {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-left: 20px;
+  gap: 3px;
 }
 
 .star {
@@ -118,43 +158,8 @@
 .usefulness-label {
   margin-left: 10px;
   font-size: 0.8em;
-  color: #666;
+  color: var(--text-secondary);
   font-weight: normal;
-}
-
-.usefulness-details {
-  padding: 15px 0;
-}
-
-.usefulness-rating {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.star-display {
-  display: flex;
-  gap: 5px;
-}
-
-.star-large {
-  font-size: 24px;
-  color: #ffc107;
-}
-
-.star-large:not(.filled) {
-  color: #e0e0e0;
-}
-
-.rating-text {
-  font-weight: 500;
-  font-size: 1.1em;
-}
-
-.usefulness-description {
-  color: #666;
-  font-style: italic;
 }
 
 /* References Section Styling */
@@ -165,7 +170,7 @@
   align-items: flex-start;
   gap: 15px;
   font-size: 0.85em;
-  color: #666;
+  color: var(--text-secondary);
   font-weight: normal;
   width: 100%;
   max-width: calc(100% - 40px);
@@ -189,7 +194,7 @@
 }
 
 .ref-section strong {
-  color: #333;
+  color: var(--text-secondary);
   font-size: 0.9em;
   white-space: nowrap;
 }
@@ -201,7 +206,6 @@
 }
 
 .cre-link {
-  color: #1976d2;
   text-decoration: none;
   font-weight: 500;
 }
@@ -227,7 +231,7 @@
 
 .reference-header {
   font-size: 0.9em;
-  color: #666;
+  color: var(--text-secondary);
   font-weight: normal;
   margin-bottom: 5px;
   border-bottom: 1px solid #e0e0e0;
@@ -242,12 +246,12 @@
 }
 
 .reference-value {
-  background-color: #f8f9fa;
+  background-color: var(--background-tertiary);
   border: 1px solid #e9ecef;
   padding: 6px 10px;
   border-radius: 6px;
   font-size: 0.9em;
-  color: #333;
+  color: var(--text-secondary);
   font-weight: 500;
   display: inline-block;
 }
@@ -256,14 +260,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #1976d2;
   text-decoration: none;
   padding: 6px 10px;
   border: 1px solid #e3f2fd;
   border-radius: 6px;
   transition: background-color 0.2s;
   font-size: 0.9em;
-  background-color: #f8f9fa;
+  background-color: var(--background-tertiary)
 }
 
 .reference-link:hover {
@@ -285,13 +288,14 @@
   }
   
   .references-summary {
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     gap: 10px;
   }
   
   .ref-section {
     flex: 0 1 48%;
   }
+  
 }
 
 @media (max-width: 480px) {
@@ -320,6 +324,14 @@
 /* Implementation Section Styling */
 .implementation-preview {
   margin-left: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.implementation-preview.hidden {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
 }
 
 .tool-count-badge {
@@ -335,83 +347,42 @@
   padding: 10px 0;
 }
 
-.tool-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  background-color: #fafafa;
-  transition: box-shadow 0.2s;
+.tool-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.tool-card:hover {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.tool-item:last-child {
+  border-bottom: none;
 }
 
-.tool-header {
-  padding: 12px 16px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tool-info {
-  flex: 1;
-}
-
-.tool-name {
-  margin: 0 0 8px 0;
-  font-size: 1.1em;
-  color: #333;
-}
-
-.tool-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tag-chip {
-  background-color: #e3f2fd;
-  color: #1976d2;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.75em;
-  font-weight: 500;
-}
-
-.expand-icon {
-  transition: transform 0.2s;
-  color: #666;
-}
-
-.expand-icon.rotated {
-  transform: rotate(180deg);
-}
-
-.tool-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  border-top: 1px solid #e0e0e0;
-}
-
-.tool-details.expanded {
-  max-height: 300px;
-  padding: 16px;
-}
-
-.tool-url {
+.tool-title {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tool-name {
+  margin: 0;
+  font-size: 1.1em;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.link-icon {
+  font-size: 18px;
+}
+
+.tool-url {
   margin-bottom: 12px;
 }
 
 .tool-url a {
-  color: #1976d2;
+  /* color: #1976d2; */
   text-decoration: none;
   word-break: break-all;
+  font-size: 0.9em;
 }
 
 .tool-url a:hover {
@@ -419,10 +390,53 @@
 }
 
 .tool-description {
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
 .tool-description p {
   margin: 0;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  /* Mapping/References section - improve text readability */
+  /* .references-summary {
+    color: #e0e0e0;
+  }
+  
+  .ref-section strong {
+    color: #ffffff;
+  }
+  
+  .ref-values {
+    color: #b0b0b0;
+  }
+  
+  .reference-value {
+    background-color: #424242;
+    border-color: #616161;
+    color: #ffffff;
+  }
+  
+  .reference-header {
+    color: #e0e0e0;
+    border-bottom-color: #616161;
+  } */
+  
+  /* .no-references {
+    color: #757575;
+  }
+   */
+  /* Tool descriptions in dark mode */
+  /* .tool-description {
+    color: #b0b0b0;
+  }
+   */
+  /* Level badges in dark mode - maintain readability */
+  .level-1 { background-color: #2e7d32; color: #e8f5e8; }
+  .level-2 { background-color: #388e3c; color: #e0f2e7; }
+  .level-3 { background-color: #f57c00; color: #fff8e1; }
+  .level-4 { background-color: #ef6c00; color: #fff3e0; }
+  .level-5 { background-color: #c62828; color: #ffebee; }
 }
