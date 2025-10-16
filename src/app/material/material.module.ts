@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -25,6 +26,7 @@ const MaterialComponents = [
   MatDividerModule,
   MatTableModule,
   MatChipsModule,
+  MatProgressSpinnerModule,
   MatAutocompleteModule,
   MatInputModule,
   MatExpansionModule,

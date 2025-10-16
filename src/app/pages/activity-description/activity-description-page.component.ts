@@ -3,6 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { Activity, ActivityStore } from '../../model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
+import {
+  ModalMessageComponent,
+  DialogInfo,
+} from '../../component/modal-message/modal-message.component';
 
 @Component({
   selector: 'app-activity-description-page',
@@ -12,12 +16,12 @@ import { DataStore } from 'src/app/model/data-store';
 export class ActivityDescriptionPageComponent implements OnInit {
   currentActivity: Activity | null = null;
   isLoading: boolean = true;
-  errorMessage: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private loader: LoaderService,
-    private router: Router
+    private router: Router,
+    public modal: ModalMessageComponent
   ) {}
 
   ngOnInit() {
@@ -30,7 +34,6 @@ export class ActivityDescriptionPageComponent implements OnInit {
 
   loadActivity(uuid?: string, name?: string) {
     this.isLoading = true;
-    this.errorMessage = '';
 
     this.loader
       .load()
@@ -51,9 +54,13 @@ export class ActivityDescriptionPageComponent implements OnInit {
       })
       .catch(err => {
         console.error('Error loading activity data:', err);
-        this.errorMessage = err.message || 'Failed to load activity';
         this.isLoading = false;
+        this.displayMessage(new DialogInfo(err.message || 'Failed to load activity', 'An error occurred'));
       });
+  }
+
+  displayMessage(dialogInfo: DialogInfo) {
+    this.modal.openDialog(dialogInfo);
   }
 
   onActivityClicked(activityName: string) {

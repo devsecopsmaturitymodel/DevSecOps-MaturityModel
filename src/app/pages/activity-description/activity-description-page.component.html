@@ -1,14 +1,10 @@
 <div class="page-container">
   <div *ngIf="isLoading" class="loading-container">
-    <p>Loading activity...</p>
-  </div>
-
-  <div *ngIf="errorMessage" class="error-container">
-    <p>⚠️ {{ errorMessage }}</p>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 
   <app-activity-description
-    *ngIf="currentActivity && !isLoading && !errorMessage"
+    *ngIf="currentActivity && !isLoading"
     [activity]="currentActivity"
     [showCloseButton]="false"
     (activityClicked)="onActivityClicked($event)">
