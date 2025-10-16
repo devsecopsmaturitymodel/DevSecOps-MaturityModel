@@ -29,6 +29,315 @@
 .mat-raised-button {
   margin-right: 8px;
 }
+
 .teams-implemented-list {
   list-style: none;
+}
+
+/* UUID Section Styling */
+.uuid-preview {
+  margin-left: 10px;
+  font-size: 0.8em;
+  color: #666;
+  font-weight: normal;
+}
+
+/* Difficulty Section Styling */
+.difficulty-summary {
+  display: flex;
+  gap: 15px;
+  margin-left: 20px;
+  align-items: center;
+}
+
+.difficulty-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.difficulty-icon {
+  font-size: 16px;
+  color: #666;
+}
+
+.difficulty-level {
+  font-size: 0.8em;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: normal;
+}
+
+.difficulty-details {
+  padding: 10px 0;
+}
+
+.difficulty-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  min-width: 80px;
+  font-weight: 500;
+}
+
+.difficulty-badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Level-based coloring for difficulty */
+.level-1 { background-color: #e8f5e8; color: #2e7d32; }
+.level-2 { background-color: #fff3e0; color: #ef6c00; }
+.level-3 { background-color: #fff8e1; color: #f57c00; }
+.level-4 { background-color: #ffebee; color: #c62828; }
+.level-5 { background-color: #fce4ec; color: #ad1457; }
+
+/* Usefulness Section Styling */
+.usefulness-stars {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.star {
+  font-size: 16px;
+  color: #ffc107;
+}
+
+.star:not(.filled) {
+  color: #e0e0e0;
+}
+
+.usefulness-label {
+  margin-left: 10px;
+  font-size: 0.8em;
+  color: #666;
+  font-weight: normal;
+}
+
+.usefulness-details {
+  padding: 15px 0;
+}
+
+.usefulness-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.star-display {
+  display: flex;
+  gap: 5px;
+}
+
+.star-large {
+  font-size: 24px;
+  color: #ffc107;
+}
+
+.star-large:not(.filled) {
+  color: #e0e0e0;
+}
+
+.rating-text {
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.usefulness-description {
+  color: #666;
+  font-style: italic;
+}
+
+/* References Section Styling */
+.references-preview {
+  display: flex;
+  gap: 8px;
+  margin-left: 20px;
+  align-items: center;
+}
+
+.reference-chip {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reference-icon {
+  font-size: 14px;
+}
+
+.references-content {
+  padding: 10px 0;
+}
+
+.reference-section {
+  margin-bottom: 20px;
+}
+
+.reference-section h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1em;
+}
+
+.reference-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reference-tag {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.8em;
+  color: #555;
+}
+
+.reference-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reference-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1976d2;
+  text-decoration: none;
+  padding: 8px;
+  border: 1px solid #e3f2fd;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.reference-link:hover {
+  background-color: #e3f2fd;
+}
+
+/* Implementation Section Styling */
+.implementation-preview {
+  margin-left: 20px;
+}
+
+.tool-count-badge {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+.implementation-tools {
+  padding: 10px 0;
+}
+
+.tool-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background-color: #fafafa;
+  transition: box-shadow 0.2s;
+}
+
+.tool-card:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tool-header {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tool-info {
+  flex: 1;
+}
+
+.tool-name {
+  margin: 0 0 8px 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-chip {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+.expand-icon {
+  transition: transform 0.2s;
+  color: #666;
+}
+
+.expand-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.tool-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  border-top: 1px solid #e0e0e0;
+}
+
+.tool-details.expanded {
+  max-height: 300px;
+  padding: 16px;
+}
+
+.tool-url {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tool-url a {
+  color: #1976d2;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.tool-url a:hover {
+  text-decoration: underline;
+}
+
+.tool-description {
+  color: #555;
+  line-height: 1.5;
+}
+
+.tool-description p {
+  margin: 0;
 }

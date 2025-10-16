@@ -55,6 +55,13 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
   setActivityData(activity: Activity) {
     this.currentActivity = activity;
 
+    // Initialize expanded state for implementation tools
+    if (this.currentActivity.implementation) {
+      this.currentActivity.implementation.forEach((tool) => {
+        tool.expanded = false;
+      });
+    }
+
     // Get datastore for labels
     const dataStore = this.loader.datastore;
     if (dataStore) {

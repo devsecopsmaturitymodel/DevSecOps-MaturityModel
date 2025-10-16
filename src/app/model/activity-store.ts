@@ -46,6 +46,7 @@ export interface Implementation {
   tags: string[];
   url: string;
   description: string;
+  expanded?: boolean; // Optional property for UI state
 }
 
 export interface DifficultyOfImplementation {
