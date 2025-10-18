@@ -64,7 +64,8 @@
   transition: opacity 0.3s ease;
 }
 
-.difficulty-summary.hidden {
+/* Shared collapsing state for preview/summary elements */
+.hidden {
   opacity: 0;
   height: 0;
   overflow: hidden;
@@ -190,14 +191,6 @@ mat-icon.mat-icon {
   transition: opacity 0.3s ease;
 }
 
-.references-summary.hidden {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  margin: 0;
-  gap: 0;
-}
-
 .ref-section {
   display: flex;
   flex-direction: column;
@@ -229,7 +222,7 @@ mat-icon.mat-icon {
 
 .references-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 15px 0;
   width: 100%;
@@ -296,7 +289,7 @@ mat-icon.mat-icon {
 /* Responsive design for smaller screens */
 @media (max-width: 550px) {
   .references-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
   
@@ -338,13 +331,6 @@ mat-icon.mat-icon {
 .implementation-preview {
   margin-left: 20px;
   transition: opacity 0.3s ease;
-}
-
-.implementation-preview.hidden {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  margin: 0;
 }
 
 .tool-count-badge {
@@ -398,39 +384,6 @@ mat-icon.mat-icon {
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  /* Mapping/References section - improve text readability */
-  /* .references-summary {
-    color: #e0e0e0;
-  }
-  
-  .ref-section strong {
-    color: #ffffff;
-  }
-  
-  .ref-values {
-    color: #b0b0b0;
-  }
-  
-  .reference-value {
-    background-color: #424242;
-    border-color: #616161;
-    color: #ffffff;
-  }
-  
-  .reference-header {
-    color: #e0e0e0;
-    border-bottom-color: #616161;
-  } */
-  
-  /* .no-references {
-    color: #757575;
-  }
-   */
-  /* Tool descriptions in dark mode */
-  /* .tool-description {
-    color: #b0b0b0;
-  }
-   */
   /* Level badges in dark mode - maintain readability */
   .level-1 { background-color: #2e7d32; color: #e8f5e8; }
   .level-2 { background-color: #388e3c; color: #e0f2e7; }
