@@ -1,8 +1,6 @@
 .content-box {
   margin: 20px;
   width: 95%;
-  /*height: 100%;*/
-  /*background-color: paleturquoise;*/
 }
 
 .activity-header {
@@ -53,27 +51,10 @@
   flex-shrink: 0;
 }
 
-.mat-form-field + .mat-form-field {
-  margin-left: 8px;
-}
-
-.mat-raised-button {
-  margin-right: 8px;
-}
-
 .teams-implemented-list {
   list-style: none;
 }
 
-/* UUID Section Styling */
-.uuid-preview {
-  margin-left: 10px;
-  font-size: 0.8em;
-  color: #666;
-  font-weight: normal;
-}
-
-/* Difficulty Section Styling */
 .difficulty-summary {
   display: flex;
   gap: 15px;
@@ -404,21 +385,6 @@ mat-icon.mat-icon {
 
 .link-icon {
   font-size: 18px;
-}
-
-.tool-url {
-  margin-bottom: 12px;
-}
-
-.tool-url a {
-  /* color: #1976d2; */
-  text-decoration: none;
-  word-break: break-all;
-  font-size: 0.9em;
-}
-
-.tool-url a:hover {
-  text-decoration: underline;
 }
 
 .tool-description {
