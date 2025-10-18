@@ -8,7 +8,6 @@ import {
   Output,
   EventEmitter,
   OnInit,
-  OnDestroy,
   HostListener,
 } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
@@ -20,16 +19,12 @@ import { LoaderService } from '../../service/loader/data-loader.service';
   templateUrl: './activity-description.component.html',
   styleUrls: ['./activity-description.component.css'],
 })
-export class ActivityDescriptionComponent implements OnInit, OnChanges, OnDestroy {
+export class ActivityDescriptionComponent implements OnInit, OnChanges {
   @Input() activity: Activity | null = null;
   @Input() showCloseButton: boolean = false;
   @Output() activityClicked = new EventEmitter<string>();
   @Output() closeRequested = new EventEmitter<void>();
 
-  remSize: number = parseFloat(getComputedStyle(document.documentElement).fontSize);
-  private resizeObserver?: ResizeObserver;
-  private mutationObserver?: MutationObserver;
-  private lastWidth: number = 0;
 
   currentActivity: Partial<Activity> = {};
   TimeLabel: string = '';
@@ -54,20 +49,6 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges, OnDestro
     // Check initial screen size
     this.checkWidthForActivityPanel();
     // Set up observers to watch for layout changes
-    this.setupResizeObserver();
-    this.setupMutationObserver();
-    // Set up interval to periodically check width changes
-    this.setupPeriodicCheck();
-  }
-
-  ngOnDestroy() {
-    // Cleanup observers
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
-    if (this.mutationObserver) {
-      this.mutationObserver.disconnect();
-    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -106,20 +87,6 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges, OnDestro
     this.closeRequested.emit();
   }
 
-  // Expand all function
-  openAll(): void {
-    this.accordion.forEach(element => {
-      element.openAll();
-    });
-  }
-
-  // Close all function
-  closeAll(): void {
-    this.accordion.forEach(element => {
-      element.closeAll();
-    });
-  }
-
   // Check if screen is narrow and update property
   private checkWidthForActivityPanel(): void {
     let elemtn: HTMLElement | null = document.querySelector('app-activity-description');
@@ -129,69 +96,5 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges, OnDestro
     const wasNarrow = this.isNarrowScreen;
     this.isNarrowScreen = currentWidth < 500;
 
-    // Only log if width actually changed
-    if (currentWidth !== this.lastWidth || wasNarrow !== this.isNarrowScreen) {
-      console.log(
-        `ActivityDescriptionComponent: isNarrowScreen = ${this.isNarrowScreen} ${currentWidth}px (was ${this.lastWidth}px)`
-      );
-      this.lastWidth = currentWidth;
-    }
-  }
-
-  // Set up ResizeObserver to watch for component width changes
-  private setupResizeObserver(): void {
-    if (typeof ResizeObserver !== 'undefined') {
-      this.resizeObserver = new ResizeObserver(entries => {
-        // Debounce the resize check to avoid excessive calls
-        setTimeout(() => {
-          this.checkWidthForActivityPanel();
-        }, 100);
-      });
-
-      // Start observing the component element
-      const element = document.querySelector('app-activity-description');
-      if (element) {
-        this.resizeObserver.observe(element);
-      }
-    }
-  }
-
-  // Set up MutationObserver to watch for DOM changes that might affect layout
-  private setupMutationObserver(): void {
-    this.mutationObserver = new MutationObserver(mutations => {
-      let shouldCheck = false;
-      mutations.forEach(mutation => {
-        // Check if any class changes might affect layout (like menu open/close)
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          shouldCheck = true;
-        }
-        // Check if any child elements were added/removed that might affect layout
-        if (mutation.type === 'childList') {
-          shouldCheck = true;
-        }
-      });
-
-      if (shouldCheck) {
-        setTimeout(() => {
-          this.checkWidthForActivityPanel();
-        }, 150); // Slightly longer delay for DOM changes
-      }
-    });
-
-    // Observe the document body for class changes (like menu states)
-    this.mutationObserver.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['class'],
-      childList: true,
-      subtree: true,
-    });
-  }
-
-  // Set up periodic check as fallback
-  private setupPeriodicCheck(): void {
-    // Check width every 500ms as a fallback for missed events
-    setInterval(() => {
-      this.checkWidthForActivityPanel();
-    }, 500);
   }
 }
