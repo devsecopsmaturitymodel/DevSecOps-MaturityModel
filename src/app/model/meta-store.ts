@@ -35,11 +35,11 @@ export class MetaStore {
   dimensionIcons: Record<string, string> = {
     'Build and Deployment': 'front_loader',
     'Culture and Organization': 'diversity_3',
-    'Implementation': 'design_services',
+    Implementation: 'design_services',
     'Information Gathering': 'insights',
     'Test and Verification': 'checklist',
-    'default': 'check_box_outline_blank'
-  }
+    default: 'check_box_outline_blank',
+  };
 
   public init(metaData: any): void {
     this.addMeta(metaData);

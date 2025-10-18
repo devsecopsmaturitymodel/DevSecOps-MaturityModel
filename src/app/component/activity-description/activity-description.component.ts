@@ -21,10 +21,10 @@ import { LoaderService } from '../../service/loader/data-loader.service';
 })
 export class ActivityDescriptionComponent implements OnInit, OnChanges {
   @Input() activity: Activity | null = null;
+  @Input() iconName: string = '';
   @Input() showCloseButton: boolean = false;
   @Output() activityClicked = new EventEmitter<string>();
   @Output() closeRequested = new EventEmitter<void>();
-
 
   currentActivity: Partial<Activity> = {};
   TimeLabel: string = '';
@@ -95,6 +95,5 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
     const currentWidth = elemtn.offsetWidth;
     const wasNarrow = this.isNarrowScreen;
     this.isNarrowScreen = currentWidth < 500;
-
   }
 }

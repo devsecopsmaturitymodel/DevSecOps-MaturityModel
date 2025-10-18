@@ -9,6 +9,7 @@ export type Dimension = Record<string, Activity>;
 export interface Activity {
   ignore: boolean;
   uuid: string;
+  iconName: string;
   category: string;
   dimension: string;
   level: number;

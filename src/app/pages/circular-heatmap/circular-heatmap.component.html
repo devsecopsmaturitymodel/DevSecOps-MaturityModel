@@ -8,6 +8,7 @@
           <div class="overlay-modal">
             <app-activity-description
               [activity]="showActivityDetails"
+              [iconName]="dataStore?.meta?.getIcon(showActivityDetails?.category || '') || ''"
               [showCloseButton]="true"
               (activityClicked)="onDependencyClicked($event)"
               (closeRequested)="closeOverlay()">

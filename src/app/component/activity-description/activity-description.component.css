@@ -9,17 +9,48 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .activity-header h1 {
   margin: 0;
-  flex: 1;
+  font-size: 24px;
 }
+
+.activity-header .title-above mat-icon {
+  font-size: 28px;
+}
+
+.activity-header .title-above {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  font-size: 20px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.activity-subheader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--text-tertiary);
+}
+.activity-subheader .level {
+  min-width: fit-content;
+}
+.activity-subheader .uuid {
+  text-align: end;
+}
+.activity-subheader .uuid-label {
+    font-size: 12px;
+    margin-right: 0.1em;
+  }
 
 .close-button {
   flex-shrink: 0;
-  margin-left: 10px;
 }
 
 .mat-form-field + .mat-form-field {
@@ -124,6 +155,7 @@
 
 .usefulness-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -281,7 +313,7 @@ mat-icon.mat-icon {
 }
 
 /* Responsive design for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 550px) {
   .references-grid {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
@@ -298,7 +330,7 @@ mat-icon.mat-icon {
   
 }
 
-@media (max-width: 480px) {
+@media (max-width: 350px) {
   .references-grid {
     grid-template-columns: 1fr;
     gap: 10px;
