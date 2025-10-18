@@ -26,7 +26,7 @@
   max-width: 17%;
   word-wrap: break-word;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .mat-cell ul.activity-list {
@@ -51,6 +51,18 @@
 }
 .mat-cell-activity a.activity-title:link {
   color: inherit;
+}
+
+.mat-cell .dim-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+}
+.mat-cell .dim-icon mat-icon {
+  font-size: 45px;
+  width: 45px;
+  height: 45px;
 }
 
 .table-small-width {

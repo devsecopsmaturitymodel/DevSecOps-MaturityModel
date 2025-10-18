@@ -21,20 +21,20 @@
   min-width: 140px;
 }
 
-.matrix-table{
+.matrix-table {
   margin: 20px;
 }
 
-.mat-cell, .mat-header-cell{
+.mat-cell, .mat-header-cell {
   padding: 20px 10px;
   width: 12.5%;  
   max-width: 12.5%;  
   word-wrap: break-word;
 }
 
-.mat-header-cell{
+.mat-header-cell {
   font-size: 16px;  
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .hide{

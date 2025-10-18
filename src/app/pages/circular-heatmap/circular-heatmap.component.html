@@ -6,200 +6,23 @@
         <div *ngIf="showActivityDetails; then activityTrue; else activityFalse"></div>
         <ng-template #activityTrue>
           <div class="overlay-modal">
-            <mat-accordion multi="true" class="overlay-accordion">
-              <div
-                *ngIf="
-                  showActivityDetails?.dimension;
-                  then navigationTrue;
-                  else navigationFalse
-                "></div>
-              <div>
-                <ng-template #navigationTrue>
-                  <div class="overlay-header">
-                    <button class="overlay-close" (click)="closeOverlay()">
-                      <mat-icon class="white-icon">close</mat-icon>
-                    </button>
-                    <h2>
-                      {{ showActivityDetails?.dimension }} <br />
-                      {{ showActivityDetails?.name }}
-                    </h2>
-                  </div>
-                </ng-template>
-                <ng-template #navigationFalse>
-                  <div class="overlay-header">
-                    <button class="overlay-close" (click)="closeOverlay()">
-                      <mat-icon class="white-icon">close</mat-icon>
-                    </button>
-                    <h2>Nothing to show</h2>
-                  </div>
-                </ng-template>
-              </div>
-              <mat-expansion-panel
-                [expanded]="true"
-                *ngIf="showActivityDetails?.description?.hasContent()">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Description</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="showActivityDetails?.description?.render()"></p>
-                </ng-template>
-              </mat-expansion-panel>
-              <mat-expansion-panel
-                [expanded]="true"
-                *ngIf="showActivityDetails?.risk?.hasContent()">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Risk</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="showActivityDetails?.risk?.render()"></p>
-                </ng-template>
-              </mat-expansion-panel>
-              <mat-expansion-panel
-                [expanded]="true"
-                *ngIf="showActivityDetails?.measure?.hasContent()">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Measure</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="showActivityDetails?.measure?.render()"></p>
-                </ng-template>
-              </mat-expansion-panel>
-              <mat-expansion-panel
-                [expanded]="true"
-                *ngIf="showActivityDetails?.assessment?.hasContent()">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Assesment</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="showActivityDetails?.assessment?.render()"></p>
-                </ng-template>
-              </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.implementation">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Implementation Guide</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <ul>
-                    <li *ngFor="let implementation of showActivityDetails?.implementation">
-                      <a href="{{ implementation.url }}">{{ implementation.name }}</a>
-                      <span class="smaller-italics" *ngIf="implementation.description">
-                        <br />{{ implementation.description }}
-                      </span>
-                    </li>
-                  </ul>
-                </ng-template>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel [expanded]="true">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Dependencies</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-dependency-graph
-                  [activityName]="showActivityDetails?.name || ''"
-                  (activityClicked)="onDependencyClicked($event)">
-                </app-dependency-graph>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.dependsOn">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Depends On</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <p [innerHTML]="showActivityDetails?.dependsOn"></p>
-                </ng-template>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel
-                [expanded]="true"
-                *ngIf="showActivityDetails?.difficultyOfImplementation">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Difficulty of Implementation</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <p>
-                    Knowledge:
-                    {{ KnowledgeLabel }}
-                  </p>
-                  <p>Time: {{ TimeLabel }}</p>
-                  <p>
-                    Resources:
-                    {{ ResourceLabel }}
-                  </p>
-                </ng-template>
-              </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.tags">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>Tags</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <ul *ngFor="let tag of showActivityDetails?.tags">
-                    <li [innerHTML]="tag"></li>
-                  </ul>
-                </ng-template>
-              </mat-expansion-panel>
-              <mat-expansion-panel [expanded]="true" *ngIf="showActivityDetails?.references">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <b>References</b>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                  <p>
-                    <b>SAMM 2.0:</b>
-                    <span
-                      *ngFor="let samm of showActivityDetails?.references?.samm2; let last = last">
-                      {{ samm }}<span *ngIf="!last">, </span>
-                    </span>
-                  </p>
-
-                  <b>ISO 27001-2017:</b>
-                  <ul>
-                    <li *ngFor="let iso of showActivityDetails?.references?.['iso27001_2017']">
-                      {{ iso }}
-                    </li>
-                  </ul>
-
-                  <b>ISO 27001-2022:</b>
-                  <ul>
-                    <li *ngFor="let iso of showActivityDetails?.references?.['iso27001_2022']">
-                      {{ iso }}
-                    </li>
-                  </ul>
-                </ng-template>
-              </mat-expansion-panel>
-            </mat-accordion>
+            <app-activity-description
+              [activity]="showActivityDetails"
+              [iconName]="dataStore?.meta?.getIcon(showActivityDetails?.category || '') || ''"
+              [showCloseButton]="true"
+              (activityClicked)="onDependencyClicked($event)"
+              (closeRequested)="closeOverlay()">
+            </app-activity-description>
           </div>
         </ng-template>
         <ng-template #activityFalse>
           <div class="overlay-modal">
-            <button class="overlay-close" (click)="closeOverlay()">
-              <mat-icon class="white-icon">close</mat-icon>
-            </button>
-            <mat-expansion-panel [expanded]="false" hideToggle disabled>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <b>Nothing to show</b>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-            </mat-expansion-panel>
+            <div class="overlay-header">
+              <button class="overlay-close" (click)="closeOverlay()">
+                <mat-icon class="white-icon">close</mat-icon>
+              </button>
+              <h2>Nothing to show</h2>
+            </div>
           </div>
         </ng-template>
       </div>

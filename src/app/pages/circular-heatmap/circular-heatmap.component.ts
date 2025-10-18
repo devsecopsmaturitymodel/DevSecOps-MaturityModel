@@ -34,10 +34,6 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   showActivityCard: any = null;
 
   showActivityDetails: Activity | null = null;
-  TimeLabel: string = '';
-  KnowledgeLabel: string = '';
-  ResourceLabel: string = '';
-  UsefulnessLabel: string = '';
 
   dataStore: DataStore | null = null;
 
@@ -172,11 +168,13 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     // Prepare all sectors: one for each (dimension, level) pair
     this.allSectors = [];
     for (let level = 1; level <= this.maxLevel; level++) {
+      // let DEBUG_DIM_INDEX = 0;
       for (let dimName of this.dimensionLabels) {
         const activities: Activity[] =
           dataStore?.activityStore?.getActivities(dimName, level) || [];
         this.allSectors.push({
           dimension: dimName,
+          // dimensionIndex: DEBUG_DIM_INDEX++,
           level: level,
           activities: activities,
         });
@@ -261,7 +259,18 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   }
 
   getSectorProgress(sector: Sector): number {
-    return this.sectorService.getSectorProgress(sector.activities);
+    // console.log('getSectorProgress');
+    // if (sector.level % 2 == 1) return 0;
+    // return  this.pinch(0.06, 0.8, ((sector.dimensionIndex||0)) / 18);
+    // if (this.sectorService.getSectorProgress(sector.activities)>0) console.log(this.sectorService.getSectorProgress(sector.activities)+ ': ' + sector.level + ' ' + sector.dimension);
+    return this.pinch(0.06, 0.8, this.sectorService.getSectorProgress(sector.activities));
+    // return this.pinch(0.03, 0.8, this.sectorService.getSectorProgress(sector.activities));
+  }
+
+  pinch(min: number, max: number, value: number): number {
+    if (value === 0 || value === 1) return value;
+
+    return value * (max - min) + min;
   }
 
   onDependencyClicked(activityName: string) {
@@ -596,10 +605,6 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     /* eslint-disable */
     console.log(`${perfNow()}: Heat: Open Overlay: '${activity.name}'`);
     this.showActivityDetails = activity;
-    this.KnowledgeLabel = this.dataStore.getMetaString('knowledgeLabels', activity.difficultyOfImplementation.knowledge);
-    this.TimeLabel = this.dataStore.getMetaString('labels', activity.difficultyOfImplementation.time);
-    this.ResourceLabel = this.dataStore.getMetaString('labels', activity.difficultyOfImplementation.resources);
-    this.UsefulnessLabel = this.dataStore.getMetaString('labels', activity.usefulness);
     this.showOverlay = true;
 
     // Update URL with activity UUID as fragment
