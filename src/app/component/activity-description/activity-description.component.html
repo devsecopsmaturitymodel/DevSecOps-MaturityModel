@@ -3,7 +3,7 @@
     <div class="activity-title">
       <div class="title-above">
         <mat-icon mat-list-icon color="primary" *ngIf="iconName">{{ iconName }}</mat-icon>
-        {{ currentActivity.dimension }}
+        <span>{{ currentActivity.dimension }}</span>
       </div>
       <h1>
         {{ currentActivity.name }}
@@ -20,7 +20,7 @@
 
   <div class="activity-subheader">
     <span class="level">Level {{ currentActivity.level }}</span>
-    <span class="uuid"><span class="uuid-label">id: </span>{{ currentActivity.uuid }}</span>
+    <div class="uuid"><span class="uuid-label">id: </span><span class="uuid-value">{{ currentActivity.uuid }}</span></div>
   </div>
   <mat-accordion multi="true">
     <mat-expansion-panel *ngIf="currentActivity.description?.hasContent()" [expanded]="true">

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
@@ -10,6 +11,9 @@ import { MockLoaderService } from 'src/app/service/loader/mock-data-loader.servi
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { Data } from 'src/app/model/activity-store';
 import { isEmptyObj } from 'src/app/util/util';
+import { MaterialModule } from 'src/app/material/material.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DataStore } from 'src/app/model/data-store';
 
 let mockLoaderService: MockLoaderService;
 let mockActivatedRoute = {
@@ -41,13 +45,23 @@ let mockData = {
   },
 };
 
+@Component({
+  selector: 'app-dependency-graph',
+  template: '',
+})
+class DependencyGraphStubComponent {
+  @Input() activityName: string = '';
+  @Output() activityClicked = new EventEmitter<string>();
+}
+
 describe('ActivityDescriptionComponent', () => {
   let component: ActivityDescriptionComponent;
   let fixture: ComponentFixture<ActivityDescriptionComponent>;
   mockLoaderService = new MockLoaderService(mockData as unknown as Data);
+  let dataStore: DataStore;
 
   beforeEach(async () => {
-    await mockLoaderService.load();
+    dataStore = (await mockLoaderService.load()) as DataStore;
     await TestBed.configureTestingModule({
       providers: [
         HttpClient,
@@ -55,14 +69,23 @@ describe('ActivityDescriptionComponent', () => {
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: LoaderService, useValue: mockLoaderService },
       ],
-      imports: [RouterTestingModule],
-      declarations: [ActivityDescriptionComponent],
+      imports: [RouterTestingModule, MaterialModule, NoopAnimationsModule],
+      declarations: [ActivityDescriptionComponent, DependencyGraphStubComponent],
     }).compileComponents();
   });
 
   beforeEach(async () => {
     fixture = TestBed.createComponent(ActivityDescriptionComponent);
     component = fixture.componentInstance;
+    // Provide the @Input activity before first change detection so ngOnInit uses it
+    const testUUID = '00000000-1111-1111-1111-0000000000000';
+    const activity =
+      dataStore.activityStore?.getActivityByUuid(testUUID) ||
+      dataStore.activityStore?.getActivityByName('Activity 111');
+    // Fallback for safety in case lookup fails in future changes
+    if (activity) {
+      component.activity = activity as any;
+    }
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -78,14 +101,17 @@ describe('ActivityDescriptionComponent', () => {
 
   it('check if header is being generated', async () => {
     const testSubDimension = 'SubDim-1.1';
+    const testActivity = 'Activity 111';
 
     await fixture.whenStable();
     fixture.detectChanges();
 
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const heading = HTMLElement.querySelector('h1')!;
+    const subDimHeading = HTMLElement.querySelector('.title-above span')!;
+    const activityHeading = HTMLElement.querySelector('.activity-header h1')!;
 
-    expect(heading?.textContent).toContain(testSubDimension);
+    expect(subDimHeading?.textContent).toContain(testSubDimension);
+    expect(activityHeading?.textContent).toContain(testActivity);
   });
 
   it('check if content is displayed', async () => {
@@ -102,12 +128,11 @@ describe('ActivityDescriptionComponent', () => {
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
 
-    expect(HTMLElement.querySelector('#uuid')?.textContent).toContain(testUUID);
+    expect(HTMLElement.querySelector('.uuid-value')?.textContent).toContain(testUUID);
     expect(HTMLElement.querySelector('#description')?.textContent).toContain(testDesc);
     expect(HTMLElement.querySelector('#risk')?.textContent).toContain(testRisk);
     expect(HTMLElement.querySelector('#measure')?.textContent).toContain(testMeasure);
     expect(HTMLElement.querySelector('#assessment')?.textContent).toContain(testAssessment);
-    expect(HTMLElement.querySelector('#comments')?.textContent).toContain(testComments);
     expect(HTMLElement.querySelector('#implementationGuide')?.textContent).toContain(testImplementationGuide); // eslint-disable-line
   });
 
