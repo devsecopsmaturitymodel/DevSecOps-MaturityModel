@@ -8,6 +8,12 @@
 - Settings: Set Max maturity level (1-5)
 - Settings: Terms: Allow custom names for: team, group, etc
 
+### Activity view
+- Activity: Shorten very long ISO references
+- Activity: Show Team Evidence from yaml file
+- Activity: Show Implemented by properly
+
+
 ## ToDo
 ### KPI
 - Teams: Bug: Reads progress heading from activityStore, not metaStore
@@ -20,16 +26,18 @@
 - Teams: Bug: Editing name, pushes the item last
 - Teams: Allow editing dates for progress stages
 ### Heatmap:
+- Heatmap: Allow 'change all' if more than four activities
+- Heatmap: Hilight (outline) the activity card that is open
 - Heatmap: Fix: asterisk marks when modified
   - ViewController needs to know about changes vs temp storage
-- Heatmap: Bug: Clicking on grey sector leaves cursor on that sector
 - Heatmap: Bug: Selecting a team group does not always get deselected when flipping teams
 - Heatmap: meta-yaml: If progress definition is missing, default to 0% + 100% 
-- Heatmap: Revert to boolean checkboxes, if definition is only 0% and 100%
 - Heatmap: Read previous local storage for backwards compatibility 
-- Heatmap: Input Teams' evidence
 - Heatmap: Outer rim: Increase subdimension to be two lines (and increase size)
 - Heatmap: Outer rim: Make hover display Dimension (over subdimension)
+- Heatmap: Show a dimension label when hovering (especially for the up-side down dimension)
+### Activity view
+- Activity: Input Teams' evidence
 ### Documentation
 - Doc: Update `Usage`
 - Doc: Update `README.md`
