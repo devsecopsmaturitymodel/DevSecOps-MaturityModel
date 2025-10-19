@@ -68,6 +68,8 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Activity info: Revamp the activity compoment
+- Activity info: Both Matrix, Heatmap, and now Mapping use the same component for displaying activity info
 - Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
 - Dependency: Make connecting nodes clickable for navigation
 - Dependency: Handle dependsOn uuid, not just name
