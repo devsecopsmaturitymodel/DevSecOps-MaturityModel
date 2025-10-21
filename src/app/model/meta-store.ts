@@ -30,7 +30,7 @@ export class MetaStore {
   teams: TeamNames = [];
   activityFiles: string[] = [];
   teamProgressFile: string = '';
-  allowChangeTeamNameInBrowser: boolean = false;
+  allowChangeTeamNameInBrowser: boolean = true;
 
   dimensionIcons: Record<string, string> = {
     'Build and Deployment': 'front_loader',
