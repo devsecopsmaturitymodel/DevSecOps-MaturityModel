@@ -22,7 +22,7 @@
     <span class="level">Level {{ currentActivity.level }}</span>
     <div class="uuid"><span class="uuid-label">id: </span><span class="uuid-value">{{ currentActivity.uuid }}</span></div>
   </div>
-  <mat-accordion multi="true">
+  <mat-accordion class="activity-details" multi="true">
     <mat-expansion-panel *ngIf="currentActivity.description?.hasContent()" [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -209,7 +209,11 @@
               <span
                 class="ref-values"
                 *ngIf="currentActivity?.references?.openCRE?.length; else creEmpty">
-                <a href="https://www.opencre.org/" target="_blank" class="cre-link">View OpenCRE</a>
+                <a
+                  *ngFor="let openCRE of currentActivity?.references?.openCRE"
+                  target="_blank"
+                  [href]="openCRE">
+                  View OpenCRE</a>
               </span>
               <ng-template #creEmpty>-</ng-template>
             </span>
@@ -304,7 +308,7 @@
       *ngIf="currentActivity.implementation?.length">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <b>Implementation</b>
+          <b>Tools</b>
           <div class="implementation-preview" [class.hidden]="implementationPanel.expanded">
             <span class="tool-count-badge"
               >{{ currentActivity.implementation?.length || 0 }} tools</span
@@ -327,35 +331,47 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel [expanded]="isNarrowScreen" #implementedByPanel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <b>Implemented By</b>
+          <b>Implemented by</b>
+          <div class="references-summary" [class.hidden]="implementedByPanel.expanded">
+            <span
+              class="ref-section"
+              *ngFor="let progressTitle of progressTitlesWithTeams">
+              <strong>{{ progressTitle }}:</strong>
+              <span class="ref-values">
+                <span
+                  *ngFor="let teamName of teamsByProgressTitle.get(progressTitle); let last = last"
+                  >{{ teamName }}<span *ngIf="!last">, </span></span
+                >
+              </span>
+            </span>
+            <span class="ref-section" *ngIf="teamsImplemented.size === 0">
+              <span class="ref-values">No teams have started this activity yet</span>
+            </span>
+          </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div *ngIf="currentActivity.teamsImplemented; then thenBlock; else elseBlock"></div>
-      <ng-template #thenBlock>
-        <ul class="teams-implemented-list">
-          <li *ngFor="let item of currentActivity.teamsImplemented | keyvalue">
-            <b>{{ item.key }}</b
-            >:{{ item.value }}
-          </li>
-        </ul>
-      </ng-template>
-      <ng-template #elseBlock
-        >teamsImplemented variable not present <br />
-        <p *ngIf="currentActivity.isImplemented === false">Not Implemented</p>
-        <p *ngIf="currentActivity.isImplemented === true">Implemented</p>
+      <div class="implemented-by-grid" *ngIf="teamsImplemented.size > 0; else noTeamsBlock">
+        <div class="reference-column" *ngFor="let progressTitle of progressTitlesWithTeams">
+          <div class="reference-header">{{ progressTitle }}</div>
+          <div class="reference-values">
+            <span class="reference-value" *ngFor="let teamName of teamsByProgressTitle.get(progressTitle)">
+              {{ teamName }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <ng-template #noTeamsBlock>
+        <p>No teams have started implementing this activity yet.</p>
       </ng-template>
     </mat-expansion-panel>
   </mat-accordion>
 
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <b>Tags</b>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <p [innerHTML]="currentActivity.tags"></p>
-  </mat-expansion-panel>
+  <div class="tags-section" *ngIf="currentActivity.tags?.length && currentActivity.tags?.[0] !== 'none'">
+    <div class="tags-container">
+      <span class="tag-chip" *ngFor="let tag of currentActivity.tags">{{ tag }}</span>
+    </div>
+  </div>
 </div>

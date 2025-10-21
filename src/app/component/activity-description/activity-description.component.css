@@ -55,6 +55,35 @@
   list-style: none;
 }
 
+/* Ensure panel titles don't wrap */
+mat-panel-title b {
+  white-space: nowrap;
+}
+
+/* Implemented By Grid - dynamic columns based on content */
+.implemented-by-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 0;
+  width: 100%;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 550px) {
+  .implemented-by-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 350px) {
+  .implemented-by-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 .difficulty-summary {
   display: flex;
   gap: 15px;
@@ -96,7 +125,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 15px;
-  padding: 10px 0;
+  padding: 0;
 }
 
 .difficulty-detail-item {
@@ -197,6 +226,7 @@ mat-icon.mat-icon {
   gap: 4px;
   flex: 1;
   min-width: 0;
+  max-height: 37px;
 }
 
 .ref-section strong {
@@ -224,7 +254,7 @@ mat-icon.mat-icon {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  padding: 15px 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -380,6 +410,30 @@ mat-icon.mat-icon {
 
 .tool-description p {
   margin: 0;
+}
+
+.tags-section {
+  margin-top: 20px;
+  padding: 16px 0;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
+  border-radius: 16px;
+  font-size: 0.6em;
+  font-weight: 500;
+  border: 1px solid var(--text-tertiary);
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 /* Dark Mode Support */
