@@ -456,7 +456,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
           .append('textPath')
           .attr('text-anchor', 'middle')
           .attr('xlink:href', '#segment-label-path-' + id)
-          .style('font-size', segmentLabelFontSize)
+          .style('font-size', segmentLabelFontSize + 'px')
           .attr('startOffset', function (d, i) {
             return ((i + 0.5) * 100) / numSegments + '%'; // shift ½ segment to center
           })
