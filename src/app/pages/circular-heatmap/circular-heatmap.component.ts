@@ -259,12 +259,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   }
 
   getSectorProgress(sector: Sector): number {
-    // console.log('getSectorProgress');
-    // if (sector.level % 2 == 1) return 0;
-    // return  this.pinch(0.06, 0.8, ((sector.dimensionIndex||0)) / 18);
-    // if (this.sectorService.getSectorProgress(sector.activities)>0) console.log(this.sectorService.getSectorProgress(sector.activities)+ ': ' + sector.level + ' ' + sector.dimension);
-    return this.pinch(0.06, 0.8, this.sectorService.getSectorProgress(sector.activities));
-    // return this.pinch(0.03, 0.8, this.sectorService.getSectorProgress(sector.activities));
+    return this.pinch(0.08, 0.8, this.sectorService.getSectorProgress(sector.activities));
   }
 
   pinch(min: number, max: number, value: number): number {
@@ -658,9 +653,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       .domain([0, 1])
       .range([this.theme_colors['background'], this.theme_colors['filled']]);
 
-    let progressValue: number = this.sectorService.getSectorProgress(
-      this.allSectors[index].activities
-    );
+    let progressValue: number = this.getSectorProgress(this.allSectors[index]);
     d3.select('#index-' + index).attr(
       'fill',
       isNaN(progressValue) ? this.theme_colors['disabled'] : colorSector(progressValue)
