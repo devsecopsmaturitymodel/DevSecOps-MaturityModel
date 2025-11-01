@@ -108,7 +108,7 @@ export class ProgressStore {
     if (!this._progress) return;
 
     console.log(`${perfNow()} Renaming progress title '${oldTitle}' to '${newTitle}' in progress store`);  // eslint-disable-line
-    
+
     // Update progress data
     for (let activityUuid in this._progress) {
       for (let teamName in this._progress[activityUuid]) {

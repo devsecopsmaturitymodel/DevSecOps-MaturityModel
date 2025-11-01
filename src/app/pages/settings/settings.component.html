@@ -140,12 +140,19 @@
       </div>
       <div class="help-text" *ngIf="editingProgressDefinitions">
         <p>
-          Customize progression steps for the activites. Some prefer a timewise progression, such as
-          <em>Planned-In progress-Implemented</em>. Some prefer a maturity wise progression, such as
-          <em>Low maturity-Medium maturity-High maturity</em>.
+          Define custom progression stages that match your team's workflow. Choose names and
+          definitions that reflect how your organization tracks security activity maturity.
         </p>
-        <p>Make sure to add a good definition, so that everyone aligns.</p>
-        <p>A progress stage of 0% and 100% is mandatory. The rest is up to you.</p>
+        <p>
+          <strong>Examples:</strong><br />
+          Time-based: <em>Not implemented → Backlog → Started → Implemented</em><br />
+          Maturity-based: <em>Low maturity → Medium maturity → High maturity</em>
+        </p>
+        <p>
+          Write precise definitions that specify the criteria that must be met for each stage. This
+          removes ambiguity and ensures everyone interprets each stage consistently.
+        </p>
+        <p><strong>Note:</strong> Stages at 0% and 100% are mandatory and cannot be removed.</p>
       </div>
     </div>
   </mat-card>
