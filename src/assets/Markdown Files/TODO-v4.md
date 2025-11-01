@@ -13,11 +13,6 @@
 - Settings: Proper text under Progress
 
 ## Next
-- Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
-- Heatmap: Add a "pinching" of heat map colors, to differenciate 0.00 an 0.01
-- Matrix: Search (incl descr search), based on Mapping
-- Reorder menu
-
 ### Align DSOMM-data and DSOMM
 - DSOMM-data: Sort linear list of activities (sorted by dim, level)
 - DSOMM-data: Update generated filename and data structure to adhere to this new DSOMM standard
@@ -26,32 +21,43 @@
 - DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, to check for any new releases
 
 
-## ToDo
 ### Settings
 - Settings: Terms: Allow custom names for: team, group, etc
+
+### Activity view
+- Activity: Shorten very long ISO references
+- Activity: Show Team Evidence from yaml file
+- Activity: Show Implemented by properly
+
+
+## ToDo
 ### KPI
 - Teams: Bug: Reads progress heading from activityStore, not metaStore
 - Team KPI: One KPI per ProgressDefinition
 - KPI: Add Sub-title
 ### Matrix
-- Matrix: Add a Close/Back button
+- Matrix: Add a Close/Back button on Activity
+- Matrix: Close on pushing ESCAPE
+- Matrix: Add Filter serach (like for Mapping)
 - Matrix: Remember filters when returning to matrix page
-- Matrix: Filter on Usefulness, and Difficulties
 ### Teams
 - Teams: Allow user to re-order teams and groups
 - Teams: Bug: Editing name, pushes the item last
 - Teams: Allow editing dates for progress stages
 ### Heatmap:
+- Heatmap: Allow 'change all' if more than four activities
+- Heatmap: Add filter search, and highlight sectors with a match, inc highlight activity card
+- Heatmap: Hilight (outline) the activity card that is open
 - Heatmap: Fix: asterisk marks when modified
   - ViewController needs to know about changes vs temp storage
 - Heatmap: Bug: Selecting a team group does not always get deselected when flipping teams
 - Heatmap: meta-yaml: If progress definition is missing, default to 0% + 100% 
-- Heatmap: Revert to boolean checkboxes, if definition is only 0% and 100%
 - Heatmap: Read previous local storage for backwards compatibility 
-- Heatmap: Input Teams' evidence
 - Heatmap: Outer rim: Increase subdimension to be two lines (and increase size)
 - Heatmap: Outer rim: Make hover display Dimension (over subdimension)
-- Heatmap: Mouseover, showing sub-dimension and level in Title
+- Heatmap: Show a dimension label in title when hovering (especially for the up-side down dimension)
+### Activity view
+- Activity: Input Teams' evidence
 ### Documentation
 - Doc: Update `Usage`
 - Doc: Update `README.md`
@@ -63,7 +69,6 @@
 - Move About Us, last, renaming to About DSOMM
 - Move all getMetaString into MetaStore()
 - Add fallbacks for getMetaString in MetaStore()
-- Refactor: Labels for knowledge, time, resources, and usefulness (used by both Matrix and Heatmap)
 - Move META_FILE constant from data service to main app
 - Check if loader can be optimized by load in yaml in parallel
 
@@ -85,8 +90,12 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
-- Fix dependsOn that is uuid (e.g. 83057028-0b77-4d2e-8135-40969768ae88)
-- Settings: Make settings page for Date format and Max maturity level
+- Settings: Make settings page
+- Settings: Date format (don't rely just on browser language)
+- Settings: Set Max maturity level (1-5)
+- Activity info: Revamp the activity compoment
+- Activity info: Both Matrix, Heatmap, and now Mapping use the same component for displaying activity info
+- Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
 - Dependency: Make connecting nodes clickable for navigation
 - Dependency: Handle dependsOn uuid, not just name
 - Matrix: Dependency graph: Render in center of page

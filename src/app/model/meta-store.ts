@@ -32,7 +32,16 @@ export class MetaStore {
   teams: TeamNames = [];
   activityFiles: string[] = [];
   teamProgressFile: string = '';
-  allowChangeTeamNameInBrowser: boolean = false;
+  allowChangeTeamNameInBrowser: boolean = true;
+
+  dimensionIcons: Record<string, string> = {
+    'Build and Deployment': 'front_loader',
+    'Culture and Organization': 'diversity_3',
+    Implementation: 'design_services',
+    'Information Gathering': 'insights',
+    'Test and Verification': 'checklist',
+    default: 'check_box_outline_blank',
+  };
 
   public init(metaData: any): void {
     this.addMeta(metaData);
@@ -117,5 +126,9 @@ export class MetaStore {
         console.error('Failed to load stored meta from localStorage:', error);
       }
     }
+  }
+
+  getIcon(dimension: string): string {
+    return this.dimensionIcons[dimension] || this.dimensionIcons['default'];
   }
 }

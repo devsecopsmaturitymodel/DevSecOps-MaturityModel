@@ -87,9 +87,11 @@ body {
 
 .light-theme {
   --text-primary: #000000;
-  --text-secondary: #bbbbbb;
+  --text-secondary: #666666;
+  --text-tertiary: #bbbbbb;
   --background-primary: #f5f5f5;
   --background-secondary: #fefefe;
+  --background-tertiary: #f8f9fa;
 
   --primary-color: #{mat.get-color-from-palette($DSOMM-primary)};
 
@@ -118,8 +120,10 @@ body.dark-theme {
   
   --text-primary: #fefefe;
   --text-secondary: #ababab;
+  --text-tertiary: #999999;
   --background-primary: #303030;
   --background-secondary: #424242;
+  --background-tertiary: #666666;
   
   --primary-color: #{mat.get-color-from-palette($DSOMM-dark-primary)};
 
@@ -144,6 +148,10 @@ body.dark-theme {
   // General properties
   p, li, tr {
     color: #e0e0e0;
+  }
+
+  b {
+    font-weight: 400;
   }
 
   // Common containers

@@ -44,7 +44,11 @@
 
     <ng-container matColumnDef="activityName">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>Activity</th>
-      <td mat-cell *matCellDef="let element">{{ element.activityName }}</td>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/activity-description']" [queryParams]="{ uuid: element.uuid }">
+          {{ element.activityName }}
+        </a>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="samm2">

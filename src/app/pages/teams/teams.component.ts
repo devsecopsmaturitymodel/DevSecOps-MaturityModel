@@ -30,7 +30,7 @@ import { isEmptyObj, perfNow, dateStr, uniqueCount } from 'src/app/util/util';
 export class TeamsComponent implements OnInit, AfterViewInit {
   dateStr = dateStr;
   dataStore: DataStore = new DataStore();
-  canEdit: boolean = false;
+  canEdit: boolean = true;
   teams: TeamNames = [];
   teamGroups: TeamGroups = {};
   progressTitleImplemented: string = 'Implemented';

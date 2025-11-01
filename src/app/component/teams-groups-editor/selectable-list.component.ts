@@ -11,7 +11,7 @@ export class SelectableListComponent {
   @Input() items: string[] = [];
   @Input() selectedItem: string | null = null;
   @Input() highlightedItems: string[] = [];
-  @Input() canEdit = false;
+  @Input() canEdit = true;
   @Input() editMode = false;
   @Input() addLabel = 'Add';
   @Input() typeLabel = '';

@@ -19,6 +19,7 @@ import { LogoComponent } from './component/logo/logo.component';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 import { TopHeaderComponent } from './component/top-header/top-header.component';
 import { ActivityDescriptionComponent } from './component/activity-description/activity-description.component';
+import { ActivityDescriptionPageComponent } from './pages/activity-description/activity-description-page.component';
 import { LoaderService } from './service/loader/data-loader.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
@@ -38,6 +39,7 @@ import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-g
     SidenavButtonsComponent,
     TopHeaderComponent,
     ActivityDescriptionComponent,
+    ActivityDescriptionPageComponent,
     CircularHeatmapComponent,
     MappingComponent,
     ReadmeToHtmlComponent,
