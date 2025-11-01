@@ -42,7 +42,7 @@ export function dateStr(
   locale: string | null | undefined = undefined
 ): string {
   if (!date) return '';
-  if (!locale) locale = navigator.language;
+  if (!locale || locale === 'BROWSER') locale = navigator.language;
 
   return date.toLocaleDateString(locale, {
     year: 'numeric',
