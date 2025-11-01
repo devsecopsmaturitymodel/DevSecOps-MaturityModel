@@ -104,6 +104,47 @@ export class ProgressStore {
     }
   }
 
+  public renameProgressTitle(oldTitle: ProgressTitle, newTitle: ProgressTitle): void {
+    if (!this._progress) return;
+
+    console.log(`${perfNow()} Renaming progress title '${oldTitle}' to '${newTitle}' in progress store`);  // eslint-disable-line
+    
+    // Update progress data
+    for (let activityUuid in this._progress) {
+      for (let teamName in this._progress[activityUuid]) {
+        if (this._progress[activityUuid][teamName][oldTitle]) {
+          this._progress[activityUuid][teamName][newTitle] = this._progress[activityUuid][teamName][oldTitle]; // eslint-disable-line
+          delete this._progress[activityUuid][teamName][oldTitle];
+        }
+      }
+    }
+
+    // Update temporary progress data
+    for (let activityUuid in this._tempProgress) {
+      for (let teamName in this._tempProgress[activityUuid]) {
+        if (this._tempProgress[activityUuid][teamName][oldTitle]) {
+          this._tempProgress[activityUuid][teamName][newTitle] = this._tempProgress[activityUuid][teamName][oldTitle]; // eslint-disable-line
+          delete this._tempProgress[activityUuid][teamName][oldTitle];
+        }
+      }
+    }
+
+    // Update progress titles arrays
+    if (this._progressTitles) {
+      const index = this._progressTitles.indexOf(oldTitle);
+      if (index !== -1) {
+        this._progressTitles[index] = newTitle;
+      }
+    }
+
+    if (this._progressTitlesDescOrder) {
+      const index = this._progressTitlesDescOrder.indexOf(oldTitle);
+      if (index !== -1) {
+        this._progressTitlesDescOrder[index] = newTitle;
+      }
+    }
+  }
+
   public getTeamProgress(
     activityUuid: Uuid,
     teamName: TeamName,

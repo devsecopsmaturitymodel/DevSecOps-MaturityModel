@@ -10,6 +10,7 @@ import {
 } from 'src/app/component/modal-message/modal-message.component';
 import { dateStr, deepCopy } from 'src/app/util/util';
 import { MetaStore } from 'src/app/model/meta-store';
+import { ProgressStore } from 'src/app/model/progress-store';
 
 @Component({
   selector: 'app-settings',
@@ -18,6 +19,7 @@ import { MetaStore } from 'src/app/model/meta-store';
 })
 export class SettingsComponent implements OnInit {
   meta!: MetaStore;
+  progressStore!: ProgressStore;
   dataStoreMaxLevel!: number;
   selectedMaxLevel!: number;
   selectedMaxLevelCaption: String = '';
@@ -82,6 +84,10 @@ export class SettingsComponent implements OnInit {
     this.selectedMaxLevel = this.settingsService.getMaxLevel() || this.dataStoreMaxLevel;
     this.updateMaxLevelCaption();
 
+    if (dataStore.progressStore) {
+      this.progressStore = dataStore.progressStore;
+    }
+
     // Load progress definitions
     if (dataStore.meta) {
       this.meta = dataStore.meta;
@@ -134,9 +140,10 @@ export class SettingsComponent implements OnInit {
   private updateProgressDefinitionsForm(): void {
     this.definitionsFormArray.clear();
 
-    Object.entries(this.tempProgressDefinitions).forEach(([key, progDef]) => {
+    Object.entries(this.tempProgressDefinitions).forEach(([key, progDef], index) => {
       this.definitionsFormArray.push(
         this.formBuilder.group({
+          pid: [index],
           key: [key],
           score: [progDef.score * 100],
           definition: [progDef.definition],
@@ -154,6 +161,7 @@ export class SettingsComponent implements OnInit {
     this.definitionsFormArray.insert(
       index,
       this.formBuilder.group({
+        pid: [-1], // -1 indicates a new item
         key: [''],
         score: [score],
         definition: [''],
@@ -166,35 +174,74 @@ export class SettingsComponent implements OnInit {
   }
 
   saveProgressDefinitions(): void {
+    // Validate form
     if (this.progressDefinitionsForm.invalid) {
       this.progressDefinitionsForm.markAllAsTouched();
-      
-      this.modal.openDialog(new DialogInfo(
-        'All definitions must have a name, and the score must be between 0% and 100%'
-      ));
-      
-      return; // Exit early if form is invalid
+
+      this.modal.openDialog(
+        new DialogInfo(
+          'All definitions must have a name, and the score must be between 0% and 100%'
+        )
+      );
+      return;
     }
 
-    // Build new progress definitions from form data
+    // Get the original keys in order
+    const originalKeys = Object.keys(this.tempProgressDefinitions);
+
+    // Build new progress definitions from form data and identify changes
     const newProgressDefinitions: ProgressDefinitions = {};
-    
-    this.definitionsFormArray.controls.forEach((control) => {
+    const renamedItems: Array<{ originalKey: string; newKey: string; pid: number }> = [];
+
+    this.definitionsFormArray.controls.forEach(control => {
       const formGroup = control as FormGroup;
+      const pid = formGroup.get('pid')?.value;
       const key = formGroup.get('key')?.value;
       const score = formGroup.get('score')?.value / 100; // Convert from percentage back to decimal
       const definition = formGroup.get('definition')?.value;
-      
-      if (key && key.trim()) { // Only add if key is not empty
+
+      if (key && key.trim()) {
+        // Only add if key is not empty
         newProgressDefinitions[key] = {
           score: score,
-          definition: definition
+          definition: definition,
         };
+
+        // Check if this is a renamed item
+        if (pid >= 0 && pid < originalKeys.length) {
+          const originalKey = originalKeys[pid];
+          if (originalKey !== key) {
+            renamedItems.push({
+              originalKey: originalKey,
+              newKey: key,
+              pid: pid,
+            });
+          }
+        }
       }
     });
 
+    // Log renamed items for debugging/tracking
+    if (renamedItems.length > 0) {
+      console.log('Renamed progress definitions:', renamedItems);
+      for (const item of renamedItems) {
+        console.log(`- PID ${item.pid}: "${item.originalKey}" renamed to "${item.newKey}"`);
+        this.progressStore.renameProgressTitle(item.originalKey, item.newKey);
+      }
+    }
+
     // Sort the definitions by score in ascending order
     this.tempProgressDefinitions = this.sortObjectByScore(newProgressDefinitions);
+
+    // Save the new progress definitions to MetaStore and localStorage
+    this.meta.saveProgressDefinition(this.tempProgressDefinitions);
+
+    // Reinitialize the ProgressStore with the new definitions
+    this.progressStore.init(this.tempProgressDefinitions);
+
+    // Save progress data to localStorage
+    this.progressStore.saveToLocalStorage();
+
     this.editingProgressDefinitions = false;
     this.updateProgressDefinitionsForm();
   }
@@ -220,7 +267,7 @@ export class SettingsComponent implements OnInit {
    */
   sortObjectByScore<T extends { score: number }>(obj: { [key: string]: T }): { [key: string]: T } {
     const sortedEntries = Object.entries(obj).sort(([, a], [, b]) => a.score - b.score);
-    
+
     // Convert back to object
     return Object.fromEntries(sortedEntries);
   }

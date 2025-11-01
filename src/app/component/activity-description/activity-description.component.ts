@@ -79,7 +79,7 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
       this.ResourceLabel = dataStore.getMetaString('labels', activity.difficultyOfImplementation.resources - 1);
       this.UsefulnessLabel = dataStore.getMetaString('labels', activity.usefulness - 1);
       /* eslint-enable */
-      
+
       // Get teams that have implemented this activity
       this.updateTeamsImplemented();
     }
@@ -89,7 +89,7 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
     this.teamsImplemented.clear();
     this.teamsByProgressTitle.clear();
     this.progressTitlesWithTeams = [];
-    
+
     const dataStore = this.loader.datastore;
     if (!dataStore || !dataStore.progressStore || !dataStore.meta || !this.currentActivity.uuid) {
       return;
@@ -108,11 +108,11 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
     for (const teamName of teams) {
       const progressTitle = progressStore.getTeamProgressTitle(activityUuid, teamName);
       const progressValue = progressStore.getTeamActivityProgressValue(activityUuid, teamName);
-      
+
       // Only include teams that have made progress (value > 0)
       if (progressValue > 0) {
         this.teamsImplemented.set(teamName, progressTitle);
-        
+
         // Group teams by progress title
         if (!this.teamsByProgressTitle.has(progressTitle)) {
           this.teamsByProgressTitle.set(progressTitle, []);

@@ -85,12 +85,11 @@
           <ng-container formArrayName="definitions">
             <ng-container *ngFor="let definition of definitionsFormArray.controls; let i = index">
               <ng-container [formGroup]="getDefinitionGroup(i)">
+                <input type="hidden" formControlName="pid" />
+
                 <mat-form-field appearance="outline" class="grid-cell progress-key edit">
                   <mat-label>Name</mat-label>
-                  <input
-                    matInput
-                    required minlength="1"
-                    formControlName="key" />
+                  <input matInput required minlength="1" formControlName="key" />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="grid-cell progress-score edit">
@@ -110,7 +109,8 @@
                   <mat-label>Definition</mat-label>
                   <textarea
                     matInput
-                    required minlength="1"
+                    required
+                    minlength="1"
                     formControlName="definition"
                     cdkTextareaAutosize
                     cdkAutosizeMinRows="1"
