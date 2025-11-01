@@ -90,7 +90,7 @@ h3 {
 }
 
 td.mat-cell {
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 .progress-col {
@@ -102,4 +102,17 @@ td.mat-cell {
 
 .teams-table {
   box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dimension-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dimension-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
 }

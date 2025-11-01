@@ -81,6 +81,9 @@ export class TeamsComponent implements OnInit, AfterViewInit {
         if (property === 'Activity') {
           return item.activity?.name || '';
         }
+        if (property === 'SubDimension') {
+          return item.activity?.dimension || '';
+        }
         // For progress columns, sort by date string or timestamp
         if (this.progressColumnNames.includes(property)) {
           // If your progress is a date string, you may want to convert to Date for proper sorting
@@ -104,7 +107,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     let progressStore: ProgressStore | null = this.dataStore?.progressStore;
     this.progressColumnNames = progressStore?.getInProgressTitles() || [];
     this.progressTitleImplemented = progressStore?.getCompletedProgressTitle() || 'Implemented';
-    this.allColumnNames = ['Team', 'Activity', ...this.progressColumnNames];
+    this.updateColumnNames();
   }
 
   displayMessage(dialogInfo: DialogInfo) {
@@ -125,6 +128,12 @@ export class TeamsComponent implements OnInit, AfterViewInit {
       this.info[this.infoTitle] = this.makeTeamSummary(this.infoTitle, this.infoTeams);
     }
     this.dataSource.data = this?.info[this.infoTitle]?.activitiesInProgress || [];
+    this.updateColumnNames();
+  }
+
+  updateColumnNames() {
+    const baseColumns = this.infoTeams.length > 1 ? ['Team'] : [];
+    this.allColumnNames = [...baseColumns, 'SubDimension', 'Activity', ...this.progressColumnNames];
   }
 
   onTeamsChanged(event: TeamsGroupsChangedEvent) {
@@ -143,6 +152,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     this.dataSource.data = this?.info[this.infoTitle]?.activitiesInProgress || [];
 
     this.setYamlData(this.dataStore);
+    this.updateColumnNames();
   }
 
   onExportTeamGroups() {

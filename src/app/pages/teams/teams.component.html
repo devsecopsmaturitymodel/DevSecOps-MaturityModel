@@ -28,7 +28,8 @@
           [suffix]="'activities'"></app-kpi>
         <app-kpi
           [title]="'Last updated:'"
-          [value]="dateFormat(info[infoTitle]?.lastUpdated)"></app-kpi>
+          [value]="dateFormat(info[infoTitle]?.lastUpdated)"
+          [suffix]="info[infoTitle]?.lastUpdated ? '' : 'No activity registered'"></app-kpi>
       </div>
     </div>
 
@@ -47,6 +48,22 @@
         </th>
         <td mat-cell *matCellDef="let element" class="table-small-width">
           {{ element?.activity?.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="SubDimension">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="table-small-width">
+          Dimension
+        </th>
+        <td mat-cell *matCellDef="let element" class="table-small-width">
+          <div class="dimension-cell">
+            <mat-icon
+              class="dimension-icon"
+              *ngIf="dataStore?.meta?.getIcon(element?.activity?.category || '')">
+              {{ dataStore?.meta?.getIcon(element?.activity?.category || '') }}
+            </mat-icon>
+            <span>{{ element?.activity?.dimension }}</span>
+          </div>
         </td>
       </ng-container>
 
