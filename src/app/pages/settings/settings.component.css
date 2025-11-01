@@ -1,0 +1,112 @@
+.settings-container {
+  margin-top: 1em;
+}
+
+.mat-slider-horizontal {
+  max-width: 100px;
+  width: 100px;
+  min-width: 80px;
+}
+
+.date-format-container {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  width: 25em;
+}
+
+
+.progress-definitions-grid {
+  display: grid;
+  grid-template-columns: auto 5em minmax(200px, 2fr) auto;
+  gap: 0.3em;
+}
+
+.progress-definitions-grid ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.progress-definitions-grid ::ng-deep .mat-form-field-suffix {
+  top: 0;
+}
+
+.grid-cell.progress-key {
+  font-weight: 500;
+}
+
+.grid-cell.progress-score {
+  text-align: right;
+  padding-right: 0.5em;
+}
+input.progress-score::-webkit-outer-spin-button,
+input.progress-score::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  /* margin: 0;  */
+}
+input.progress-score {
+  -moz-appearance: textfield;
+  /* text-align: right; */
+}
+
+.grid-cell.action-buttons,
+.grid-cell.progress-definition {
+  margin-bottom: 0.8em;
+}
+
+
+.grid-cell.progress-score span, 
+.grid-cell.action-buttons {
+  color: #aaa;
+}
+.grid-cell.action-buttons {
+  align-self: center;
+  justify-self: center;
+}
+
+.selectable-list {
+  padding: 16px;
+}
+
+.selectable-list-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.selectable-list-header h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.edit-hint {
+  color: #666;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+mat-icon.mandatory-icon {
+    padding: 8px;
+}
+
+.help-text {
+  font-size: 0.75em;
+  color: #666;
+  margin-top: 0.5em;
+}
+
+
+@media screen and (max-width: 650px) {
+  .progress-definitions-grid {
+    grid-template-columns: auto 5em;
+  } 
+  
+  .grid-cell.action-buttons,
+  .grid-cell.progress-definition {
+    margin-bottom: 1.8em;
+  }
+
+  .edit-hint {
+    display: none;
+  }
+}

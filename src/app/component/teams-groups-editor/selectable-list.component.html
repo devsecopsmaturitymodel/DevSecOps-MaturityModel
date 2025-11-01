@@ -45,10 +45,10 @@
 
       <span *ngIf="editMode">
         <button mat-icon-button (click)="startEditItem(name)" title="Rename {{ name }}">
-          <mat-icon>edit</mat-icon>
+          <mat-icon class="material-icons-outlined">edit</mat-icon>
         </button>
         <button mat-icon-button (click)="deleteListItem(name)" title="Delete {{ name }}">
-          <mat-icon>delete</mat-icon>
+          <mat-icon class="material-icons-outlined">delete</mat-icon>
         </button>
       </span>
       <span *ngIf="relationshipEditMode">

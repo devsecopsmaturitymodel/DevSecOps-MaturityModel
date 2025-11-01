@@ -20,7 +20,9 @@
 
   <div class="activity-subheader">
     <span class="level">Level {{ currentActivity.level }}</span>
-    <div class="uuid"><span class="uuid-label">id: </span><span class="uuid-value">{{ currentActivity.uuid }}</span></div>
+    <div class="uuid">
+      <span class="uuid-label">id: </span><span class="uuid-value">{{ currentActivity.uuid }}</span>
+    </div>
   </div>
   <mat-accordion class="activity-details" multi="true">
     <mat-expansion-panel *ngIf="currentActivity.description?.hasContent()" [expanded]="true">
@@ -213,7 +215,8 @@
                   *ngFor="let openCRE of currentActivity?.references?.openCRE"
                   target="_blank"
                   [href]="openCRE">
-                  View OpenCRE</a>
+                  View OpenCRE</a
+                >
               </span>
               <ng-template #creEmpty>-</ng-template>
             </span>
@@ -336,9 +339,7 @@
         <mat-panel-title>
           <b>Implemented by</b>
           <div class="references-summary" [class.hidden]="implementedByPanel.expanded">
-            <span
-              class="ref-section"
-              *ngFor="let progressTitle of progressTitlesWithTeams">
+            <span class="ref-section" *ngFor="let progressTitle of progressTitlesWithTeams">
               <strong>{{ progressTitle }}:</strong>
               <span class="ref-values">
                 <span
@@ -357,7 +358,9 @@
         <div class="reference-column" *ngFor="let progressTitle of progressTitlesWithTeams">
           <div class="reference-header">{{ progressTitle }}</div>
           <div class="reference-values">
-            <span class="reference-value" *ngFor="let teamName of teamsByProgressTitle.get(progressTitle)">
+            <span
+              class="reference-value"
+              *ngFor="let teamName of teamsByProgressTitle.get(progressTitle)">
               {{ teamName }}
             </span>
           </div>
@@ -369,7 +372,9 @@
     </mat-expansion-panel>
   </mat-accordion>
 
-  <div class="tags-section" *ngIf="currentActivity.tags?.length && currentActivity.tags?.[0] !== 'none'">
+  <div
+    class="tags-section"
+    *ngIf="currentActivity.tags?.length && currentActivity.tags?.[0] !== 'none'">
     <div class="tags-container">
       <span class="tag-chip" *ngFor="let tag of currentActivity.tags">{{ tag }}</span>
     </div>

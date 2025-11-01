@@ -1,16 +1,4 @@
 ## Doing
-- Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
-  - List
-  - UI: Toggle: edit / view
-  - UI: 0% and 100%: No delete, no edit Weight
-  - UI: Edit
-
-  - UI: Add
-  - UI: Delete
-  - Save / Accept
-  - Revert
-
-- Settings: Proper text under Progress
 
 ## Next
 ### Align DSOMM-data and DSOMM
@@ -65,6 +53,8 @@
 - Doc: Update `Development.md`
 - Doc: Update `INSTALL.md`
 ### Misc
+- Refactor ProgressDefinitions to MetaStore to get definitions for 0%, 100% etc
+- Move About Us, last, renaming to About DSOMM
 - Move all getMetaString into MetaStore()
 - Add fallbacks for getMetaString in MetaStore()
 - Move META_FILE constant from data service to main app
@@ -88,6 +78,8 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Settings: Proper text under Progress
+- Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
 - Settings: Make settings page
 - Settings: Date format (don't rely just on browser language)
 - Settings: Set Max maturity level (1-5)

@@ -61,8 +61,14 @@ export class DataStore {
     return this.activityStore?.getMaxLevel() || 0;
   }
 
-  public getLevels(): string[] {
-    let maxLvl: number = this.getMaxLevel();
-    return this.getMetaStrings()?.maturityLevels?.slice(0, maxLvl) || [];
+  public getLevelTitles(maxLevel: number | null = null): string[] {
+    if (maxLevel == null) maxLevel = this.getMaxLevel();
+    let titles: string[] = this.getMetaStrings()?.maturityLevels?.slice(0, maxLevel) || [];
+    if (titles.length < maxLevel) {
+      for (let i = titles.length + 1; i <= maxLevel; i++) {
+        titles.push(`Level ${i}`);
+      }
+    }
+    return titles;
   }
 }

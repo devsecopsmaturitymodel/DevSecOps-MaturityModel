@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Activity } from 'src/app/model/activity-store';
-import { Progress, ProgressDefinition, TeamNames, Uuid } from 'src/app/model/types';
+import { Progress, ProgressDefinitions, TeamNames, Uuid } from 'src/app/model/types';
 import { ProgressStore } from 'src/app/model/progress-store';
 
 /**
@@ -16,20 +16,20 @@ export class SectorService {
   private visibleTeams: TeamNames = [];
   private allProgress: Progress | null = null;
   private progressStates: string[] = [];
-  private progressValues: ProgressDefinition | null = null;
+  private progressValues: ProgressDefinitions | null = null;
 
   init(
     progressStore: ProgressStore,
     teamnames: TeamNames,
     progress: Progress,
-    progressStates: ProgressDefinition
+    progressStates: ProgressDefinitions
   ) {
     this.progressStore = progressStore;
     this.allTeams = teamnames;
     this.allProgress = progress;
     this.progressValues = progressStates;
     this.progressStates = Object.keys(progressStates).sort(
-      (a, b) => progressStates[b] - progressStates[a]
+      (a, b) => progressStates[b].score - progressStates[a].score
     );
   }
 

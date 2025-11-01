@@ -13,13 +13,21 @@ import {
   DialogInfo,
 } from '../../component/modal-message/modal-message.component';
 import { Activity } from 'src/app/model/activity-store';
-import { Uuid, ProgressDefinition, TeamName, ProgressTitle, TeamGroups } from 'src/app/model/types';
+import {
+  Uuid,
+  ProgressDefinitions,
+  TeamName,
+  ProgressTitle,
+  TeamGroups,
+} from 'src/app/model/types';
 import { SectorService } from '../../service/sector-service';
 import { DataStore } from 'src/app/model/data-store';
 import { Sector } from 'src/app/model/sector';
 import { perfNow } from 'src/app/util/util';
 import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
+import { SettingsService } from 'src/app/service/settings/settings.service';
+
 @Component({
   selector: 'app-circular-heatmap',
   templateUrl: './circular-heatmap.component.html',
@@ -28,7 +36,6 @@ import { ThemeService } from '../../service/theme.service';
 export class CircularHeatmapComponent implements OnInit, OnDestroy {
   Routing: string = '/activity-description';
   markdown: md = md();
-  maxLevelOfMaturity: number = -1;
   showOverlay: boolean = false;
   showFilters: boolean = true;
   showActivityCard: any = null;
@@ -56,6 +63,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   constructor(
     private loader: LoaderService,
     private sectorService: SectorService,
+    private settings: SettingsService,
     private themeService: ThemeService,
     private router: Router,
     private route: ActivatedRoute,
@@ -100,7 +108,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
           this.filtersTeamGroups = this.buildFilters(Object.keys(this.teamGroups));
           this.filtersTeamGroups[allTeamsGroupName] = true;
 
-          let progressDefinition: ProgressDefinition = dataStore.meta?.progressDefinition || {};
+          let progressDefinition: ProgressDefinitions = dataStore.meta?.progressDefinition || {};
           this.sectorService.init(
             dataStore.progressStore,
             dataStore.meta?.teams || [],
@@ -162,7 +170,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
   setYamlData(dataStore: DataStore) {
     this.dataStore = dataStore;
-    this.maxLevel = dataStore.getMaxLevel();
+    this.maxLevel = this.settings?.getMaxLevel() || dataStore.getMaxLevel();
     this.dimensionLabels = dataStore?.activityStore?.getAllDimensionNames() || [];
 
     // Prepare all sectors: one for each (dimension, level) pair
@@ -294,7 +302,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     var bbWidth = imageWidth - Math.max(margin.left + margin.right, margin.top + margin.bottom) * 2; // bounding box
     var segmentLabelHeight = bbWidth * 0.0166; // Magic fudge number. to match the longest label within one sector
     var outerRadius = bbWidth / 2 - segmentLabelHeight;
-    var innerRadius = outerRadius / 5;
+    var innerRadius = outerRadius / (maxLevel + 1);
     var segmentHeight = (outerRadius - innerRadius) / maxLevel;
 
     var curr: any;

@@ -1,16 +1,24 @@
 ---
+browserSettings:
+  changeTeamNames: true
+  changeProgressionDefinition: true
+
+
 teamProgressFile: 'team-progress-default.yaml' 
 progressDefinition:
-  Backlog: 0%
-  # Planned: 10%
-  Started: 30%
-  Implemented: 100% 
-# progress:
-#   Low maturity: 0%
-#   Medium maturity: 40%
-#   High maturity: 100% 
+  Not implemented:
+    score: 0%
+    definition: Activity not started and not planned
+  Backlog:
+    score: 20%
+    definition: Activity has been put in the backlog but not yet started
+  Started:
+    score: 40%
+    definition: Activity has been started and is partly implemented
+  Fully implemented:
+    score: 100%
+    definition: Fully implemented
 
-allowChangeTeamNameInBrowser: true
 teams: 
   $ref: 'default/teams.yaml#/teams'
 teamGroups:

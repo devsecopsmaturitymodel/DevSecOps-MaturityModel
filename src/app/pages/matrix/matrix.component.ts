@@ -13,6 +13,7 @@ import {
 } from '../../component/modal-message/modal-message.component';
 import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 
 export interface MatrixRow {
   Category: string;
@@ -22,8 +23,10 @@ export interface MatrixRow {
   level3: Activity[];
   level4: Activity[];
   level5: Activity[];
+  level6: Activity[];
+  level7: Activity[];
 }
-type LevelKey = keyof Pick<MatrixRow, 'level1' | 'level2' | 'level3' | 'level4' | 'level5'>;
+type LevelKey = keyof Pick<MatrixRow, 'level1' | 'level2' | 'level3' | 'level4' | 'level5' | 'level6' | 'level7'>;  // eslint-disable-line
 
 @UntilDestroy()
 @Component({
@@ -47,6 +50,7 @@ export class MatrixComponent implements OnInit {
   /* eslint-disable */
   constructor(
     private loader: LoaderService,
+    private settings: SettingsService,
     private router: Router,
     public modal: ModalMessageComponent
   ) {}
@@ -92,7 +96,7 @@ export class MatrixComponent implements OnInit {
     this.allDimensionNames = dataStore?.activityStore?.getAllDimensionNames() || [];
 
     this.MATRIX_DATA = this.buildMatrixData(dataStore.activityStore);
-    this.levels = this.buildLevels(dataStore.getLevels());
+    this.levels = this.buildLevels(dataStore.getLevelTitles(this.settings.getMaxLevel())); // eslint-disable-line
     this.filtersTag = this.buildFiltersForTag(dataStore.activityStore.getAllActivities());  // eslint-disable-line
     this.filtersDim = this.buildFiltersForDim(this.MATRIX_DATA);
     this.columnNames = ['Category', 'Dimension'];
@@ -137,7 +141,7 @@ export class MatrixComponent implements OnInit {
     let matrixData: MatrixRow[] = [];
     for (let dim of this.allDimensionNames) {
       let matrixRow: Partial<MatrixRow> = {};
-      for (let level = 1; level <= 5; level++) {
+      for (let level = 1; level <= activityStore.getMaxLevel(); level++) {
         let activities: Activity[] = activityStore.getActivities(dim, level);
         let levelLabel: LevelKey = `level${level}` as LevelKey;
         matrixRow[levelLabel] = activities;
