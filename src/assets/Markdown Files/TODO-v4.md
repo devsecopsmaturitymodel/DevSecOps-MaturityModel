@@ -9,9 +9,6 @@
 - DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, to check for any new releases
 
 
-### Settings
-- Settings: Terms: Allow custom names for: team, group, etc
-
 ### Activity view
 - Activity: Shorten very long ISO references
 - Activity: Show Team Evidence from yaml file
@@ -43,7 +40,6 @@
 - Heatmap: Read previous local storage for backwards compatibility 
 - Heatmap: Outer rim: Increase subdimension to be two lines (and increase size)
 - Heatmap: Outer rim: Make hover display Dimension (over subdimension)
-- Heatmap: Show a dimension label in title when hovering (especially for the up-side down dimension)
 ### Activity view
 - Activity: Input Teams' evidence
 ### Documentation
@@ -52,6 +48,9 @@
 - Doc: Update `About Us`
 - Doc: Update `Development.md`
 - Doc: Update `INSTALL.md`
+### Settings
+- Settings: Terms: Allow custom names for: 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
+
 ### Misc
 - Refactor ProgressDefinitions to MetaStore to get definitions for 0%, 100% etc
 - Move About Us, last, renaming to About DSOMM
@@ -60,24 +59,17 @@
 - Move META_FILE constant from data service to main app
 - Check if loader can be optimized by load in yaml in parallel
 
-
 # Later
 - App: Search activities, across title description etc
 - Export to Excel. Move from Mapping, to just progress data
 - Filter: Bug: SPACE key does not trigger
 - Heatmap, Card: Add Complete-symbol per activity
-- Heatmap: Update url on open details + read querystring on open
 - Heatmap: Add 'Not applicable' as a status for a team
-- Matrix: Brushup layout of details page
-- Matrix: Remember filters, when moving back from details
-- Matrix: Dependency graph: Make it clickable
 - Matrix: Go through tags: remove, add and rename
-- Misc: What is the activities.yaml comment field for? Should it be displayed to the user?
-- Teams: View active initiatives for a team (>0% and <100%)
 - Teams: View timeline for a team
-- Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Heatmap: Show a dimension label in title when hovering (especially for the up-side down dimension)
 - Settings: Proper text under Progress
 - Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
 - Settings: Make settings page

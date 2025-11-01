@@ -26,6 +26,7 @@ import { Sector } from 'src/app/model/sector';
 import { perfNow } from 'src/app/util/util';
 import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
+import { TitleService } from '../../service/title.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
 
 @Component({
@@ -65,6 +66,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     private sectorService: SectorService,
     private settings: SettingsService,
     private themeService: ThemeService,
+    private titleService: TitleService,
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
@@ -149,6 +151,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.titleService.clearTitle();
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -358,12 +361,21 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         var index = parseInt(hoveredId.replace('index-', ''));
         if (dataset[index]?.activities?.length) {
           _self.setSectorCursor(svg, '#hover', hoveredId);
+          // Update title with sector info
+          const sector = dataset[index];
+          _self.titleService.setTitle({
+            level: sector.level,
+            dimension: sector.dimension,
+            subdimension: sector.subdimension,
+          });
         } else {
           _self.setSectorCursor(svg, '#hover', '');
         }
       })
       .on('mouseout', function () {
         _self.setSectorCursor(svg, '#hover', '');
+        // Clear title on mouseout
+        _self.titleService.clearTitle();
       });
   }
 
