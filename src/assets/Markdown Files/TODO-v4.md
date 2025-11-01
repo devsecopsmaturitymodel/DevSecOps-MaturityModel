@@ -1,11 +1,27 @@
 ## Doing
+- Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
+  - List
+  - UI: Toggle: edit / view
+  - UI: 0% and 100%: No delete, no edit Weight
+  - UI: Edit
+
+  - UI: Add
+  - UI: Delete
+  - Save / Accept
+  - Revert
+
+- Settings: Proper text under Progress
 
 ## Next
+### Align DSOMM-data and DSOMM
+- DSOMM-data: Sort linear list of activities (sorted by dim, level)
+- DSOMM-data: Update generated filename and data structure to adhere to this new DSOMM standard
+- DSOMM-data: Include version number in generated yaml file
+- DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, if missing locally
+- DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, to check for any new releases
+
+
 ### Settings
-- Settings: Make settings page
-- Settings: Date format (don't rely just on browser language)
-- Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)
-- Settings: Set Max maturity level (1-5)
 - Settings: Terms: Allow custom names for: team, group, etc
 
 ### Activity view
@@ -20,13 +36,17 @@
 - Team KPI: One KPI per ProgressDefinition
 - KPI: Add Sub-title
 ### Matrix
-- Matrix: Add a Close/Back button
+- Matrix: Add a Close/Back button on Activity
+- Matrix: Close on pushing ESCAPE
+- Matrix: Add Filter serach (like for Mapping)
+- Matrix: Remember filters when returning to matrix page
 ### Teams
 - Teams: Allow user to re-order teams and groups
 - Teams: Bug: Editing name, pushes the item last
 - Teams: Allow editing dates for progress stages
 ### Heatmap:
 - Heatmap: Allow 'change all' if more than four activities
+- Heatmap: Add filter search, and highlight sectors with a match, inc highlight activity card
 - Heatmap: Hilight (outline) the activity card that is open
 - Heatmap: Fix: asterisk marks when modified
   - ViewController needs to know about changes vs temp storage
@@ -35,7 +55,7 @@
 - Heatmap: Read previous local storage for backwards compatibility 
 - Heatmap: Outer rim: Increase subdimension to be two lines (and increase size)
 - Heatmap: Outer rim: Make hover display Dimension (over subdimension)
-- Heatmap: Show a dimension label when hovering (especially for the up-side down dimension)
+- Heatmap: Show a dimension label in title when hovering (especially for the up-side down dimension)
 ### Activity view
 - Activity: Input Teams' evidence
 ### Documentation
@@ -47,17 +67,9 @@
 ### Misc
 - Move all getMetaString into MetaStore()
 - Add fallbacks for getMetaString in MetaStore()
-- Fix dependsOn that is uuid (e.g. 83057028-0b77-4d2e-8135-40969768ae88)
-- Refactor: Labels for knowledge, time, resources, and usefulness (used by both Matrix and Heatmap)
 - Move META_FILE constant from data service to main app
 - Check if loader can be optimized by load in yaml in parallel
-- Proxy Grafana Faro data: https://grafana.com/docs/grafana-cloud/monitor-applications/frontend-observability/instrument/data-proxy/  
 
-## Align DSOMM-data and DSOMM
-- DSOMM-data: Sort linear list of activities (sorted by dim, level)
-- DSOMM-data: Update generated filename and data structure to adhere to this new DSOMM standard
-- DSOMM-data: Include version number in generated yaml file
-- DSOMM: Read latest "generated.yaml" from DSOMM-data's github repo, to check for any new releases
 
 # Later
 - App: Search activities, across title description etc
@@ -76,6 +88,9 @@
 - Meta.yaml: Allow admins to customize the terms 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 # Done
+- Settings: Make settings page
+- Settings: Date format (don't rely just on browser language)
+- Settings: Set Max maturity level (1-5)
 - Activity info: Revamp the activity compoment
 - Activity info: Both Matrix, Heatmap, and now Mapping use the same component for displaying activity info
 - Heatmap: Add #uuid to URL, and allow navigation on clicks in dependencies
