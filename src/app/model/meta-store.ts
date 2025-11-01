@@ -15,8 +15,9 @@ const fallbackMetaStrings: MetaStrings = {
   knowledgeLabels: ['Low', 'Medium', 'High'],
 };
 
-const LOCALSTORAGE_KEY: string = 'meta';
-const PROGRESS_DEFINITIONS_KEY: string = 'progressDefinitions';
+const STORAGE_TEAMS_KEY: string = 'meta.teams';
+const STORAGE_GROUPS_KEY: string = 'meta.teamGroups';
+const STORAGE_PROGRESS_DEFINITIONS_KEY: string = 'meta.progressDefinitions';
 
 export class MetaStore {
   private yamlService: YamlService = new YamlService();
@@ -71,16 +72,16 @@ export class MetaStore {
 
   public saveProgressDefinition(definitions: ProgressDefinitions): void {
     this.progressDefinition = definitions;
-    localStorage.setItem(PROGRESS_DEFINITIONS_KEY, JSON.stringify(definitions));
+    localStorage.setItem(STORAGE_PROGRESS_DEFINITIONS_KEY, JSON.stringify(definitions));
   }
 
   public resetProgressDefinition(): void {
     this.progressDefinition = { ...this.defaultProgressDefinition };
-    localStorage.removeItem(PROGRESS_DEFINITIONS_KEY);
+    localStorage.removeItem(STORAGE_PROGRESS_DEFINITIONS_KEY);
   }
 
   private loadStoredProgressDefinition(): void {
-    const stored = localStorage.getItem(PROGRESS_DEFINITIONS_KEY);
+    const stored = localStorage.getItem(STORAGE_PROGRESS_DEFINITIONS_KEY);
     if (stored) {
       try {
         this.progressDefinition = JSON.parse(stored);
@@ -96,35 +97,42 @@ export class MetaStore {
   public updateTeamsAndGroups(teams: TeamNames, teamGroups: TeamGroups): void {
     this.teams = teams;
     this.teamGroups = teamGroups;
-    this.saveToLocalStorage();
+    this.saveTeamsAndGroups();
   }
 
   public asStorableYamlString(): string {
     return this.yamlService.stringify({ teams: this.teams, teamGroups: this.teamGroups });
   }
 
-  public saveToLocalStorage() {
-    let yamlStr: string = this.asStorableYamlString();
-    localStorage.setItem(LOCALSTORAGE_KEY, yamlStr);
+  public saveTeamsAndGroups() {
+    let yamlStr: string = this.yamlService.stringify(this.teams);
+    localStorage.setItem(STORAGE_TEAMS_KEY, yamlStr);
+    yamlStr = this.yamlService.stringify(this.teamGroups);
+    localStorage.setItem(STORAGE_GROUPS_KEY, yamlStr);
     this.hasLocalStorage = true;
   }
 
-  public deleteLocalStorage() {
-    localStorage.removeItem(LOCALSTORAGE_KEY);
+  public deleteTeamsAndGroups() {
+    localStorage.removeItem(STORAGE_TEAMS_KEY);
+    localStorage.removeItem(STORAGE_GROUPS_KEY);
     this.hasLocalStorage = false;
   }
 
-  public loadStoredMeta(): void {
-    let storedMeta: string | null = localStorage.getItem(LOCALSTORAGE_KEY);
-    if (storedMeta) {
-      try {
-        let metaData = this.yamlService.parse(storedMeta);
-        this.addMeta(metaData);
-        this.hasLocalStorage = true;
-        console.log('Loaded stored meta from localStorage');
-      } catch (error) {
-        console.error('Failed to load stored meta from localStorage:', error);
-      }
+  public loadTeamsAndGroups(): void {
+    let storedTeams: string | null = localStorage.getItem(STORAGE_TEAMS_KEY);
+    let storedGroups: string | null = localStorage.getItem(STORAGE_GROUPS_KEY);
+    try {
+      let metaTeams: TeamNames | null = null;
+      let metaGroups: TeamGroups | null = null;
+
+      if (storedTeams) metaTeams = this.yamlService.parse(storedTeams);
+      if (storedGroups) metaGroups = this.yamlService.parse(storedGroups);
+
+      this.addMeta({ teams: metaTeams, teamGroups: metaGroups });
+      this.hasLocalStorage = true;
+      console.log('Loaded stored meta from localStorage');
+    } catch (error) {
+      console.error('Failed to load stored meta from localStorage:', error);
     }
   }
 

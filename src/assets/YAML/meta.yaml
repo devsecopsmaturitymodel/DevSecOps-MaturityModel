@@ -4,7 +4,7 @@ browserSettings:
   changeProgressionDefinition: true
 
 
-teamProgressFile: 'team-progress-default.yaml' 
+teamProgressFile: 'team-progress.yaml' 
 progressDefinition:
   Not implemented:
     score: 0%
@@ -14,7 +14,7 @@ progressDefinition:
     definition: Activity has been put in the backlog but not yet started
   Started:
     score: 40%
-    definition: Activity has been started and is partly implemented
+    definition: Activity has been started for at least one application
   Fully implemented:
     score: 100%
     definition: Fully implemented

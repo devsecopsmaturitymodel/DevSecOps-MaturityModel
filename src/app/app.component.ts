@@ -7,7 +7,8 @@ import { ThemeService } from './service/theme.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'DSOMM';
+  title = '';
+  defaultTitle = 'DSOMM beta edition';
   subtitle = '';
   menuIsOpen: boolean = true;
 

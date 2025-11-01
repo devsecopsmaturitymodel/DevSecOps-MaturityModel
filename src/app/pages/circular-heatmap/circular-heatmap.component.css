@@ -107,28 +107,25 @@
   display: none;
 }
 .team-list {
-  display: table;
   width: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 .team-list li {
-  display: table-row;
+  display: grid;
+  grid-template-columns: minmax(100px, auto) 1fr;
+  gap: 16px;
   align-items: center;
   margin-bottom: 8px;
 }
 .team-label {
-  display: table-cell;
   white-space: nowrap;
-  padding-right: 16px;
-  vertical-align: middle;
   text-align: right;
   font-size: smaller;
 }
-progress-slider {
-  display: table-cell;
-  vertical-align: middle;
+app-progress-slider {
+  width: 100%;
 }
 .mat-chip-list {
   display: flex;

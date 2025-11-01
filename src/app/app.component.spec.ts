@@ -23,10 +23,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'DSOMM'`, () => {
-    expect(app.title).toEqual('DSOMM');
-  });
-
   it('check for fork me on github ribbon generation', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const HTMLElement: HTMLElement = fixture.nativeElement;

@@ -74,7 +74,7 @@ export class LoaderService {
     }
     const meta: MetaStore = new MetaStore();
     meta.init(await this.yamlService.loadYaml(this.META_FILE));
-    meta.loadStoredMeta();
+    meta.loadTeamsAndGroups();
 
     if (!meta.activityFiles) {
       throw Error("The meta.yaml has no 'activityFiles' to be loaded");

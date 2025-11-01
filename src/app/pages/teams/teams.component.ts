@@ -163,7 +163,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     let buttonClicked: string = await this.displayDeleteBrowserTeamsDialog();
 
     if (buttonClicked === 'Delete') {
-      this.dataStore?.meta?.deleteLocalStorage();
+      this.dataStore?.meta?.deleteTeamsAndGroups();
       location.reload(); // Make sure all load routines are initialized
     }
   }
