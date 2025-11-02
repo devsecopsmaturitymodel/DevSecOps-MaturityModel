@@ -105,10 +105,12 @@ export class MetaStore {
   }
 
   public saveTeamsAndGroups() {
-    let yamlStr: string = this.yamlService.stringify(this.teams);
+    let yamlStr: string = this.yamlService.stringify({ teams: this.teams });
     localStorage.setItem(STORAGE_TEAMS_KEY, yamlStr);
-    yamlStr = this.yamlService.stringify(this.teamGroups);
+    console.log('Saved teams to localStorage: ' + yamlStr);
+    yamlStr = this.yamlService.stringify({ teamGroups: this.teamGroups });
     localStorage.setItem(STORAGE_GROUPS_KEY, yamlStr);
+    console.log('Saved team groups to localStorage: ' + yamlStr);
     this.hasLocalStorage = true;
   }
 
@@ -122,13 +124,13 @@ export class MetaStore {
     let storedTeams: string | null = localStorage.getItem(STORAGE_TEAMS_KEY);
     let storedGroups: string | null = localStorage.getItem(STORAGE_GROUPS_KEY);
     try {
-      let metaTeams: TeamNames | null = null;
-      let metaGroups: TeamGroups | null = null;
+      let metaTeams: { teams: TeamNames } | null = null;
+      let metaGroups: { teamGroups: TeamGroups } | null = null;
 
       if (storedTeams) metaTeams = this.yamlService.parse(storedTeams);
       if (storedGroups) metaGroups = this.yamlService.parse(storedGroups);
 
-      this.addMeta({ teams: metaTeams, teamGroups: metaGroups });
+      this.addMeta({ teams: metaTeams?.teams, teamGroups: metaGroups?.teamGroups });
       this.hasLocalStorage = true;
       console.log('Loaded stored meta from localStorage');
     } catch (error) {

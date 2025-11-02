@@ -42,6 +42,7 @@
 - Heatmap: Outer rim: Make hover display Dimension (over subdimension)
 ### Activity view
 - Activity: Input Teams' evidence
+- Activity: Dependency: Do not list activities beyond Max Level
 ### Documentation
 - Doc: Update `Usage`
 - Doc: Update `README.md`
