@@ -187,9 +187,9 @@ export class TeamsGroupsEditorComponent implements OnChanges {
 
   onDeleteTeam(team: TeamName) {
     this.localCopyTeams = this.localCopyTeams.filter(t => t !== team);
+    // Remove team for any groups
     for (let group in this.localCopyTeamGroups) {
-      // eslint-disable-next-line
-      this.localCopyTeamGroups[group] = this.localCopyTeamGroups[group].filter(team => team !== team);  // eslint-disable-line
+      this.localCopyTeamGroups[group] = this.localCopyTeamGroups[group].filter(t => t !== team);
     }
   }
 
