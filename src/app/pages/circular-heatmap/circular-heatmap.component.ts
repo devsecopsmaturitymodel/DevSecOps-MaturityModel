@@ -323,8 +323,8 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
     chart.accessor(function (sector: Sector) {
       let progressValue: number = _self.getSectorProgress(sector);
-      if (progressValue) console.debug(`${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`);  // eslint-disable-line
-      return _self.getSectorProgress(sector);
+      if (!isNaN(progressValue) && progressValue !== 0) console.debug(`${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`);  // eslint-disable-line
+      return progressValue;
     });
 
     var svg = d3
