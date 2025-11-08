@@ -1,0 +1,159 @@
+<div class="settings-container">
+  <h2>Settings</h2>
+  <mat-card>
+    <mat-card-content>
+      <div class="date-format-container">
+        <label for="dateFormatDropdown" style="white-space: nowrap">Date Format</label>
+        <mat-form-field appearance="fill" style="flex: 1; margin: 0">
+          <mat-select
+            id="dateFormatDropdown"
+            name="dateFormat"
+            [(ngModel)]="selectedDateFormat"
+            (ngModelChange)="onDateFormatChange()">
+            <mat-option *ngFor="let format of dateFormats" [value]="format.value">
+              {{ format.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-content>
+      <div style="display: flex; align-items: center; gap: 1em">
+        <label style="white-space: nowrap">Max level</label>
+        <mat-slider
+          id="maxLevelSlider"
+          min="1"
+          [max]="dataStoreMaxLevel || 5"
+          step="1"
+          [value]="selectedMaxLevel"
+          [tickInterval]="1"
+          style="flex: 1"
+          (input)="onMaxLevelChange($event.value)">
+        </mat-slider>
+        <span class="caption">{{ selectedMaxLevelCaption }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="progress-definitions-section">
+    <div class="selectable-list">
+      <div class="selectable-list-header">
+        <h2>Progress Definitions</h2>
+        <div *ngIf="editingProgressDefinitions" class="edit-hint">Click Accept when finished</div>
+        <button
+          mat-icon-button
+          *ngIf="!editingProgressDefinitions"
+          (click)="toggleProgressDefinitionsEdit()"
+          title="Edit Progress Definitions">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <span *ngIf="editingProgressDefinitions">
+          <button mat-icon-button (click)="addProgressDefinition()" title="Add Progress Definition">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-icon-button (click)="resetProgressDefinitions()" title="Reset to defaults">
+            <mat-icon>undo</mat-icon>
+          </button>
+          <button mat-icon-button (click)="saveProgressDefinitions()" title="Accept changes">
+            <mat-icon>check</mat-icon>
+          </button>
+        </span>
+      </div>
+
+      <div class="progress-definitions-grid" [formGroup]="progressDefinitionsForm">
+        <ng-container
+          *ngIf="
+            editingProgressDefinitions;
+            then editProgress;
+            else displayProgress
+          "></ng-container>
+
+        <ng-template #displayProgress>
+          <ng-container *ngFor="let definition of definitionsFormArray.controls; let i = index">
+            <div class="grid-cell progress-key">{{ getFormGroupValue(definition, 'key') }}</div>
+            <div class="grid-cell progress-score">
+              {{ getFormGroupValue(definition, 'score') }}%
+            </div>
+            <div class="grid-cell progress-definition">
+              {{ getFormGroupValue(definition, 'definition') }}
+            </div>
+            <div></div>
+          </ng-container>
+        </ng-template>
+        <ng-template #editProgress>
+          <ng-container formArrayName="definitions">
+            <ng-container *ngFor="let definition of definitionsFormArray.controls; let i = index">
+              <ng-container [formGroup]="getDefinitionGroup(i)">
+                <input type="hidden" formControlName="pid" />
+
+                <mat-form-field appearance="outline" class="grid-cell progress-key edit">
+                  <mat-label>Name</mat-label>
+                  <input matInput required minlength="1" formControlName="key" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-cell progress-score edit">
+                  <mat-label>Score</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    min="0"
+                    max="100"
+                    class="progress-score"
+                    formControlName="score"
+                    [disabled]="getDefinitionGroup(i).get('mandatory')?.value" />
+                  <span matSuffix>%</span>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-cell progress-definition edit">
+                  <mat-label>Definition</mat-label>
+                  <textarea
+                    matInput
+                    required
+                    minlength="1"
+                    formControlName="definition"
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+
+                <div class="grid-cell action-buttons edit">
+                  <mat-icon
+                    title="You cannot remove this definition"
+                    *ngIf="getDefinitionGroup(i).get('mandatory')?.value"
+                    class="material-icons-outlined mandatory-icon"
+                    >lock</mat-icon
+                  >
+                  <button
+                    title="Delete"
+                    *ngIf="!getDefinitionGroup(i).get('mandatory')?.value"
+                    mat-icon-button
+                    (click)="removeProgressDefinition(i)"
+                    title="Delete definition">
+                    <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </div>
+      <div class="help-text" *ngIf="editingProgressDefinitions">
+        <p>
+          Define custom progression stages that match your team's workflow. Choose names and
+          definitions that reflect how your organization tracks security activity maturity.
+        </p>
+        <p>
+          <strong>Examples:</strong><br />
+          Time-based: <em>Not implemented → Backlog → Started → Implemented</em><br />
+          Maturity-based: <em>Low maturity → Medium maturity → High maturity</em>
+        </p>
+        <p>
+          Write precise definitions that specify the criteria that must be met for each stage. This
+          removes ambiguity and ensures everyone interprets each stage consistently.
+        </p>
+        <p><strong>Note:</strong> Stages at 0% and 100% are mandatory and cannot be removed.</p>
+      </div>
+    </div>
+  </mat-card>
+</div>
