@@ -137,6 +137,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     });
     // Reactively handle theme changes (if user toggles later)
     this.themeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme: string) => {
+      console.log('Theme changed to:', theme);
       const css = getComputedStyle(document.body);
       this.theme_colors = {
         background: css.getPropertyValue('--heatmap-background').trim(),
@@ -146,7 +147,8 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         stroke: css.getPropertyValue('--heatmap-stroke').trim(),
       };
 
-      this.reColorHeatmap(); // repaint segments with new theme
+      // Repaint segments with new theme
+      this.reColorHeatmap();
     });
   }
 
@@ -320,6 +322,8 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       .segmentLabelHeight(segmentLabelHeight);
 
     chart.accessor(function (sector: Sector) {
+      let progressValue: number = _self.getSectorProgress(sector);
+      if (progressValue) console.debug(`${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`);  // eslint-disable-line
       return _self.getSectorProgress(sector);
     });
 
@@ -666,25 +670,26 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     this.showFilters = !this.showFilters;
   }
 
+  reColorHeatmap() {
+    console.debug(`${perfNow()}s: Recoloring heatmap of ${this.allSectors.length} sectors`);
+    for (let index = 0; index < this.allSectors.length; index++) {
+      this.recolorSector(index);
+    }
+  }
+
   recolorSector(index: number) {
-    // console.log('recolorSector', index);
     var colorSector = d3
       .scaleLinear<string, string>()
       .domain([0, 1])
       .range([this.theme_colors['background'], this.theme_colors['filled']]);
 
     let progressValue: number = this.getSectorProgress(this.allSectors[index]);
+    if (progressValue) console.debug(`${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors['filled']})`); // eslint-disable-line
+
     d3.select('#index-' + index).attr(
       'fill',
       isNaN(progressValue) ? this.theme_colors['disabled'] : colorSector(progressValue)
     );
-    // console.log(`Recolor sector ${index} with progress ${(progressValue*100).toFixed(1)}%`);
-  }
-
-  reColorHeatmap() {
-    for (let index = 0; index < this.allSectors.length; index++) {
-      this.recolorSector(index);
-    }
   }
 
   exportTeamProgress() {
