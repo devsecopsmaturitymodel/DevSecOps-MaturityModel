@@ -80,7 +80,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     this.themeService.setTheme(savedTheme); // sets .light-theme or .dark-theme
     requestAnimationFrame(() => {
       // Now the DOM has the correct class and CSS vars are live
-      console.log('Initial theme:', this.theme);
+      console.log(`${perfNow()}s: ngOnInit: Initial theme:`, this.theme);
       const css = getComputedStyle(document.body);
       this.theme_colors = {
         background: css.getPropertyValue('--heatmap-background').trim(),
@@ -89,6 +89,10 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         cursor: css.getPropertyValue('--heatmap-cursor-hover').trim(),
         stroke: css.getPropertyValue('--heatmap-stroke').trim(),
       };
+      console.debug(`${perfNow()}s: ngOnInit: Heatmap theme colors:`, this.theme_colors);
+      if (!this.theme_colors['background'] || !this.theme_colors['filled']) {
+        console.debug(css);
+      }
 
       console.log(`${perfNow()}: Heat: Loading yamls...`);
       // Ensure that Levels and Teams load before MaturityData
@@ -137,7 +141,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     });
     // Reactively handle theme changes (if user toggles later)
     this.themeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme: string) => {
-      console.log('Theme changed to:', theme);
+      console.log(`${perfNow()}s: themeService.pipe: Theme changed to:`, theme);
       const css = getComputedStyle(document.body);
       this.theme_colors = {
         background: css.getPropertyValue('--heatmap-background').trim(),
@@ -146,6 +150,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         cursor: css.getPropertyValue('--heatmap-cursor-hover').trim(),
         stroke: css.getPropertyValue('--heatmap-stroke').trim(),
       };
+      console.debug(`${perfNow()}s: themeService.pipe: Heatmap theme colors:`, this.theme_colors);
 
       // Repaint segments with new theme
       this.reColorHeatmap();
