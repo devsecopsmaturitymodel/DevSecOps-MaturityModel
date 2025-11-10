@@ -17,7 +17,7 @@
     "@angular/cli": "^13.0.0",
     "@angular/common": "^13.0.0",
     "@angular/compiler": "^13.0.0",
-    "@angular/core": "^13.0.0",
+    "@angular/core": "^20.3.9",
     "@angular/forms": "^13.0.0",
     "@angular/localize": "^13.0.0",
     "@angular/material": "^13.0.0",
