@@ -55,7 +55,7 @@
     "eslint-config-standard-with-typescript": "^22.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.5",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^4.2.5",
     "eslint-plugin-promise": "^6.0.1",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
