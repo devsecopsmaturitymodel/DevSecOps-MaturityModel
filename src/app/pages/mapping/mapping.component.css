@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin: 24px 20px 0 20px;
+  margin: 0 20px;
   flex-wrap: wrap;
 }
 
@@ -35,6 +35,10 @@
 .mat-header-cell {
   font-size: 16px;  
   font-weight: 500;
+}
+
+.content ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
 }
 
 .hide{

@@ -31,7 +31,6 @@
 
 .settings-container {
   margin-top: 1em;
-  /* Ensure consistent left/right padding so elements align with other pages */
   padding: 0 1rem;
 }
 
@@ -117,7 +116,6 @@ input.progress-score {
 }
 
 .selectable-list {
-  /* remove extra inner padding so content lines up with the page padding */
   padding: 0;
 }
 

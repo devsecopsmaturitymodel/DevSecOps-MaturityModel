@@ -61,6 +61,14 @@ export class SettingsComponent implements OnInit {
   ];
   selectedDateFormat: string = this.BROWSER_LOCALE;
 
+  // GitHub release check state
+  checkingLatest: boolean = false;
+  latestReleaseInfo: GithubReleaseInfo | null = null;
+  latestCheckError: string | null = null;
+  isNewerAvailable: boolean | null = null;
+  latestDownloadUrl: string | null = null;
+  latestReleasePublishedDate: Date | null = null;
+
   constructor(
     private loader: LoaderService,
     private settings: SettingsService,
