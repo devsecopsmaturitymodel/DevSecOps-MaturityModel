@@ -1,5 +1,38 @@
+.vflex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.hflex {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.grid-row-1 {
+  grid-row: 1;
+}
+.grid-row-2 {
+  grid-row: 2;
+}
+.grid-col-1 {
+  grid-column: 1;
+}
+.grid-col-2 {
+  grid-column: 2;
+}
+.grid-col-3 {
+  grid-column: 3;
+}
+.grid-col-4 {
+  grid-column: 4;
+}
+
 .settings-container {
   margin-top: 1em;
+  /* Ensure consistent left/right padding so elements align with other pages */
+  padding: 0 1rem;
 }
 
 .mat-slider-horizontal {
@@ -12,7 +45,27 @@
   display: flex;
   align-items: center;
   gap: 0.2em;
-  width: 25em;
+  width: auto;
+  max-width: 40rem;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.date-format-field {
+  flex: 1;
+  margin: 0;
+}
+
+.max-level-row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.max-slider {
+  flex: 1;
 }
 
 
@@ -64,7 +117,8 @@ input.progress-score {
 }
 
 .selectable-list {
-  padding: 16px;
+  /* remove extra inner padding so content lines up with the page padding */
+  padding: 0;
 }
 
 .selectable-list-header {
@@ -95,6 +149,17 @@ mat-icon.mandatory-icon {
   margin-top: 0.5em;
 }
 
+.version-info-customization {
+  margin-top: 2rem;
+}
+
+.version-info-table {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+  max-width: 40rem;
+}
 
 @media screen and (max-width: 650px) {
   .progress-definitions-grid {
@@ -109,4 +174,75 @@ mat-icon.mandatory-icon {
   .edit-hint {
     display: none;
   }
+}
+
+/* About DSOMM styles */
+.settings-about-section {
+  margin-top: 1rem;
+}
+.settings-about-section .mat-card-header {
+  padding-bottom: 0.25rem;
+}
+.settings-about-section .mat-card-title {
+  font-size: 1.1rem;
+}
+.settings-about-section .mat-card-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}
+.settings-about-section .subheader {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.settings-about-section .card-content {
+  /* keep vertical spacing but align left with page container */
+  padding-top: 0;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0;
+}
+.settings-about-section .button-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+}
+.muted {
+  color: #555;
+  margin: 0.25rem 0 0.75rem 0;
+}
+.small {
+  font-size: 0.85rem;
+  color: #666;
+}
+.about-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.about-actions .status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.status-icon {
+  color: var(--accent-color, #1976d2);
+}
+.update-available {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #d84315; /* warm accent for update */
+}
+.update-none {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2e7d32; /* green for ok */
+}
+.action-link {
+  margin-left: 0.5rem;
+  font-weight: 500;
 }

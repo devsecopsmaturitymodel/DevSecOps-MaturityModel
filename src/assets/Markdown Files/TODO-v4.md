@@ -2,11 +2,10 @@
 
 ## Next
 ### Align DSOMM-data and DSOMM
+
+- Loader: If "activities.yaml" is missing locally, notify user with a link to the latest version to doownload
 - DSOMM-data: Sort linear list of activities (sorted by dim, level)
 - DSOMM-data: Update generated filename and data structure to adhere to this new DSOMM standard
-- DSOMM-data: Include version number in generated yaml file
-- DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, if missing locally
-- DSOMM: Read latest "activities.yaml" from DSOMM-data's github repo, to check for any new releases
 
 
 ### Activity view
@@ -70,6 +69,9 @@
 - Teams: View timeline for a team
 
 # Done
+- Settings: Show a button for checking for newer versions of the model
+- Settings: Show model version
+- DSOMM-data: Include version number in generated yaml file
 - Heatmap: Show a dimension label in title when hovering (especially for the up-side down dimension)
 - Settings: Proper text under Progress
 - Settings: Progress Definition: Make customizable stage: Name, Percentage, Definition (free text)

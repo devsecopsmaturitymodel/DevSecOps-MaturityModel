@@ -2,6 +2,41 @@ import { appendHashElement } from '../util/ArrayHash';
 import { IgnoreList } from './ignore-list';
 import { MarkdownText } from './markdown-text';
 
+export class ActivityFileMeta {
+  static DSOMM_PUBLISHER: string = 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
+
+  version: string | null = null;
+  released: Date | null = null;
+  publisher: string | null = null;
+
+  constructor(meta: any) {
+    if (meta) {
+      this.version = meta.version || null;
+      this.released = meta.released ? new Date(meta.released) : null;
+      this.publisher = meta.publisher || null;
+    }
+  }
+
+  getDsommVersion(): string | null {
+    if (this.publisher && this.publisher.startsWith(ActivityFileMeta.DSOMM_PUBLISHER)) {
+      return this.version;
+    }
+    return null;
+  }
+
+  getDsommReleaseDate(): Date | null {
+    if (this.publisher && this.publisher.startsWith(ActivityFileMeta.DSOMM_PUBLISHER)) {
+      return this.released;
+    }
+    return null;
+  }
+};
+
+export interface ActivityFile {
+  meta: ActivityFileMeta | null;
+  data: Data;
+}
+
 export type Data = Record<string, Category>;
 export type Category = Record<string, Dimension>;
 export type Dimension = Record<string, Activity>;

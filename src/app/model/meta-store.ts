@@ -1,4 +1,5 @@
 import { YamlService } from '../service/yaml-loader/yaml-loader.service';
+import { ActivityFileMeta } from './activity-store';
 import { ProgressDefinitions, TeamNames, TeamGroups } from './types';
 import { perfNow } from 'src/app/util/util';
 
@@ -25,6 +26,7 @@ export class MetaStore {
   public hasLocalStorage: boolean = false;
   private defaultProgressDefinition: ProgressDefinitions = {};
 
+  public activityMeta: ActivityFileMeta | null = null;
   checkForDsommUpdates: boolean = false;
   lang: string = 'en';
   strings: Record<string, MetaStrings> = { en: fallbackMetaStrings };

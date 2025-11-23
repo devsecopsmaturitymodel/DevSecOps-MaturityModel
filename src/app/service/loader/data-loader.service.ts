@@ -3,7 +3,7 @@ import { perfNow } from 'src/app/util/util';
 import { YamlService } from '../yaml-loader/yaml-loader.service';
 import { MetaStore } from 'src/app/model/meta-store';
 import { TeamProgressFile, Uuid } from 'src/app/model/types';
-import { Activity, ActivityStore, Data } from 'src/app/model/activity-store';
+import { Activity, ActivityFile, ActivityFileMeta, ActivityStore, Data } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
 
 export class DataValidationError extends Error {
@@ -73,7 +73,7 @@ export class LoaderService {
       console.log(`${perfNow()}: Load meta: ${this.META_FILE}`);
     }
     const meta: MetaStore = new MetaStore();
-    meta.init(await this.yamlService.loadYaml(this.META_FILE));
+    meta.init(await this.yamlService.loadYamlWithReferencesResolved(this.META_FILE));
     meta.loadTeamsAndGroups();
 
     if (!meta.activityFiles) {
@@ -104,7 +104,7 @@ export class LoaderService {
 
   private async loadTeamProgress(meta: MetaStore): Promise<TeamProgressFile> {
     if (this.debug) console.log(`${perfNow()}s: Loading Team Progress: ${meta.teamProgressFile}`);
-    return this.yamlService.loadYamlUnresolvedRefs(meta.teamProgressFile);
+    return this.yamlService.loadYaml(meta.teamProgressFile);
   }
 
   private async loadActivities(meta: MetaStore): Promise<ActivityStore> {
@@ -114,10 +114,20 @@ export class LoaderService {
 
     for (let filename of meta.activityFiles) {
       if (this.debug) console.log(`${perfNow()}s: Loading activity file: ${filename}`);
-      const data: Data = await this.loadActivityFile(filename);
-
       usingHistoricYamlFile ||= filename.endsWith('generated/generated.yaml');
-      activityStore.addActivityFile(data, errors);
+
+      const response: ActivityFile = await this.loadActivityFile(filename);
+
+      activityStore.addActivityFile(response.data, errors);
+      if (response.meta) {
+        let loadedDsommVersion: string | null = response.meta.getDsommVersion();
+        let existingDsommVersion: string | null = meta?.activityMeta?.getDsommVersion() || null;
+        if (loadedDsommVersion) {
+          if (!existingDsommVersion || loadedDsommVersion > existingDsommVersion) {
+            meta.activityMeta = response.meta;
+          }
+        }
+      }
 
       // Handle validation errors
       if (errors.length > 0) {
@@ -137,8 +147,24 @@ export class LoaderService {
     return activityStore;
   }
 
-  private async loadActivityFile(filename: string): Promise<Data> {
-    return this.yamlService.loadYamlUnresolvedRefs(filename);
+  private async loadActivityFile(filename: string): Promise<ActivityFile> {
+    const multipleDocs: boolean = true;
+    let docs: any[] = await this.yamlService.loadYaml(filename, multipleDocs);
+
+    if (Array.isArray(docs)) {
+      if (docs?.length == 1) {
+        return {
+          meta: null,
+          data: docs[0] as Data,
+        };
+      } else if (docs?.length == 2 && docs[0]?.meta && docs[1]) {
+        return {
+          meta: new ActivityFileMeta(docs[0]?.meta),
+          data: docs[1] as Data,
+        };
+      }
+    }
+    throw new Error(`The activity file '${filename}' is expected to contain dimension and activities, with an optional meta document at the start.`); // eslint-disable-line
   }
 
   public forceReload(): Promise<DataStore> {

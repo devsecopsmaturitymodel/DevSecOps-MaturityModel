@@ -1,6 +1,10 @@
 import { K, Y } from '@angular/cdk/keycodes';
 import { Injectable } from '@angular/core';
-import { parse as yamlParse, stringify as yamlStringify } from 'yaml';
+import {
+  parse as parseSingle,
+  parseAllDocuments as parseMultiple,
+  stringify as yamlStringify
+} from 'yaml';
 // import YAML from 'yaml';
 import { perfNow } from 'src/app/util/util';
 
@@ -13,10 +17,20 @@ export class YamlService {
   }
 
   public parse(yamlStr: string): any {
-    return yamlParse(yamlStr, { schema: 'yaml-1.1' });
+    return parseSingle(yamlStr, { schema: 'yaml-1.1' });
+  }
+
+  public parseMultiple(yamlStr: string): any {
+    let docs = parseMultiple(yamlStr, { schema: 'yaml-1.1' });
+    return docs.map(doc => doc.toJS());
   }
 
   public stringify(yamlObj: any): string {
+    return yamlStringify(yamlObj);
+  }
+
+  public stringifyMultiple(yamlObj: any[]): string {
+    throw Error("NOT YET IMPLEMENTED")
     return yamlStringify(yamlObj);
   }
 
@@ -26,8 +40,8 @@ export class YamlService {
    * @param url The relative path to the yaml file
    * @returns The yaml object
    */
-  public async loadYaml(url: string): Promise<any> {
-    let yaml = await this.loadYamlUnresolvedRefs(url);
+  public async loadYamlWithReferencesResolved(url: string): Promise<any> {
+    let yaml = await this.loadYaml(url);
 
     const referenceUrl = url;
     await this.substituteYamlRefs(yaml, referenceUrl);
@@ -38,7 +52,7 @@ export class YamlService {
   /**
    *  Load a yaml file, and convert it to an object
    */
-  public async loadYamlUnresolvedRefs(url: string): Promise<any> {
+  public async loadYaml(url: string, multipleDocs: boolean = false): Promise<any> {
     const timeStart: Date = new Date();
     console.debug(`${perfNow()}: YAML: Fetching ${url}`);
     const response: Response = await fetch(url);
@@ -49,7 +63,13 @@ export class YamlService {
     const yamlText: string = await response.text();
     const timeFetched: Date = new Date();
     console.debug(`${perfNow()}: YAML: Retrieved ${url}`);
-    let yaml: any = this.parse(yamlText);
+
+    let yaml: any;
+    if (multipleDocs) {
+      yaml = this.parseMultiple(yamlText);
+    } else {
+      yaml = this.parse(yamlText);
+    }
     const timeParsed: Date = new Date();
     console.debug(`${perfNow()}: YAML: Parsed ${url}`);
     console.log(`${perfNow()}: YAML: Fetched ${url}: load: ${timeFetched.getTime() - timeStart.getTime()} ms, parse: ${timeParsed.getTime() - timeFetched.getTime()} ms`); // eslint-disable-line
@@ -127,7 +147,7 @@ export class YamlService {
     const absUrl = this.makeFullPath(filepath, referencePath);
 
     if (absUrl && !this._refs[absUrl]) {
-      this._refs[absUrl] = await this.loadYaml(absUrl);
+      this._refs[absUrl] = await this.loadYamlWithReferencesResolved(absUrl);
     }
 
     return this._refs[absUrl];

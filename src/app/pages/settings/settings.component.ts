@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
 import { SettingsService } from '../../service/settings/settings.service';
+import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { DataStore } from 'src/app/model/data-store';
 import { ProgressDefinitions } from 'src/app/model/types';
@@ -11,6 +12,21 @@ import {
 import { dateStr, deepCopy } from 'src/app/util/util';
 import { MetaStore } from 'src/app/model/meta-store';
 import { ProgressStore } from 'src/app/model/progress-store';
+
+
+interface RemoteReleaseInfo {
+  tagName: string;
+  publishedAt?: Date;
+  changelogUrl?: string;
+  downloadUrl?: string;
+}
+
+interface RemoteReleaseCheck {
+  isChecking: boolean;
+  isNewerAvailable: boolean | null;
+  latestRelease: RemoteReleaseInfo | null;
+  latestCheckError: string | null;
+}
 
 @Component({
   selector: 'app-settings',
@@ -26,6 +42,12 @@ export class SettingsComponent implements OnInit {
   progressDefinitionsForm!: FormGroup;
   tempProgressDefinitions: ProgressDefinitions = {};
   editingProgressDefinitions: boolean = false;
+  remoteReleaseCheck: RemoteReleaseCheck = {
+    isChecking: false,
+    isNewerAvailable: null,
+    latestRelease: null,
+    latestCheckError: null,
+  };
 
   private BROWSER_LOCALE = 'BROWSER';
   dateFormats = [
@@ -40,11 +62,13 @@ export class SettingsComponent implements OnInit {
   ];
   selectedDateFormat: string = this.BROWSER_LOCALE;
 
+
   constructor(
     private loader: LoaderService,
-    private settingsService: SettingsService,
+    private settings: SettingsService,
     private formBuilder: FormBuilder,
-    public modal: ModalMessageComponent
+    public modal: ModalMessageComponent,
+    private githubService: GithubService
   ) {}
 
   ngOnInit(): void {
@@ -64,8 +88,53 @@ export class SettingsComponent implements OnInit {
       });
   }
 
+  async checkForLatestRelease(): Promise<void> {
+    this.remoteReleaseCheck.isChecking = true;
+    this.remoteReleaseCheck.isNewerAvailable = null;
+    this.remoteReleaseCheck.latestRelease = null;
+    this.remoteReleaseCheck.latestCheckError = null;
+
+    try {
+      this.remoteReleaseCheck.latestRelease = await this.githubService.getLatestRelease();
+    } catch (err: any) {
+      console.warn('Error checking latest DSOMM release', err);
+      this.remoteReleaseCheck.latestCheckError = err?.message || 'Failed to check latest release';
+    } finally {
+      this.remoteReleaseCheck.isChecking = false;
+    }
+
+    if (!this.remoteReleaseCheck.latestRelease) {
+      this.remoteReleaseCheck.latestCheckError = 'Error: No release information received from Github';
+    } else { 
+      const remote = this.remoteReleaseCheck.latestRelease;
+
+      const remoteTag = (remote && remote.tagName?.replace(/^v/, '')) || '';
+      const localTag = this.meta?.activityMeta?.getDsommVersion()?.replace(/^v/, '') || '';
+
+      const remoteDate = remote && remote.publishedAt && new Date(remote.publishedAt.toDateString());
+      const localDate = this.meta?.activityMeta?.getDsommReleaseDate();
+
+      // Prefer version tag comparison, fallback to published date comparison
+      let newer = false;
+      if (remoteTag && localTag && remoteDate && localDate) {
+        newer = remoteTag !== localTag || remoteDate > localDate;
+      } else {
+        let tmp: string[] = [];
+        if(!remoteTag) tmp.push('remoteTag');
+        if(!localTag) tmp.push('localTag');
+        if(!remoteDate) tmp.push('remoteDate');
+        if(!localDate) tmp.push('localDate');
+        this.remoteReleaseCheck.latestCheckError =
+          `Could not determine ${tmp.join(', ')} for comparison`;
+        console.warn('ERROR: ' + this.remoteReleaseCheck.latestCheckError);
+      }
+      this.remoteReleaseCheck.isNewerAvailable = newer;
+
+    }
+  }
+
   initialize(): void {
-    this.selectedDateFormat = this.settingsService.getDateFormat() || this.BROWSER_LOCALE;
+    this.selectedDateFormat = this.settings.getDateFormat() || this.BROWSER_LOCALE;
 
     // Init dates
     let date: Date = new Date();
@@ -81,7 +150,7 @@ export class SettingsComponent implements OnInit {
 
   setYamlData(dataStore: DataStore): void {
     this.dataStoreMaxLevel = dataStore.getMaxLevel();
-    this.selectedMaxLevel = this.settingsService.getMaxLevel() || this.dataStoreMaxLevel;
+    this.selectedMaxLevel = this.settings.getMaxLevel() || this.dataStoreMaxLevel;
     this.updateMaxLevelCaption();
 
     if (dataStore.progressStore) {
@@ -97,15 +166,15 @@ export class SettingsComponent implements OnInit {
 
   onDateFormatChange(): void {
     let value: any = this.selectedDateFormat == 'null' ? null : this.selectedDateFormat;
-    this.settingsService.setDateFormat(value);
+    this.settings.setDateFormat(value);
   }
 
   onMaxLevelChange(value: number | null): void {
     if (value == null) value = this.dataStoreMaxLevel;
     if (value == this.dataStoreMaxLevel) {
-      this.settingsService.setMaxLevel(null);
+      this.settings.setMaxLevel(null);
     } else {
-      this.settingsService.setMaxLevel(value);
+      this.settings.setMaxLevel(value);
     }
     this.selectedMaxLevel = value;
     this.updateMaxLevelCaption();
@@ -271,4 +340,9 @@ export class SettingsComponent implements OnInit {
     // Convert back to object
     return Object.fromEntries(sortedEntries);
   }
+
+  dateFormat(date: Date | null | undefined): string {
+    return dateStr(date, this.settings?.getDateFormat());
+  }
+
 }
