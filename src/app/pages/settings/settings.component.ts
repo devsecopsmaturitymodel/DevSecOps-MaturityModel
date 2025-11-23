@@ -13,7 +13,6 @@ import { dateStr, deepCopy } from 'src/app/util/util';
 import { MetaStore } from 'src/app/model/meta-store';
 import { ProgressStore } from 'src/app/model/progress-store';
 
-
 interface RemoteReleaseInfo {
   tagName: string;
   publishedAt?: Date;
@@ -62,7 +61,6 @@ export class SettingsComponent implements OnInit {
   ];
   selectedDateFormat: string = this.BROWSER_LOCALE;
 
-
   constructor(
     private loader: LoaderService,
     private settings: SettingsService,
@@ -104,14 +102,16 @@ export class SettingsComponent implements OnInit {
     }
 
     if (!this.remoteReleaseCheck.latestRelease) {
-      this.remoteReleaseCheck.latestCheckError = 'Error: No release information received from Github';
-    } else { 
+      this.remoteReleaseCheck.latestCheckError =
+        'Error: No release information received from Github';
+    } else {
       const remote = this.remoteReleaseCheck.latestRelease;
 
       const remoteTag = (remote && remote.tagName?.replace(/^v/, '')) || '';
       const localTag = this.meta?.activityMeta?.getDsommVersion()?.replace(/^v/, '') || '';
 
-      const remoteDate = remote && remote.publishedAt && new Date(remote.publishedAt.toDateString());
+      const remoteDate =
+        remote && remote.publishedAt && new Date(remote.publishedAt.toDateString());
       const localDate = this.meta?.activityMeta?.getDsommReleaseDate();
 
       // Prefer version tag comparison, fallback to published date comparison
@@ -120,16 +120,16 @@ export class SettingsComponent implements OnInit {
         newer = remoteTag !== localTag || remoteDate > localDate;
       } else {
         let tmp: string[] = [];
-        if(!remoteTag) tmp.push('remoteTag');
-        if(!localTag) tmp.push('localTag');
-        if(!remoteDate) tmp.push('remoteDate');
-        if(!localDate) tmp.push('localDate');
-        this.remoteReleaseCheck.latestCheckError =
-          `Could not determine ${tmp.join(', ')} for comparison`;
+        if (!remoteTag) tmp.push('remoteTag');
+        if (!localTag) tmp.push('localTag');
+        if (!remoteDate) tmp.push('remoteDate');
+        if (!localDate) tmp.push('localDate');
+        this.remoteReleaseCheck.latestCheckError = `Could not determine ${tmp.join(
+          ', '
+        )} for comparison`;
         console.warn('ERROR: ' + this.remoteReleaseCheck.latestCheckError);
       }
       this.remoteReleaseCheck.isNewerAvailable = newer;
-
     }
   }
 
@@ -344,5 +344,4 @@ export class SettingsComponent implements OnInit {
   dateFormat(date: Date | null | undefined): string {
     return dateStr(date, this.settings?.getDateFormat());
   }
-
 }

@@ -3,7 +3,8 @@ import { IgnoreList } from './ignore-list';
 import { MarkdownText } from './markdown-text';
 
 export class ActivityFileMeta {
-  static DSOMM_PUBLISHER: string = 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
+  static DSOMM_PUBLISHER: string =
+    'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/';
 
   version: string | null = null;
   released: Date | null = null;
@@ -30,7 +31,7 @@ export class ActivityFileMeta {
     }
     return null;
   }
-};
+}
 
 export interface ActivityFile {
   meta: ActivityFileMeta | null;

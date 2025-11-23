@@ -3,7 +3,13 @@ import { perfNow } from 'src/app/util/util';
 import { YamlService } from '../yaml-loader/yaml-loader.service';
 import { MetaStore } from 'src/app/model/meta-store';
 import { TeamProgressFile, Uuid } from 'src/app/model/types';
-import { Activity, ActivityFile, ActivityFileMeta, ActivityStore, Data } from 'src/app/model/activity-store';
+import {
+  Activity,
+  ActivityFile,
+  ActivityFileMeta,
+  ActivityStore,
+  Data,
+} from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
 
 export class DataValidationError extends Error {

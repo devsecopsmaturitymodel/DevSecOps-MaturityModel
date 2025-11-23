@@ -37,7 +37,6 @@ export class GithubService {
     return releaseInfo;
   }
 
-
   getDownloadUrl(tag: string): string {
     if (!tag) return '';
     // Ensure tag is encoded safely

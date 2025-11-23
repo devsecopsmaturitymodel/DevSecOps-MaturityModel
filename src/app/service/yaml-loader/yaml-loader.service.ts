@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   parse as parseSingle,
   parseAllDocuments as parseMultiple,
-  stringify as yamlStringify
+  stringify as yamlStringify,
 } from 'yaml';
 // import YAML from 'yaml';
 import { perfNow } from 'src/app/util/util';
@@ -30,7 +30,7 @@ export class YamlService {
   }
 
   public stringifyMultiple(yamlObj: any[]): string {
-    throw Error("NOT YET IMPLEMENTED")
+    throw Error('NOT YET IMPLEMENTED');
     return yamlStringify(yamlObj);
   }
 
