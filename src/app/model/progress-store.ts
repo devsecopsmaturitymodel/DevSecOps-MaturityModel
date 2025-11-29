@@ -416,6 +416,46 @@ export class ProgressStore {
     return this.yamlService.parse(yamlStr);
   }
 
+  public retrieveLegacyStoredTeamProgress(): TeamProgressFile | null {
+    let progress: Progress = {};
+    let progressFile: TeamProgressFile = { progress: progress };
+    let stored = localStorage.getItem('dataset');
+    let completeTitle: ProgressTitle = this.getCompletedProgressTitle();
+    if (stored) {
+        try {
+            const legacyDataset = JSON.parse(stored);
+
+            legacyDataset.forEach((entry: any) => {
+                const legacyActivities = entry.Activity;
+
+                if (Array.isArray(legacyActivities)) {
+                    legacyActivities.forEach((legacyActivity: any) => {
+                        const activityUuid = legacyActivity.uuid;
+                        const teamsImplemented = legacyActivity.teamsImplemented;
+                        if (teamsImplemented) {
+                            Object.keys(teamsImplemented).forEach((team: string) => {
+                              if (legacyActivity.teamsImplemented[team]) {
+                                if (!progress![activityUuid]) {
+                                    progress![activityUuid] = {};
+                                }
+                                if (!progress![activityUuid][team]) {
+                                    progress![activityUuid][team] = {};
+                                }
+                                console.log(`Legacy import: Setting '${completeTitle}' on ${activityUuid} for ${team}`);
+                                progress![activityUuid][team][completeTitle] = new Date();
+                              }
+                            });
+                        }
+                    });
+                }
+            });
+        } catch (error) {
+            console.error("Failed to parse legacy dataset", error);
+        }
+    }
+    return progressFile;
+  }
+
   /**
    * Clear progress for a team's activity, from startIndex to endIndex.
    * It will store a backup of the progress in _tempProgress, in case

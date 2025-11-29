@@ -60,12 +60,13 @@ export class LoaderService {
       this.dataStore.addProgressData(teamProgress.progress);
       let browserProgress: TeamProgressFile | null =
         this.dataStore.progressStore?.retrieveStoredTeamProgress() || null;
+      if (browserProgress == null) {
+        browserProgress = this.dataStore.progressStore?.retrieveLegacyStoredTeamProgress() || null;
+      }
       if (browserProgress != null) {
         this.dataStore.addProgressData(browserProgress?.progress);
       }
 
-      // TODO: Load old yaml format (generated.yaml)
-      // TODO: Load old yaml format (localStorage)
       console.log(`${perfNow()}: YAML: All YAML files loaded`);
 
       return this.dataStore;
