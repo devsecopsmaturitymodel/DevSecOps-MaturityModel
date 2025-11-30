@@ -183,7 +183,7 @@ Multilanguage support is not given currently and not planned.
 
 [![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
 
-[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
+[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/main/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
 
 # Donations
 
