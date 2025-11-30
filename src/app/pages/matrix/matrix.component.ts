@@ -7,13 +7,10 @@ import { Activity, ActivityStore, Data } from 'src/app/model/activity-store';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { MatChip, MatChipList } from '@angular/material/chips';
 import { deepCopy } from 'src/app/util/util';
-import {
-  ModalMessageComponent,
-  DialogInfo,
-} from '../../component/modal-message/modal-message.component';
 import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 export interface MatrixRow {
   Category: string;
@@ -52,7 +49,7 @@ export class MatrixComponent implements OnInit {
     private loader: LoaderService,
     private settings: SettingsService,
     private router: Router,
-    public modal: ModalMessageComponent
+    private notificationService: NotificationService
   ) {}
   /* eslint-enable */
 
@@ -75,15 +72,11 @@ export class MatrixComponent implements OnInit {
         console.log(`${perfNow()}: Page loaded: Matrix`);
       })
       .catch(err => {
-        this.displayMessage(new DialogInfo(err.message, 'An error occurred'));
+        this.notificationService.notify('An error occurred', err.message);
         if (err.hasOwnProperty('stack')) {
           console.warn(err);
         }
       });
-  }
-
-  displayMessage(dialogInfo: DialogInfo) {
-    this.modal.openDialog(dialogInfo);
   }
 
   setYamlData(dataStore: DataStore) {

@@ -3,57 +3,44 @@
 ## Next
 ### Align DSOMM-data and DSOMM
 
-- Loader: If "activities.yaml" is missing locally, notify user with a link to the latest version to doownload
-- DSOMM-data: Sort linear list of activities (sorted by dim, level)
 - DSOMM-data: Update generated filename and data structure to adhere to this new DSOMM standard
 
 
 ### Activity view
-- Activity: Shorten very long ISO references
 - Activity: Show Team Evidence from yaml file
-- Activity: Show Implemented by properly
-
-
-## ToDo
+- Activity: Input Teams' evidence
+- Activity: Dependency: Do not list activities beyond Max Level
+- Activity: Give user message if selected activity is of higher level than visible
+### Matrix
+- Matrix: Add Filter serach (like for Mapping)
+- Matrix: Remember filters when returning to matrix page
+- Matrix: Add a Close/Back button on Activity
+- Matrix: Close on pushing ESCAPE
 ### KPI
 - Teams: Bug: Reads progress heading from activityStore, not metaStore
 - Team KPI: One KPI per ProgressDefinition
 - KPI: Add Sub-title
-### Matrix
-- Matrix: Add a Close/Back button on Activity
-- Matrix: Close on pushing ESCAPE
-- Matrix: Add Filter serach (like for Mapping)
-- Matrix: Remember filters when returning to matrix page
 ### Teams
-- Teams: Allow user to re-order teams and groups
 - Teams: Bug: Editing name, pushes the item last
+- Teams: Allow user to re-order teams and groups
 - Teams: Allow editing dates for progress stages
 ### Heatmap:
+- Heatmap: Known Bug ([#432](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/issues/432)): Occasionally, the `getComputedStyle()` returns a \ CSSStyleDeclaration` object with empty styles, which leave the heatmap all black.
 - Heatmap: Allow 'change all' if more than four activities
 - Heatmap: Add filter search, and highlight sectors with a match, inc highlight activity card
 - Heatmap: Hilight (outline) the activity card that is open
-- Heatmap: Fix: asterisk marks when modified
+- Heatmap: Slider: Fix: asterisk marks when modified
   - ViewController needs to know about changes vs temp storage
 - Heatmap: Bug: Selecting a team group does not always get deselected when flipping teams
 - Heatmap: meta-yaml: If progress definition is missing, default to 0% + 100% 
-- Heatmap: Read previous local storage for backwards compatibility 
 - Heatmap: Outer rim: Increase subdimension to be two lines (and increase size)
 - Heatmap: Outer rim: Make hover display Dimension (over subdimension)
-### Activity view
-- Activity: Input Teams' evidence
-- Activity: Dependency: Do not list activities beyond Max Level
-### Documentation
-- Doc: Update `Usage`
-- Doc: Update `README.md`
-- Doc: Update `About Us`
-- Doc: Update `Development.md`
-- Doc: Update `INSTALL.md`
+- Heatmap: Search: A bit like 'Filter' but needs to highlight each sector and activity card
 ### Settings
 - Settings: Terms: Allow custom names for: 'Team' and 'Group' (e.g. to 'App' and 'Portfolio')
 
 ### Misc
 - Refactor ProgressDefinitions to MetaStore to get definitions for 0%, 100% etc
-- Move About Us, last, renaming to About DSOMM
 - Move all getMetaString into MetaStore()
 - Add fallbacks for getMetaString in MetaStore()
 - Move META_FILE constant from data service to main app
@@ -68,7 +55,17 @@
 - Matrix: Go through tags: remove, add and rename
 - Teams: View timeline for a team
 
+# DSOMM v4.0.0
+- Breaking changes: Data model
+  - Split `generated.yaml` into `activities.yaml` and `team-progress.yaml`
+  - The `activities.yaml` has now a _"header"_ for DSOMM model version
+- Teams and Groups can be customized in the browser
+- A Team's progress has changed from a yes|no boolean, to discreet steps from zero to fully complete
+
+
 # Done
+- Loader: If "activities.yaml" is missing locally, notify user with a link to the latest version to download
+- Heatmap: Read previous local storage for backwards compatibility 
 - Settings: Show a button for checking for newer versions of the model
 - Settings: Show model version
 - DSOMM-data: Include version number in generated yaml file
@@ -135,6 +132,5 @@
 
 For details and dates, please see the [GitHub log](https://github.com/vbakke/DevSecOps-MaturityModel/commits/experiment/).
 
-## User tracking
-The Experimental edition, and the Experimental edition only, uses Grafana Frontend to log the console log to catch bugs, especially from mobile devices. 
+
 

@@ -131,6 +131,10 @@ input.progress-score {
   flex: 1;
 }
 
+.version-info-section .error {
+    font-style: italic;
+}
+
 .edit-hint {
   color: #666;
   font-size: 0.9em;

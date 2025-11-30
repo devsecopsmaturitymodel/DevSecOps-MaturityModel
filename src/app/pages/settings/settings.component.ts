@@ -105,6 +105,7 @@ export class SettingsComponent implements OnInit {
     } catch (err: any) {
       console.warn('Error checking latest DSOMM release', err);
       this.remoteReleaseCheck.latestCheckError = err?.message || 'Failed to check latest release';
+      return;
     } finally {
       this.remoteReleaseCheck.isChecking = false;
     }
@@ -127,14 +128,15 @@ export class SettingsComponent implements OnInit {
       if (remoteTag && localTag && remoteDate && localDate) {
         newer = remoteTag !== localTag || remoteDate > localDate;
       } else {
+        newer = true; // Show download link if we cannot compare
+
+        // Build error message
         let tmp: string[] = [];
-        if (!remoteTag) tmp.push('remoteTag');
-        if (!localTag) tmp.push('localTag');
-        if (!remoteDate) tmp.push('remoteDate');
-        if (!localDate) tmp.push('localDate');
-        this.remoteReleaseCheck.latestCheckError = `Could not determine ${tmp.join(
-          ', '
-        )} for comparison`;
+        if (!remoteTag) tmp.push('DSOMM model version');
+        if (!localTag) tmp.push('local model version');
+        if (!remoteDate) tmp.push('DSOMM model date');
+        if (!localDate) tmp.push('local model date');
+        this.remoteReleaseCheck.latestCheckError = `Could not determine ${tmp.join(', ')}`; // eslint-disable-line
         console.warn('ERROR: ' + this.remoteReleaseCheck.latestCheckError);
       }
       this.remoteReleaseCheck.isNewerAvailable = newer;

@@ -425,30 +425,35 @@ export class ProgressStore {
       try {
         const legacyDataset = JSON.parse(stored);
 
-        legacyDataset.forEach((entry: any) => {
-          const legacyActivities = entry.Activity;
+        try {
+          legacyDataset.forEach((entry: any) => {
+            const legacyActivities = entry.Activity;
 
-          if (Array.isArray(legacyActivities)) {
-            legacyActivities.forEach((legacyActivity: any) => {
-              const activityUuid = legacyActivity.uuid;
-              const teamsImplemented = legacyActivity.teamsImplemented;
-              if (teamsImplemented) {
-                Object.keys(teamsImplemented).forEach((team: string) => {
-                  if (legacyActivity.teamsImplemented[team]) {
-                    if (!progress![activityUuid]) {
-                      progress![activityUuid] = {};
+            if (Array.isArray(legacyActivities)) {
+              legacyActivities.forEach((legacyActivity: any) => {
+                const activityUuid = legacyActivity.uuid;
+                const teamsImplemented = legacyActivity.teamsImplemented;
+                if (teamsImplemented) {
+                  Object.keys(teamsImplemented).forEach((team: string) => {
+                    if (legacyActivity.teamsImplemented[team]) {
+                      if (!progress![activityUuid]) {
+                        progress![activityUuid] = {};
+                      }
+                      if (!progress![activityUuid][team]) {
+                        progress![activityUuid][team] = {};
+                      }
+                      console.log(`Legacy import: Setting '${completeTitle}' on ${activityUuid} for ${team}`); // eslint-disable-line
+                      progress![activityUuid][team][completeTitle] = new Date();
                     }
-                    if (!progress![activityUuid][team]) {
-                      progress![activityUuid][team] = {};
-                    }
-                    console.log(`Legacy import: Setting '${completeTitle}' on ${activityUuid} for ${team}`); // eslint-disable-line
-                    progress![activityUuid][team][completeTitle] = new Date();
-                  }
-                });
-              }
-            });
-          }
-        });
+                  });
+                }
+              });
+            }
+          });
+        } catch (error) {
+          console.error('Failed to process legacy dataset activities: ', error);
+          throw Error('Unexpected data structure: ' + error);
+        }
       } catch (error) {
         console.error('Failed to parse legacy progress: ', error);
         throw Error(

@@ -6,6 +6,14 @@ import {
 } from 'yaml';
 import { perfNow } from 'src/app/util/util';
 
+export class FileNotFoundError extends Error {
+  filename: string | null;
+  constructor(message: string, filename: string | null = null) {
+    super(message);
+    this.filename = filename;
+  }
+}
+
 @Injectable({ providedIn: 'root' })
 export class YamlService {
   private _refs: Record<string, any>;
@@ -56,8 +64,13 @@ export class YamlService {
     const response: Response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch the '${url}' YAML file: ${response.statusText}`);
+      if (response.status === 404) {
+        throw new FileNotFoundError('File not found', url);
+      } else {
+        throw new Error(`Failed to fetch the '${url}' YAML file: ${response.statusText}`);
+      }
     }
+
     const yamlText: string = await response.text();
     const timeFetched: Date = new Date();
     console.debug(`${perfNow()}: YAML: Retrieved ${url}`);

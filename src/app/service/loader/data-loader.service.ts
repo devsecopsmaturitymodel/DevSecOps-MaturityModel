@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { perfNow } from 'src/app/util/util';
-import { YamlService } from '../yaml-loader/yaml-loader.service';
+import { FileNotFoundError, YamlService } from '../yaml-loader/yaml-loader.service';
+import { GithubService } from '../settings/github.service';
 import { MetaStore } from 'src/app/model/meta-store';
 import { TeamProgressFile, Uuid } from 'src/app/model/types';
 import {
@@ -11,6 +12,7 @@ import {
   Data,
 } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
+import { NotificationService } from '../notification.service';
 
 export class DataValidationError extends Error {
   constructor(message: string) {
@@ -18,13 +20,28 @@ export class DataValidationError extends Error {
   }
 }
 
+export class MissingModelError extends Error {
+  filename: string | null;
+  constructor(message: string, filename: string | null = null) {
+    super(message);
+    this.filename = filename;
+  }
+}
+
 @Injectable({ providedIn: 'root' })
 export class LoaderService {
   private META_FILE: string = 'assets/YAML/meta.yaml';
+  private DSOMM_MODEL_URL: string;
   private debug: boolean = false;
   private dataStore: DataStore | null = null;
 
-  constructor(private yamlService: YamlService) {}
+  constructor(
+    private yamlService: YamlService,
+    private githubService: GithubService,
+    private notificationService: NotificationService
+  ) {
+    this.DSOMM_MODEL_URL = this.githubService.getDsommModelUrl();
+  }
 
   get datastore(): DataStore | null {
     return this.dataStore;
@@ -70,8 +87,18 @@ export class LoaderService {
       console.log(`${perfNow()}: YAML: All YAML files loaded`);
 
       return this.dataStore;
-    } catch (err) {
-      throw err;
+    } catch (err: any) {
+      if (err instanceof FileNotFoundError) {
+        console.error(`${perfNow()}: Missing model file: ${err?.filename || err}`);
+        if (err.filename && err.filename.endsWith('default/model.yaml')) {
+          this.notificationService.notify('Loading error', `No DSOMM model found.\n\nPlease download \`model.yaml\` from [GitHub](${this.DSOMM_MODEL_URL}).`); // eslint-disable-line
+        } else {
+          this.notificationService.notify('Loading error', err.message + ': ' + err.filename);
+        }
+      } else {
+        this.notificationService.notify('Error', 'Failed to load data: \n\n' + err);
+      }
+      return this.dataStore;
     }
   }
 
@@ -117,11 +144,14 @@ export class LoaderService {
   private async loadActivities(meta: MetaStore): Promise<ActivityStore> {
     const activityStore = new ActivityStore();
     const errors: string[] = [];
-    let usingHistoricYamlFile = false;
+    let usingLegacyYamlFile = false;
 
+    if (meta.activityFiles.length == 0) {
+      throw new MissingModelError('No `activityFiles` are specified in `meta.yaml`.');
+    }
     for (let filename of meta.activityFiles) {
       if (this.debug) console.log(`${perfNow()}s: Loading activity file: ${filename}`);
-      usingHistoricYamlFile ||= filename.endsWith('generated/generated.yaml');
+      usingLegacyYamlFile ||= filename.endsWith('generated/generated.yaml');
 
       const response: ActivityFile = await this.loadActivityFile(filename);
 
@@ -140,8 +170,8 @@ export class LoaderService {
       if (errors.length > 0) {
         errors.forEach(error => console.error(error));
 
-        // Only throw for non-generated files (backwards compatibility)
-        if (!usingHistoricYamlFile) {
+        // Legacy generated.yaml has several data validation problems. Do not report these
+        if (!usingLegacyYamlFile) {
           throw new DataValidationError(
             'Data validation error after loading: ' +
               filename +
