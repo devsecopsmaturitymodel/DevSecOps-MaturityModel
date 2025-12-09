@@ -1,4 +1,3 @@
-
 .main-container {
   width: 100%;
   height: 100%;
@@ -11,25 +10,16 @@
 }
 
 .sidenav-menu {
-  padding: 20px;
+  padding: 10px;
+  padding-right: 30px;
 }
 
 .menu-close {
   position: absolute;
   right: 0;
-  top: 2px;
+  top: 15px;
   background: transparent;
   border: 0;
-  color: #ddd;
-}
-
-.github-fork-ribbon:before {
-  background-color: #333;
-}
-
-@media only screen and (max-width: 750px) {
-    .github-fork-ribbon {
-        display: none;
-      }
-    
+  cursor: pointer;
+  color: #4caf50;
 }
