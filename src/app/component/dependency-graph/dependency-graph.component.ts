@@ -234,7 +234,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
       .on('mouseover', function (_event: any, _d: any) {
         if (d3.select(this).classed('clickable')) {
           d3.select(this).classed('hovered', true);
-        }         
+        }
       })
       .on('mouseout', function (_event: any, _d: any) {
         d3.select(this).classed('hovered', false);
