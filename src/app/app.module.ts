@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -22,7 +22,7 @@ import { ActivityDescriptionComponent } from './component/activity-description/a
 import { ActivityDescriptionPageComponent } from './pages/activity-description/activity-description-page.component';
 import { LoaderService } from './service/loader/data-loader.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ReadmeToHtmlComponent } from './component/readme-to-html/readme-to-html.component';
+import { MarkdownViewerComponent } from './component/markdown-viewer/markdown-viewer.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
 import { ToStringValuePipe } from './pipe/to-string-value.pipe';
 import { ModalMessageComponent } from './component/modal-message/modal-message.component';
@@ -42,7 +42,7 @@ import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-g
     ActivityDescriptionPageComponent,
     CircularHeatmapComponent,
     MappingComponent,
-    ReadmeToHtmlComponent,
+    MarkdownViewerComponent,
     UsageComponent,
     AboutUsComponent,
     DependencyGraphComponent,

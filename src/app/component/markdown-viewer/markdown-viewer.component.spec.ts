@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ReadmeToHtmlComponent } from './readme-to-html.component';
+import { MarkdownViewerComponent } from './markdown-viewer.component';
 
-describe('ReadmeToHtmlComponent', () => {
-  let component: ReadmeToHtmlComponent;
-  let fixture: ComponentFixture<ReadmeToHtmlComponent>;
+describe('MarkdownViewerComponent', () => {
+  let component: MarkdownViewerComponent;
+  let fixture: ComponentFixture<MarkdownViewerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [ReadmeToHtmlComponent],
+      declarations: [MarkdownViewerComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReadmeToHtmlComponent);
+    fixture = TestBed.createComponent(MarkdownViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

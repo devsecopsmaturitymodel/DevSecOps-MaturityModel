@@ -3,11 +3,11 @@ import * as md from 'markdown-it';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-readme-to-html',
-  templateUrl: './readme-to-html.component.html',
-  styleUrls: ['./readme-to-html.component.css'],
+  selector: 'app-markdown-viewer',
+  templateUrl: './markdown-viewer.component.html',
+  styleUrls: ['./markdown-viewer.component.css'],
 })
-export class ReadmeToHtmlComponent implements OnInit {
+export class MarkdownViewerComponent implements OnInit {
   @Input() MDFile: string = '';
   markdown: md = md({
     html: true,
