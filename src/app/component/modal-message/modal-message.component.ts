@@ -61,8 +61,6 @@ export class ModalMessageComponent implements OnInit {
       dialogInfo.message = template?.message?.replace('{message}', dialogInfo.message);
     }
 
-    dialogInfo.message = this.markdown.render(dialogInfo.message);
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.id = 'modal-message';
     dialogConfig.disableClose = true;

@@ -30,10 +30,11 @@ describe('ModalMessageComponent', () => {
   });
 
   it('should render markdown correctly in the dialog', () => {
-    const dialogInfo: DialogInfo = new DialogInfo('A **test** markdown.');
+    const dialogInfo: DialogInfo = new DialogInfo('A *test* _markdown_.');
     const dialogRef: MatDialogRef<ModalMessageComponent> = component.openDialog(dialogInfo);
 
-    expect(dialogRef.componentInstance.data.message).toContain('<strong>test</strong>');
+    expect(dialogRef.componentInstance.data.message).toContain('<em>test</em>');
+    expect(dialogRef.componentInstance.data.message).toContain('<em>markdown</em>');
   });
 
   it('should render markdown correctly in the dialog', () => {
