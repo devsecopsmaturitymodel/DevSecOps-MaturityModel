@@ -112,10 +112,10 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   populateGraphWithActivitiesCurrentActivityDependsOn(activity: Activity): void {
     if (activity.dependsOn) {
       let i: number = 1;
-      for (const prececcor of activity.dependsOn) {
-        this.addNode(prececcor, -1, i++);
+      for (const predecessor of activity.dependsOn) {
+        this.addNode(predecessor, -1, i++);
         this.graphData['links'].push({
-          source: prececcor,
+          source: predecessor,
           target: activity.name,
         });
       }
@@ -232,7 +232,9 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
         this.activityClicked.observed && d.relativeLevel != 0 ? 'pointer' : 'default'
       )
       .on('mouseover', function (_event: any, _d: any) {
-        d3.select(this).classed('hovered', true);
+        if (d3.select(this).classed('clickable')) {
+          d3.select(this).classed('hovered', true);
+        }         
       })
       .on('mouseout', function (_event: any, _d: any) {
         d3.select(this).classed('hovered', false);
