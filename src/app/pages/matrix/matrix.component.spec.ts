@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatrixComponent, MatrixRow } from './matrix.component';
 import { MatChip } from '@angular/material/chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { MockLoaderService } from 'src/app/service/loader/mock-data-loader.service';
 
@@ -32,14 +32,14 @@ describe('MatrixComponent', () => {
   beforeEach(async () => {
     mockLoaderService = new MockLoaderService(MOCK_DATA);
     await TestBed.configureTestingModule({
+      declarations: [MatrixComponent, MatChip],
+      imports: [RouterTestingModule, HttpClientModule, MatDialogModule],
       providers: [
         HttpClientTestingModule,
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: MatDialogRef, useValue: {} },
         { provide: ModalMessageComponent, useValue: {} },
       ],
-      imports: [RouterTestingModule, HttpClientModule],
-      declarations: [MatrixComponent, MatChip],
     }).compileComponents();
   });
 

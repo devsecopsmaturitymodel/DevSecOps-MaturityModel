@@ -5,6 +5,7 @@ import { CircularHeatmapComponent } from './circular-heatmap.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatChip } from '@angular/material/chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('CircularHeatmapComponent', () => {
   let component: CircularHeatmapComponent;
@@ -13,7 +14,7 @@ describe('CircularHeatmapComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CircularHeatmapComponent, MatChip],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, MatDialogModule],
       providers: [
         LoaderService,
         HttpClient,
