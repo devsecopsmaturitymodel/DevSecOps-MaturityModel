@@ -1,5 +1,5 @@
 <details>
-<summary>DSOMM User Day 2024</summary>
+<summary>DSOMM User Day 2024 - San Francisco</summary>
 
 # Description
 
