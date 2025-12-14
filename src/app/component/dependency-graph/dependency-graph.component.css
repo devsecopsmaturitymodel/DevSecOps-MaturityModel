@@ -8,3 +8,25 @@ circle {
     stroke: #000;
     stroke-width: 1.5px;
   }
+
+.clickable { 
+    cursor: pointer; 
+}
+
+:host ::ng-deep svg.dependency-graph g .node-rect {
+  fill: var(--node-fill);
+  stroke: var(--node-border);
+  stroke-width: 1.5;
+}
+
+:host ::ng-deep svg.dependency-graph g.clickable {
+  cursor: pointer;
+}
+
+:host ::ng-deep svg.dependency-graph g.hovered .node-rect {
+  fill: var(--node-hover-fill);
+}
+
+:host ::ng-deep svg.dependency-graph g.main text {
+  fill: var(--text-primary, inherit);
+}
