@@ -224,17 +224,18 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
           this.activityClicked.emit(d.id);
         }
       })
-      .on('mouseover', (event: MouseEvent, d: any) => {
-        if (this.activityClicked.observed) {
-          if (d.relativeLevel != 0) {
-            d3.select(event.currentTarget as Element).style('cursor', 'pointer');
-          } else {
-            d3.select(event.currentTarget as Element).style('cursor', 'default');
-          }
-        }
+      .classed('clickable', (d: any) => this.activityClicked.observed && d.relativeLevel != 0)
+      .classed('predecessor', (d: any) => d.relativeLevel < 0)
+      .classed('successor', (d: any) => d.relativeLevel > 0)
+      .classed('main', (d: any) => d.relativeLevel == 0)
+      .style('cursor', (d: any) =>
+        this.activityClicked.observed && d.relativeLevel != 0 ? 'pointer' : 'default'
+      )
+      .on('mouseover', function (_event: any, _d: any) {
+        d3.select(this).classed('hovered', true);
       })
-      .on('mouseout', (event: MouseEvent, d: any) => {
-        d3.select(event.currentTarget as Element).style('cursor', 'default');
+      .on('mouseout', function (_event: any, _d: any) {
+        d3.select(this).classed('hovered', false);
       });
 
     const rectHeight = 30;
@@ -255,29 +256,47 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     const self = this;
     nodes.each(function (this: SVGGElement, d: any) {
       const textElem = d3.select(this).select('text').node() as SVGTextElement;
-      let textWidth = 60; // fallback default
-      if (textElem && textElem.getBBox) {
-        textWidth = textElem.getBBox().width;
+      let textWidth = 60;
+      if (textElem) {
+        try {
+          textWidth = (textElem.getBBox && textElem.getBBox().width) || textWidth;
+        } catch {
+          textWidth =
+            (textElem.getComputedTextLength && textElem.getComputedTextLength()) || textWidth;
+        }
       }
-      const rectWidth = textWidth + padding;
-      d.rectWidth = rectWidth; // Store for collision force
-      // Insert rect before text
+
+      const rectWidth = Math.ceil(textWidth + padding);
+      d.rectWidth = rectWidth; // store for collision force
+
+      // compute fill + hover color once
+      const fillColor =
+        d.relativeLevel == 0
+          ? self.themeColors.mainNodeFill || 'green'
+          : (d.relativeLevel < 0
+              ? self.themeColors.predecessorFill
+              : self.themeColors.successorFill) || 'white';
+      const c = d3.color(fillColor);
+      const hoverColor = c ? c.darker(0.6).toString() : fillColor;
+
+      // set CSS variables on the group so global stylesheet can use them
+      d3.select(this)
+        .style('--node-fill', fillColor)
+        .style('--node-hover-fill', hoverColor)
+        .style('--node-border', self.themeColors.borderColor || 'black');
+
+      // Insert rect before text sized to measured text
       d3.select(this)
         .insert('rect', 'text')
+        .attr('class', 'node-rect')
         .attr('x', -rectWidth / 2)
         .attr('y', -rectHeight / 2)
         .attr('width', rectWidth)
         .attr('height', rectHeight)
         .attr('rx', rectRx)
         .attr('ry', rectRy)
-        .attr('fill', (d: any) => {
-          if (d.relativeLevel == 0) return self.themeColors.mainNodeFill || 'green';
-          let col: string | undefined =
-            d.relativeLevel < 0 ? self.themeColors.predecessorFill : self.themeColors.successorFill;
-          return col || 'white';
-        })
-        .attr('stroke', self.themeColors.borderColor || 'black')
-        .attr('stroke-width', 1.5);
+        .attr('stroke-width', 1.5)
+        .attr('stroke', 'currentColor'); // stroke taken from --node-border via CSS
     });
 
     this.simulation.nodes(this.graphData['nodes']).on('tick', () => {
