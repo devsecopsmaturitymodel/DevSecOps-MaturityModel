@@ -4,7 +4,7 @@ import { MarkdownText } from './markdown-text';
 
 export class ActivityFileMeta {
   static DSOMM_PUBLISHER: string =
-    'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/';
+    'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data';
 
   version: string | null = null;
   released: Date | null = null;
@@ -20,7 +20,7 @@ export class ActivityFileMeta {
 
   getDsommVersion(): string | null {
     if (this.publisher && this.publisher.startsWith(ActivityFileMeta.DSOMM_PUBLISHER)) {
-      return this.version;
+      return (this.version?.startsWith('v')) ? this.version : `v${this.version}`;
     }
     return null;
   }
