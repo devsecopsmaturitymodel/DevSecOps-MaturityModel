@@ -1,0 +1,12 @@
+<div class="page-container">
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <app-activity-description
+    *ngIf="currentActivity && !isLoading"
+    [activity]="currentActivity"
+    [showCloseButton]="false"
+    (activityClicked)="onActivityClicked($event)">
+  </app-activity-description>
+</div>

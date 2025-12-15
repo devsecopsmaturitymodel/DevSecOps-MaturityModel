@@ -1,0 +1,250 @@
+.vflex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.hflex {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.grid-row-1 {
+  grid-row: 1;
+}
+.grid-row-2 {
+  grid-row: 2;
+}
+.grid-col-1 {
+  grid-column: 1;
+}
+.grid-col-2 {
+  grid-column: 2;
+}
+.grid-col-3 {
+  grid-column: 3;
+}
+.grid-col-4 {
+  grid-column: 4;
+}
+
+.settings-container {
+  margin-top: 1em;
+  padding: 0 1rem;
+}
+
+.mat-slider-horizontal {
+  max-width: 100px;
+  width: 100px;
+  min-width: 80px;
+}
+
+.date-format-container {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  width: auto;
+  max-width: 40rem;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.date-format-field {
+  flex: 1;
+  margin: 0;
+}
+
+.max-level-row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.max-slider {
+  flex: 1;
+}
+
+
+.progress-definitions-grid {
+  display: grid;
+  grid-template-columns: auto 5em minmax(200px, 2fr) auto;
+  gap: 0.3em;
+}
+
+.progress-definitions-grid ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.progress-definitions-grid ::ng-deep .mat-form-field-suffix {
+  top: 0;
+}
+
+.grid-cell.progress-key {
+  font-weight: 500;
+}
+
+.grid-cell.progress-score {
+  text-align: right;
+  padding-right: 0.5em;
+}
+input.progress-score::-webkit-outer-spin-button,
+input.progress-score::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  /* margin: 0;  */
+}
+input.progress-score {
+  -moz-appearance: textfield;
+  /* text-align: right; */
+}
+
+.grid-cell.action-buttons,
+.grid-cell.progress-definition {
+  margin-bottom: 0.8em;
+}
+
+
+.grid-cell.progress-score span, 
+.grid-cell.action-buttons {
+  color: #aaa;
+}
+.grid-cell.action-buttons {
+  align-self: center;
+  justify-self: center;
+}
+
+.selectable-list {
+  padding: 0;
+}
+
+.selectable-list-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.selectable-list-header h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.version-info-section .error {
+    font-style: italic;
+}
+
+.edit-hint {
+  color: #666;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+mat-icon.mandatory-icon {
+    padding: 8px;
+}
+
+.help-text {
+  font-size: 0.75em;
+  color: #666;
+  margin-top: 0.5em;
+}
+
+.version-info-customization {
+  margin-top: 2rem;
+}
+
+.version-info-table {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+  max-width: 40rem;
+}
+
+@media screen and (max-width: 650px) {
+  .progress-definitions-grid {
+    grid-template-columns: auto 5em;
+  } 
+  
+  .grid-cell.action-buttons,
+  .grid-cell.progress-definition {
+    margin-bottom: 1.8em;
+  }
+
+  .edit-hint {
+    display: none;
+  }
+}
+
+/* About DSOMM styles */
+.settings-about-section {
+  margin-top: 1rem;
+}
+.settings-about-section .mat-card-header {
+  padding-bottom: 0.25rem;
+}
+.settings-about-section .mat-card-title {
+  font-size: 1.1rem;
+}
+.settings-about-section .mat-card-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}
+.settings-about-section .subheader {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.settings-about-section .card-content {
+  /* keep vertical spacing but align left with page container */
+  padding-top: 0;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0;
+}
+.settings-about-section .button-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+}
+.muted {
+  color: #555;
+  margin: 0.25rem 0 0.75rem 0;
+}
+.small {
+  font-size: 0.85rem;
+  color: #666;
+}
+.about-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.about-actions .status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.status-icon {
+  color: var(--accent-color, #1976d2);
+}
+.update-available {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #d84315; /* warm accent for update */
+}
+.update-none {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2e7d32; /* green for ok */
+}
+.action-link {
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
