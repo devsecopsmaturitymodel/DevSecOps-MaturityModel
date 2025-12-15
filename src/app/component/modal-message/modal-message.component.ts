@@ -6,6 +6,8 @@ import {
   MatDialogConfig,
 } from '@angular/material/dialog';
 import * as md from 'markdown-it';
+import { MarkdownText } from 'src/app/model/markdown-text';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-modal-message',
@@ -32,33 +34,32 @@ export class ModalMessageComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ModalMessageComponent>,
-    @Inject(MAT_DIALOG_DATA) data: DialogInfo
+    @Inject(MAT_DIALOG_DATA) data: DialogInfo,
+    private notificationService: NotificationService
   ) {
     this.data = data;
   }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.notificationService.message$.subscribe(({ title, message }) => {
+      this.openDialog(new DialogInfo(message, title));
+    });
+  }
 
-  openDialog(
-    dialogInfo: DialogInfo | string
-  ): MatDialogRef<ModalMessageComponent> {
+  openDialog(dialogInfo: DialogInfo | string): MatDialogRef<ModalMessageComponent> {
+    // Remove focus from the button that becomes aria unavailable (avoids ugly console error message)
+    const buttonElement = document.activeElement as HTMLElement;
+    if (buttonElement) buttonElement.blur();
+
     if (typeof dialogInfo === 'string') {
       dialogInfo = new DialogInfo(dialogInfo);
     }
-    if (
-      dialogInfo.template &&
-      this.meassageTemplates.hasOwnProperty(dialogInfo.template)
-    ) {
+    if (dialogInfo.template && this.meassageTemplates.hasOwnProperty(dialogInfo.template)) {
       let template: DialogInfo = this.meassageTemplates[dialogInfo.template];
       dialogInfo.title = dialogInfo.title || template?.title;
-      dialogInfo.message = template?.message?.replace(
-        '{message}',
-        dialogInfo.message
-      );
+      dialogInfo.message = template?.message?.replace('{message}', dialogInfo.message);
     }
-
-    dialogInfo.message = this.markdown.render(dialogInfo.message);
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.id = 'modal-message';
@@ -81,7 +82,8 @@ export class DialogInfo {
   buttons: string[] = ['OK'];
 
   constructor(msg: string = '', title: string = '') {
-    this.message = msg;
+    let md: MarkdownText = new MarkdownText(msg);
+    this.message = md.render();
     this.title = title;
   }
 }

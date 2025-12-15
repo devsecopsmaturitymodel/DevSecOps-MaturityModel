@@ -11,28 +11,34 @@ export class SidenavButtonsComponent implements OnInit {
     'Overview',
     'Matrix',
     'Mappings',
-    'Usage',
     'Teams',
+    'Settings',
+    'Usage',
+    'Roadmap',
+    'DSOMM User Day',
     'About Us',
-    'DSOMM User Day 2025',
   ];
   Icons: string[] = [
     'pie_chart',
     'table_chart',
     'timeline',
-    'description',
     'people',
-    'info',
+    'list',
+    'description',
+    'landscape',
     'school',
+    'info',
   ];
   Routing: string[] = [
     '/circular-heatmap',
     '/matrix',
     '/mapping',
-    '/usage',
     '/teams',
-    '/about',
+    '/settings',
+    '/usage',
+    '/roadmap',
     '/userday',
+    '/about',
   ];
 
   isNightMode = false;

@@ -6,12 +6,17 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 
 const MaterialComponents = [
@@ -23,12 +28,17 @@ const MaterialComponents = [
   MatDividerModule,
   MatTableModule,
   MatChipsModule,
+  MatProgressSpinnerModule,
   MatAutocompleteModule,
   MatInputModule,
+  MatSelectModule,
+  MatFormFieldModule,
   MatExpansionModule,
   MatCardModule,
   MatCheckboxModule,
   MatButtonToggleModule,
+  MatSliderModule,
+  MatSortModule,
 ];
 
 @NgModule({

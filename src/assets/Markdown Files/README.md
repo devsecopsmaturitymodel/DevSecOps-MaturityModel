@@ -63,11 +63,16 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
+For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. In case you would like to have perform an assessment for multiple teams, iterate from port 8080 to 8XXX, depending of the size of your team.
 
 You can download your current state from the circular heatmap and mount it again via 
 
 ```bash
+wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
+docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
+```
+
+.
 wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
 docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
 ```
@@ -139,7 +144,7 @@ syntax can be used. The evidence is currently visible on the activity from the M
 
 # Back link
 
-- [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
+- [OWASP DevSecOps maturity model page](https://dsomm.owasp.org/)
 - [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
 - [OWASP](https://owasp.org)
 
@@ -161,7 +166,7 @@ Multilanguage support is not given currently and not planned.
 
 [![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
 
-[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
+[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/main/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
 
 # Donations
 
@@ -173,6 +178,6 @@ This program is free software: you can redistribute it and/or modify it under th
 
 The intellectual property (content in the _data_ folder) is licensed under Attribution-ShareAlike.
 An example attribution by changing the content:
-> This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.timo-pagel.de).
+> This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.owasp.org/).
 
 The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2022.

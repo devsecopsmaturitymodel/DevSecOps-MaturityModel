@@ -161,7 +161,7 @@ syntax can be used. The evidence is currently visible on the activity from the M
 
 # Back link
 
-- [OWASP DevSecOps maturity model page](https://dsomm.timo-pagel.de/)
+- [OWASP DevSecOps maturity model page](https://dsomm.owasp.org/)
 - [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
 - [OWASP](https://owasp.org)
 
@@ -183,7 +183,7 @@ Multilanguage support is not given currently and not planned.
 
 [![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
 
-[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
+[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/main/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
 
 # Donations
 
@@ -195,6 +195,6 @@ This program is free software: you can redistribute it and/or modify it under th
 
 The intellectual property (content in the _data_ folder) is licensed under Attribution-ShareAlike.
 An example attribution by changing the content:
-> This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.timo-pagel.de).
+> This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.owasp.org/).
 
 The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2022.

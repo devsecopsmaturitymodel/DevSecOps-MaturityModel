@@ -1,0 +1,267 @@
+<app-top-header section="Settings"></app-top-header>
+<div class="settings-container">
+  <mat-card>
+    <mat-card-content>
+      <div class="date-format-container">
+        <label for="dateFormatDropdown" class="nowrap">Date Format</label>
+        <mat-form-field appearance="fill" class="date-format-field">
+          <mat-select
+            id="dateFormatDropdown"
+            name="dateFormat"
+            [(ngModel)]="selectedDateFormat"
+            (ngModelChange)="onDateFormatChange()">
+            <mat-option *ngFor="let format of dateFormats" [value]="format.value">
+              {{ format.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-content>
+      <div class="max-level-row">
+        <label class="nowrap">Max level</label>
+        <mat-slider
+          id="maxLevelSlider"
+          min="1"
+          [max]="dataStoreMaxLevel || 5"
+          step="1"
+          [value]="selectedMaxLevel"
+          [tickInterval]="1"
+          class="max-slider"
+          (input)="onMaxLevelChange($event.value)">
+        </mat-slider>
+        <span class="caption">{{ selectedMaxLevelCaption }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="progress-definitions-section">
+    <div class="selectable-list">
+      <div class="selectable-list-header">
+        <h2>Progress Definitions</h2>
+        <div *ngIf="editingProgressDefinitions" class="edit-hint">Click Accept when finished</div>
+        <button
+          mat-icon-button
+          *ngIf="!editingProgressDefinitions"
+          (click)="toggleProgressDefinitionsEdit()"
+          title="Edit Progress Definitions">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <span *ngIf="editingProgressDefinitions">
+          <button mat-icon-button (click)="addProgressDefinition()" title="Add Progress Definition">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-icon-button (click)="resetProgressDefinitions()" title="Reset to defaults">
+            <mat-icon>undo</mat-icon>
+          </button>
+          <button mat-icon-button (click)="saveProgressDefinitions()" title="Accept changes">
+            <mat-icon>check</mat-icon>
+          </button>
+        </span>
+      </div>
+
+      <div class="progress-definitions-grid" [formGroup]="progressDefinitionsForm">
+        <ng-container
+          *ngIf="
+            editingProgressDefinitions;
+            then editProgress;
+            else displayProgress
+          "></ng-container>
+
+        <ng-template #displayProgress>
+          <ng-container *ngFor="let definition of definitionsFormArray.controls; let i = index">
+            <div class="grid-cell progress-key">{{ getFormGroupValue(definition, 'key') }}</div>
+            <div class="grid-cell progress-score">
+              {{ getFormGroupValue(definition, 'score') }}%
+            </div>
+            <div class="grid-cell progress-definition">
+              {{ getFormGroupValue(definition, 'definition') }}
+            </div>
+            <div></div>
+          </ng-container>
+        </ng-template>
+        <ng-template #editProgress>
+          <ng-container formArrayName="definitions">
+            <ng-container *ngFor="let definition of definitionsFormArray.controls; let i = index">
+              <ng-container [formGroup]="getDefinitionGroup(i)">
+                <input type="hidden" formControlName="pid" />
+
+                <mat-form-field appearance="outline" class="grid-cell progress-key edit">
+                  <mat-label>Name</mat-label>
+                  <input matInput required minlength="1" formControlName="key" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-cell progress-score edit">
+                  <mat-label>Score</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    min="0"
+                    max="100"
+                    class="progress-score"
+                    formControlName="score"
+                    [disabled]="getDefinitionGroup(i).get('mandatory')?.value" />
+                  <span matSuffix>%</span>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-cell progress-definition edit">
+                  <mat-label>Definition</mat-label>
+                  <textarea
+                    matInput
+                    required
+                    minlength="1"
+                    formControlName="definition"
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+
+                <div class="grid-cell action-buttons edit">
+                  <mat-icon
+                    title="You cannot remove this definition"
+                    *ngIf="getDefinitionGroup(i).get('mandatory')?.value"
+                    class="material-icons-outlined mandatory-icon"
+                    >lock</mat-icon
+                  >
+                  <button
+                    title="Delete"
+                    *ngIf="!getDefinitionGroup(i).get('mandatory')?.value"
+                    mat-icon-button
+                    (click)="removeProgressDefinition(i)"
+                    title="Delete definition">
+                    <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </div>
+      <div class="help-text" *ngIf="editingProgressDefinitions">
+        <p>
+          Define custom progression stages that match your team's workflow. Choose names and
+          definitions that reflect how your organization tracks security activity maturity.
+        </p>
+        <p>
+          <strong>Examples:</strong><br />
+          Time-based: <em>Not implemented → Backlog → Started → Implemented</em><br />
+          Maturity-based: <em>Low maturity → Medium maturity → High maturity</em>
+        </p>
+        <p>
+          Write precise definitions that specify the criteria that must be met for each stage. This
+          removes ambiguity and ensures everyone interprets each stage consistently.
+        </p>
+        <p><strong>Note:</strong> Stages at 0% and 100% are mandatory and cannot be removed.</p>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="settings-about-section">
+    <h2>About the DSOMM Model</h2>
+    <div class="card-content">
+      <p>
+        The
+        <a target="_blank" href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel"
+          >DSOMM application</a
+        >
+        and the
+        <a
+          target="_blank"
+          href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data"
+          >DSOMM model</a
+        >
+        are released independently.
+      </p>
+      <p>
+        The model contains the definitions, activities, and structure used by this application.
+        While the application is the tool for assessing and tracking DevSecOps maturity, i.e. using
+        the model.<br />
+      </p>
+      <ng-container *ngIf="meta?.activityMeta?.getDsommVersion()">
+        <p>The current version of the DSOMM model in use is:</p>
+        <div class="version-info-section">
+          <div class="version-info-table">
+            <!-- Model version row -->
+            <div class="grid-col-1 grid-row-1">Model version</div>
+            <div class="grid-col-1 grid-row-2">Release date</div>
+            <div class="grid-col-2 grid-row-1">
+              {{ meta.activityMeta?.getDsommVersion() || '' }}
+            </div>
+            <div class="grid-col-2 grid-row-2">
+              {{ dateFormat(meta.activityMeta?.getDsommReleaseDate()) }}
+            </div>
+
+            <div
+              class="grid-col-3 grid-row-1"
+              *ngIf="remoteReleaseCheck?.isNewerAvailable === false">
+              Up to date
+            </div>
+            <ng-container *ngIf="remoteReleaseCheck?.isNewerAvailable === true">
+              <div class="grid-col-3 grid-row-1">
+                {{ remoteReleaseCheck?.latestRelease?.tagName }}
+              </div>
+              <div class="grid-col-3 grid-row-2">
+                {{ dateFormat(remoteReleaseCheck?.latestRelease?.publishedAt) }}
+              </div>
+
+              <div class="grid-col-4 grid-row-1">
+                <a
+                  [href]="remoteReleaseCheck?.latestRelease?.downloadUrl"
+                  target="_blank"
+                  class="action-link"
+                  >Download</a
+                >
+              </div>
+              <div class="grid-col-4 grid-row-2">
+                <a
+                  [href]="remoteReleaseCheck?.latestRelease?.changelogUrl"
+                  target="_blank"
+                  class="action-link"
+                  >Changelog</a
+                >
+              </div>
+            </ng-container>
+          </div>
+          <div class="button-container vflex">
+            <div *ngIf="remoteReleaseCheck?.latestCheckError" class="error">
+              <p>Error checking updates:</p>
+              <p>{{ remoteReleaseCheck?.latestCheckError }}</p>
+            </div>
+            <div class="hflex">
+              <button
+                mat-raised-button
+                class="normal-button"
+                (click)="checkForLatestRelease()"
+                [disabled]="remoteReleaseCheck?.isChecking">
+                Check for newer DSOMM
+              </button>
+              <mat-progress-spinner
+                *ngIf="remoteReleaseCheck?.isChecking"
+                mode="indeterminate"
+                diameter="20"></mat-progress-spinner>
+            </div>
+          </div>
+        </div>
+        <div class="version-info-customization" *ngIf="meta.activityFiles.length > 1">
+          <div>
+            This application uses the official DSOMM Model above, with some local customizations.
+            The following files are used to describe the model in use:
+          </div>
+          <ul>
+            <li *ngFor="let file of meta?.activityFiles">
+              <a href="{{ file }}" target="_blank">{{ file.replace('assets/YAML/', '') }}</a>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!meta?.activityMeta?.getDsommVersion()">
+        <div>This application runs on a customized version of the DSOMM model:</div>
+        <ul>
+          <li *ngFor="let file of meta?.activityFiles">
+            <a href="{{ file }}" target="_blank">{{ file.replace('assets/YAML/', '') }}</a>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+  </mat-card>
+</div>
