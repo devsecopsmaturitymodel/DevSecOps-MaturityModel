@@ -20,7 +20,7 @@ export class ActivityFileMeta {
 
   getDsommVersion(): string | null {
     if (this.publisher && this.publisher.startsWith(ActivityFileMeta.DSOMM_PUBLISHER)) {
-      return (this.version?.startsWith('v')) ? this.version : `v${this.version}`;
+      return this.version?.startsWith('v') ? this.version : `v${this.version}`;
     }
     return null;
   }

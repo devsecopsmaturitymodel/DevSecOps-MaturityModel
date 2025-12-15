@@ -91,7 +91,8 @@ export class LoaderService {
       if (err instanceof FileNotFoundError) {
         console.error(`${perfNow()}: Missing model file: ${err?.filename || err}`);
         if (err.filename && err.filename.endsWith('default/model.yaml')) {
-          let msg: string = `No DSOMM Model file found.\n\n` + 
+          let msg: string =
+            `No DSOMM Model file found.\n\n` +
             `Please download \`model.yaml\` from [DSOMM-data](${this.DSOMM_MODEL_URL}) on GitHub, \\\n` +
             `and place it in the \`src\\assets\\default\` folder.`;
           this.notificationService.notify('Loading error', msg);
