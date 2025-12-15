@@ -10,7 +10,7 @@ progressDefinition:
     score: 0%
     definition: Activity not started and not planned
   Started:
-    score: 40%
+    score: 20%
     definition: Activity has been started, or completed for a few applications
   Partly implemented:
     score: 50%
@@ -19,14 +19,15 @@ progressDefinition:
     score: 100%
     definition: Fully implemented for (almost) all applications
 
+
 teams: 
   $ref: 'default/teams.yaml#/teams'
 teamGroups:
   $ref: 'default/teams.yaml#/teamGroups'
 
 activityFiles:
-    # - generated/generated.yaml 
-    - default/activities.yaml 
+    # - generated/generated.yaml # Old structure -  No longer used
+    - default/model.yaml 
     # - custom/custom-activities.yaml  # For customizing your own activities
 
 
