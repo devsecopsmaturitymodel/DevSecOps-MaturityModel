@@ -37,10 +37,12 @@
   margin-bottom: 1em;
   position: relative;
 }
+
 .mat-cell-activity a.activity-title {
   text-decoration: unset;
   margin: 0;
 }
+
 .mat-cell-activity a::after {
   content: "";
   position: absolute;
@@ -49,6 +51,7 @@
   width: 100%;
   height: 100%;
 }
+
 .mat-cell-activity a.activity-title:link {
   color: inherit;
 }
@@ -57,8 +60,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  
+
 }
+
 .mat-cell .dim-icon mat-icon {
   font-size: 45px;
   width: 45px;
@@ -75,6 +79,7 @@
   font-style: italic;
   font-size: 12px;
 }
+
 /*tag activity - light */
 :host-context(body.light-theme) .tags-activity,
 :host-context(body.light-theme) .tags-activity span {
@@ -89,11 +94,23 @@
 
 .reset-button {
   background-color: #66bb6a;
+  color: rgb(28, 28, 28);
   display: block;
   margin: 0 20px;
   padding: 7px 12px;
   border-radius: 16px;
   font: 500 14px / 20px Roboto, 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: #4caf50;
+}
+
+.mat-chip {
+  cursor: pointer;
 }
 
 .mat-mdc-row .mat-mdc-cell {
