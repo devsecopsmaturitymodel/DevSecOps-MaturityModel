@@ -40,8 +40,19 @@
   color: #ddd;
 }
 
-.github-fork-ribbon:before {
-  background-color: #333;
+.github-button img {
+  margin-right: 20px;
+  height: 35px;
+  width: auto;
+  transition: transform 0.2s;
+}
+
+.github-button:hover img {
+  transform: scale(1.1);
+}
+
+:host-context(.dark-theme) .github-button img {
+  filter: invert(1);
 }
 
 @media only screen and (max-width: 750px) {
