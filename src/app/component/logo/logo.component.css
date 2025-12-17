@@ -1,7 +1,11 @@
-.logo {  
-    width: 200px;  
-    height: auto;  
-    text-align: center;  
-    padding: 5px;  
+.logo {
+    width: 200px;
+    height: auto;
+    text-align: center;
+    padding: 5px;
     /*border: 3px solid blue; */
-    }  
+}
+
+:host-context(.dark-theme) .logo {
+    filter: invert(1) hue-rotate(180deg);
+}
