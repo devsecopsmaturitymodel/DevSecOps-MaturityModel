@@ -10,7 +10,7 @@ import { TitleService } from './service/title.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = '';
-  defaultTitle = 'DSOMM beta edition';
+  defaultTitle = '';
   subtitle = '';
   menuIsOpen: boolean = true;
 

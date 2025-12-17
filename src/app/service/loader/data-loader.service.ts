@@ -40,7 +40,7 @@ export class LoaderService {
     private githubService: GithubService,
     private notificationService: NotificationService
   ) {
-    this.DSOMM_MODEL_URL = this.githubService.getDsommModelUrl();
+    this.DSOMM_MODEL_URL = this.githubService.getDsommModelUrl() + '/tree/main/generated';
   }
 
   get datastore(): DataStore | null {
@@ -91,7 +91,11 @@ export class LoaderService {
       if (err instanceof FileNotFoundError) {
         console.error(`${perfNow()}: Missing model file: ${err?.filename || err}`);
         if (err.filename && err.filename.endsWith('default/model.yaml')) {
-          this.notificationService.notify('Loading error', `No DSOMM model found.\n\nPlease download \`model.yaml\` from [GitHub](${this.DSOMM_MODEL_URL}).`); // eslint-disable-line
+          let msg: string =
+            `No DSOMM Model file found.\n\n` +
+            `Please download \`model.yaml\` from [DSOMM-data](${this.DSOMM_MODEL_URL}) on GitHub, \\\n` +
+            `and place it in the \`src\\assets\\default\` folder.`;
+          this.notificationService.notify('Loading error', msg);
         } else {
           this.notificationService.notify('Loading error', err.message + ': ' + err.filename);
         }
