@@ -45,3 +45,33 @@
   font-size: 0.8em;
   color: #666;;
 }
+
+
+
+
+:host-context(body.dark-theme) .selectable-list li {
+  color: #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+:host-context(body.dark-theme) .selectable-list li:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+:host-context(body.dark-theme) .selectable-list li.selected {
+  background-color: #25ca2dd8 !important;
+  color: #ffffff !important;
+}
+
+:host-context(body.dark-theme) .selectable-list li.highlighted {
+  background-color: #34aa3acd !important;
+  color: #ffffff !important;
+}
+
+:host-context(body.dark-theme) .selectable-list li:not(.selected):not(.highlighted) {
+  opacity: 0.9;
+}
+
+:host-context(body.dark-theme) mat-icon {
+  color: #ffffff;
+}

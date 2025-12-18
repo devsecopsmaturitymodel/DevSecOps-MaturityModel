@@ -37,10 +37,12 @@
   margin-bottom: 1em;
   position: relative;
 }
+
 .mat-cell-activity a.activity-title {
   text-decoration: unset;
   margin: 0;
 }
+
 .mat-cell-activity a::after {
   content: "";
   position: absolute;
@@ -49,6 +51,7 @@
   width: 100%;
   height: 100%;
 }
+
 .mat-cell-activity a.activity-title:link {
   color: inherit;
 }
@@ -57,8 +60,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  
+
 }
+
 .mat-cell .dim-icon mat-icon {
   font-size: 45px;
   width: 45px;
@@ -75,6 +79,7 @@
   font-style: italic;
   font-size: 12px;
 }
+
 /*tag activity - light */
 :host-context(body.light-theme) .tags-activity,
 :host-context(body.light-theme) .tags-activity span {
@@ -126,4 +131,35 @@
   font-size: 16px;
   color: rgba(0, 0, 0, 0.54);
   padding: 24px;
+}
+
+
+
+/* Dark theme styling for Activity and Dimension Filters */
+:host-context(body.dark-theme) .activity-chip-list ::ng-deep mat-chip {
+  background-color: #3d3d3d !important;
+  color: #e0e0e0 !important;
+}
+
+:host-context(body.dark-theme) .activity-chip-list ::ng-deep mat-chip:hover {
+  background-color: #4a4a4a !important;
+
+}
+
+:host-context(body.dark-theme) .activity-chip-list ::ng-deep mat-chip.mat-chip-selected {
+  background-color: #66bb6a !important;
+  color: #121212 !important;
+  border-color: #66bb6a;
+}
+
+:host-context(body.dark-theme) .activity-chip-list ::ng-deep mat-chip.mat-chip-selected:hover {
+  background-color: #81c784 !important;
+}
+
+:host-context(body.dark-theme) .activity-chip-list ::ng-deep .mat-form-field-label {
+  color: #b0b0b0 !important;
+}
+
+:host-context(body.dark-theme) .activity-chip-list ::ng-deep .mat-form-field-underline {
+  background-color: #555 !important;
 }
