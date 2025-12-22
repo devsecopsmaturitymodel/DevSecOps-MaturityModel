@@ -1,7 +1,13 @@
-.logo {  
-    width: 200px;  
-    height: auto;  
-    text-align: center;  
-    padding: 5px;  
+.logo {
+    width: 200px;
+    height: auto;
+    text-align: center;
+    padding: 5px;
     /*border: 3px solid blue; */
-    }  
+}
+
+/* When dark theme is active, swap the image source */
+:host-context(.dark-theme) .logo {
+    content: url("../../../assets/images/Dark-mode-logo.png");
+    filter: none;
+}
