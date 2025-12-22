@@ -1,6 +1,7 @@
 .margin30 {
   margin-bottom: 30px;
 }
+
 .axis path,
 .axis line {
   fill: none;
@@ -38,6 +39,7 @@
   justify-items: center;
   align-content: space-between;
 }
+
 #chart {
   width: 100%;
   max-width: min(100vh - 60px, 100vw - 60px);
@@ -46,6 +48,7 @@
 .downloadButtonClass {
   margin: 10px 0;
 }
+
 .overlay-details {
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.555);
@@ -56,6 +59,7 @@
   width: 60%;
   min-height: 100%;
 }
+
 .overlay-modal {
   /* border: 1px solid black; */
   margin: 1em;
@@ -106,12 +110,14 @@
 .filter-toggle .hidden {
   display: none;
 }
+
 .team-list {
   width: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .team-list li {
   display: grid;
   grid-template-columns: minmax(100px, auto) 1fr;
@@ -119,27 +125,35 @@
   align-items: center;
   margin-bottom: 8px;
 }
+
 .team-label {
   white-space: nowrap;
   text-align: right;
   font-size: smaller;
 }
+
 app-progress-slider {
   width: 100%;
 }
+
 .mat-chip-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 1rem;  
+  padding: 1rem;
 }
+
 .filter-container {
   position: relative;
 }
 
 .smaller-italics {
-    font-size: smaller;
-    font-style: italic;
+  font-size: smaller;
+  font-style: italic;
+}
+
+mat-chip {
+  cursor: pointer;
 }
 
 button.filter-toggle {
@@ -175,31 +189,33 @@ button.filter-toggle {
 
 @media only screen and (max-width: 750px) {
   .heatmapClass {
-      grid-template-rows: auto auto 1fr auto;
-      grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 1fr;
   }
-  
-  .team-filter, .heatmapChart, .footer-buttons {
-      grid-column: 1;
+
+  .team-filter,
+  .heatmapChart,
+  .footer-buttons {
+    grid-column: 1;
   }
-  
+
   .team-filter {
-      grid-row: 1;
-      padding: 0.4rem;
+    grid-row: 1;
+    padding: 0.4rem;
   }
-  
+
   .mat-chip-list {
-      padding: 0.4rem;
+    padding: 0.4rem;
   }
 
   .heatmapChart {
-      grid-row: 2;
+    grid-row: 2;
   }
 
   #chart {
-      max-width: max(60vh, 60vw);
+    max-width: max(60vh, 60vw);
   }
-  
+
   .overlay-details {
     width: 100%;
   }
