@@ -41,8 +41,8 @@
 }
 
 .github-button img {
-  margin-right: 20px;
-  height: 35px;
+  margin-right: 10px;
+  height: 30px;
   width: auto;
   transition: transform 0.2s;
 }
