@@ -6,6 +6,8 @@
     /*border: 3px solid blue; */
 }
 
+/* When dark theme is active, swap the image source */
 :host-context(.dark-theme) .logo {
-    filter: invert(1) hue-rotate(180deg);
+    content: url("../../../assets/images/Dark-mode-logo.png");
+    filter: none;
 }
