@@ -106,7 +106,7 @@
 }
 
 .reset-button:hover {
-  background-color: #4caf50;
+background-color: var(--heatmap-filled);
 }
 
 .mat-chip {
