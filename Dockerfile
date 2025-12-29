@@ -19,7 +19,7 @@ RUN mkdir -p /usr/src/app/dist/dsomm/assets && \
     echo "branch: \"${GIT_BRANCH:-unknown}\"" >> /usr/src/app/dist/dsomm/assets/build-info.yaml
 
 
-FROM wurstbrot/dsomm-yaml-generation:1.24.0 AS yaml
+FROM wurstbrot/dsomm-yaml-generation:1.25.0 AS yaml
 
 FROM caddy:2.10.2
 ENV PORT=8080
