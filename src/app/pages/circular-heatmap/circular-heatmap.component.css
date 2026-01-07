@@ -98,6 +98,49 @@
   flex-direction: column;
 }
 
+
+
+
+/* 
+
+/* Dark theme styling for filters */
+:host-context(body.dark-theme) .team-filter ::ng-deep mat-chip {
+  background-color: #3d3d3d !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #555;
+  transition: all 0.2s ease-in-out;
+}
+
+:host-context(body.dark-theme) .team-filter ::ng-deep mat-chip:hover {
+  background-color: #4a4a4a !important;
+  border-color: #777;
+  cursor: pointer;
+}
+
+:host-context(body.dark-theme) .team-filter ::ng-deep mat-chip.mat-chip-selected {
+  background-color: #66bb6a !important;
+  color: #121212 !important;
+  border-color: #66bb6a;
+}
+
+:host-context(body.dark-theme) .team-filter ::ng-deep mat-chip.mat-chip-selected:hover {
+  background-color: #81c784 !important;
+}
+
+:host-context(body.dark-theme) .team-filter ::ng-deep .mat-form-field-label {
+  color: #b0b0b0 !important;
+}
+
+:host-context(body.dark-theme) .team-filter ::ng-deep .mat-form-field-underline {
+  background-color: #555 !important;
+}
+ */
+
+
+
+
+
+
 .team-filter.hidden {
   height: 0;
   visibility: collapse;
