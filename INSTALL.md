@@ -58,27 +58,48 @@ The files that were created in the subfolder `dist`
 
 If your DSOMM application is having a subfolder in the URL (e.g. https://server.local/our-dsomm), you need to build the Angular application to prepare for this. In that case build the application by using `ng build  --base-href /our-dsomm/`.
 
+# DSOMM Customization
 
 ## Teams and Groups
-To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml)  file with your unique team definitions.
+To customize teams and groups, you can create your own [default/teams.yaml](src/assets/default/teams.yaml) file with your unique team definitions.
 
 Assessments within the framework can be based on either a team or a specific application, which can be referred to as the context. Depending on how you define the context or teams, you may want to group them together.
 
-Here are a couple of examples to illustrate this, in breakers the DSOMM word:
+Here are a couple of examples where custom teams and groups may be appropriate:
 - Multiple applications (teams) can belong to a single overarching team (application).
 - Multiple teams (teams) can belong to a larger department (group).
 
-Feel free to create your own [meta.yaml](src/assets/meta.yaml) file to tailor the framework to your specific needs and mount it in your environment (e.g. kubernetes or docker).
-Here is an example to start docker with customized meta.yaml:
-```
-# Customized meta.yaml
-cp src/assets/YAML/meta.yaml .
-docker run -v $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm
+To load a custom teams and groups file:
 
-# Customized meta.yaml and generated.yaml
-cp src/assets/YAML/meta.yaml .
-cp $(pwd)/src/assets/YAML/generated/generated.yaml .
-docker run -v  $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
+```
+docker run --rm -v /local/path/teams.yaml:/srv/assets/YAML/default/teams.yaml -p 8080:8080 wurstbrot/dsomm &
+```
+
+## DSOMM Application Settings
+The application settings are stored in the [meta.yaml](src/assets/meta.yaml) file. This file allows you to customize browser settings, specify data file names, progress definitions, language, as well as other settings.
+
+To load custom DSOMM application settings:
+
+```
+docker run --rm -v /local/path/meta.yaml:/srv/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm &
+```
+
+## Custom DSOMM model
+The standard DSOMM model is loaded by default. However, you can alter the model used in your instance by altering the [default/model.yaml](src/assets/default/model.yaml) file. This file allows you to change, add, or remove dimensions, sub-dimensions, and tasks.
+
+To load a custom DSOMM data model:
+
+```
+docker run --rm -v /local/path/custom-model.yaml:/srv/assets/YAML/default/model.yaml -p 8080:8080 wurstbrot/dsomm &
+```
+
+## Team Progress Import
+The DSOMM application allows you to export the current state of the assessment through the Overview -> Download Team Progress export. The [team-progress.yaml](src/assets/team-progress.yaml) file allows that state to be restored from the exported file if switching between organization assessments or an accidental reset of the DSOMM progress occurred. Keep in mind, the state can only be restored IF the team progess had been previously exported.
+
+To load a saved team progress export:
+
+```
+docker run --rm -v /local/path/team-progress.yaml:/srv/assets/YAML/team-progress.yaml -p 8080:8080 wurstbrot/dsomm &
 ```
 
 In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/YAML/default), use:
@@ -98,6 +119,14 @@ In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel
 ```
 The `|` is yaml syntax to indicate that the evidence spans multiple lines. Markdown 
 syntax can be used. The evidence is currently visible on the activity from the Matrix page.
+
+
+To load multiple files at once, use the appropriate combination of:
+
+```
+docker run --rm -v /local/path/meta.yaml:/srv/assets/YAML/meta.yaml -v /local/path/teams.yaml:/srv/assets/YAML/default/teams.yaml -v /local/path/team-progress.yaml:/srv/assets/YAML/team-progress.yaml -v /local/path/custom-model.yaml:/srv/assets/YAML/default/model.yaml -p 8080:8080 wurstbrot/dsomm:latest &
+```
+
 
 # Back link
 
