@@ -7,7 +7,9 @@
         "preset": "angular",
         "releaseRules": [
           {"breaking": true, "release": "minor"},
-          {"tag": "Breaking", "release": "minor"}
+          {"tag": "Breaking", "release": "minor"},
+          {"type": "merge", "release": "patch"},
+          {"subject": "*Merge pull request*", "release": "patch"}
         ]
       }
     ],

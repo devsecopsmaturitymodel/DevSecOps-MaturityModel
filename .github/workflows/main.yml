@@ -28,7 +28,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
         id: get-version
-        run: echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
+        run: |
+          VERSION=$(npx semantic-release --dry-run 2>&1 | grep -o 'Release note for version [0-9]\+\.[0-9]\+\.[0-9]\+' | head -1 | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+          if [ -z "$VERSION" ]; then
+            echo "❌ No version could be detected by semantic-release"
+            echo "This usually means no commits warrant a release (no feat/fix/breaking changes)"
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: show version
         run: |
