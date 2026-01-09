@@ -8,10 +8,7 @@
         "releaseRules": [
           {"breaking": true, "release": "minor"},
           {"tag": "Breaking", "release": "minor"},
-          {"type": "merge", "release": "patch"},
-          {"subject": "*Merge pull request*", "release": "patch"},
-          {"subject": "*Merge branch*", "release": "patch"},
-          {"subject": "Merge*", "release": "patch"}
+          {"message": "/^Merge pull request/", "release": "patch"}
         ]
       }
     ],
