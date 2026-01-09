@@ -4,11 +4,11 @@
     [
       "@semantic-release/commit-analyzer",
       {
-        "preset": "angular",
+        "preset": "conventionalcommits",
         "releaseRules": [
           {"breaking": true, "release": "minor"},
           {"tag": "Breaking", "release": "minor"},
-          {"message": "/^Merge pull request/", "release": "patch"}
+          {"type": "*", "release": "patch"}
         ]
       }
     ],

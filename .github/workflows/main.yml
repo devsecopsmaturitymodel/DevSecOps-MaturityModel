@@ -29,7 +29,16 @@ jobs:
       - name: Get Semantic Release Version
         id: get-version
         run: |
-          VERSION=$(npx semantic-release --dry-run 2>&1 | grep -o 'Release note for version [0-9]\+\.[0-9]\+\.[0-9]\+' | head -1 | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+          # Check if latest commit is a merge commit
+          if git log --format="%s" -1 | grep -q "^Merge pull request"; then
+            echo "✅ Merge commit detected, forcing patch release"
+            # Get last tag and increment patch
+            LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//' || echo "0.0.0")
+            VERSION=$(echo $LAST_TAG | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+          else
+            VERSION=$(npx semantic-release --dry-run 2>&1 | grep -o 'Release note for version [0-9]\+\.[0-9]\+\.[0-9]\+' | head -1 | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+          fi
+          
           if [ -z "$VERSION" ]; then
             echo "❌ No version could be detected by semantic-release"
             echo "This usually means no commits warrant a release (no feat/fix/breaking changes)"
