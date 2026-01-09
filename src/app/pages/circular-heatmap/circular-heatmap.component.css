@@ -41,6 +41,7 @@
 #chart {
   width: 100%;
   max-width: min(100vh - 60px, 100vw - 60px);
+  margin-left: 20px;
 }
 
 .downloadButtonClass {
