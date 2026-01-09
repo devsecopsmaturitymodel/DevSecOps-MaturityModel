@@ -1,6 +1,3 @@
-<details>
-<summary>About DSOMM</summary>
-
 # About DSOMM
 
 Modern software delivery is powered by agile teams, CI/CD pipelines, containerization, and cloud-native platforms. While these practices have dramatically increased delivery speed and scalability, security often fails to mature at the same pace.
@@ -60,11 +57,12 @@ DSOMM is an open, community-driven project under the umbrella of the OWASP Found
 
 Contributions, feedback, and collaboration from the community are encouraged to ensure the model remains relevant and effective as DevSecOps practices evolve.
 
-</details>
 
 ---
 
 ## Usage
+
+For usage instructions, please see [Usage](/usage)
 
 <details>
 <summary>DSOMM - DevSecOps Maturity Model</summary>
