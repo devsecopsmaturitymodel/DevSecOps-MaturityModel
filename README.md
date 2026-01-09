@@ -47,13 +47,13 @@ DSOMM helps teams adopt these practices deliberately, measurably, and sustainabl
 
 Attackers evolve. Tooling advances. Threats adapt.
 
-DSOMM provides a forward-looking framework that allows organizations to respond with clarity instead of reaction—grounded in shared language, shared priorities, and continuous improvement.
+DSOMM provides a forward-looking framework that allows organizations to respond with clarity instead of reaction — grounded in shared language, shared priorities, and continuous improvement.
 
 ---
 
 ## Open and Community-Driven
 
-DSOMM is an open, community-driven project under the umbrella of the OWASP Foundation. It is designed to be transparent, adaptable, and practical at any scale—from startups to multinational enterprises.
+DSOMM is an open, community-driven project under the umbrella of the OWASP Foundation. It is designed to be transparent, adaptable, and practical at any scale — from startups to multinational enterprises.
 
 Contributions, feedback, and collaboration from the community are encouraged to ensure the model remains relevant and effective as DevSecOps practices evolve.
 
@@ -64,8 +64,6 @@ Contributions, feedback, and collaboration from the community are encouraged to 
 <summary>Usage</summary>
 
 # Usage
-
-For usage instructions, please see [Usage](/usage)
 
 <details>
 <summary>DSOMM - DevSecOps Maturity Model</summary>
