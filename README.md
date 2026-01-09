@@ -60,7 +60,10 @@ Contributions, feedback, and collaboration from the community are encouraged to 
 
 ---
 
-## Usage
+<details>
+<summary>Usage</summary>
+
+# Usage
 
 For usage instructions, please see [Usage](/usage)
 
@@ -450,10 +453,9 @@ By default:
 
 </details>
 
----
+</details>
 
-<details>
-<summary>Community and Contribution</summary>
+---
 
 # Community and Contribution
 
@@ -463,21 +465,45 @@ DSOMM is a community-driven project.
 - Submit issues or pull requests on GitHub
 - Participate in workshops, talks, and working groups
 
-</details>
-
 ---
 
-<details>
-<summary>License</summary>
+# Back link
+
+- [OWASP DevSecOps maturity model page](https://dsomm.owasp.org/)
+- [OWASP DevSecOps project page](https://owasp.org/www-project-devsecops-maturity-model/)
+- [OWASP](https://owasp.org)
+
+# Your help is needed to perform
+
+* Adding a manual on how to use DSOMM
+* Integration of Incident Response
+* DevSecOps Toolchain Categorization
+* App Sec Maturity Models Mapping
+* CAMS Categorization
+* Adding assessment questions
+
+# Multi-language support
+Multi-language support is not currently planned.
+
+# Sponsors
+
+[![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro)
+
+[![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
+
+[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/main/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
+
+# Donations
+
+If you are using the model or you are inspired by it, want to help but don't want to create pull requests? You can donate at the [OWASP Project Wiki Page](https://owasp.org/donate/?reponame=www-project-devsecops-maturity-model&title=OWASP+Devsecops+Maturity+Model). Donations might be used for the design of logos/images/design or travels.
 
 # License
 
-The DSOMM application is released under **GPL v3**.
+This program is free software: you can redistribute it and/or modify it under the terms of the [GPL 3](https://www.gnu.org/licenses/) license.
 
-The maturity model content is licensed under **Creative Commons Attribution-ShareAlike**.
+The intellectual property (content in the _data_ folder) is licensed under Attribution-ShareAlike.
+An example attribution by changing the content:
+> This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.owasp.org/).
 
-Attribution example:
+The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2025.
 
-> This work is based on the OWASP DevSecOps Maturity Model.
-
-</details>

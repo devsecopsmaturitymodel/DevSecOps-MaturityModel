@@ -427,13 +427,3 @@ An example attribution by changing the content:
 
 The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2025.
 
-
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
-
-You can download your current state from the circular heatmap and mount it again via 
-
-```bash
-wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
-docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
-```
-
