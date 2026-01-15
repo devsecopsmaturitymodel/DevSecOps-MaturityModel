@@ -7,12 +7,12 @@
         "preset": "angular",
         "releaseRules": [
           {"breaking": true, "release": "minor"},
-          {"tag": "Breaking", "release": "minor"},
-          {"type": "*", "release": "patch"}
+          {"tag": "Breaking", "release": "minor"}
         ]
       }
     ],
     "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
     "@semantic-release/github"
   ]
 }
