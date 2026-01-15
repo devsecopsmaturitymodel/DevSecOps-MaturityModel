@@ -6,8 +6,8 @@
       {
         "preset": "angular",
         "releaseRules": [
-          {"breaking": true, "release": "minor"},
-          {"tag": "Breaking", "release": "minor"}
+          {"breaking": true, "release": "major"},
+          {"tag": "Breaking", "release": "major"}
         ]
       }
     ],
