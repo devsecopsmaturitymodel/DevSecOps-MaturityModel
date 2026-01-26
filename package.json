@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prebuild": "node scripts/copy-readme.js",
     "build": "ng build --configuration=production" ,
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
