@@ -52,7 +52,7 @@ jobs:
           mkdir generated || true
           docker run -d --name=yaml --entrypoint="/bin/sleep" wurstbrot/dsomm-yaml-generation:${yamlVersion} 60 
           docker cp yaml:/var/www/html/generated/model.yaml src/assets/YAML//model.yaml 
-          docker cp yaml:/var/www/html/generated/dependency-tree.md src/assets/YAML//dependency-tree.md       
+          docker cp yaml:/var/www/html/generated/dependency-tree.md src/assets/YAML/dependency-tree.md
       - name: Replace version placeholder in model.yaml
         run: |
           sed -i "s/__VERSION_PLACEHOLDER__/${{ steps.get-version.outputs.version }}/g" src/assets/YAML/model.yaml
