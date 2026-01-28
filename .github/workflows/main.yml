@@ -62,7 +62,7 @@ jobs:
           push: true
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
-          tags: wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }},wurstbrot/dsomm-yaml-generation:latest
+          tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
       - name: Commit all changed files back to the repository
         uses: planetscale/ghcommit-action@v0.1.6
         with:
