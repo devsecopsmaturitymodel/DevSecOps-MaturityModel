@@ -53,11 +53,6 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }},wurstbrot/dsomm-yaml-generation:latest
-      - name: Extract generated files from docker image
-        run: |
-          docker run -d --name=yaml --entrypoint="/bin/sleep" wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }} 60 
-          docker cp yaml:/var/www/html/generated/model.yaml generated/model.yaml 
-          docker cp yaml:/var/www/html/generated/dependency-tree.md generated/dependency-tree.md           
       - name: Replace version placeholder in model.yaml
         run: |
           sed -i "s/__VERSION_PLACEHOLDER__/${{ steps.get-version.outputs.version }}/g" src/assets/YAML/model.yaml
@@ -69,3 +64,11 @@ jobs:
           branch: ${{ github.head_ref || github.ref_name }}
         env:
           GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
+
+      # - name: Extract generated files from docker image
+      #   run: |
+      #     yamlVersion=$(cat Dockerfile  | grep dsomm-yaml | sed 's#.*:##g' | sed 's# .*##g')
+      #     mkdir generated || true
+      #     docker run -d --name=yaml --entrypoint="/bin/sleep" wurstbrot/dsomm-yaml-generation:${yamlVersion} 60 
+      #     docker cp yaml:/var/www/html/generated/model.yaml generated/model.yaml 
+      #     docker cp yaml:/var/www/html/generated/dependency-tree.md generated/dependency-tree.md           
