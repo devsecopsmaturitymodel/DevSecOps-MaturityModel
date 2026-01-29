@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { equalArray } from 'src/app/util/util';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
-import * as d3 from 'd3';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatChip } from '@angular/material/chips';
@@ -28,6 +27,7 @@ import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
 import { TitleService } from '../../service/title.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { D3HeatmapService, HeatmapColors } from '../../service/d3-heatmap.service';
 
 @Component({
   selector: 'app-circular-heatmap',
@@ -39,7 +39,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   markdown: md = md();
   showOverlay: boolean = false;
   showFilters: boolean = true;
-  showActivityCard: any = null;
+  showActivityCard: Sector | null = null;
 
   showActivityDetails: Activity | null = null;
 
@@ -57,7 +57,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   allSectors: Sector[] = [];
   selectedSector: Sector | null = null;
   theme: string;
-  theme_colors!: Record<string, string>;
+  theme_colors!: HeatmapColors;
 
   private destroy$ = new Subject<void>();
 
@@ -70,7 +70,8 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
-    public modal: ModalMessageComponent
+    public modal: ModalMessageComponent,
+    private heatmapService: D3HeatmapService
   ) {
     this.theme = this.themeService.getTheme();
   }
@@ -126,7 +127,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
           this.setYamlData(dataStore);
 
           // For now, just draw the sectors (no activities yet)
-          this.loadCircularHeatMap('#chart', this.allSectors, this.dimensionLabels, this.maxLevel);
+          this.initializeHeatmap();
           console.log(`${perfNow()}: Page loaded: Circular Heatmap`);
 
           // Check if there's a URL fragment and open the corresponding activity
@@ -153,8 +154,54 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       console.debug(`${perfNow()}s: themeService.pipe: Heatmap theme colors:`, this.theme_colors);
 
       // Repaint segments with new theme
+      this.heatmapService.updateThemeColors(this.theme_colors);
       this.reColorHeatmap();
     });
+  }
+
+  private initializeHeatmap() {
+    this.heatmapService.initialize('#chart', {
+      imageWidth: 1200,
+      margin: 5,
+      maxLevel: this.maxLevel,
+      dimLabels: this.dimensionLabels,
+      colors: this.theme_colors
+    }, (sector) => this.getSectorProgress(sector));
+
+    this.heatmapService.render(
+      this.allSectors,
+      {
+        onClick: (sector, index, id) => {
+          this.selectedSector = sector;
+          if (this.selectedSector?.activities?.length) {
+            this.heatmapService.setSectorCursor('#selected', id);
+            this.showActivityCard = this.selectedSector;
+            console.log(`${perfNow()}: Heat: Clicked sector: '${this.selectedSector.dimension}' Level: ${this.selectedSector.level}`);
+          } else {
+            this.showActivityCard = null;
+            this.heatmapService.setSectorCursor('#selected', '');
+            console.log(`${perfNow()}: Heat: Clicked disabled sector: '${this.selectedSector?.dimension}' Level: ${this.selectedSector?.level}`);
+          }
+        },
+        onMouseOver: (sector, index, id) => {
+          if (sector?.activities?.length) {
+            this.heatmapService.setSectorCursor('#hover', id);
+            this.titleService.setTitle({
+              level: sector.level,
+              dimension: sector.dimension,
+              // subdimension: sector.subdimension, // Sector interface doesn't have subdimension
+            });
+          } else {
+            this.heatmapService.setSectorCursor('#hover', '');
+          }
+        },
+        onMouseOut: () => {
+          this.heatmapService.setSectorCursor('#hover', '');
+          this.titleService.clearTitle();
+        }
+      },
+      (sector) => this.getSectorProgress(sector)
+    );
   }
 
   ngOnDestroy(): void {
@@ -294,304 +341,9 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadCircularHeatMap(
-    dom_element_to_append_to: string,
-    dataset: any,
-    dimLabels: string[],
-    maxLevel: number
-  ) {
-    let _self = this;
-    var imageWidth = 1200;
-    var marginAll = 5;
-    var margin = {
-      top: marginAll,
-      right: marginAll,
-      bottom: marginAll,
-      left: marginAll,
-    };
-    var bbWidth = imageWidth - Math.max(margin.left + margin.right, margin.top + margin.bottom) * 2; // bounding box
-    var segmentLabelHeight = bbWidth * 0.0166; // Magic fudge number. to match the longest label within one sector
-    var outerRadius = bbWidth / 2 - segmentLabelHeight;
-    var innerRadius = outerRadius / (maxLevel + 1);
-    var segmentHeight = (outerRadius - innerRadius) / maxLevel;
 
-    var curr: any;
-    var chart = this.circularHeatChart(dimLabels.length)
-      .margin(margin)
-      .innerRadius(innerRadius)
-      .segmentHeight(segmentHeight)
-      .domain([0, 1])
-      //.range(['white', 'green'])
-      // .radialLabels(radial_labels)
-      .segmentLabels(dimLabels)
-      .segmentLabelHeight(segmentLabelHeight);
 
-    chart.accessor(function (sector: Sector) {
-      let progressValue: number = _self.getSectorProgress(sector);
-      if (!isNaN(progressValue) && progressValue !== 0) console.debug(`${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`);  // eslint-disable-line
-      return progressValue;
-    });
 
-    var svg = d3
-      .select(dom_element_to_append_to)
-      .selectAll('svg')
-      .data([dataset])
-      .enter()
-      .append('svg')
-      .attr('width', '100%')
-      .attr('height', '100%')
-      .attr('viewBox', `0 0 ${imageWidth} ${imageWidth}`)
-      .append('g')
-      .attr(
-        'transform',
-        `translate(${margin.left + segmentLabelHeight}, ${margin.top + segmentLabelHeight})`
-      )
-      .call(chart);
-
-    svg
-      .selectAll('path')
-      .on('click', function () {
-        var clickedId = d3.select(this).attr('id');
-        var index = parseInt(clickedId.replace('index-', ''));
-        _self.selectedSector = dataset[index]; // Store selected sector for details
-        // Assign showActivityCard to the sector if it has activities, else null
-        if (_self.selectedSector?.activities?.length) {
-          _self.setSectorCursor(svg, '#selected', clickedId);
-          _self.showActivityCard = _self.selectedSector;
-          console.log(`${perfNow()}: Heat: Clicked sector: '${_self.selectedSector.dimension}' Level: ${_self.selectedSector.level}`); // eslint-disable-line
-        } else {
-          _self.showActivityCard = null;
-          _self.setSectorCursor(svg, '#selected', '');
-          console.log(`${perfNow()}: Heat: Clicked disabled sector: '${_self?.selectedSector?.dimension}' Level: ${_self?.selectedSector?.level}`); // eslint-disable-line
-        }
-      })
-      .on('mouseover', function () {
-        var hoveredId = d3.select(this).attr('id');
-        var index = parseInt(hoveredId.replace('index-', ''));
-        if (dataset[index]?.activities?.length) {
-          _self.setSectorCursor(svg, '#hover', hoveredId);
-          // Update title with sector info
-          const sector = dataset[index];
-          _self.titleService.setTitle({
-            level: sector.level,
-            dimension: sector.dimension,
-            subdimension: sector.subdimension,
-          });
-        } else {
-          _self.setSectorCursor(svg, '#hover', '');
-        }
-      })
-      .on('mouseout', function () {
-        _self.setSectorCursor(svg, '#hover', '');
-        // Clear title on mouseout
-        _self.titleService.clearTitle();
-      });
-  }
-
-  circularHeatChart(num_of_segments: number) {
-    var margin = {
-        top: 20,
-        right: 50,
-        bottom: 50,
-        left: 20,
-      },
-      innerRadius = 20,
-      numSegments = num_of_segments,
-      segmentHeight = 20,
-      segmentLabelHeight = 12,
-      domain: any = null,
-      // range = ['white', 'red'],
-      range = [this.theme_colors['background'], this.theme_colors['filled']],
-      accessor = function (d: any) {
-        return d;
-      };
-    var radialLabels = [];
-    var segmentLabels: any[] = [];
-    let _self: any = this;
-    function chart(selection: any) {
-      selection.each(function (this: any, data: any) {
-        var svg = d3.select(this);
-
-        var offset = innerRadius + Math.ceil(data.length / numSegments) * segmentHeight;
-        var g = svg
-          .append('g')
-          .classed('circular-heat', true)
-          .attr(
-            'transform',
-            'translate(' + (margin.left + offset) + ',' + (margin.top + offset) + ')'
-          );
-
-        var autoDomain = false;
-        if (domain === null) {
-          domain = d3.extent(data, accessor);
-          autoDomain = true;
-        }
-        var color = d3.scaleLinear<string, string>().domain(domain).range(range);
-        if (autoDomain) domain = null;
-
-        g.selectAll('path')
-          .data(data)
-          .enter()
-          .append('path')
-          .attr('class', function (d: any) {
-            return 'segment-' + d.dimension.replace(/ /g, '-');
-          })
-          .attr('id', function (d: any, i: number) {
-            return 'index-' + i;
-          })
-          .attr('d', d3.arc<any>().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
-          .attr('stroke', _self.theme_colors['stroke'])
-          .attr('fill', function (d: any) {
-            if (!d.activities || d.activities.length === 0) {
-              return _self.theme_colors['disabled'];
-            }
-            return color(accessor(d));
-          });
-
-        // Unique id so that the text path defs are unique - is there a better way to do this?
-        // console.log(d3.selectAll(".circular-heat")["_groups"][0].length)
-        var id = 1;
-
-        //Segment labels
-        var segmentLabelFontSize = (segmentLabelHeight * 2) / 3;
-        var segmentLabelOffset = (segmentLabelHeight * 1) / 3;
-        var r =
-          innerRadius + Math.ceil(data.length / numSegments) * segmentHeight + segmentLabelOffset;
-        var labels = svg
-          .append('g')
-          .classed('labels', true)
-          .classed('segment', true)
-          .attr(
-            'transform',
-            'translate(' + (margin.left + offset) + ',' + (margin.top + offset) + ')'
-          );
-
-        labels
-          .append('def')
-          .append('path')
-          .attr('id', 'segment-label-path-' + id)
-          .attr('d', 'm0 -' + r + ' a' + r + ' ' + r + ' 0 1 1 -1 0');
-
-        labels
-          .selectAll('text')
-          .data(segmentLabels)
-          .enter()
-          .append('text')
-          .append('textPath')
-          .attr('text-anchor', 'middle')
-          .attr('xlink:href', '#segment-label-path-' + id)
-          .style('font-size', segmentLabelFontSize + 'px')
-          .attr('startOffset', function (d, i) {
-            return ((i + 0.5) * 100) / numSegments + '%'; // shift ½ segment to center
-          })
-          .text(function (d: any) {
-            return d;
-          });
-        var cursors = svg
-          .append('g')
-          .classed('cursors', true)
-          .attr(
-            'transform',
-            'translate(' + (margin.left + offset) + ',' + (margin.top + offset) + ')'
-          );
-        cursors
-          .append('path')
-          .attr('id', 'hover')
-          .attr('pointer-events', 'none')
-          .attr('stroke', 'green')
-          .attr('stroke-width', '7')
-          .attr('fill', 'transparent');
-        cursors
-          .append('path')
-          .attr('id', 'selected')
-          .attr('pointer-events', 'none')
-          .attr('stroke', '#232323')
-          .attr('stroke-width', '4')
-          .attr('fill', 'transparent');
-      });
-    }
-
-    /* Arc functions */
-    var ir = function (d: any, i: number) {
-      return innerRadius + Math.floor(i / numSegments) * segmentHeight;
-    };
-    var or = function (d: any, i: number) {
-      return innerRadius + segmentHeight + Math.floor(i / numSegments) * segmentHeight;
-    };
-    var sa = function (d: any, i: number) {
-      return (i * 2 * Math.PI) / numSegments;
-    };
-    var ea = function (d: any, i: number) {
-      return ((i + 1) * 2 * Math.PI) / numSegments;
-    };
-
-    /* Configuration getters/setters */
-    chart.margin = function (_: any) {
-      margin = _;
-      return chart;
-    };
-
-    chart.innerRadius = function (_: any) {
-      innerRadius = _;
-      return chart;
-    };
-
-    chart.numSegments = function (_: any) {
-      numSegments = _;
-      return chart;
-    };
-
-    chart.segmentHeight = function (_: any) {
-      segmentHeight = _;
-      return chart;
-    };
-
-    chart.segmentLabelHeight = function (_: any) {
-      segmentLabelHeight = _;
-      return chart;
-    };
-
-    chart.domain = function (_: any) {
-      domain = _;
-      return chart;
-    };
-
-    chart.range = function (_: any) {
-      range = _;
-      return chart;
-    };
-
-    chart.radialLabels = function (_: any) {
-      if (_ == null) _ = [];
-      radialLabels = _;
-      return chart;
-    };
-
-    chart.segmentLabels = function (_: any) {
-      if (_ == null) _ = [];
-      segmentLabels = _;
-      return chart;
-    };
-
-    chart.accessor = function (_: any) {
-      if (!arguments.length) return accessor;
-      accessor = _;
-      return chart;
-    };
-
-    return chart;
-  }
-
-  setSectorCursor(svg: any, cursor: string, targetId: string): void {
-    let element = svg.select(cursor);
-    let path: string = '';
-    if (targetId) {
-      if (targetId[0] != '#') targetId = '#' + targetId;
-      path = svg.select(targetId).attr('d');
-    }
-
-    svg.select(cursor).attr('d', path);
-  }
 
   defineStringValues(dataToCheck: string, valueOfDataIfUndefined: string): string {
     try {
@@ -601,10 +353,10 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     }
   }
 
-  onPanelOpened(activity: any) {
+  onPanelOpened(activity: Activity) {
     console.log(`${perfNow()}: Heat: Card Panel opened: '${activity.name}'`);
   }
-  onPanelClosed(activity: any) {
+  onPanelClosed(activity: Activity) {
     console.log(`${perfNow()}: Heat: Card Panel closed: '${activity.name}'`);
   }
 
@@ -683,18 +435,10 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   }
 
   recolorSector(index: number) {
-    var colorSector = d3
-      .scaleLinear<string, string>()
-      .domain([0, 1])
-      .range([this.theme_colors['background'], this.theme_colors['filled']]);
-
     let progressValue: number = this.getSectorProgress(this.allSectors[index]);
-    if (progressValue) console.debug(`${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors['filled']})`); // eslint-disable-line
+    if (progressValue) console.debug(`${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors.filled})`);
 
-    d3.select('#index-' + index).attr(
-      'fill',
-      isNaN(progressValue) ? this.theme_colors['disabled'] : colorSector(progressValue)
-    );
+    this.heatmapService.recolorSector(index, progressValue);
   }
 
   exportTeamProgress() {
@@ -735,7 +479,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     });
   }
 
-  getDatasetFromBrowserStorage(): any {
+  getDatasetFromBrowserStorage(): Sector[] | null {
     console.log(`${perfNow()}s: getDatasetFromBrowserStorage() ####`);
     // @ts-ignore
     if (this.old_ALL_CARD_DATA?.length && this.old_ALL_CARD_DATA[0]?.Task != null) {
