@@ -160,13 +160,17 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   }
 
   private initializeHeatmap() {
-    this.heatmapService.initialize('#chart', {
-      imageWidth: 1200,
-      margin: 5,
-      maxLevel: this.maxLevel,
-      dimLabels: this.dimensionLabels,
-      colors: this.theme_colors
-    }, (sector) => this.getSectorProgress(sector));
+    this.heatmapService.initialize(
+      '#chart',
+      {
+        imageWidth: 1200,
+        margin: 5,
+        maxLevel: this.maxLevel,
+        dimLabels: this.dimensionLabels,
+        colors: this.theme_colors,
+      },
+      sector => this.getSectorProgress(sector)
+    );
 
     this.heatmapService.render(
       this.allSectors,
@@ -176,11 +180,19 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
           if (this.selectedSector?.activities?.length) {
             this.heatmapService.setSectorCursor('#selected', id);
             this.showActivityCard = this.selectedSector;
-            console.log(`${perfNow()}: Heat: Clicked sector: '${this.selectedSector.dimension}' Level: ${this.selectedSector.level}`);
+            console.log(
+              `${perfNow()}: Heat: Clicked sector: '${this.selectedSector.dimension}' Level: ${
+                this.selectedSector.level
+              }`
+            );
           } else {
             this.showActivityCard = null;
             this.heatmapService.setSectorCursor('#selected', '');
-            console.log(`${perfNow()}: Heat: Clicked disabled sector: '${this.selectedSector?.dimension}' Level: ${this.selectedSector?.level}`);
+            console.log(
+              `${perfNow()}: Heat: Clicked disabled sector: '${
+                this.selectedSector?.dimension
+              }' Level: ${this.selectedSector?.level}`
+            );
           }
         },
         onMouseOver: (sector, index, id) => {
@@ -198,9 +210,9 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         onMouseOut: () => {
           this.heatmapService.setSectorCursor('#hover', '');
           this.titleService.clearTitle();
-        }
+        },
       },
-      (sector) => this.getSectorProgress(sector)
+      sector => this.getSectorProgress(sector)
     );
   }
 
@@ -341,10 +353,6 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
-
-
   defineStringValues(dataToCheck: string, valueOfDataIfUndefined: string): string {
     try {
       return this.markdown.render(dataToCheck);
@@ -436,7 +444,12 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
   recolorSector(index: number) {
     let progressValue: number = this.getSectorProgress(this.allSectors[index]);
-    if (progressValue) console.debug(`${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors.filled})`);
+    if (progressValue)
+      console.debug(
+        `${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${
+          this.theme_colors.filled
+        })`
+      );
 
     this.heatmapService.recolorSector(index, progressValue);
   }
