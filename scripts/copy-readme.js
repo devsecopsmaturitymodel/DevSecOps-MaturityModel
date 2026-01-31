@@ -38,6 +38,8 @@ try {
         console.warn('⚠️  WARNING: Did you edit the README.md copy under `assets`?');
         console.warn('The assets readme gets overwritten during the build process.');
         console.warn('Edit the main README.md in root folder to avoid losing changes.');
+        console.warn(` - Root README modified:   ${sourceStats.mtime.toISOString()}`);
+        console.warn(` - Assets README modified: ${targetStats.mtime.toISOString()}`);
         console.warn('===============================================================');
         fs.copyFileSync(targetFile, targetFile + '.bak');
         console.warn('Made you a backup, though: ' + targetFile + '.bak');
