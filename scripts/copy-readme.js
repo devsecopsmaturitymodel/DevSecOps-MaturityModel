@@ -33,7 +33,7 @@ try {
     if (targetStats.mtimeMs == sourceStats.mtimeMs) {
         copyNeeded = false;
     }
-    if (targetStats.mtimeMs > sourceStats.mtimeMs) {
+    if (targetStats.mtimeMs > sourceStats.mtimeMs + 1001) {
         console.warn('===============================================================');
         console.warn('⚠️  WARNING: Did you edit the README.md copy under `assets`?');
         console.warn('The assets readme gets overwritten during the build process.');
