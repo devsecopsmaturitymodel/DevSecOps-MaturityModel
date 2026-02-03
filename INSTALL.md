@@ -1,39 +1,131 @@
-# Install DSOMM
-The DSOMM application is frontend only. Data is only stored in server side YAML files, and in the localStorage im the user's browser. 
+<details>
+<summary>DSOMM - DevSecOps Maturity Model</summary>
 
-The application can be deployed in many ways.  using a number of  Docker, Amazon AWS and a standalone Angular service.
+# DSOMM – DevSecOps Maturity Model
 
-## Get the Activities
+The **DevSecOps Maturity Model (DSOMM)** is a framework designed to help organizations assess, prioritize, and continuously improve security practices within their software development and delivery lifecycle.
 
-The _DSOMM activities_ are maintained in a separate GitHub repository. For the latest version, get it from:
-- https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data
+DSOMM is an open project of the **OWASP Foundation**, developed to provide practical, implementation-focused guidance for modern DevOps environments.
+
+</details>
+
+---
+
+<details>
+<summary>What is DSOMM</summary>
+
+# What Is DSOMM?
+
+DSOMM helps organizations answer three fundamental questions:
+
+- Where are we today in our DevSecOps maturity?
+- What security activities should we prioritize next?
+- How do we systematically improve security without slowing delivery?
+
+The model focuses on **concrete, technical activities** that integrate security directly into DevOps workflows such as CI/CD pipelines, containerization, infrastructure provisioning, and testing.
+
+Rather than prescribing abstract processes, DSOMM provides a **clear roadmap of actionable improvements** that teams can implement incrementally and measure over time.
+
+</details>
+
+---
+
+<details>
+<summary>DSOMM vs OWASP SAMM</summary>
+
+# DSOMM vs OWASP SAMM
+
+DSOMM and **OWASP SAMM** share a common goal: improving software security maturity. However, they serve different audiences and use cases.
+
+**OWASP SAMM**:
+- Focuses on overall software assurance maturity
+- Covers governance, compliance, risk management, and organizational processes
+- Written primarily by security specialists for security programs
+- Takes a broad, organization-wide perspective
+
+**DSOMM**:
+- Focuses on embedding security directly into DevOps workflows
+- Operates lower in the technical stack (pipelines, containers, tooling)
+- Provides concrete implementation guidance for engineering teams
+- Is written for practitioners building and operating secure software systems
+
+SAMM currently holds **OWASP Flagship** status, while DSOMM is an **OWASP Lab** project. The two models are complementary and are often used together.
+
+</details>
+
+---
+
+<details>
+<summary>How the DSOMM Application Works</summary>
+
+# How the DSOMM Application Works
+
+The DSOMM application is a **frontend-only web application**.
+
+## Community Instance (Quick Start)
+
+You can immediately explore DSOMM using the public community instance:
+
+https://dsomm.owasp.org
+
+Important notes:
+- All progress is stored in your browser’s localStorage
+- Clearing browser data will erase your progress
+- Progress cannot be shared directly with other users
+
+This mode is ideal for:
+- Learning DSOMM
+- Individual exploration
+- Lightweight, ad-hoc assessments
+
+</details>
+
+---
+
+<details>
+<summary>Running Your Own DSOMM Instance</summary>
+
+# Running Your Own DSOMM Instance
+
+To enable collaboration, persistence, or GitOps-style workflows, you should run your own DSOMM instance.
+
+DSOMM can be deployed in three primary ways:
+
+- Docker container
+- Amazon EC2
+- Local Angular application
+
+---
 
 
-## Docker
-1. Install [Docker](https://www.docker.com)
-1. Download and run DSOMM: \
-  `docker pull wurstbrot/dsomm:latest` \
-  `docker run --rm -p 8080:8080 wurstbrot/dsomm:latest`
-1. Open DSOMM on http://localhost:8080
-   - If you are using docker-machine instead of the native docker installation on Windows or macOs: open <http://192.168.99.100:8080> instead
-If you want to override the default `generated.yaml` you can mount this file when starting the docker command. 
+## Running DSOMM as a Docker Container (Recommended)
 
-`docker run  --rm --volume $PWD/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm`
+### Prerequisites
+- Docker installed
 
-**NB!** Note that the docker command requires an absolute path to the local file. (Hence, the use of the `$PWD` variable. On Windows, substitute `$PWD` with `%CD%`.)
+### Steps
+```bash
+docker pull wurstbrot/dsomm:latest
+docker run --rm -p 8080:8080 wurstbrot/dsomm:latest &
+```
 
+### Access
+```text
+http://localhost:8080
+```
 
-## Amazon EC2 Instance
+On macOS or Windows using docker-machine:
+```text
+http://192.168.99.100:8080
+```
 
-1. In the _EC2_ sidenav select _Instances_ and click _Launch Instance_
-2. In _Step 1: Choose an Amazon Machine Image (AMI)_ choose an _Amazon
-   Linux AMI_ or _Amazon Linux 2 AMI_
-3. In _Step 3: Configure Instance Details_ unfold _Advanced Details_ and
-   copy the script below into _User Data_
-4. In _Step 6: Configure Security Group_ add a _Rule_ that opens port 80
-   for HTTP
-5. Launch your instance
-6. Browse to your instance's public DNS
+---
+
+## Running DSOMM on Amazon EC2
+
+1. Open the EC2 console and click **Launch Instance**
+2. Choose an **Amazon Linux AMI** or **Amazon Linux 2 AMI**
+3. In **Configure Instance Details**, expand **Advanced Details** and add the following to **User Data**:
 
 ```bash
 #!/bin/bash
@@ -41,63 +133,259 @@ service docker start
 docker run -d -p 80:8080 wurstbrot/dsomm:latest
 ```
 
+4. In **Security Groups**, allow inbound HTTP traffic on port 80
+5. Launch the instance
+6. Access DSOMM via the instance’s public DNS
 
-## Any web server - Angular build
-Since DSOMM is a frontend only application, any web server can host DSOMM. 
-- Clone the DSOMM repo
+---
 
-- **NB!** The DSOMM activities are maintained separately. Download the `generated.yaml` and put it in the required folder
-``` 
-git clone https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel.git
+## Running DSOMM from GitHub (Local Development)
+
+### Prerequisites
+- Node.js
+- Angular CLI
+
+### Steps
+```bash
+git clone https://github.com/wurstbrot/DevSecOps-MaturityModel
 cd DevSecOps-MaturityModel
 npm install
-curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml -o src/assets/YAML/generated/generated.yaml
-ng build
-```
-The files that were created in the subfolder `dist` 
-
-If your DSOMM application is having a subfolder in the URL (e.g. https://server.local/our-dsomm), you need to build the Angular application to prepare for this. In that case build the application by using `ng build  --base-href /our-dsomm/`.
-
-
-## Teams and Groups
-To customize these teams, you can create your own [meta.yaml](src/assets/meta.yaml)  file with your unique team definitions.
-
-Assessments within the framework can be based on either a team or a specific application, which can be referred to as the context. Depending on how you define the context or teams, you may want to group them together.
-
-Here are a couple of examples to illustrate this, in breakers the DSOMM word:
-- Multiple applications (teams) can belong to a single overarching team (application).
-- Multiple teams (teams) can belong to a larger department (group).
-
-Feel free to create your own [meta.yaml](src/assets/meta.yaml) file to tailor the framework to your specific needs and mount it in your environment (e.g. kubernetes or docker).
-Here is an example to start docker with customized meta.yaml:
-```
-# Customized meta.yaml
-cp src/assets/YAML/meta.yaml .
-docker run -v $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm
-
-# Customized meta.yaml and generated.yaml
-cp src/assets/YAML/meta.yaml .
-cp $(pwd)/src/assets/YAML/generated/generated.yaml .
-docker run -v  $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
+ng serve
 ```
 
-In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/YAML/default), use:
+### Access
+```text
+http://localhost:4200
 ```
-[...]
-      teamsImplemented:
-        Default: false
-        B: true
-        C: true
-      teamsEvidence:
-        B: All team members completed OWASP Secure Coding Dojo training on 2025-01-11. 
-        C: |
-          The pentest report from 2025 has been split into Jira tasks under
-          [TODO-123](https://jira.example.com/issues/TODO-123).
-          
-          _2025-04-01:_ All fixes of **critical** findings are deployed to production.
+
+---
+
+## DSOMM Customization
+
+DSOMM is designed to be flexible and adaptable to different organizational structures, assessment contexts, and maturity models. Customization is achieved through YAML configuration files that are mounted into the DSOMM container at runtime.
+
+---
+
+### Teams and Groups
+
+To customize teams and groups, you can create your own `default/teams.yaml` file with unique team definitions. You can also download the teams file from the Teams page and selecting "Download Team Setup".
+
+Assessments within DSOMM can be based on either:
+- A **team**, or
+- A **specific application**
+
+These are collectively referred to as the **assessment context**. Depending on how you define contexts, you may want to group them hierarchically.
+
+#### Common use cases for custom teams and groups
+
+- Multiple applications (teams) belonging to a single overarching application
+- Multiple teams grouped under a larger department or business unit
+
+#### Load a custom teams and groups file
+
+```bash
+docker run --rm \
+  -v /local/path/teams.yaml:/srv/assets/YAML/default/teams.yaml \
+  -p 8080:8080 \
+  wurstbrot/dsomm &
 ```
-The `|` is yaml syntax to indicate that the evidence spans multiple lines. Markdown 
-syntax can be used. The evidence is currently visible on the activity from the Matrix page.
+
+---
+
+### DSOMM Application Settings
+
+Application-level configuration is stored in the `meta.yaml` file. This file allows you to customize:
+
+- Browser behavior
+- Data file names
+- Progress definitions
+- Language and localization options
+- Other application settings
+
+#### Load custom application settings
+
+```bash
+docker run --rm \
+  -v /local/path/meta.yaml:/srv/assets/YAML/meta.yaml \
+  -p 8080:8080 \
+  wurstbrot/dsomm &
+```
+
+---
+
+### Custom DSOMM Model
+
+By default, DSOMM loads the standard maturity model. You can override this by supplying a custom `model.yaml` file.
+
+This allows you to:
+- Add, remove, or modify dimensions
+- Customize sub-dimensions
+- Define or remove activities
+
+#### Load a custom DSOMM model
+
+```bash
+docker run --rm \
+  -v /local/path/custom-model.yaml:/srv/assets/YAML/default/model.yaml \
+  -p 8080:8080 \
+  wurstbrot/dsomm &
+```
+
+---
+
+### Team Progress Import and Restore
+
+The DSOMM application allows exporting the current assessment state via:
+
+**Overview → Download Team Progress**
+
+This produces a `team-progress.yaml` file, which can be used to restore progress when:
+- Switching between organizational assessments
+- Recovering from accidental browser resets
+- Rehydrating assessments in new environments
+
+> Progress can only be restored if it was previously exported.
+
+#### Load a saved team progress export
+
+```bash
+docker run --rm \
+  -v /local/path/team-progress.yaml:/srv/assets/YAML/team-progress.yaml \
+  -p 8080:8080 \
+  wurstbrot/dsomm &
+```
+
+---
+
+### Evidence and Team-Specific Implementation
+
+Within the dimension YAML files, activities can track implementation status and evidence per team.
+
+Example:
+
+```yaml
+teamsImplemented:
+  Default: false
+  B: true
+  C: true
+
+teamsEvidence:
+  B: All team members completed OWASP Secure Coding Dojo training on 2025-01-11.
+  C: |
+    The pentest report from 2025 has been split into Jira tasks under
+    [TODO-123](https://jira.example.com/issues/TODO-123).
+
+    _2025-04-01:_ All fixes of **critical** findings are deployed to production.
+```
+
+Notes:
+- The `|` character indicates a multi-line YAML block
+- Markdown syntax is supported within evidence fields
+- Evidence is displayed directly on the activity within the **Matrix** view
+
+---
+
+### Loading Multiple Custom Files at Once
+
+```bash
+docker run --rm \
+  -v /local/path/meta.yaml:/srv/assets/YAML/meta.yaml \
+  -v /local/path/teams.yaml:/srv/assets/YAML/default/teams.yaml \
+  -v /local/path/team-progress.yaml:/srv/assets/YAML/team-progress.yaml \
+  -v /local/path/custom-model.yaml:/srv/assets/YAML/default/model.yaml \
+  -p 8080:8080 \
+  wurstbrot/dsomm:latest &
+```
+
+This approach enables:
+- Fully reproducible assessments
+- GitOps-style configuration management
+- Multi-team and multi-context maturity tracking
+
+</details>
+
+---
+
+<details>
+<summary>Understanding the DSOMM Framework</summary>
+
+# Understanding the DSOMM Framework
+
+DSOMM organizes security activities by **dimensions** and **maturity levels**.
+
+Each activity:
+- Represents a concrete security capability
+- Is assigned a maturity level
+- Can be marked as implemented per team
+- Can include documented evidence
+
+Example:
+- Centralized system logging → Maturity Level 1
+- Correlation of security events → Maturity Level 5
+
+Before starting, it is strongly recommended to review **Maturity Level 0**, which focuses on stakeholder alignment and foundational prerequisites.
+
+</details>
+
+---
+
+<details>
+<summary>DSOMM Dimensions</summary>
+
+# DSOMM Dimensions
+
+DSOMM groups activities into the following dimensions:
+
+- **Build and Deployment**  
+  Security practices in CI/CD pipelines and deployment workflows
+
+- **Culture and Organization**  
+  Organizational culture, training, and processes that support security
+
+- **Implementation**  
+  Secure coding, infrastructure hardening, and configuration management
+
+- **Information Gathering**  
+  Metrics, telemetry, threat intelligence, and risk data collection
+
+- **Test and Verification**  
+  Security testing and validation to ensure continuous improvement
+
+</details>
+
+---
+
+<details>
+<summary>Evidence and Auditing</summary>
+
+# Evidence and Auditing
+
+For organizations that require evidence (e.g., for CISOs or auditors), DSOMM supports attaching evidence directly in YAML files.
+
+Evidence is defined in `generated.yaml` or `team-progress.yaml` files using the `teamsEvidence` attribute. Markdown is supported, and multi-line evidence can be provided using YAML block syntax.
+
+Evidence is displayed directly on the activity within the Matrix view.
+
+> Note: Evidence cannot currently be entered directly in the browser UI.
+
+</details>
+
+---
+
+<details>
+<summary>Local Storage Behavior</summary>
+
+# Local Storage Behavior
+
+By default:
+- DSOMM stores progress in browser localStorage
+- Clearing browser data will reset progress
+- Self-hosted deployments are recommended for persistence
+
+</details>
+
+---
+
 
 # Back link
 
@@ -138,14 +426,4 @@ An example attribution by changing the content:
 > This work is based on the [OWASP DevSecOps Maturity Model](https://dsomm.owasp.org/).
 
 The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2025.
-
-
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
-
-You can download your current state from the circular heatmap and mount it again via 
-
-```bash
-wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
-docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
-```
 
