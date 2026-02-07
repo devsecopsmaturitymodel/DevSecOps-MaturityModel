@@ -7,9 +7,11 @@
   flex-direction: column;
   align-items: center;
 }
+
 .tag-title {
   font-size: 0.9em;
 }
+
 .tag-subtitle {
   font-size: 0.7em;
 }
@@ -29,15 +31,17 @@
 
 .sidenav-menu {
   padding: 20px;
+  padding-top: 45px;
 }
 
 .menu-close {
   position: absolute;
   right: 0;
-  top: 2px;
+  top: 16px;
   background: transparent;
   border: 0;
-  color: #ddd;
+  color: #4caf50;
+  cursor: pointer;
 }
 
 .github-fork-ribbon:before {
@@ -45,8 +49,8 @@
 }
 
 @media only screen and (max-width: 750px) {
-    .github-fork-ribbon {
-        display: none;
-      }
-    
+  .github-fork-ribbon {
+    display: none;
+  }
+
 }
