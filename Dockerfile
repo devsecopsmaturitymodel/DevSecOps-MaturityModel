@@ -1,4 +1,4 @@
-FROM node:25.4.0-alpine3.22 AS build
+FROM node:25.6.0-alpine3.22 AS build
 
 ARG COMMIT_HASH
 ARG COMMIT_DATE
