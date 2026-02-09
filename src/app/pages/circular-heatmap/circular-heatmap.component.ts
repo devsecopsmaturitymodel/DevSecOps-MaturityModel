@@ -27,7 +27,7 @@ import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
 import { TitleService } from '../../service/title.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
-import { D3HeatmapService, HeatmapColors } from '../../service/d3-heatmap.service';
+import { D3HeatmapRenderer, HeatmapColors } from '../../renderer/d3-heatmap.renderer';
 
 @Component({
   selector: 'app-circular-heatmap',
@@ -71,7 +71,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private location: Location,
     public modal: ModalMessageComponent,
-    private heatmapService: D3HeatmapService
+    private heatmapRenderer: D3HeatmapRenderer
   ) {
     this.theme = this.themeService.getTheme();
   }
@@ -153,14 +153,16 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       };
       console.debug(`${perfNow()}s: themeService.pipe: Heatmap theme colors:`, this.theme_colors);
 
-      // Repaint segments with new theme
-      this.heatmapService.updateThemeColors(this.theme_colors);
-      this.reColorHeatmap();
+      // Only update theme colors if renderer is initialized
+      if (this.heatmapRenderer.isInitialized()) {
+        this.heatmapRenderer.updateThemeColors(this.theme_colors);
+        this.reColorHeatmap();
+      }
     });
   }
 
   private initializeHeatmap() {
-    this.heatmapService.initialize(
+    this.heatmapRenderer.initialize(
       '#chart',
       {
         imageWidth: 1200,
@@ -172,13 +174,13 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       sector => this.getSectorProgress(sector)
     );
 
-    this.heatmapService.render(
+    this.heatmapRenderer.render(
       this.allSectors,
       {
         onClick: (sector, index, id) => {
           this.selectedSector = sector;
           if (this.selectedSector?.activities?.length) {
-            this.heatmapService.setSectorCursor('#selected', id);
+            this.heatmapRenderer.setSectorCursor('#selected', id);
             this.showActivityCard = this.selectedSector;
             console.log(
               `${perfNow()}: Heat: Clicked sector: '${this.selectedSector.dimension}' Level: ${
@@ -187,7 +189,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
             );
           } else {
             this.showActivityCard = null;
-            this.heatmapService.setSectorCursor('#selected', '');
+            this.heatmapRenderer.setSectorCursor('#selected', '');
             console.log(
               `${perfNow()}: Heat: Clicked disabled sector: '${
                 this.selectedSector?.dimension
@@ -197,18 +199,18 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         },
         onMouseOver: (sector, index, id) => {
           if (sector?.activities?.length) {
-            this.heatmapService.setSectorCursor('#hover', id);
+            this.heatmapRenderer.setSectorCursor('#hover', id);
             this.titleService.setTitle({
               level: sector.level,
               dimension: sector.dimension,
               // subdimension: sector.subdimension, // Sector interface doesn't have subdimension
             });
           } else {
-            this.heatmapService.setSectorCursor('#hover', '');
+            this.heatmapRenderer.setSectorCursor('#hover', '');
           }
         },
         onMouseOut: () => {
-          this.heatmapService.setSectorCursor('#hover', '');
+          this.heatmapRenderer.setSectorCursor('#hover', '');
           this.titleService.clearTitle();
         },
       },
@@ -451,7 +453,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         })`
       );
 
-    this.heatmapService.recolorSector(index, progressValue);
+    this.heatmapRenderer.recolorSector(index, progressValue);
   }
 
   exportTeamProgress() {

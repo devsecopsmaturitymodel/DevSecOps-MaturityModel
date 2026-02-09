@@ -21,14 +21,15 @@ export interface HeatmapConfig {
 @Injectable({
   providedIn: 'root',
 })
-export class D3HeatmapService {
-  private svg: d3.Selection<SVGGElement, any, HTMLElement, any> | null = null;
-  private config!: HeatmapConfig;
+export class D3HeatmapRenderer {
+  private svg: d3.Selection<SVGGElement, unknown, HTMLElement, unknown> | null = null;
+  private config: HeatmapConfig | null = null;
   private segmentHeight!: number;
   private innerRadius!: number;
   private segmentLabelHeight!: number;
   private outerRadius!: number;
   private colorScale!: d3.ScaleLinear<string, string>;
+  private dataset: Sector[] = [];
 
   public initialize(
     domElement: string,
@@ -72,7 +73,7 @@ export class D3HeatmapService {
         `translate(${margin.left + this.segmentLabelHeight}, ${
           margin.top + this.segmentLabelHeight
         })`
-      ) as any;
+      ) as d3.Selection<SVGGElement, unknown, HTMLElement, unknown>;
   }
 
   public render(
@@ -84,7 +85,10 @@ export class D3HeatmapService {
     },
     sectorProgressFn: (sector: Sector) => number
   ): void {
-    if (!this.svg) return;
+    if (!this.svg || !this.config) return;
+
+    // Store the dataset reference for later use
+    this.dataset = dataset;
 
     const { dimLabels, colors } = this.config;
     const numSegments = dimLabels.length;
@@ -119,13 +123,38 @@ export class D3HeatmapService {
         }
         return this.colorScale(sectorProgressFn(d));
       })
-      .on('click', (event, d) => {
-        const index = dataset.indexOf(d);
-        handlers.onClick(d, index, 'index-' + index);
+      .on('click', (event: MouseEvent, d: Sector) => {
+        // Use the stored dataset to find the index
+        const index = this.dataset.indexOf(d);
+        if (index !== -1) {
+          handlers.onClick(d, index, 'index-' + index);
+        } else {
+          // Fallback: find by dimension and level
+          const fallbackIndex = this.dataset.findIndex(
+            sector => sector.dimension === d.dimension && sector.level === d.level
+          );
+          if (fallbackIndex !== -1) {
+            handlers.onClick(this.dataset[fallbackIndex], fallbackIndex, 'index-' + fallbackIndex);
+          }
+        }
       })
-      .on('mouseover', (event, d) => {
-        const index = dataset.indexOf(d);
-        handlers.onMouseOver(d, index, 'index-' + index);
+      .on('mouseover', (event: MouseEvent, d: Sector) => {
+        const index = this.dataset.indexOf(d);
+        if (index !== -1) {
+          handlers.onMouseOver(d, index, 'index-' + index);
+        } else {
+          // Fallback: find by dimension and level
+          const fallbackIndex = this.dataset.findIndex(
+            sector => sector.dimension === d.dimension && sector.level === d.level
+          );
+          if (fallbackIndex !== -1) {
+            handlers.onMouseOver(
+              this.dataset[fallbackIndex],
+              fallbackIndex,
+              'index-' + fallbackIndex
+            );
+          }
+        }
       })
       .on('mouseout', () => {
         handlers.onMouseOut();
@@ -194,7 +223,7 @@ export class D3HeatmapService {
   }
 
   public recolorSector(index: number, progressValue: number): void {
-    if (!this.svg) return;
+    if (!this.svg || !this.config) return;
 
     this.svg
       .select('#index-' + index)
@@ -205,10 +234,20 @@ export class D3HeatmapService {
   }
 
   public updateThemeColors(colors: HeatmapColors): void {
+    // Guard against being called before initialize()
+    if (!this.config) {
+      console.warn('D3HeatmapRenderer: updateThemeColors called before initialize, skipping.');
+      return;
+    }
+
     this.config.colors = colors;
     this.colorScale.range([colors.background, colors.filled]);
     if (this.svg) {
       this.svg.selectAll('.circular-heat path').attr('stroke', colors.stroke);
     }
+  }
+
+  public isInitialized(): boolean {
+    return this.config !== null && this.svg !== null;
   }
 }
