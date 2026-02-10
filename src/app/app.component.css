@@ -7,9 +7,11 @@
   flex-direction: column;
   align-items: center;
 }
+
 .tag-title {
   font-size: 0.9em;
 }
+
 .tag-subtitle {
   font-size: 0.7em;
 }
@@ -18,13 +20,16 @@
 
 .main-container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .sidenav-content {
   display: flex;
   padding: 10px;
   justify-content: space-between;
+  width: 100%;
+  min-height: 60px;
+  box-sizing: border-box;
 }
 
 .sidenav-menu {
@@ -38,6 +43,7 @@
   background: transparent;
   border: 0;
   color: #ddd;
+  cursor: pointer;
 }
 
 .github-fork-ribbon:before {
@@ -45,8 +51,8 @@
 }
 
 @media only screen and (max-width: 750px) {
-    .github-fork-ribbon {
-        display: none;
-      }
-    
+  .github-fork-ribbon {
+    display: none;
+  }
+
 }
