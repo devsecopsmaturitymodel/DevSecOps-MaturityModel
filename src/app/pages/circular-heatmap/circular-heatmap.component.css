@@ -8,12 +8,27 @@
   shape-rendering: crispEdges;
 }
 
-.title-button {
-  background-color: transparent;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-weight: 700;
+.title-text {
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.info-button {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  opacity: 0.6;
+}
+.compact-tooltip {
+  transform: translateY(-20px) !important;
+}
+
+.info-icon {
+  font-size: 18px;
+}
+
+.info-button:hover {
+  opacity: 1;
 }
 
 .right-panel {
