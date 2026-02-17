@@ -17,7 +17,7 @@ Go to https://dsomm.owasp.org.
 * _Mappings_ Shows mappings to other standards and provides the ability to download an excel sheet
 * _Usage_ describes how to use DSOMM
 
-In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describes different strategic approaches for your secure DevOps strategy. The use OWASP DSOMM in combination with [OWASP SAMM](https//owaspsamm.org) is explained.
+In this [video](https://www.youtube.com/watch?v=tX9RHZ_O5NU) Timo Pagel describes different strategic approaches for your secure DevOps strategy. Their use of OWASP DSOMM in combination with [OWASP SAMM](https//owaspsamm.org) is explained.
 
 In case you have evidence or review questions to gather evidence, you can add the attribute "evidence" to an activity which will be attached to an activity to provide it to your CISO or your customer's CISO.
 You can switch on to show open TODO's for evidence by changing IS_SHOW_EVIDENCE_TODO to true 'bib.php' `define(IS_SHOW_EVIDENCE_TODO, true);`
