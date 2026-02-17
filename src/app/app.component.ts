@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   defaultTitle = '';
   subtitle = '';
   menuIsOpen: boolean = true;
+  sidenavWidth: string = '250px';
 
   private destroy$ = new Subject<void>();
 
@@ -25,8 +26,13 @@ export class AppComponent implements OnInit, OnDestroy {
     if (menuState === 'false') {
       setTimeout(() => {
         this.menuIsOpen = false;
+         this.sidenavWidth = '0px';
       }, 600);
     }
+    else {
+    this.sidenavWidth = '250px';
+  }
+
 
     // Subscribe to title changes
     this.titleService.titleInfo$.pipe(takeUntil(this.destroy$)).subscribe(titleInfo => {
@@ -42,6 +48,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleMenu(): void {
     this.menuIsOpen = !this.menuIsOpen;
+     this.sidenavWidth = this.menuIsOpen ? '250px' : '0px';
     localStorage.setItem('state.menuIsOpen', this.menuIsOpen.toString());
   }
+  
 }
