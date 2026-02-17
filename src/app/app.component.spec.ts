@@ -17,12 +17,11 @@ class MockThemeService {
 class MockTitleService {
   titleInfo$ = of({
     dimension: 'Test Title',
-    level: '1'
+    level: '1',
   });
 }
 
 describe('AppComponent', () => {
-
   let app: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
@@ -34,13 +33,13 @@ describe('AppComponent', () => {
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
       ],
       providers: [
         { provide: ThemeService, useClass: MockThemeService },
-        { provide: TitleService, useClass: MockTitleService }
+        { provide: TitleService, useClass: MockTitleService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
