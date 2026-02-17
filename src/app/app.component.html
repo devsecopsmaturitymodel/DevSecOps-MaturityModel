@@ -3,39 +3,33 @@
     <mat-icon>menu</mat-icon>
   </button>
   <a routerLink="/" class="logo">
-    <app-logo class = "logo-icon"></app-logo>
+    <app-logo class="logo-icon"></app-logo>
   </a>
-  <div class = "title-container">
-  <div class="tag-line">
-    <div class="tag-title">
-      {{ title || defaultTitle }}
+  <div class="title-container">
+    <div class="tag-line">
+      <div class="tag-title">
+        {{ title || defaultTitle }}
+      </div>
+      <div class="tag-subtitle" *ngIf="subtitle">
+        {{ subtitle }}
+      </div>
     </div>
-    <div class="tag-subtitle" *ngIf="subtitle">
-      {{ subtitle }}
-    </div>
-  </div>
   </div>
   <span class="spacer"></span>
   <a
-      target="_blank"
-      class="github-fork-ribbon"
-      href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel"
-      data-ribbon="Fork me on GitHub"
-      title="Fork me on GitHub">
-      Fork me on GitHub
-    </a>
+    target="_blank"
+    class="github-fork-ribbon"
+    href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel"
+    data-ribbon="Fork me on GitHub"
+    title="Fork me on GitHub">
+    Fork me on GitHub
+  </a>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    mode="side"
-    opened
-    class="sidenav"
-    [style.width]="sidenavWidth">
+  <mat-sidenav mode="side" opened class="sidenav" [style.width]="sidenavWidth">
     <app-sidenav-buttons></app-sidenav-buttons>
   </mat-sidenav>
-  <mat-sidenav-content
-    class="content"
-    [style.margin-left]="sidenavWidth">
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
