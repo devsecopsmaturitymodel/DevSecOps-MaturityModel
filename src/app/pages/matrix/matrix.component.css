@@ -20,6 +20,10 @@
   word-wrap: break-word;
 }
 
+.activity-chip-list mat-chip {
+  cursor: pointer;
+}
+
 .mat-header-cell {
   padding: 10px;
   width: 12.5%;
@@ -94,6 +98,7 @@
   padding: 7px 12px;
   border-radius: 16px;
   font: 500 14px / 20px Roboto, 'Helvetica Neue', sans-serif;
+  cursor: pointer;
 }
 
 .mat-mdc-row .mat-mdc-cell {
