@@ -31,6 +31,9 @@ import { ProgressSliderComponent } from './component/progress-slider/progress-sl
 import { KpiComponent } from './component/kpi/kpi.component';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-groups-editor.module';
+import { ReportComponent } from './pages/report/report.component';
+import { ReportActivityComponent } from './component/report-activity/report-activity.component';
+import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,9 @@ import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-g
     ProgressSliderComponent,
     KpiComponent,
     SettingsComponent,
+    ReportComponent,
+    ReportActivityComponent,
+    ReportConfigModalComponent,
   ],
   imports: [
     BrowserModule,

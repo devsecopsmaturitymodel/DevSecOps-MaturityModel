@@ -1,0 +1,78 @@
+.report-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.report-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.report-toolbar button mat-icon {
+    margin-right: 4px;
+}
+
+.activity-count {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.empty-state mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+.dimension-section {
+    margin-bottom: 32px;
+}
+
+.dimension-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--text-tertiary);
+}
+
+.subdimension-section {
+    margin-bottom: 24px;
+    margin-left: 16px;
+}
+
+.subdimension-title {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 0 0 12px 0;
+    color: var(--text-secondary);
+}
+
+app-report-activity {
+    display: block;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--text-tertiary);
+}
+
+app-report-activity:last-child {
+    border-bottom: none;
+}
