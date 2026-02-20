@@ -32,6 +32,9 @@ import { KpiComponent } from './component/kpi/kpi.component';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-groups-editor.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReportComponent } from './pages/report/report.component';
+import { ReportActivityComponent } from './component/report-activity/report-activity.component';
+import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ProgressSliderComponent,
     KpiComponent,
     SettingsComponent,
+    ReportComponent,
+    ReportActivityComponent,
+    ReportConfigModalComponent,
   ],
   imports: [
     BrowserModule,
