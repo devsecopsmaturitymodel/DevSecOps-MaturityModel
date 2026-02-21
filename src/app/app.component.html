@@ -1,30 +1,35 @@
-<mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="sidenav-menu" mode="side" opened="{{ menuIsOpen }}">
-    <button class="menu-close" (click)="toggleMenu()">
-      <mat-icon class="white-icon">close</mat-icon>
-    </button>
-    <a routerLink="/"><app-logo></app-logo></a>
-    <app-sidenav-buttons></app-sidenav-buttons>
-  </mat-drawer>
-
-  <div class="sidenav-content">
-    <button type="button" mat-button (click)="toggleMenu()" color="primary">
-      <mat-icon>menu</mat-icon>
-    </button>
+<mat-toolbar class="mat-elevation-z2 navbar">
+  <button mat-icon-button (click)="toggleMenu()" class="menu-btn">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a routerLink="/" class="logo">
+    <app-logo class="logo-icon"></app-logo>
+  </a>
+  <div class="title-container">
     <div class="tag-line">
-      <div class="tag-title">{{ title || defaultTitle }}</div>
-      <div class="tag-subtitle">{{ subtitle }}</div>
+      <div class="tag-title">
+        {{ title || defaultTitle }}
+      </div>
+      <div class="tag-subtitle" *ngIf="subtitle">
+        {{ subtitle }}
+      </div>
     </div>
-    <div class="dummy"></div>
-    <a
-      target="_blank"
-      class="github-fork-ribbon"
-      href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel"
-      data-ribbon="Fork me on GitHub"
-      title="Fork me on GitHub"
-      >Fork me on GitHub</a
-    >
   </div>
-  <mat-divider></mat-divider>
-  <router-outlet></router-outlet>
-</mat-drawer-container>
+  <span class="spacer"></span>
+  <a
+    target="_blank"
+    class="github-fork-ribbon"
+    href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel"
+    data-ribbon="Fork me on GitHub"
+    title="Fork me on GitHub">
+    Fork me on GitHub
+  </a>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav" [style.width]="sidenavWidth">
+    <app-sidenav-buttons></app-sidenav-buttons>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
