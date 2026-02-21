@@ -73,8 +73,16 @@
               (closed)="onPanelClosed(activity)">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  <button class="title-button" (click)="openActivityDetails(activity['uuid'])">
+                  <span class="title-text">
                     {{ activity['name'] }}
+                  </span>
+                  <button
+                    mat-icon-button
+                    class="info-button"
+                    matTooltip="Open activity description"
+                    matTooltipClass="compact-tooltip"
+                    (click)="openActivityDetails(activity['uuid']); $event.stopPropagation()">
+                    <mat-icon class="info-icon">info</mat-icon>
                   </button>
                 </mat-panel-title>
               </mat-expansion-panel-header>
