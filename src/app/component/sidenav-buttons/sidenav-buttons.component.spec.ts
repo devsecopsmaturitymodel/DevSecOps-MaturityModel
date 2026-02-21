@@ -37,8 +37,7 @@ describe('SidenavButtonsComponent', () => {
     for (var x = 0; x < NavigationList.length; x += 1) {
       NavigationNamesBeingShown.push(NavigationList[x].textContent);
     }
-    //console.log({ ...NavigationNamesBeingShown });
-    //console.log(component.Options);
+    NavigationNamesBeingShown.pop(); // Remove GitHub link
     expect(NavigationNamesBeingShown).toEqual(component.Options);
   });
 
