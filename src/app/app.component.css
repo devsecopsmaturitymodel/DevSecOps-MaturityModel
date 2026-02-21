@@ -1,52 +1,99 @@
-/* --- experimental branch --- */
-/* .mat-drawer-container {
-  background-color: #fffff4; 
-} */
-.tag-line {
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  transition: all 0.25s ease;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  margin-left: -4px;
+  height: 100%; 
+}
+.logo-icon {
+  transform: scale(0.95); 
+  transform-origin: left center; 
+  width: auto;
+  display: block;        
+  margin: auto 0;  
+}
+.title-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  animation: fadeSlide 0.4s ease;
+  margin-top: 4px;        
+  gap: 3px;               
 }
 .tag-title {
-  font-size: 0.9em;
+  font-size: 0.85em;      
+  font-weight: 500;     
+  line-height: 1;         
+  letter-spacing: 0.04em;
 }
 .tag-subtitle {
-  font-size: 0.7em;
-}
-
-/* --- experimental branch end --- */
-
-.main-container {
-  width: 100%;
-  height: 100%;
-}
-
-.sidenav-content {
-  display: flex;
-  padding: 10px;
-  justify-content: space-between;
-}
-
-.sidenav-menu {
-  padding: 20px;
-}
-
-.menu-close {
-  position: absolute;
-  right: 0;
-  top: 2px;
-  background: transparent;
-  border: 0;
-  color: #ddd;
-}
-
-.github-fork-ribbon:before {
+  font-size: 0.65em;
+  margin-top: 0;         
+  letter-spacing: 0.08em; 
+  opacity: 0.6;          
+} 
+.github-fork-ribbon::before {
   background-color: #333;
 }
-
-@media only screen and (max-width: 750px) {
-    .github-fork-ribbon {
+.menu-btn {
+  margin-right: 4px;
+  transition: all 0.2s ease;
+}
+.menu-btn:hover {
+  background: rgba(0,0,0,0.04);
+  transform: scale(1.05);
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.content {
+  padding: 24px;
+  animation: fadeSlide 1s ease;
+}
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .title-container {
+    font-size: 14px;
+  }
+  .tag-title {
+    font-size: 14px;
+  }
+  .tag-subtitle {
+    font-size: 11px;
+  }
+  .github-fork-ribbon {
         display: none;
       }
-    
+  .logo,
+  .logo-icon {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    margin: 0;
+    overflow: hidden;
+  }
 }
