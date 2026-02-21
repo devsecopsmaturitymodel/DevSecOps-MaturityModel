@@ -142,6 +142,10 @@ app-progress-slider {
     font-style: italic;
 }
 
+mat-chip {
+  cursor: pointer;
+}
+
 button.filter-toggle {
   position: absolute;
   top: 2px;
