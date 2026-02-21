@@ -1,0 +1,39 @@
+<app-top-header section="Report"></app-top-header>
+
+<div class="report-container">
+  <div class="report-toolbar">
+    <button mat-raised-button color="primary" (click)="openConfigModal()">
+      <mat-icon>settings</mat-icon>
+      Adjust Report Configuration
+    </button>
+    <span class="activity-count" *ngIf="!isLoading">
+      {{ totalFilteredActivities }} activities
+    </span>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <div *ngIf="!isLoading && filteredDimensions.length === 0" class="empty-state">
+    <mat-icon>filter_list_off</mat-icon>
+    <p>No activities match the current report configuration.</p>
+    <button mat-stroked-button (click)="openConfigModal()">Adjust Configuration</button>
+  </div>
+
+  <div *ngIf="!isLoading" class="report-body">
+    <div *ngFor="let dimension of filteredDimensions" class="dimension-section">
+      <h2 class="dimension-title">{{ dimension.name }}</h2>
+
+      <div *ngFor="let subdimension of dimension.subdimensions" class="subdimension-section">
+        <h3 class="subdimension-title">{{ subdimension.name }}</h3>
+
+        <app-report-activity
+          *ngFor="let activity of subdimension.activities"
+          [activity]="activity"
+          [config]="reportConfig.attributes">
+        </app-report-activity>
+      </div>
+    </div>
+  </div>
+</div>

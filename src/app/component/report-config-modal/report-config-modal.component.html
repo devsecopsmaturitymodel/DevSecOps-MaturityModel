@@ -1,0 +1,96 @@
+<h2 mat-dialog-title align="center">Report Configuration</h2>
+
+<mat-dialog-content class="config-content">
+  <!-- Levels -->
+  <div class="config-section">
+    <h3>Levels</h3>
+    <p class="config-hint">Uncheck levels you want to exclude from the report.</p>
+    <div class="checkbox-grid">
+      <mat-checkbox
+        *ngFor="let level of allLevels"
+        [checked]="!isLevelExcluded(level)"
+        (change)="toggleLevel(level)">
+        Level {{ level }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Dimensions -->
+  <div class="config-section">
+    <h3>Dimensions</h3>
+    <p class="config-hint">Uncheck dimensions to exclude all their activities.</p>
+    <div class="checkbox-grid">
+      <mat-checkbox
+        *ngFor="let dim of allDimensions"
+        [checked]="!isDimensionExcluded(dim)"
+        (change)="toggleDimension(dim)">
+        {{ dim }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Subdimensions -->
+  <div class="config-section">
+    <h3>Subdimensions</h3>
+    <p class="config-hint">Uncheck subdimensions to exclude their activities.</p>
+    <div class="checkbox-grid subdimension-grid">
+      <mat-checkbox
+        *ngFor="let subdim of allSubdimensions"
+        [checked]="!isSubdimensionExcluded(subdim)"
+        (change)="toggleSubdimension(subdim)">
+        {{ subdim }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Individual Activities -->
+  <div class="config-section">
+    <h3>Individual Activities</h3>
+    <p class="config-hint">Search and uncheck individual activities to exclude them.</p>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search activities or dimensions</mat-label>
+      <input matInput [(ngModel)]="activitySearchQuery" placeholder="Type to filter..." />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div class="activity-list">
+      <mat-checkbox
+        *ngFor="let activity of filteredActivities"
+        [checked]="!isActivityExcluded(activity.uuid)"
+        (change)="toggleActivity(activity.uuid)">
+        <span class="activity-checkbox-label">
+          <span class="activity-name">{{ activity.name }}</span>
+          <span class="activity-meta">{{ activity.dimension }} · Level {{ activity.level }}</span>
+        </span>
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Attribute Visibility -->
+  <div class="config-section">
+    <h3>Visible Attributes</h3>
+    <p class="config-hint">Choose which attribute sections to show for each activity.</p>
+    <div class="checkbox-grid">
+      <mat-checkbox
+        *ngFor="let attr of attributeLabels"
+        [checked]="config.attributes[attr.key]"
+        (change)="toggleAttribute(attr.key)">
+        {{ attr.label }}
+      </mat-checkbox>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">
+    Save Configuration and Generate Report
+  </button>
+</mat-dialog-actions>
