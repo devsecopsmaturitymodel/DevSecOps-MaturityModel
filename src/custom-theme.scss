@@ -2,62 +2,50 @@
 
 .mat-drawer,
 .mat-drawer-container {
-  transition: background 300ms 
-    cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms 
-    cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 300ms cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ----------------------------------------------
 // Theme Colors and Typography
 // ----------------------------------------------
 $light-theme: (
-        background: white,
-        text: black,
-        link: blue,
+  background: white,
+  text: black,
+  link: blue,
 );
 
 $custom-dark-theme: (
-        background: #2c2c2c,
-        text: #e0e0e0,
-        link: #bb86fc,
+  background: #121212,
+  text: #e0e0e0,
+  link: #66bb6a,
 );
 
-$custom-typography: mat.define-typography-level(
-        $font-family: montserrat,
-        $font-weight: 400,
-        $font-size: 1rem,
-        $line-height: 1,
-        $letter-spacing: normal
-);
+$custom-typography: mat.define-typography-level($font-family: montserrat,
+    $font-weight: 400,
+    $font-size: 1rem,
+    $line-height: 1,
+    $letter-spacing: normal);
 @include mat.core($custom-typography);
 
 // ----------------------------------------------
 // Angular Material Palettes
 // ----------------------------------------------
-$DSOMM-primary: mat.define-palette(mat.$green-palette, 400);
+$DSOMM-primary: mat.define-palette(mat.$green-palette, 500);
 $DSOMM-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $DSOMM-warn: mat.define-palette(mat.$red-palette);
 
-$DSOMM-dark-primary: mat.define-palette(mat.$green-palette, 600);
+$DSOMM-dark-primary: mat.define-palette(mat.$green-palette, 500);
 
 // ----------------------------------------------
 // Angular Material Themes
 // ----------------------------------------------
-$DSOMM-light-theme: mat.define-light-theme((
-        color: (
-                primary: $DSOMM-primary,
-                accent: $DSOMM-accent,
-                warn: $DSOMM-warn
-        )
-));
+$DSOMM-light-theme: mat.define-light-theme((color: (primary: $DSOMM-primary,
+        accent: $DSOMM-accent,
+        warn: $DSOMM-warn )));
 
-$DSOMM-dark-theme: mat.define-dark-theme((
-        color: (
-                primary: $DSOMM-dark-primary,
-                accent: $DSOMM-accent,
-                warn: $DSOMM-warn
-        )
-));
+$DSOMM-dark-theme: mat.define-dark-theme((color: (primary: $DSOMM-dark-primary,
+        accent: $DSOMM-accent,
+        warn: $DSOMM-warn )));
 
 // ----------------------------------------------
 // Base Theme Mixin
@@ -69,6 +57,7 @@ $DSOMM-dark-theme: mat.define-dark-theme((
   a {
     color: map-get($theme, link);
   }
+
   a:visited {
     color: map-get($theme, visited-link);
   }
@@ -80,7 +69,12 @@ $DSOMM-dark-theme: mat.define-dark-theme((
 body {
 
   .title-button,
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: map-get($light-theme, text);
   }
 }
@@ -100,12 +94,12 @@ body {
   --heatmap-background: white;
   --heatmap-stroke: black;
   --heatmap-cursor-hover: #1c8b1c;
-  --heatmap-cursor-selected:#3d3d3d;
+  --heatmap-cursor-selected: #3d3d3d;
 
   --dependency-link: #707070;
   --dependency-border: #222222;
   --dependency-mainnode-fill: #4caf50;
-  --dependency-predecessor-fill: #deeedeff; 
+  --dependency-predecessor-fill: #deeedeff;
   --dependency-successor-fill: #fdfdfdff;
 
   @include mat.all-component-themes($DSOMM-light-theme);
@@ -117,73 +111,247 @@ body {
 body.dark-theme {
   @include apply-theme($custom-dark-theme);
   @include mat.all-component-themes($DSOMM-dark-theme);
-  
-  --text-primary: #fefefe;
-  --text-secondary: #ababab;
-  --text-tertiary: #999999;
-  --background-primary: #303030;
-  --background-secondary: #424242;
-  --background-tertiary: #666666;
-  
+
+  --surface-base: #121212;
+  /* page background */
+  --surface-01: #1e1e1e;
+  /* cards, panels */
+  --surface-02: #242424;
+  /* elevated cards */
+  --surface-03: #2c2c2c;
+  /* dialogs, dropdowns */
+  --surface-04: #333333;
+  /* hover states */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #f0f0f0;
+  --text-secondary: #aaaaaa;
+  --text-tertiary: #666666;
+  --background-primary: var(--surface-base);
+  --background-secondary: var(--surface-01);
+  --background-tertiary: var(--surface-02);
+
   --primary-color: #{mat.get-color-from-palette($DSOMM-dark-primary)};
 
   --heatmap-filled: #007700;
-  --heatmap-disabled: #666666;
+  --heatmap-disabled: #555555;
   --heatmap-background: #bbbbbb;
   --heatmap-stroke: #000000;
   --heatmap-cursor-hover: #145e14;
   --heatmap-cursor-selected: #232323;
-  
+
   --dependency-link: #bbbbbb;
   --dependency-border: #0e1b0e;
-  --dependency-mainnode-fill: rgb(107, 190, 107); 
-  --dependency-predecessor-fill: rgb(172, 206, 172); 
+  --dependency-mainnode-fill: rgb(107, 190, 107);
+  --dependency-predecessor-fill: rgb(172, 206, 172);
   --dependency-successor-fill: rgb(192, 192, 192);
 
+  background-color: var(--surface-base);
+  color: var(--text-primary);
+
   .title-button,
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: map-get($custom-dark-theme, text);
   }
 
   // General properties
-  p, li, tr {
-    color: #e0e0e0;
+  p,
+  li,
+  tr {
+    color: var(--text-primary);
   }
 
   b {
-    font-weight: 400;
+    font-weight: 500;
   }
 
-  // Common containers
+  a {
+    color: #66bb6a;
+  }
+
+  a:visited {
+    color: #66bb6a;
+  }
+
+  //cards and panels
   mat-card,
-  .mat-dialog-container,
-  .mat-expansion-panel,
-  .mat-accordion,
-  .overlay-wrapper {
-    background-color: #2c2c2c;
-    color: #e0e0e0;
+  .mat-card {
+    background-color: var(--surface-01);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4),
+      0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--border-medium);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5),
+        0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  //sidenav
+  .mat-drawer,
+  .mat-sidenav {
+    background-color: var(--surface-01);
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .mat-drawer-container {
+    background-color: var(--surface-base);
+  }
+  
+  //navbar
+   .mat-toolbar {
+    background-color: var(--surface-01) !important;
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  }
+
+   // ----------------------------------------------
+  // Toolbar / Navbar
+  // ----------------------------------------------
+  .mat-toolbar {
+    background-color: var(--surface-01) !important;
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  //Tables
+  .mat-table,
+  table[mat-table] {
+    background-color: var(--surface-01);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .mat-header-row {
+    background-color: var(--surface-02);
+    border-bottom: 1px solid var(--border-medium);
+  }
+
+  .mat-header-cell {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .mat-row {
+    background-color: var(--surface-01);
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: var(--surface-04);
+    }
+  }
+
+  .mat-cell {
+    color: var(--text-primary);
   }
 
   // Dialog styling
   .mat-dialog-container {
-    border: 1px solid #444;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    background-color: var(--surface-03);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+
+  // Expansion panels and accordion
+  .mat-expansion-panel,
+  .mat-accordion {
+    background-color: var(--surface-01);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px !important;
+
+    .mat-expansion-panel-header {
+      background-color: var(--surface-02);
+      border-radius: 8px;
+
+      &:hover {
+        background-color: var(--surface-04) !important;
+      }
+    }
+  }
+
+  //chips
+  .mat-chip.mat-standard-chip {
+    background-color: var(--surface-03);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--surface-04);
+      border-color: var(--border-medium);
+    }
+  }
+
+   
+  // Form fields and inputs
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: var(--border-medium);
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #66bb6a;
+  }
+
+  .mat-input-element {
+    color: var(--text-primary);
+    caret-color: #66bb6a;
+  }
+
+  .mat-form-field-label {
+    color: var(--text-secondary);
+  }
+
+  // Buttons
+  .mat-icon-button:hover {
+    background-color: var(--surface-04);
+  }
+
+  .mat-raised-button {
+    background-color: var(--surface-02);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+
+    &:hover {
+      background-color: var(--surface-04);
+    }
   }
 
   // Modal override
+  .overlay-wrapper,
   .overlay-modal {
-    background-color: #2c2c2c;
-    color: #e0e0e0;
-    border-radius: 6px;
+    background-color: var(--surface-03);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium); 
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 
     mat-card {
       background-color: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     h1, h2, h3, h4, h5, h6 {
-      color: #e0e0e0;
+      color: var(--text-primary);
     }
   }
+
 
   // Circular heatmap (radar chart)
   .circular-heat text,
@@ -195,13 +363,41 @@ body.dark-theme {
   .circular-heat path {
     stroke: var(--heatmap-stroke);
   }
+   
+  // List items and nav
+  .mat-list-item,
+  .mat-nav-list .mat-list-item {
+    color: var(--text-secondary);
+    border-radius: 8px;
+    transition: background-color 0.15s ease, color 0.15s ease;
 
-  .mat-chip.mat-standard-chip {
-    color: #ababab;
+    &:hover {
+      background-color: var(--surface-04);
+      color: var(--text-primary);
+    }
+
+    &.active {
+      background-color: rgba(102, 187, 106, 0.15);
+      color: #66bb6a;
+    }
   }
 
-  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
-    background-color: var(--primary-color);
+  //select and menu
+  .mat-select-panel,
+  .mat-menu-panel {
+    background-color: var(--surface-03);
+    border: 1px solid var(--border-medium);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .mat-option {
+    color: var(--text-primary);
+
+    &:hover,
+    &.mat-active {
+      background-color: var(--surface-04);
+    }
   }
 }
 
