@@ -1,0 +1,138 @@
+<h2 mat-dialog-title align="center">Report Configuration</h2>
+
+<mat-dialog-content class="config-content">
+  <!-- Display Configuration -->
+  <div class="config-section">
+    <h3>Display Configuration</h3>
+
+    <div class="config-row">
+      <span class="config-row-label">Column Grouping:</span>
+      <mat-button-toggle-group
+        class="column-toggle"
+        [value]="config.columnGrouping"
+        (change)="setColumnGrouping($event.value)">
+        <mat-button-toggle value="byProgress">By Progress Stage</mat-button-toggle>
+        <mat-button-toggle value="byTeam">By Team</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <mat-checkbox [checked]="config.showDescription" (change)="toggleAttribute('showDescription')">
+      Show Description
+    </mat-checkbox>
+
+    <div class="config-row slider-row" *ngIf="config.showDescription">
+      <span class="config-row-label"
+        >Description Word Cap: <strong>{{ config.descriptionWordCap }}</strong></span
+      >
+      <mat-slider
+        class="word-cap-slider"
+        min="5"
+        [max]="maxWordCap"
+        step="5"
+        thumbLabel
+        [displayWith]="wordCapLabel"
+        [value]="config.descriptionWordCap"
+        (input)="onWordCapChange($event)">
+      </mat-slider>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Teams -->
+  <div class="config-section">
+    <h3>Teams</h3>
+    <p class="config-hint">Select which teams to include in the report.</p>
+    <div class="select-all-actions">
+      <button mat-button color="primary" (click)="selectAllTeams()">Select All</button>
+      <button mat-button (click)="deselectAllTeams()">Deselect All</button>
+      <button
+        *ngIf="groupNames.length > 0"
+        mat-stroked-button
+        [matMenuTriggerFor]="groupMenu"
+        class="group-dropdown-btn">
+        <mat-icon>group</mat-icon>
+        Select Group
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #groupMenu="matMenu">
+        <button mat-menu-item *ngFor="let group of groupNames" (click)="selectGroup(group)">
+          {{ group }}
+        </button>
+      </mat-menu>
+    </div>
+    <div class="checkbox-grid">
+      <mat-checkbox
+        *ngFor="let team of allTeams"
+        [checked]="isTeamSelected(team)"
+        (change)="toggleTeam(team)">
+        {{ team }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Dimensions -->
+  <div class="config-section">
+    <h3>Dimensions</h3>
+    <p class="config-hint">Uncheck dimensions to exclude all their activities.</p>
+    <div class="checkbox-grid">
+      <mat-checkbox
+        *ngFor="let dim of allDimensions"
+        [checked]="!isDimensionExcluded(dim)"
+        (change)="toggleDimension(dim)">
+        {{ dim }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Subdimensions -->
+  <div class="config-section">
+    <h3>Subdimensions</h3>
+    <p class="config-hint">Uncheck subdimensions to exclude their activities.</p>
+    <div class="checkbox-grid subdimension-grid">
+      <mat-checkbox
+        *ngFor="let subdim of allSubdimensions"
+        [checked]="!isSubdimensionExcluded(subdim)"
+        (change)="toggleSubdimension(subdim)">
+        {{ subdim }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Individual Activities -->
+  <div class="config-section">
+    <h3>Individual Activities</h3>
+    <p class="config-hint">Search and uncheck individual activities to exclude them.</p>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search activities or dimensions</mat-label>
+      <input matInput [(ngModel)]="activitySearchQuery" placeholder="Type to filter..." />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div class="activity-list">
+      <mat-checkbox
+        *ngFor="let activity of filteredActivities"
+        [checked]="!isActivityExcluded(activity.uuid)"
+        (change)="toggleActivity(activity.uuid)">
+        <span class="activity-checkbox-label">
+          <span class="activity-name">{{ activity.name }}</span>
+          <span class="activity-meta">{{ activity.dimension }} · Level {{ activity.level }}</span>
+        </span>
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">
+    Save Configuration and Generate Report
+  </button>
+</mat-dialog-actions>

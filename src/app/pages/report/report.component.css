@@ -1,0 +1,272 @@
+.report-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.legend {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* Toolbar */
+.report-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.report-toolbar button mat-icon {
+    margin-right: 4px;
+}
+
+.activity-count {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.empty-state mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+.section-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 24px 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--text-tertiary);
+    color: var(--primary-color);
+}
+
+.dimension-section {
+    margin-bottom: 32px;
+}
+
+.subdimension-group {
+    margin-bottom: 16px;
+}
+
+.subdimension-title {
+    font-size: 1.05em;
+    font-weight: 500;
+    margin: 16px 0 8px 0;
+    padding-left: 0;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--text-tertiary);
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em;
+    margin-bottom: 8px;
+}
+
+.report-table th,
+.report-table td {
+    border: 1px solid var(--text-tertiary);
+    padding: 4px 8px;
+    text-align: left;
+    vertical-align: top;
+    color: var(--text-primary);
+}
+
+.report-table thead th {
+    background-color: var(--background-tertiary);
+    font-weight: 600;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+/* Column widths */
+.col-level {
+    width: 50px;
+    text-align: center;
+}
+
+.col-activity {
+    min-width: 180px;
+}
+
+
+.col-description {
+    min-width: 220px;
+}
+
+.col-progress {
+    width: 100px;
+    font-size: 0.85em;
+}
+
+.col-team {
+    width: 70px;
+    text-align: center;
+    font-size: 0.85em;
+}
+
+/* Cell styles */
+.cell-level {
+    text-align: center;
+    font-weight: 500;
+}
+
+.cell-activity {
+    font-weight: 400;
+}
+
+.cell-subdimension {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.cell-description {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+::ng-deep .description-content p:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+::ng-deep .description-content p:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+::ng-deep .description-content img {
+    max-width: 100%;
+}
+
+.cell-progress {
+    font-size: 0.85em;
+}
+
+.cell-team {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.cell-center {
+    text-align: center;
+}
+
+/* Overview */
+.overview-section {
+    margin-bottom: 32px;
+}
+
+.overview-table {
+    max-width: 500px;
+}
+
+.completion-bar {
+    display: inline-block;
+    width: 60px;
+    height: 8px;
+    background: var(--text-tertiary);
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 6px;
+    overflow: hidden;
+}
+
+.completion-fill {
+    display: block;
+    height: 100%;
+    background: var(--primary-color); /* green anyways */
+    border-radius: 4px;
+}
+
+/* ============ PRINT STYLES ============ */
+@media print {
+
+    .no-print,
+    app-top-header,
+    .report-toolbar {
+        display: none !important;
+    }
+
+    .report-container {
+        padding: 0;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .legend {
+        font-size: 0.7em;
+    }
+
+    .section-title {
+        font-size: 14pt;
+        margin: 12pt 0 4pt 0;
+        page-break-after: avoid;
+        color: #1a5276;
+    }
+
+    .subdimension-title {
+        font-size: 12pt;
+        margin: 8pt 0 4pt 0;
+        color: #666;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .report-table {
+        font-size: 9pt;
+        page-break-inside: auto;
+    }
+
+    .report-table tr {
+        page-break-inside: avoid;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 2px 4px;
+        border: 1px solid #999;
+        color: #000;
+    }
+
+    .report-table thead th {
+        background-color: #f5f6fa;
+    }
+
+    .dimension-section {
+        page-break-before: auto;
+        margin-bottom: 12pt;
+    }
+
+    .subdimension-group {
+        page-break-inside: avoid;
+        margin-bottom: 12pt;
+    }
+
+    .overview-section {
+        page-break-after: avoid;
+    }
+
+    .completion-bar {
+        display: none;
+    }
+}
