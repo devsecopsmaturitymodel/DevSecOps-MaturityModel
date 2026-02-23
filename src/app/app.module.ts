@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +33,6 @@ import { KpiComponent } from './component/kpi/kpi.component';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-groups-editor.module';
 import { ReportComponent } from './pages/report/report.component';
-import { ReportActivityComponent } from './component/report-activity/report-activity.component';
 import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
 
 @NgModule({
@@ -59,7 +59,6 @@ import { ReportConfigModalComponent } from './component/report-config-modal/repo
     KpiComponent,
     SettingsComponent,
     ReportComponent,
-    ReportActivityComponent,
     ReportConfigModalComponent,
   ],
   imports: [
@@ -70,6 +69,7 @@ import { ReportConfigModalComponent } from './component/report-config-modal/repo
     MatDialogModule,
     ReactiveFormsModule,
     MatToolbarModule,
+    MatMenuModule,
     FormsModule,
     HttpClientModule,
     TeamsGroupsEditorModule,

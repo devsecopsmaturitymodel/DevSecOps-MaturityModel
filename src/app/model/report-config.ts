@@ -1,50 +1,28 @@
-export interface ActivityAttributeVisibility {
-  showDescription: boolean;
-  showRisk: boolean;
-  showMeasure: boolean;
-  showAssessment: boolean;
-  showImplementationGuide: boolean;
-  showDifficulty: boolean;
-  showUsefulness: boolean;
-  showDependencies: boolean;
-  showTools: boolean;
-  showMapping: boolean;
-  showImplementedBy: boolean;
-  showTags: boolean;
-  showComments: boolean;
-}
+export type ColumnGrouping = 'byProgress' | 'byTeam';
 
 export interface ReportConfig {
-  excludedLevels: number[];
+  columnGrouping: ColumnGrouping;
+  descriptionWordCap: number;
+  selectedTeams: string[];
   excludedDimensions: string[];
   excludedSubdimensions: string[];
   excludedActivities: string[];
-  attributes: ActivityAttributeVisibility;
+  showDescription: boolean;
 }
 
 const STORAGE_KEY = 'ReportConfig';
+const DEFAULT_DESCRIPTION_WORD_CAP = 25;
+export const MAX_DESCRIPTION_WORD_CAP = 600;
 
 export function getDefaultReportConfig(): ReportConfig {
   return {
-    excludedLevels: [],
+    columnGrouping: 'byProgress',
+    descriptionWordCap: DEFAULT_DESCRIPTION_WORD_CAP,
+    selectedTeams: [],
     excludedDimensions: [],
     excludedSubdimensions: [],
     excludedActivities: [],
-    attributes: {
-      showDescription: true,
-      showRisk: false,
-      showMeasure: false,
-      showAssessment: false,
-      showImplementationGuide: false,
-      showDifficulty: false,
-      showUsefulness: false,
-      showDependencies: false,
-      showTools: false,
-      showMapping: false,
-      showImplementedBy: true,
-      showTags: false,
-      showComments: false,
-    },
+    showDescription: true,
   };
 }
 
@@ -56,11 +34,13 @@ export function getReportConfig(): ReportConfig {
       // Merge with defaults to ensure all keys exist
       const defaults = getDefaultReportConfig();
       return {
-        excludedLevels: parsed.excludedLevels ?? defaults.excludedLevels,
+        columnGrouping: parsed.columnGrouping ?? defaults.columnGrouping,
+        descriptionWordCap: parsed.descriptionWordCap ?? defaults.descriptionWordCap,
+        selectedTeams: parsed.selectedTeams ?? defaults.selectedTeams,
         excludedDimensions: parsed.excludedDimensions ?? defaults.excludedDimensions,
         excludedSubdimensions: parsed.excludedSubdimensions ?? defaults.excludedSubdimensions,
         excludedActivities: parsed.excludedActivities ?? defaults.excludedActivities,
-        attributes: { ...defaults.attributes, ...(parsed.attributes ?? {}) },
+        showDescription: parsed.showDescription ?? defaults.showDescription,
       };
     }
   } catch (e) {
