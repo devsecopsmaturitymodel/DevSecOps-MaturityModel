@@ -223,7 +223,6 @@ export class ReportComponent implements OnInit {
     return teams.join(', ') || '—';
   }
 
-
   truncateWords(text: any, max: number): string {
     if (!text) return '';
     const str = String(text);
@@ -246,7 +245,7 @@ export class ReportComponent implements OnInit {
       return rendered;
     }
 
-    // Truncate text nodes in the DOM, preserving HTML structure 
+    // Truncate text nodes in the DOM, preserving HTML structure
     let remaining = wordCap;
     const truncateNode = (node: Node): boolean => {
       if (remaining <= 0) {

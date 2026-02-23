@@ -1,10 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {
-  ReportConfig,
-  ColumnGrouping, 
-  MAX_DESCRIPTION_WORD_CAP
-} from '../../model/report-config';
+import { ReportConfig, ColumnGrouping, MAX_DESCRIPTION_WORD_CAP } from '../../model/report-config';
 import { Activity } from '../../model/activity-store';
 import { ProgressTitle, TeamGroups } from '../../model/types';
 
@@ -143,9 +139,9 @@ export class ReportConfigModalComponent {
       a => a.name.toLowerCase().includes(query) || a.dimension.toLowerCase().includes(query)
     );
   }
-  toggleAttribute(key: "showDescription"): void {
-  this.config[key] = !this.config[key];
-}
+  toggleAttribute(key: 'showDescription'): void {
+    this.config[key] = !this.config[key];
+  }
 
   // --- Actions ---
   onSave(): void {

@@ -29,7 +29,6 @@
   </div>
 
   <div *ngIf="!isLoading && filteredDimensions.length > 0" class="report-body">
-
     <!-- Overview Section -->
     <section class="overview-section">
       <h2 class="section-title">Overview</h2>
@@ -57,10 +56,9 @@
         </tbody>
       </table>
 
-      <span *ngIf="reportConfig.columnGrouping === 'byTeam'" class= "legend">
+      <span *ngIf="reportConfig.columnGrouping === 'byTeam'" class="legend">
         '—' - No progress | '◐' - Partly Implemented | '✓' - Fully Implemented
       </span>
-
     </section>
 
     <section *ngFor="let dimension of filteredDimensions" class="dimension-section">
@@ -91,8 +89,11 @@
               <td class="cell-level">{{ activity.level }}</td>
               <td class="cell-activity">{{ activity.name }}</td>
               <td *ngIf="reportConfig.showDescription" class="cell-description">
-                <div class="description-content"
-                  [innerHTML]="renderCappedDescription(activity.description, reportConfig.descriptionWordCap)"></div>
+                <div
+                  class="description-content"
+                  [innerHTML]="
+                    renderCappedDescription(activity.description, reportConfig.descriptionWordCap)
+                  "></div>
               </td>
 
               <!-- Option A cells -->
@@ -113,6 +114,5 @@
         </table>
       </div>
     </section>
-
   </div>
 </div>
