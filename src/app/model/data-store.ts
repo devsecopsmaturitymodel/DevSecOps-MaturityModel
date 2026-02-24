@@ -2,16 +2,19 @@ import { ActivityStore } from './activity-store';
 import { Progress } from './types';
 import { MetaStore, MetaStrings } from './meta-store';
 import { ProgressStore } from './progress-store';
+import { EvidenceData, EvidenceStore } from './evidence-store';
 
 export class DataStore {
   public meta: MetaStore | null = null;
   public activityStore: ActivityStore | null = null;
   public progressStore: ProgressStore | null = null;
+  public evidenceStore: EvidenceStore | null = null;
 
   constructor() {
     this.meta = new MetaStore();
     this.activityStore = new ActivityStore();
     this.progressStore = new ProgressStore();
+    this.evidenceStore = new EvidenceStore();
   }
 
   public addActivities(activities: ActivityStore): void {
@@ -19,6 +22,9 @@ export class DataStore {
   }
   public addProgressData(progress: Progress): void {
     this.progressStore?.addProgressData(progress);
+  }
+  public addEvidenceData(evidence: EvidenceData): void {
+    this.evidenceStore?.addEvidenceData(evidence);
   }
 
   public getMetaStrings(): MetaStrings {
