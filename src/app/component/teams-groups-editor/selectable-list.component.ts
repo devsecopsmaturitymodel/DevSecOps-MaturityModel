@@ -61,6 +61,17 @@ export class SelectableListComponent {
     });
   }
 
+  handleDoubleClick(name: string) {
+    if (!this.canEdit) {
+      return;
+    }
+    if (!this.editMode) {
+      this.editMode = true;
+      this.editModeChange.emit(this.editMode);
+    }
+    this.startEditItem(name);
+  }
+
   cancelEditItem(oldName: string) {
     console.log(`${perfNow()}: Cancel editing: ${oldName}`);
     this.editingName = '';

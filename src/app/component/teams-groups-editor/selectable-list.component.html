@@ -35,30 +35,39 @@
         <input
           #editInput
           [(ngModel)]="editingName"
+          (click)="$event.stopPropagation()"
           (keydown.escape)="cancelEditItem(name)"
           (keydown.enter)="saveEditedItem(name)"
           (blur)="saveEditedItem(name)" />
       </ng-template>
       <ng-template #displayItem>
-        <span>{{ name }}</span>
+        <span
+          (dblclick)="$event.stopPropagation(); handleDoubleClick(name)"
+          style="cursor: text"
+          title="Double-click to edit {{ name }}"
+          >{{ name }}</span
+        >
       </ng-template>
 
       <span *ngIf="editMode">
         <button
           *ngIf="editingOrgName !== name"
           mat-icon-button
-          (click)="startEditItem(name)"
+          (click)="$event.stopPropagation(); startEditItem(name)"
           title="Rename {{ name }}">
           <mat-icon class="material-icons-outlined">edit</mat-icon>
         </button>
         <button
           *ngIf="editingOrgName === name"
           mat-icon-button
-          (click)="saveEditedItem(name)"
+          (click)="$event.stopPropagation(); saveEditedItem(name)"
           title="Accept edit for {{ name }}">
           <mat-icon class="material-icons-outlined">check</mat-icon>
         </button>
-        <button mat-icon-button (click)="deleteListItem(name)" title="Delete {{ name }}">
+        <button
+          mat-icon-button
+          (click)="$event.stopPropagation(); deleteListItem(name)"
+          title="Delete {{ name }}">
           <mat-icon class="material-icons-outlined">delete</mat-icon>
         </button>
       </span>
