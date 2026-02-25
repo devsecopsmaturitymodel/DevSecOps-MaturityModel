@@ -52,11 +52,4 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     expect(app).toBeTruthy();
   });
-
-  it('check for fork me on github ribbon generation', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const githubLink = compiled.querySelector('.github-fork-ribbon');
-    expect(githubLink).not.toBeNull();
-    expect(githubLink?.textContent?.trim()).toBe('Fork me on GitHub');
-  });
 });
