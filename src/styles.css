@@ -59,3 +59,7 @@ h1, h2, h3 {
 .usage-dimensions img {
     max-width: 40rem;
 }
+
+.compact-tooltip {
+  transform: translateY(-10px) !important;
+}
