@@ -179,14 +179,9 @@ export class EvidenceStore {
   private isDuplicateEntry(activityUuid: Uuid, entry: EvidenceEntry): boolean {
     const existing = this._evidence[activityUuid];
     if (!existing) return false;
-
-    return existing.some(
-      e =>
-        e.description === entry.description &&
-        e.evidenceRecorded === entry.evidenceRecorded &&
-        e.reviewer === entry.reviewer
-    );
+    return existing.some(e => e.id === entry.id);
   }
+
   public static todayDateString(): string {
     const now = new Date();
     return now.toISOString().substring(0, 10);

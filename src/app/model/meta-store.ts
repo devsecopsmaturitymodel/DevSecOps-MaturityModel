@@ -35,6 +35,7 @@ export class MetaStore {
   teams: TeamNames = [];
   activityFiles: string[] = [];
   teamProgressFile: string = '';
+  teamEvidenceFile: string = '';
   allowChangeTeamNameInBrowser: boolean = true;
 
   dimensionIcons: Record<string, string> = {
@@ -67,6 +68,7 @@ export class MetaStore {
       this.teams = metaData.teams || this.teams || [];
       this.activityFiles = metaData.activityFiles || this.activityFiles || [];
       this.teamProgressFile = metaData.teamProgressFile || this.teamProgressFile || '';
+      this.teamEvidenceFile = metaData.teamEvidenceFile || this.teamEvidenceFile || '';
       if (metaData.allowChangeTeamNameInBrowser !== undefined)
         this.allowChangeTeamNameInBrowser = metaData.allowChangeTeamNameInBrowser;
     }

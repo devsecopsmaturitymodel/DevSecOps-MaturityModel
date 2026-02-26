@@ -84,6 +84,14 @@ export class LoaderService {
         this.dataStore.addProgressData(browserProgress?.progress);
       }
 
+      // Load evidence data
+      const evidenceData = await this.loadEvidence(this.dataStore.meta);
+      this.dataStore.addEvidenceData(evidenceData.evidence);
+      this.dataStore.evidenceStore?.initFromLocalStorage();
+
+      // DEBUG ONLY
+      console.log('Merged EvidenceStore:', this.dataStore.evidenceStore?.getEvidenceData());
+
       console.log(`${perfNow()}: YAML: All YAML files loaded`);
 
       return this.dataStore;
@@ -134,6 +142,10 @@ export class LoaderService {
     meta.activityFiles = meta.activityFiles.map(file =>
       this.yamlService.makeFullPath(file, this.META_FILE)
     );
+    if (!meta.teamProgressFile) {
+      throw Error("The meta.yaml has no 'teamEvidenceFile' to be loaded");
+    }
+    meta.teamEvidenceFile = this.yamlService.makeFullPath(meta.teamEvidenceFile, this.META_FILE);
 
     if (this.debug) console.log(`${perfNow()} s: meta loaded`);
     console.log(`${perfNow()} s: Loaded teams: ${meta.teams.join(', ')}`);
@@ -143,6 +155,11 @@ export class LoaderService {
   private async loadTeamProgress(meta: MetaStore): Promise<TeamProgressFile> {
     if (this.debug) console.log(`${perfNow()}s: Loading Team Progress: ${meta.teamProgressFile}`);
     return this.yamlService.loadYaml(meta.teamProgressFile);
+  }
+
+  private async loadEvidence(meta: MetaStore): Promise<{ evidence: any }> {
+    if (this.debug) console.log(`${perfNow()}s: Loading Team Evidence: ${meta.teamEvidenceFile}`);
+    return this.yamlService.loadYaml(meta.teamEvidenceFile);
   }
 
   private async loadActivities(meta: MetaStore): Promise<ActivityStore> {
