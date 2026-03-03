@@ -15,8 +15,8 @@ $light-theme: (
 );
 
 $custom-dark-theme: (
-  background: #121212,
-  text: #e0e0e0,
+  background: #323436,
+  text: #e8e8e8,
   link: #66bb6a,
 );
 
@@ -112,22 +112,22 @@ body.dark-theme {
   @include apply-theme($custom-dark-theme);
   @include mat.all-component-themes($DSOMM-dark-theme);
 
-  --surface-base: #121212;
+  --surface-base: #323436;
   /* page background */
-  --surface-01: #1e1e1e;
+  --surface-01: #383A3C;
   /* cards, panels */
-  --surface-02: #242424;
+  --surface-02: #3E4042;
   /* elevated cards */
-  --surface-03: #2c2c2c;
+  --surface-03: #444648;
   /* dialogs, dropdowns */
-  --surface-04: #333333;
+  --surface-04: #2C2E30;
   /* hover states */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.12);
 
-  --text-primary: #f0f0f0;
-  --text-secondary: #aaaaaa;
-  --text-tertiary: #666666;
+  --text-primary: #e8e8e8;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #616161;
   --background-primary: var(--surface-base);
   --background-secondary: var(--surface-01);
   --background-tertiary: var(--surface-02);
@@ -141,11 +141,11 @@ body.dark-theme {
   --heatmap-cursor-hover: #145e14;
   --heatmap-cursor-selected: #232323;
 
-  --dependency-link: #bbbbbb;
-  --dependency-border: #0e1b0e;
+  --dependency-link: #8a8a8a;
+  --dependency-border: #1a2e1a;
   --dependency-mainnode-fill: rgb(107, 190, 107);
-  --dependency-predecessor-fill: rgb(172, 206, 172);
-  --dependency-successor-fill: rgb(192, 192, 192);
+  --dependency-predecessor-fill: rgb(160, 200, 160);
+  --dependency-successor-fill: rgb(185, 185, 185);
 
   background-color: var(--surface-base);
   color: var(--text-primary);
@@ -210,7 +210,7 @@ body.dark-theme {
   
   //navbar
    .mat-toolbar {
-    background-color: var(--surface-01) !important;
+    background-color: var(--surface-01) ;
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   }
@@ -219,7 +219,7 @@ body.dark-theme {
   // Toolbar / Navbar
   // ----------------------------------------------
   .mat-toolbar {
-    background-color: var(--surface-01) !important;
+    background-color: var(--surface-01) ;
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   }
@@ -272,14 +272,14 @@ body.dark-theme {
     background-color: var(--surface-01);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
-    border-radius: 8px !important;
+    border-radius: 8px ;
 
     .mat-expansion-panel-header {
       background-color: var(--surface-02);
       border-radius: 8px;
 
       &:hover {
-        background-color: var(--surface-04) !important;
+        background-color: var(--surface-04);
       }
     }
   }
@@ -401,7 +401,6 @@ body.dark-theme {
   }
 }
 
-@include mat.all-component-themes($DSOMM-dark-theme);
 
 .button-container {
   display: flex;
