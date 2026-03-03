@@ -76,8 +76,6 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const savedTheme: string = this.themeService.getTheme() || 'light';
-    this.themeService.setTheme(savedTheme); // sets .light-theme or .dark-theme
     requestAnimationFrame(() => {
       // Now the DOM has the correct class and CSS vars are live
       console.log(`${perfNow()}s: ngOnInit: Initial theme:`, this.theme);
