@@ -15,7 +15,7 @@
   "dependencies": {
     "@angular/animations": "^13.0.0",
     "@angular/cdk": "^13.0.0",
-    "@angular/cli": "^13.0.0",
+    "@angular/cli": "^21.2.0",
     "@angular/common": "^13.0.0",
     "@angular/compiler": "^13.0.0",
     "@angular/core": "^13.0.0",
@@ -43,7 +43,7 @@
     "@angular-eslint/builder": "^13.0.0",
     "@angular-eslint/eslint-plugin": "^13.0.0",
     "@angular-eslint/eslint-plugin-template": "^13.0.0",
-    "@angular-eslint/schematics": "^13.0.0",
+    "@angular-eslint/schematics": "^21.2.0",
     "@angular-eslint/template-parser": "^13.0.0",
     "@angular/compiler-cli": "^13.0.0",
     "@grafana/faro-webpack-plugin": "^0.1.1",
