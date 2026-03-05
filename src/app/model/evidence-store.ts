@@ -76,7 +76,10 @@ export class EvidenceStore {
       const newEntries = newEvidence[activityUuid];
       if (Array.isArray(newEntries)) {
         for (const entry of newEntries) {
-          if (!this.isDuplicateEntry(activityUuid, entry)) {
+          const existingIndex = this._evidence[activityUuid].findIndex(e => e.id === entry.id);
+          if (existingIndex !== -1) {
+            this._evidence[activityUuid][existingIndex] = entry;
+          } else {
             this._evidence[activityUuid].push(entry);
           }
         }
