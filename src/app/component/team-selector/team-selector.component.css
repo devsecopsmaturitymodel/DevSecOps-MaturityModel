@@ -1,0 +1,43 @@
+.config-section {
+    padding: 16px 0;
+}
+
+.config-section h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.config-hint {
+    margin: 0 0 12px 0;
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.select-all-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.group-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 4px;
+    padding-left: 12px;
+    border-left: 1px solid var(--text-tertiary);
+}
+
+.group-label {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+}
