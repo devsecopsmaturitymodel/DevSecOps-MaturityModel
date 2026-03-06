@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,10 @@ import { KpiComponent } from './component/kpi/kpi.component';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-groups-editor.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReportComponent } from './pages/report/report.component';
+import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
+import { TeamSelectorComponent } from './component/team-selector/team-selector.component';
+import { ColResizeDirective } from './directive/col-resize.directive';
 
 @NgModule({
   declarations: [
@@ -56,6 +61,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ProgressSliderComponent,
     KpiComponent,
     SettingsComponent,
+    ReportComponent,
+    ReportConfigModalComponent,
+    TeamSelectorComponent,
+    ColResizeDirective,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +74,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDialogModule,
     ReactiveFormsModule,
     MatToolbarModule,
+    MatMenuModule,
     FormsModule,
     HttpClientModule,
     TeamsGroupsEditorModule,
