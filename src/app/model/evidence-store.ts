@@ -1,5 +1,5 @@
 import { YamlService } from '../service/yaml-loader/yaml-loader.service';
-import { Uuid } from './types';
+import { ActivityId, EvidenceId } from './types';
 
 export interface EvidenceAttachment {
   type: string; // e.g. 'document', 'image', 'link'
@@ -7,7 +7,7 @@ export interface EvidenceAttachment {
 }
 
 export interface EvidenceEntry {
-  id: string; // stable UUID for this entry
+  id: EvidenceId; // stable UUID for this entry
   teams: string[];
   title: string;
   evidenceRecorded: string; // ISO date string
@@ -16,7 +16,7 @@ export interface EvidenceEntry {
   attachment?: EvidenceAttachment[];
 }
 
-export type EvidenceData = Record<Uuid, EvidenceEntry[]>;
+export type EvidenceData = Record<ActivityId, EvidenceEntry[]>;
 
 const LOCALSTORAGE_KEY: string = 'evidence';
 
@@ -39,15 +39,15 @@ export class EvidenceStore {
     return this._evidence;
   }
 
-  public getEvidence(activityUuid: Uuid): EvidenceEntry[] {
+  public getEvidence(activityUuid: ActivityId): EvidenceEntry[] {
     return this._evidence[activityUuid] || [];
   }
 
-  public hasEvidence(activityUuid: Uuid): boolean {
+  public hasEvidence(activityUuid: ActivityId): boolean {
     return (this._evidence[activityUuid]?.length || 0) > 0;
   }
 
-  public getEvidenceCount(activityUuid: Uuid): number {
+  public getEvidenceCount(activityUuid: ActivityId): number {
     return this._evidence[activityUuid]?.length ?? 0;
   }
 
@@ -59,7 +59,7 @@ export class EvidenceStore {
     return count;
   }
 
-  public getActivityUuidsWithEvidence(): Uuid[] {
+  public getActivityUuidsWithEvidence(): ActivityId[] {
     return Object.keys(this._evidence).filter(uuid => this._evidence[uuid].length > 0);
   }
 
@@ -92,7 +92,7 @@ export class EvidenceStore {
     this.saveToLocalStorage();
   }
 
-  public addEvidence(activityUuid: Uuid, entry: EvidenceEntry): void {
+  public addEvidence(activityUuid: ActivityId, entry: EvidenceEntry): void {
     if (!this._evidence[activityUuid]) {
       this._evidence[activityUuid] = [];
     }
@@ -101,8 +101,8 @@ export class EvidenceStore {
   }
 
   public updateEvidence(
-    activityUuid: Uuid,
-    entryId: string,
+    activityUuid: ActivityId,
+    entryId: EvidenceId,
     updatedEntry: Partial<EvidenceEntry>
   ): void {
     const entries = this._evidence[activityUuid];
@@ -120,7 +120,7 @@ export class EvidenceStore {
     this.saveToLocalStorage();
   }
 
-  public deleteEvidence(activityUuid: Uuid, entryId: string): void {
+  public deleteEvidence(activityUuid: ActivityId, entryId: EvidenceId): void {
     const entries = this._evidence[activityUuid];
     if (!entries) {
       console.warn(`No evidence found for activity ${activityUuid}`);
@@ -179,7 +179,7 @@ export class EvidenceStore {
 
   // ─── Helpers ─────────────────────────────────────────────
 
-  private isDuplicateEntry(activityUuid: Uuid, entry: EvidenceEntry): boolean {
+  private isDuplicateEntry(activityUuid: ActivityId, entry: EvidenceEntry): boolean {
     const existing = this._evidence[activityUuid];
     if (!existing) return false;
     return existing.some(e => e.id === entry.id);
