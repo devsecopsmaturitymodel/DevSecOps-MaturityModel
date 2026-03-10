@@ -142,7 +142,7 @@ export class LoaderService {
     meta.activityFiles = meta.activityFiles.map(file =>
       this.yamlService.makeFullPath(file, this.META_FILE)
     );
-    if (!meta.teamProgressFile) {
+    if (!meta.teamEvidenceFile) {
       throw Error("The meta.yaml has no 'teamEvidenceFile' to be loaded");
     }
     meta.teamEvidenceFile = this.yamlService.makeFullPath(meta.teamEvidenceFile, this.META_FILE);
