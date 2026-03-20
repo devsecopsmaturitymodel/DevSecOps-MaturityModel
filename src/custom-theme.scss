@@ -112,15 +112,15 @@ body.dark-theme {
   @include apply-theme($custom-dark-theme);
   @include mat.all-component-themes($DSOMM-dark-theme);
 
-  --surface-base: #323436;
+  --background-base: #323436;
   /* page background */
-  --surface-01: #383A3C;
+  --background-primary: #383A3C;
   /* cards, panels */
-  --surface-02: #3E4042;
+  --background-secondary: #3E4042;
   /* elevated cards */
-  --surface-03: #444648;
+  --background-tertiary: #444648;
   /* dialogs, dropdowns */
-  --surface-04: #2C2E30;
+  --background-hover: #2C2E30;
   /* hover states */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.12);
@@ -128,9 +128,6 @@ body.dark-theme {
   --text-primary: #e8e8e8;
   --text-secondary: #a0a0a0;
   --text-tertiary: #616161;
-  --background-primary: var(--surface-base);
-  --background-secondary: var(--surface-01);
-  --background-tertiary: var(--surface-02);
 
   --primary-color: #{mat.get-color-from-palette($DSOMM-dark-primary)};
 
@@ -147,7 +144,7 @@ body.dark-theme {
   --dependency-predecessor-fill: rgb(160, 200, 160);
   --dependency-successor-fill: rgb(185, 185, 185);
 
-  background-color: var(--surface-base);
+  background-color: var(--background-base);
   color: var(--text-primary);
 
   .title-button,
@@ -182,7 +179,7 @@ body.dark-theme {
   //cards and panels
   mat-card,
   .mat-card {
-    background-color: var(--surface-01);
+    background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
     border-radius: 12px;
@@ -200,17 +197,17 @@ body.dark-theme {
   //sidenav
   .mat-drawer,
   .mat-sidenav {
-    background-color: var(--surface-01);
+    background-color: var(--background-primary);
     border-right: 1px solid var(--border-subtle);
   }
 
   .mat-drawer-container {
-    background-color: var(--surface-base);
+    background-color: var(--background-base);
   }
   
   //navbar
    .mat-toolbar {
-    background-color: var(--surface-01) ;
+    background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   }
@@ -219,7 +216,7 @@ body.dark-theme {
   // Toolbar / Navbar
   // ----------------------------------------------
   .mat-toolbar {
-    background-color: var(--surface-01) ;
+    background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   }
@@ -227,14 +224,14 @@ body.dark-theme {
   //Tables
   .mat-table,
   table[mat-table] {
-    background-color: var(--surface-01);
+    background-color: var(--background-primary);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     overflow: hidden;
   }
 
   .mat-header-row {
-    background-color: var(--surface-02);
+    background-color: var(--background-secondary);
     border-bottom: 1px solid var(--border-medium);
   }
 
@@ -244,12 +241,12 @@ body.dark-theme {
   }
 
   .mat-row {
-    background-color: var(--surface-01);
+    background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     transition: background-color 0.15s ease;
 
     &:hover {
-      background-color: var(--surface-04);
+      background-color: var(--background-hover);
     }
   }
 
@@ -259,7 +256,7 @@ body.dark-theme {
 
   // Dialog styling
   .mat-dialog-container {
-    background-color: var(--surface-03);
+    background-color: var(--background-tertiary);
     color: var(--text-primary);
     border: 1px solid var(--border-medium);
     border-radius: 12px;
@@ -269,31 +266,31 @@ body.dark-theme {
   // Expansion panels and accordion
   .mat-expansion-panel,
   .mat-accordion {
-    background-color: var(--surface-01);
+    background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
     border-radius: 8px ;
 
     .mat-expansion-panel-header {
-      background-color: var(--surface-02);
+      background-color: var(--background-secondary);
       border-radius: 8px;
 
       &:hover {
-        background-color: var(--surface-04);
+        background-color: var(--background-hover);
       }
     }
   }
 
   //chips
   .mat-chip.mat-standard-chip {
-    background-color: var(--surface-03);
+    background-color: var(--background-tertiary);
     color: var(--text-secondary);
     border: 1px solid var(--border-subtle);
     border-radius: 16px;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 
     &:hover {
-      background-color: var(--surface-04);
+      background-color: var(--background-hover);
       border-color: var(--border-medium);
     }
   }
@@ -319,23 +316,23 @@ body.dark-theme {
 
   // Buttons
   .mat-icon-button:hover {
-    background-color: var(--surface-04);
+    background-color: var(--background-hover);
   }
 
   .mat-raised-button {
-    background-color: var(--surface-02);
+    background-color: var(--background-secondary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
 
     &:hover {
-      background-color: var(--surface-04);
+      background-color: var(--background-hover);
     }
   }
 
   // Modal override
   .overlay-wrapper,
   .overlay-modal {
-    background-color: var(--surface-03);
+    background-color: var(--background-tertiary);
     color: var(--text-primary);
     border: 1px solid var(--border-medium); 
     border-radius: 12px;
@@ -372,7 +369,7 @@ body.dark-theme {
     transition: background-color 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background-color: var(--surface-04);
+      background-color: var(--background-hover);
       color: var(--text-primary);
     }
 
@@ -385,7 +382,7 @@ body.dark-theme {
   //select and menu
   .mat-select-panel,
   .mat-menu-panel {
-    background-color: var(--surface-03);
+    background-color: var(--background-tertiary);
     border: 1px solid var(--border-medium);
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -396,7 +393,7 @@ body.dark-theme {
 
     &:hover,
     &.mat-active {
-      background-color: var(--surface-04);
+      background-color: var(--background-hover);
     }
   }
 }
