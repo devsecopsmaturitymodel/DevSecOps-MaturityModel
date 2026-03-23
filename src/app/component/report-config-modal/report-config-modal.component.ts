@@ -1,14 +1,21 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReportConfig, ActivityAttributeVisibility } from '../../model/report-config';
+import {
+  ReportConfig,
+  ColumnGrouping, 
+  MAX_DESCRIPTION_WORD_CAP
+} from '../../model/report-config';
 import { Activity } from '../../model/activity-store';
+import { ProgressTitle, TeamGroups } from '../../model/types';
 
 export interface ReportConfigModalData {
   config: ReportConfig;
   allActivities: Activity[];
+  allTeams: string[];
   allDimensions: string[];
   allSubdimensions: string[];
-  allLevels: number[];
+  allProgressTitles: ProgressTitle[];
+  teamGroups: TeamGroups;
 }
 
 @Component({
@@ -19,29 +26,13 @@ export interface ReportConfigModalData {
 export class ReportConfigModalComponent {
   config: ReportConfig;
   allActivities: Activity[];
+  allTeams: string[];
   allDimensions: string[];
   allSubdimensions: string[];
-  allLevels: number[];
-
-  // Attribute display labels
-  attributeLabels: { key: keyof ActivityAttributeVisibility; label: string }[] = [
-    { key: 'showDescription', label: 'Description' },
-    { key: 'showRisk', label: 'Risk' },
-    { key: 'showMeasure', label: 'Measure' },
-    { key: 'showAssessment', label: 'Assessment' },
-    { key: 'showImplementationGuide', label: 'Implementation Guide' },
-    { key: 'showDifficulty', label: 'Difficulty of Implementation' },
-    { key: 'showUsefulness', label: 'Usefulness' },
-    { key: 'showDependencies', label: 'Dependencies' },
-    { key: 'showTools', label: 'Tools' },
-    { key: 'showMapping', label: 'Framework Mapping' },
-    { key: 'showImplementedBy', label: 'Implemented By' },
-    { key: 'showTags', label: 'Tags' },
-    { key: 'showComments', label: 'Comments' },
-  ];
-
-  // Activity search
+  allProgressTitles: ProgressTitle[];
+  teamGroups: TeamGroups;
   activitySearchQuery: string = '';
+  maxWordCap: number = MAX_DESCRIPTION_WORD_CAP;
 
   constructor(
     public dialogRef: MatDialogRef<ReportConfigModalComponent>,
@@ -50,23 +41,55 @@ export class ReportConfigModalComponent {
     // Deep copy config to avoid mutating the original until save
     this.config = JSON.parse(JSON.stringify(data.config));
     this.allActivities = data.allActivities;
+    this.allTeams = data.allTeams;
     this.allDimensions = data.allDimensions;
     this.allSubdimensions = data.allSubdimensions;
-    this.allLevels = data.allLevels;
+    this.allProgressTitles = data.allProgressTitles || [];
+    this.teamGroups = data.teamGroups || {};
   }
 
-  // --- Level toggling ---
-  isLevelExcluded(level: number): boolean {
-    return this.config.excludedLevels.includes(level);
+  setColumnGrouping(grouping: ColumnGrouping): void {
+    this.config.columnGrouping = grouping;
   }
 
-  toggleLevel(level: number): void {
-    const idx = this.config.excludedLevels.indexOf(level);
-    if (idx >= 0) {
-      this.config.excludedLevels.splice(idx, 1);
-    } else {
-      this.config.excludedLevels.push(level);
+  wordCapLabel(value: number): string {
+    return `${value}`;
+  }
+
+  onWordCapChange(event: any): void {
+    if (event.value != null) {
+      this.config.descriptionWordCap = event.value;
     }
+  }
+
+  // --- Team toggling ---
+  isTeamSelected(team: string): boolean {
+    return this.config.selectedTeams.includes(team);
+  }
+
+  toggleTeam(team: string): void {
+    const idx = this.config.selectedTeams.indexOf(team);
+    if (idx >= 0) {
+      this.config.selectedTeams.splice(idx, 1);
+    } else {
+      this.config.selectedTeams.push(team);
+    }
+  }
+
+  selectAllTeams(): void {
+    this.config.selectedTeams = [...this.allTeams];
+  }
+
+  deselectAllTeams(): void {
+    this.config.selectedTeams = [];
+  }
+
+  get groupNames(): string[] {
+    return Object.keys(this.teamGroups);
+  }
+
+  selectGroup(group: string): void {
+    this.config.selectedTeams = [...(this.teamGroups[group] || [])];
   }
 
   // --- Dimension toggling ---
@@ -120,11 +143,9 @@ export class ReportConfigModalComponent {
       a => a.name.toLowerCase().includes(query) || a.dimension.toLowerCase().includes(query)
     );
   }
-
-  // --- Attribute toggling ---
-  toggleAttribute(key: keyof ActivityAttributeVisibility): void {
-    this.config.attributes[key] = !this.config.attributes[key];
-  }
+  toggleAttribute(key: "showDescription"): void {
+  this.config[key] = !this.config[key];
+}
 
   // --- Actions ---
   onSave(): void {

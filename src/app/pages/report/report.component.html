@@ -1,13 +1,20 @@
 <app-top-header section="Report"></app-top-header>
 
 <div class="report-container">
-  <div class="report-toolbar">
+  <div class="report-toolbar no-print">
     <button mat-raised-button color="primary" (click)="openConfigModal()">
       <mat-icon>settings</mat-icon>
-      Adjust Report Configuration
+      Configure Report
+    </button>
+    <button mat-raised-button (click)="printReport()">
+      <mat-icon>print</mat-icon>
+      Print
     </button>
     <span class="activity-count" *ngIf="!isLoading">
       {{ totalFilteredActivities }} activities
+      <span *ngIf="reportConfig.selectedTeams.length > 0">
+        · {{ reportConfig.selectedTeams.length }} teams
+      </span>
     </span>
   </div>
 
@@ -21,19 +28,91 @@
     <button mat-stroked-button (click)="openConfigModal()">Adjust Configuration</button>
   </div>
 
-  <div *ngIf="!isLoading" class="report-body">
-    <div *ngFor="let dimension of filteredDimensions" class="dimension-section">
-      <h2 class="dimension-title">{{ dimension.name }}</h2>
+  <div *ngIf="!isLoading && filteredDimensions.length > 0" class="report-body">
 
-      <div *ngFor="let subdimension of dimension.subdimensions" class="subdimension-section">
-        <h3 class="subdimension-title">{{ subdimension.name }}</h3>
+    <!-- Overview Section -->
+    <section class="overview-section">
+      <h2 class="section-title">Overview</h2>
+      <table class="report-table overview-table">
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Total Activities</th>
+            <th>Completed</th>
+            <th>Completion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of levelOverview">
+            <td class="cell-level">{{ row.level }}</td>
+            <td class="cell-center">{{ row.totalActivities }}</td>
+            <td class="cell-center">{{ row.completedCount }}</td>
+            <td class="cell-center">
+              <span class="completion-bar">
+                <span class="completion-fill" [style.width.%]="row.completionPercent"></span>
+              </span>
+              {{ row.completionPercent }}%
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-        <app-report-activity
-          *ngFor="let activity of subdimension.activities"
-          [activity]="activity"
-          [config]="reportConfig.attributes">
-        </app-report-activity>
+      <span *ngIf="reportConfig.columnGrouping === 'byTeam'" class= "legend">
+        '—' - No progress | '◐' - Partly Implemented | '✓' - Fully Implemented
+      </span>
+
+    </section>
+
+    <section *ngFor="let dimension of filteredDimensions" class="dimension-section">
+      <h2 class="section-title">{{ dimension.name }}</h2>
+
+      <div *ngFor="let subDimension of dimension.subDimensions" class="subdimension-group">
+        <h3 class="subdimension-title">{{ subDimension.name }}</h3>
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th class="col-level">Level</th>
+              <th class="col-activity">Activity</th>
+              <th *ngIf="reportConfig.showDescription" class="col-description">Description</th>
+
+              <!-- Column Grouping by Progress -->
+              <ng-container *ngIf="reportConfig.columnGrouping === 'byProgress'">
+                <th class="col-progress" *ngFor="let title of allProgressTitles">{{ title }}</th>
+              </ng-container>
+
+              <!-- Column Grouping by Team -->
+              <ng-container *ngIf="reportConfig.columnGrouping === 'byTeam'">
+                <th class="col-team" *ngFor="let team of reportConfig.selectedTeams">{{ team }}</th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let activity of subDimension.activities">
+              <td class="cell-level">{{ activity.level }}</td>
+              <td class="cell-activity">{{ activity.name }}</td>
+              <td *ngIf="reportConfig.showDescription" class="cell-description">
+                <div class="description-content"
+                  [innerHTML]="renderCappedDescription(activity.description, reportConfig.descriptionWordCap)"></div>
+              </td>
+
+              <!-- Option A cells -->
+              <ng-container *ngIf="reportConfig.columnGrouping === 'byProgress'">
+                <td class="cell-progress" *ngFor="let title of allProgressTitles">
+                  {{ getTeamsForProgress(activity, title) }}
+                </td>
+              </ng-container>
+
+              <!-- Option B cells -->
+              <ng-container *ngIf="reportConfig.columnGrouping === 'byTeam'">
+                <td class="cell-team" *ngFor="let team of reportConfig.selectedTeams">
+                  {{ getTeamProgressIcon(activity, team) }}
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+    </section>
+
   </div>
 </div>
