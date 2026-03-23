@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { SettingsService } from '../../service/settings/settings.service';
-import { Activity } from '../../model/activity-store';
+import {
+  Activity,
+  DifficultyOfImplementation,
+  Implementation,
+  ActivityStore,
+} from '../../model/activity-store';
 import { MarkdownText } from '../../model/markdown-text';
 import { DataStore } from '../../model/data-store';
 import { ProgressStore } from '../../model/progress-store';
@@ -11,7 +16,7 @@ import {
   ReportConfigModalComponent,
   ReportConfigModalData,
 } from '../../component/report-config-modal/report-config-modal.component';
-import { ProgressTitle } from '../../model/types';
+import { ProgressTitle, TeamGroups } from '../../model/types';
 
 export interface ReportSubDimension {
   name: string;
@@ -46,11 +51,14 @@ export class ReportComponent implements OnInit {
   allDimensionNames: string[] = [];
   allSubdimensionNames: string[] = [];
   allTeams: string[] = [];
+  teamGroups: TeamGroups = {};
 
   allProgressTitles: ProgressTitle[] = [];
 
   // Max level from settings
   maxLevel: number = 0;
+
+  private activityStore: ActivityStore | null = null;
 
   constructor(
     private loader: LoaderService,
@@ -80,6 +88,7 @@ export class ReportComponent implements OnInit {
 
         this.maxLevel = this.settings.getMaxLevel() || dataStore.getMaxLevel();
         this.allActivities = dataStore.activityStore.getAllActivitiesUpToLevel(this.maxLevel);
+        this.activityStore = dataStore.activityStore;
 
         const dimensionSet = new Set<string>();
         const subdimensionSet = new Set<string>();
@@ -92,6 +101,7 @@ export class ReportComponent implements OnInit {
         this.allDimensionNames = Array.from(dimensionSet).sort();
         this.allSubdimensionNames = Array.from(subdimensionSet).sort();
         this.allTeams = dataStore?.meta?.teams || [];
+        this.teamGroups = dataStore?.meta?.teamGroups || {};
 
         // Collect progress titles
         if (dataStore.progressStore) {
@@ -200,15 +210,22 @@ export class ReportComponent implements OnInit {
     const completedTitle = this.progressStore.getCompletedProgressTitle();
     if (!completedTitle) return false;
     const teamTitle = this.progressStore.getTeamProgressTitle(activity.uuid, teamName);
+
+    // TEMP DEBUG
+    console.log(
+      `teamTitle="${teamTitle}" | completedTitle="${completedTitle}" | uuid="${activity.uuid}" | team="${teamName}"`
+    );
+    console.log(
+      'progress keys sample:',
+      Object.keys(this.progressStore.getProgressData()).slice(0, 3)
+    );
+
     return teamTitle === completedTitle;
   }
 
-  getTeamProgressIcon(activity: Activity, teamName: string): string {
-    if (!this.progressStore || !activity.uuid) return '—';
-    const progressValue = this.progressStore.getTeamActivityProgressValue(activity.uuid, teamName);
-    if (progressValue >= 1) return '✓';
-    if (progressValue > 0) return '◐';
-    return '—';
+  getTeamProgressName(activity: Activity, teamName: string): string {
+    if (!this.progressStore || !activity.uuid) return '';
+    return this.progressStore.getTeamActivityTitle(activity.uuid, teamName);
   }
 
   getTeamsForProgress(activity: Activity, progressTitle: ProgressTitle): string {
@@ -222,7 +239,6 @@ export class ReportComponent implements OnInit {
     }
     return teams.join(', ') || '—';
   }
-
 
   truncateWords(text: any, max: number): string {
     if (!text) return '';
@@ -246,7 +262,7 @@ export class ReportComponent implements OnInit {
       return rendered;
     }
 
-    // Truncate text nodes in the DOM, preserving HTML structure 
+    // Truncate text nodes in the DOM, preserving HTML structure
     let remaining = wordCap;
     const truncateNode = (node: Node): boolean => {
       if (remaining <= 0) {
@@ -301,13 +317,95 @@ export class ReportComponent implements OnInit {
     });
   }
 
+  onTeamsChanged(teams: string[]): void {
+    this.reportConfig.selectedTeams = teams;
+    saveReportConfig(this.reportConfig);
+    this.applyFilters();
+  }
+
   printReport(): void {
-    alert(`For best results, please ensure the following before printing:
-- Close the app Menu.
-- Enable Light Mode.
-- In the browser print settings, set margins to "None" and deselect Header and Footer.
-    `);
-    window.print();
+    const menuAlert: Boolean = localStorage.getItem('state.menuIsOpen') === 'true';
+    const darkModeAlert: Boolean = localStorage.getItem('theme') === 'dark';
+
+    if (menuAlert || darkModeAlert) {
+      alert(
+        `${menuAlert ? '- Please close the app Menu before printing.\n' : ''}${
+          darkModeAlert ? '- Please enable Light Mode before printing.\n' : ''
+        }`
+      );
+    } else window.print();
+  }
+
+  formatTags(tags: string[]): string {
+    if (!tags || tags.length === 0) return '—';
+    return tags.join(', ');
+  }
+
+  formatDifficulty(d: DifficultyOfImplementation): string {
+    if (!d) return '—';
+    const parts: string[] = [];
+    if (d.knowledge != null) parts.push(`K:${d.knowledge}`);
+    if (d.time != null) parts.push(`T:${d.time}`);
+    if (d.resources != null) parts.push(`R:${d.resources}`);
+    return parts.length > 0 ? parts.join(' / ') : '—';
+  }
+
+  formatRefList(refs: string[] | undefined): string {
+    if (!refs || refs.length === 0) return '—';
+    return refs.join(', ');
+  }
+
+  formatReferences(refs: any): string {
+    if (!refs) return '—';
+    const attrs = this.reportConfig.activityAttributes;
+    const pairs: string[] = [];
+
+    const renderItems = (key: string, items: any[] | undefined): void => {
+      if (!items || items.length === 0) return;
+
+      const plainItems = items.map(raw => String(raw));
+      const formatted = plainItems.map(item => {
+        if (item.startsWith('http://') || item.startsWith('https://')) {
+          return `<a href="${item}" target="_blank" rel="noopener" class="ref-link">↗</a>`;
+        }
+        return item;
+      });
+
+      pairs.push(`${key}: <abbr title="${plainItems.join(', ')}">${formatted.join(', ')}</abbr>`);
+    };
+
+    if (attrs.showReferencesIso27001_2017) renderItems('iso27001-2017', refs.iso27001_2017);
+    if (attrs.showReferencesIso27001_2022) renderItems('iso27001-2022', refs.iso27001_2022);
+    if (attrs.showReferencesSamm2) renderItems('samm2', refs.samm2);
+    if (attrs.showReferencesOpenCRE) renderItems('openCRE', refs.openCRE);
+
+    return pairs.length > 0 ? `${pairs.join(', ')}` : '—';
+  }
+
+  formatImplementation(impls: Implementation[] | undefined): string {
+    if (!impls || impls.length === 0) return '—';
+    const items = impls.map(impl => {
+      const namePart = impl.name || '?';
+      const linkPart = impl.url
+        ? ` <a href="${impl.url}" target="_blank" rel="noopener" title="${impl.url}" class="ref-link">↗</a>`
+        : '';
+      return `${namePart}${linkPart}`;
+    });
+    return items.join(', ');
+  }
+
+  formatDependsOn(deps: string[] | undefined): string {
+    if (!deps || deps.length === 0) return '—';
+    const items = deps.map(dep => {
+      if (this.activityStore) {
+        const resolved = this.activityStore.getActivityByName(dep);
+        if (resolved && resolved.uuid) {
+          return `${dep} (${resolved.uuid.substring(0, 8)})`;
+        }
+      }
+      return dep;
+    });
+    return items.join(', ');
   }
 
   get totalFilteredActivities(): number {

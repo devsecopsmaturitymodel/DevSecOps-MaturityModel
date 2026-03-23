@@ -1,57 +1,140 @@
 <h2 mat-dialog-title align="center">Report Configuration</h2>
 
 <mat-dialog-content class="config-content">
-
   <!-- Display Configuration -->
   <div class="config-section">
     <h3>Display Configuration</h3>
 
     <div class="config-row">
       <span class="config-row-label">Column Grouping:</span>
-      <mat-button-toggle-group class = "column-toggle" [value]="config.columnGrouping" (change)="setColumnGrouping($event.value)">
+      <mat-button-toggle-group
+        class="column-toggle"
+        [value]="config.columnGrouping"
+        (change)="setColumnGrouping($event.value)">
         <mat-button-toggle value="byProgress">By Progress Stage</mat-button-toggle>
         <mat-button-toggle value="byTeam">By Team</mat-button-toggle>
       </mat-button-toggle-group>
-    </div>
-
-     <mat-checkbox [checked]="config.showDescription"
-        (change)="toggleAttribute('showDescription')">
-        Show Description
-      </mat-checkbox>
-
-    <div class="config-row slider-row" *ngIf="config.showDescription">
-      <span class="config-row-label">Description Word Cap: <strong>{{ config.descriptionWordCap }}</strong></span>
-      <mat-slider class="word-cap-slider" min="5" [max]="maxWordCap" step="5" thumbLabel [displayWith]="wordCapLabel"
-        [value]="config.descriptionWordCap" (input)="onWordCapChange($event)">
-      </mat-slider>
     </div>
   </div>
 
   <mat-divider></mat-divider>
 
-  <!-- Teams -->
+  <!-- Activity Attributes -->
   <div class="config-section">
-    <h3>Teams</h3>
-    <p class="config-hint">Select which teams to include in the report.</p>
-    <div class="select-all-actions">
-      <button mat-button color="primary" (click)="selectAllTeams()">Select All</button>
-      <button mat-button (click)="deselectAllTeams()">Deselect All</button>
-      <button *ngIf="groupNames.length > 0" mat-stroked-button [matMenuTriggerFor]="groupMenu"
-        class="group-dropdown-btn">
-        <mat-icon>group</mat-icon>
-        Select Group
-        <mat-icon>arrow_drop_down</mat-icon>
-      </button>
-      <mat-menu #groupMenu="matMenu">
-        <button mat-menu-item *ngFor="let group of groupNames" (click)="selectGroup(group)">
-          {{ group }}
-        </button>
-      </mat-menu>
-    </div>
+    <h3>Activity Attributes</h3>
+    <p class="config-hint">Choose which activity fields to show as columns in the report.</p>
+
     <div class="checkbox-grid">
-      <mat-checkbox *ngFor="let team of allTeams" [checked]="isTeamSelected(team)" (change)="toggleTeam(team)">
-        {{ team }}
+      <mat-checkbox
+        [checked]="config.activityAttributes.showUuid"
+        (change)="toggleActivityAttribute('showUuid')">
+        UUID
       </mat-checkbox>
+      <mat-checkbox
+        [checked]="config.activityAttributes.showDescription"
+        (change)="toggleActivityAttribute('showDescription')">
+        Description
+      </mat-checkbox>
+      <mat-checkbox
+        [checked]="config.activityAttributes.showRisk"
+        (change)="toggleActivityAttribute('showRisk')">
+        Risk
+      </mat-checkbox>
+      <mat-checkbox
+        [checked]="config.activityAttributes.showMeasure"
+        (change)="toggleActivityAttribute('showMeasure')">
+        Measure
+      </mat-checkbox>
+      <mat-checkbox
+        [checked]="config.activityAttributes.showDifficultyOfImplementation"
+        (change)="toggleActivityAttribute('showDifficultyOfImplementation')">
+        Difficulty of Implementation
+      </mat-checkbox>
+      <mat-checkbox
+        [checked]="config.activityAttributes.showUsefulness"
+        (change)="toggleActivityAttribute('showUsefulness')">
+        Usefulness
+      </mat-checkbox>
+      <mat-checkbox
+        [checked]="config.activityAttributes.showImplementation"
+        (change)="toggleActivityAttribute('showImplementation')">
+        Implementation
+      </mat-checkbox>
+      <mat-checkbox
+        [checked]="config.activityAttributes.showDependsOn"
+        (change)="toggleActivityAttribute('showDependsOn')">
+        Depends On
+      </mat-checkbox>
+    </div>
+
+    <!-- References with sub-toggles -->
+    <div class="references-section">
+      <mat-checkbox
+        [checked]="config.activityAttributes.showReferences"
+        (change)="toggleActivityAttribute('showReferences')">
+        References
+      </mat-checkbox>
+      <div class="references-subtoggle" *ngIf="config.activityAttributes.showReferences">
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showReferencesIso27001_2017"
+          (change)="toggleActivityAttribute('showReferencesIso27001_2017')">
+          ISO 27001:2017
+        </mat-checkbox>
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showReferencesIso27001_2022"
+          (change)="toggleActivityAttribute('showReferencesIso27001_2022')">
+          ISO 27001:2022
+        </mat-checkbox>
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showReferencesSamm2"
+          (change)="toggleActivityAttribute('showReferencesSamm2')">
+          SAMM2
+        </mat-checkbox>
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showReferencesOpenCRE"
+          (change)="toggleActivityAttribute('showReferencesOpenCRE')">
+          OpenCRE
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <div class="checkbox-grid" style="margin-top: 8px">
+      <!-- To be implemented after issue #501 -->
+      <!-- <mat-checkbox [checked]="config.activityAttributes.showEvidence"
+        (change)="toggleActivityAttribute('showEvidence')">
+        Evidence
+      </mat-checkbox> -->
+      <mat-checkbox
+        [checked]="config.activityAttributes.showTags"
+        (change)="toggleActivityAttribute('showTags')">
+        Tags
+      </mat-checkbox>
+    </div>
+    <div class="config-row slider-row" *ngIf="hasAnyMarkdownAttribute">
+      <span class="config-row-label">
+        Word Cap
+        <mat-icon
+          matTooltip="Limits the number of words shown for description, risk, measure, and evidence fields. Set to a high value to show full text."
+          matTooltipClass="compact-tooltip info-icon"
+          >info</mat-icon
+        >
+        :
+        <strong>{{ config.descriptionWordCap }}</strong>
+      </span>
+      <mat-slider
+        class="word-cap-slider"
+        min="5"
+        [max]="maxWordCap"
+        step="5"
+        thumbLabel
+        [displayWith]="wordCapLabel"
+        [value]="config.descriptionWordCap"
+        (input)="onWordCapChange($event)">
+      </mat-slider>
     </div>
   </div>
 
@@ -62,7 +145,9 @@
     <h3>Dimensions</h3>
     <p class="config-hint">Uncheck dimensions to exclude all their activities.</p>
     <div class="checkbox-grid">
-      <mat-checkbox *ngFor="let dim of allDimensions" [checked]="!isDimensionExcluded(dim)"
+      <mat-checkbox
+        *ngFor="let dim of allDimensions"
+        [checked]="!isDimensionExcluded(dim)"
         (change)="toggleDimension(dim)">
         {{ dim }}
       </mat-checkbox>
@@ -76,7 +161,9 @@
     <h3>Subdimensions</h3>
     <p class="config-hint">Uncheck subdimensions to exclude their activities.</p>
     <div class="checkbox-grid subdimension-grid">
-      <mat-checkbox *ngFor="let subdim of allSubdimensions" [checked]="!isSubdimensionExcluded(subdim)"
+      <mat-checkbox
+        *ngFor="let subdim of allSubdimensions"
+        [checked]="!isSubdimensionExcluded(subdim)"
         (change)="toggleSubdimension(subdim)">
         {{ subdim }}
       </mat-checkbox>
@@ -95,7 +182,9 @@
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
     <div class="activity-list">
-      <mat-checkbox *ngFor="let activity of filteredActivities" [checked]="!isActivityExcluded(activity.uuid)"
+      <mat-checkbox
+        *ngFor="let activity of filteredActivities"
+        [checked]="!isActivityExcluded(activity.uuid)"
         (change)="toggleActivity(activity.uuid)">
         <span class="activity-checkbox-label">
           <span class="activity-name">{{ activity.name }}</span>
@@ -106,7 +195,13 @@
   </div>
 
   <mat-divider></mat-divider>
+  <!-- Teams -->
+  <app-team-selector
+    [allTeams]="allTeams"
+    [(selectedTeams)]="config.selectedTeams"
+    [teamGroups]="teamGroups"></app-team-selector>
 
+  <mat-divider></mat-divider>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

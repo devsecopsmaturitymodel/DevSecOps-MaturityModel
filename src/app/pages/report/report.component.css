@@ -29,6 +29,11 @@
     color: var(--text-secondary);
 }
 
+.team-selector-section {
+    margin-bottom: 16px;
+    padding: 0 4px;
+}
+
 .loading-container {
     display: flex;
     justify-content: center;
@@ -83,6 +88,10 @@
     margin-bottom: 8px;
 }
 
+.resizable-table {
+    table-layout: auto;
+}
+
 .report-table th,
 .report-table td {
     border: 1px solid var(--text-tertiary);
@@ -90,6 +99,8 @@
     text-align: left;
     vertical-align: top;
     color: var(--text-primary);
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .report-table thead th {
@@ -99,30 +110,81 @@
     white-space: nowrap;
 }
 
-/* Column widths */
+/* Column default widths */
 .col-level {
     width: 50px;
     text-align: center;
 }
 
 .col-activity {
-    min-width: 180px;
+    width: 180px;
 }
-
 
 .col-description {
-    min-width: 220px;
+    width: 220px;
 }
 
-.col-progress {
-    width: 100px;
-    font-size: 0.85em;
-}
-
+.col-progress,
 .col-team {
-    width: 70px;
+    width: 100px;
+}
+
+.col-tags {
+    width: 100px;
+}
+
+.col-small {
+    width: 80px;
     text-align: center;
+}
+
+.col-ref {
+    width: 200px;
+}
+
+.cell-tags {
     font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.cell-ref {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+}
+
+::ng-deep .ref-link {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0 2px;
+}
+
+::ng-deep .ref-link:hover {
+    opacity: 0.7;
+}
+
+::ng-deep .ref-uuid {
+    font-family: monospace;
+    font-size: 0.85em;
+    color: var(--text-tertiary);
+    margin-right: 2px;
+}
+
+/* Resize handle */
+::ng-deep .col-resize-handle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    cursor: col-resize;
+    background: transparent;
+    z-index: 1;
+}
+
+::ng-deep .col-resize-handle:hover {
+    background: var(--primary-color);
+    opacity: 0.5;
 }
 
 /* Cell styles */
@@ -132,6 +194,10 @@
 }
 
 .cell-activity {
+    font-weight: 400;
+}
+
+.cell-team {
     font-weight: 400;
 }
 
@@ -157,15 +223,6 @@
 
 ::ng-deep .description-content img {
     max-width: 100%;
-}
-
-.cell-progress {
-    font-size: 0.85em;
-}
-
-.cell-team {
-    text-align: center;
-    font-size: 1.1em;
 }
 
 .cell-center {
@@ -195,7 +252,8 @@
 .completion-fill {
     display: block;
     height: 100%;
-    background: var(--primary-color); /* green anyways */
+    background: var(--primary-color);
+    /* green anyways */
     border-radius: 4px;
 }
 

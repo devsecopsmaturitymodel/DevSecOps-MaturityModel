@@ -1,5 +1,23 @@
 export type ColumnGrouping = 'byProgress' | 'byTeam';
 
+export interface ActivityAttributes {
+  showUuid: boolean;
+  showDescription: boolean;
+  showRisk: boolean;
+  showMeasure: boolean;
+  showDifficultyOfImplementation: boolean;
+  showUsefulness: boolean;
+  showImplementation: boolean;
+  showDependsOn: boolean;
+  showReferences: boolean;
+  showReferencesIso27001_2017: boolean;
+  showReferencesIso27001_2022: boolean;
+  showReferencesSamm2: boolean;
+  showReferencesOpenCRE: boolean;
+  showEvidence: boolean;
+  showTags: boolean;
+}
+
 export interface ReportConfig {
   columnGrouping: ColumnGrouping;
   descriptionWordCap: number;
@@ -7,12 +25,32 @@ export interface ReportConfig {
   excludedDimensions: string[];
   excludedSubdimensions: string[];
   excludedActivities: string[];
-  showDescription: boolean;
+  activityAttributes: ActivityAttributes;
 }
 
 const STORAGE_KEY = 'ReportConfig';
 const DEFAULT_DESCRIPTION_WORD_CAP = 25;
 export const MAX_DESCRIPTION_WORD_CAP = 600;
+
+export function getDefaultActivityAttributes(): ActivityAttributes {
+  return {
+    showUuid: false,
+    showDescription: true,
+    showRisk: false,
+    showMeasure: false,
+    showDifficultyOfImplementation: false,
+    showUsefulness: false,
+    showImplementation: false,
+    showDependsOn: false,
+    showReferences: false,
+    showReferencesIso27001_2017: true,
+    showReferencesIso27001_2022: true,
+    showReferencesSamm2: true,
+    showReferencesOpenCRE: true,
+    showEvidence: false,
+    showTags: false,
+  };
+}
 
 export function getDefaultReportConfig(): ReportConfig {
   return {
@@ -22,7 +60,7 @@ export function getDefaultReportConfig(): ReportConfig {
     excludedDimensions: [],
     excludedSubdimensions: [],
     excludedActivities: [],
-    showDescription: true,
+    activityAttributes: getDefaultActivityAttributes(),
   };
 }
 
@@ -31,8 +69,38 @@ export function getReportConfig(): ReportConfig {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       const parsed = JSON.parse(stored) as Partial<ReportConfig>;
-      // Merge with defaults to ensure all keys exist
       const defaults = getDefaultReportConfig();
+      const defaultAttrs = getDefaultActivityAttributes();
+
+      const parsedAttrs = (parsed.activityAttributes ??
+        parsed['activityAtrributes' as keyof ReportConfig] ??
+        {}) as Partial<ActivityAttributes>;
+
+      const legacyShowDesc = (parsed as any).showDescription;
+
+      const activityAttributes: ActivityAttributes = {
+        showUuid: parsedAttrs.showUuid ?? defaultAttrs.showUuid,
+        showDescription:
+          parsedAttrs.showDescription ?? legacyShowDesc ?? defaultAttrs.showDescription,
+        showRisk: parsedAttrs.showRisk ?? defaultAttrs.showRisk,
+        showMeasure: parsedAttrs.showMeasure ?? defaultAttrs.showMeasure,
+        showDifficultyOfImplementation:
+          parsedAttrs.showDifficultyOfImplementation ?? defaultAttrs.showDifficultyOfImplementation,
+        showUsefulness: parsedAttrs.showUsefulness ?? defaultAttrs.showUsefulness,
+        showImplementation: parsedAttrs.showImplementation ?? defaultAttrs.showImplementation,
+        showDependsOn: parsedAttrs.showDependsOn ?? defaultAttrs.showDependsOn,
+        showReferences: parsedAttrs.showReferences ?? defaultAttrs.showReferences,
+        showReferencesIso27001_2017:
+          parsedAttrs.showReferencesIso27001_2017 ?? defaultAttrs.showReferencesIso27001_2017,
+        showReferencesIso27001_2022:
+          parsedAttrs.showReferencesIso27001_2022 ?? defaultAttrs.showReferencesIso27001_2022,
+        showReferencesSamm2: parsedAttrs.showReferencesSamm2 ?? defaultAttrs.showReferencesSamm2,
+        showReferencesOpenCRE:
+          parsedAttrs.showReferencesOpenCRE ?? defaultAttrs.showReferencesOpenCRE,
+        showEvidence: parsedAttrs.showEvidence ?? defaultAttrs.showEvidence,
+        showTags: parsedAttrs.showTags ?? defaultAttrs.showTags,
+      };
+
       return {
         columnGrouping: parsed.columnGrouping ?? defaults.columnGrouping,
         descriptionWordCap: parsed.descriptionWordCap ?? defaults.descriptionWordCap,
@@ -40,7 +108,7 @@ export function getReportConfig(): ReportConfig {
         excludedDimensions: parsed.excludedDimensions ?? defaults.excludedDimensions,
         excludedSubdimensions: parsed.excludedSubdimensions ?? defaults.excludedSubdimensions,
         excludedActivities: parsed.excludedActivities ?? defaults.excludedActivities,
-        showDescription: parsed.showDescription ?? defaults.showDescription,
+        activityAttributes,
       };
     }
   } catch (e) {

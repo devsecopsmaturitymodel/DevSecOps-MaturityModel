@@ -54,6 +54,20 @@ mat-dialog-title{
     margin-bottom: 8px;
 }
 
+.config-row-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.config-row-label mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
 .checkbox-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -91,29 +105,41 @@ mat-dialog-title{
     color: var(--text-secondary);
 }
 
+.references-section {
+    margin-top: 12px;
+}
+
+.references-subtoggle {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    margin-left: 28px;
+    flex-wrap: wrap;
+}
+
 mat-divider {
     margin: 4px 0;
 }
 
 .column-toggle {
-  border-radius: 999px;
-  padding: 2px;
-  border: 1px solid var(--text-tertiary);
-  background: var(--background-secondary);
+    border-radius: 999px;
+    padding: 2px;
+    border: 1px solid var(--text-tertiary);
+    background: var(--background-secondary);
 }
 
 /* buttons */
 .column-toggle .mat-button-toggle {
-  border-radius: 999px;
-  border: none;
-  padding: 0 16px;
-  color: var(--text-secondary);
-  background: transparent;
+    border-radius: 999px;
+    border: none;
+    padding: 0 16px;
+    color: var(--text-secondary);
+    background: transparent;
 }
 
 /* selected */
 .column-toggle .mat-button-toggle-checked {
-  background: var(--primary-color);
-  color: var(--text-on-primary);
+    background: var(--primary-color);
+    color: var(--text-on-primary);
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }

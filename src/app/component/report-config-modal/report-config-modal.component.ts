@@ -2,8 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   ReportConfig,
-  ColumnGrouping, 
-  MAX_DESCRIPTION_WORD_CAP
+  ActivityAttributes,
+  ColumnGrouping,
+  MAX_DESCRIPTION_WORD_CAP,
 } from '../../model/report-config';
 import { Activity } from '../../model/activity-store';
 import { ProgressTitle, TeamGroups } from '../../model/types';
@@ -62,34 +63,14 @@ export class ReportConfigModalComponent {
     }
   }
 
-  // --- Team toggling ---
-  isTeamSelected(team: string): boolean {
-    return this.config.selectedTeams.includes(team);
+  // --- Activity attribute toggling ---
+  toggleActivityAttribute(key: keyof ActivityAttributes): void {
+    (this.config.activityAttributes as any)[key] = !this.config.activityAttributes[key];
   }
 
-  toggleTeam(team: string): void {
-    const idx = this.config.selectedTeams.indexOf(team);
-    if (idx >= 0) {
-      this.config.selectedTeams.splice(idx, 1);
-    } else {
-      this.config.selectedTeams.push(team);
-    }
-  }
-
-  selectAllTeams(): void {
-    this.config.selectedTeams = [...this.allTeams];
-  }
-
-  deselectAllTeams(): void {
-    this.config.selectedTeams = [];
-  }
-
-  get groupNames(): string[] {
-    return Object.keys(this.teamGroups);
-  }
-
-  selectGroup(group: string): void {
-    this.config.selectedTeams = [...(this.teamGroups[group] || [])];
+  get hasAnyMarkdownAttribute(): boolean {
+    const a = this.config.activityAttributes;
+    return a.showDescription || a.showRisk || a.showMeasure || a.showEvidence;
   }
 
   // --- Dimension toggling ---
@@ -143,9 +124,6 @@ export class ReportConfigModalComponent {
       a => a.name.toLowerCase().includes(query) || a.dimension.toLowerCase().includes(query)
     );
   }
-  toggleAttribute(key: "showDescription"): void {
-  this.config[key] = !this.config[key];
-}
 
   // --- Actions ---
   onSave(): void {

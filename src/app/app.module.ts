@@ -35,6 +35,8 @@ import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-g
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReportComponent } from './pages/report/report.component';
 import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
+import { TeamSelectorComponent } from './component/team-selector/team-selector.component';
+import { ColResizeDirective } from './directive/col-resize.directive';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { ReportConfigModalComponent } from './component/report-config-modal/repo
     SettingsComponent,
     ReportComponent,
     ReportConfigModalComponent,
+    TeamSelectorComponent,
+    ColResizeDirective,
   ],
   imports: [
     BrowserModule,
