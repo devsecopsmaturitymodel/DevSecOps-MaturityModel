@@ -55,6 +55,10 @@
   list-style: none;
 }
 
+::ng-deep #description img {
+    max-width: 100%;
+}
+
 /* Ensure panel titles don't wrap */
 mat-panel-title b {
   white-space: nowrap;
