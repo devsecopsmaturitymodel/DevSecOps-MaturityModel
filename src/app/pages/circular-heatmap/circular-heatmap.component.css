@@ -157,6 +157,19 @@ app-progress-slider {
     font-style: italic;
 }
 
+.evidence-container {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.add-evidence-button mat-icon {
+    font-size: 18px;
+    margin-right: 4px;
+}
+
 mat-chip {
   cursor: pointer;
 }

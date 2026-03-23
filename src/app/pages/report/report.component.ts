@@ -17,6 +17,12 @@ import {
   ReportConfigModalData,
 } from '../../component/report-config-modal/report-config-modal.component';
 import { ProgressTitle, TeamGroups } from '../../model/types';
+import { EvidenceEntry } from '../../model/evidence-store';
+import { DatePipe } from '@angular/common';
+import {
+  ViewEvidenceModalComponent,
+  ViewEvidenceModalData,
+} from '../../component/view-evidence-modal/view-evidence-modal.component';
 
 export interface ReportSubDimension {
   name: string;
@@ -39,6 +45,7 @@ export interface LevelOverview {
   selector: 'app-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css'],
+  providers: [DatePipe],
 })
 export class ReportComponent implements OnInit {
   reportConfig: ReportConfig;
@@ -63,7 +70,8 @@ export class ReportComponent implements OnInit {
   constructor(
     private loader: LoaderService,
     private settings: SettingsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private datePipe: DatePipe
   ) {
     this.reportConfig = getReportConfig();
   }
@@ -212,13 +220,13 @@ export class ReportComponent implements OnInit {
     const teamTitle = this.progressStore.getTeamProgressTitle(activity.uuid, teamName);
 
     // TEMP DEBUG
-    console.log(
-      `teamTitle="${teamTitle}" | completedTitle="${completedTitle}" | uuid="${activity.uuid}" | team="${teamName}"`
-    );
-    console.log(
-      'progress keys sample:',
-      Object.keys(this.progressStore.getProgressData()).slice(0, 3)
-    );
+    // console.log(
+    //   `teamTitle="${teamTitle}" | completedTitle="${completedTitle}" | uuid="${activity.uuid}" | team="${teamName}"`
+    // );
+    // console.log(
+    //   'progress keys sample:',
+    //   Object.keys(this.progressStore.getProgressData()).slice(0, 3)
+    // );
 
     return teamTitle === completedTitle;
   }
@@ -416,5 +424,75 @@ export class ReportComponent implements OnInit {
       }
     }
     return count;
+  }
+
+  formatEvidence(activity: Activity): string {
+    const evidenceStore = this.loader.datastore?.evidenceStore;
+    if (!evidenceStore || !activity.uuid || !evidenceStore.hasEvidence(activity.uuid)) {
+      return '—';
+    }
+
+    const allEntries: EvidenceEntry[] = evidenceStore.getEvidence(activity.uuid);
+    const attrs = this.reportConfig.activityAttributes;
+    const selectedTeams = this.reportConfig.selectedTeams;
+
+    const entries = allEntries.filter(entry => entry.teams.some(t => selectedTeams.includes(t)));
+
+    if (entries.length === 0) return '—';
+
+    const parts = entries.map(entry => {
+      const items: string[] = [];
+
+      if (attrs.showEvidenceTitle && entry.title) {
+        items.push(`${entry.title}`);
+      }
+      if (attrs.showEvidenceDescription && entry.description) {
+        items.push(`<span class="evidence-desc">${entry.description}</span>`);
+      }
+      if (attrs.showEvidenceDate && entry.evidenceRecorded) {
+        items.push(
+          `<span class="evidence-meta"><strong>Date: </strong>${this.datePipe.transform(
+            entry.evidenceRecorded,
+            'mediumDate'
+          )}</span>`
+        );
+      }
+      if (attrs.showEvidenceReviewer && entry.reviewer) {
+        items.push(
+          `<span class="evidence-meta"><strong>Reviewer: </strong>${entry.reviewer}</span>`
+        );
+      }
+      if (attrs.showEvidenceAttachments && entry.attachment?.length) {
+        const links = entry.attachment.map(
+          a =>
+            `<a href="${a.externalLink}" target="_blank" rel="noopener" class="ref-link">${a.type} ↗</a>`
+        );
+        items.push(links.join(' '));
+      }
+
+      // Show only the selected teams for this entry
+      const matchingTeams = entry.teams.filter(t => selectedTeams.includes(t));
+      const teamsLabel =
+        matchingTeams.length > 0
+          ? `<span class="evidence-teams">[${matchingTeams.join(', ')}]</span> `
+          : '';
+
+      return `<div class="evidence-item"><strong>${teamsLabel}</strong>${items.join(' · ')}</div>`;
+    });
+
+    return parts.join('');
+  }
+
+  openViewEvidenceModal(activityUuid: string, activityName: string): void {
+    const dialogData: ViewEvidenceModalData = {
+      activityUuid,
+      activityName,
+    };
+
+    this.dialog.open(ViewEvidenceModalComponent, {
+      width: '700px',
+      maxHeight: '90vh',
+      data: dialogData,
+    });
   }
 }

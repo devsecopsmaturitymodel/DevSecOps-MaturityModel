@@ -28,6 +28,15 @@ import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
 import { TitleService } from '../../service/title.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  AddEvidenceModalComponent,
+  AddEvidenceModalData,
+} from '../../component/add-evidence-modal/add-evidence-modal.component';
+import {
+  ViewEvidenceModalComponent,
+  ViewEvidenceModalData,
+} from '../../component/view-evidence-modal/view-evidence-modal.component';
 
 @Component({
   selector: 'app-circular-heatmap',
@@ -70,6 +79,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
+    private dialog: MatDialog,
     public modal: ModalMessageComponent
   ) {
     this.theme = this.themeService.getTheme();
@@ -750,5 +760,41 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
   unsorted() {
     return 0;
+  }
+
+  openAddEvidenceModal(activityUuid: string): void {
+    const teams = this.dataStore?.meta?.teams || [];
+
+    const dialogData: AddEvidenceModalData = {
+      activityUuid,
+      allTeams: teams,
+      teamGroups: this.teamGroups,
+    };
+
+    const dialogRef = this.dialog.open(AddEvidenceModalComponent, {
+      width: '700px',
+      maxHeight: '90vh',
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.entry && this.dataStore?.evidenceStore) {
+        this.dataStore.evidenceStore.addEvidence(result.activityUuid, result.entry);
+        console.log(`${perfNow()}: Evidence added for activity ${result.activityUuid}`);
+      }
+    });
+  }
+
+  openViewEvidenceModal(activityUuid: string, activityName: string): void {
+    const dialogData: ViewEvidenceModalData = {
+      activityUuid,
+      activityName,
+    };
+
+    this.dialog.open(ViewEvidenceModalComponent, {
+      width: '700px',
+      maxHeight: '90vh',
+      data: dialogData,
+    });
   }
 }

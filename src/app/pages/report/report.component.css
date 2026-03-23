@@ -142,6 +142,10 @@
     width: 200px;
 }
 
+.col-evidence {
+    width: 400px;
+}
+
 .cell-tags {
     font-size: 0.85em;
     color: var(--text-secondary);
@@ -257,10 +261,57 @@
     border-radius: 4px;
 }
 
+/* Evidence */
+::ng-deep .evidence-cell .evidence-item {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--text-tertiary);
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+::ng-deep .evidence-cell .evidence-item:last-child {
+    border-bottom: none;
+}
+
+::ng-deep .evidence-teams {
+    font-weight: 600;
+    font-size: 0.85em;
+    margin-right: 4px;
+}
+
+::ng-deep .evidence-desc {
+    color: var(--text-secondary);
+}
+
+::ng-deep .evidence-meta {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.evidence-view-btn {
+  width: 24px;
+  height: 24px;        /* was 4px — this was clipping the icon */
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  opacity: 0.5;
+}
+
+.evidence-view-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;   /* add this — mat-icon needs matching line-height */
+}
+
+
 /* ============ PRINT STYLES ============ */
 @media print {
 
     .no-print,
+    .evidence-view-btn,
     app-top-header,
     .report-toolbar {
         display: none !important;
