@@ -172,10 +172,7 @@ export class LoaderService {
       if (errors.length > 0) {
         errors.forEach(error => console.error(error));
         throw new DataValidationError(
-          'Data validation error after loading: ' +
-            filename +
-            '\n\n----\n\n' +
-            errors.join('\n\n')
+          'Data validation error after loading: ' + filename + '\n\n----\n\n' + errors.join('\n\n')
         );
       }
     }
