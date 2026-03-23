@@ -94,6 +94,19 @@
   padding: 7px 12px;
   border-radius: 16px;
   font: 500 14px / 20px Roboto, 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  transform: scale(1.02);
+}
+
+.reset-button:active {
+  transform: scale(0.98);
+}
+
+.mat-chip {
+  cursor: pointer;
 }
 
 .mat-mdc-row .mat-mdc-cell {
