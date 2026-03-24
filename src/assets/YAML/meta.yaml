@@ -26,8 +26,7 @@ teamGroups:
   $ref: 'default/teams.yaml#/teamGroups'
 
 activityFiles:
-    # - generated/generated.yaml # Old structure -  No longer used
-    - default/model.yaml 
+    - default/model.yaml
     # - custom/custom-activities.yaml  # For customizing your own activities
 
 

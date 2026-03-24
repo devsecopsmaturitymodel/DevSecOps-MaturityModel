@@ -20,16 +20,7 @@ export class ModalMessageComponent implements OnInit {
 
   DSOMM_host: string = 'https://github.com/devsecopsmaturitymodel';
   DSOMM_url: string = `${this.DSOMM_host}/DevSecOps-MaturityModel-data`;
-  meassageTemplates: Record<string, DialogInfo> = {
-    generated_yaml: new DialogInfo(
-      `{message}\n\n` +
-        `Please download the activity template \`generated.yaml\` ` +
-        `from [DSOMM-data](${this.DSOMM_url}) on GitHub.\n\n` +
-        'The DSOMM activities are maintained and distributed ' +
-        'separately from the software.',
-      'DSOMM startup problems'
-    ),
-  };
+  meassageTemplates: Record<string, DialogInfo> = {};
 
   constructor(
     public dialog: MatDialog,

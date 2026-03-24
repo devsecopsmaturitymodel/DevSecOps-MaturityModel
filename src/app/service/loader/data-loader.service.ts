@@ -148,14 +148,12 @@ export class LoaderService {
   private async loadActivities(meta: MetaStore): Promise<ActivityStore> {
     const activityStore = new ActivityStore();
     const errors: string[] = [];
-    let usingLegacyYamlFile = false;
 
     if (meta.activityFiles.length == 0) {
       throw new MissingModelError('No `activityFiles` are specified in `meta.yaml`.');
     }
     for (let filename of meta.activityFiles) {
       if (this.debug) console.log(`${perfNow()}s: Loading activity file: ${filename}`);
-      usingLegacyYamlFile ||= filename.endsWith('generated/generated.yaml');
 
       const response: ActivityFile = await this.loadActivityFile(filename);
 
@@ -173,16 +171,9 @@ export class LoaderService {
       // Handle validation errors
       if (errors.length > 0) {
         errors.forEach(error => console.error(error));
-
-        // Legacy generated.yaml has several data validation problems. Do not report these
-        if (!usingLegacyYamlFile) {
-          throw new DataValidationError(
-            'Data validation error after loading: ' +
-              filename +
-              '\n\n----\n\n' +
-              errors.join('\n\n')
-          );
-        }
+        throw new DataValidationError(
+          'Data validation error after loading: ' + filename + '\n\n----\n\n' + errors.join('\n\n')
+        );
       }
     }
     return activityStore;
