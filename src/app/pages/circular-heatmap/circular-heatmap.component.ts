@@ -717,8 +717,20 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     downloadYamlFile(yamlStr, this.dataStore?.meta?.teamProgressFile || 'team-progress.yaml');
   }
 
+  exportTeamEvidences() {
+    console.log(`${perfNow()}: Exporting team evidence`);
+
+    let yamlStr: string | null = this.dataStore?.evidenceStore?.asYamlString() || null;
+    if (!yamlStr) {
+      this.displayMessage(new DialogInfo('No team evidence data available', 'Export Error'));
+      return;
+    }
+
+    downloadYamlFile(yamlStr, this.dataStore?.meta?.teamEvidenceFile || 'team-evidence.yaml');
+  }
+
   async deleteLocalTeamsProgress() {
-    let buttonClicked: string = await this.displayDeleteLocalProgressDialog();
+    let buttonClicked: string = await this.displayDeleteLocalFilesDialog('progress');
 
     if (buttonClicked === 'Delete') {
       this.dataStore?.progressStore?.deleteBrowserStoredTeamProgress();
@@ -726,12 +738,25 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     }
   }
 
-  displayDeleteLocalProgressDialog(): Promise<string> {
+  async deleteLocalTeamsEvidence() {
+    let buttonClicked: string = await this.displayDeleteLocalFilesDialog('evidence');
+
+    if (buttonClicked === 'Delete') {
+      this.dataStore?.evidenceStore?.deleteBrowserStoredEvidence();
+      location.reload(); // Make sure all load routines are initialized
+    }
+  }
+
+  displayDeleteLocalFilesDialog(type: 'progress' | 'evidence'): Promise<string> {
     return new Promise((resolve, reject) => {
       let title: string = 'Delete local browser data';
       let message: string =
-        'Do you want to delete all progress for each team?' +
-        '\n\nThis deletes all progress stored in your local browser, but does ' +
+        'Do you want to delete all ' +
+        type +
+        ' for each team?' +
+        '\n\nThis deletes all ' +
+        type +
+        ' stored in your local browser, but does ' +
         'not change any progress stored in the yaml file on the server.';
       let buttons: string[] = ['Cancel', 'Delete'];
       this.modal

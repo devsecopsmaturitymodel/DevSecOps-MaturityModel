@@ -138,9 +138,23 @@
           <button
             class="normal-button"
             mat-raised-button
+            class="downloadButtonClass"
+            (click)="exportTeamEvidences()">
+            Download team evidences
+          </button>
+          <button
+            class="normal-button"
+            mat-raised-button
             class="resetButtonClass"
             (click)="deleteLocalTeamsProgress()">
             Delete team progress
+          </button>
+          <button
+            class="normal-button"
+            mat-raised-button
+            class="resetButtonClass"
+            (click)="deleteLocalTeamsEvidence()">
+            Delete team evidences
           </button>
         </div>
       </div>
