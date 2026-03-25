@@ -13,7 +13,7 @@
     <span class="activity-count" *ngIf="!isLoading">
       {{ totalFilteredActivities }} activities
       <span *ngIf="reportConfig.selectedTeams.length > 0">
-        · {{ reportConfig.selectedTeams.length }} teams
+        · {{ reportConfig.selectedTeams.length }} {{ settings.getTeamLabelPlural() | lowercase }}
       </span>
     </span>
   </div>

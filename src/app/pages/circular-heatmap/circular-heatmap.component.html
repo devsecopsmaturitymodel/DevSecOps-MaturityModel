@@ -35,7 +35,7 @@
           </button>
           <div class="team-filter" [class.hidden]="!showFilters">
             <mat-form-field class="team-chip-list">
-              <mat-label>Team Group Filter</mat-label>
+              <mat-label>{{ settings.getTeamLabel() }} {{ settings.getGroupLabel() }} Filter</mat-label>
               <mat-chip-list selectable>
                 <mat-chip
                   #chip="matChip"
@@ -47,7 +47,7 @@
               </mat-chip-list>
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Team Filter</mat-label>
+              <mat-label>{{ settings.getTeamLabel() }} Filter</mat-label>
               <mat-chip-list selectable multiple>
                 <mat-chip
                   #chip="matChip"
@@ -116,14 +116,14 @@
             mat-raised-button
             class="downloadButtonClass"
             (click)="exportTeamProgress()">
-            Download team progress
+            Download {{ settings.getTeamLabel() | lowercase }} progress
           </button>
           <button
             class="normal-button"
             mat-raised-button
             class="resetButtonClass"
             (click)="deleteLocalTeamsProgress()">
-            Delete team progress
+            Delete {{ settings.getTeamLabel() | lowercase }} progress
           </button>
         </div>
       </div>

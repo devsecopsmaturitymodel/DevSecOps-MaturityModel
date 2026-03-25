@@ -6,9 +6,13 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
   private readonly KEY_DATEFORMAT = 'settings.dateformat';
   private readonly KEY_MAX_LEVEL = 'settings.maxlevel';
+  private readonly KEY_TEAM_LABEL = 'settings.teamLabel';
+  private readonly KEY_GROUP_LABEL = 'settings.groupLabel';
 
   private dateformat: string | null = null;
   private maxLevel: number | null = null;
+  private _teamLabel: string | null = null;
+  private _groupLabel: string | null = null;
 
   getDateFormat(): string | null {
     if (this.dateformat == null) {
@@ -32,6 +36,44 @@ export class SettingsService {
   setMaxLevel(maxLevel: number | null): void {
     this.maxLevel = maxLevel;
     this.saveSettings(this.KEY_MAX_LEVEL, maxLevel);
+  }
+
+  getTeamLabel(): string {
+    if (this._teamLabel == null) {
+      this._teamLabel = this.getSettings(this.KEY_TEAM_LABEL) || 'Team';
+    }
+    return this._teamLabel || 'Team';
+  }
+
+  getTeamLabelPlural(): string {
+    const label = this.getTeamLabel();
+    if (label.toLowerCase() === 'team') return label === 'Team' ? 'Teams' : 'teams';
+    return label.endsWith('s') ? label : label + 's';
+  }
+
+  setTeamLabel(label: string | null): void {
+    const val = label?.trim() || 'Team';
+    this._teamLabel = val;
+    this.saveSettings(this.KEY_TEAM_LABEL, val === 'Team' ? null : val);
+  }
+
+  getGroupLabel(): string {
+    if (this._groupLabel == null) {
+      this._groupLabel = this.getSettings(this.KEY_GROUP_LABEL) || 'Group';
+    }
+    return this._groupLabel || 'Group';
+  }
+
+  getGroupLabelPlural(): string {
+    const label = this.getGroupLabel();
+    if (label.toLowerCase() === 'group') return label === 'Group' ? 'Groups' : 'groups';
+    return label.endsWith('s') ? label : label + 's';
+  }
+
+  setGroupLabel(label: string | null): void {
+    const val = label?.trim() || 'Group';
+    this._groupLabel = val;
+    this.saveSettings(this.KEY_GROUP_LABEL, val === 'Group' ? null : val);
   }
 
   getSettingsNumber(key: string): number | null {

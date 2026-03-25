@@ -8,6 +8,7 @@ import {
 } from '../../model/report-config';
 import { Activity } from '../../model/activity-store';
 import { ProgressTitle, TeamGroups } from '../../model/types';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 
 export interface ReportConfigModalData {
   config: ReportConfig;
@@ -37,7 +38,8 @@ export class ReportConfigModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ReportConfigModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ReportConfigModalData
+    @Inject(MAT_DIALOG_DATA) public data: ReportConfigModalData,
+    public settings: SettingsService
   ) {
     // Deep copy config to avoid mutating the original until save
     this.config = JSON.parse(JSON.stringify(data.config));

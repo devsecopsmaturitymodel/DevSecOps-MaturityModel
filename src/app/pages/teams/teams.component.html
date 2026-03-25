@@ -1,4 +1,4 @@
-<app-top-header section="Teams &amp; Groups"></app-top-header>
+<app-top-header [section]="settings.getTeamLabelPlural() + ' & ' + settings.getGroupLabelPlural()"></app-top-header>
 <div class="team-section">
   <app-teams-groups-editor
     [teams]="teams"
@@ -8,8 +8,8 @@
     (namesChanged)="onTeamsChanged($event)"
     (click)="$event.stopPropagation()"></app-teams-groups-editor>
   <div class="button-container" *ngIf="dataStore?.meta?.hasLocalStorage">
-    <button mat-raised-button (click)="onExportTeamGroups()">Download team setup</button>
-    <button mat-raised-button (click)="onResetTeamGroups()">Reset team setup</button>
+    <button mat-raised-button (click)="onExportTeamGroups()">Download {{ settings.getTeamLabel() | lowercase }} setup</button>
+    <button mat-raised-button (click)="onResetTeamGroups()">Reset {{ settings.getTeamLabel() | lowercase }} setup</button>
   </div>
 
   <div class="team-info">
@@ -37,7 +37,7 @@
     <h3>Activities in progress</h3>
     <table mat-table matSort [dataSource]="dataSource || []" class="mat-elevation-z8 teams-table">
       <ng-container matColumnDef="Team">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef class="table-small-width">Team</th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="table-small-width">{{ settings.getTeamLabel() }}</th>
         <td mat-cell *matCellDef="let element" class="table-small-width">
           {{ element?.team }}
         </td>
