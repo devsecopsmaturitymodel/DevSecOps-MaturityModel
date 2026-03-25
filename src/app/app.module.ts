@@ -37,6 +37,9 @@ import { ReportComponent } from './pages/report/report.component';
 import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
 import { TeamSelectorComponent } from './component/team-selector/team-selector.component';
 import { ColResizeDirective } from './directive/col-resize.directive';
+import { AddEvidenceModalComponent } from './component/add-evidence-modal/add-evidence-modal.component';
+import { EvidencePanelComponent } from './component/evidence-panel/evidence-panel.component';
+import { ViewEvidenceModalComponent } from './component/view-evidence-modal/view-evidence-modal.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { ColResizeDirective } from './directive/col-resize.directive';
     ReportConfigModalComponent,
     TeamSelectorComponent,
     ColResizeDirective,
+    AddEvidenceModalComponent,
+    EvidencePanelComponent,
+    ViewEvidenceModalComponent,
   ],
   imports: [
     BrowserModule,

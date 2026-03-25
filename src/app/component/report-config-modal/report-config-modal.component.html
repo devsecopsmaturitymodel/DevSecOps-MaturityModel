@@ -102,12 +102,47 @@
       </div>
     </div>
 
-    <div class="checkbox-grid" style="margin-top: 8px">
-      <!-- To be implemented after issue #501 -->
-      <!-- <mat-checkbox [checked]="config.activityAttributes.showEvidence"
+    <div class="references-section">
+      <mat-checkbox
+        [checked]="config.activityAttributes.showEvidence"
         (change)="toggleActivityAttribute('showEvidence')">
         Evidence
-      </mat-checkbox> -->
+      </mat-checkbox>
+      <div class="references-subtoggle" *ngIf="config.activityAttributes.showEvidence">
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showEvidenceTitle"
+          (change)="toggleActivityAttribute('showEvidenceTitle')">
+          Title
+        </mat-checkbox>
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showEvidenceDescription"
+          (change)="toggleActivityAttribute('showEvidenceDescription')">
+          Description
+        </mat-checkbox>
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showEvidenceDate"
+          (change)="toggleActivityAttribute('showEvidenceDate')">
+          Date Recorded
+        </mat-checkbox>
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showEvidenceReviewer"
+          (change)="toggleActivityAttribute('showEvidenceReviewer')">
+          Reviewer
+        </mat-checkbox>
+        <mat-checkbox
+          class="subtoggle-checkbox"
+          [checked]="config.activityAttributes.showEvidenceAttachments"
+          (change)="toggleActivityAttribute('showEvidenceAttachments')">
+          Attachments
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <div class="checkbox-grid" style="margin-top: 8px">
       <mat-checkbox
         [checked]="config.activityAttributes.showTags"
         (change)="toggleActivityAttribute('showTags')">
