@@ -14,6 +14,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { Activity } from '../../model/activity-store';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { TeamName, ProgressTitle } from '../../model/types';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 
 @Component({
   selector: 'app-activity-description',
@@ -43,7 +44,7 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
 
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
 
-  constructor(private loader: LoaderService) {}
+  constructor(private loader: LoaderService, public settings: SettingsService) {}
 
   ngOnInit() {
     // Set activity data if provided

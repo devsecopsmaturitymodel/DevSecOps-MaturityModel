@@ -61,6 +61,9 @@ export class SettingsComponent implements OnInit {
   ];
   selectedDateFormat: string = this.BROWSER_LOCALE;
 
+  customTeamLabel: string = 'Team';
+  customGroupLabel: string = 'Group';
+
   // GitHub release check state
   checkingLatest: boolean = false;
   latestReleaseInfo: GithubReleaseInfo | null = null;
@@ -145,6 +148,8 @@ export class SettingsComponent implements OnInit {
 
   initialize(): void {
     this.selectedDateFormat = this.settings.getDateFormat() || this.BROWSER_LOCALE;
+    this.customTeamLabel = this.settings.getTeamLabel();
+    this.customGroupLabel = this.settings.getGroupLabel();
 
     // Init dates
     let date: Date = new Date();
@@ -177,6 +182,14 @@ export class SettingsComponent implements OnInit {
   onDateFormatChange(): void {
     let value: any = this.selectedDateFormat == 'null' ? null : this.selectedDateFormat;
     this.settings.setDateFormat(value);
+  }
+
+  onTeamLabelChange(): void {
+    this.settings.setTeamLabel(this.customTeamLabel);
+  }
+
+  onGroupLabelChange(): void {
+    this.settings.setGroupLabel(this.customGroupLabel);
   }
 
   onMaxLevelChange(value: number | null): void {
