@@ -219,15 +219,6 @@ export class ReportComponent implements OnInit {
     if (!completedTitle) return false;
     const teamTitle = this.progressStore.getTeamProgressTitle(activity.uuid, teamName);
 
-    // TEMP DEBUG
-    // console.log(
-    //   `teamTitle="${teamTitle}" | completedTitle="${completedTitle}" | uuid="${activity.uuid}" | team="${teamName}"`
-    // );
-    // console.log(
-    //   'progress keys sample:',
-    //   Object.keys(this.progressStore.getProgressData()).slice(0, 3)
-    // );
-
     return teamTitle === completedTitle;
   }
 
