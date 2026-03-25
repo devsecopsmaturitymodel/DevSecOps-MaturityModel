@@ -44,10 +44,7 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
 
   @ViewChildren(MatAccordion) accordion!: QueryList<MatAccordion>;
 
-  constructor(
-    private loader: LoaderService,
-    public settings: SettingsService
-  ) {}
+  constructor(private loader: LoaderService, public settings: SettingsService) {}
 
   ngOnInit() {
     // Set activity data if provided

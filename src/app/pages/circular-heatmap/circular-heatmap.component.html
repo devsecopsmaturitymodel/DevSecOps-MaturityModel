@@ -35,7 +35,9 @@
           </button>
           <div class="team-filter" [class.hidden]="!showFilters">
             <mat-form-field class="team-chip-list">
-              <mat-label>{{ settings.getTeamLabel() }} {{ settings.getGroupLabel() }} Filter</mat-label>
+              <mat-label
+                >{{ settings.getTeamLabel() }} {{ settings.getGroupLabel() }} Filter</mat-label
+              >
               <mat-chip-list selectable>
                 <mat-chip
                   #chip="matChip"

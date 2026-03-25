@@ -162,7 +162,9 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     if (!yamlStr) {
       this.displayMessage(
         new DialogInfo(
-          `No ${this.settings.getTeamLabel().toLowerCase()} and ${this.settings.getGroupLabelPlural().toLowerCase()} names stored locally in the browser`,
+          `No ${this.settings.getTeamLabel().toLowerCase()} and ${this.settings
+            .getGroupLabelPlural()
+            .toLowerCase()} names stored locally in the browser`,
           'Export Error'
         )
       );
@@ -185,7 +187,9 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     return new Promise((resolve, reject) => {
       let title: string = 'Delete local browser data';
       let message: string =
-        `Do you want to reset all ${this.settings.getTeamLabel().toLowerCase()} and ${this.settings.getGroupLabel().toLowerCase()} names?` +
+        `Do you want to reset all ${this.settings.getTeamLabel().toLowerCase()} and ${this.settings
+          .getGroupLabel()
+          .toLowerCase()} names?` +
         '\n\nThis will revert the names to the names stored in the yaml file on the server.';
       let buttons: string[] = ['Cancel', 'Delete'];
       this.modal

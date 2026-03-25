@@ -197,7 +197,10 @@ export class TeamsGroupsEditorComponent implements OnChanges {
   }
 
   onAddGroup() {
-    let newName: string = this.findNextName(this.keys(this.localCopyTeamGroups), this.settings.getGroupLabel());
+    let newName: string = this.findNextName(
+      this.keys(this.localCopyTeamGroups),
+      this.settings.getGroupLabel()
+    );
     this.localCopyTeamGroups[newName] = [];
     this.onGroupSelected(newName);
   }

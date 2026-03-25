@@ -36,14 +36,26 @@
     </mat-card-content>
 
     <mat-card-content>
-      <div class="terminology-container" style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px;">
+      <div
+        class="terminology-container"
+        style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px">
         <mat-form-field appearance="fill">
           <mat-label>Custom Team Terminology</mat-label>
-          <input matInput placeholder="e.g. App" name="customTeamLabel" [(ngModel)]="customTeamLabel" (ngModelChange)="onTeamLabelChange()">
+          <input
+            matInput
+            placeholder="e.g. App"
+            name="customTeamLabel"
+            [(ngModel)]="customTeamLabel"
+            (ngModelChange)="onTeamLabelChange()" />
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Custom Group Terminology</mat-label>
-          <input matInput placeholder="e.g. Portfolio" name="customGroupLabel" [(ngModel)]="customGroupLabel" (ngModelChange)="onGroupLabelChange()">
+          <input
+            matInput
+            placeholder="e.g. Portfolio"
+            name="customGroupLabel"
+            [(ngModel)]="customGroupLabel"
+            (ngModelChange)="onGroupLabelChange()" />
         </mat-form-field>
       </div>
     </mat-card-content>
