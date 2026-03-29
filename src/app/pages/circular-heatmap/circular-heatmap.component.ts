@@ -226,7 +226,11 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       this.hasTeamsFilter = Object.values(this.filtersTeams).some(v => v === true);
       this.reColorHeatmap();
     } else {
-      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: already on`);
+      chip.toggleSelected();
+      Object.keys(this.filtersTeams).forEach(key => (this.filtersTeams[key] = false));
+      this.hasTeamsFilter = false;
+      this.sectorService.setVisibleTeams([]);
+      this.reColorHeatmap();
     }
   }
 

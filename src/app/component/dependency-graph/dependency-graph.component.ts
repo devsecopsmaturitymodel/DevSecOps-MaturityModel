@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, ElementRef, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ElementRef, SimpleChanges, OnChanges } from '@angular/core';
 import * as d3 from 'd3';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { Activity } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
@@ -38,7 +40,8 @@ interface ThemeColors {
   templateUrl: './dependency-graph.component.html',
   styleUrls: ['./dependency-graph.component.css'],
 })
-export class DependencyGraphComponent implements OnInit, OnChanges {
+export class DependencyGraphComponent implements OnInit, OnChanges, OnDestroy {
+  private destroy$ = new Subject<void>();
   css: CSSStyleDeclaration = getComputedStyle(document.body);
   themeColors: Partial<ThemeColors> = {};
   theme: string;
@@ -66,9 +69,17 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     });
 
     // Reactively handle theme changes (if user toggles later)
-    this.themeService.theme$.subscribe((theme: string) => {
+    this.themeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme: string) => {
       this.setThemeColors(theme);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    if (this.simulation) {
+      this.simulation.stop();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
