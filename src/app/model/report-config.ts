@@ -15,6 +15,11 @@ export interface ActivityAttributes {
   showReferencesSamm2: boolean;
   showReferencesOpenCRE: boolean;
   showEvidence: boolean;
+  showEvidenceTitle: boolean;
+  showEvidenceDescription: boolean;
+  showEvidenceDate: boolean;
+  showEvidenceReviewer: boolean;
+  showEvidenceAttachments: boolean;
   showTags: boolean;
 }
 
@@ -48,6 +53,11 @@ export function getDefaultActivityAttributes(): ActivityAttributes {
     showReferencesSamm2: true,
     showReferencesOpenCRE: true,
     showEvidence: false,
+    showEvidenceTitle: true,
+    showEvidenceDescription: false,
+    showEvidenceDate: false,
+    showEvidenceReviewer: false,
+    showEvidenceAttachments: true,
     showTags: false,
   };
 }
@@ -98,6 +108,13 @@ export function getReportConfig(): ReportConfig {
         showReferencesOpenCRE:
           parsedAttrs.showReferencesOpenCRE ?? defaultAttrs.showReferencesOpenCRE,
         showEvidence: parsedAttrs.showEvidence ?? defaultAttrs.showEvidence,
+        showEvidenceTitle: parsedAttrs.showEvidenceTitle ?? defaultAttrs.showEvidenceTitle,
+        showEvidenceDescription:
+          parsedAttrs.showEvidenceDescription ?? defaultAttrs.showEvidenceDescription,
+        showEvidenceDate: parsedAttrs.showEvidenceDate ?? defaultAttrs.showEvidenceDate,
+        showEvidenceReviewer: parsedAttrs.showEvidenceReviewer ?? defaultAttrs.showEvidenceReviewer,
+        showEvidenceAttachments:
+          parsedAttrs.showEvidenceAttachments ?? defaultAttrs.showEvidenceAttachments,
         showTags: parsedAttrs.showTags ?? defaultAttrs.showTags,
       };
 

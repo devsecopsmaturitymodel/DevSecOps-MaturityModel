@@ -5,6 +5,7 @@ browserSettings:
 
 
 teamProgressFile: 'team-progress.yaml' 
+teamEvidenceFile: 'team-evidence.yaml'
 progressDefinition:
   Not implemented:
     score: 0%
