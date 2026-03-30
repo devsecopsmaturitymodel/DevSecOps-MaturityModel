@@ -38,8 +38,7 @@
     "tslib": "^2.8.1",
     "xlsx": "^0.18.5",
     "yaml": "^2.8.1",
-    "yamljs": "^0.3.0",
-    "zone.js": "~0.15.1"
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@angular-eslint/builder": "^21.3.1",
