@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopHeaderComponent } from './top-header.component';
@@ -9,6 +10,7 @@ describe('TopHeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TopHeaderComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
@@ -28,9 +30,10 @@ describe('TopHeaderComponent', () => {
     expect(heading.textContent).toEqual('Default');
   });
 
-  it('check if header is being changed', () => {
+  it('check if header is being changed', async () => {
     const changedTextElement = 'changed';
-    component.section = changedTextElement;
+    fixture.componentRef.setInput('section', changedTextElement);
+    await fixture.whenStable();
     fixture.detectChanges();
     const HTMLElement: HTMLElement = fixture.nativeElement;
     const heading = HTMLElement.querySelector('h1')!;

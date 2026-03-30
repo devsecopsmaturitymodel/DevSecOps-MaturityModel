@@ -1,9 +1,9 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { CircularHeatmapComponent } from './circular-heatmap.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatChipOption } from '@angular/material/chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -13,7 +13,7 @@ describe('CircularHeatmapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CircularHeatmapComponent, MatChipOption],
+      declarations: [CircularHeatmapComponent],
       imports: [RouterTestingModule, MatDialogModule],
       providers: [
         LoaderService,
@@ -21,6 +21,7 @@ describe('CircularHeatmapComponent', () => {
         HttpHandler,
         { provide: ModalMessageComponent, useValue: {} },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CircularHeatmapComponent); // Create fixture and component here

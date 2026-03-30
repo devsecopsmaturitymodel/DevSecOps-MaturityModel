@@ -1,5 +1,7 @@
+import type { MockedObject } from 'vitest';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,19 +34,24 @@ const MOCK_DATA = {
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
   let fixture: ComponentFixture<SettingsComponent>;
-  let settingsService: jasmine.SpyObj<SettingsService>;
-  let modalComponent: jasmine.SpyObj<ModalMessageComponent>;
+  let settingsService: Pick<
+    MockedObject<SettingsService>,
+    'getMaxLevel' | 'setMaxLevel' | 'getDateFormat' | 'setDateFormat'
+  >;
+  let modalComponent: Pick<MockedObject<ModalMessageComponent>, 'openDialog'>;
   mockLoaderService = new MockLoaderService(MOCK_DATA as unknown as Data);
 
   beforeEach(async () => {
     await mockLoaderService.load();
-    settingsService = jasmine.createSpyObj('SettingsService', [
-      'getMaxLevel',
-      'setMaxLevel',
-      'getDateFormat',
-      'setDateFormat',
-    ]);
-    modalComponent = jasmine.createSpyObj('ModalMessageComponent', ['openDialog']);
+    settingsService = {
+      getMaxLevel: vi.fn().mockName('SettingsService.getMaxLevel'),
+      setMaxLevel: vi.fn().mockName('SettingsService.setMaxLevel'),
+      getDateFormat: vi.fn().mockName('SettingsService.getDateFormat'),
+      setDateFormat: vi.fn().mockName('SettingsService.setDateFormat'),
+    };
+    modalComponent = {
+      openDialog: vi.fn().mockName('ModalMessageComponent.openDialog'),
+    };
 
     await TestBed.configureTestingModule({
       imports: [
@@ -67,34 +74,35 @@ describe('SettingsComponent', () => {
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: ModalMessageComponent, useValue: modalComponent },
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
-  beforeEach(fakeAsync(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(SettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
-  }));
+  });
 
-  it('should create', fakeAsync(() => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  }));
+  });
 
-  it('should update max level settings correctly', fakeAsync(() => {
+  it('should update max level settings correctly', () => {
     component.onMaxLevelChange(3);
 
     expect(component.selectedMaxLevel).toBe(3);
     expect(settingsService.setMaxLevel).toHaveBeenCalledWith(3);
-  }));
+  });
 
-  it('should handle max level reset to default', fakeAsync(() => {
+  it('should handle max level reset to default', () => {
     component.onMaxLevelChange(5);
 
     expect(component.selectedMaxLevel).toBe(5);
 
     // Remove localStorage when settings' maxLevel is set to activity's maxLevel
     expect(settingsService.setMaxLevel).toHaveBeenCalledWith(null);
-  }));
+  });
 });

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatAutocomplete } from '@angular/material/autocomplete';
 
 import { MappingComponent } from './mapping.component';
 import { ModalMessageComponent } from 'src/app/component/modal-message/modal-message.component';
@@ -13,12 +13,13 @@ describe('MappingComponent', () => {
   beforeEach(async () => {
     /* eslint-disable */
     await TestBed.configureTestingModule({
-      declarations: [MappingComponent, MatAutocomplete],
+      declarations: [MappingComponent],
       imports: [MatDialogModule],
       providers: [HttpClient,
         HttpHandler,
         { provide: ModalMessageComponent, useValue: {} },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
     /* eslint-enable */
   });

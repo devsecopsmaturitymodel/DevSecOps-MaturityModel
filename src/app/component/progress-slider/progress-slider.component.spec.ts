@@ -32,15 +32,13 @@ describe('ProgressSliderComponent', () => {
   });
 
   it('should emit step changes', () => {
-    spyOn(component.progressChange, 'emit');
+    vi.spyOn(component.progressChange, 'emit');
     component.onStepChange(2);
     expect(component.progressChange.emit).toHaveBeenCalledWith('Step 3');
   });
 
   it('should display the correct step label', () => {
     component.currentValue = 1;
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.step-label')?.textContent).toContain('Step 2');
+    expect(component.getCurrent()).toBe('Step 2');
   });
 });

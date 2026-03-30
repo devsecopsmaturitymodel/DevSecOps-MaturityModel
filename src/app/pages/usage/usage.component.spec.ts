@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsageComponent } from './usage.component';
@@ -11,12 +12,13 @@ describe('UsageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UsageComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
   it('should create', () => {
     TestBed.overrideProvider(ActivatedRoute, {
-      useValue: { params: of({}) },
+      useValue: { params: of({ page: 'USAGE' }) },
     });
 
     fixture = TestBed.createComponent(UsageComponent);

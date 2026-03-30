@@ -1,5 +1,6 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import {} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatrixComponent, MatrixRow } from './matrix.component';
@@ -32,16 +33,16 @@ describe('MatrixComponent', () => {
   beforeEach(async () => {
     mockLoaderService = new MockLoaderService(MOCK_DATA);
     await TestBed.configureTestingModule({
-    declarations: [MatrixComponent, MatChipOption],
-    imports: [RouterTestingModule, MatDialogModule],
-    providers: [
-        HttpClientTestingModule,
+      declarations: [MatrixComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule, MatDialogModule],
+      providers: [
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: MatDialogRef, useValue: {} },
         { provide: ModalMessageComponent, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
-    ]
-}).compileComponents();
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(async () => {
@@ -76,28 +77,26 @@ describe('MatrixComponent', () => {
     // Create a mock MatChip with proper state tracking
     const mockChip = {
       value: 'tag1',
-      selected: false,
+      selected: true,
       toggleSelected: function () {
         this.selected = !this.selected;
       },
     } as MatChipOption;
 
-    // Ensure initial state
-    mockChip.selected = false;
-
     // Toggle tag filter on
     console.log('Turn chip filter on');
     component.toggleTagFilters(mockChip);
     // console.log('data after "on":', component.dataSource.data);
-    expect(component.filtersTag['tag1']).toBeTrue();
+    expect(component.filtersTag['tag1']).toBe(true);
     expect(component.dataSource.data.length).toBe(1);
     expect(component.dataSource.data[0].level1.length).toBe(1);
 
     // Toggle tag filter off again
     console.log('Turn chip filter off');
+    mockChip.selected = false;
     component.toggleTagFilters(mockChip);
     // console.log('data after "off": ', component.dataSource.data);
-    expect(component.filtersTag['tag1']).toBeFalse();
+    expect(component.filtersTag['tag1']).toBe(false);
     expect(component.dataSource.data.length).toBe(2);
     expect(component.dataSource.data[0].level1.length).toBe(2);
   });

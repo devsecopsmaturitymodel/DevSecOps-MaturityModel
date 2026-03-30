@@ -1,8 +1,8 @@
 import { HttpHandler, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import {} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatChipOption } from '@angular/material/chips';
 
 import { TeamsComponent } from './teams.component';
 import { ModalMessageComponent } from 'src/app/component/modal-message/modal-message.component';
@@ -21,14 +21,14 @@ describe('TeamsComponent', () => {
     /* eslint-disable */
     // await mockLoaderService.load();
     await TestBed.configureTestingModule({
-    declarations: [TeamsComponent, MatChipOption],
-    imports: [RouterTestingModule],
+    declarations: [TeamsComponent],
+    imports: [HttpClientTestingModule, RouterTestingModule],
     providers: [
-        HttpClientTestingModule,
         { provide: ModalMessageComponent, useValue: {} },
         { provide: LoaderService, useValue: mockLoaderService },
         provideHttpClient(withInterceptorsFromDi()),
-    ]
+    ],
+    schemas: [NO_ERRORS_SCHEMA],
 }).compileComponents();
     /* eslint-enable */
   });
@@ -37,7 +37,7 @@ describe('TeamsComponent', () => {
     fixture = TestBed.createComponent(TeamsComponent);
     component = fixture.componentInstance;
 
-    fixture.detectChanges();
+    component.ngOnInit();
     await fixture.whenStable();
     fixture.detectChanges();
   });

@@ -10,7 +10,7 @@ describe('SettingsService', () => {
     localStorage.clear();
     TestBed.configureTestingModule({});
     service = TestBed.inject(SettingsService);
-    localStorageSpy = spyOn(localStorage, 'setItem').and.callThrough();
+    localStorageSpy = vi.spyOn(localStorage, 'setItem');
   });
 
   afterEach(() => {
