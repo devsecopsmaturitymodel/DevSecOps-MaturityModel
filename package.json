@@ -27,7 +27,7 @@
     "@angular/router": "^13.0.0",
     "@grafana/faro-web-sdk": "^1.12.2",
     "@grafana/faro-web-tracing": "^1.12.2",
-    "@ngneat/until-destroy": "^10.0.0-beta.0",
+    "@ngneat/until-destroy": "^10.0.0",
     "d3": "^7.5.0",
     "js-yaml": "^4.1.0",
     "markdown-it": "^13.0.1",
