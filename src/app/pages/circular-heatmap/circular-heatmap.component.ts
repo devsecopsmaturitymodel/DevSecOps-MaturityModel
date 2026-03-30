@@ -4,7 +4,7 @@ import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { MatLegacyChip as MatChip } from '@angular/material/legacy-chips';
+import { MatChipOption } from '@angular/material/chips';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import * as md from 'markdown-it';
@@ -208,30 +208,28 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     return filters;
   }
 
-  toggleTeamGroupFilter(chip: MatChip) {
+  toggleTeamGroupFilter(chip: MatChipOption) {
     let teamGroup = chip.value.trim();
     if (!chip.selected) {
-      chip.toggleSelected();
-      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: ${chip.selected}`);
-
-      // Update the team selections based on the team group selection
-      let selectedTeams: TeamName[] = [];
-      Object.keys(this.filtersTeams).forEach(key => {
-        this.filtersTeams[key] = this.teamGroups[teamGroup]?.includes(key) || false;
-        if (this.filtersTeams[key]) {
-          selectedTeams.push(key);
-        }
-        this.sectorService.setVisibleTeams(selectedTeams);
-      });
-      this.hasTeamsFilter = Object.values(this.filtersTeams).some(v => v === true);
-      this.reColorHeatmap();
-    } else {
-      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: already on`);
+      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: already off`);
+      return;
     }
+
+    console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: ${chip.selected}`);
+
+    let selectedTeams: TeamName[] = [];
+    Object.keys(this.filtersTeams).forEach(key => {
+      this.filtersTeams[key] = this.teamGroups[teamGroup]?.includes(key) || false;
+      if (this.filtersTeams[key]) {
+        selectedTeams.push(key);
+      }
+      this.sectorService.setVisibleTeams(selectedTeams);
+    });
+    this.hasTeamsFilter = Object.values(this.filtersTeams).some(v => v === true);
+    this.reColorHeatmap();
   }
 
-  toggleTeamFilter(chip: MatChip) {
-    chip.toggleSelected();
+  toggleTeamFilter(chip: MatChipOption) {
     this.filtersTeams[chip.value.trim()] = chip.selected;
     console.log(`${perfNow()}: Heat: Chip flip Team '${chip.value}: ${chip.selected}`);
 

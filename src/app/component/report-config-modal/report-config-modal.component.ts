@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   ReportConfig,
   ActivityAttributes,
@@ -57,9 +57,9 @@ export class ReportConfigModalComponent {
     return `${value}`;
   }
 
-  onWordCapChange(event: any): void {
-    if (event.value != null) {
-      this.config.descriptionWordCap = event.value;
+  onWordCapChange(value: number | null): void {
+    if (value != null) {
+      this.config.descriptionWordCap = value;
     }
   }
 

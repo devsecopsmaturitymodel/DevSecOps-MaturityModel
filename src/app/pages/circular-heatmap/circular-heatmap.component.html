@@ -34,31 +34,31 @@
             <mat-icon [class.hidden]="showFilters">filter_alt</mat-icon>
           </button>
           <div class="team-filter" [class.hidden]="!showFilters">
-            <mat-form-field class="team-chip-list">
-              <mat-label>Team Group Filter</mat-label>
-              <mat-chip-list selectable>
-                <mat-chip
-                  #chip="matChip"
+            <div class="team-chip-list">
+              <label>Team Group Filter</label>
+              <mat-chip-listbox>
+                <mat-chip-option
+                  #chip
                   *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
-                  (click)="toggleTeamGroupFilter(chip)"
+                  (selectionChange)="toggleTeamGroupFilter(chip)"
                   [selected]="filtersTeamGroups[group.key]">
                   {{ group.key }}
-                </mat-chip>
-              </mat-chip-list>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Team Filter</mat-label>
-              <mat-chip-list selectable multiple>
-                <mat-chip
-                  #chip="matChip"
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+            <div class="team-chip-list">
+              <label>Team Filter</label>
+              <mat-chip-listbox multiple>
+                <mat-chip-option
+                  #chip
                   *ngFor="let team of filtersTeams | keyvalue"
-                  (click)="toggleTeamFilter(chip)"
+                  (selectionChange)="toggleTeamFilter(chip)"
                   [value]="team.key"
                   [selected]="team.value">
                   {{ team.key }}
-                </mat-chip>
-              </mat-chip-list>
-            </mat-form-field>
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </div>
           </div>
         </div>
         <mat-card class="activity-card" *ngIf="showActivityCard">

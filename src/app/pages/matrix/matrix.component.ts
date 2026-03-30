@@ -1,11 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router, NavigationExtras } from '@angular/router';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { Activity, ActivityStore, Data } from 'src/app/model/activity-store';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { MatLegacyChip as MatChip, MatLegacyChipList as MatChipList } from '@angular/material/legacy-chips';
+import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { deepCopy } from 'src/app/util/util';
 import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
@@ -148,19 +148,17 @@ export class MatrixComponent implements OnInit {
     return matrixData;
   }
 
-  @ViewChild(MatChipList)
+  @ViewChild(MatChipListbox)
   chipsControl = new FormControl<string[]>(['chipsControl'], { nonNullable: true });
-  chipList!: MatChipList;
+  chipList!: MatChipListbox;
 
-  toggleTagFilters(chip: MatChip) {
-    chip.toggleSelected();
+  toggleTagFilters(chip: MatChipOption) {
     this.filtersTag[chip.value] = chip.selected;
     console.log(`${perfNow()}: Matrix: Chip flip Tag '${chip.value}: ${chip.selected}`);
     this.updateActivitiesBeingDisplayed();
   }
 
-  toggleDimensionFilters(chip: MatChip) {
-    chip.toggleSelected();
+  toggleDimensionFilters(chip: MatChipOption) {
     this.filtersDim[chip.value] = chip.selected;
     console.log(`${perfNow()}: Matrix: Chip flip Dim '${chip.value}: ${chip.selected}`);
     this.updateActivitiesBeingDisplayed();

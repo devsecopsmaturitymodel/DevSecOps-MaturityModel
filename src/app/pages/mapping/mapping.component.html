@@ -3,15 +3,14 @@
   <div class="actions-row">
     <mat-form-field appearance="outline" class="search-box">
       <mat-label>Search</mat-label>
-      <mat-chip-list #chipList aria-label="Search terms">
-        <mat-chip
+      <mat-chip-grid #chipList aria-label="Search terms">
+        <mat-chip-row
           *ngFor="let term of searchTerms"
-          [selectable]="false"
           [removable]="true"
           (removed)="removeSearchTerm(term)">
           {{ term }}
           <button matChipRemove><mat-icon>cancel</mat-icon></button>
-        </mat-chip>
+        </mat-chip-row>
         <input
           matInput
           [formControl]="searchCtrl"
@@ -20,7 +19,7 @@
           (keydown)="applyFilter($event)"
           placeholder="Type and press Enter..."
           [matChipInputAddOnBlur]="false" />
-      </mat-chip-list>
+      </mat-chip-grid>
       <button mat-icon-button matSuffix *ngIf="searchTerms.length" (click)="clearFilter()">
         <mat-icon>close</mat-icon>
       </button>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,69 +23,63 @@ import { TopHeaderComponent } from './component/top-header/top-header.component'
 import { ActivityDescriptionComponent } from './component/activity-description/activity-description.component';
 import { ActivityDescriptionPageComponent } from './pages/activity-description/activity-description-page.component';
 import { LoaderService } from './service/loader/data-loader.service';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MarkdownViewerComponent } from './component/markdown-viewer/markdown-viewer.component';
 import { DependencyGraphComponent } from './component/dependency-graph/dependency-graph.component';
 import { ToStringValuePipe } from './pipe/to-string-value.pipe';
 import { ModalMessageComponent } from './component/modal-message/modal-message.component';
 import { ProgressSliderComponent } from './component/progress-slider/progress-slider.component';
 import { KpiComponent } from './component/kpi/kpi.component';
-import { MatLegacyDialogModule as MatDialogModule, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-groups-editor.module';
-import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReportComponent } from './pages/report/report.component';
 import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
 import { TeamSelectorComponent } from './component/team-selector/team-selector.component';
 import { ColResizeDirective } from './directive/col-resize.directive';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LogoComponent,
-    MatrixComponent,
-    SidenavButtonsComponent,
-    TopHeaderComponent,
-    ActivityDescriptionComponent,
-    ActivityDescriptionPageComponent,
-    CircularHeatmapComponent,
-    MappingComponent,
-    MarkdownViewerComponent,
-    UsageComponent,
-    AboutUsComponent,
-    DependencyGraphComponent,
-    TeamsComponent,
-    ToStringValuePipe,
-    UserdayComponent,
-    RoadmapComponent,
-    ModalMessageComponent,
-    ProgressSliderComponent,
-    KpiComponent,
-    SettingsComponent,
-    ReportComponent,
-    ReportConfigModalComponent,
-    TeamSelectorComponent,
-    ColResizeDirective,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatMenuModule,
-    FormsModule,
-    HttpClientModule,
-    TeamsGroupsEditorModule,
-    MatTooltipModule,
-  ],
-  providers: [
-    LoaderService,
-    ModalMessageComponent,
-    { provide: MAT_DIALOG_DATA, useValue: {} },
-    { provide: MatDialogRef, useValue: { close: (dialogResult: any) => {} } },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LogoComponent,
+        MatrixComponent,
+        SidenavButtonsComponent,
+        TopHeaderComponent,
+        ActivityDescriptionComponent,
+        ActivityDescriptionPageComponent,
+        CircularHeatmapComponent,
+        MappingComponent,
+        MarkdownViewerComponent,
+        UsageComponent,
+        AboutUsComponent,
+        DependencyGraphComponent,
+        TeamsComponent,
+        ToStringValuePipe,
+        UserdayComponent,
+        RoadmapComponent,
+        ModalMessageComponent,
+        ProgressSliderComponent,
+        KpiComponent,
+        SettingsComponent,
+        ReportComponent,
+        ReportConfigModalComponent,
+        TeamSelectorComponent,
+        ColResizeDirective,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatMenuModule,
+        FormsModule,
+        TeamsGroupsEditorModule,
+        MatTooltipModule], providers: [
+        LoaderService,
+        ModalMessageComponent,
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: { close: (dialogResult: any) => { } } },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

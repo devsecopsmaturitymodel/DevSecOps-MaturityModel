@@ -1,10 +1,10 @@
 import { Inject, Component, OnInit } from '@angular/core';
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogRef as MatDialogRef,
-  MatLegacyDialog as MatDialog,
-  MatLegacyDialogConfig as MatDialogConfig,
-} from '@angular/material/legacy-dialog';
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+  MatDialogConfig,
+} from '@angular/material/dialog';
 import * as md from 'markdown-it';
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { NotificationService } from 'src/app/service/notification.service';

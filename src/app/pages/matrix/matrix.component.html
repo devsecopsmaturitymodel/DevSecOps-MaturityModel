@@ -1,31 +1,31 @@
 <div class="content">
   <app-top-header section="Matrix"></app-top-header>
-  <mat-form-field class="activity-chip-list">
-    <mat-label>Dimension Filter</mat-label>
-    <mat-chip-list #chipList selectable multiple>
-      <mat-chip
-        #c="matChip"
+  <div class="activity-chip-list">
+    <label>Dimension Filter</label>
+    <mat-chip-listbox #chipList multiple>
+      <mat-chip-option
+        #c
         *ngFor="let dim of filtersDim | keyvalue"
-        (click)="toggleDimensionFilters(c)"
+        (selectionChange)="toggleDimensionFilters(c)"
         [value]="dim.key"
         [selected]="dim.value">
         {{ dim.key }}
-      </mat-chip>
-    </mat-chip-list>
-  </mat-form-field>
-  <mat-form-field class="activity-chip-list">
-    <mat-label>Activity Tag Filter</mat-label>
-    <mat-chip-list selectable multiple>
-      <mat-chip
-        #c="matChip"
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+  <div class="activity-chip-list">
+    <label>Activity Tag Filter</label>
+    <mat-chip-listbox multiple>
+      <mat-chip-option
+        #c
         *ngFor="let tag of filtersTag | keyvalue"
-        (click)="toggleTagFilters(c)"
+        (selectionChange)="toggleTagFilters(c)"
         [value]="tag.key"
         [selected]="tag.value">
         {{ tag.key }}
-      </mat-chip>
-    </mat-chip-list>
-  </mat-form-field>
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </div>
 
   <button class="reset-button" (click)="reset()">RESET</button>
 

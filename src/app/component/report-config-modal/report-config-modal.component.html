@@ -130,10 +130,11 @@
         min="5"
         [max]="maxWordCap"
         step="5"
-        thumbLabel
-        [displayWith]="wordCapLabel"
-        [value]="config.descriptionWordCap"
-        (input)="onWordCapChange($event)">
+        discrete>
+        <input
+          matSliderThumb
+          [value]="config.descriptionWordCap"
+          (valueChange)="onWordCapChange($event)" />
       </mat-slider>
     </div>
   </div>

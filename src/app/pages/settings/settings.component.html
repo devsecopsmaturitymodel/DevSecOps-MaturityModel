@@ -26,10 +26,13 @@
           min="1"
           [max]="dataStoreMaxLevel || 5"
           step="1"
-          [value]="selectedMaxLevel"
-          [tickInterval]="1"
-          class="max-slider"
-          (input)="onMaxLevelChange($event.value)">
+          discrete
+          showTickMarks
+          class="max-slider">
+          <input
+            matSliderThumb
+            [value]="selectedMaxLevel"
+            (valueChange)="onMaxLevelChange($event)" />
         </mat-slider>
         <span class="caption">{{ selectedMaxLevelCaption }}</span>
       </div>

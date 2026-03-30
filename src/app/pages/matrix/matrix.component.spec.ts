@@ -1,11 +1,11 @@
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {} from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatrixComponent, MatrixRow } from './matrix.component';
-import { MatLegacyChip as MatChip } from '@angular/material/legacy-chips';
+import { MatChipOption } from '@angular/material/chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
-import { MatLegacyDialogModule as MatDialogModule, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { MockLoaderService } from 'src/app/service/loader/mock-data-loader.service';
 
@@ -32,15 +32,16 @@ describe('MatrixComponent', () => {
   beforeEach(async () => {
     mockLoaderService = new MockLoaderService(MOCK_DATA);
     await TestBed.configureTestingModule({
-      declarations: [MatrixComponent, MatChip],
-      imports: [RouterTestingModule, HttpClientModule, MatDialogModule],
-      providers: [
+    declarations: [MatrixComponent, MatChipOption],
+    imports: [RouterTestingModule, MatDialogModule],
+    providers: [
         HttpClientTestingModule,
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: MatDialogRef, useValue: {} },
         { provide: ModalMessageComponent, useValue: {} },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+}).compileComponents();
   });
 
   beforeEach(async () => {
@@ -79,7 +80,7 @@ describe('MatrixComponent', () => {
       toggleSelected: function () {
         this.selected = !this.selected;
       },
-    } as MatChip;
+    } as MatChipOption;
 
     // Ensure initial state
     mockChip.selected = false;
