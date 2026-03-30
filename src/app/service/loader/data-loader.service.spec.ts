@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { LoaderService } from './data-loader.service';
 import { YamlService } from '../yaml-loader/yaml-loader.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('DataLoaderService', () => {
   let service: LoaderService;

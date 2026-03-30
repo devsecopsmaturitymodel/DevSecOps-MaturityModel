@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatLegacySliderModule as MatSliderModule } from '@angular/material/legacy-slider';
 import { ProgressSliderComponent } from './progress-slider.component';
 
 describe('ProgressSliderComponent', () => {

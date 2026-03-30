@@ -4,7 +4,7 @@ import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { MatChip } from '@angular/material/chips';
+import { MatLegacyChip as MatChip } from '@angular/material/legacy-chips';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import * as md from 'markdown-it';

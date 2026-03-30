@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { CircularHeatmapComponent } from './circular-heatmap.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatChip } from '@angular/material/chips';
+import { MatLegacyChip as MatChip } from '@angular/material/legacy-chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('CircularHeatmapComponent', () => {
   let component: CircularHeatmapComponent;
