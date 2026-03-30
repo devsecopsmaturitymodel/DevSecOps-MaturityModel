@@ -2,12 +2,30 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ThemeService } from './service/theme.service';
 import { TitleService } from './service/title.service';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { LogoComponent } from './component/logo/logo.component';
+import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
+import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  imports: [
+    MatToolbar,
+    MatIconButton,
+    MatIcon,
+    RouterLink,
+    LogoComponent,
+    MatSidenavContainer,
+    MatSidenav,
+    SidenavButtonsComponent,
+    MatSidenavContent,
+    RouterOutlet,
+  ],
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = '';
