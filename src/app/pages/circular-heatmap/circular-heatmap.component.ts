@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
 import { MatChipOption } from '@angular/material/chips';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
-import * as md from 'markdown-it';
+import MarkdownIt from 'markdown-it';
 import {
   ModalMessageComponent,
   DialogInfo,
@@ -37,7 +37,7 @@ import { SettingsService } from 'src/app/service/settings/settings.service';
 })
 export class CircularHeatmapComponent implements OnInit, OnDestroy {
   Routing: string = '/activity-description';
-  markdown: md = md();
+  markdown: MarkdownIt = new MarkdownIt();
   showOverlay: boolean = false;
   showFilters: boolean = true;
   showActivityCard: any = null;

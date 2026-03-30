@@ -5,7 +5,7 @@ import {
   MatDialog,
   MatDialogConfig,
 } from '@angular/material/dialog';
-import * as md from 'markdown-it';
+import MarkdownIt from 'markdown-it';
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { NotificationService } from 'src/app/service/notification.service';
 
@@ -17,7 +17,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class ModalMessageComponent implements OnInit {
   data: DialogInfo;
-  markdown: md = md();
+  markdown: MarkdownIt = new MarkdownIt();
 
   DSOMM_host: string = 'https://github.com/devsecopsmaturitymodel';
   DSOMM_url: string = `${this.DSOMM_host}/DevSecOps-MaturityModel-data`;

@@ -1,6 +1,6 @@
-import * as md from 'markdown-it';
+import MarkdownIt from 'markdown-it';
 
-let markdown: md = md({ html: true });
+let markdown: MarkdownIt = new MarkdownIt({ html: true });
 
 export class MarkdownText {
   private plain: string | undefined;

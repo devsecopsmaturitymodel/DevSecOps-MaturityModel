@@ -42,12 +42,12 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^21.2.5",
     "@angular-eslint/builder": "^21.3.1",
     "@angular-eslint/eslint-plugin": "^21.3.1",
     "@angular-eslint/eslint-plugin-template": "^21.3.1",
     "@angular-eslint/schematics": "^21.3.1",
     "@angular-eslint/template-parser": "^21.3.1",
+    "@angular/build": "^21.2.5",
     "@angular/compiler-cli": "^21.2.6",
     "@grafana/faro-webpack-plugin": "^0.1.1",
     "@playwright/test": "^1.54.2",

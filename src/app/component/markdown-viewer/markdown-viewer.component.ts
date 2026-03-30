@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as md from 'markdown-it';
+import MarkdownIt from 'markdown-it';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MarkdownViewerComponent implements OnInit {
   @Input() MDFile: string = '';
-  markdown: md = md({
+  markdown: MarkdownIt = new MarkdownIt({
     html: true,
   });
   markdownURI: any;
