@@ -101,7 +101,7 @@
                     max="100"
                     class="progress-score"
                     formControlName="score"
-                    [disabled]="getDefinitionGroup(i).get('mandatory')?.value" />
+                    [disabled]="getDefinitionGroup(i).controls.mandatory.value" />
                   <span matSuffix>%</span>
                 </mat-form-field>
 
@@ -120,13 +120,13 @@
                 <div class="grid-cell action-buttons edit">
                   <mat-icon
                     title="You cannot remove this definition"
-                    *ngIf="getDefinitionGroup(i).get('mandatory')?.value"
+                    *ngIf="getDefinitionGroup(i).controls.mandatory.value"
                     class="material-icons-outlined mandatory-icon"
                     >lock</mat-icon
                   >
                   <button
                     title="Delete"
-                    *ngIf="!getDefinitionGroup(i).get('mandatory')?.value"
+                    *ngIf="!getDefinitionGroup(i).controls.mandatory.value"
                     mat-icon-button
                     (click)="removeProgressDefinition(i)"
                     title="Delete definition">

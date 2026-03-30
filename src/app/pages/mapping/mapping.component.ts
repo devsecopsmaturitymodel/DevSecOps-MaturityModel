@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import {
@@ -75,7 +75,7 @@ export class MappingComponent implements OnInit, AfterViewInit {
   dataStore: DataStore = new DataStore();
 
   searchTerms: string[] = [];
-  searchCtrl = new UntypedFormControl('');
+  searchCtrl = new FormControl('', { nonNullable: true });
 
   constructor(
     private loader: LoaderService,

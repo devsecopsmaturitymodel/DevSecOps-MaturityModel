@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, AbstractControl } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  NonNullableFormBuilder,
+} from '@angular/forms';
 import { SettingsService } from '../../service/settings/settings.service';
 import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
@@ -27,6 +33,19 @@ interface RemoteReleaseCheck {
   latestCheckError: string | null;
 }
 
+type ProgressDefinitionFormControls = {
+  pid: FormControl<number>;
+  key: FormControl<string>;
+  score: FormControl<number>;
+  definition: FormControl<string>;
+  mandatory: FormControl<boolean>;
+};
+
+type ProgressDefinitionFormGroup = FormGroup<ProgressDefinitionFormControls>;
+type ProgressDefinitionsForm = FormGroup<{
+  definitions: FormArray<ProgressDefinitionFormGroup>;
+}>;
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -38,7 +57,7 @@ export class SettingsComponent implements OnInit {
   dataStoreMaxLevel!: number;
   selectedMaxLevel!: number;
   selectedMaxLevelCaption: String = '';
-  progressDefinitionsForm!: UntypedFormGroup;
+  progressDefinitionsForm!: ProgressDefinitionsForm;
   tempProgressDefinitions: ProgressDefinitions = {};
   editingProgressDefinitions: boolean = false;
   remoteReleaseCheck: RemoteReleaseCheck = {
@@ -72,7 +91,7 @@ export class SettingsComponent implements OnInit {
   constructor(
     private loader: LoaderService,
     private settings: SettingsService,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     public modal: ModalMessageComponent,
     private githubService: GithubService
   ) {}
@@ -203,17 +222,33 @@ export class SettingsComponent implements OnInit {
   // === Progress Definitions ===
   private initProgressDefinitionsForm(): void {
     this.progressDefinitionsForm = this.formBuilder.group({
-      definitions: this.formBuilder.array([]),
+      definitions: this.formBuilder.array<ProgressDefinitionFormGroup>([]),
     });
   }
 
-  get definitionsFormArray(): UntypedFormArray {
-    return this.progressDefinitionsForm.get('definitions') as UntypedFormArray;
+  private createProgressDefinitionGroup(config: {
+    pid: number;
+    key: string;
+    score: number;
+    definition: string;
+    mandatory: boolean;
+  }): ProgressDefinitionFormGroup {
+    return this.formBuilder.group({
+      pid: this.formBuilder.control(config.pid),
+      key: this.formBuilder.control(config.key),
+      score: this.formBuilder.control(config.score),
+      definition: this.formBuilder.control(config.definition),
+      mandatory: this.formBuilder.control(config.mandatory),
+    });
+  }
+
+  get definitionsFormArray(): FormArray<ProgressDefinitionFormGroup> {
+    return this.progressDefinitionsForm.controls.definitions;
   }
 
   // Return the FormGroup for a specific index in the definitions FormArray.
-  getDefinitionGroup(index: number): UntypedFormGroup {
-    return this.definitionsFormArray.at(index) as UntypedFormGroup;
+  getDefinitionGroup(index: number): ProgressDefinitionFormGroup {
+    return this.definitionsFormArray.at(index);
   }
 
   private updateProgressDefinitionsForm(): void {
@@ -221,11 +256,11 @@ export class SettingsComponent implements OnInit {
 
     Object.entries(this.tempProgressDefinitions).forEach(([key, progDef], index) => {
       this.definitionsFormArray.push(
-        this.formBuilder.group({
-          pid: [index],
-          key: [key],
-          score: [progDef.score * 100],
-          definition: [progDef.definition],
+        this.createProgressDefinitionGroup({
+          pid: index,
+          key,
+          score: progDef.score * 100,
+          definition: progDef.definition,
           mandatory: progDef.score == 1 || progDef.score == 0,
         })
       );
@@ -234,16 +269,17 @@ export class SettingsComponent implements OnInit {
 
   addProgressDefinition(): void {
     let index: number = this.definitionsFormArray.length - 1;
-    let score: number = this.getFormGroupValue(this.definitionsFormArray.at(index - 1), 'score');
+    let score = this.definitionsFormArray.at(index - 1).controls.score.value;
     score = Math.trunc((score + 100) / 2);
 
     this.definitionsFormArray.insert(
       index,
-      this.formBuilder.group({
-        pid: [-1], // -1 indicates a new item
-        key: [''],
-        score: [score],
-        definition: [''],
+      this.createProgressDefinitionGroup({
+        pid: -1,
+        key: '',
+        score,
+        definition: '',
+        mandatory: false,
       })
     );
   }
@@ -273,11 +309,11 @@ export class SettingsComponent implements OnInit {
     const renamedItems: Array<{ originalKey: string; newKey: string; pid: number }> = [];
 
     this.definitionsFormArray.controls.forEach(control => {
-      const formGroup = control as UntypedFormGroup;
-      const pid = formGroup.get('pid')?.value;
-      const key = formGroup.get('key')?.value;
-      const score = formGroup.get('score')?.value / 100; // Convert from percentage back to decimal
-      const definition = formGroup.get('definition')?.value;
+      const formGroup = control;
+      const pid = formGroup.controls.pid.value;
+      const key = formGroup.controls.key.value;
+      const score = formGroup.controls.score.value / 100; // Convert from percentage back to decimal
+      const definition = formGroup.controls.definition.value;
 
       if (key && key.trim()) {
         // Only add if key is not empty
@@ -335,8 +371,8 @@ export class SettingsComponent implements OnInit {
     this.editingProgressDefinitions = !this.editingProgressDefinitions;
   }
 
-  getFormGroupValue(control: AbstractControl, field: string): any {
-    return (control as UntypedFormGroup).get(field)?.value;
+  getFormGroupValue(control: AbstractControl, field: keyof ProgressDefinitionFormControls) {
+    return (control as ProgressDefinitionFormGroup).controls[field].value;
   }
 
   /**

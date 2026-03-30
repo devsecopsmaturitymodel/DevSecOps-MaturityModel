@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, NavigationExtras } from '@angular/router';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
@@ -149,7 +149,7 @@ export class MatrixComponent implements OnInit {
   }
 
   @ViewChild(MatChipList)
-  chipsControl = new UntypedFormControl(['chipsControl']);
+  chipsControl = new FormControl<string[]>(['chipsControl'], { nonNullable: true });
   chipList!: MatChipList;
 
   toggleTagFilters(chip: MatChip) {
