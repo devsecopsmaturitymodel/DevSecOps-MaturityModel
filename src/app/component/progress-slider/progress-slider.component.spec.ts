@@ -9,8 +9,7 @@ describe('ProgressSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProgressSliderComponent],
-      imports: [FormsModule, MatSliderModule],
+      imports: [FormsModule, MatSliderModule, ProgressSliderComponent],
     }).compileComponents();
   });
 

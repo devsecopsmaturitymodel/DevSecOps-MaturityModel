@@ -6,8 +6,13 @@ import { MaterialModule } from '../../material/material.module';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [TeamsGroupsEditorComponent, SelectableListComponent],
-  imports: [CommonModule, MaterialModule, FormsModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    TeamsGroupsEditorComponent,
+    SelectableListComponent,
+  ],
   exports: [TeamsGroupsEditorComponent],
 })
 export class TeamsGroupsEditorModule {}

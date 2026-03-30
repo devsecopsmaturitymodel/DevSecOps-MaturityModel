@@ -3,10 +3,9 @@ import MarkdownIt from 'markdown-it';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-    selector: 'app-markdown-viewer',
-    templateUrl: './markdown-viewer.component.html',
-    styleUrls: ['./markdown-viewer.component.css'],
-    standalone: false
+  selector: 'app-markdown-viewer',
+  templateUrl: './markdown-viewer.component.html',
+  styleUrls: ['./markdown-viewer.component.css'],
 })
 export class MarkdownViewerComponent implements OnInit {
   @Input() MDFile: string = '';

@@ -5,6 +5,8 @@ import {
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { SettingsService } from '../../service/settings/settings.service';
 import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
@@ -18,6 +20,16 @@ import {
 import { dateStr, deepCopy } from 'src/app/util/util';
 import { MetaStore } from 'src/app/model/meta-store';
 import { ProgressStore } from 'src/app/model/progress-store';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatFormField, MatLabel, MatInput, MatSuffix } from '@angular/material/input';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatSlider, MatSliderThumb } from '@angular/material/slider';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 interface RemoteReleaseInfo {
   tagName: string;
@@ -47,10 +59,29 @@ type ProgressDefinitionsForm = FormGroup<{
 }>;
 
 @Component({
-    selector: 'app-settings',
-    templateUrl: './settings.component.html',
-    styleUrls: ['./settings.component.css'],
-    standalone: false
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.css'],
+  imports: [
+    TopHeaderComponent,
+    MatCard,
+    MatCardContent,
+    MatFormField,
+    MatSelect,
+    FormsModule,
+    MatOption,
+    MatSlider,
+    MatSliderThumb,
+    MatIconButton,
+    MatIcon,
+    ReactiveFormsModule,
+    MatLabel,
+    MatInput,
+    MatSuffix,
+    CdkTextareaAutosize,
+    MatButton,
+    MatProgressSpinner,
+  ],
 })
 export class SettingsComponent implements OnInit {
   meta!: MetaStore;

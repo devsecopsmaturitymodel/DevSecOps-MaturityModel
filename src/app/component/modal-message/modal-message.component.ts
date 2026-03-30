@@ -4,16 +4,29 @@ import {
   MatDialogRef,
   MatDialog,
   MatDialogConfig,
+  MatDialogContent,
+  MatDialogTitle,
+  MatDialogActions,
+  MatDialogClose,
 } from '@angular/material/dialog';
 import MarkdownIt from 'markdown-it';
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { NotificationService } from 'src/app/service/notification.service';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-    selector: 'app-modal-message',
-    templateUrl: './modal-message.component.html',
-    styleUrls: ['./modal-message.component.css'],
-    standalone: false
+  selector: 'app-modal-message',
+  templateUrl: './modal-message.component.html',
+  styleUrls: ['./modal-message.component.css'],
+  imports: [
+    CdkScrollable,
+    MatDialogContent,
+    MatDialogTitle,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+  ],
 })
 export class ModalMessageComponent implements OnInit {
   data: DialogInfo;

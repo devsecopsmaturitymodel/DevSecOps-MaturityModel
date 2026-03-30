@@ -46,9 +46,9 @@ let mockData = {
 };
 
 @Component({
-    selector: 'app-dependency-graph',
-    template: '',
-    standalone: false
+  selector: 'app-dependency-graph',
+  template: '',
+  imports: [RouterTestingModule, MaterialModule, NoopAnimationsModule],
 })
 class DependencyGraphStubComponent {
   @Input() activityName: string = '';
@@ -70,8 +70,13 @@ describe('ActivityDescriptionComponent', () => {
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: LoaderService, useValue: mockLoaderService },
       ],
-      imports: [RouterTestingModule, MaterialModule, NoopAnimationsModule],
-      declarations: [ActivityDescriptionComponent, DependencyGraphStubComponent],
+      imports: [
+        RouterTestingModule,
+        MaterialModule,
+        NoopAnimationsModule,
+        ActivityDescriptionComponent,
+        DependencyGraphStubComponent,
+      ],
     }).compileComponents();
   });
 
@@ -134,7 +139,9 @@ describe('ActivityDescriptionComponent', () => {
     expect(HTMLElement.querySelector('#risk')?.textContent).toContain(testRisk);
     expect(HTMLElement.querySelector('#measure')?.textContent).toContain(testMeasure);
     expect(HTMLElement.querySelector('#assessment')?.textContent).toContain(testAssessment);
-    expect(HTMLElement.querySelector('#implementationGuide')?.textContent).toContain(testImplementationGuide); // eslint-disable-line
+    expect(HTMLElement.querySelector('#implementationGuide')?.textContent).toContain(
+      testImplementationGuide
+    ); // eslint-disable-line
   });
 
   /*

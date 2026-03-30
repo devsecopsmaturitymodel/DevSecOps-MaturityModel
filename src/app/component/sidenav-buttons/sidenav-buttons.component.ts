@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatIconRegistry, MatIcon } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GITHUB_SVG } from '../../../assets/svg_icons';
 import { ThemeService } from '../../service/theme.service';
+import { MatNavList, MatListItem, MatDivider, MatList } from '@angular/material/list';
+import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-sidenav-buttons',
-    templateUrl: './sidenav-buttons.component.html',
-    styleUrls: ['./sidenav-buttons.component.css'],
-    standalone: false
+  selector: 'app-sidenav-buttons',
+  templateUrl: './sidenav-buttons.component.html',
+  styleUrls: ['./sidenav-buttons.component.css'],
+  imports: [MatNavList, MatListItem, RouterLink, MatIcon, MatDivider, MatList],
 })
 export class SidenavButtonsComponent implements OnInit {
   Options: string[] = [

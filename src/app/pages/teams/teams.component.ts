@@ -1,6 +1,20 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatNoDataRow,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatFooterRow,
+} from '@angular/material/table';
 import { sum } from 'd3';
 import {
   DialogInfo,
@@ -21,12 +35,37 @@ import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
 import { downloadYamlFile } from 'src/app/util/download';
 import { isEmptyObj, perfNow, dateStr, uniqueCount } from 'src/app/util/util';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
+import { TeamsGroupsEditorComponent } from '../../component/teams-groups-editor/teams-groups-editor.component';
+import { MatButton } from '@angular/material/button';
+import { KpiComponent } from '../../component/kpi/kpi.component';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-teams',
-    templateUrl: './teams.component.html',
-    styleUrls: ['./teams.component.css'],
-    standalone: false
+  selector: 'app-teams',
+  templateUrl: './teams.component.html',
+  styleUrls: ['./teams.component.css'],
+  imports: [
+    TopHeaderComponent,
+    TeamsGroupsEditorComponent,
+    MatButton,
+    KpiComponent,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatIcon,
+    MatNoDataRow,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatFooterRow,
+  ],
 })
 export class TeamsComponent implements OnInit, AfterViewInit {
   dateStr = dateStr;
@@ -41,7 +80,8 @@ export class TeamsComponent implements OnInit, AfterViewInit {
   infoTeams: TeamNames = [];
   info: Record<string, TeamSummary> = {};
 
-  dataSource: MatTableDataSource<TeamSummaryActivityProgress> = new MatTableDataSource<TeamSummaryActivityProgress>([]); // eslint-disable-line
+  dataSource: MatTableDataSource<TeamSummaryActivityProgress> =
+    new MatTableDataSource<TeamSummaryActivityProgress>([]); // eslint-disable-line
   allColumnNames: string[] = [];
   progressColumnNames: string[] = [];
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
@@ -197,9 +237,12 @@ export class TeamsComponent implements OnInit, AfterViewInit {
 
   makeTeamSummary(name: string, teams: TeamNames): TeamSummary {
     /* eslint-disable */
-    let activitiesStarted: progressStoreMapping[] = this.dataStore?.progressStore?.getActivitiesStartedForTeams(teams) || [];
-    let activitiesInProgress: progressStoreMapping[] = this.dataStore?.progressStore?.getActivitiesInProgressForTeams(teams) || [];
-    let activitiesCompleted: progressStoreMapping[] = this.dataStore?.progressStore?.getActivitiesCompletedForTeams(teams) || [];
+    let activitiesStarted: progressStoreMapping[] =
+      this.dataStore?.progressStore?.getActivitiesStartedForTeams(teams) || [];
+    let activitiesInProgress: progressStoreMapping[] =
+      this.dataStore?.progressStore?.getActivitiesInProgressForTeams(teams) || [];
+    let activitiesCompleted: progressStoreMapping[] =
+      this.dataStore?.progressStore?.getActivitiesCompletedForTeams(teams) || [];
 
     let summary: TeamSummary = {
       teams,
@@ -210,14 +253,23 @@ export class TeamsComponent implements OnInit, AfterViewInit {
       uniqueActivitiesInProgressCount: 0,
     };
     var _self = this;
-    summary.activitiesCompleted = activitiesCompleted.map(activityProgress => _self.mapIncludeActivity(activityProgress));
-    summary.activitiesInProgress = activitiesInProgress.map(activityProgress => _self.mapIncludeActivity(activityProgress));
-    summary.uniqueActivitiesCompletedCount = uniqueCount(summary.activitiesCompleted.map(item => item.activity.uuid));
-    summary.uniqueActivitiesInProgressCount = uniqueCount(summary.activitiesInProgress.map(item => item.activity.uuid));
+    summary.activitiesCompleted = activitiesCompleted.map(activityProgress =>
+      _self.mapIncludeActivity(activityProgress)
+    );
+    summary.activitiesInProgress = activitiesInProgress.map(activityProgress =>
+      _self.mapIncludeActivity(activityProgress)
+    );
+    summary.uniqueActivitiesCompletedCount = uniqueCount(
+      summary.activitiesCompleted.map(item => item.activity.uuid)
+    );
+    summary.uniqueActivitiesInProgressCount = uniqueCount(
+      summary.activitiesInProgress.map(item => item.activity.uuid)
+    );
     if (activitiesStarted.length == 0) {
       summary.lastUpdated = null;
     } else {
-      summary.lastUpdated = activitiesStarted.map(activityProgress => _self.mapIncludeActivity(activityProgress).lastUpdated)
+      summary.lastUpdated = activitiesStarted
+        .map(activityProgress => _self.mapIncludeActivity(activityProgress).lastUpdated)
         // .map(activityProgress => activityProgress.lastUpdated)
         .reduce((max, current) => (current > max ? current : max));
     }

@@ -9,8 +9,7 @@ describe('DependencyGraphComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DependencyGraphComponent],
-      imports: [MatDialogModule],
+      imports: [MatDialogModule, DependencyGraphComponent],
       providers: [HttpClient, HttpHandler],
     }).compileComponents();
   });

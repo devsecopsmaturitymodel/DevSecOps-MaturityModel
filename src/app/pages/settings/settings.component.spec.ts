@@ -65,8 +65,8 @@ describe('SettingsComponent', () => {
         MatCardModule,
         MatIconModule,
         MatButtonModule,
+        SettingsComponent,
       ],
-      declarations: [SettingsComponent],
       providers: [
         HttpClient,
         HttpHandler,

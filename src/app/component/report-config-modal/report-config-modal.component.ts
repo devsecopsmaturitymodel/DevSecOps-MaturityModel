@@ -1,5 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import {
   ReportConfig,
   ActivityAttributes,
@@ -8,6 +14,17 @@ import {
 } from '../../model/report-config';
 import { Activity } from '../../model/activity-store';
 import { ProgressTitle, TeamGroups } from '../../model/types';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatButtonToggleGroup, MatButtonToggle } from '@angular/material/button-toggle';
+import { MatDivider } from '@angular/material/list';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatSlider, MatSliderThumb } from '@angular/material/slider';
+import { MatFormField, MatLabel, MatInput, MatSuffix } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { TeamSelectorComponent } from '../team-selector/team-selector.component';
+import { MatButton } from '@angular/material/button';
 
 export interface ReportConfigModalData {
   config: ReportConfig;
@@ -20,10 +37,30 @@ export interface ReportConfigModalData {
 }
 
 @Component({
-    selector: 'app-report-config-modal',
-    templateUrl: './report-config-modal.component.html',
-    styleUrls: ['./report-config-modal.component.css'],
-    standalone: false
+  selector: 'app-report-config-modal',
+  templateUrl: './report-config-modal.component.html',
+  styleUrls: ['./report-config-modal.component.css'],
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    MatDivider,
+    MatCheckbox,
+    MatIcon,
+    MatTooltip,
+    MatSlider,
+    MatSliderThumb,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    MatSuffix,
+    TeamSelectorComponent,
+    MatDialogActions,
+    MatButton,
+  ],
 })
 export class ReportConfigModalComponent {
   config: ReportConfig;

@@ -17,6 +17,12 @@ import {
   ReportConfigModalData,
 } from '../../component/report-config-modal/report-config-modal.component';
 import { ProgressTitle, TeamGroups } from '../../model/types';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { TeamSelectorComponent } from '../../component/team-selector/team-selector.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ColResizeDirective } from '../../directive/col-resize.directive';
 
 export interface ReportSubDimension {
   name: string;
@@ -36,10 +42,17 @@ export interface LevelOverview {
 }
 
 @Component({
-    selector: 'app-report',
-    templateUrl: './report.component.html',
-    styleUrls: ['./report.component.css'],
-    standalone: false
+  selector: 'app-report',
+  templateUrl: './report.component.html',
+  styleUrls: ['./report.component.css'],
+  imports: [
+    TopHeaderComponent,
+    MatButton,
+    MatIcon,
+    TeamSelectorComponent,
+    MatProgressSpinner,
+    ColResizeDirective,
+  ],
 })
 export class ReportComponent implements OnInit {
   reportConfig: ReportConfig;

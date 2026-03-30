@@ -34,10 +34,9 @@ interface ThemeColors {
 }
 
 @Component({
-    selector: 'app-dependency-graph',
-    templateUrl: './dependency-graph.component.html',
-    styleUrls: ['./dependency-graph.component.css'],
-    standalone: false
+  selector: 'app-dependency-graph',
+  templateUrl: './dependency-graph.component.html',
+  styleUrls: ['./dependency-graph.component.css'],
 })
 export class DependencyGraphComponent implements OnInit, OnChanges {
   css: CSSStyleDeclaration = getComputedStyle(document.body);
@@ -82,13 +81,17 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
 
   setThemeColors(theme: string) {
     /* eslint-disable */
-      this.themeColors.mainNodeFill = this.css.getPropertyValue('--heatmap-filled').trim();
-      this.themeColors.mainNodeColor = this.css.getPropertyValue('--text-primary').trim();
-      this.themeColors.linkColor = this.css.getPropertyValue('--dependency-link').trim();
-      this.themeColors.borderColor = this.css.getPropertyValue('--dependency-border').trim();
-      this.themeColors.predecessorFill = this.css.getPropertyValue('--dependency-predecessor-fill').trim();
-      this.themeColors.successorFill = this.css.getPropertyValue('--dependency-successor-fill').trim();
-      /*eslint-enable */
+    this.themeColors.mainNodeFill = this.css.getPropertyValue('--heatmap-filled').trim();
+    this.themeColors.mainNodeColor = this.css.getPropertyValue('--text-primary').trim();
+    this.themeColors.linkColor = this.css.getPropertyValue('--dependency-link').trim();
+    this.themeColors.borderColor = this.css.getPropertyValue('--dependency-border').trim();
+    this.themeColors.predecessorFill = this.css
+      .getPropertyValue('--dependency-predecessor-fill')
+      .trim();
+    this.themeColors.successorFill = this.css
+      .getPropertyValue('--dependency-successor-fill')
+      .trim();
+    /*eslint-enable */
 
     this.generateGraph();
   }
@@ -180,10 +183,28 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     this.simulation = d3
       .forceSimulation()
       // .alphaMin(0.11)
-      .force('link', d3.forceLink().id((d: any) => { return d.id; }).strength(0.1))
-      .force('x', d3.forceX((d: any) => { return self.initX(d) }).strength(5))
+      .force(
+        'link',
+        d3
+          .forceLink()
+          .id((d: any) => {
+            return d.id;
+          })
+          .strength(0.1)
+      )
+      .force(
+        'x',
+        d3
+          .forceX((d: any) => {
+            return self.initX(d);
+          })
+          .strength(5)
+      )
       .force('charge', d3.forceManyBody().strength(-30))
-      .force('collide', d3.forceCollide((d: any) => 30))
+      .force(
+        'collide',
+        d3.forceCollide((d: any) => 30)
+      )
       .force('center', d3.forceCenter(0, 0));
     /* eslint-enable */
 

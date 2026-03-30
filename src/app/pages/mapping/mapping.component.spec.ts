@@ -13,12 +13,8 @@ describe('MappingComponent', () => {
   beforeEach(async () => {
     /* eslint-disable */
     await TestBed.configureTestingModule({
-      declarations: [MappingComponent],
-      imports: [MatDialogModule],
-      providers: [HttpClient,
-        HttpHandler,
-        { provide: ModalMessageComponent, useValue: {} },
-      ],
+      imports: [MatDialogModule, MappingComponent],
+      providers: [HttpClient, HttpHandler, { provide: ModalMessageComponent, useValue: {} }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
     /* eslint-enable */

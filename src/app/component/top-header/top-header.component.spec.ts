@@ -9,7 +9,7 @@ describe('TopHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TopHeaderComponent],
+      imports: [TopHeaderComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });

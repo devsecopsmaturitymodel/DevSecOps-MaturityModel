@@ -2,6 +2,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { GroupName, TeamGroups, TeamName, TeamNames } from 'src/app/model/types';
 import { perfNow, renameArrayElement } from 'src/app/util/util';
+import { SelectableListComponent } from './selectable-list.component';
 
 enum EditMode {
   NONE,
@@ -26,10 +27,10 @@ export class TeamsGroupsChangedEvent {
 }
 
 @Component({
-    selector: 'app-teams-groups-editor',
-    templateUrl: './teams-groups-editor.component.html',
-    styleUrls: ['./teams-groups-editor.component.css'],
-    standalone: false
+  selector: 'app-teams-groups-editor',
+  templateUrl: './teams-groups-editor.component.html',
+  styleUrls: ['./teams-groups-editor.component.css'],
+  imports: [SelectableListComponent],
 })
 export class TeamsGroupsEditorComponent implements OnChanges {
   Mode = EditMode;
@@ -135,7 +136,9 @@ export class TeamsGroupsEditorComponent implements OnChanges {
     } else if (this.editMode === EditMode.GROUPS) {
       this.highlightedTeams = this.getRelatedTeams(group);
     } else {
-      console.warn(`${perfNow()}: onTeamGroupToggle called in unexpected edit mode: ${this.editMode}`); // eslint-disable-line
+      console.warn(
+        `${perfNow()}: onTeamGroupToggle called in unexpected edit mode: ${this.editMode}`
+      ); // eslint-disable-line
     }
   }
 
@@ -173,7 +176,9 @@ export class TeamsGroupsEditorComponent implements OnChanges {
       this.onTeamSelected(event.oldName);
       return;
     } else if (this.teams.includes(event.newName)) {
-      alert('Cannot have old names either. Please accept the changes one by one\n\n(todo: make this alert pretty)'); // eslint-disable-line
+      alert(
+        'Cannot have old names either. Please accept the changes one by one\n\n(todo: make this alert pretty)'
+      ); // eslint-disable-line
       this.onTeamSelected(event.oldName);
       return;
     }
@@ -181,7 +186,11 @@ export class TeamsGroupsEditorComponent implements OnChanges {
     this.localCopyTeams = renameArrayElement(this.localCopyTeams, event.oldName, event.newName);
     for (let group in this.localCopyTeamGroups) {
       // eslint-disable-next-line
-      this.localCopyTeamGroups[group] = renameArrayElement(this.localCopyTeamGroups[group], event.oldName, event.newName);
+      this.localCopyTeamGroups[group] = renameArrayElement(
+        this.localCopyTeamGroups[group],
+        event.oldName,
+        event.newName
+      );
     }
     this.onTeamSelected(event.newName);
   }

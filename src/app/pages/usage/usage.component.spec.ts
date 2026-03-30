@@ -11,7 +11,7 @@ describe('UsageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsageComponent],
+      imports: [UsageComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });

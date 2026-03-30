@@ -1,11 +1,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TeamGroups } from '../../model/types';
+import { MatButton } from '@angular/material/button';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
-    selector: 'app-team-selector',
-    templateUrl: './team-selector.component.html',
-    styleUrls: ['./team-selector.component.css'],
-    standalone: false
+  selector: 'app-team-selector',
+  templateUrl: './team-selector.component.html',
+  styleUrls: ['./team-selector.component.css'],
+  imports: [MatButton, MatMenuTrigger, MatIcon, MatMenu, MatMenuItem, MatCheckbox],
 })
 export class TeamSelectorComponent {
   @Input() allTeams: string[] = [];

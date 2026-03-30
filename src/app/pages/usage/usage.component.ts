@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { perfNow } from 'src/app/util/util';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
+import { MarkdownViewerComponent } from '../../component/markdown-viewer/markdown-viewer.component';
 
 @Component({
-    selector: 'app-usage',
-    templateUrl: './usage.component.html',
-    styleUrls: ['./usage.component.css'],
-    standalone: false
+  selector: 'app-usage',
+  templateUrl: './usage.component.html',
+  styleUrls: ['./usage.component.css'],
+  imports: [TopHeaderComponent, MarkdownViewerComponent],
 })
 export class UsageComponent implements OnInit {
   page: string = 'USAGE';

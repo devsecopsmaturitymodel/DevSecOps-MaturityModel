@@ -9,8 +9,7 @@ describe('ModalMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, MatDialogModule],
-      declarations: [ModalMessageComponent],
+      imports: [NoopAnimationsModule, MatDialogModule, ModalMessageComponent],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },

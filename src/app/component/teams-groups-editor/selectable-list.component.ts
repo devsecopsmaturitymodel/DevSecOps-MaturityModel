@@ -1,11 +1,14 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { perfNow } from 'src/app/util/util';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-selectable-list',
-    templateUrl: './selectable-list.component.html',
-    styleUrls: ['./selectable-list.component.css'],
-    standalone: false
+  selector: 'app-selectable-list',
+  templateUrl: './selectable-list.component.html',
+  styleUrls: ['./selectable-list.component.css'],
+  imports: [MatIconButton, MatIcon, FormsModule],
 })
 export class SelectableListComponent {
   @Input() title: string = '';

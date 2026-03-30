@@ -3,8 +3,8 @@ import { equalArray } from 'src/app/util/util';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { MatChipOption } from '@angular/material/chips';
+import { Location, KeyValuePipe } from '@angular/common';
+import { MatChipOption, MatChipListbox } from '@angular/material/chips';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import MarkdownIt from 'markdown-it';
@@ -28,12 +28,49 @@ import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
 import { TitleService } from '../../service/title.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { ActivityDescriptionComponent } from '../../component/activity-description/activity-description.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import {
+  MatCard,
+  MatCardTitleGroup,
+  MatCardTitle,
+  MatCardSubtitle,
+  MatCardContent,
+} from '@angular/material/card';
+import {
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+  MatExpansionPanelContent,
+} from '@angular/material/expansion';
+import { MatTooltip } from '@angular/material/tooltip';
+import { ProgressSliderComponent } from '../../component/progress-slider/progress-slider.component';
 
 @Component({
-    selector: 'app-circular-heatmap',
-    templateUrl: './circular-heatmap.component.html',
-    styleUrls: ['./circular-heatmap.component.css'],
-    standalone: false
+  selector: 'app-circular-heatmap',
+  templateUrl: './circular-heatmap.component.html',
+  styleUrls: ['./circular-heatmap.component.css'],
+  imports: [
+    ActivityDescriptionComponent,
+    MatIcon,
+    MatButton,
+    MatChipListbox,
+    MatChipOption,
+    MatCard,
+    MatCardTitleGroup,
+    MatCardTitle,
+    MatCardSubtitle,
+    MatCardContent,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+    MatIconButton,
+    MatTooltip,
+    MatExpansionPanelContent,
+    ProgressSliderComponent,
+    KeyValuePipe,
+  ],
 })
 export class CircularHeatmapComponent implements OnInit, OnDestroy {
   Routing: string = '/activity-description';
@@ -325,7 +362,12 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
     chart.accessor(function (sector: Sector) {
       let progressValue: number = _self.getSectorProgress(sector);
-      if (!isNaN(progressValue) && progressValue !== 0) console.debug(`${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`);  // eslint-disable-line
+      if (!isNaN(progressValue) && progressValue !== 0)
+        console.debug(
+          `${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${
+            sector.dimension
+          }' Level ${sector.level}`
+        ); // eslint-disable-line
       return progressValue;
     });
 
@@ -355,11 +397,19 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         if (_self.selectedSector?.activities?.length) {
           _self.setSectorCursor(svg, '#selected', clickedId);
           _self.showActivityCard = _self.selectedSector;
-          console.log(`${perfNow()}: Heat: Clicked sector: '${_self.selectedSector.dimension}' Level: ${_self.selectedSector.level}`); // eslint-disable-line
+          console.log(
+            `${perfNow()}: Heat: Clicked sector: '${_self.selectedSector.dimension}' Level: ${
+              _self.selectedSector.level
+            }`
+          ); // eslint-disable-line
         } else {
           _self.showActivityCard = null;
           _self.setSectorCursor(svg, '#selected', '');
-          console.log(`${perfNow()}: Heat: Clicked disabled sector: '${_self?.selectedSector?.dimension}' Level: ${_self?.selectedSector?.level}`); // eslint-disable-line
+          console.log(
+            `${perfNow()}: Heat: Clicked disabled sector: '${
+              _self?.selectedSector?.dimension
+            }' Level: ${_self?.selectedSector?.level}`
+          ); // eslint-disable-line
         }
       })
       .on('mouseover', function () {
@@ -633,7 +683,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       this.router.navigate([], {
         relativeTo: this.route,
         fragment: activity.uuid,
-        queryParamsHandling: 'preserve'
+        queryParamsHandling: 'preserve',
       });
     }
     /* eslint-enable */
@@ -686,7 +736,12 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       .range([this.theme_colors['background'], this.theme_colors['filled']]);
 
     let progressValue: number = this.getSectorProgress(this.allSectors[index]);
-    if (progressValue) console.debug(`${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors['filled']})`); // eslint-disable-line
+    if (progressValue)
+      console.debug(
+        `${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${
+          this.theme_colors['filled']
+        })`
+      ); // eslint-disable-line
 
     d3.select('#index-' + index).attr(
       'fill',

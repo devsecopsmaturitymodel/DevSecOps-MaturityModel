@@ -1,8 +1,20 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import {
@@ -13,6 +25,13 @@ import { DataStore } from 'src/app/model/data-store';
 import { Uuid } from 'src/app/model/types';
 import { perfNow } from 'src/app/util/util';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
+import { MatFormField, MatLabel, MatInput, MatSuffix } from '@angular/material/input';
+import { MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { SlicePipe } from '@angular/common';
 
 const SEPARATOR = '\x1F'; // ASCII Unit Separator
 
@@ -46,10 +65,39 @@ enum SortMode {
 }
 
 @Component({
-    selector: 'app-mapping',
-    templateUrl: './mapping.component.html',
-    styleUrls: ['./mapping.component.css'],
-    standalone: false
+  selector: 'app-mapping',
+  templateUrl: './mapping.component.html',
+  styleUrls: ['./mapping.component.css'],
+  imports: [
+    TopHeaderComponent,
+    MatFormField,
+    MatLabel,
+    MatChipGrid,
+    MatChipRow,
+    MatChipRemove,
+    MatIcon,
+    MatInput,
+    FormsModule,
+    MatChipInput,
+    ReactiveFormsModule,
+    MatIconButton,
+    MatSuffix,
+    MatButton,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    RouterLink,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    SlicePipe,
+  ],
 })
 export class MappingComponent implements OnInit, AfterViewInit {
   allMappings: MappingRow[] = [];

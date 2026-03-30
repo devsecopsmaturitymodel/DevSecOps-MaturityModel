@@ -33,8 +33,7 @@ describe('MatrixComponent', () => {
   beforeEach(async () => {
     mockLoaderService = new MockLoaderService(MOCK_DATA);
     await TestBed.configureTestingModule({
-      declarations: [MatrixComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule, MatDialogModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, MatDialogModule, MatrixComponent],
       providers: [
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: MatDialogRef, useValue: {} },

@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { MatSlider, MatSliderThumb } from '@angular/material/slider';
 
 @Component({
-    selector: 'app-progress-slider',
-    templateUrl: './progress-slider.component.html',
-    styleUrls: ['./progress-slider.component.css'],
-    standalone: false
+  selector: 'app-progress-slider',
+  templateUrl: './progress-slider.component.html',
+  styleUrls: ['./progress-slider.component.css'],
+  imports: [MatSlider, MatSliderThumb],
 })
 export class ProgressSliderComponent implements OnInit {
   @Input() DBG_name: string = '';

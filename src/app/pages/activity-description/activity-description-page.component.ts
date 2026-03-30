@@ -7,12 +7,14 @@ import {
   ModalMessageComponent,
   DialogInfo,
 } from '../../component/modal-message/modal-message.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ActivityDescriptionComponent } from '../../component/activity-description/activity-description.component';
 
 @Component({
-    selector: 'app-activity-description-page',
-    templateUrl: './activity-description-page.component.html',
-    styleUrls: ['./activity-description-page.component.css'],
-    standalone: false
+  selector: 'app-activity-description-page',
+  templateUrl: './activity-description-page.component.html',
+  styleUrls: ['./activity-description-page.component.css'],
+  imports: [MatProgressSpinner, ActivityDescriptionComponent],
 })
 export class ActivityDescriptionPageComponent implements OnInit {
   currentActivity: Activity | null = null;

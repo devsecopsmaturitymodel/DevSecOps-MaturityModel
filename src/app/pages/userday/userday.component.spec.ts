@@ -9,7 +9,7 @@ describe('UserdayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserdayComponent],
+      imports: [UserdayComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });

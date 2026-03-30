@@ -1,6 +1,20 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatNoDataRow,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+  MatFooterRow,
+} from '@angular/material/table';
 import { Router, NavigationExtras } from '@angular/router';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { Activity, ActivityStore, Data } from 'src/app/model/activity-store';
@@ -11,6 +25,9 @@ import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
 import { SettingsService } from 'src/app/service/settings/settings.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
+import { MatIcon } from '@angular/material/icon';
+import { KeyValuePipe } from '@angular/common';
 
 export interface MatrixRow {
   Category: string;
@@ -23,14 +40,35 @@ export interface MatrixRow {
   level6: Activity[];
   level7: Activity[];
 }
-type LevelKey = keyof Pick<MatrixRow, 'level1' | 'level2' | 'level3' | 'level4' | 'level5' | 'level6' | 'level7'>;  // eslint-disable-line
+type LevelKey = keyof Pick<
+  MatrixRow,
+  'level1' | 'level2' | 'level3' | 'level4' | 'level5' | 'level6' | 'level7'
+>; // eslint-disable-line
 
 @UntilDestroy()
 @Component({
-    selector: 'app-matrix',
-    templateUrl: './matrix.component.html',
-    styleUrls: ['./matrix.component.css'],
-    standalone: false
+  selector: 'app-matrix',
+  templateUrl: './matrix.component.html',
+  styleUrls: ['./matrix.component.css'],
+  imports: [
+    TopHeaderComponent,
+    MatChipListbox,
+    MatChipOption,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIcon,
+    MatNoDataRow,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatFooterRow,
+    KeyValuePipe,
+  ],
 })
 export class MatrixComponent implements OnInit {
   Routing: string = '/activity-description';
@@ -91,7 +129,7 @@ export class MatrixComponent implements OnInit {
 
     this.MATRIX_DATA = this.buildMatrixData(dataStore.activityStore);
     this.levels = this.buildLevels(dataStore.getLevelTitles(this.settings.getMaxLevel())); // eslint-disable-line
-    this.filtersTag = this.buildFiltersForTag(dataStore.activityStore.getAllActivities());  // eslint-disable-line
+    this.filtersTag = this.buildFiltersForTag(dataStore.activityStore.getAllActivities()); // eslint-disable-line
     this.filtersDim = this.buildFiltersForDim(this.MATRIX_DATA);
     this.columnNames = ['Category', 'Dimension'];
     this.columnNames.push(...Object.keys(this.levels));
@@ -252,7 +290,11 @@ export class MatrixComponent implements OnInit {
     const navigationExtras: NavigationExtras = {
       queryParams: { uuid: uuid },
     };
-    console.log(`${perfNow()}: Matrix: Open Details: '${this.dataStore?.activityStore?.getActivityByUuid(uuid).name}'`); // eslint-disable-line
+    console.log(
+      `${perfNow()}: Matrix: Open Details: '${
+        this.dataStore?.activityStore?.getActivityByUuid(uuid).name
+      }'`
+    ); // eslint-disable-line
     this.router.navigate([this.Routing], navigationExtras);
   }
 }

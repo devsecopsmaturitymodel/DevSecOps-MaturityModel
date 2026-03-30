@@ -9,7 +9,7 @@ describe('RoadmapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RoadmapComponent],
+      imports: [RoadmapComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });

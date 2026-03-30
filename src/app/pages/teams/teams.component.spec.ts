@@ -21,15 +21,14 @@ describe('TeamsComponent', () => {
     /* eslint-disable */
     // await mockLoaderService.load();
     await TestBed.configureTestingModule({
-    declarations: [TeamsComponent],
-    imports: [HttpClientTestingModule, RouterTestingModule],
-    providers: [
+      imports: [HttpClientTestingModule, RouterTestingModule, TeamsComponent],
+      providers: [
         { provide: ModalMessageComponent, useValue: {} },
         { provide: LoaderService, useValue: mockLoaderService },
         provideHttpClient(withInterceptorsFromDi()),
-    ],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
     /* eslint-enable */
   });
 

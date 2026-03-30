@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SidenavButtonsComponent } from './sidenav-buttons.component';
 
@@ -9,7 +10,7 @@ describe('SidenavButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SidenavButtonsComponent],
+      imports: [SidenavButtonsComponent, RouterTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
@@ -33,13 +34,15 @@ describe('SidenavButtonsComponent', () => {
 
   it('check for navigation names being shown in the same order as options array', () => {
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const NavigationList = HTMLElement.querySelectorAll('a > h3')!;
-    let NavigationNamesBeingShown = [];
-    for (var x = 0; x < NavigationList.length; x += 1) {
-      NavigationNamesBeingShown.push(NavigationList[x].textContent);
-    }
-    NavigationNamesBeingShown.pop(); // Remove GitHub link
-    expect(NavigationNamesBeingShown).toEqual(component.Options);
+    const NavigationLinks = HTMLElement.querySelectorAll('mat-nav-list a')!;
+    const NavigationNamesBeingShown = Array.from(NavigationLinks)
+      .map(link => link.textContent?.trim())
+      .filter((label): label is string => Boolean(label) && label !== 'GitHub');
+
+    expect(NavigationNamesBeingShown).toHaveLength(component.Options.length);
+    NavigationNamesBeingShown.forEach((label, index) => {
+      expect(label).toContain(component.Options[index]);
+    });
   });
 
   it('ensure all navigation options has its own icon and route', () => {

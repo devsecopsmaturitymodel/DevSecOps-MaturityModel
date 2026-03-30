@@ -10,16 +10,34 @@ import {
   OnInit,
   HostListener,
 } from '@angular/core';
-import { MatAccordion } from '@angular/material/expansion';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion';
 import { Activity } from '../../model/activity-store';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { TeamName, ProgressTitle } from '../../model/types';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { DependencyGraphComponent } from '../dependency-graph/dependency-graph.component';
+import { LogoComponent } from '../logo/logo.component';
 
 @Component({
-    selector: 'app-activity-description',
-    templateUrl: './activity-description.component.html',
-    styleUrls: ['./activity-description.component.css'],
-    standalone: false
+  selector: 'app-activity-description',
+  templateUrl: './activity-description.component.html',
+  styleUrls: ['./activity-description.component.css'],
+  imports: [
+    MatIcon,
+    MatIconButton,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+    DependencyGraphComponent,
+    LogoComponent,
+  ],
 })
 export class ActivityDescriptionComponent implements OnInit, OnChanges {
   @Input() activity: Activity | null = null;
@@ -75,9 +93,18 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
     const dataStore = this.loader.datastore;
     if (dataStore) {
       /* eslint-disable */
-      this.KnowledgeLabel = dataStore.getMetaString('knowledgeLabels', activity.difficultyOfImplementation.knowledge - 1);
-      this.TimeLabel = dataStore.getMetaString('labels', activity.difficultyOfImplementation.time - 1);
-      this.ResourceLabel = dataStore.getMetaString('labels', activity.difficultyOfImplementation.resources - 1);
+      this.KnowledgeLabel = dataStore.getMetaString(
+        'knowledgeLabels',
+        activity.difficultyOfImplementation.knowledge - 1
+      );
+      this.TimeLabel = dataStore.getMetaString(
+        'labels',
+        activity.difficultyOfImplementation.time - 1
+      );
+      this.ResourceLabel = dataStore.getMetaString(
+        'labels',
+        activity.difficultyOfImplementation.resources - 1
+      );
       this.UsefulnessLabel = dataStore.getMetaString('labels', activity.usefulness - 1);
       /* eslint-enable */
 
