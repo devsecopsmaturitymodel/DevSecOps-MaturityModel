@@ -23,9 +23,10 @@ import { downloadYamlFile } from 'src/app/util/download';
 import { isEmptyObj, perfNow, dateStr, uniqueCount } from 'src/app/util/util';
 
 @Component({
-  selector: 'app-teams',
-  templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.css'],
+    selector: 'app-teams',
+    templateUrl: './teams.component.html',
+    styleUrls: ['./teams.component.css'],
+    standalone: false
 })
 export class TeamsComponent implements OnInit, AfterViewInit {
   dateStr = dateStr;

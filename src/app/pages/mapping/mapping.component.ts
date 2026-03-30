@@ -46,9 +46,10 @@ enum SortMode {
 }
 
 @Component({
-  selector: 'app-mapping',
-  templateUrl: './mapping.component.html',
-  styleUrls: ['./mapping.component.css'],
+    selector: 'app-mapping',
+    templateUrl: './mapping.component.html',
+    styleUrls: ['./mapping.component.css'],
+    standalone: false
 })
 export class MappingComponent implements OnInit, AfterViewInit {
   allMappings: MappingRow[] = [];

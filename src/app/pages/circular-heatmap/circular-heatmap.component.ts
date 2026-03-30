@@ -30,9 +30,10 @@ import { TitleService } from '../../service/title.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
 
 @Component({
-  selector: 'app-circular-heatmap',
-  templateUrl: './circular-heatmap.component.html',
-  styleUrls: ['./circular-heatmap.component.css'],
+    selector: 'app-circular-heatmap',
+    templateUrl: './circular-heatmap.component.html',
+    styleUrls: ['./circular-heatmap.component.css'],
+    standalone: false
 })
 export class CircularHeatmapComponent implements OnInit, OnDestroy {
   Routing: string = '/activity-description';

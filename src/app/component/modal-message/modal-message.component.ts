@@ -10,9 +10,10 @@ import { MarkdownText } from 'src/app/model/markdown-text';
 import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
-  selector: 'app-modal-message',
-  templateUrl: './modal-message.component.html',
-  styleUrls: ['./modal-message.component.css'],
+    selector: 'app-modal-message',
+    templateUrl: './modal-message.component.html',
+    styleUrls: ['./modal-message.component.css'],
+    standalone: false
 })
 export class ModalMessageComponent implements OnInit {
   data: DialogInfo;

@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-kpi',
-  templateUrl: './kpi.component.html',
-  styleUrls: ['./kpi.component.css'],
+    selector: 'app-kpi',
+    templateUrl: './kpi.component.html',
+    styleUrls: ['./kpi.component.css'],
+    standalone: false
 })
 export class KpiComponent {
   @Input() title: string = '';

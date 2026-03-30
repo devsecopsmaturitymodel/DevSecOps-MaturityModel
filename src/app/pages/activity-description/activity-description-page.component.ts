@@ -9,9 +9,10 @@ import {
 } from '../../component/modal-message/modal-message.component';
 
 @Component({
-  selector: 'app-activity-description-page',
-  templateUrl: './activity-description-page.component.html',
-  styleUrls: ['./activity-description-page.component.css'],
+    selector: 'app-activity-description-page',
+    templateUrl: './activity-description-page.component.html',
+    styleUrls: ['./activity-description-page.component.css'],
+    standalone: false
 })
 export class ActivityDescriptionPageComponent implements OnInit {
   currentActivity: Activity | null = null;

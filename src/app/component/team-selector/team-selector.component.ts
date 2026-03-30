@@ -2,9 +2,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TeamGroups } from '../../model/types';
 
 @Component({
-  selector: 'app-team-selector',
-  templateUrl: './team-selector.component.html',
-  styleUrls: ['./team-selector.component.css'],
+    selector: 'app-team-selector',
+    templateUrl: './team-selector.component.html',
+    styleUrls: ['./team-selector.component.css'],
+    standalone: false
 })
 export class TeamSelectorComponent {
   @Input() allTeams: string[] = [];

@@ -16,9 +16,10 @@ import { LoaderService } from '../../service/loader/data-loader.service';
 import { TeamName, ProgressTitle } from '../../model/types';
 
 @Component({
-  selector: 'app-activity-description',
-  templateUrl: './activity-description.component.html',
-  styleUrls: ['./activity-description.component.css'],
+    selector: 'app-activity-description',
+    templateUrl: './activity-description.component.html',
+    styleUrls: ['./activity-description.component.css'],
+    standalone: false
 })
 export class ActivityDescriptionComponent implements OnInit, OnChanges {
   @Input() activity: Activity | null = null;

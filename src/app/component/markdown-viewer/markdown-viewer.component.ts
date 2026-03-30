@@ -3,9 +3,10 @@ import * as md from 'markdown-it';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-markdown-viewer',
-  templateUrl: './markdown-viewer.component.html',
-  styleUrls: ['./markdown-viewer.component.css'],
+    selector: 'app-markdown-viewer',
+    templateUrl: './markdown-viewer.component.html',
+    styleUrls: ['./markdown-viewer.component.css'],
+    standalone: false
 })
 export class MarkdownViewerComponent implements OnInit {
   @Input() MDFile: string = '';

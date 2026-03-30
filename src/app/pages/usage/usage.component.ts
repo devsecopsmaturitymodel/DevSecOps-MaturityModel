@@ -3,9 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { perfNow } from 'src/app/util/util';
 
 @Component({
-  selector: 'app-usage',
-  templateUrl: './usage.component.html',
-  styleUrls: ['./usage.component.css'],
+    selector: 'app-usage',
+    templateUrl: './usage.component.html',
+    styleUrls: ['./usage.component.css'],
+    standalone: false
 })
 export class UsageComponent implements OnInit {
   page: string = 'USAGE';

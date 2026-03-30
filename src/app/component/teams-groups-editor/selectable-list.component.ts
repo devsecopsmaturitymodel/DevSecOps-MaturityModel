@@ -2,9 +2,10 @@ import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@
 import { perfNow } from 'src/app/util/util';
 
 @Component({
-  selector: 'app-selectable-list',
-  templateUrl: './selectable-list.component.html',
-  styleUrls: ['./selectable-list.component.css'],
+    selector: 'app-selectable-list',
+    templateUrl: './selectable-list.component.html',
+    styleUrls: ['./selectable-list.component.css'],
+    standalone: false
 })
 export class SelectableListComponent {
   @Input() title: string = '';

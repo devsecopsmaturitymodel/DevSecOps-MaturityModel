@@ -46,8 +46,9 @@ let mockData = {
 };
 
 @Component({
-  selector: 'app-dependency-graph',
-  template: '',
+    selector: 'app-dependency-graph',
+    template: '',
+    standalone: false
 })
 class DependencyGraphStubComponent {
   @Input() activityName: string = '';

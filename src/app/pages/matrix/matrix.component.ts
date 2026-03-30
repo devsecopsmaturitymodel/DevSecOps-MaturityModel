@@ -27,9 +27,10 @@ type LevelKey = keyof Pick<MatrixRow, 'level1' | 'level2' | 'level3' | 'level4' 
 
 @UntilDestroy()
 @Component({
-  selector: 'app-matrix',
-  templateUrl: './matrix.component.html',
-  styleUrls: ['./matrix.component.css'],
+    selector: 'app-matrix',
+    templateUrl: './matrix.component.html',
+    styleUrls: ['./matrix.component.css'],
+    standalone: false
 })
 export class MatrixComponent implements OnInit {
   Routing: string = '/activity-description';

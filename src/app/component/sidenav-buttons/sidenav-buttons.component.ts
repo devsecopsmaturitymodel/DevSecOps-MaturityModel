@@ -5,9 +5,10 @@ import { GITHUB_SVG } from '../../../assets/svg_icons';
 import { ThemeService } from '../../service/theme.service';
 
 @Component({
-  selector: 'app-sidenav-buttons',
-  templateUrl: './sidenav-buttons.component.html',
-  styleUrls: ['./sidenav-buttons.component.css'],
+    selector: 'app-sidenav-buttons',
+    templateUrl: './sidenav-buttons.component.html',
+    styleUrls: ['./sidenav-buttons.component.css'],
+    standalone: false
 })
 export class SidenavButtonsComponent implements OnInit {
   Options: string[] = [

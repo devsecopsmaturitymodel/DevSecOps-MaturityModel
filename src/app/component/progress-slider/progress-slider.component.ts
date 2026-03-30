@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-progress-slider',
-  templateUrl: './progress-slider.component.html',
-  styleUrls: ['./progress-slider.component.css'],
+    selector: 'app-progress-slider',
+    templateUrl: './progress-slider.component.html',
+    styleUrls: ['./progress-slider.component.css'],
+    standalone: false
 })
 export class ProgressSliderComponent implements OnInit {
   @Input() DBG_name: string = '';

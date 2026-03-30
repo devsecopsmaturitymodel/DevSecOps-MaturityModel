@@ -20,9 +20,10 @@ export interface ReportConfigModalData {
 }
 
 @Component({
-  selector: 'app-report-config-modal',
-  templateUrl: './report-config-modal.component.html',
-  styleUrls: ['./report-config-modal.component.css'],
+    selector: 'app-report-config-modal',
+    templateUrl: './report-config-modal.component.html',
+    styleUrls: ['./report-config-modal.component.css'],
+    standalone: false
 })
 export class ReportConfigModalComponent {
   config: ReportConfig;
