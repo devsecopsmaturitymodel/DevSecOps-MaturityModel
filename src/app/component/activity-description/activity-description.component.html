@@ -2,20 +2,20 @@
   <div class="activity-header">
     <div class="activity-title">
       <div class="title-above">
-        <mat-icon mat-list-icon color="primary" *ngIf="iconName">{{ iconName }}</mat-icon>
+        @if (iconName) {
+        <mat-icon mat-list-icon color="primary">{{ iconName }}</mat-icon>
+        }
         <span>{{ currentActivity.dimension }}</span>
       </div>
       <h1>
         {{ currentActivity.name }}
       </h1>
     </div>
-    <button
-      *ngIf="showCloseButton"
-      class="close-button"
-      mat-icon-button
-      (click)="onCloseRequested()">
+    @if (showCloseButton) {
+    <button class="close-button" mat-icon-button (click)="onCloseRequested()">
       <mat-icon>close</mat-icon>
     </button>
+    }
   </div>
 
   <div class="activity-subheader">
@@ -25,7 +25,8 @@
     </div>
   </div>
   <mat-accordion class="activity-details" multi="true">
-    <mat-expansion-panel *ngIf="currentActivity.description?.hasContent()" [expanded]="true">
+    @if (currentActivity.description?.hasContent()) {
+    <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Description</b>
@@ -33,8 +34,8 @@
       </mat-expansion-panel-header>
       <p id="description" [innerHTML]="currentActivity.description?.render()"></p>
     </mat-expansion-panel>
-
-    <mat-expansion-panel *ngIf="currentActivity.risk?.hasContent()" [expanded]="true">
+    } @if (currentActivity.risk?.hasContent()) {
+    <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Risk</b>
@@ -42,8 +43,8 @@
       </mat-expansion-panel-header>
       <p id="risk" [innerHTML]="currentActivity.risk?.render()"></p>
     </mat-expansion-panel>
-
-    <mat-expansion-panel *ngIf="currentActivity.measure?.hasContent()" [expanded]="true">
+    } @if (currentActivity.measure?.hasContent()) {
+    <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Measure</b>
@@ -51,8 +52,8 @@
       </mat-expansion-panel-header>
       <p id="measure" [innerHTML]="currentActivity.measure?.render()"></p>
     </mat-expansion-panel>
-
-    <mat-expansion-panel *ngIf="currentActivity.assessment?.hasContent()" [expanded]="true">
+    } @if (currentActivity.assessment?.hasContent()) {
+    <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Assessment</b>
@@ -60,6 +61,7 @@
       </mat-expansion-panel-header>
       <p id="assessment" [innerHTML]="currentActivity.assessment?.render()"></p>
     </mat-expansion-panel>
+    }
 
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
@@ -67,15 +69,18 @@
           <b>Dependencies</b>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div *ngIf="currentActivity?.name">
+      @if (currentActivity?.name) {
+      <div>
         <app-dependency-graph
           [activityName]="currentActivity?.name || ''"
           (activityClicked)="onActivityClicked($event)">
         </app-dependency-graph>
       </div>
+      }
     </mat-expansion-panel>
 
-    <mat-expansion-panel *ngIf="currentActivity.implementationGuide?.hasContent()">
+    @if (currentActivity.implementationGuide?.hasContent()) {
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Implementation Guide</b>
@@ -83,21 +88,21 @@
       </mat-expansion-panel-header>
       <p id="implementationGuide" [innerHTML]="currentActivity.implementationGuide?.render()"></p>
     </mat-expansion-panel>
-
-    <div *ngIf="currentActivity.usefulness !== -1" class="usefulness-section">
+    } @if (currentActivity.usefulness !== -1) {
+    <div class="usefulness-section">
       <div class="usefulness-header">
         <h3><b>Usefulness</b></h3>
         <div class="usefulness-stars">
-          <mat-icon
-            *ngFor="let star of [1, 2, 3, 4, 5]"
-            class="star"
-            [class.filled]="star <= (currentActivity.usefulness || 0)">
+          @for (star of [1, 2, 3, 4, 5]; track star) {
+          <mat-icon class="star" [class.filled]="star <= (currentActivity.usefulness || 0)">
             {{ star <= (currentActivity.usefulness || 0) ? 'star' : 'star_border' }}
           </mat-icon>
+          }
           <span class="usefulness-label">{{ this.UsefulnessLabel }}</span>
         </div>
       </div>
     </div>
+    }
 
     <mat-expansion-panel [expanded]="isNarrowScreen" #difficultyPanel>
       <mat-expansion-panel-header>
@@ -173,52 +178,57 @@
           <div class="references-summary" [class.hidden]="referencesPanel.expanded">
             <span class="ref-section">
               <strong>SAMM 2:</strong>
-              <span
-                class="ref-values"
-                *ngIf="currentActivity?.references?.samm2?.length; else sammEmpty">
-                <span *ngFor="let samm of currentActivity?.references?.samm2; let last = last"
-                  >{{ samm }}<span *ngIf="!last">, </span></span
+              @if (currentActivity?.references?.samm2?.length) {
+              <span class="ref-values">
+                @for (samm of currentActivity?.references?.samm2; track samm; let last = $last) {
+                <span
+                  >{{ samm }}@if (!last) {
+                  <span>, </span>
+                  }</span
                 >
+                }
               </span>
-              <ng-template #sammEmpty>-</ng-template>
+              } @else { - }
             </span>
             <span class="ref-section">
               <strong>ISO 2017:</strong>
-              <span
-                class="ref-values"
-                *ngIf="currentActivity?.references?.iso27001_2017?.length; else iso17Empty">
+              @if (currentActivity?.references?.iso27001_2017?.length) {
+              <span class="ref-values">
+                @for (iso of currentActivity?.references?.iso27001_2017; track iso; let last =
+                $last) {
                 <span
-                  *ngFor="let iso of currentActivity?.references?.iso27001_2017; let last = last"
-                  >{{ iso }}<span *ngIf="!last">, </span></span
+                  >{{ iso }}@if (!last) {
+                  <span>, </span>
+                  }</span
                 >
+                }
               </span>
-              <ng-template #iso17Empty>-</ng-template>
+              } @else { - }
             </span>
             <span class="ref-section">
               <strong>ISO 2022:</strong>
-              <span
-                class="ref-values"
-                *ngIf="currentActivity?.references?.iso27001_2022?.length; else iso22Empty">
+              @if (currentActivity?.references?.iso27001_2022?.length) {
+              <span class="ref-values">
+                @for (iso22 of currentActivity?.references?.iso27001_2022; track iso22; let last =
+                $last) {
                 <span
-                  *ngFor="let iso22 of currentActivity?.references?.iso27001_2022; let last = last"
-                  >{{ iso22 }}<span *ngIf="!last">, </span></span
+                  >{{ iso22 }}@if (!last) {
+                  <span>, </span>
+                  }</span
                 >
+                }
               </span>
-              <ng-template #iso22Empty>-</ng-template>
+              } @else { - }
             </span>
             <span class="ref-section">
               <strong>OpenCRE:</strong>
-              <span
-                class="ref-values"
-                *ngIf="currentActivity?.references?.openCRE?.length; else creEmpty">
-                <a
-                  *ngFor="let openCRE of currentActivity?.references?.openCRE"
-                  target="_blank"
-                  [href]="openCRE">
-                  View OpenCRE</a
-                >
+              @if (currentActivity?.references?.openCRE?.length) {
+              <span class="ref-values">
+                @for (openCRE of currentActivity?.references?.openCRE; track openCRE) {
+                <a target="_blank" [href]="openCRE"> View OpenCRE</a>
+                }
               </span>
-              <ng-template #creEmpty>-</ng-template>
+              } @else { - }
             </span>
           </div>
         </mat-panel-title>
@@ -227,55 +237,47 @@
         <div class="reference-column">
           <div class="reference-header">{{ SAMMVersion }}</div>
           <div class="reference-values">
-            <span class="reference-value" *ngFor="let samm of currentActivity?.references?.samm2">{{
-              samm
-            }}</span>
-            <span class="no-references" *ngIf="!currentActivity?.references?.samm2?.length">-</span>
+            @for (samm of currentActivity?.references?.samm2; track samm) {
+            <span class="reference-value">{{ samm }}</span>
+            } @if (!currentActivity?.references?.samm2?.length) {
+            <span class="no-references">-</span>
+            }
           </div>
         </div>
 
         <div class="reference-column">
           <div class="reference-header">{{ ISOVersion }}</div>
           <div class="reference-values">
-            <span
-              class="reference-value"
-              *ngFor="let iso of currentActivity?.references?.iso27001_2017"
-              >{{ iso }}</span
-            >
-            <span class="no-references" *ngIf="!currentActivity?.references?.iso27001_2017?.length"
-              >-</span
-            >
+            @for (iso of currentActivity?.references?.iso27001_2017; track iso) {
+            <span class="reference-value">{{ iso }}</span>
+            } @if (!currentActivity?.references?.iso27001_2017?.length) {
+            <span class="no-references">-</span>
+            }
           </div>
         </div>
 
         <div class="reference-column">
           <div class="reference-header">{{ ISO22Version }}</div>
           <div class="reference-values">
-            <span
-              class="reference-value"
-              *ngFor="let iso22 of currentActivity?.references?.iso27001_2022"
-              >{{ iso22 }}</span
-            >
-            <span class="no-references" *ngIf="!currentActivity?.references?.iso27001_2022?.length"
-              >-</span
-            >
+            @for (iso22 of currentActivity?.references?.iso27001_2022; track iso22) {
+            <span class="reference-value">{{ iso22 }}</span>
+            } @if (!currentActivity?.references?.iso27001_2022?.length) {
+            <span class="no-references">-</span>
+            }
           </div>
         </div>
 
         <div class="reference-column">
           <div class="reference-header">{{ openCREVersion }}</div>
           <div class="reference-values">
-            <a
-              class="reference-link"
-              *ngFor="let openCRE of currentActivity?.references?.openCRE"
-              target="_blank"
-              [href]="openCRE">
+            @for (openCRE of currentActivity?.references?.openCRE; track openCRE) {
+            <a class="reference-link" target="_blank" [href]="openCRE">
               <mat-icon>open_in_new</mat-icon>
               View CRE
             </a>
-            <span class="no-references" *ngIf="!currentActivity?.references?.openCRE?.length"
-              >-</span
-            >
+            } @if (!currentActivity?.references?.openCRE?.length) {
+            <span class="no-references">-</span>
+            }
           </div>
         </div>
       </div>
@@ -286,29 +288,27 @@
     </mat-expansion-panel>
 
     <!-- <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <b>Teams Evidence</b>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-accordion multi="true">
-        <mat-expansion-panel
-          id="teamsEvidence"
-          *ngFor="let item of this.currentActivity.teamsEvidence | keyvalue">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b [innerHTML]="item.key"></b>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <p [innerHTML]="item.value"></p>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </mat-expansion-panel> -->
+                                    <mat-expansion-panel-header>
+                                      <mat-panel-title>
+                                        <b>Teams Evidence</b>
+                                      </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <mat-accordion multi="true">
+                                      <mat-expansion-panel
+                                        id="teamsEvidence"
+                                        *ngFor="let item of this.currentActivity.teamsEvidence | keyvalue">
+                                        <mat-expansion-panel-header>
+                                          <mat-panel-title>
+                                            <b [innerHTML]="item.key"></b>
+                                          </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <p [innerHTML]="item.value"></p>
+                                      </mat-expansion-panel>
+                                    </mat-accordion>
+                                  </mat-expansion-panel> -->
 
-    <mat-expansion-panel
-      [expanded]="true"
-      #implementationPanel
-      *ngIf="currentActivity.implementation?.length">
+    @if (currentActivity.implementation?.length) {
+    <mat-expansion-panel [expanded]="true" #implementationPanel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Tools</b>
@@ -320,63 +320,82 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="implementation-tools">
-        <div class="tool-item" *ngFor="let implement of this.currentActivity.implementation">
+        @for (implement of this.currentActivity.implementation; track implement) {
+        <div class="tool-item">
           <div class="tool-title">
             <h4 class="tool-name" [innerHTML]="implement['name']"></h4>
             <a [href]="implement['url']" target="_blank" href="implement['url']">
-              <mat-icon class="link-icon" *ngIf="implement['url']">open_in_new</mat-icon>
+              @if (implement['url']) {
+              <mat-icon class="link-icon">open_in_new</mat-icon>
+              }
             </a>
           </div>
-          <div class="tool-description" *ngIf="implement['description']">
+          @if (implement['description']) {
+          <div class="tool-description">
             <p [innerHTML]="implement['description']"></p>
           </div>
+          }
         </div>
+        }
       </div>
     </mat-expansion-panel>
+    }
 
     <mat-expansion-panel [expanded]="isNarrowScreen" #implementedByPanel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <b>Implemented by</b>
           <div class="references-summary" [class.hidden]="implementedByPanel.expanded">
-            <span class="ref-section" *ngFor="let progressTitle of progressTitlesWithTeams">
+            @for (progressTitle of progressTitlesWithTeams; track progressTitle) {
+            <span class="ref-section">
               <strong>{{ progressTitle }}:</strong>
               <span class="ref-values">
+                @for (teamName of teamsByProgressTitle.get(progressTitle); track teamName; let last
+                = $last) {
                 <span
-                  *ngFor="let teamName of teamsByProgressTitle.get(progressTitle); let last = last"
-                  >{{ teamName }}<span *ngIf="!last">, </span></span
+                  >{{ teamName }}@if (!last) {
+                  <span>, </span>
+                  }</span
                 >
+                }
               </span>
             </span>
-            <span class="ref-section" *ngIf="teamsImplemented.size === 0">
+            } @if (teamsImplemented.size === 0) {
+            <span class="ref-section">
               <span class="ref-values">No teams have started this activity yet</span>
             </span>
+            }
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="implemented-by-grid" *ngIf="teamsImplemented.size > 0; else noTeamsBlock">
-        <div class="reference-column" *ngFor="let progressTitle of progressTitlesWithTeams">
+      @if (teamsImplemented.size > 0) {
+      <div class="implemented-by-grid">
+        @for (progressTitle of progressTitlesWithTeams; track progressTitle) {
+        <div class="reference-column">
           <div class="reference-header">{{ progressTitle }}</div>
           <div class="reference-values">
-            <span
-              class="reference-value"
-              *ngFor="let teamName of teamsByProgressTitle.get(progressTitle)">
+            @for (teamName of teamsByProgressTitle.get(progressTitle); track teamName) {
+            <span class="reference-value">
               {{ teamName }}
             </span>
+            }
           </div>
         </div>
+        }
       </div>
-      <ng-template #noTeamsBlock>
-        <p>No teams have started implementing this activity yet.</p>
-      </ng-template>
+      } @else {
+      <p>No teams have started implementing this activity yet.</p>
+      }
     </mat-expansion-panel>
   </mat-accordion>
 
-  <div
-    class="tags-section"
-    *ngIf="currentActivity.tags?.length && currentActivity.tags?.[0] !== 'none'">
+  @if (currentActivity.tags?.length && currentActivity.tags?.[0] !== 'none') {
+  <div class="tags-section">
     <div class="tags-container">
-      <span class="tag-chip" *ngFor="let tag of currentActivity.tags">{{ tag }}</span>
+      @for (tag of currentActivity.tags; track tag) {
+      <span class="tag-chip">{{ tag }}</span>
+      }
     </div>
   </div>
+  }
 </div>

@@ -74,7 +74,8 @@
         (change)="toggleActivityAttribute('showReferences')">
         References
       </mat-checkbox>
-      <div class="references-subtoggle" *ngIf="config.activityAttributes.showReferences">
+      @if (config.activityAttributes.showReferences) {
+      <div class="references-subtoggle">
         <mat-checkbox
           class="subtoggle-checkbox"
           [checked]="config.activityAttributes.showReferencesIso27001_2017"
@@ -100,21 +101,23 @@
           OpenCRE
         </mat-checkbox>
       </div>
+      }
     </div>
 
     <div class="checkbox-grid" style="margin-top: 8px">
       <!-- To be implemented after issue #501 -->
       <!-- <mat-checkbox [checked]="config.activityAttributes.showEvidence"
-        (change)="toggleActivityAttribute('showEvidence')">
-        Evidence
-      </mat-checkbox> -->
+      (change)="toggleActivityAttribute('showEvidence')">
+      Evidence
+    </mat-checkbox> -->
       <mat-checkbox
         [checked]="config.activityAttributes.showTags"
         (change)="toggleActivityAttribute('showTags')">
         Tags
       </mat-checkbox>
     </div>
-    <div class="config-row slider-row" *ngIf="hasAnyMarkdownAttribute">
+    @if (hasAnyMarkdownAttribute) {
+    <div class="config-row slider-row">
       <span class="config-row-label">
         Word Cap
         <mat-icon
@@ -125,18 +128,14 @@
         :
         <strong>{{ config.descriptionWordCap }}</strong>
       </span>
-      <mat-slider
-        class="word-cap-slider"
-        min="5"
-        [max]="maxWordCap"
-        step="5"
-        discrete>
+      <mat-slider class="word-cap-slider" min="5" [max]="maxWordCap" step="5" discrete>
         <input
           matSliderThumb
           [value]="config.descriptionWordCap"
           (valueChange)="onWordCapChange($event)" />
       </mat-slider>
     </div>
+    }
   </div>
 
   <mat-divider></mat-divider>
@@ -146,12 +145,11 @@
     <h3>Dimensions</h3>
     <p class="config-hint">Uncheck dimensions to exclude all their activities.</p>
     <div class="checkbox-grid">
-      <mat-checkbox
-        *ngFor="let dim of allDimensions"
-        [checked]="!isDimensionExcluded(dim)"
-        (change)="toggleDimension(dim)">
+      @for (dim of allDimensions; track dim) {
+      <mat-checkbox [checked]="!isDimensionExcluded(dim)" (change)="toggleDimension(dim)">
         {{ dim }}
       </mat-checkbox>
+      }
     </div>
   </div>
 
@@ -162,12 +160,13 @@
     <h3>Subdimensions</h3>
     <p class="config-hint">Uncheck subdimensions to exclude their activities.</p>
     <div class="checkbox-grid subdimension-grid">
+      @for (subdim of allSubdimensions; track subdim) {
       <mat-checkbox
-        *ngFor="let subdim of allSubdimensions"
         [checked]="!isSubdimensionExcluded(subdim)"
         (change)="toggleSubdimension(subdim)">
         {{ subdim }}
       </mat-checkbox>
+      }
     </div>
   </div>
 
@@ -183,8 +182,8 @@
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
     <div class="activity-list">
+      @for (activity of filteredActivities; track activity) {
       <mat-checkbox
-        *ngFor="let activity of filteredActivities"
         [checked]="!isActivityExcluded(activity.uuid)"
         (change)="toggleActivity(activity.uuid)">
         <span class="activity-checkbox-label">
@@ -192,6 +191,7 @@
           <span class="activity-meta">{{ activity.dimension }} · Level {{ activity.level }}</span>
         </span>
       </mat-checkbox>
+      }
     </div>
   </div>
 

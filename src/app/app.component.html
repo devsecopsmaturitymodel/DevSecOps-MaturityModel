@@ -10,9 +10,11 @@
       <div class="tag-title">
         {{ title || defaultTitle }}
       </div>
-      <div class="tag-subtitle" *ngIf="subtitle">
+      @if (subtitle) {
+      <div class="tag-subtitle">
         {{ subtitle }}
       </div>
+      }
     </div>
     <div class="dummy"></div>
   </div>

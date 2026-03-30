@@ -7,16 +7,20 @@
     (selectionChanged)="onSelectionChanged($event)"
     (namesChanged)="onTeamsChanged($event)"
     (click)="$event.stopPropagation()"></app-teams-groups-editor>
-  <div class="button-container" *ngIf="dataStore?.meta?.hasLocalStorage">
+  @if (dataStore?.meta?.hasLocalStorage) {
+  <div class="button-container">
     <button mat-raised-button (click)="onExportTeamGroups()">Download team setup</button>
     <button mat-raised-button (click)="onResetTeamGroups()">Reset team setup</button>
   </div>
+  }
 
   <div class="team-info">
     <h2>{{ infoTitle }}</h2>
-    <div class="subheader" *ngIf="infoTeams.length > 1">
+    @if (infoTeams.length > 1) {
+    <div class="subheader">
       {{ info[infoTitle]?.teams?.join(', ') }}
     </div>
+    }
     <div class="info-content">
       <div class="info-kpis">
         <app-kpi
@@ -58,28 +62,30 @@
         </th>
         <td mat-cell *matCellDef="let element" class="table-small-width">
           <div class="dimension-cell">
-            <mat-icon
-              class="dimension-icon"
-              *ngIf="dataStore?.meta?.getIcon(element?.activity?.category || '')">
+            @if (dataStore?.meta?.getIcon(element?.activity?.category || '')) {
+            <mat-icon class="dimension-icon">
               {{ dataStore?.meta?.getIcon(element?.activity?.category || '') }}
             </mat-icon>
+            }
             <span>{{ element?.activity?.dimension }}</span>
           </div>
         </td>
       </ng-container>
 
-      <ng-container
-        matColumnDef="{{ progressColumn }}"
-        *ngFor="let progressColumn of progressColumnNames">
+      @for (progressColumn of progressColumnNames; track progressColumn) {
+      <ng-container matColumnDef="{{ progressColumn }}">
         <th mat-header-cell mat-sort-header *matHeaderCellDef class="progress-col">
           {{ progressColumn }}
         </th>
         <td mat-cell *matCellDef="let element" class="progress-col">
-          <span *ngIf="element?.progress?.[progressColumn]">
+          @if (element?.progress?.[progressColumn]) {
+          <span>
             {{ dateFormat(element?.progress?.[progressColumn]) }}
           </span>
+          }
         </td>
       </ng-container>
+      }
 
       <!-- No data message -->
       <tr class="mat-row" *matNoDataRow>

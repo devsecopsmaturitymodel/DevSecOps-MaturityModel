@@ -3,28 +3,26 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
       <div class="overlay-details" [hidden]="!showOverlay">
-        <div *ngIf="showActivityDetails; then activityTrue; else activityFalse"></div>
-        <ng-template #activityTrue>
-          <div class="overlay-modal">
-            <app-activity-description
-              [activity]="showActivityDetails"
-              [iconName]="dataStore?.meta?.getIcon(showActivityDetails?.category || '') || ''"
-              [showCloseButton]="true"
-              (activityClicked)="onDependencyClicked($event)"
-              (closeRequested)="closeOverlay()">
-            </app-activity-description>
+        @if (showActivityDetails) {
+        <div class="overlay-modal">
+          <app-activity-description
+            [activity]="showActivityDetails"
+            [iconName]="dataStore?.meta?.getIcon(showActivityDetails?.category || '') || ''"
+            [showCloseButton]="true"
+            (activityClicked)="onDependencyClicked($event)"
+            (closeRequested)="closeOverlay()">
+          </app-activity-description>
+        </div>
+        } @else {
+        <div class="overlay-modal">
+          <div class="overlay-header">
+            <button class="overlay-close" (click)="closeOverlay()">
+              <mat-icon class="white-icon">close</mat-icon>
+            </button>
+            <h2>Nothing to show</h2>
           </div>
-        </ng-template>
-        <ng-template #activityFalse>
-          <div class="overlay-modal">
-            <div class="overlay-header">
-              <button class="overlay-close" (click)="closeOverlay()">
-                <mat-icon class="white-icon">close</mat-icon>
-              </button>
-              <h2>Nothing to show</h2>
-            </div>
-          </div>
-        </ng-template>
+        </div>
+        }
       </div>
       <div class="heatmapClass">
         <div id="chart" class="heatmapChart"></div>
@@ -37,37 +35,41 @@
             <div class="team-chip-list">
               <label>Team Group Filter</label>
               <mat-chip-listbox>
+                @for (group of filtersTeamGroups | keyvalue : unsorted; track group) {
                 <mat-chip-option
                   #chip
-                  *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
                   (selectionChange)="toggleTeamGroupFilter(chip)"
                   [selected]="filtersTeamGroups[group.key]">
                   {{ group.key }}
                 </mat-chip-option>
+                }
               </mat-chip-listbox>
             </div>
             <div class="team-chip-list">
               <label>Team Filter</label>
               <mat-chip-listbox multiple>
+                @for (team of filtersTeams | keyvalue; track team) {
                 <mat-chip-option
                   #chip
-                  *ngFor="let team of filtersTeams | keyvalue"
                   (selectionChange)="toggleTeamFilter(chip)"
                   [value]="team.key"
                   [selected]="team.value">
                   {{ team.key }}
                 </mat-chip-option>
+                }
               </mat-chip-listbox>
             </div>
           </div>
         </div>
-        <mat-card class="activity-card" *ngIf="showActivityCard">
+        @if (showActivityCard) {
+        <mat-card class="activity-card">
           <mat-card-title-group>
             <mat-card-title>{{ showActivityCard.dimension }}</mat-card-title>
             <mat-card-subtitle>Level {{ showActivityCard.level }}</mat-card-subtitle>
           </mat-card-title-group>
-          <mat-card-content
-            *ngFor="let activity of showActivityCard.activities; index as activityIndex">
+          @for (activity of showActivityCard.activities; track activity; let activityIndex = $index)
+          {
+          <mat-card-content>
             <mat-expansion-panel
               (opened)="onPanelOpened(activity)"
               (closed)="onPanelClosed(activity)">
@@ -88,19 +90,20 @@
               </mat-expansion-panel-header>
               <ng-template matExpansionPanelContent>
                 <ul class="team-list">
-                  <ng-container *ngFor="let team of filtersTeams | keyvalue">
-                    <li *ngIf="team.value || !hasTeamsFilter">
-                      <label class="team-label"> {{ team.key }}: </label>
-                      <app-progress-slider
-                        [DBG_name]="activity['name']"
-                        [steps]="progressStates"
-                        [state]="getTeamProgressState(activity['uuid'], team.key)"
-                        [originalState]="getBackedupTeamProgressState(activity['uuid'], team.key)"
-                        (progressChange)="
-                          onProgressChange(activity['uuid'], team.key, $event)
-                        "></app-progress-slider>
-                    </li>
-                  </ng-container>
+                  @for (team of filtersTeams | keyvalue; track team) { @if (team.value ||
+                  !hasTeamsFilter) {
+                  <li>
+                    <label class="team-label"> {{ team.key }}: </label>
+                    <app-progress-slider
+                      [DBG_name]="activity['name']"
+                      [steps]="progressStates"
+                      [state]="getTeamProgressState(activity['uuid'], team.key)"
+                      [originalState]="getBackedupTeamProgressState(activity['uuid'], team.key)"
+                      (progressChange)="
+                        onProgressChange(activity['uuid'], team.key, $event)
+                      "></app-progress-slider>
+                  </li>
+                  } }
                 </ul>
                 <div class="smaller-italics">
                   <span>* Has been modified</span><br />
@@ -109,7 +112,9 @@
               </ng-template>
             </mat-expansion-panel>
           </mat-card-content>
+          }
         </mat-card>
+        }
         <div class="footer-buttons">
           <button
             class="normal-button"

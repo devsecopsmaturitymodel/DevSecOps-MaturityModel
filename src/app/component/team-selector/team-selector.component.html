@@ -4,7 +4,8 @@
   <div class="select-all-actions">
     <button mat-button color="primary" (click)="selectAllTeams()">Select All</button>
     <button mat-button (click)="deselectAllTeams()">Deselect All</button>
-    <span *ngIf="groupNames.length > 0" class="group-section">
+    @if (groupNames.length > 0) {
+    <span class="group-section">
       <span class="group-label">Group:</span>
       <button mat-stroked-button [matMenuTriggerFor]="groupMenu" class="group-dropdown-btn">
         <mat-icon>group</mat-icon>
@@ -12,18 +13,20 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
     </span>
+    }
     <mat-menu #groupMenu="matMenu">
-      <button mat-menu-item *ngFor="let group of groupNames" (click)="selectGroup(group)">
+      @for (group of groupNames; track group) {
+      <button mat-menu-item (click)="selectGroup(group)">
         {{ group }}
       </button>
+      }
     </mat-menu>
   </div>
   <div class="checkbox-grid">
-    <mat-checkbox
-      *ngFor="let team of allTeams"
-      [checked]="isTeamSelected(team)"
-      (change)="toggleTeam(team)">
+    @for (team of allTeams; track team) {
+    <mat-checkbox [checked]="isTeamSelected(team)" (change)="toggleTeam(team)">
       {{ team }}
     </mat-checkbox>
+    }
   </div>
 </div>

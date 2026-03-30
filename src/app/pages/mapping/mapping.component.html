@@ -4,13 +4,12 @@
     <mat-form-field appearance="outline" class="search-box">
       <mat-label>Search</mat-label>
       <mat-chip-grid #chipList aria-label="Search terms">
-        <mat-chip-row
-          *ngFor="let term of searchTerms"
-          [removable]="true"
-          (removed)="removeSearchTerm(term)">
+        @for (term of searchTerms; track term) {
+        <mat-chip-row [removable]="true" (removed)="removeSearchTerm(term)">
           {{ term }}
           <button matChipRemove><mat-icon>cancel</mat-icon></button>
         </mat-chip-row>
+        }
         <input
           matInput
           [formControl]="searchCtrl"
@@ -20,9 +19,11 @@
           placeholder="Type and press Enter..."
           [matChipInputAddOnBlur]="false" />
       </mat-chip-grid>
-      <button mat-icon-button matSuffix *ngIf="searchTerms.length" (click)="clearFilter()">
+      @if (searchTerms.length) {
+      <button mat-icon-button matSuffix (click)="clearFilter()">
         <mat-icon>close</mat-icon>
       </button>
+      }
     </mat-form-field>
     <button mat-raised-button class="export-btn" (click)="exportToExcel()">
       <mat-icon>file_download</mat-icon>
@@ -53,33 +54,39 @@
     <ng-container matColumnDef="samm2">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>SAMM</th>
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.samm2">
-          <ul>
-            <li *ngFor="let sammElement of element.samm2">{{ sammElement }}</li>
-          </ul>
-        </ng-container>
+        @if (element.samm2) {
+        <ul>
+          @for (sammElement of element.samm2; track sammElement) {
+          <li>{{ sammElement }}</li>
+          }
+        </ul>
+        }
       </td>
     </ng-container>
 
     <ng-container matColumnDef="ISO17">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>ISO 27001:2017</th>
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.ISO17">
-          <ul>
-            <li *ngFor="let ISOElement of element.ISO17">{{ ISOElement }}</li>
-          </ul>
-        </ng-container>
+        @if (element.ISO17) {
+        <ul>
+          @for (ISOElement of element.ISO17; track ISOElement) {
+          <li>{{ ISOElement }}</li>
+          }
+        </ul>
+        }
       </td>
     </ng-container>
 
     <ng-container matColumnDef="ISO22">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>ISO 27001:2022</th>
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.ISO22">
-          <ul>
-            <li *ngFor="let ISO22Element of element.ISO22">{{ ISO22Element }}</li>
-          </ul>
-        </ng-container>
+        @if (element.ISO22) {
+        <ul>
+          @for (ISO22Element of element.ISO22; track ISO22Element) {
+          <li>{{ ISO22Element }}</li>
+          }
+        </ul>
+        }
       </td>
     </ng-container>
 
@@ -107,103 +114,109 @@
       <th>SAMM</th>
       <th>ISO 27001:2017</th>
       <th>ISO 27001:2022</th>
-      <th *ngFor="let team of allTeams">
+      @for (team of allTeams; track team) {
+      <th>
         {{ team + ' - Status' }}
       </th>
+      }
     </tr>
 
-    <tr *ngFor="let item of allMappings">
+    @for (item of allMappings; track item) {
+    <tr>
       <!-- checking if item is defined and set & truncating at 32767 characters per cell to fit to excel limitations-->
       <td>
-        <ng-container *ngIf="item.dimension && item.dimension.length > 0">
-          {{ item.dimension | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.dimension && item.dimension.length > 0) {
+        {{ item.dimension | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.subDimension && item.subDimension.length > 0">
-          {{ item.subDimension | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.subDimension && item.subDimension.length > 0) {
+        {{ item.subDimension | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.activityName && item.activityName.length > 0">
-          {{ item.activityName | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.activityName && item.activityName.length > 0) {
+        {{ item.activityName | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.level">
-          {{ '' + item.level | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.level) {
+        {{ '' + item.level | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.description && item.description.length > 0">
-          {{ item.description | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.description && item.description.length > 0) {
+        {{ item.description | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.risk && item.risk.length > 0">
-          {{ item.risk | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.risk && item.risk.length > 0) {
+        {{ item.risk | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.measure && item.measure.length > 0">
-          {{ item.measure | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.measure && item.measure.length > 0) {
+        {{ item.measure | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.knowledge && item.knowledge.length > 0">
-          {{ item.knowledge | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.knowledge && item.knowledge.length > 0) {
+        {{ item.knowledge | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.resources && item.resources.length > 0">
-          {{ item.resources | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.resources && item.resources.length > 0) {
+        {{ item.resources | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.time && item.time.length > 0">
-          {{ item.time | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.time && item.time.length > 0) {
+        {{ item.time | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.usefulness && item.usefulness.length > 0">
-          {{ item.usefulness | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.usefulness && item.usefulness.length > 0) {
+        {{ item.usefulness | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.assessment && item.assessment.length > 0">
-          {{ item.assessment | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.assessment && item.assessment.length > 0) {
+        {{ item.assessment | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.comments && item.comments.length > 0">
-          {{ item.comments | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.comments && item.comments.length > 0) {
+        {{ item.comments | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.dependsOn && item.dependsOn.length > 0">
-          {{ item.dependsOn | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.dependsOn && item.dependsOn.length > 0) {
+        {{ item.dependsOn | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.samm2 && item.samm2.length > 0">
-          {{ item.samm2 | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.samm2 && item.samm2.length > 0) {
+        {{ item.samm2 | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.ISO17 && item.ISO17.length > 0">
-          {{ '\t' + item.ISO17 | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.ISO17 && item.ISO17.length > 0) {
+        {{ '\t' + item.ISO17 | slice : 0 : 32767 }}
+        }
       </td>
       <td>
-        <ng-container *ngIf="item.ISO22 && item.ISO22.length > 0">
-          {{ item.ISO22 | slice : 0 : 32767 }}
-        </ng-container>
+        @if (item.ISO22 && item.ISO22.length > 0) {
+        {{ item.ISO22 | slice : 0 : 32767 }}
+        }
       </td>
-      <td *ngFor="let team of allTeams">
-        <ng-container *ngIf="dataStore.progressStore">
-          {{ dataStore.progressStore.getTeamActivityTitle(item.uuid, team) }}
-        </ng-container>
+      @for (team of allTeams; track team) {
+      <td>
+        @if (dataStore.progressStore) {
+        {{ dataStore.progressStore.getTeamActivityTitle(item.uuid, team) }}
+        }
       </td>
+      }
     </tr>
+    }
   </table>
 </div>

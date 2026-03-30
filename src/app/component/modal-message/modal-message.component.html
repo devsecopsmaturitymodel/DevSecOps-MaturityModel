@@ -3,12 +3,13 @@
   <p [innerHTML]="data.message"></p>
 </div>
 <div mat-dialog-actions class="dialog-buttons">
+  @for (name of data.buttons; track name) {
   <button
-    *ngFor="let name of data.buttons"
     mat-button
     mat-dialog-close
     class="mat-focus-indicator downloadButtonClass mat-raised-button mat-button-base"
     (click)="closeDialog(name)">
     {{ name }}
   </button>
+  }
 </div>
