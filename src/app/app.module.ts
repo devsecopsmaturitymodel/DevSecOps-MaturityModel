@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
+
 import { CircularHeatmapComponent } from './pages/circular-heatmap/circular-heatmap.component';
 import { MatrixComponent } from './pages/matrix/matrix.component';
 import { MappingComponent } from './pages/mapping/mapping.component';
@@ -31,7 +34,7 @@ import { ModalMessageComponent } from './component/modal-message/modal-message.c
 import { ProgressSliderComponent } from './component/progress-slider/progress-slider.component';
 import { KpiComponent } from './component/kpi/kpi.component';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { TeamsGroupsEditorModule } from './component/teams-groups-editor/teams-groups-editor.module';
+
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReportComponent } from './pages/report/report.component';
 import { ReportConfigModalComponent } from './component/report-config-modal/report-config-modal.component';
@@ -45,13 +48,14 @@ import { ColResizeDirective } from './directive/col-resize.directive';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatMenuModule,
+    MatSidenavModule,
     FormsModule,
-    TeamsGroupsEditorModule,
     MatTooltipModule,
     LogoComponent,
     MatrixComponent,
