@@ -124,9 +124,8 @@
   font-size: medium;
 }
 
-.matrix-table {
-  width: 100%;
-  margin-bottom: 20px;
+.mat-table-container {
+  overflow-x: auto;
 }
 
 /* No data message styling */
