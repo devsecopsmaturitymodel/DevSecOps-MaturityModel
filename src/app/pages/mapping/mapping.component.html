@@ -32,7 +32,7 @@
   </div>
 
   <div class="mat-table-container">
-    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 matrix-table">
       <ng-container matColumnDef="dimension">
         <th mat-header-cell mat-sort-header *matHeaderCellDef>Dimension</th>
         <td mat-cell *matCellDef="let element">{{ element.dimension }}</td>

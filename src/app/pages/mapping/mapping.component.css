@@ -21,6 +21,10 @@
   min-width: 140px;
 }
 
+.matrix-table {
+  margin: 20px;
+}
+
 .mat-table-container {
   margin: 20px;
   overflow-x: auto;
