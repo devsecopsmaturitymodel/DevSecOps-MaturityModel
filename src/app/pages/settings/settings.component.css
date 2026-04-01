@@ -248,3 +248,31 @@ mat-icon.mandatory-icon {
   margin-left: 0.5rem;
   font-weight: 500;
 }
+
+/* Terminology section */
+.terminology-section {
+  margin-top: 1rem;
+}
+
+.terminology-description {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+}
+
+.terminology-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.terminology-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.terminology-row mat-form-field {
+  flex: 1;
+  min-width: 180px;
+}

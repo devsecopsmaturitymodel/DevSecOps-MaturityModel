@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
-import { SettingsService } from '../../service/settings/settings.service';
+import { SettingsService, LabelParts } from '../../service/settings/settings.service';
 import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { DataStore } from 'src/app/model/data-store';
@@ -62,7 +62,9 @@ export class SettingsComponent implements OnInit {
   selectedDateFormat: string = this.BROWSER_LOCALE;
 
   customTeamLabel: string = 'Team';
+  customTeamLabelPlural: string = '';
   customGroupLabel: string = 'Group';
+  customGroupLabelPlural: string = '';
 
   // GitHub release check state
   checkingLatest: boolean = false;
@@ -149,7 +151,9 @@ export class SettingsComponent implements OnInit {
   initialize(): void {
     this.selectedDateFormat = this.settings.getDateFormat() || this.BROWSER_LOCALE;
     this.customTeamLabel = this.settings.getTeamLabel();
+    this.customTeamLabelPlural = this.settings.getTeamLabelPlural();
     this.customGroupLabel = this.settings.getGroupLabel();
+    this.customGroupLabelPlural = this.settings.getGroupLabelPlural();
 
     // Init dates
     let date: Date = new Date();
@@ -185,11 +189,35 @@ export class SettingsComponent implements OnInit {
   }
 
   onTeamLabelChange(): void {
-    this.settings.setTeamLabel(this.customTeamLabel);
+    this.settings.setTeamLabel(this.customTeamLabel, this.customTeamLabelPlural);
+    // Update plural placeholder when singular changes
+    if (!this.customTeamLabelPlural || this.customTeamLabelPlural === this.customTeamLabel + 's') {
+      this.customTeamLabelPlural = '';
+    }
+  }
+
+  onTeamLabelPluralChange(): void {
+    this.settings.setTeamLabel(this.customTeamLabel, this.customTeamLabelPlural);
   }
 
   onGroupLabelChange(): void {
-    this.settings.setGroupLabel(this.customGroupLabel);
+    this.settings.setGroupLabel(this.customGroupLabel, this.customGroupLabelPlural);
+    // Update plural placeholder when singular changes
+    if (!this.customGroupLabelPlural || this.customGroupLabelPlural === this.customGroupLabel + 's') {
+      this.customGroupLabelPlural = '';
+    }
+  }
+
+  onGroupLabelPluralChange(): void {
+    this.settings.setGroupLabel(this.customGroupLabel, this.customGroupLabelPlural);
+  }
+
+  getTeamPluralPlaceholder(): string {
+    return (this.customTeamLabel || 'Team') + 's';
+  }
+
+  getGroupPluralPlaceholder(): string {
+    return (this.customGroupLabel || 'Group') + 's';
   }
 
   onMaxLevelChange(value: number | null): void {

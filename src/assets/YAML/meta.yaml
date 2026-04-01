@@ -36,6 +36,9 @@ activityFiles:
 lang: en
 strings:
   en:
+    # Optional: customize terminology (use 'singular|plural' for irregular plurals, e.g. 'Industry|Industries')
+    team: 'Team'
+    group: 'Group'
     allTeamsGroupName: 'All teams'
     maturityLevels:
       [

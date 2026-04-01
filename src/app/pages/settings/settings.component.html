@@ -35,30 +35,6 @@
       </div>
     </mat-card-content>
 
-    <mat-card-content>
-      <div
-        class="terminology-container"
-        style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px">
-        <mat-form-field appearance="fill">
-          <mat-label>Custom Team Terminology</mat-label>
-          <input
-            matInput
-            placeholder="e.g. App"
-            name="customTeamLabel"
-            [(ngModel)]="customTeamLabel"
-            (ngModelChange)="onTeamLabelChange()" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Custom Group Terminology</mat-label>
-          <input
-            matInput
-            placeholder="e.g. Portfolio"
-            name="customGroupLabel"
-            [(ngModel)]="customGroupLabel"
-            (ngModelChange)="onGroupLabelChange()" />
-        </mat-form-field>
-      </div>
-    </mat-card-content>
   </mat-card>
 
   <mat-card class="progress-definitions-section">
@@ -178,6 +154,56 @@
           removes ambiguity and ensures everyone interprets each stage consistently.
         </p>
         <p><strong>Note:</strong> Stages at 0% and 100% are mandatory and cannot be removed.</p>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="terminology-section">
+    <h2>Terminology</h2>
+    <p class="terminology-description">
+      Customize the terminology to how you organize your "teams" and how you group them
+      (e.g. 'Apps' and 'Portfolios').
+    </p>
+    <div class="terminology-grid">
+      <div class="terminology-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Team (singular)</mat-label>
+          <input
+            matInput
+            placeholder="e.g. App"
+            name="customTeamLabel"
+            [(ngModel)]="customTeamLabel"
+            (ngModelChange)="onTeamLabelChange()" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Team (plural)</mat-label>
+          <input
+            matInput
+            [placeholder]="getTeamPluralPlaceholder()"
+            name="customTeamLabelPlural"
+            [(ngModel)]="customTeamLabelPlural"
+            (ngModelChange)="onTeamLabelPluralChange()" />
+        </mat-form-field>
+      </div>
+      <div class="terminology-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Group (singular)</mat-label>
+          <input
+            matInput
+            placeholder="e.g. Portfolio"
+            name="customGroupLabel"
+            [(ngModel)]="customGroupLabel"
+            (ngModelChange)="onGroupLabelChange()" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Group (plural)</mat-label>
+          <input
+            matInput
+            [placeholder]="getGroupPluralPlaceholder()"
+            name="customGroupLabelPlural"
+            [(ngModel)]="customGroupLabelPlural"
+            (ngModelChange)="onGroupLabelPluralChange()" />
+        </mat-form-field>
       </div>
     </div>
   </mat-card>
