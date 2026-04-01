@@ -66,9 +66,8 @@ export class SettingsService {
     }
     const parts = value.split('|');
     const singular = parts[0].trim();
-    const plural = parts.length > 1 && parts[1].trim().length > 0
-      ? parts[1].trim()
-      : singular + 's';
+    const plural =
+      parts.length > 1 && parts[1].trim().length > 0 ? parts[1].trim() : singular + 's';
     return { singular, plural };
   }
 

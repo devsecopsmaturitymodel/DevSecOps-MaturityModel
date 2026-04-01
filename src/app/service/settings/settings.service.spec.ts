@@ -51,7 +51,9 @@ describe('SettingsService', () => {
     });
 
     it('should encode with pipe when plural is custom', () => {
-      expect(SettingsService.encodeLabelParts('Industry', 'Industries')).toBe('Industry|Industries');
+      expect(SettingsService.encodeLabelParts('Industry', 'Industries')).toBe(
+        'Industry|Industries'
+      );
     });
 
     it('should encode without pipe when plural is empty', () => {

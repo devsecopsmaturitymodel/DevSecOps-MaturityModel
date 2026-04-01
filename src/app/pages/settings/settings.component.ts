@@ -203,7 +203,10 @@ export class SettingsComponent implements OnInit {
   onGroupLabelChange(): void {
     this.settings.setGroupLabel(this.customGroupLabel, this.customGroupLabelPlural);
     // Update plural placeholder when singular changes
-    if (!this.customGroupLabelPlural || this.customGroupLabelPlural === this.customGroupLabel + 's') {
+    if (
+      !this.customGroupLabelPlural ||
+      this.customGroupLabelPlural === this.customGroupLabel + 's'
+    ) {
       this.customGroupLabelPlural = '';
     }
   }
