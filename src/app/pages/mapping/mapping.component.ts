@@ -1,9 +1,22 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import * as XLSX from 'xlsx';
+
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import {
   DialogInfo,
@@ -14,7 +27,8 @@ import { Uuid } from 'src/app/model/types';
 import { perfNow } from 'src/app/util/util';
 import { SettingsService } from 'src/app/service/settings/settings.service';
 
-const SEPARATOR = '\x1F'; // ASCII Unit Separator
+const FILTER_SEPARATOR = '\x1F';
+const SORTABLE_COLUMNS = new Set(['dimension', 'subDimension', 'activityName']);
 
 export interface MappingRow {
   uuid: Uuid;
@@ -24,6 +38,10 @@ export interface MappingRow {
   samm2: string[];
   ISO17: string[];
   ISO22: string[];
+  _samm2Str: string;
+  _ISO17Str: string;
+  _ISO22Str: string;
+  _searchBlob: string;
   description?: string;
   risk?: string;
   measure?: string;
@@ -35,188 +53,249 @@ export interface MappingRow {
   comments?: string;
   assessment?: string;
   level?: number;
-}
-
-// Enum for sort mode
-enum SortMode {
-  Activity = 'sortByActivity',
-  SAMM = 'sortBySAMM',
-  ISO17 = 'sortByISO',
-  ISO22 = 'sortByISO22',
+  teamImplementation?: Record<string, unknown>;
 }
 
 @Component({
   selector: 'app-mapping',
   templateUrl: './mapping.component.html',
   styleUrls: ['./mapping.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MappingComponent implements OnInit, AfterViewInit {
+export class MappingComponent implements OnInit, AfterViewInit, OnDestroy {
   allMappings: MappingRow[] = [];
   dataSource = new MatTableDataSource<MappingRow>([]);
 
-  //labels
-  knowledgeLabels: string[] = [];
-  generalLabels: string[] = [];
+  displayedColumns = ['dimension', 'subDimension', 'activityName', 'samm2', 'ISO17', 'ISO22'];
 
-  allTeams: string[] = [];
-  displayedColumns: string[] = [
-    'dimension',
-    'subDimension',
-    'activityName',
-    'samm2',
-    'ISO17',
-    'ISO22',
-  ];
   separatorKeysCodes: number[] = [ENTER, COMMA];
-
-  @ViewChild('chipInput') chipInput!: ElementRef<HTMLInputElement>;
-  @ViewChild(MatSort, { static: false }) sort!: MatSort;
-
-  dataStore: DataStore = new DataStore();
-
-  searchTerms: string[] = [];
   searchCtrl = new FormControl('');
+  searchTerms: string[] = [];
+  liveInputValue = '';
+
+  loading = true;
+  pageSizeOptions = [10, 25, 50, 100];
+  defaultPageSize = 25;
+
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  private destroy$ = new Subject<void>();
+  dataStore: DataStore = new DataStore();
 
   constructor(
     private loader: LoaderService,
     private settings: SettingsService,
+    private cdr: ChangeDetectorRef,
     public modal: ModalMessageComponent
   ) {}
 
   ngOnInit(): void {
-    console.log(`${perfNow()}: Mapping: Loading yamls...`);
+    console.log(`${perfNow()}: Mapping: init`);
+    this.initSearchListener();
+
     this.loader
       .load()
-      .then((dataStore: DataStore) => {
-        this.setYamlData(dataStore);
-        this.dataSource.filterPredicate = this.filterFunction;
-        console.log(`${perfNow()}: Page loaded: Mapping`);
+      .then((ds: DataStore) => {
+        this.setYamlData(ds);
+        this.setupFilter();
+        this.setupSorting();
+        this.loading = false;
+        this.cdr.markForCheck();
       })
       .catch(err => {
+        this.loading = false;
         this.displayMessage(new DialogInfo(err.message, 'An error occurred'));
-        if (err.hasOwnProperty('stack')) {
-          console.warn(err);
-        }
+        console.error(err);
+        this.cdr.markForCheck();
       });
   }
 
-  ngAfterViewInit() {
-    if (this.sort) {
-      this.dataSource.sort = this.sort;
-      this.dataSource.sortingDataAccessor = (item: MappingRow, property: string) => {
-        const value = (item as any)[property];
-        if (Array.isArray(value)) {
-          return value.join(', ');
-        }
-        return value;
-      };
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+
+    this.sort?.sortChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.paginator?.firstPage();
+      this.cdr.detectChanges();
+    });
+
+    this.cdr.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private initSearchListener(): void {
+    this.searchCtrl.valueChanges
+      .pipe(debounceTime(150), distinctUntilChanged(), takeUntil(this.destroy$))
+      .subscribe(value => {
+        this.liveInputValue = (value ?? '').trim().toLowerCase();
+        this.applyFilter();
+      });
+  }
+
+  commitCurrentInput(inputEl?: HTMLInputElement): void {
+    const raw = (inputEl?.value ?? this.searchCtrl.value ?? '').trim().toLowerCase();
+    if (!raw) return;
+
+    if (!this.searchTerms.includes(raw)) {
+      this.searchTerms = [...this.searchTerms, raw];
     }
+
+    this.liveInputValue = '';
+    this.searchCtrl.setValue('', { emitEvent: false });
+    if (inputEl) inputEl.value = '';
+
+    this.applyFilter();
   }
 
-  displayMessage(dialogInfo: DialogInfo) {
-    this.modal.openDialog(dialogInfo);
+  removeSearchTerm(term: string): void {
+    this.searchTerms = this.searchTerms.filter(t => t !== term);
+    this.applyFilter();
   }
 
-  setYamlData(dataStore: DataStore) {
-    this.dataStore = dataStore;
-    this.allTeams = dataStore.meta?.teams || [];
-    this.allMappings = this.transformDataStore(dataStore);
+  clearFilter(): void {
+    this.searchTerms = [];
+    this.liveInputValue = '';
+    this.searchCtrl.setValue('', { emitEvent: false });
+    this.dataSource.filter = '';
+    this.paginator?.firstPage();
+  }
+
+  private applyFilter(resetPage = true): void {
+    const all = [...this.searchTerms];
+    if (this.liveInputValue && !all.includes(this.liveInputValue)) {
+      all.push(this.liveInputValue);
+    }
+
+    this.dataSource.filter = all.length ? all.join(FILTER_SEPARATOR) : '';
+    if (resetPage) this.paginator?.firstPage();
+    this.cdr.markForCheck();
+  }
+
+  private setYamlData(ds: DataStore): void {
+    this.dataStore = ds;
+    this.allMappings = this.transformDataStore(ds);
     this.dataSource.data = this.allMappings;
+
+    if (this.sort) this.dataSource.sort = this.sort;
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+      this.paginator.firstPage();
+    }
   }
 
-  // Transform DataStore to MappingRow[]
-  transformDataStore(dataStore: DataStore): MappingRow[] {
-    if (!dataStore.activityStore) {
-      return [];
-    }
+  private transformDataStore(ds: DataStore): MappingRow[] {
+    if (!ds.activityStore) return [];
 
-    let activities = dataStore.activityStore.getAllActivitiesUpToLevel(this.settings.getMaxLevel());
+    const activities = ds.activityStore.getAllActivitiesUpToLevel(this.settings.getMaxLevel());
+
     return activities.map(activity => {
+      const refs = activity?.references ?? {};
+
+      const samm2 = refs['samm2'] ?? [];
+      const ISO17 = refs['iso27001_2017'] ?? [];
+      const ISO22 = refs['iso27001_2022'] ?? [];
+
+      const _samm2Str = samm2.join(', ');
+      const _ISO17Str = ISO17.join(', ');
+      const _ISO22Str = ISO22.join(', ');
+
+      const dimension = activity.category ?? '';
+      const subDimension = activity.dimension ?? '';
+      const activityName = activity.name ?? '';
+
+      const _searchBlob = [dimension, subDimension, activityName, _samm2Str, _ISO17Str, _ISO22Str]
+        .join(' ')
+        .toLowerCase();
+
       return {
-        uuid: activity.uuid || '',
-        dimension: activity.category || '',
-        subDimension: activity.dimension || '',
-        activityName: activity.name || '',
-        samm2: activity?.references?.samm2 || [],
-        ISO17: activity?.references?.iso27001_2017 || [],
-        ISO22: activity?.references?.iso27001_2022 || [],
-        description: activity.description.toString() || '',
-        risk: activity.risk.toString() || '',
-        measure: activity.measure.toString() || '',
-        knowledge: dataStore.getMetaString('knowledgeLabels', activity.knowledge),
-        resources: dataStore.getMetaString('labels', activity.resources),
-        time: dataStore.getMetaString('labels', activity.time),
-        usefulness: dataStore.getMetaString('labels', activity.usefulness),
-        dependsOn: activity.dependsOn || [],
-        comments: activity.comments.toString() || '',
-        assessment: activity.assessment.toString() || '',
-        level: activity.level || 0,
-        teamImplementation: activity.implementation || {},
-        // teamsEvidence: activity.teamsEvidence || {},
+        uuid: activity.uuid ?? '',
+        dimension,
+        subDimension,
+        activityName,
+        samm2,
+        ISO17,
+        ISO22,
+        _samm2Str,
+        _ISO17Str,
+        _ISO22Str,
+        _searchBlob,
+        level: activity.level ?? 0,
       };
     });
   }
 
-  exportToExcel() {
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element, { raw: true });
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'DSOMM - Activities.xlsx');
-    console.log(`${perfNow()}: Mapping: Exported to Excel`);
+  isSortable(col: string): boolean {
+    return SORTABLE_COLUMNS.has(col);
   }
 
-  //-----------------------------
-  // Filtering and sorting logic
-  //-----------------------------
-  applyFilter(event: KeyboardEvent) {
-    const input = event.target as HTMLInputElement;
-    const value = input.value.trim();
-    if (event.key === 'Enter' && value) {
-      if (!this.searchTerms.includes(value.toLowerCase())) {
-        this.searchTerms.push(value.toLowerCase());
-        this.updateFilter();
+  private setupSorting(): void {
+    this.dataSource.sortData = (data, sort) => {
+      if (!sort.active || sort.direction === '' || !SORTABLE_COLUMNS.has(sort.active)) {
+        return data;
       }
-      input.value = '';
-      this.searchCtrl.setValue('');
-    } else if (!value && this.searchTerms.length === 0) {
-      this.dataSource.filter = '';
-    }
+
+      const dir = sort.direction === 'asc' ? 1 : -1;
+
+      return data
+        .map((item, i) => ({ item, i }))
+        .sort(({ item: a, i: ai }, { item: b, i: bi }) => {
+          const vA = ((a as any)[sort.active] ?? '').toString().toLowerCase();
+          const vB = ((b as any)[sort.active] ?? '').toString().toLowerCase();
+          const c = vA.localeCompare(vB);
+          return c !== 0 ? dir * c : ai - bi;
+        })
+        .map(({ item }) => item);
+    };
   }
 
-  removeSearchTerm(term: string) {
-    this.searchTerms = this.searchTerms.filter(t => t !== term);
-    this.updateFilter();
+  private setupFilter(): void {
+    this.dataSource.filterPredicate = (data: MappingRow, filter: string) => {
+      if (!filter) return true;
+      return filter
+        .split(FILTER_SEPARATOR)
+        .filter(Boolean)
+        .every(t => data._searchBlob.includes(t));
+    };
   }
 
-  clearFilter() {
-    console.log(`${perfNow()}: Mapping: Clear search filter`);
-    this.searchTerms = [];
-    this.dataSource.filter = '';
-    this.searchCtrl.setValue('');
+  exportToExcel(): void {
+    const rows = this.dataSource.filteredData.map(r => ({
+      Dimension: r.dimension,
+      'Sub-Dimension': r.subDimension,
+      Activity: r.activityName,
+      Level: r.level ?? '',
+      SAMM: r._samm2Str,
+      'ISO 27001:2017': r._ISO17Str,
+      'ISO 27001:2022': r._ISO22Str,
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Mappings');
+    XLSX.writeFile(wb, 'DSOMM-Mappings.xlsx');
   }
 
-  updateFilter() {
-    this.dataSource.filter = this.searchTerms.join(SEPARATOR);
-    console.log(
-      `${perfNow()}: Mapping: Search filter: ${this.dataSource.filter?.replace(SEPARATOR, ', ')}`
-    );
+  trackByUuid(_: number, row: MappingRow): Uuid {
+    return row.uuid;
   }
 
-  filterFunction(data: MappingRow, filter: string): boolean {
-    // Split filter into terms, require all terms to match
-    const terms = filter.split(SEPARATOR).filter(t => t);
-    const dataStr = [
-      data.dimension,
-      data.subDimension,
-      data.activityName,
-      (data.samm2 || []).join(' '),
-      (data.ISO17 || []).join(' '),
-      (data.ISO22 || []).join(' '),
-    ]
-      .join(' ')
-      .toLowerCase();
+  get totalResults(): number {
+    return this.dataSource.filteredData.length;
+  }
+  get totalAll(): number {
+    return this.allMappings.length;
+  }
 
-    return terms.every(term => dataStr.includes(term));
+  get isFiltered(): boolean {
+    return this.searchTerms.length > 0 || this.liveInputValue.length > 0;
+  }
+
+  private displayMessage(di: DialogInfo): void {
+    this.modal.openDialog(di);
   }
 }
