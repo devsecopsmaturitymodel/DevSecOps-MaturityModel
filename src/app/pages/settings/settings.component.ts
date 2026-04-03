@@ -155,6 +155,15 @@ export class SettingsComponent implements OnInit {
     this.customGroupLabel = this.settings.getGroupLabel();
     this.customGroupLabelPlural = this.settings.getGroupLabelPlural();
 
+    // If the plural is just the auto-generated default (singular + 's'),
+    // leave the field empty so the dynamic placeholder shows instead.
+    if (this.customTeamLabelPlural === this.customTeamLabel + 's') {
+      this.customTeamLabelPlural = '';
+    }
+    if (this.customGroupLabelPlural === this.customGroupLabel + 's') {
+      this.customGroupLabelPlural = '';
+    }
+
     // Init dates
     let date: Date = new Date();
     date = new Date(date.getFullYear(), 0, 31); // 31 Jan current year
