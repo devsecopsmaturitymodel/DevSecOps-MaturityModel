@@ -43,7 +43,18 @@ describe('SettingsComponent', () => {
       'setMaxLevel',
       'getDateFormat',
       'setDateFormat',
+      'getTeamLabel',
+      'getTeamLabelPlural',
+      'getGroupLabel',
+      'getGroupLabelPlural',
+      'setTeamLabel',
+      'setGroupLabel',
+      'initFromMeta',
     ]);
+    settingsService.getTeamLabel.and.returnValue('Team');
+    settingsService.getTeamLabelPlural.and.returnValue('Teams');
+    settingsService.getGroupLabel.and.returnValue('Group');
+    settingsService.getGroupLabelPlural.and.returnValue('Groups');
     modalComponent = jasmine.createSpyObj('ModalMessageComponent', ['openDialog']);
 
     await TestBed.configureTestingModule({

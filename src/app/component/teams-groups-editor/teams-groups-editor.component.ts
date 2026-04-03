@@ -2,6 +2,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { GroupName, TeamGroups, TeamName, TeamNames } from 'src/app/model/types';
 import { perfNow, renameArrayElement } from 'src/app/util/util';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 
 enum EditMode {
   NONE,
@@ -48,6 +49,8 @@ export class TeamsGroupsEditorComponent implements OnChanges {
   localCopyTeams: TeamNames = [];
   localCopyTeamsRenamed: Record<TeamName, TeamName> = {};
   localCopyTeamGroups: TeamGroups = {};
+
+  constructor(public settings: SettingsService) {}
 
   ngOnChanges() {
     this.makeLocalCopy();
@@ -159,7 +162,7 @@ export class TeamsGroupsEditorComponent implements OnChanges {
   }
 
   onAddTeam() {
-    let newName: string = this.findNextName(this.localCopyTeams, 'Team');
+    let newName: string = this.findNextName(this.localCopyTeams, this.settings.getTeamLabel());
     this.localCopyTeams.push(newName);
     this.onTeamSelected(newName);
   }
@@ -194,7 +197,10 @@ export class TeamsGroupsEditorComponent implements OnChanges {
   }
 
   onAddGroup() {
-    let newName: string = this.findNextName(this.keys(this.localCopyTeamGroups), 'Group');
+    let newName: string = this.findNextName(
+      this.keys(this.localCopyTeamGroups),
+      this.settings.getGroupLabel()
+    );
     this.localCopyTeamGroups[newName] = [];
     this.onGroupSelected(newName);
   }

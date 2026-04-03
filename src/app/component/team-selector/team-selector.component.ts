@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TeamGroups } from '../../model/types';
+import { SettingsService } from 'src/app/service/settings/settings.service';
 
 @Component({
   selector: 'app-team-selector',
@@ -14,6 +15,8 @@ export class TeamSelectorComponent {
   @Output() selectedTeamsChange = new EventEmitter<string[]>();
 
   selectedGroupName: string = '';
+
+  constructor(public settings: SettingsService) {}
 
   isTeamSelected(team: string): boolean {
     return this.selectedTeams.includes(team);

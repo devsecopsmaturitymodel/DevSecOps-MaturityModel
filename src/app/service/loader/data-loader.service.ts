@@ -13,6 +13,7 @@ import {
 } from 'src/app/model/activity-store';
 import { DataStore } from 'src/app/model/data-store';
 import { NotificationService } from '../notification.service';
+import { SettingsService } from '../settings/settings.service';
 
 export class DataValidationError extends Error {
   constructor(message: string) {
@@ -38,7 +39,8 @@ export class LoaderService {
   constructor(
     private yamlService: YamlService,
     private githubService: GithubService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private settingsService: SettingsService
   ) {
     this.DSOMM_MODEL_URL = this.githubService.getDsommModelUrl() + '/tree/main/generated';
   }
@@ -61,6 +63,9 @@ export class LoaderService {
       // Load meta.yaml first
       this.dataStore.meta = await this.loadMeta();
       this.dataStore.progressStore?.init(this.dataStore.meta.progressDefinition);
+
+      // Initialize SettingsService with meta.yaml defaults for team/group terminology
+      this.settingsService.initFromMeta(this.dataStore.getMetaStrings());
 
       // Then load activities
       this.dataStore.addActivities(await this.loadActivities(this.dataStore.meta));
