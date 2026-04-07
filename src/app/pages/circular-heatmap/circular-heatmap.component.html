@@ -106,6 +106,23 @@
                   <span>* Has been modified</span><br />
                   <span>** Has been modified to less complete stage than before</span>
                 </div>
+                <div class="evidence-container">
+                  <button
+                    mat-stroked-button
+                    class="add-evidence-button"
+                    (click)="openViewEvidenceModal(activity['uuid'], activity['name'])">
+                    <mat-icon>visibility</mat-icon>
+                    View Progress Evidences
+                  </button>
+                  <button
+                    mat-stroked-button
+                    color="primary"
+                    class="add-evidence-button"
+                    (click)="openAddEvidenceModal(activity['uuid'])">
+                    <mat-icon>note_add</mat-icon>
+                    Add Evidence
+                  </button>
+                </div>
               </ng-template>
             </mat-expansion-panel>
           </mat-card-content>
@@ -121,9 +138,23 @@
           <button
             class="normal-button"
             mat-raised-button
+            class="downloadButtonClass"
+            (click)="exportTeamEvidences()">
+            Download team evidences
+          </button>
+          <button
+            class="normal-button"
+            mat-raised-button
             class="resetButtonClass"
             (click)="deleteLocalTeamsProgress()">
             Delete team progress
+          </button>
+          <button
+            class="normal-button"
+            mat-raised-button
+            class="resetButtonClass"
+            (click)="deleteLocalTeamsEvidence()">
+            Delete team evidences
           </button>
         </div>
       </div>

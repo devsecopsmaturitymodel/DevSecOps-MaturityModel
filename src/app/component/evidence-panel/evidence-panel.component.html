@@ -1,0 +1,51 @@
+<mat-expansion-panel *ngIf="evidenceEntries.length > 0" [expanded]="expanded" #evidencePanel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <b>Teams Evidence</b>
+      <div class="references-summary" [class.hidden]="evidencePanel.expanded">
+        <span class="ref-section" *ngFor="let teamName of teamsWithEvidence">
+          <strong>{{ teamName }}:</strong>
+          <span class="ref-values">{{ evidenceByTeam.get(teamName)?.length || 0 }} entries</span>
+        </span>
+      </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-accordion multi="true">
+    <mat-expansion-panel id="teamsEvidence" *ngFor="let teamName of teamsWithEvidence">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>{{ teamName }}</b>
+          <span class="tool-count-badge" style="margin-left: 10px; color: grey; font-size: 0.8em">
+            {{ evidenceByTeam.get(teamName)?.length || 0 }} entries</span
+          >
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div *ngFor="let entry of evidenceByTeam.get(teamName)" class="evidence-entry">
+        <div class="evidence-entry-header">
+          <h4 class="tool-name">{{ entry.title }}</h4>
+          <span class="evidence-date" *ngIf="entry.evidenceRecorded">{{
+            entry.evidenceRecorded | date : 'mediumDate'
+          }}</span>
+        </div>
+        <p *ngIf="entry.description" class="evidence-description">{{ entry.description }}</p>
+        <p *ngIf="entry.reviewer" class="evidence-description">
+          <strong>Reviewer:</strong> {{ entry.reviewer }}
+        </p>
+        <div *ngIf="entry.attachment?.length" class="evidence-attachments">
+          <a
+            *ngFor="let att of entry.attachment"
+            [href]="att.externalLink"
+            target="_blank"
+            class="reference-link">
+            <mat-icon>open_in_new</mat-icon>
+            {{ att.type }}
+          </a>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-expansion-panel>
+
+<div *ngIf="activityUuid && evidenceEntries.length === 0" class="empty-hint">
+  <p class="no-evidence-message">No Evidence Recorded Yet for this Activity.</p>
+</div>

@@ -285,26 +285,6 @@
       >
     </mat-expansion-panel>
 
-    <!-- <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <b>Teams Evidence</b>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-accordion multi="true">
-        <mat-expansion-panel
-          id="teamsEvidence"
-          *ngFor="let item of this.currentActivity.teamsEvidence | keyvalue">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b [innerHTML]="item.key"></b>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <p [innerHTML]="item.value"></p>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </mat-expansion-panel> -->
-
     <mat-expansion-panel
       [expanded]="true"
       #implementationPanel
@@ -370,6 +350,9 @@
         <p>No teams have started implementing this activity yet.</p>
       </ng-template>
     </mat-expansion-panel>
+
+    <app-evidence-panel [activityUuid]="currentActivity.uuid || ''" [expanded]="isNarrowScreen">
+    </app-evidence-panel>
   </mat-accordion>
 
   <div
