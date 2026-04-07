@@ -449,3 +449,113 @@ mat-icon.mat-icon {
   .level-4 { background-color: #ef6c00; color: #fff3e0; }
   .level-5 { background-color: #c62828; color: #ffebee; }
 }
+/* ── Activity Intelligence Panel ── */
+.intelligence-panel {
+  background: #f8fffe;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 10px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.intel-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.intel-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.intel-useful-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+.u-high  { background: #c8e6c9; color: #1b5e20; }
+.u-med   { background: #fff9c4; color: #f57f17; }
+.u-low   { background: #ffe0b2; color: #e65100; }
+.u-vlow  { background: #ffcdd2; color: #b71c1c; }
+
+.intel-diff-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.intel-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.intel-bar-label {
+  font-size: 10px;
+  color: #888;
+  width: 64px;
+  flex-shrink: 0;
+}
+
+.intel-bar-track {
+  flex: 1;
+  height: 6px;
+  background: #e8f5e9;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.intel-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.bar-low   { background: #66bb6a; }
+.bar-med   { background: #ffa726; }
+.bar-high  { background: #ef5350; }
+.bar-vhigh { background: #b71c1c; }
+
+.intel-bar-val {
+  font-size: 10px;
+  color: #888;
+  width: 52px;
+  flex-shrink: 0;
+}
+
+.intel-tools-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.intel-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.intel-chip {
+  font-size: 10px;
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+  border-radius: 12px;
+  padding: 3px 10px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.intel-chip:hover { background: #bbdefb; }

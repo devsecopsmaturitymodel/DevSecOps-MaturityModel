@@ -138,6 +138,22 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
     this.closeRequested.emit();
   }
 
+  getUsefulnessClass(val: number): string {
+    const classes: Record<number, string> = { 4: 'u-high', 3: 'u-med', 2: 'u-low', 1: 'u-vlow' };
+    return classes[val] || 'u-med';
+  }
+
+  getDifficultyWidth(val: number): string {
+    return `${(val / 4) * 100}%`;
+  }
+
+  getDifficultyBarClass(val: number): string {
+    if (val <= 1) return 'bar-low';
+    if (val === 2) return 'bar-med';
+    if (val === 3) return 'bar-high';
+    return 'bar-vhigh';
+  }
+
   // Check if screen is narrow and update property
   private checkWidthForActivityPanel(): void {
     let elemtn: HTMLElement | null = document.querySelector('app-activity-description');

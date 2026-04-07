@@ -106,7 +106,10 @@ export class MappingComponent implements OnInit, AfterViewInit {
       this.dataSource.sortingDataAccessor = (item: MappingRow, property: string) => {
         const value = (item as any)[property];
         if (Array.isArray(value)) {
-          return value.join(', ');
+          const joined = value.join(', ');
+          return (property === 'ISO17' || property === 'ISO22')
+            ? joined.replace(/\d+/g, n => n.padStart(3, '0'))
+            : joined;
         }
         return value;
       };

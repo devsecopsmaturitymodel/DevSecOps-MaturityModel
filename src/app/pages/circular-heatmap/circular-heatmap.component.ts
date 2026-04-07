@@ -51,6 +51,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   filtersTeamGroups: Record<string, boolean> = {};
   teamGroups: TeamGroups = {};
   hasTeamsFilter: boolean = false;
+  allTeamsGroupName: string = 'All';
   maxLevel: number = 0;
   dimensionLabels: string[] = [];
   progressStates: string[] = [];
@@ -107,10 +108,10 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
           this.filtersTeams = this.buildFilters(dataStore.meta?.teams as string[]);
           // Insert key: 'All' with value: [], in the first position of the meta.teamGroups Record
-          const allTeamsGroupName: string = dataStore.getMetaString('allTeamsGroupName') || 'All';
-          this.teamGroups = { [allTeamsGroupName]: [], ...(dataStore.meta?.teamGroups || {}) };
+          this.allTeamsGroupName = dataStore.getMetaString('allTeamsGroupName') || 'All';
+          this.teamGroups = { [this.allTeamsGroupName]: [], ...(dataStore.meta?.teamGroups || {}) };
           this.filtersTeamGroups = this.buildFilters(Object.keys(this.teamGroups));
-          this.filtersTeamGroups[allTeamsGroupName] = true;
+          this.filtersTeamGroups[this.allTeamsGroupName] = true;
 
           let progressDefinition: ProgressDefinitions = dataStore.meta?.progressDefinition || {};
           this.sectorService.init(
@@ -210,9 +211,12 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
   toggleTeamGroupFilter(chip: MatChip) {
     let teamGroup = chip.value.trim();
-    if (!chip.selected) {
-      chip.toggleSelected();
-      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: ${chip.selected}`);
+    if (!this.filtersTeamGroups[teamGroup]) {
+      // Select this group, deselect all others
+      Object.keys(this.filtersTeamGroups).forEach(key => (this.filtersTeamGroups[key] = false));
+      this.filtersTeamGroups[teamGroup] = true;
+      this.filtersTeamGroups = { ...this.filtersTeamGroups };
+      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: selected`);
 
       // Update the team selections based on the team group selection
       let selectedTeams: TeamName[] = [];
@@ -221,12 +225,20 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
         if (this.filtersTeams[key]) {
           selectedTeams.push(key);
         }
-        this.sectorService.setVisibleTeams(selectedTeams);
       });
-      this.hasTeamsFilter = Object.values(this.filtersTeams).some(v => v === true);
+      this.sectorService.setVisibleTeams(selectedTeams);
+      this.hasTeamsFilter = selectedTeams.length > 0;
       this.reColorHeatmap();
     } else {
-      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: already on`);
+      // Deselect this group, go back to All
+      Object.keys(this.filtersTeams).forEach(key => (this.filtersTeams[key] = false));
+      this.hasTeamsFilter = false;
+      this.sectorService.setVisibleTeams([]);
+      Object.keys(this.filtersTeamGroups).forEach(key => (this.filtersTeamGroups[key] = false));
+      this.filtersTeamGroups[this.allTeamsGroupName] = true;
+      this.filtersTeamGroups = { ...this.filtersTeamGroups };
+      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: deselected, back to All`);
+      this.reColorHeatmap();
     }
   }
 
@@ -247,7 +259,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
       let match: boolean = equalArray(selectedTeams, this.teamGroups[group]);
       this.filtersTeamGroups[group] = match;
     });
-    this.filtersTeamGroups = this.filtersTeamGroups;
+    this.filtersTeamGroups = { ...this.filtersTeamGroups };
 
     this.reColorHeatmap();
   }

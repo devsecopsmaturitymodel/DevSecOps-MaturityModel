@@ -1,0 +1,171 @@
+.roadmap-page {
+  padding: 24px 28px;
+  max-width: 960px;
+}
+
+.roadmap-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.roadmap-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.toolbar-right { display: flex; gap: 8px; }
+
+.view-btn {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #555;
+}
+
+.view-btn.active {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.legend { display: flex; gap: 16px; margin-bottom: 20px; font-size: 12px; }
+.legend-item { display: flex; align-items: center; gap: 4px; color: #555; }
+.done-dot  { color: #2e7d32; font-weight: 600; }
+.avail-dot { color: #1565c0; font-weight: 600; }
+.lock-dot  { color: #aaa; }
+
+.loading-msg { color: #888; font-size: 14px; padding: 20px; }
+
+.level-section { margin-bottom: 28px; }
+
+.level-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+
+.level-badge {
+  background: #2e7d32;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+
+.level-count { font-size: 11px; color: #888; }
+
+.timeline-track {
+  position: relative;
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #c8e6c9;
+  border-radius: 1px;
+}
+
+.card-wrapper { position: relative; display: flex; align-items: flex-start; }
+
+.timeline-dot {
+  position: absolute;
+  left: -21px;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  flex-shrink: 0;
+}
+
+.dot-done   { background: #2e7d32; box-shadow: 0 0 0 2px #2e7d32; }
+.dot-avail  { background: #1565c0; box-shadow: 0 0 0 2px #1565c0; }
+.dot-locked { background: #bbb; box-shadow: 0 0 0 2px #bbb; }
+
+.activity-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.card-done      { border-color: #a5d6a7; background: #f1f8f1; }
+.card-available { border-color: #90caf9; box-shadow: 0 0 0 2px #e3f2fd; }
+.card-locked    { background: #fafafa; opacity: 0.8; }
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.card-name { font-size: 13px; font-weight: 600; color: #1a1a1a; flex: 1; }
+.card-locked .card-name { color: #888; }
+
+.card-badges { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
+
+.state-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+.state-done      { background: #c8e6c9; color: #1b5e20; }
+.state-available { background: #bbdefb; color: #0d47a1; }
+.state-locked    { background: #f5f5f5; color: #999; border: 1px solid #e0e0e0; }
+
+.useful-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+.u-high { background: #c8e6c9; color: #1b5e20; }
+.u-med  { background: #fff9c4; color: #f57f17; }
+.u-low  { background: #ffe0b2; color: #e65100; }
+.u-vlow { background: #ffcdd2; color: #b71c1c; }
+
+.diff-section { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+
+.diff-row { display: flex; align-items: center; gap: 8px; }
+
+.diff-label { font-size: 10px; color: #888; width: 64px; flex-shrink: 0; }
+
+.bar-track { flex: 1; height: 5px; background: #f0f0f0; border-radius: 3px; overflow: hidden; }
+
+.bar-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+.bar-low   { background: #66bb6a; }
+.bar-med   { background: #ffa726; }
+.bar-high  { background: #ef5350; }
+.bar-vhigh { background: #b71c1c; }
+
+.diff-val { font-size: 10px; color: #888; width: 14px; text-align: right; flex-shrink: 0; }
+
+.tools-section { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+
+.tool-chip {
+  font-size: 10px;
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+  border-radius: 12px;
+  padding: 2px 9px;
+  text-decoration: none;
+}
+
+.tool-chip:hover { background: #bbdefb; }
+
+.locked-msg { font-size: 10px; color: #999; margin-top: 4px; font-style: italic; }
+
+.dag-view {
+  height: 500px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
