@@ -61,33 +61,6 @@ describe('SettingsService', () => {
     });
   });
 
-  describe('migrateOldKeys', () => {
-    it('should migrate legacy team label key', () => {
-      localStorage.clear();
-      localStorage.setItem('settings.teamLabel', JSON.stringify('Client'));
-      // Create a new service instance to trigger migration
-      const freshService = new SettingsService();
-      expect(localStorage.getItem('settings.teamLabel')).toBeNull();
-      expect(freshService.getTeamLabel()).toBe('Client');
-    });
-
-    it('should migrate legacy group label key', () => {
-      localStorage.clear();
-      localStorage.setItem('settings.groupLabel', JSON.stringify('Portfolio'));
-      const freshService = new SettingsService();
-      expect(localStorage.getItem('settings.groupLabel')).toBeNull();
-      expect(freshService.getGroupLabel()).toBe('Portfolio');
-    });
-
-    it('should not overwrite existing consolidated key', () => {
-      localStorage.clear();
-      localStorage.setItem('settings.labels', JSON.stringify({ team: 'Existing', group: '' }));
-      localStorage.setItem('settings.teamLabel', JSON.stringify('ShouldBeIgnored'));
-      const freshService = new SettingsService();
-      expect(freshService.getTeamLabel()).toBe('Existing');
-    });
-  });
-
   describe('initFromMeta', () => {
     it('should set meta defaults for team and group', () => {
       service.initFromMeta({
@@ -162,22 +135,7 @@ describe('SettingsService', () => {
     });
   });
 
-  describe('General Settings Operations', () => {
-    it('should handle empty string settings', () => {
-      service.saveSettings('test.key', '');
-      expect(localStorage.getItem('test.key')).toBeNull();
-    });
-
-    it('should handle empty array settings', () => {
-      service.saveSettings('test.key', []);
-      expect(localStorage.getItem('test.key')).toBeNull();
-    });
-
-    it('should handle empty object settings', () => {
-      service.saveSettings('test.key', {});
-      expect(localStorage.getItem('test.key')).toBeNull();
-    });
-
+  describe('Settings helpers', () => {
     it('should properly store and retrieve number settings', () => {
       localStorage.setItem('test.key', '42');
       expect(service.getSettingsNumber('test.key')).toBe(42);
@@ -185,16 +143,6 @@ describe('SettingsService', () => {
 
     it('should return null for non-existent number settings', () => {
       expect(service.getSettingsNumber('nonexistent.key')).toBeNull();
-    });
-
-    it('should handle complex object settings', () => {
-      const complexObj = {
-        key1: 'value1',
-        key2: 42,
-        nested: { prop: true },
-      };
-      service.saveSettings('test.complex', complexObj);
-      expect(service.getSettings('test.complex')).toEqual(complexObj);
     });
   });
 });

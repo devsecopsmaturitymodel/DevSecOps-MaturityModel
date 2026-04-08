@@ -19,10 +19,6 @@ export class SettingsService {
   private readonly KEY_MAX_LEVEL = 'settings.maxlevel';
   private readonly KEY_LABELS = 'settings.labels';
 
-  // Legacy keys for migration
-  private readonly LEGACY_KEY_TEAM_LABEL = 'settings.teamLabel';
-  private readonly LEGACY_KEY_GROUP_LABEL = 'settings.groupLabel';
-
   private dateformat: string | null = null;
   private maxLevel: number | null = null;
   private _labels: Labels | null = null;
@@ -32,9 +28,7 @@ export class SettingsService {
   private _metaGroup: LabelParts = { singular: 'Group', plural: 'Groups' };
   private _metaInitialized: boolean = false;
 
-  constructor() {
-    this.migrateOldKeys();
-  }
+  constructor() {}
 
   // --- Meta initialization ---
 
@@ -51,6 +45,16 @@ export class SettingsService {
     this._metaInitialized = true;
     // Reset cached labels so next get reads fresh values with new defaults
     this._labels = null;
+  }
+
+  // --- Meta defaults (for placeholder display) ---
+
+  getMetaTeamLabel(): LabelParts {
+    return this._metaTeam;
+  }
+
+  getMetaGroupLabel(): LabelParts {
+    return this._metaGroup;
   }
 
   // --- Label parsing ---
@@ -83,45 +87,6 @@ export class SettingsService {
       return singular;
     }
     return `${singular}|${plural}`;
-  }
-
-  // --- Migration ---
-
-  /**
-   * Migrate old separate localStorage keys into the consolidated settings.labels key.
-   */
-  migrateOldKeys(): void {
-    const oldTeam = localStorage.getItem(this.LEGACY_KEY_TEAM_LABEL);
-    const oldGroup = localStorage.getItem(this.LEGACY_KEY_GROUP_LABEL);
-
-    if (oldTeam !== null || oldGroup !== null) {
-      // Only migrate if we don't already have the consolidated key
-      const existing = localStorage.getItem(this.KEY_LABELS);
-      if (existing === null) {
-        const labels: Labels = { team: '', group: '' };
-        if (oldTeam !== null) {
-          try {
-            labels.team = JSON.parse(oldTeam);
-          } catch {
-            labels.team = oldTeam;
-          }
-        }
-        if (oldGroup !== null) {
-          try {
-            labels.group = JSON.parse(oldGroup);
-          } catch {
-            labels.group = oldGroup;
-          }
-        }
-        // Only save if there's actually custom data
-        if (labels.team || labels.group) {
-          localStorage.setItem(this.KEY_LABELS, JSON.stringify(labels));
-        }
-      }
-      // Remove legacy keys
-      localStorage.removeItem(this.LEGACY_KEY_TEAM_LABEL);
-      localStorage.removeItem(this.LEGACY_KEY_GROUP_LABEL);
-    }
   }
 
   // --- Labels (consolidated) ---

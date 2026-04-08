@@ -165,11 +165,11 @@
     </p>
     <div class="terminology-grid">
       <div class="terminology-row">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" floatLabel="always">
           <mat-label>Team (singular)</mat-label>
           <input
             matInput
-            placeholder="e.g. App"
+            [placeholder]="getTeamSingularPlaceholder()"
             name="customTeamLabel"
             [(ngModel)]="customTeamLabel"
             (ngModelChange)="onTeamLabelChange()" />
@@ -185,11 +185,11 @@
         </mat-form-field>
       </div>
       <div class="terminology-row">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" floatLabel="always">
           <mat-label>Group (singular)</mat-label>
           <input
             matInput
-            placeholder="e.g. Portfolio"
+            [placeholder]="getGroupSingularPlaceholder()"
             name="customGroupLabel"
             [(ngModel)]="customGroupLabel"
             (ngModelChange)="onGroupLabelChange()" />
