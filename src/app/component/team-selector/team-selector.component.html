@@ -1,7 +1,7 @@
 <div class="config-section">
   <h3>{{ settings.getTeamLabelPlural() }}</h3>
   <p class="config-hint">
-    Select which {{ settings.getTeamLabelPlural() | lowercase }} to include in the report.
+    Select which {{ settings.getTeamLabelPlural() | lowercase }} to include in the {{ type === 'report-config' ? 'report' : 'evidence' }}.
   </p>
   <div class="select-all-actions">
     <button mat-button color="primary" (click)="selectAllTeams()">Select All</button>

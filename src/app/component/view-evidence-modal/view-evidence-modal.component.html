@@ -1,0 +1,9 @@
+<h2 mat-dialog-title align="center"><strong>Evidence: </strong>{{ activityName }}</h2>
+
+<mat-dialog-content class="evidence-modal-content">
+  <app-evidence-panel [activityUuid]="activityUuid" [expanded]="true"> </app-evidence-panel>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="onClose()">Close</button>
+</mat-dialog-actions>

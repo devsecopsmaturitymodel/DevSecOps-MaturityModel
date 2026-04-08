@@ -1,3 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .navbar {
   position: sticky;
   top: 0;
@@ -7,7 +14,14 @@
   align-items: center;
   height: 64px;
   transition: all 0.25s ease;
+  flex-shrink: 0;
 }
+
+.sidenav-container {
+  flex: 1;
+  overflow: hidden; 
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -16,6 +30,7 @@
   margin-left: -4px;
   height: 100%; 
 }
+
 .logo-icon {
   transform: scale(0.95); 
   transform-origin: left center; 
@@ -35,35 +50,37 @@
   margin-top: 4px;        
   gap: 3px;               
 }
+
 .tag-title {
   font-size: 0.85em;      
   font-weight: 500;     
   line-height: 1;         
   letter-spacing: 0.04em;
 }
+
 .tag-subtitle {
   font-size: 0.65em;
   margin-top: 0;         
   letter-spacing: 0.08em; 
   opacity: 0.6;          
 } 
-.github-fork-ribbon::before {
-  background-color: #333;
-}
+
 .menu-btn {
   margin-right: 4px;
   transition: all 0.2s ease;
 }
+
 .menu-btn:hover {
   background: rgba(0,0,0,0.04);
   transform: scale(1.05);
 }
-.spacer {
-  flex: 1 1 auto;
-}
+
 .content {
   padding: 24px;
   animation: fadeSlide 1s ease;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 @keyframes fadeSlide {
   from {
@@ -85,9 +102,6 @@
   .tag-subtitle {
     font-size: 11px;
   }
-  .github-fork-ribbon {
-        display: none;
-      }
   .logo,
   .logo-icon {
     opacity: 0;

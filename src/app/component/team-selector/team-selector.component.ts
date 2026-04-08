@@ -11,6 +11,7 @@ export class TeamSelectorComponent {
   @Input() allTeams: string[] = [];
   @Input() selectedTeams: string[] = [];
   @Input() teamGroups: TeamGroups = {};
+  @Input() type: 'report-config' | 'add-evidence-config' = 'report-config';
 
   @Output() selectedTeamsChange = new EventEmitter<string[]>();
 

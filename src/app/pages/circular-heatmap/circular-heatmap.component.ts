@@ -28,6 +28,15 @@ import { downloadYamlFile } from 'src/app/util/download';
 import { ThemeService } from '../../service/theme.service';
 import { TitleService } from '../../service/title.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  AddEvidenceModalComponent,
+  AddEvidenceModalData,
+} from '../../component/add-evidence-modal/add-evidence-modal.component';
+import {
+  ViewEvidenceModalComponent,
+  ViewEvidenceModalData,
+} from '../../component/view-evidence-modal/view-evidence-modal.component';
 
 @Component({
   selector: 'app-circular-heatmap',
@@ -70,6 +79,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
+    private dialog: MatDialog,
     public modal: ModalMessageComponent
   ) {
     this.theme = this.themeService.getTheme();
@@ -707,8 +717,20 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     downloadYamlFile(yamlStr, this.dataStore?.meta?.teamProgressFile || 'team-progress.yaml');
   }
 
+  exportTeamEvidences() {
+    console.log(`${perfNow()}: Exporting team evidence`);
+
+    let yamlStr: string | null = this.dataStore?.evidenceStore?.asYamlString() || null;
+    if (!yamlStr) {
+      this.displayMessage(new DialogInfo('No team evidence data available', 'Export Error'));
+      return;
+    }
+
+    downloadYamlFile(yamlStr, this.dataStore?.meta?.teamEvidenceFile || 'team-evidence.yaml');
+  }
+
   async deleteLocalTeamsProgress() {
-    let buttonClicked: string = await this.displayDeleteLocalProgressDialog();
+    let buttonClicked: string = await this.displayDeleteLocalFilesDialog('progress');
 
     if (buttonClicked === 'Delete') {
       this.dataStore?.progressStore?.deleteBrowserStoredTeamProgress();
@@ -716,12 +738,25 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     }
   }
 
-  displayDeleteLocalProgressDialog(): Promise<string> {
+  async deleteLocalTeamsEvidence() {
+    let buttonClicked: string = await this.displayDeleteLocalFilesDialog('evidence');
+
+    if (buttonClicked === 'Delete') {
+      this.dataStore?.evidenceStore?.deleteBrowserStoredEvidence();
+      location.reload(); // Make sure all load routines are initialized
+    }
+  }
+
+  displayDeleteLocalFilesDialog(type: 'progress' | 'evidence'): Promise<string> {
     return new Promise((resolve, reject) => {
       let title: string = 'Delete local browser data';
       let message: string =
-        'Do you want to delete all progress for each team?' +
-        '\n\nThis deletes all progress stored in your local browser, but does ' +
+        'Do you want to delete all ' +
+        type +
+        ' for each team?' +
+        '\n\nThis deletes all ' +
+        type +
+        ' stored in your local browser, but does ' +
         'not change any progress stored in the yaml file on the server.';
       let buttons: string[] = ['Cancel', 'Delete'];
       this.modal
@@ -750,5 +785,41 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
 
   unsorted() {
     return 0;
+  }
+
+  openAddEvidenceModal(activityUuid: string): void {
+    const teams = this.dataStore?.meta?.teams || [];
+
+    const dialogData: AddEvidenceModalData = {
+      activityUuid,
+      allTeams: teams,
+      teamGroups: this.teamGroups,
+    };
+
+    const dialogRef = this.dialog.open(AddEvidenceModalComponent, {
+      width: '700px',
+      maxHeight: '90vh',
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.entry && this.dataStore?.evidenceStore) {
+        this.dataStore.evidenceStore.addEvidence(result.activityUuid, result.entry);
+        console.log(`${perfNow()}: Evidence added for activity ${result.activityUuid}`);
+      }
+    });
+  }
+
+  openViewEvidenceModal(activityUuid: string, activityName: string): void {
+    const dialogData: ViewEvidenceModalData = {
+      activityUuid,
+      activityName,
+    };
+
+    this.dialog.open(ViewEvidenceModalComponent, {
+      width: '700px',
+      maxHeight: '90vh',
+      data: dialogData,
+    });
   }
 }

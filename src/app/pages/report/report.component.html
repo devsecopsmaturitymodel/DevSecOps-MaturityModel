@@ -153,7 +153,7 @@
               <th
                 appColResize
                 *ngIf="reportConfig.activityAttributes.showEvidence"
-                class="col-description">
+                class="col-evidence">
                 Evidence
               </th>
 
@@ -243,11 +243,17 @@
 
               <!-- Evidence -->
               <td *ngIf="reportConfig.activityAttributes.showEvidence" class="cell-description">
-                <div
-                  class="description-content"
-                  [innerHTML]="
-                    renderCappedDescription(activity.evidence, reportConfig.descriptionWordCap)
-                  "></div>
+                <div class="description-content evidence-cell">
+                  <button
+                    *ngIf="formatEvidence(activity) !== '—'"
+                    mat-icon-button
+                    class="evidence-view-btn no-print"
+                    matTooltip="View evidence details"
+                    (click)="openViewEvidenceModal(activity.uuid, activity.name)">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                </div>
+                <div [innerHTML]="formatEvidence(activity)"></div>
               </td>
 
               <!-- Tags -->

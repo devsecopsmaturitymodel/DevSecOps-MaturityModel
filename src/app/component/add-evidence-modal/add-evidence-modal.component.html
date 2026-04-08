@@ -1,0 +1,71 @@
+<h2 mat-dialog-title align="center">Add Evidence</h2>
+
+<mat-dialog-content class="config-content">
+  <app-team-selector
+    [allTeams]="allTeams"
+    [(selectedTeams)]="selectedTeams"
+    [teamGroups]="teamGroups"
+    (selectedTeamsChange)="onSelectedTeamsChange($event)"
+    [type]="'add-evidence-config'">
+  </app-team-selector>
+  <mat-error *ngIf="teamsError" class="field-error" style="padding: 0 0 8px 0"
+    >At least one team must be selected.</mat-error
+  >
+
+  <mat-divider></mat-divider>
+
+  <!-- Title -->
+  <div class="config-section">
+    <h3>Evidence Details</h3>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="title" placeholder="e.g. Implemented SAST scanning" required />
+    </mat-form-field>
+    <mat-error *ngIf="titleError" class="field-error">Title is required.</mat-error>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="description"
+        rows="4"
+        placeholder="Describe the evidence in detail..."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Reviewer</mat-label>
+      <input matInput [(ngModel)]="reviewer" placeholder="e.g. Jane Doe" />
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+  <!-- Attachments -->
+  <div class="config-section">
+    <h3>Attachments</h3>
+    <p class="config-hint">Add links to supporting documents, images, or URLs.</p>
+    <div *ngFor="let att of attachments; let i = index" class="attachment-row">
+      <mat-form-field appearance="outline" class="attachment-type">
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="att.type">
+          <mat-option *ngFor="let aType of attachmentTypes" [value]="aType">
+            {{ aType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="attachment-link">
+        <mat-label>URL</mat-label>
+        <input matInput [(ngModel)]="att.externalLink" placeholder="https://..." />
+      </mat-form-field>
+      <button mat-icon-button color="warn" (click)="removeAttachment(i)" matTooltip="Remove">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <button mat-stroked-button color="primary" (click)="addAttachment()">
+      <mat-icon>add</mat-icon> Add Attachment
+    </button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Save Evidence</button>
+</mat-dialog-actions>
