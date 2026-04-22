@@ -447,7 +447,7 @@ Build and Deployment:
         - kubernetes
         url: https://github.com/SDA-SE/image-metadata-collector/
         description: |
-          Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
+          Collects namespaces and images including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, GitHub and an API.
       references:
         samm2:
         - I-SB-B-1
