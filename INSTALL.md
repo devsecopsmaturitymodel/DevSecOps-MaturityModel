@@ -121,9 +121,9 @@ Multi-language support is not currently planned.
 
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro)
 
-[![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
+[![Apprio Inc](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
 
-[![Heroku (hosting)](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/main/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
+[![Heroku (hosting)](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/raw/main/src/assets/images/sponsors/heroku.png)](https://www.heroku.com/open-source-credit-program)
 
 # Donations
 
@@ -140,7 +140,7 @@ An example attribution by changing the content:
 The OWASP DevSecOps Maturity Model and any contributions are Copyright © by Timo Pagel 2017-2025.
 
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
+For customized DSOMM, take a look at https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-custom. 
 
 You can download your current state from the circular heatmap and mount it again via 
 

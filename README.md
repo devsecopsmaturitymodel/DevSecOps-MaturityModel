@@ -31,7 +31,7 @@ Changes to the maturity model content are displayed at the release page of [DevS
 
 # Community
 Join #dsomm in [OWASP Slack](https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw#/).
-Create issues or even better Pull Requests in [github](https://github.com/wurstbrot/DevSecOps-MaturityModel/).
+Create issues or even better Pull Requests in [github](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/).
 
 # Slides and talks
 * [Video: OWASP (DevSecOps) Projects, 2021-04-28, OWASP Stammtisch Frankfurt](https://www.youtube.com/watch?v=8webiYnF56A)
@@ -62,7 +62,7 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
+For customized DSOMM, take a look at https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-custom. 
 
 You can download your current state from the circular heatmap and mount it again via 
 
@@ -181,7 +181,7 @@ Multilanguage support is not given currently and not planned.
 
 [![Timo Pagel IT-Consulting](https://raw.githubusercontent.com/DefectDojo/Documentation/master/doc/img/timo-pagel-logo.png)](https://pagel.pro)
 
-[![Apprio Inc](https://github.com/wurstbrot/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
+[![Apprio Inc](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/raw/master-old/assets/images/Apiiro_black_logo.png)](https://apiiro.com/)
 
 # Donations
 
