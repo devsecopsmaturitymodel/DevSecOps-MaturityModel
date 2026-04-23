@@ -81,11 +81,15 @@ body {
 
 .light-theme {
   --text-primary: #000000;
-  --text-secondary: #666666;
-  --text-tertiary: #bbbbbb;
+  --text-secondary: #4f4f4f;
+  --text-tertiary: #757575;
   --background-primary: #f5f5f5;
   --background-secondary: #fefefe;
   --background-tertiary: #f8f9fa;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --background-hover: #eeeeee;
+
 
   --primary-color: #{mat.get-color-from-palette($DSOMM-primary)};
 
@@ -101,6 +105,36 @@ body {
   --dependency-mainnode-fill: #4caf50;
   --dependency-predecessor-fill: #deeedeff;
   --dependency-successor-fill: #fdfdfdff;
+
+  .mat-table,
+  table[mat-table] {
+    background-color: var(--background-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+  }
+
+  .mat-header-row {
+    background-color: var(--background-secondary);
+    border-bottom: 1px solid var(--border-medium);
+  }
+
+  .mat-header-cell {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .mat-row {
+    background-color: var(--background-primary);
+    border-bottom: 1px solid var(--border-subtle);
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+  }
+
+  .mat-cell {
+    color: var(--text-primary);
+  }
 
   @include mat.all-component-themes($DSOMM-light-theme);
 }
@@ -204,15 +238,15 @@ body.dark-theme {
   .mat-drawer-container {
     background-color: var(--background-base);
   }
-  
+
   //navbar
-   .mat-toolbar {
+  .mat-toolbar {
     background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   }
 
-   // ----------------------------------------------
+  // ----------------------------------------------
   // Toolbar / Navbar
   // ----------------------------------------------
   .mat-toolbar {
@@ -269,7 +303,7 @@ body.dark-theme {
     background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
-    border-radius: 8px ;
+    border-radius: 8px;
 
     .mat-expansion-panel-header {
       background-color: var(--background-secondary);
@@ -295,7 +329,7 @@ body.dark-theme {
     }
   }
 
-   
+
   // Form fields and inputs
   .mat-form-field-appearance-outline .mat-form-field-outline {
     color: var(--border-medium);
@@ -334,7 +368,7 @@ body.dark-theme {
   .overlay-modal {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
-    border: 1px solid var(--border-medium); 
+    border: 1px solid var(--border-medium);
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 
@@ -344,7 +378,12 @@ body.dark-theme {
       box-shadow: none;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: var(--text-primary);
     }
   }
@@ -360,7 +399,7 @@ body.dark-theme {
   .circular-heat path {
     stroke: var(--heatmap-stroke);
   }
-   
+
   // List items and nav
   .mat-list-item,
   .mat-nav-list .mat-list-item {

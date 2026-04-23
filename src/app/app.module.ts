@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -77,6 +77,7 @@ import { ViewEvidenceModalComponent } from './component/view-evidence-modal/view
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatPaginatorModule,
     MatDialogModule,
     ReactiveFormsModule,
     MatToolbarModule,
