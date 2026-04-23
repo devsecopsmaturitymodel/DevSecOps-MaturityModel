@@ -1,2 +1,91 @@
 <app-top-header section="About Us"></app-top-header>
-<app-markdown-viewer MDFile="./assets/Markdown Files/README.md"></app-markdown-viewer>
+
+<div class="about-page">
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">OWASP Project</div>
+      <h1 class="hero-title">DevSecOps Maturity Model</h1>
+      <p class="hero-subtitle">
+        A practical framework to harden DevOps strategies by prioritizing security measures across
+        your entire software delivery pipeline.
+      </p>
+      <div class="hero-actions">
+        <a class="hero-btn hero-btn-primary"
+           href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel"
+           target="_blank" rel="noopener">
+          <span class="btn-icon">&#128279;</span> GitHub
+        </a>
+        <a class="hero-btn hero-btn-secondary"
+           href="https://dsomm.owasp.org"
+           target="_blank" rel="noopener">
+          <span class="btn-icon">&#127760;</span> OWASP Page
+        </a>
+        <a class="hero-btn hero-btn-secondary"
+           href="https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw"
+           target="_blank" rel="noopener">
+          <span class="btn-icon">&#128172;</span> Join Slack
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Links Grid -->
+  <div class="links-grid">
+    <a class="link-card"
+       href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/releases"
+       target="_blank" rel="noopener">
+      <span class="link-card-icon">&#128196;</span>
+      <div class="link-card-text">
+        <div class="link-card-title">Release Notes</div>
+        <div class="link-card-desc">App changelog and updates</div>
+      </div>
+    </a>
+    <a class="link-card"
+       href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/releases"
+       target="_blank" rel="noopener">
+      <span class="link-card-icon">&#128209;</span>
+      <div class="link-card-text">
+        <div class="link-card-title">Model Content Changes</div>
+        <div class="link-card-desc">Activity and data updates</div>
+      </div>
+    </a>
+    <a class="link-card"
+       href="https://www.youtube.com/watch?v=tX9RHZ_O5NU"
+       target="_blank" rel="noopener">
+      <span class="link-card-icon">&#127910;</span>
+      <div class="link-card-text">
+        <div class="link-card-title">Intro Video</div>
+        <div class="link-card-desc">Strategic usage walkthrough</div>
+      </div>
+    </a>
+    <a class="link-card"
+       href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/issues"
+       target="_blank" rel="noopener">
+      <span class="link-card-icon">&#128030;</span>
+      <div class="link-card-text">
+        <div class="link-card-title">Report an Issue</div>
+        <div class="link-card-desc">Bugs and feature requests</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Contribute Callout -->
+  <div class="contribute-callout">
+    <span class="callout-icon">&#129309;</span>
+    <div class="callout-text">
+      <strong>Want to contribute?</strong>
+      Create issues or pull requests on
+      <a href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel" target="_blank" rel="noopener">GitHub</a>
+      or join the discussion in <strong>#dsomm</strong> on
+      <a href="https://owasp.slack.com/join/shared_invite/zt-g398htpy-AZ40HOM1WUOZguJKbblqkw" target="_blank" rel="noopener">OWASP Slack</a>.
+    </div>
+  </div>
+
+  <!-- Full README content -->
+  <div class="readme-section">
+    <app-markdown-viewer MDFile="./assets/Markdown Files/README.md"></app-markdown-viewer>
+  </div>
+
+</div>

@@ -24,6 +24,57 @@
       <span class="uuid-label">id: </span><span class="uuid-value">{{ currentActivity.uuid }}</span>
     </div>
   </div>
+  <!-- Activity Intelligence Panel -->
+  <div class="intelligence-panel" *ngIf="currentActivity.difficultyOfImplementation">
+    <div class="intel-row" *ngIf="currentActivity.usefulness">
+      <span class="intel-label">Usefulness</span>
+      <span class="intel-useful-badge" [class]="getUsefulnessClass(currentActivity.usefulness!)">
+        {{ currentActivity.usefulness }}/4
+      </span>
+    </div>
+    <div class="intel-row">
+      <span class="intel-label">Difficulty</span>
+      <div class="intel-diff-row">
+        <div class="intel-bar-item">
+          <span class="intel-bar-label">Knowledge</span>
+          <div class="intel-bar-track">
+            <div class="intel-bar-fill"
+                 [class]="getDifficultyBarClass(currentActivity.difficultyOfImplementation!.knowledge)"
+                 [style.width]="getDifficultyWidth(currentActivity.difficultyOfImplementation!.knowledge)"></div>
+          </div>
+          <span class="intel-bar-val">{{ currentActivity.difficultyOfImplementation!.knowledge }}/4</span>
+        </div>
+        <div class="intel-bar-item">
+          <span class="intel-bar-label">Time</span>
+          <div class="intel-bar-track">
+            <div class="intel-bar-fill"
+                 [class]="getDifficultyBarClass(currentActivity.difficultyOfImplementation!.time)"
+                 [style.width]="getDifficultyWidth(currentActivity.difficultyOfImplementation!.time)"></div>
+          </div>
+          <span class="intel-bar-val">{{ currentActivity.difficultyOfImplementation!.time }}/4</span>
+        </div>
+        <div class="intel-bar-item">
+          <span class="intel-bar-label">Resources</span>
+          <div class="intel-bar-track">
+            <div class="intel-bar-fill"
+                 [class]="getDifficultyBarClass(currentActivity.difficultyOfImplementation!.resources)"
+                 [style.width]="getDifficultyWidth(currentActivity.difficultyOfImplementation!.resources)"></div>
+          </div>
+          <span class="intel-bar-val">{{ currentActivity.difficultyOfImplementation!.resources }}/4</span>
+        </div>
+      </div>
+    </div>
+    <div class="intel-tools-row" *ngIf="currentActivity.implementation?.length">
+      <span class="intel-label">Top Tools</span>
+      <div class="intel-chips">
+        <a *ngFor="let tool of currentActivity.implementation!.slice(0, 4)"
+           class="intel-chip"
+           [href]="tool.url || '#'"
+           target="_blank">{{ tool.name }}</a>
+      </div>
+    </div>
+  </div>
+
   <mat-accordion class="activity-details" multi="true">
     <mat-expansion-panel *ngIf="currentActivity.description?.hasContent()" [expanded]="true">
       <mat-expansion-panel-header>

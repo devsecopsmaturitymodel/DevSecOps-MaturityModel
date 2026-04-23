@@ -27,6 +27,22 @@
     </mat-chip-list>
   </mat-form-field>
 
+  <!-- Intelligence Toolbar: Tool Filter + Sort -->
+  <div class="intelligence-toolbar" style="margin: 8px 20px 4px;">
+    <mat-form-field class="tool-filter-field" style="margin: 0;">
+      <mat-label>Filter by Tool</mat-label>
+      <input matInput [(ngModel)]="toolFilter" (ngModelChange)="applyToolFilter()" placeholder="e.g. SonarQube">
+    </mat-form-field>
+    <mat-form-field class="sort-field" style="margin: 0;">
+      <mat-label>Sort by</mat-label>
+      <mat-select [(value)]="sortMode" (selectionChange)="applySortMode()">
+        <mat-option value="default">Default</mat-option>
+        <mat-option value="effort-asc">Effort: Low to High</mat-option>
+        <mat-option value="effort-desc">Effort: High to Low</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
   <button class="reset-button" (click)="reset()">RESET</button>
 
   <!-- eslint-disable -->

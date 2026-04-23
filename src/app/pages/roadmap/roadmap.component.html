@@ -1,4 +1,111 @@
-<app-top-header section="Roadmap status"></app-top-header>
-<div class="roadmap">
-  <app-markdown-viewer MDFile="./assets/Markdown Files/TODO-headlines.md"></app-markdown-viewer>
+<app-top-header section="Roadmap"></app-top-header>
+
+<div class="roadmap-page">
+
+  <div class="roadmap-toolbar">
+    <div class="roadmap-title">Activity Roadmap</div>
+    <div class="toolbar-right">
+      <button class="view-btn" [class.active]="viewMode === 'timeline'" (click)="viewMode = 'timeline'">
+        Timeline
+      </button>
+      <button class="view-btn" [class.active]="viewMode === 'dag'" (click)="viewMode = 'dag'">
+        DAG View
+      </button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item done-dot">&#10003; Done</span>
+    <span class="legend-item avail-dot">&#9654; Available</span>
+    <span class="legend-item lock-dot">&#128274; Locked</span>
+  </div>
+
+  <div *ngIf="loading" class="loading-msg">Loading activities...</div>
+
+  <div *ngIf="!loading && viewMode === 'timeline'">
+    <div *ngFor="let lvl of levels" class="level-section">
+
+      <div class="level-header">
+        <span class="level-badge">Level {{ lvl }}</span>
+        <span class="level-count">{{ levelGroups.get(lvl)?.length }} activities</span>
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-line"></div>
+
+        <div *ngFor="let card of levelGroups.get(lvl)" class="card-wrapper">
+          <div class="timeline-dot"
+               [class.dot-done]="card.state === 'done'"
+               [class.dot-avail]="card.state === 'available'"
+               [class.dot-locked]="card.state === 'locked'">
+          </div>
+
+          <div class="activity-card"
+               [class.card-done]="card.state === 'done'"
+               [class.card-available]="card.state === 'available'"
+               [class.card-locked]="card.state === 'locked'">
+
+            <div class="card-top">
+              <div class="card-name">{{ card.activity.name }}</div>
+              <div class="card-badges">
+                <span class="state-badge" [class]="'state-' + card.state">
+                  <ng-container *ngIf="card.state === 'done'">&#10003; Done</ng-container>
+                  <ng-container *ngIf="card.state === 'available'">Available</ng-container>
+                  <ng-container *ngIf="card.state === 'locked'">&#128274; Locked</ng-container>
+                </span>
+                <span *ngIf="card.activity.usefulness" class="useful-badge" [class]="getUsefulnessClass(card.activity.usefulness)">
+                  Useful: {{ card.activity.usefulness }}/4
+                </span>
+              </div>
+            </div>
+
+            <div *ngIf="card.activity.difficultyOfImplementation" class="diff-section">
+              <div class="diff-row">
+                <span class="diff-label">Knowledge</span>
+                <div class="bar-track">
+                  <div class="bar-fill" [class]="getDifficultyBarClass(card.activity.difficultyOfImplementation.knowledge)"
+                       [style.width]="getDifficultyWidth(card.activity.difficultyOfImplementation.knowledge)"></div>
+                </div>
+                <span class="diff-val">{{ card.activity.difficultyOfImplementation.knowledge }}</span>
+              </div>
+              <div class="diff-row">
+                <span class="diff-label">Time</span>
+                <div class="bar-track">
+                  <div class="bar-fill" [class]="getDifficultyBarClass(card.activity.difficultyOfImplementation.time)"
+                       [style.width]="getDifficultyWidth(card.activity.difficultyOfImplementation.time)"></div>
+                </div>
+                <span class="diff-val">{{ card.activity.difficultyOfImplementation.time }}</span>
+              </div>
+              <div class="diff-row">
+                <span class="diff-label">Resources</span>
+                <div class="bar-track">
+                  <div class="bar-fill" [class]="getDifficultyBarClass(card.activity.difficultyOfImplementation.resources)"
+                       [style.width]="getDifficultyWidth(card.activity.difficultyOfImplementation.resources)"></div>
+                </div>
+                <span class="diff-val">{{ card.activity.difficultyOfImplementation.resources }}</span>
+              </div>
+            </div>
+
+            <div *ngIf="card.activity.implementation?.length" class="tools-section">
+              <a *ngFor="let tool of card.activity.implementation.slice(0, 3)"
+                 class="tool-chip"
+                 [href]="tool.url || '#'"
+                 target="_blank">{{ tool.name }}</a>
+            </div>
+
+            <div *ngIf="card.state === 'locked' && card.missingDeps.length" class="locked-msg">
+              Needs: {{ card.missingDeps.slice(0, 2).join(', ') }}{{ card.missingDeps.length > 2 ? '...' : '' }}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && viewMode === 'dag'" class="dag-view">
+    <app-dependency-graph activityName="Defined build process"></app-dependency-graph>
+  </div>
+
 </div>

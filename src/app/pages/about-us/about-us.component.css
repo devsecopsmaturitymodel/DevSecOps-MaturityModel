@@ -1,0 +1,144 @@
+.about-page {
+  max-width: 960px;
+  padding: 24px 28px;
+}
+
+/* Hero */
+.hero-section {
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8ff 100%);
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  padding: 36px 32px;
+  margin-bottom: 24px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: #2e7d32;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 10px;
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 0 24px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.hero-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.hero-btn-primary {
+  background: #2e7d32;
+  color: #fff;
+}
+
+.hero-btn-secondary {
+  background: #fff;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.btn-icon { font-size: 14px; }
+
+/* Quick Links Grid */
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.link-card:hover {
+  border-color: #a5d6a7;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.link-card-icon { font-size: 24px; flex-shrink: 0; }
+
+.link-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+
+.link-card-desc {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Contribute Callout */
+.contribute-callout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: #5d4037;
+  margin-bottom: 28px;
+}
+
+.callout-icon { font-size: 22px; flex-shrink: 0; }
+
+.contribute-callout a {
+  color: #2e7d32;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contribute-callout a:hover { text-decoration: underline; }
+
+/* README section */
+.readme-section {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
+}

@@ -38,6 +38,8 @@ export class MatrixComponent implements OnInit {
   levels: Partial<Record<LevelKey, string>> = {};
   filtersTag: Record<string, boolean> = {};
   filtersDim: Record<string, boolean> = {};
+  toolFilter: string = '';
+  sortMode: string = 'default';
   columnNames: string[] = [];
   allCategoryNames: string[] = [];
   allDimensionNames: string[] = [];
@@ -172,8 +174,9 @@ export class MatrixComponent implements OnInit {
   updateActivitiesBeingDisplayed(): void {
     let hasDimFilter = Object.values(this.filtersDim).some(v => v === true);
     let hasTagFilter = Object.values(this.filtersTag).some(v => v === true);
-
-    if (!hasTagFilter && !hasDimFilter) {
+    const hasToolFilter = this.toolFilter.trim().length > 0;
+    const hasSort = this.sortMode !== 'default';
+    if (!hasTagFilter && !hasDimFilter && !hasToolFilter && !hasSort) {
       this.dataSource.data = this.MATRIX_DATA;
       return;
     }
@@ -224,7 +227,55 @@ export class MatrixComponent implements OnInit {
         }
       }
     }
-    this.dataSource.data = itemsStage2;
+    // Apply tool filter
+    let itemsStage3: MatrixRow[];
+    const toolQ = this.toolFilter.trim().toLowerCase();
+    if (!toolQ) {
+      itemsStage3 = itemsStage2;
+    } else {
+      itemsStage3 = [];
+      for (const srcItem of itemsStage2) {
+        const filtered: Partial<MatrixRow> = { Category: srcItem.Category, Dimension: srcItem.Dimension };
+        let hasContent = false;
+        for (const lvl of Object.keys(this.levels) as LevelKey[]) {
+          const matching = (srcItem[lvl] || []).filter(a =>
+            a.implementation?.some((t: any) => t.name?.toLowerCase().includes(toolQ))
+          );
+          if (matching.length) { filtered[lvl] = matching; hasContent = true; }
+        }
+        if (hasContent) itemsStage3.push(filtered as MatrixRow);
+      }
+    }
+
+    // Apply sort within each level column
+    if (this.sortMode !== 'default') {
+      const asc = this.sortMode === 'effort-asc';
+      for (const row of itemsStage3) {
+        for (const lvl of Object.keys(this.levels) as LevelKey[]) {
+          if (row[lvl]) {
+            row[lvl] = [...row[lvl]].sort((a, b) =>
+              asc ? this.effortScore(a) - this.effortScore(b) : this.effortScore(b) - this.effortScore(a)
+            );
+          }
+        }
+      }
+    }
+
+    this.dataSource.data = itemsStage3;
+  }
+
+  applyToolFilter() {
+    this.updateActivitiesBeingDisplayed();
+  }
+
+  applySortMode() {
+    this.updateActivitiesBeingDisplayed();
+  }
+
+  effortScore(activity: Activity): number {
+    const d = activity.difficultyOfImplementation;
+    if (!d) return 0;
+    return (d.knowledge || 0) + (d.time || 0) + (d.resources || 0);
   }
 
   hasTag(activity: Activity): boolean {

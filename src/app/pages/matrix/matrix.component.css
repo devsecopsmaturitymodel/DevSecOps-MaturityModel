@@ -140,3 +140,24 @@
   color: rgba(0, 0, 0, 0.54);
   padding: 24px;
 }
+
+/* ── Activity Intelligence Toolbar ── */
+.intelligence-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 8px 0 4px;
+  padding: 10px 14px;
+  background: #f8fffe;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+}
+
+.tool-filter-field {
+  width: 260px;
+}
+
+.sort-field {
+  width: 220px;
+}
