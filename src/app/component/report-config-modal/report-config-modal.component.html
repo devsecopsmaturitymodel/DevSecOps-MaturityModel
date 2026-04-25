@@ -12,7 +12,7 @@
         [value]="config.columnGrouping"
         (change)="setColumnGrouping($event.value)">
         <mat-button-toggle value="byProgress">By Progress Stage</mat-button-toggle>
-        <mat-button-toggle value="byTeam">By Team</mat-button-toggle>
+        <mat-button-toggle value="byTeam">By {{ settings.getTeamLabel() }}</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </div>

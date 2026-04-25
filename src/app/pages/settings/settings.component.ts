@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
-import { SettingsService } from '../../service/settings/settings.service';
+import { SettingsService, LabelParts } from '../../service/settings/settings.service';
 import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { DataStore } from 'src/app/model/data-store';
@@ -61,6 +61,11 @@ export class SettingsComponent implements OnInit {
   ];
   selectedDateFormat: string = this.BROWSER_LOCALE;
 
+  customTeamLabel: string = '';
+  customTeamLabelPlural: string = '';
+  customGroupLabel: string = '';
+  customGroupLabelPlural: string = '';
+
   // GitHub release check state
   checkingLatest: boolean = false;
   latestReleaseInfo: GithubReleaseInfo | null = null;
@@ -85,6 +90,7 @@ export class SettingsComponent implements OnInit {
       .then((dataStore: DataStore) => {
         this.setYamlData(dataStore);
         this.updateProgressDefinitionsForm();
+        this.initLabels(); // Re-read labels now that meta.yaml is loaded
       })
       .catch(err => {
         this.modal.openDialog(new DialogInfo(err.message, 'An error occurred'));
@@ -145,6 +151,7 @@ export class SettingsComponent implements OnInit {
 
   initialize(): void {
     this.selectedDateFormat = this.settings.getDateFormat() || this.BROWSER_LOCALE;
+    this.initLabels();
 
     // Init dates
     let date: Date = new Date();
@@ -156,6 +163,29 @@ export class SettingsComponent implements OnInit {
         if (!format.label) format.label = dateStr(date, format.value);
       }
     }
+  }
+
+  /**
+   * Read current labels from the service into the component fields.
+   * Called both on init and after meta.yaml loads.
+   */
+  initLabels(): void {
+    const teamLabel = this.settings.getTeamLabel();
+    const teamPlural = this.settings.getTeamLabelPlural();
+    const groupLabel = this.settings.getGroupLabel();
+    const groupPlural = this.settings.getGroupLabelPlural();
+
+    // Show the value in the field only if it differs from the meta.yaml default.
+    // Otherwise, leave the field empty and let the placeholder show the default.
+    const metaTeam = this.settings.getMetaTeamLabel();
+    const metaGroup = this.settings.getMetaGroupLabel();
+
+    this.customTeamLabel = teamLabel === metaTeam.singular ? '' : teamLabel;
+    this.customGroupLabel = groupLabel === metaGroup.singular ? '' : groupLabel;
+
+    // For plural: show empty if it matches the auto-generated default (singular + 's')
+    this.customTeamLabelPlural = teamPlural === teamLabel + 's' ? '' : teamPlural;
+    this.customGroupLabelPlural = groupPlural === groupLabel + 's' ? '' : groupPlural;
   }
 
   setYamlData(dataStore: DataStore): void {
@@ -177,6 +207,52 @@ export class SettingsComponent implements OnInit {
   onDateFormatChange(): void {
     let value: any = this.selectedDateFormat == 'null' ? null : this.selectedDateFormat;
     this.settings.setDateFormat(value);
+  }
+
+  onTeamLabelChange(): void {
+    // If cleared, revert to meta.yaml default
+    const effective = this.customTeamLabel || this.settings.getMetaTeamLabel().singular;
+    this.settings.setTeamLabel(effective, this.customTeamLabelPlural);
+    // Clear plural so placeholder updates
+    if (!this.customTeamLabelPlural || this.customTeamLabelPlural === effective + 's') {
+      this.customTeamLabelPlural = '';
+    }
+  }
+
+  onTeamLabelPluralChange(): void {
+    const effective = this.customTeamLabel || this.settings.getMetaTeamLabel().singular;
+    this.settings.setTeamLabel(effective, this.customTeamLabelPlural);
+  }
+
+  onGroupLabelChange(): void {
+    // If cleared, revert to meta.yaml default
+    const effective = this.customGroupLabel || this.settings.getMetaGroupLabel().singular;
+    this.settings.setGroupLabel(effective, this.customGroupLabelPlural);
+    // Clear plural so placeholder updates
+    if (!this.customGroupLabelPlural || this.customGroupLabelPlural === effective + 's') {
+      this.customGroupLabelPlural = '';
+    }
+  }
+
+  onGroupLabelPluralChange(): void {
+    const effective = this.customGroupLabel || this.settings.getMetaGroupLabel().singular;
+    this.settings.setGroupLabel(effective, this.customGroupLabelPlural);
+  }
+
+  getTeamSingularPlaceholder(): string {
+    return this.settings.getMetaTeamLabel().singular || 'Team';
+  }
+
+  getGroupSingularPlaceholder(): string {
+    return this.settings.getMetaGroupLabel().singular || 'Group';
+  }
+
+  getTeamPluralPlaceholder(): string {
+    return (this.customTeamLabel || this.settings.getMetaTeamLabel().singular || 'Team') + 's';
+  }
+
+  getGroupPluralPlaceholder(): string {
+    return (this.customGroupLabel || this.settings.getMetaGroupLabel().singular || 'Group') + 's';
   }
 
   onMaxLevelChange(value: number | null): void {

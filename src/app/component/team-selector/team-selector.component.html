@@ -1,16 +1,17 @@
 <div class="config-section">
-  <h3>Teams</h3>
+  <h3>{{ settings.getTeamLabelPlural() }}</h3>
   <p class="config-hint">
-    Select which teams to include in the {{ type === 'report-config' ? 'report' : 'evidence' }}.
+    Select which {{ settings.getTeamLabelPlural() | lowercase }} to include in the
+    {{ type === 'report-config' ? 'report' : 'evidence' }}.
   </p>
   <div class="select-all-actions">
     <button mat-button color="primary" (click)="selectAllTeams()">Select All</button>
     <button mat-button (click)="deselectAllTeams()">Deselect All</button>
     <span *ngIf="groupNames.length > 0" class="group-section">
-      <span class="group-label">Group:</span>
+      <span class="group-label">{{ settings.getGroupLabel() }}:</span>
       <button mat-stroked-button [matMenuTriggerFor]="groupMenu" class="group-dropdown-btn">
         <mat-icon>group</mat-icon>
-        {{ selectedGroupName || 'Select Group' }}
+        {{ selectedGroupName || 'Select ' + settings.getGroupLabel() }}
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
     </span>

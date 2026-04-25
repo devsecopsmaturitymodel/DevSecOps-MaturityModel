@@ -73,7 +73,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   constructor(
     private loader: LoaderService,
     private sectorService: SectorService,
-    private settings: SettingsService,
+    public settings: SettingsService,
     private themeService: ThemeService,
     private titleService: TitleService,
     private router: Router,

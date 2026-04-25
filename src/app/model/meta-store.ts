@@ -4,12 +4,16 @@ import { ProgressDefinitions, TeamNames, TeamGroups } from './types';
 import { perfNow } from 'src/app/util/util';
 
 export interface MetaStrings {
+  team: string;
+  group: string;
   allTeamsGroupName: string;
   labels: string[];
   maturityLevels: string[];
   knowledgeLabels: string[];
 }
 const fallbackMetaStrings: MetaStrings = {
+  team: 'Team',
+  group: 'Group',
   allTeamsGroupName: 'All',
   maturityLevels: ['Level 1', 'Level 2'],
   labels: ['Easy', 'Medium', 'Hard'],

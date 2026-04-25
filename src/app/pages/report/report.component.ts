@@ -69,7 +69,7 @@ export class ReportComponent implements OnInit {
 
   constructor(
     private loader: LoaderService,
-    private settings: SettingsService,
+    public settings: SettingsService,
     private dialog: MatDialog,
     private datePipe: DatePipe
   ) {

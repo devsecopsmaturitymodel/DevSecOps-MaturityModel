@@ -329,7 +329,10 @@
               </span>
             </span>
             <span class="ref-section" *ngIf="teamsImplemented.size === 0">
-              <span class="ref-values">No teams have started this activity yet</span>
+              <span class="ref-values"
+                >No {{ settings.getTeamLabelPlural() | lowercase }} have started this activity
+                yet</span
+              >
             </span>
           </div>
         </mat-panel-title>
@@ -347,7 +350,10 @@
         </div>
       </div>
       <ng-template #noTeamsBlock>
-        <p>No teams have started implementing this activity yet.</p>
+        <p>
+          No {{ settings.getTeamLabelPlural() | lowercase }} have started implementing this activity
+          yet.
+        </p>
       </ng-template>
     </mat-expansion-panel>
 

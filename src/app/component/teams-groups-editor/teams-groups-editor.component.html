@@ -2,7 +2,7 @@
 <div class="editor-container">
   <div class="editor-list-panel">
     <app-selectable-list
-      title="Groups"
+      [title]="settings.getGroupLabelPlural()"
       [items]="keys(localCopyTeamGroups)"
       [selectedItem]="selectedGroup"
       [highlightedItems]="highlightedGroups"
@@ -20,7 +20,7 @@
   </div>
   <div class="editor-list-panel">
     <app-selectable-list
-      title="Teams"
+      [title]="settings.getTeamLabelPlural()"
       [items]="localCopyTeams"
       [selectedItem]="selectedTeam"
       [highlightedItems]="highlightedTeams"
