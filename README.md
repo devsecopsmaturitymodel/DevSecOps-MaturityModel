@@ -1,3 +1,6 @@
+# CODE FREEZE
+Due to a version update of Angular from 13 to the newest version, no features/PRs are getting merged until *August 2026*.
+
 # Introduction
 
 From a startup to a multinational corporation the software development industry is currently dominated by agile frameworks and product teams and as part of it DevOps strategies. It has been observed that during the implementation, security aspects are usually neglected or are at least not sufficient taken account of. It is often the case that standard safety requirements of the production environment are not utilized or applied to the build pipeline in the continuous integration environment with containerization or concrete docker. Therefore, the docker registry is often not secured which might result in the theft of the entire company’s source code.
