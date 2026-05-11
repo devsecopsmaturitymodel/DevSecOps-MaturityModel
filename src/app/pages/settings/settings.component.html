@@ -101,7 +101,7 @@
                     max="100"
                     class="progress-score"
                     formControlName="score"
-                    [disabled]="getDefinitionGroup(i).get('mandatory')?.value" />
+                    [disabled]="getDefinitionGroup(i).get('mandatory')?.value || false" />
                   <span matSuffix>%</span>
                 </mat-form-field>
 

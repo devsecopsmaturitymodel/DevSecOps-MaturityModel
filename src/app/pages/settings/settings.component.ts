@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { SettingsService } from '../../service/settings/settings.service';
 import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
@@ -27,6 +27,14 @@ interface RemoteReleaseCheck {
   latestCheckError: string | null;
 }
 
+interface ProgressDefinitionForm {
+  pid: FormControl<number>;
+  key: FormControl<string>;
+  score: FormControl<number>;
+  definition: FormControl<string>;
+  mandatory?: FormControl<boolean>;
+}
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -38,7 +46,9 @@ export class SettingsComponent implements OnInit {
   dataStoreMaxLevel!: number;
   selectedMaxLevel!: number;
   selectedMaxLevelCaption: String = '';
-  progressDefinitionsForm!: UntypedFormGroup;
+  progressDefinitionsForm!: FormGroup<{
+    definitions: FormArray<FormGroup<ProgressDefinitionForm>>;
+  }>;
   tempProgressDefinitions: ProgressDefinitions = {};
   editingProgressDefinitions: boolean = false;
   remoteReleaseCheck: RemoteReleaseCheck = {
@@ -72,7 +82,7 @@ export class SettingsComponent implements OnInit {
   constructor(
     private loader: LoaderService,
     private settings: SettingsService,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     public modal: ModalMessageComponent,
     private githubService: GithubService
   ) {}
@@ -203,17 +213,17 @@ export class SettingsComponent implements OnInit {
   // === Progress Definitions ===
   private initProgressDefinitionsForm(): void {
     this.progressDefinitionsForm = this.formBuilder.group({
-      definitions: this.formBuilder.array([]),
+      definitions: this.formBuilder.array<FormGroup<ProgressDefinitionForm>>([]),
     });
   }
 
-  get definitionsFormArray(): UntypedFormArray {
-    return this.progressDefinitionsForm.get('definitions') as UntypedFormArray;
+  get definitionsFormArray(): FormArray<FormGroup<ProgressDefinitionForm>> {
+    return this.progressDefinitionsForm.controls.definitions;
   }
 
   // Return the FormGroup for a specific index in the definitions FormArray.
-  getDefinitionGroup(index: number): UntypedFormGroup {
-    return this.definitionsFormArray.at(index) as UntypedFormGroup;
+  getDefinitionGroup(index: number): FormGroup<ProgressDefinitionForm> {
+    return this.definitionsFormArray.at(index);
   }
 
   private updateProgressDefinitionsForm(): void {
@@ -226,8 +236,8 @@ export class SettingsComponent implements OnInit {
           key: [key],
           score: [progDef.score * 100],
           definition: [progDef.definition],
-          mandatory: progDef.score == 1 || progDef.score == 0,
-        })
+          mandatory: [progDef.score == 1 || progDef.score == 0],
+        }) as unknown as FormGroup<ProgressDefinitionForm>
       );
     });
   }
@@ -244,7 +254,7 @@ export class SettingsComponent implements OnInit {
         key: [''],
         score: [score],
         definition: [''],
-      })
+      }) as unknown as FormGroup<ProgressDefinitionForm>
     );
   }
 
@@ -273,11 +283,11 @@ export class SettingsComponent implements OnInit {
     const renamedItems: Array<{ originalKey: string; newKey: string; pid: number }> = [];
 
     this.definitionsFormArray.controls.forEach(control => {
-      const formGroup = control as UntypedFormGroup;
-      const pid = formGroup.get('pid')?.value;
-      const key = formGroup.get('key')?.value;
-      const score = formGroup.get('score')?.value / 100; // Convert from percentage back to decimal
-      const definition = formGroup.get('definition')?.value;
+      const formGroup = control;
+      const pid = formGroup.controls.pid.value;
+      const key = formGroup.controls.key.value;
+      const score = formGroup.controls.score.value / 100; // Convert from percentage back to decimal
+      const definition = formGroup.controls.definition.value;
 
       if (key && key.trim()) {
         // Only add if key is not empty
@@ -336,7 +346,7 @@ export class SettingsComponent implements OnInit {
   }
 
   getFormGroupValue(control: AbstractControl, field: string): any {
-    return (control as UntypedFormGroup).get(field)?.value;
+    return (control as FormGroup).get(field)?.value;
   }
 
   /**
