@@ -177,7 +177,7 @@
         While the application is the tool for assessing and tracking DevSecOps maturity, i.e. using
         the model.<br />
       </p>
-      <ng-container *ngIf="meta?.activityMeta?.getDsommVersion()">
+      <ng-container *ngIf="meta.activityMeta?.getDsommVersion()">
         <p>The current version of the DSOMM model in use is:</p>
         <div class="version-info-section">
           <div class="version-info-table">
@@ -193,20 +193,20 @@
 
             <div
               class="grid-col-3 grid-row-1"
-              *ngIf="remoteReleaseCheck?.isNewerAvailable === false">
+              *ngIf="remoteReleaseCheck.isNewerAvailable === false">
               Up to date
             </div>
-            <ng-container *ngIf="remoteReleaseCheck?.isNewerAvailable === true">
+            <ng-container *ngIf="remoteReleaseCheck.isNewerAvailable === true">
               <div class="grid-col-3 grid-row-1">
-                {{ remoteReleaseCheck?.latestRelease?.tagName }}
+                {{ remoteReleaseCheck.latestRelease?.tagName }}
               </div>
               <div class="grid-col-3 grid-row-2">
-                {{ dateFormat(remoteReleaseCheck?.latestRelease?.publishedAt) }}
+                {{ dateFormat(remoteReleaseCheck.latestRelease?.publishedAt) }}
               </div>
 
               <div class="grid-col-4 grid-row-1">
                 <a
-                  [href]="remoteReleaseCheck?.latestRelease?.downloadUrl"
+                  [href]="remoteReleaseCheck.latestRelease?.downloadUrl"
                   target="_blank"
                   class="action-link"
                   >Download</a
@@ -214,7 +214,7 @@
               </div>
               <div class="grid-col-4 grid-row-2">
                 <a
-                  [href]="remoteReleaseCheck?.latestRelease?.changelogUrl"
+                  [href]="remoteReleaseCheck.latestRelease?.changelogUrl"
                   target="_blank"
                   class="action-link"
                   >Changelog</a
@@ -223,20 +223,20 @@
             </ng-container>
           </div>
           <div class="button-container vflex">
-            <div *ngIf="remoteReleaseCheck?.latestCheckError" class="error">
+            <div *ngIf="remoteReleaseCheck.latestCheckError" class="error">
               <p>Error checking updates:</p>
-              <p>{{ remoteReleaseCheck?.latestCheckError }}</p>
+              <p>{{ remoteReleaseCheck.latestCheckError }}</p>
             </div>
             <div class="hflex">
               <button
                 mat-raised-button
                 class="normal-button"
                 (click)="checkForLatestRelease()"
-                [disabled]="remoteReleaseCheck?.isChecking">
+                [disabled]="remoteReleaseCheck.isChecking">
                 Check for newer DSOMM
               </button>
               <mat-progress-spinner
-                *ngIf="remoteReleaseCheck?.isChecking"
+                *ngIf="remoteReleaseCheck.isChecking"
                 mode="indeterminate"
                 diameter="20"></mat-progress-spinner>
             </div>
@@ -248,16 +248,16 @@
             The following files are used to describe the model in use:
           </div>
           <ul>
-            <li *ngFor="let file of meta?.activityFiles">
+            <li *ngFor="let file of meta.activityFiles">
               <a href="{{ file }}" target="_blank">{{ file.replace('assets/YAML/', '') }}</a>
             </li>
           </ul>
         </div>
       </ng-container>
-      <ng-container *ngIf="!meta?.activityMeta?.getDsommVersion()">
+      <ng-container *ngIf="!meta.activityMeta?.getDsommVersion()">
         <div>This application runs on a customized version of the DSOMM model:</div>
         <ul>
-          <li *ngFor="let file of meta?.activityFiles">
+          <li *ngFor="let file of meta.activityFiles">
             <a href="{{ file }}" target="_blank">{{ file.replace('assets/YAML/', '') }}</a>
           </li>
         </ul>
