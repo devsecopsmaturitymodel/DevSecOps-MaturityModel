@@ -15,6 +15,7 @@ import { LoaderService } from '../../service/loader/data-loader.service';
 import { MockLoaderService } from '../../service/loader/mock-data-loader.service';
 import { Data } from 'src/app/model/activity-store';
 import { ModalMessageComponent } from 'src/app/component/modal-message/modal-message.component';
+import { GithubService } from 'src/app/service/settings/github.service';
 
 let mockLoaderService: MockLoaderService;
 const MOCK_DATA = {
@@ -66,6 +67,10 @@ describe('SettingsComponent', () => {
         { provide: SettingsService, useValue: settingsService },
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: ModalMessageComponent, useValue: modalComponent },
+        {
+          provide: GithubService,
+          useValue: jasmine.createSpyObj('GithubService', ['getLatestRelease']),
+        },
       ],
     }).compileComponents();
   });
@@ -73,6 +78,13 @@ describe('SettingsComponent', () => {
   beforeEach(fakeAsync(() => {
     fixture = TestBed.createComponent(SettingsComponent);
     component = fixture.componentInstance;
+    component.meta = {
+      activityMeta: null,
+      activityFiles: [],
+      progressDefinition: {},
+      saveProgressDefinition: jasmine.createSpy('saveProgressDefinition'),
+    } as any;
+
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
