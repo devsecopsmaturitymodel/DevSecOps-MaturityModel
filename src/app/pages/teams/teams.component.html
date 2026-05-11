@@ -7,30 +7,30 @@
     (selectionChanged)="onSelectionChanged($event)"
     (namesChanged)="onTeamsChanged($event)"
     (click)="$event.stopPropagation()"></app-teams-groups-editor>
-  <div class="button-container" *ngIf="dataStore?.meta?.hasLocalStorage">
+  <div class="button-container" *ngIf="dataStore.meta?.hasLocalStorage">
     <button mat-raised-button (click)="onExportTeamGroups()">Download team setup</button>
     <button mat-raised-button (click)="onResetTeamGroups()">Reset team setup</button>
   </div>
 
   <div class="team-info">
     <h2>{{ infoTitle }}</h2>
-    <div class="subheader" *ngIf="infoTeams.length > 1">
-      {{ info[infoTitle]?.teams?.join(', ') }}
+    <div class="subheader" *ngIf="infoTeams.length > 1 && info[infoTitle]">
+      {{ info[infoTitle].teams.join(', ') }}
     </div>
-    <div class="info-content">
+    <div class="info-content" *ngIf="info[infoTitle]">
       <div class="info-kpis">
         <app-kpi
           [title]="progressTitleImplemented"
-          [value]="info[infoTitle]?.uniqueActivitiesCompletedCount"
+          [value]="info[infoTitle].uniqueActivitiesCompletedCount"
           [suffix]="'activities'"></app-kpi>
         <app-kpi
           [title]="'In progress'"
-          [value]="info[infoTitle]?.uniqueActivitiesInProgressCount"
+          [value]="info[infoTitle].uniqueActivitiesInProgressCount"
           [suffix]="'activities'"></app-kpi>
         <app-kpi
           [title]="'Last updated:'"
-          [value]="dateFormat(info[infoTitle]?.lastUpdated)"
-          [suffix]="info[infoTitle]?.lastUpdated ? '' : 'No activity registered'"></app-kpi>
+          [value]="dateFormat(info[infoTitle].lastUpdated)"
+          [suffix]="info[infoTitle].lastUpdated ? '' : 'No activity registered'"></app-kpi>
       </div>
     </div>
 
@@ -60,8 +60,8 @@
           <div class="dimension-cell">
             <mat-icon
               class="dimension-icon"
-              *ngIf="dataStore?.meta?.getIcon(element?.activity?.category || '')">
-              {{ dataStore?.meta?.getIcon(element?.activity?.category || '') }}
+              *ngIf="dataStore.meta?.getIcon(element?.activity?.category || '')">
+              {{ dataStore.meta?.getIcon(element?.activity?.category || '') }}
             </mat-icon>
             <span>{{ element?.activity?.dimension }}</span>
           </div>
@@ -84,7 +84,7 @@
       <!-- No data message -->
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" [attr.colspan]="allColumnNames.length">
-          <em>Currently no activities in progress for {{ info[infoTitle]?.teams?.join(', ') }}</em>
+          <em>Currently no activities in progress for {{ info[infoTitle].teams.join(', ') }}</em>
         </td>
       </tr>
 
