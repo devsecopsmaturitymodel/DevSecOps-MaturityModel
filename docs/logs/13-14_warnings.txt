@@ -1,0 +1,191 @@
+[~/xod/open/DevSecOps-MaturityModel]
+✘  sawankshrma   mygsoc2026  npx ng serve
+⠋ Generating browser application bundles (phase: building)...: The same density styles are generated multiple times. Read more about how style duplication can be avoided in a dedicated guide. https://github.com/angular/components/blob/main/guides/duplicate-theming-styles.md
+node_modules/@angular/material/core/theming/_theming.scss 349:9   private-check-duplicate-theme-styles()
+node_modules/@angular/material/core/theming/_all-theme.scss 42:3  all-component-themes()
+src/custom-theme.scss 113:3                                       root stylesheet
+
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files   | Names         |  Raw Size
+vendor.js             | vendor        |   7.48 MB |
+polyfills.js          | polyfills     |   1.07 MB |
+main.js               | main          | 838.03 kB |
+styles.css, styles.js | styles        | 320.01 kB |
+runtime.js            | runtime       |   6.49 kB |
+
+```
+                  | Initial Total |   9.69 MB
+```
+
+Build at: 2026-05-11T15:24:59.343Z - Hash: c795257efa881b51 - Time: 21611ms
+
+Warning: src/app/component/activity-description/activity-description.component.html:72:44 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+72           [activityName]="currentActivity?.name || ''"
+~~~~
+
+src/app/component/activity-description/activity-description.component.ts:20:16
+20   templateUrl: './activity-description.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component ActivityDescriptionComponent.
+
+Warning: src/app/component/activity-description/activity-description.component.html:283:69 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+283         >In other frameworks and standards the '{{ currentActivity?.name }}' activity is part of
+~~~~
+
+src/app/component/activity-description/activity-description.component.ts:20:16
+20   templateUrl: './activity-description.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component ActivityDescriptionComponent.
+
+Warning: src/app/pages/matrix/matrix.component.html:43:64 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+43           <mat-icon mat-list-icon color="primary">{{dataStore?.meta?.getIcon(element.Category)}}</mat-icon>
+~~~~
+
+src/app/pages/matrix/matrix.component.ts:31:16
+31   templateUrl: './matrix.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component MatrixComponent.
+
+Warning: src/app/pages/settings/settings.component.html:201:40 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+201                 {{ remoteReleaseCheck?.latestRelease?.tagName }}
+~~~~~~~~~~~~~
+
+src/app/pages/settings/settings.component.ts:32:16
+32   templateUrl: './settings.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component SettingsComponent.
+
+Warning: src/app/pages/settings/settings.component.html:204:51 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+204                 {{ dateFormat(remoteReleaseCheck?.latestRelease?.publishedAt) }}
+~~~~~~~~~~~~~
+
+src/app/pages/settings/settings.component.ts:32:16
+32   templateUrl: './settings.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component SettingsComponent.
+
+Warning: src/app/pages/settings/settings.component.html:209:47 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+209                   [href]="remoteReleaseCheck?.latestRelease?.downloadUrl"
+~~~~~~~~~~~~~
+
+src/app/pages/settings/settings.component.ts:32:16
+32   templateUrl: './settings.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component SettingsComponent.
+
+Warning: src/app/pages/settings/settings.component.html:217:47 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+217                   [href]="remoteReleaseCheck?.latestRelease?.changelogUrl"
+~~~~~~~~~~~~~
+
+src/app/pages/settings/settings.component.ts:32:16
+32   templateUrl: './settings.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component SettingsComponent.
+
+Warning: src/app/pages/settings/settings.component.html:228:41 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+228               <p>{{ remoteReleaseCheck?.latestCheckError }}</p>
+~~~~~~~~~~~~~~~~
+
+src/app/pages/settings/settings.component.ts:32:16
+32   templateUrl: './settings.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component SettingsComponent.
+
+Warning: src/app/pages/settings/settings.component.html:235:49 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+235                 [disabled]="remoteReleaseCheck?.isChecking">
+~~~~~~~~~~
+
+src/app/pages/settings/settings.component.ts:32:16
+32   templateUrl: './settings.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component SettingsComponent.
+
+Warning: src/app/pages/teams/teams.component.html:18:27 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+18       {{ info[infoTitle]?.teams?.join(', ') }}
+~~~~~
+
+src/app/pages/teams/teams.component.ts:27:16
+27   templateUrl: './teams.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component TeamsComponent.
+
+Warning: src/app/pages/teams/teams.component.html:24:37 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+24           [value]="info[infoTitle]?.uniqueActivitiesCompletedCount"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/app/pages/teams/teams.component.ts:27:16
+27   templateUrl: './teams.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component TeamsComponent.
+
+Warning: src/app/pages/teams/teams.component.html:28:37 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+28           [value]="info[infoTitle]?.uniqueActivitiesInProgressCount"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/app/pages/teams/teams.component.ts:27:16
+27   templateUrl: './teams.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component TeamsComponent.
+
+Warning: src/app/pages/teams/teams.component.html:32:48 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+32           [value]="dateFormat(info[infoTitle]?.lastUpdated)"
+~~~~~~~~~~~
+
+src/app/pages/teams/teams.component.ts:27:16
+27   templateUrl: './teams.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component TeamsComponent.
+
+Warning: src/app/pages/teams/teams.component.html:33:38 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+33           [suffix]="info[infoTitle]?.lastUpdated ? '' : 'No activity registered'"></app-kpi>
+~~~~~~~~~~~
+
+src/app/pages/teams/teams.component.ts:27:16
+27   templateUrl: './teams.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component TeamsComponent.
+
+Warning: src/app/pages/teams/teams.component.html:64:29 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+64               {{ dataStore?.meta?.getIcon(element?.activity?.category || '') }}
+~~~~
+
+src/app/pages/teams/teams.component.ts:27:16
+27   templateUrl: './teams.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component TeamsComponent.
+
+Warning: src/app/pages/teams/teams.component.html:87:75 - warning NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.
+
+87           <em>Currently no activities in progress for {{ info[infoTitle]?.teams?.join(', ') }}</em>
+~~~~~
+
+src/app/pages/teams/teams.component.ts:27:16
+27   templateUrl: './teams.component.html',
+~~~~~~~~~~~~~~~~~~~~~~~~
+Error occurs in the template of component TeamsComponent.
+
+Warning: /home/sawankshrma/xod/open/DevSecOps-MaturityModel/src/app/service/loader/mock-data-loader.service.ts is part of the TypeScript compilation but it's unused.
+Add only entry points to the 'files' or 'include' properties in your tsconfig.
+
+Warning: /home/sawankshrma/xod/open/DevSecOps-MaturityModel/src/environments/environment.prod.ts is part of the TypeScript compilation but it's unused.
+Add only entry points to the 'files' or 'include' properties in your tsconfig.
+
+- * Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+✔ Compiled successfully.

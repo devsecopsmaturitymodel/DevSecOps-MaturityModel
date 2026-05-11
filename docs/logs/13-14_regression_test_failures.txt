@@ -1,0 +1,58 @@
+5 specs, 3 failures, randomized with seed 18571
+Spec List | Failures
+SettingsComponent > should handle max level reset to default
+TypeError: Cannot read properties of undefined (reading 'activityMeta')
+TypeError: Cannot read properties of undefined (reading 'activityMeta')
+    at templateFn (ng:///SettingsComponent.js:535:44)
+    at executeTemplate (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12126:9)
+    at refreshView (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12011:13)
+    at refreshComponent (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13085:13)
+    at refreshChildComponents (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:11801:9)
+    at refreshView (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12061:13)
+    at detectChangesInternal (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13229:9)
+    at RootViewRef.detectChanges (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13741:9)
+    at ComponentFixture._tick (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/testing.mjs:140:32)
+    at http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/testing.mjs:153:22
+Expected spy SettingsService.setMaxLevel to have been called with:
+  [ null ]
+but actual calls were:
+  [ 5 ].
+
+Call 0:
+  Expected $[0] = 5 to equal null.
+Error: Expected spy SettingsService.setMaxLevel to have been called with:
+  [ null ]
+but actual calls were:
+  [ 5 ].
+Call 0:
+  Expected $[0] = 5 to equal null.
+    at <Jasmine>
+    at UserContext.apply (http://localhost:9876/_karma_webpack_/webpack:/src/app/pages/settings/settings.component.spec.ts:98:41)
+    at UserContext.apply (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/fesm2015/zone-testing.js:2030:30)
+    at _ZoneDelegate.invoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/fesm2015/zone.js:372:26)
+SettingsComponent > should update max level settings correctly
+TypeError: Cannot read properties of undefined (reading 'activityMeta')
+TypeError: Cannot read properties of undefined (reading 'activityMeta')
+    at templateFn (ng:///SettingsComponent.js:535:44)
+    at executeTemplate (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12126:9)
+    at refreshView (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12011:13)
+    at refreshComponent (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13085:13)
+    at refreshChildComponents (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:11801:9)
+    at refreshView (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12061:13)
+    at detectChangesInternal (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13229:9)
+    at RootViewRef.detectChanges (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13741:9)
+    at ComponentFixture._tick (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/testing.mjs:140:32)
+    at http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/testing.mjs:153:22
+SettingsComponent > should create
+TypeError: Cannot read properties of undefined (reading 'activityMeta')
+TypeError: Cannot read properties of undefined (reading 'activityMeta')
+    at templateFn (ng:///SettingsComponent.js:535:44)
+    at executeTemplate (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12126:9)
+    at refreshView (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12011:13)
+    at refreshComponent (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13085:13)
+    at refreshChildComponents (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:11801:9)
+    at refreshView (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:12061:13)
+    at detectChangesInternal (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13229:9)
+    at RootViewRef.detectChanges (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/core.mjs:13741:9)
+    at ComponentFixture._tick (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/testing.mjs:140:32)
+    at http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm2020/testing.mjs:153:22
