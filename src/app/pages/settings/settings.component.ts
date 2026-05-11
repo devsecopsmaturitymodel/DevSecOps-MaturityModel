@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, AbstractControl } from '@angular/forms';
 import { SettingsService } from '../../service/settings/settings.service';
 import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
@@ -38,7 +38,7 @@ export class SettingsComponent implements OnInit {
   dataStoreMaxLevel!: number;
   selectedMaxLevel!: number;
   selectedMaxLevelCaption: String = '';
-  progressDefinitionsForm!: FormGroup;
+  progressDefinitionsForm!: UntypedFormGroup;
   tempProgressDefinitions: ProgressDefinitions = {};
   editingProgressDefinitions: boolean = false;
   remoteReleaseCheck: RemoteReleaseCheck = {
@@ -72,7 +72,7 @@ export class SettingsComponent implements OnInit {
   constructor(
     private loader: LoaderService,
     private settings: SettingsService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public modal: ModalMessageComponent,
     private githubService: GithubService
   ) {}
@@ -207,13 +207,13 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  get definitionsFormArray(): FormArray {
-    return this.progressDefinitionsForm.get('definitions') as FormArray;
+  get definitionsFormArray(): UntypedFormArray {
+    return this.progressDefinitionsForm.get('definitions') as UntypedFormArray;
   }
 
   // Return the FormGroup for a specific index in the definitions FormArray.
-  getDefinitionGroup(index: number): FormGroup {
-    return this.definitionsFormArray.at(index) as FormGroup;
+  getDefinitionGroup(index: number): UntypedFormGroup {
+    return this.definitionsFormArray.at(index) as UntypedFormGroup;
   }
 
   private updateProgressDefinitionsForm(): void {
@@ -273,7 +273,7 @@ export class SettingsComponent implements OnInit {
     const renamedItems: Array<{ originalKey: string; newKey: string; pid: number }> = [];
 
     this.definitionsFormArray.controls.forEach(control => {
-      const formGroup = control as FormGroup;
+      const formGroup = control as UntypedFormGroup;
       const pid = formGroup.get('pid')?.value;
       const key = formGroup.get('key')?.value;
       const score = formGroup.get('score')?.value / 100; // Convert from percentage back to decimal
@@ -336,7 +336,7 @@ export class SettingsComponent implements OnInit {
   }
 
   getFormGroupValue(control: AbstractControl, field: string): any {
-    return (control as FormGroup).get(field)?.value;
+    return (control as UntypedFormGroup).get(field)?.value;
   }
 
   /**
