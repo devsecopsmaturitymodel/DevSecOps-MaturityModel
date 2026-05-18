@@ -38,7 +38,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
   // Info panel showing KPIs for teams and groups
   infoTitle: string = '';
   infoTeams: TeamNames = [];
-  info: Record<string, TeamSummary> = {};
+  info: Partial<Record<string, TeamSummary>> = {};
 
   dataSource: MatTableDataSource<TeamSummaryActivityProgress> = new MatTableDataSource<TeamSummaryActivityProgress>([]); // eslint-disable-line
   allColumnNames: string[] = [];

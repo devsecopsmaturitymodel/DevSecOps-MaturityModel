@@ -31,3 +31,17 @@ The initial upgrade from Angular 13 to 14 was performed using `ng update`. This 
 
 ---
 
+#### N. Fix: Correct Typography Configuration in Custom Theme ([commit_hash])
+- **Action:** Replaced `mat.define-typography-level()` with `mat.define-legacy-typography-config()` 
+  and set the font-family to `Roboto, "Helvetica Neue", sans-serif`.
+- **Reason:** The original code used `mat.define-typography-level()`, which creates a *single* 
+  typography level (one set of font properties). However, `mat.core()` (and its v15 successor 
+  `mat.all-legacy-component-typographies()`) expects a *full typography config* — a map containing 
+  styles for every text category (headline, body, caption, etc.). Because of this type mismatch, 
+  Angular Material silently ignored the custom config and fell back to its default font stack 
+  (`Roboto, "Helvetica Neue", sans-serif`). The `Montserrat` font declared in the original code 
+  was never actually rendered in production. Switching to `mat.define-legacy-typography-config()` 
+  fixes the function signature, and using Roboto preserves visual parity with the live site.
+- **Additional Change:** Reordered `@include` statements so `mat.legacy-core()` runs before 
+  `mat.all-legacy-component-typographies()`, which is the documented correct order in v15 
+  (foundation before typography).
