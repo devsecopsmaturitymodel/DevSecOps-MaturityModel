@@ -27,7 +27,17 @@
           min="1"
           [max]="dataStoreMaxLevel || 5"
           step="1"
-          class="max-slider" #ngSlider><input matSliderThumb [value]="selectedMaxLevel" (input)="onMaxLevelChange({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value}.value)" #ngSliderThumb="matSliderThumb" />
+          class="max-slider"
+          #ngSlider
+          ><input
+            matSliderThumb
+            [value]="selectedMaxLevel"
+            (input)="
+              onMaxLevelChange(
+                { source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value }.value
+              )
+            "
+            #ngSliderThumb="matSliderThumb" />
         </mat-slider>
         <span class="caption">{{ selectedMaxLevelCaption }}</span>
       </div>

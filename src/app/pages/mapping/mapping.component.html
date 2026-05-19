@@ -6,7 +6,6 @@
       <mat-chip-grid #chipList aria-label="Search terms">
         <mat-chip-row
           *ngFor="let term of searchTerms"
-          [selectable]="false"
           [removable]="true"
           (removed)="removeSearchTerm(term)">
           {{ term }}

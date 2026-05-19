@@ -24,25 +24,18 @@ h1, h2, h3 {
   margin: 0;
 }
 
-/* Slider styling */
-/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-.mat-slider-track-background {
+/* Slider styling (MDC) */
+.mat-mdc-slider .mdc-slider__track--inactive {
   background-color: var(--slider-track) !important;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-.mat-slider-track-fill {
-  background-color: var(--slider-primary) !important;
+.mat-mdc-slider .mdc-slider__track--active_fill {
+  border-color: var(--slider-primary) !important;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-.mat-slider-thumb {
+.mat-mdc-slider .mdc-slider__thumb-knob {
   background-color: var(--slider-thumb) !important;
-}
-
-/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-.mat-slider-thumb-label {
-  background-color: var(--slider-thumb) !important;
+  border-color: var(--slider-thumb) !important;
 }
 
 .userday table :is(td, th) {

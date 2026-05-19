@@ -5,7 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { Activity, ActivityStore, Data } from 'src/app/model/activity-store';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { MatChip, MatChipList } from '@angular/material/chips';
+import { MatChipOption, MatChipListbox, MatChipSelectionChange } from '@angular/material/chips';
 import { deepCopy } from 'src/app/util/util';
 import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
@@ -148,18 +148,20 @@ export class MatrixComponent implements OnInit {
     return matrixData;
   }
 
-  @ViewChild(MatChipList)
+  @ViewChild(MatChipListbox)
   chipsControl = new FormControl(['chipsControl']);
-  chipList!: MatChipList;
+  chipList!: MatChipListbox;
 
-  toggleTagFilters(chip: MatChip) {
+  toggleTagFilters(event: MatChipSelectionChange) {
+    let chip = event.source;
     chip.toggleSelected();
     this.filtersTag[chip.value] = chip.selected;
     console.log(`${perfNow()}: Matrix: Chip flip Tag '${chip.value}: ${chip.selected}`);
     this.updateActivitiesBeingDisplayed();
   }
 
-  toggleDimensionFilters(chip: MatChip) {
+  toggleDimensionFilters(event: MatChipSelectionChange) {
+    let chip = event.source;
     chip.toggleSelected();
     this.filtersDim[chip.value] = chip.selected;
     console.log(`${perfNow()}: Matrix: Chip flip Dim '${chip.value}: ${chip.selected}`);
