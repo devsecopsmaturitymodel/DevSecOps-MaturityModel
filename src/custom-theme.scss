@@ -25,12 +25,8 @@ $custom-typography: mat.define-typography-config(
 );
 
 // Core styles (ripple, overlay, etc.)
-/* TODO(mdc-migration): Remove legacy-core once all legacy components are migrated*/
 @include mat.core();
-@include mat.core();
-// Apply typography styles to all legacy components + hierarchy classes (.mat-headline-1, etc.)
-/* TODO(mdc-migration): Remove all-legacy-component-typographies once all legacy components are migrated*/
-@include mat.all-component-typographies($custom-typography);
+// Apply typography styles to all components + hierarchy classes (.mat-headline-1, etc.)
 @include mat.all-component-typographies($custom-typography);
 
 // ----------------------------------------------
@@ -45,13 +41,25 @@ $DSOMM-dark-primary: mat.define-palette(mat.$green-palette, 500);
 // ----------------------------------------------
 // Angular Material Themes
 // ----------------------------------------------
-$DSOMM-light-theme: mat.define-light-theme((color: (primary: $DSOMM-primary,
-        accent: $DSOMM-accent,
-        warn: $DSOMM-warn )));
+$DSOMM-light-theme: mat.define-light-theme((
+  color: (
+    primary: $DSOMM-primary,
+    accent: $DSOMM-accent,
+    warn: $DSOMM-warn
+  ),
+  typography: $custom-typography,
+  density: 0
+));
 
-$DSOMM-dark-theme: mat.define-dark-theme((color: (primary: $DSOMM-dark-primary,
-        accent: $DSOMM-accent,
-        warn: $DSOMM-warn )));
+$DSOMM-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $DSOMM-dark-primary,
+    accent: $DSOMM-accent,
+    warn: $DSOMM-warn
+  ),
+  typography: $custom-typography,
+  density: 0
+));
 
 // ----------------------------------------------
 // Base Theme Mixin
@@ -107,8 +115,6 @@ body {
   --dependency-mainnode-fill: #4caf50;
   --dependency-predecessor-fill: #deeedeff;
   --dependency-successor-fill: #fdfdfdff;
-  /* TODO(mdc-migration): Remove all-legacy-component-colors once all legacy components are migrated*/
-  @include mat.all-component-colors($DSOMM-light-theme);
 
   @include mat.all-component-colors($DSOMM-light-theme);
 }
@@ -118,8 +124,6 @@ body {
 // ----------------------------------------------
 body.dark-theme {
   @include apply-theme($custom-dark-theme);
-  /* TODO(mdc-migration): Remove all-legacy-component-colors once all legacy components are migrated*/
-  @include mat.all-component-colors($DSOMM-dark-theme);
   @include mat.all-component-colors($DSOMM-dark-theme);
 
   --background-base: #323436;
@@ -187,7 +191,6 @@ body.dark-theme {
   }
 
   //cards and panels
-  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
   mat-card,
   .mat-mdc-card {
     background-color: var(--background-primary);
@@ -308,21 +311,22 @@ body.dark-theme {
 
    
   // Form fields and inputs
-  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: var(--border-medium);
+  .mat-mdc-form-field .mdc-notched-outline__leading,
+  .mat-mdc-form-field .mdc-notched-outline__notch,
+  .mat-mdc-form-field .mdc-notched-outline__trailing {
+    border-color: var(--border-medium);
   }
-  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: #66bb6a;
+  .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+  .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+  .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+    border-color: #66bb6a;
   }
 
   .mat-mdc-input-element {
     color: var(--text-primary);
     caret-color: #66bb6a;
   }
-  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-  .mat-form-field-label {
+  .mat-mdc-floating-label {
     color: var(--text-secondary);
   }
 
@@ -349,7 +353,6 @@ body.dark-theme {
     border: 1px solid var(--border-medium); 
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
     mat-card {
       background-color: transparent;
       border: none;

@@ -4,7 +4,7 @@ import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { MatChip } from '@angular/material/chips';
+import { MatChipOption, MatChipSelectionChange } from '@angular/material/chips';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import * as md from 'markdown-it';
@@ -218,7 +218,8 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     return filters;
   }
 
-  toggleTeamGroupFilter(chip: MatChip) {
+  toggleTeamGroupFilter(event: MatChipSelectionChange) {
+    let chip = event.source;
     let teamGroup = chip.value.trim();
     if (!chip.selected) {
       chip.toggleSelected();
@@ -240,7 +241,8 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleTeamFilter(chip: MatChip) {
+  toggleTeamFilter(event: MatChipSelectionChange) {
+    let chip = event.source;
     chip.toggleSelected();
     this.filtersTeams[chip.value.trim()] = chip.selected;
     console.log(`${perfNow()}: Heat: Chip flip Team '${chip.value}: ${chip.selected}`);

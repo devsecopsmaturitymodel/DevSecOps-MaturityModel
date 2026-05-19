@@ -4,9 +4,8 @@
     <mat-label>Dimension Filter</mat-label>
     <mat-chip-listbox #chipList selectable multiple>
       <mat-chip-option
-        #c="matChip"
         *ngFor="let dim of filtersDim | keyvalue"
-        (click)="toggleDimensionFilters(c)"
+        (selectionChange)="toggleDimensionFilters($event)"
         [value]="dim.key"
         [selected]="dim.value">
         {{ dim.key }}
@@ -17,9 +16,8 @@
     <mat-label>Activity Tag Filter</mat-label>
     <mat-chip-listbox selectable multiple>
       <mat-chip-option
-        #c="matChip"
         *ngFor="let tag of filtersTag | keyvalue"
-        (click)="toggleTagFilters(c)"
+        (selectionChange)="toggleTagFilters($event)"
         [value]="tag.key"
         [selected]="tag.value">
         {{ tag.key }}

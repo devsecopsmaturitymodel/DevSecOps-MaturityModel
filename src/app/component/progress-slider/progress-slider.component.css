@@ -5,15 +5,12 @@
   width: 100%;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-.mat-slider-horizontal {
+.mat-mdc-slider {
   min-width: 80px;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-.mat-slider-track-fill {
-  background-color: #66bb6a;
-  height: 10px;
+:host ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
+  border-color: #66bb6a;
 }
 .step-label {
   min-width: 80px;

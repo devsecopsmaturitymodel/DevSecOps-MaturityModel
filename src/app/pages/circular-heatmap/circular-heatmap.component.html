@@ -38,9 +38,8 @@
               <mat-label>Team Group Filter</mat-label>
               <mat-chip-listbox selectable>
                 <mat-chip-option
-                  #chip="matChip"
                   *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
-                  (click)="toggleTeamGroupFilter(chip)"
+                  (selectionChange)="toggleTeamGroupFilter($event)"
                   [selected]="filtersTeamGroups[group.key]">
                   {{ group.key }}
                 </mat-chip-option>
@@ -50,9 +49,8 @@
               <mat-label>Team Filter</mat-label>
               <mat-chip-listbox selectable multiple>
                 <mat-chip-option
-                  #chip="matChip"
                   *ngFor="let team of filtersTeams | keyvalue"
-                  (click)="toggleTeamFilter(chip)"
+                  (selectionChange)="toggleTeamFilter($event)"
                   [value]="team.key"
                   [selected]="team.value">
                   {{ team.key }}
