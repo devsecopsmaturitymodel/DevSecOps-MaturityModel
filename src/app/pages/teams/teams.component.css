@@ -77,19 +77,19 @@ h3 {
   margin: 20px;
 }
 
-.mat-cell, .mat-header-cell {
+.mat-mdc-cell, .mat-mdc-header-cell {
   padding: 20px 10px;
   /* width: 12.5%;   */
   /* max-width: 12.5%;   */
   word-wrap: break-word;
 }
 
-.mat-header-cell {
+.mat-mdc-header-cell {
   font-size: 16px;  
   font-weight: bold;
 }
 
-td.mat-cell {
+td.mat-mdc-cell {
     padding: 0 10px;
 }
 

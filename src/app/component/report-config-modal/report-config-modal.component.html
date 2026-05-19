@@ -166,9 +166,7 @@
         [max]="maxWordCap"
         step="5"
         thumbLabel
-        [displayWith]="wordCapLabel"
-        [value]="config.descriptionWordCap"
-        (input)="onWordCapChange($event)">
+        [displayWith]="wordCapLabel" #ngSlider><input matSliderThumb [value]="config.descriptionWordCap" (input)="onWordCapChange({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value})" #ngSliderThumb="matSliderThumb" />
       </mat-slider>
     </div>
   </div>

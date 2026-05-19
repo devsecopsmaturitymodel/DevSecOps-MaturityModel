@@ -3,9 +3,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatrixComponent, MatrixRow } from './matrix.component';
-import { MatLegacyChip as MatChip } from '@angular/material/legacy-chips';
+import { MatChip } from '@angular/material/chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
-import { MatLegacyDialogModule as MatDialogModule, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { MockLoaderService } from 'src/app/service/loader/mock-data-loader.service';
 

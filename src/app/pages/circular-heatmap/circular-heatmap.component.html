@@ -36,32 +36,32 @@
           <div class="team-filter" [class.hidden]="!showFilters">
             <mat-form-field class="team-chip-list">
               <mat-label>Team Group Filter</mat-label>
-              <mat-chip-list selectable>
-                <mat-chip
+              <mat-chip-listbox selectable>
+                <mat-chip-option
                   #chip="matChip"
                   *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
                   (click)="toggleTeamGroupFilter(chip)"
                   [selected]="filtersTeamGroups[group.key]">
                   {{ group.key }}
-                </mat-chip>
-              </mat-chip-list>
+                </mat-chip-option>
+              </mat-chip-listbox>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Team Filter</mat-label>
-              <mat-chip-list selectable multiple>
-                <mat-chip
+              <mat-chip-listbox selectable multiple>
+                <mat-chip-option
                   #chip="matChip"
                   *ngFor="let team of filtersTeams | keyvalue"
                   (click)="toggleTeamFilter(chip)"
                   [value]="team.key"
                   [selected]="team.value">
                   {{ team.key }}
-                </mat-chip>
-              </mat-chip-list>
+                </mat-chip-option>
+              </mat-chip-listbox>
             </mat-form-field>
           </div>
         </div>
-        <mat-card class="activity-card" *ngIf="showActivityCard">
+        <mat-card appearance="outlined" class="activity-card" *ngIf="showActivityCard">
           <mat-card-title-group>
             <mat-card-title>{{ showActivityCard.dimension }}</mat-card-title>
             <mat-card-subtitle>Level {{ showActivityCard.level }}</mat-card-subtitle>

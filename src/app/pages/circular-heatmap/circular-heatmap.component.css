@@ -139,6 +139,7 @@
 app-progress-slider {
   width: 100%;
 }
+/* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
 .mat-chip-list {
   display: flex;
   flex-direction: row;
@@ -167,6 +168,7 @@ app-progress-slider {
     margin-right: 4px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
 mat-chip {
   cursor: pointer;
 }
@@ -216,7 +218,7 @@ button.filter-toggle {
       grid-row: 1;
       padding: 0.4rem;
   }
-  
+  /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
   .mat-chip-list {
       padding: 0.4rem;
   }

@@ -34,6 +34,7 @@
   padding: 0 1rem;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version.  */
 .mat-slider-horizontal {
   max-width: 100px;
   width: 100px;
@@ -74,10 +75,12 @@
   gap: 0.3em;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.  */
 .progress-definitions-grid ::ng-deep .mat-form-field-wrapper {
   padding-bottom: 0;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.  */
 .progress-definitions-grid ::ng-deep .mat-form-field-suffix {
   top: 0;
 }
@@ -182,13 +185,13 @@ mat-icon.mandatory-icon {
 .settings-about-section {
   margin-top: 1rem;
 }
-.settings-about-section .mat-card-header {
+.settings-about-section .mat-mdc-card-header {
   padding-bottom: 0.25rem;
 }
-.settings-about-section .mat-card-title {
+.settings-about-section .mat-mdc-card-title {
   font-size: 1.1rem;
 }
-.settings-about-section .mat-card-subtitle {
+.settings-about-section .mat-mdc-card-subtitle {
   color: #666;
   font-size: 0.9rem;
 }

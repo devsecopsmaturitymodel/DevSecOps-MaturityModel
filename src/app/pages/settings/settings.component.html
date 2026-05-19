@@ -1,6 +1,6 @@
 <app-top-header section="Settings"></app-top-header>
 <div class="settings-container">
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-card-content>
       <div class="date-format-container">
         <label for="dateFormatDropdown" class="nowrap">Date Format</label>
@@ -21,22 +21,20 @@
     <mat-card-content>
       <div class="max-level-row">
         <label class="nowrap">Max level</label>
+        <!-- TODO: The 'tickInterval' property no longer exists -->
         <mat-slider
           id="maxLevelSlider"
           min="1"
           [max]="dataStoreMaxLevel || 5"
           step="1"
-          [value]="selectedMaxLevel"
-          [tickInterval]="1"
-          class="max-slider"
-          (input)="onMaxLevelChange($event.value)">
+          class="max-slider" #ngSlider><input matSliderThumb [value]="selectedMaxLevel" (input)="onMaxLevelChange({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value}.value)" #ngSliderThumb="matSliderThumb" />
         </mat-slider>
         <span class="caption">{{ selectedMaxLevelCaption }}</span>
       </div>
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="progress-definitions-section">
+  <mat-card appearance="outlined" class="progress-definitions-section">
     <div class="selectable-list">
       <div class="selectable-list-header">
         <h2>Progress Definitions</h2>
@@ -156,7 +154,7 @@
       </div>
     </div>
   </mat-card>
-  <mat-card class="settings-about-section">
+  <mat-card appearance="outlined" class="settings-about-section">
     <h2>About the DSOMM Model</h2>
     <div class="card-content">
       <p>
