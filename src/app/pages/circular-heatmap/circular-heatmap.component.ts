@@ -219,49 +219,48 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
   }
 
   toggleTeamGroupFilter(event: MatChipSelectionChange) {
-    let chip = event.source;
-    let teamGroup = chip.value.trim();
-    if (!chip.selected) {
-      chip.toggleSelected();
-      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: ${chip.selected}`);
+    if (!event?.source || event.source.value == null) return;
+    if (!event.selected) return;
 
-      // Update the team selections based on the team group selection
-      let selectedTeams: TeamName[] = [];
+    const teamGroup = event.source.value.trim();
+
+    setTimeout(() => {
+      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}`);
+      const selectedTeams: TeamName[] = [];
       Object.keys(this.filtersTeams).forEach(key => {
         this.filtersTeams[key] = this.teamGroups[teamGroup]?.includes(key) || false;
-        if (this.filtersTeams[key]) {
-          selectedTeams.push(key);
-        }
-        this.sectorService.setVisibleTeams(selectedTeams);
+        if (this.filtersTeams[key]) selectedTeams.push(key);
       });
+      this.sectorService.setVisibleTeams(selectedTeams);
       this.hasTeamsFilter = Object.values(this.filtersTeams).some(v => v === true);
       this.reColorHeatmap();
-    } else {
-      console.log(`${perfNow()}: Heat: Chip flip Group '${teamGroup}: already on`);
-    }
+    });
   }
 
   toggleTeamFilter(event: MatChipSelectionChange) {
-    let chip = event.source;
-    chip.toggleSelected();
-    this.filtersTeams[chip.value.trim()] = chip.selected;
-    console.log(`${perfNow()}: Heat: Chip flip Team '${chip.value}: ${chip.selected}`);
+    if (!event?.source || event.source.value == null) return;
 
-    this.hasTeamsFilter = Object.values(this.filtersTeams).some(v => v === true);
+    const value = event.source.value.trim();
+    const selected = event.selected;
 
-    let selectedTeams: string[] = Object.keys(this.filtersTeams).filter(
-      key => this.filtersTeams[key]
-    );
-    this.sectorService.setVisibleTeams(selectedTeams);
+    setTimeout(() => {
+      this.filtersTeams[value] = selected;
+      console.log(`${perfNow()}: Heat: Chip flip Team '${value}: ${selected}`);
 
-    // Update team group filter, if one matches selection
-    Object.keys(this.teamGroups || {}).forEach(group => {
-      let match: boolean = equalArray(selectedTeams, this.teamGroups[group]);
-      this.filtersTeamGroups[group] = match;
+      this.hasTeamsFilter = Object.values(this.filtersTeams).some(v => v === true);
+
+      const selectedTeams: string[] = Object.keys(this.filtersTeams).filter(
+        key => this.filtersTeams[key]
+      );
+      this.sectorService.setVisibleTeams(selectedTeams);
+
+      Object.keys(this.teamGroups || {}).forEach(group => {
+        this.filtersTeamGroups[group] = equalArray(selectedTeams, this.teamGroups[group]);
+      });
+      this.filtersTeamGroups = { ...this.filtersTeamGroups };
+
+      this.reColorHeatmap();
     });
-    this.filtersTeamGroups = this.filtersTeamGroups;
-
-    this.reColorHeatmap();
   }
 
   getTeamProgressState(activityUuid: string, teamName: string): string {
