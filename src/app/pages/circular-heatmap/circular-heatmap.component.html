@@ -29,34 +29,31 @@
       <div class="heatmapClass">
         <div id="chart" class="heatmapChart"></div>
         <div class="filter-container">
-          <button class="filter-toggle" mat-button color="primary" (click)="toggleFilters()">
+          <button class="filter-toggle" mat-icon-button color="primary" (click)="toggleFilters()">
             <mat-icon [class.hidden]="!showFilters">keyboard_arrow_up</mat-icon>
             <mat-icon [class.hidden]="showFilters">filter_alt</mat-icon>
           </button>
           <div class="team-filter" [class.hidden]="!showFilters">
-            <mat-form-field class="team-chip-list">
-              <mat-label>Team Group Filter</mat-label>
-              <mat-chip-listbox selectable>
-                <mat-chip-option
-                  *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
-                  (selectionChange)="toggleTeamGroupFilter($event)"
-                  [selected]="filtersTeamGroups[group.key]">
-                  {{ group.key }}
-                </mat-chip-option>
-              </mat-chip-listbox>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Team Filter</mat-label>
-              <mat-chip-listbox selectable multiple>
-                <mat-chip-option
-                  *ngFor="let team of filtersTeams | keyvalue"
-                  (selectionChange)="toggleTeamFilter($event)"
-                  [value]="team.key"
-                  [selected]="team.value">
-                  {{ team.key }}
-                </mat-chip-option>
-              </mat-chip-listbox>
-            </mat-form-field>
+            <label class="filter-label">Team Group Filter</label>
+            <mat-chip-listbox selectable>
+              <mat-chip-option
+                *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
+                (selectionChange)="toggleTeamGroupFilter($event)"
+                [selected]="filtersTeamGroups[group.key]">
+                {{ group.key }}
+              </mat-chip-option>
+            </mat-chip-listbox>
+
+            <label class="filter-label">Team Filter</label>
+            <mat-chip-listbox selectable multiple>
+              <mat-chip-option
+                *ngFor="let team of filtersTeams | keyvalue"
+                (selectionChange)="toggleTeamFilter($event)"
+                [value]="team.key"
+                [selected]="team.value">
+                {{ team.key }}
+              </mat-chip-option>
+            </mat-chip-listbox>
           </div>
         </div>
         <mat-card appearance="outlined" class="activity-card" *ngIf="showActivityCard">

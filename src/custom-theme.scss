@@ -309,7 +309,11 @@ body.dark-theme {
     }
   }
 
-   
+  .mat-mdc-chip.mat-mdc-standard-chip.mat-mdc-chip-selected,
+  .mat-mdc-chip.mat-mdc-standard-chip.mdc-evolution-chip--selected {
+    background-color: var(--primary-color) !important;
+  }
+  
   // Form fields and inputs
   .mat-mdc-form-field .mdc-notched-outline__leading,
   .mat-mdc-form-field .mdc-notched-outline__notch,
