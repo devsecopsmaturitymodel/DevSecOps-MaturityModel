@@ -5,10 +5,12 @@
   width: 100%;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
 .mat-slider-horizontal {
   min-width: 80px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
 .mat-slider-track-fill {
   background-color: #66bb6a;
   height: 10px;

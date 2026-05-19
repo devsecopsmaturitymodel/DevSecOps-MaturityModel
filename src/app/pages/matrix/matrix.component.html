@@ -2,29 +2,29 @@
   <app-top-header section="Matrix"></app-top-header>
   <mat-form-field class="activity-chip-list">
     <mat-label>Dimension Filter</mat-label>
-    <mat-chip-list #chipList selectable multiple>
-      <mat-chip
+    <mat-chip-listbox #chipList selectable multiple>
+      <mat-chip-option
         #c="matChip"
         *ngFor="let dim of filtersDim | keyvalue"
         (click)="toggleDimensionFilters(c)"
         [value]="dim.key"
         [selected]="dim.value">
         {{ dim.key }}
-      </mat-chip>
-    </mat-chip-list>
+      </mat-chip-option>
+    </mat-chip-listbox>
   </mat-form-field>
   <mat-form-field class="activity-chip-list">
     <mat-label>Activity Tag Filter</mat-label>
-    <mat-chip-list selectable multiple>
-      <mat-chip
+    <mat-chip-listbox selectable multiple>
+      <mat-chip-option
         #c="matChip"
         *ngFor="let tag of filtersTag | keyvalue"
         (click)="toggleTagFilters(c)"
         [value]="tag.key"
         [selected]="tag.value">
         {{ tag.key }}
-      </mat-chip>
-    </mat-chip-list>
+      </mat-chip-option>
+    </mat-chip-listbox>
   </mat-form-field>
 
   <button class="reset-button" (click)="reset()">RESET</button>

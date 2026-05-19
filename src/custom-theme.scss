@@ -20,14 +20,18 @@ $custom-dark-theme: (
   link: #66bb6a,
 );
 
-$custom-typography: mat.define-legacy-typography-config(
+$custom-typography: mat.define-typography-config(
    $font-family:  'Roboto, Helvetica Neue, sans-serif'
 );
 
 // Core styles (ripple, overlay, etc.)
-@include mat.legacy-core();
+/* TODO(mdc-migration): Remove legacy-core once all legacy components are migrated*/
+@include mat.core();
+@include mat.core();
 // Apply typography styles to all legacy components + hierarchy classes (.mat-headline-1, etc.)
-@include mat.all-legacy-component-typographies($custom-typography);
+/* TODO(mdc-migration): Remove all-legacy-component-typographies once all legacy components are migrated*/
+@include mat.all-component-typographies($custom-typography);
+@include mat.all-component-typographies($custom-typography);
 
 // ----------------------------------------------
 // Angular Material Palettes
@@ -103,8 +107,10 @@ body {
   --dependency-mainnode-fill: #4caf50;
   --dependency-predecessor-fill: #deeedeff;
   --dependency-successor-fill: #fdfdfdff;
+  /* TODO(mdc-migration): Remove all-legacy-component-colors once all legacy components are migrated*/
+  @include mat.all-component-colors($DSOMM-light-theme);
 
-  @include mat.all-legacy-component-colors($DSOMM-light-theme);
+  @include mat.all-component-colors($DSOMM-light-theme);
 }
 
 // ----------------------------------------------
@@ -112,7 +118,9 @@ body {
 // ----------------------------------------------
 body.dark-theme {
   @include apply-theme($custom-dark-theme);
-  @include mat.all-legacy-component-colors($DSOMM-dark-theme);
+  /* TODO(mdc-migration): Remove all-legacy-component-colors once all legacy components are migrated*/
+  @include mat.all-component-colors($DSOMM-dark-theme);
+  @include mat.all-component-colors($DSOMM-dark-theme);
 
   --background-base: #323436;
   /* page background */
@@ -179,8 +187,9 @@ body.dark-theme {
   }
 
   //cards and panels
+  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
   mat-card,
-  .mat-card {
+  .mat-mdc-card {
     background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
@@ -224,7 +233,7 @@ body.dark-theme {
   }
 
   //Tables
-  .mat-table,
+  .mat-mdc-table,
   table[mat-table] {
     background-color: var(--background-primary);
     border: 1px solid var(--border-subtle);
@@ -232,17 +241,17 @@ body.dark-theme {
     overflow: hidden;
   }
 
-  .mat-header-row {
+  .mat-mdc-header-row {
     background-color: var(--background-secondary);
     border-bottom: 1px solid var(--border-medium);
   }
 
-  .mat-header-cell {
+  .mat-mdc-header-cell {
     color: var(--text-primary);
     font-weight: 600;
   }
 
-  .mat-row {
+  .mat-mdc-row {
     background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     transition: background-color 0.15s ease;
@@ -252,12 +261,12 @@ body.dark-theme {
     }
   }
 
-  .mat-cell {
+  .mat-mdc-cell {
     color: var(--text-primary);
   }
 
   // Dialog styling
-  .mat-dialog-container {
+  .mat-mdc-dialog-container {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
     border: 1px solid var(--border-medium);
@@ -284,7 +293,7 @@ body.dark-theme {
   }
 
   //chips
-  .mat-chip.mat-standard-chip {
+  .mat-mdc-chip.mat-mdc-standard-chip {
     background-color: var(--background-tertiary);
     color: var(--text-secondary);
     border: 1px solid var(--border-subtle);
@@ -299,29 +308,30 @@ body.dark-theme {
 
    
   // Form fields and inputs
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
   .mat-form-field-appearance-outline .mat-form-field-outline {
     color: var(--border-medium);
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
   .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #66bb6a;
   }
 
-  .mat-input-element {
+  .mat-mdc-input-element {
     color: var(--text-primary);
     caret-color: #66bb6a;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
   .mat-form-field-label {
     color: var(--text-secondary);
   }
 
   // Buttons
-  .mat-icon-button:hover {
+  .mat-mdc-icon-button:hover {
     background-color: var(--background-hover);
   }
 
-  .mat-raised-button {
+  .mat-mdc-raised-button {
     background-color: var(--background-secondary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
@@ -339,7 +349,7 @@ body.dark-theme {
     border: 1px solid var(--border-medium); 
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-
+    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
     mat-card {
       background-color: transparent;
       border: none;
@@ -364,7 +374,7 @@ body.dark-theme {
   }
    
   // List items and nav
-  .mat-list-item,
+  .mat-mdc-list-item,
   .mat-nav-list .mat-list-item {
     color: var(--text-secondary);
     border-radius: 8px;
@@ -382,15 +392,15 @@ body.dark-theme {
   }
 
   //select and menu
-  .mat-select-panel,
-  .mat-menu-panel {
+  .mat-mdc-select-panel,
+  .mat-mdc-menu-panel {
     background-color: var(--background-tertiary);
     border: 1px solid var(--border-medium);
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
-  .mat-option {
+  .mat-mdc-option {
     color: var(--text-primary);
 
     &:hover,

@@ -1,11 +1,9 @@
 <div class="progress-container">
+  <!-- TODO: The 'tickInterval' property no longer exists -->
   <mat-slider
     [min]="0"
     [max]="steps.length - 1"
-    [step]="1"
-    [value]="currentValue"
-    [tickInterval]="1"
-    (input)="onStepChange($event.value)">
+    [step]="1" #ngSlider><input matSliderThumb [value]="currentValue" (input)="onStepChange({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value}.value)" #ngSliderThumb="matSliderThumb" />
   </mat-slider>
   <span class="step-label">{{ steps[currentValue] }} <!-- eslint-disable-line -->
     <span *ngIf="currentValue > originalValue"> *</span>
