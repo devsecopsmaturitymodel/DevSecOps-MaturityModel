@@ -1,9 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatrixComponent, MatrixRow } from './matrix.component';
-import { MatChip } from '@angular/material/chips';
+import { MatChipSelectionChange } from '@angular/material/chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
@@ -25,6 +25,14 @@ const MOCK_DATA: any = {
 };
 let mockLoaderService: MockLoaderService;
 
+function createChipSelectionEvent(value: string, selected: boolean): MatChipSelectionChange {
+  return {
+    source: { value } as any,
+    selected,
+    isUserInput: true,
+  };
+}
+
 describe('MatrixComponent', () => {
   let component: MatrixComponent;
   let fixture: ComponentFixture<MatrixComponent>;
@@ -32,7 +40,7 @@ describe('MatrixComponent', () => {
   beforeEach(async () => {
     mockLoaderService = new MockLoaderService(MOCK_DATA);
     await TestBed.configureTestingModule({
-      declarations: [MatrixComponent, MatChip],
+      declarations: [MatrixComponent],
       imports: [RouterTestingModule, HttpClientModule, MatDialogModule],
       providers: [
         HttpClientTestingModule,
@@ -68,36 +76,24 @@ describe('MatrixComponent', () => {
     expect(Object.keys(component.filtersDim)).toContain('Test Dimension');
   });
 
-  it('should filter data when tag filter is selected', () => {
+  it('should filter data when tag filter is selected', fakeAsync(() => {
     expect(component.dataSource.data.length).toBe(2);
     expect(component.dataSource.data[0].level1.length).toBe(2);
 
-    // Create a mock MatChip with proper state tracking
-    const mockChip = {
-      value: 'tag1',
-      selected: false,
-      toggleSelected: function () {
-        this.selected = !this.selected;
-      },
-    } as MatChip;
-
-    // Ensure initial state
-    mockChip.selected = false;
-
     // Toggle tag filter on
     console.log('Turn chip filter on');
-    component.toggleTagFilters(mockChip);
-    // console.log('data after "on":', component.dataSource.data);
+    component.toggleTagFilters(createChipSelectionEvent('tag1', true));
+    tick(); // flush the setTimeout inside toggleTagFilters
     expect(component.filtersTag['tag1']).toBeTrue();
     expect(component.dataSource.data.length).toBe(1);
     expect(component.dataSource.data[0].level1.length).toBe(1);
 
     // Toggle tag filter off again
     console.log('Turn chip filter off');
-    component.toggleTagFilters(mockChip);
-    // console.log('data after "off": ', component.dataSource.data);
+    component.toggleTagFilters(createChipSelectionEvent('tag1', false));
+    tick(); // flush the setTimeout inside toggleTagFilters
     expect(component.filtersTag['tag1']).toBeFalse();
     expect(component.dataSource.data.length).toBe(2);
     expect(component.dataSource.data[0].level1.length).toBe(2);
-  });
+  }));
 });
