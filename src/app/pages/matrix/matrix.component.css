@@ -2,10 +2,22 @@
   width: 100%;
 }
 
-.mat-mdc-form-field {
+.chip-filter-section {
   margin: 20px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   width: 90%;
+}
+
+.chip-filter-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+mat-divider {
+  opacity: 100%;
 }
 
 .matrix-table {
@@ -90,7 +102,7 @@
 .reset-button {
   background-color: #66bb6a;
   display: block;
-  margin: 0 20px;
+  margin: 10px 0 0 20px; 
   padding: 7px 12px;
   border-radius: 16px;
   font: 500 14px / 20px Roboto, 'Helvetica Neue', sans-serif;

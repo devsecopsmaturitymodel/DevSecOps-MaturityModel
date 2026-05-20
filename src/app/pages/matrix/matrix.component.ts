@@ -5,7 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { Activity, ActivityStore, Data } from 'src/app/model/activity-store';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { MatChipOption, MatChipListbox, MatChipSelectionChange } from '@angular/material/chips';
+import { MatChipListbox, MatChipSelectionChange } from '@angular/material/chips';
 import { deepCopy } from 'src/app/util/util';
 import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
@@ -153,19 +153,29 @@ export class MatrixComponent implements OnInit {
   chipList!: MatChipListbox;
 
   toggleTagFilters(event: MatChipSelectionChange) {
-    let chip = event.source;
-    chip.toggleSelected();
-    this.filtersTag[chip.value] = chip.selected;
-    console.log(`${perfNow()}: Matrix: Chip flip Tag '${chip.value}: ${chip.selected}`);
-    this.updateActivitiesBeingDisplayed();
+    if (!event?.source || event.source.value == null) return;
+
+    const value = event.source.value;
+    const selected = event.selected;
+
+    setTimeout(() => {
+      this.filtersTag[value] = selected;
+      console.log(`${perfNow()}: Matrix: Chip flip Tag '${value}: ${selected}`);
+      this.updateActivitiesBeingDisplayed();
+    });
   }
 
   toggleDimensionFilters(event: MatChipSelectionChange) {
-    let chip = event.source;
-    chip.toggleSelected();
-    this.filtersDim[chip.value] = chip.selected;
-    console.log(`${perfNow()}: Matrix: Chip flip Dim '${chip.value}: ${chip.selected}`);
-    this.updateActivitiesBeingDisplayed();
+    if (!event?.source || event.source.value == null) return;
+
+    const value = event.source.value;
+    const selected = event.selected;
+
+    setTimeout(() => {
+      this.filtersDim[value] = selected;
+      console.log(`${perfNow()}: Matrix: Chip flip Dim '${value}: ${selected}`);
+      this.updateActivitiesBeingDisplayed();
+    });
   }
 
   @ViewChild('rowInput') rowInput!: ElementRef<HTMLInputElement>;
