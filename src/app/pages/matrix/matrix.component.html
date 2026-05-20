@@ -1,7 +1,8 @@
 <div class="content">
   <app-top-header section="Matrix"></app-top-header>
-  <mat-form-field class="activity-chip-list">
-    <mat-label>Dimension Filter</mat-label>
+
+  <div class="chip-filter-section">
+    <label class="chip-filter-label">Dimension Filter</label>
     <mat-chip-listbox #chipList selectable multiple>
       <mat-chip-option
         *ngFor="let dim of filtersDim | keyvalue"
@@ -11,9 +12,12 @@
         {{ dim.key }}
       </mat-chip-option>
     </mat-chip-listbox>
-  </mat-form-field>
-  <mat-form-field class="activity-chip-list">
-    <mat-label>Activity Tag Filter</mat-label>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="chip-filter-section">
+    <label class="chip-filter-label">Activity Tag Filter</label>
     <mat-chip-listbox selectable multiple>
       <mat-chip-option
         *ngFor="let tag of filtersTag | keyvalue"
@@ -23,7 +27,9 @@
         {{ tag.key }}
       </mat-chip-option>
     </mat-chip-listbox>
-  </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
 
   <button class="reset-button" (click)="reset()">RESET</button>
 
@@ -52,7 +58,7 @@
       </td>
     </ng-container>
     
-    <div *ngFor="let level of levels | keyvalue">
+    <ng-container *ngFor="let level of levels | keyvalue">
       <ng-container matColumnDef="{{ level.key }}">
         <th mat-header-cell *matHeaderCellDef>{{ level.value }}</th>
         <td mat-cell *matCellDef="let element">
@@ -76,7 +82,7 @@
           </ul>
         </td>
       </ng-container>
-    </div>
+    </ng-container>
     <!-- eslint-enable -->
 
     <!-- No data message -->
