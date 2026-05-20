@@ -248,3 +248,6 @@ mat-icon.mandatory-icon {
   margin-left: 0.5rem;
   font-weight: 500;
 }
+.progress-definitions-section, .settings-about-section {
+  padding: 10px 0 0 20px;
+}

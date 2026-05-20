@@ -24,13 +24,9 @@
     <mat-error *ngIf="titleError" class="field-error">Title is required.</mat-error>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        [(ngModel)]="description"
-        rows="4"
-        placeholder="Describe the evidence in detail..."></textarea>
+      <textarea matInput [(ngModel)]="description" rows="4" placeholder="Description"></textarea>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Reviewer</mat-label>
       <input matInput [(ngModel)]="reviewer" placeholder="e.g. Jane Doe" />
