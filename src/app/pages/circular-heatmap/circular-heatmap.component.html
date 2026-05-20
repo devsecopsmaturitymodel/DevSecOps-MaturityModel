@@ -43,7 +43,7 @@
                 {{ group.key }}
               </mat-chip-option>
             </mat-chip-listbox>
-
+            <mat-divider></mat-divider>
             <label class="filter-label">Team Filter</label>
             <mat-chip-listbox selectable multiple>
               <mat-chip-option
@@ -54,6 +54,7 @@
                 {{ team.key }}
               </mat-chip-option>
             </mat-chip-listbox>
+            <mat-divider></mat-divider>
           </div>
         </div>
         <mat-card appearance="outlined" class="activity-card" *ngIf="showActivityCard">

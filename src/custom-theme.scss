@@ -438,3 +438,18 @@ svg .cursors #selected {
   stroke: var(--heatmap-cursor-selected, black);
   stroke-width: 4px;
 }
+
+mat-expansion-panel-header {
+  height: 48px !important;
+  padding: 0 16px;
+}
+
+.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix {
+  padding-top: 16px;
+  padding-bottom: 8px;
+  min-height: 56px;
+}
+
+.mat-mdc-button, .mdc-button{
+  letter-spacing: 0.1px;
+}

@@ -14,10 +14,10 @@
 }
 
 .info-button {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
+  width: 20px !important;
+  height: 20px !important;
   opacity: 0.6;
+  padding: 0px !important;
 }
 .compact-tooltip {
   transform: translateY(-20px) !important;
@@ -204,6 +204,36 @@ button.filter-toggle {
   align-items: center;
 }
 
+/* Card padding */
+:host ::ng-deep .activity-card .mat-mdc-card-content {
+  padding: 0 16px 16px 0;
+}
+
+:host ::ng-deep .activity-card {
+  padding: 16px;
+  margin-top: 20px;
+}
+
+/* Expansion panel spacing */
+:host ::ng-deep .activity-card mat-expansion-panel {
+  margin-bottom: 8px;
+  border-radius: 8px !important;
+}
+
+:host ::ng-deep .activity-card .mat-expansion-panel-header {
+  height: 48px;
+  padding: 0 16px;
+}
+
+mat-card-title-group {
+  margin-bottom: 15px;
+}
+
+:host ::ng-deep .activity-card .mat-expansion-panel-body li {
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 750px) {
   .heatmapClass {
       grid-template-rows: auto auto 1fr auto;
@@ -235,4 +265,8 @@ button.filter-toggle {
     width: 100%;
   }
 
+}
+
+.filter-label {
+  margin-top: 20px;
 }
