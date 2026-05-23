@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import {
@@ -13,6 +13,14 @@ import { DataStore } from 'src/app/model/data-store';
 import { Uuid } from 'src/app/model/types';
 import { perfNow } from 'src/app/util/util';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { NgFor, NgIf, SlicePipe } from '@angular/common';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
 
 const SEPARATOR = '\x1F'; // ASCII Unit Separator
 
@@ -49,6 +57,23 @@ enum SortMode {
   selector: 'app-mapping',
   templateUrl: './mapping.component.html',
   styleUrls: ['./mapping.component.css'],
+  standalone: true,
+  imports: [
+    TopHeaderComponent,
+    MatFormFieldModule,
+    MatChipsModule,
+    NgFor,
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf,
+    MatButtonModule,
+    MatTableModule,
+    MatSortModule,
+    RouterLink,
+    SlicePipe,
+  ],
 })
 export class MappingComponent implements OnInit, AfterViewInit {
   allMappings: MappingRow[] = [];

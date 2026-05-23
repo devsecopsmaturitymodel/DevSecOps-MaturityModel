@@ -8,7 +8,7 @@ describe('TopHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TopHeaderComponent],
+      imports: [TopHeaderComponent],
     }).compileComponents();
   });
 

@@ -1,7 +1,18 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SidenavButtonsComponent } from './sidenav-buttons.component';
+import { ThemeService } from '../../service/theme.service';
+
+class MockThemeService {
+  initTheme() {}
+  getTheme() {
+    return 'light';
+  }
+  setTheme(theme: string) {}
+}
 
 describe('SidenavButtonsComponent', () => {
   let component: SidenavButtonsComponent;
@@ -9,7 +20,8 @@ describe('SidenavButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SidenavButtonsComponent],
+      imports: [SidenavButtonsComponent, RouterTestingModule, HttpClientTestingModule],
+      providers: [{ provide: ThemeService, useClass: MockThemeService }],
     }).compileComponents();
   });
 
@@ -32,7 +44,7 @@ describe('SidenavButtonsComponent', () => {
 
   it('check for navigation names being shown in the same order as options array', () => {
     const HTMLElement: HTMLElement = fixture.nativeElement;
-    const NavigationList = HTMLElement.querySelectorAll('a > h3')!;
+    const NavigationList = HTMLElement.querySelectorAll('a h3')!;
     let NavigationNamesBeingShown = [];
     for (var x = 0; x < NavigationList.length; x += 1) {
       NavigationNamesBeingShown.push(NavigationList[x].textContent);

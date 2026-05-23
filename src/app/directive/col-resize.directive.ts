@@ -2,6 +2,7 @@ import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appColResize]',
+  standalone: true,
 })
 export class ColResizeDirective implements OnInit {
   private startX = 0;

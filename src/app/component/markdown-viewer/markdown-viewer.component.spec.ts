@@ -8,8 +8,7 @@ describe('MarkdownViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [MarkdownViewerComponent],
+      imports: [HttpClientTestingModule, MarkdownViewerComponent],
     }).compileComponents();
   });
 

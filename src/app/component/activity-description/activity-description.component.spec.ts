@@ -11,7 +11,7 @@ import { MockLoaderService } from 'src/app/service/loader/mock-data-loader.servi
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { Data } from 'src/app/model/activity-store';
 import { isEmptyObj } from 'src/app/util/util';
-import { MaterialModule } from 'src/app/material/material.module';
+
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DataStore } from 'src/app/model/data-store';
 
@@ -48,6 +48,8 @@ let mockData = {
 @Component({
   selector: 'app-dependency-graph',
   template: '',
+  standalone: true,
+  imports: [RouterTestingModule],
 })
 class DependencyGraphStubComponent {
   @Input() activityName: string = '';
@@ -69,8 +71,13 @@ describe('ActivityDescriptionComponent', () => {
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: LoaderService, useValue: mockLoaderService },
       ],
-      imports: [RouterTestingModule, MaterialModule, NoopAnimationsModule],
-      declarations: [ActivityDescriptionComponent, DependencyGraphStubComponent],
+      imports: [
+        RouterTestingModule,
+
+        NoopAnimationsModule,
+        ActivityDescriptionComponent,
+        DependencyGraphStubComponent,
+      ],
     }).compileComponents();
   });
 

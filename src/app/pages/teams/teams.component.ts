@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { sum } from 'd3';
 import {
   DialogInfo,
@@ -21,11 +21,29 @@ import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
 import { downloadYamlFile } from 'src/app/util/download';
 import { isEmptyObj, perfNow, dateStr, uniqueCount } from 'src/app/util/util';
+import { MatIconModule } from '@angular/material/icon';
+import { KpiComponent } from '../../component/kpi/kpi.component';
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf, NgFor } from '@angular/common';
+import { TeamsGroupsEditorComponent } from '../../component/teams-groups-editor/teams-groups-editor.component';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css'],
+  standalone: true,
+  imports: [
+    TopHeaderComponent,
+    TeamsGroupsEditorComponent,
+    NgIf,
+    MatButtonModule,
+    KpiComponent,
+    MatTableModule,
+    MatSortModule,
+    MatIconModule,
+    NgFor,
+  ],
 })
 export class TeamsComponent implements OnInit, AfterViewInit {
   dateStr = dateStr;

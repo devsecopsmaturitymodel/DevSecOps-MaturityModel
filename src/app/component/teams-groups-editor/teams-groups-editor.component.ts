@@ -2,6 +2,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { GroupName, TeamGroups, TeamName, TeamNames } from 'src/app/model/types';
 import { perfNow, renameArrayElement } from 'src/app/util/util';
+import { SelectableListComponent } from './selectable-list.component';
 
 enum EditMode {
   NONE,
@@ -29,6 +30,8 @@ export class TeamsGroupsChangedEvent {
   selector: 'app-teams-groups-editor',
   templateUrl: './teams-groups-editor.component.html',
   styleUrls: ['./teams-groups-editor.component.css'],
+  standalone: true,
+  imports: [SelectableListComponent],
 })
 export class TeamsGroupsEditorComponent implements OnChanges {
   Mode = EditMode;

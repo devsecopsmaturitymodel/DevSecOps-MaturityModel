@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { EvidencePanelComponent } from '../evidence-panel/evidence-panel.component';
 
 export interface ViewEvidenceModalData {
   activityUuid: string;
@@ -10,6 +12,8 @@ export interface ViewEvidenceModalData {
   selector: 'app-view-evidence-modal',
   templateUrl: './view-evidence-modal.component.html',
   styleUrls: ['./view-evidence-modal.component.css'],
+  standalone: true,
+  imports: [MatDialogModule, EvidencePanelComponent, MatButtonModule],
 })
 export class ViewEvidenceModalComponent {
   activityUuid: string;

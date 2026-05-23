@@ -1,11 +1,16 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { EvidenceEntry } from '../../model/evidence-store';
 import { LoaderService } from '../../service/loader/data-loader.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-evidence-panel',
   templateUrl: './evidence-panel.component.html',
   styleUrls: ['./evidence-panel.component.css'],
+  standalone: true,
+  imports: [NgIf, MatExpansionModule, NgFor, MatIconModule, DatePipe],
 })
 export class EvidencePanelComponent implements OnChanges {
   @Input() activityUuid: string = '';

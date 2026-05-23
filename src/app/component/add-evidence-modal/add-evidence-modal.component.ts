@@ -1,7 +1,18 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { EvidenceEntry, EvidenceStore } from '../../model/evidence-store';
 import { TeamGroups } from '../../model/types';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgIf, NgFor } from '@angular/common';
+import { TeamSelectorComponent } from '../team-selector/team-selector.component';
 
 export interface AddEvidenceModalData {
   activityUuid: string;
@@ -13,6 +24,22 @@ export interface AddEvidenceModalData {
   selector: 'app-add-evidence-modal',
   templateUrl: './add-evidence-modal.component.html',
   styleUrls: ['./add-evidence-modal.component.css'],
+  standalone: true,
+  imports: [
+    MatDialogModule,
+    TeamSelectorComponent,
+    NgIf,
+    MatFormFieldModule,
+    MatDividerModule,
+    MatInputModule,
+    FormsModule,
+    NgFor,
+    MatSelectModule,
+    MatOptionModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatIconModule,
+  ],
 })
 export class AddEvidenceModalComponent {
   activityUuid: string;

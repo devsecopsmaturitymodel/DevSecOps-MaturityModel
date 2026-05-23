@@ -3,8 +3,8 @@ import { equalArray } from 'src/app/util/util';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { MatChipOption, MatChipSelectionChange } from '@angular/material/chips';
+import { Location, NgIf, NgFor, KeyValuePipe } from '@angular/common';
+import { MatChipOption, MatChipSelectionChange, MatChipsModule } from '@angular/material/chips';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import * as md from 'markdown-it';
@@ -37,11 +37,34 @@ import {
   ViewEvidenceModalComponent,
   ViewEvidenceModalData,
 } from '../../component/view-evidence-modal/view-evidence-modal.component';
+import { ProgressSliderComponent } from '../../component/progress-slider/progress-slider.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ActivityDescriptionComponent } from '../../component/activity-description/activity-description.component';
 
 @Component({
   selector: 'app-circular-heatmap',
   templateUrl: './circular-heatmap.component.html',
   styleUrls: ['./circular-heatmap.component.css'],
+  standalone: true,
+  imports: [
+    NgIf,
+    ActivityDescriptionComponent,
+    MatIconModule,
+    MatButtonModule,
+    MatChipsModule,
+    NgFor,
+    MatDividerModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatTooltipModule,
+    ProgressSliderComponent,
+    KeyValuePipe,
+  ],
 })
 export class CircularHeatmapComponent implements OnInit, OnDestroy {
   Routing: string = '/activity-description';

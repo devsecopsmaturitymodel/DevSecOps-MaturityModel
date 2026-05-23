@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { UsageComponent } from './usage.component';
 import { ActivatedRoute } from '@angular/router';
@@ -10,7 +11,7 @@ describe('UsageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsageComponent],
+      imports: [UsageComponent, HttpClientTestingModule],
     }).compileComponents();
   });
 
