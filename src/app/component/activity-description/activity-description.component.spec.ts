@@ -81,7 +81,7 @@ describe('ActivityDescriptionComponent', () => {
     }).compileComponents();
   });
 
-  beforeEach(async () => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(ActivityDescriptionComponent);
     component = fixture.componentInstance;
     // Provide the @Input activity before first change detection so ngOnInit uses it
@@ -93,8 +93,6 @@ describe('ActivityDescriptionComponent', () => {
     if (activity) {
       component.activity = activity as any;
     }
-    fixture.detectChanges();
-    await fixture.whenStable();
     fixture.detectChanges();
   });
 
