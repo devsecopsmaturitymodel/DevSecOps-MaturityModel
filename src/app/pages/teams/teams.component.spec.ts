@@ -2,7 +2,7 @@ import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatChip } from '@angular/material/chips';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TeamsComponent } from './teams.component';
 import { ModalMessageComponent } from 'src/app/component/modal-message/modal-message.component';
@@ -21,14 +21,13 @@ describe('TeamsComponent', () => {
     /* eslint-disable */
     // await mockLoaderService.load();
     await TestBed.configureTestingModule({
-      providers: [
+    providers: [
         HttpClientTestingModule,
         { provide: ModalMessageComponent, useValue: {} },
         { provide: LoaderService, useValue: mockLoaderService },
-      ],
-      imports: [RouterTestingModule, HttpClientModule],
-      declarations: [TeamsComponent, MatChip],
-    }).compileComponents();
+    ],
+    imports: [RouterTestingModule, HttpClientModule, NoopAnimationsModule, TeamsComponent],
+}).compileComponents();
     /* eslint-enable */
   });
 

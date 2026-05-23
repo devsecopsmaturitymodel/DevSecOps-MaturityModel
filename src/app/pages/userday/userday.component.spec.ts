@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { UserdayComponent } from './userday.component';
 
@@ -8,7 +9,7 @@ describe('UserdayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserdayComponent],
+      imports: [UserdayComponent, HttpClientTestingModule],
     }).compileComponents();
   });
 

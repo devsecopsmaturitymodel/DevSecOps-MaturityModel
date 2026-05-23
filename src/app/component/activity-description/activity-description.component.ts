@@ -10,15 +10,30 @@ import {
   OnInit,
   HostListener,
 } from '@angular/core';
-import { MatAccordion } from '@angular/material/expansion';
+import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { Activity } from '../../model/activity-store';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { TeamName, ProgressTitle } from '../../model/types';
+import { EvidencePanelComponent } from '../evidence-panel/evidence-panel.component';
+import { DependencyGraphComponent } from '../dependency-graph/dependency-graph.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-activity-description',
   templateUrl: './activity-description.component.html',
   styleUrls: ['./activity-description.component.css'],
+  standalone: true,
+  imports: [
+    NgIf,
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    DependencyGraphComponent,
+    NgFor,
+    EvidencePanelComponent,
+  ],
 })
 export class ActivityDescriptionComponent implements OnInit, OnChanges {
   @Input() activity: Activity | null = null;

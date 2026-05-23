@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { RoadmapComponent } from './roadmap.component';
 
@@ -8,7 +9,7 @@ describe('RoadmapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RoadmapComponent],
+      imports: [RoadmapComponent, HttpClientTestingModule],
     }).compileComponents();
   });
 

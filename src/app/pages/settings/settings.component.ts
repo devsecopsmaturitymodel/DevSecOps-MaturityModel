@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { SettingsService } from '../../service/settings/settings.service';
 import { GithubService, GithubReleaseInfo } from 'src/app/service/settings/github.service';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
@@ -12,6 +20,18 @@ import {
 import { dateStr, deepCopy } from 'src/app/util/util';
 import { MetaStore } from 'src/app/model/meta-store';
 import { ProgressStore } from 'src/app/model/progress-store';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatOptionModule } from '@angular/material/core';
+import { NgFor, NgIf } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
 
 interface RemoteReleaseInfo {
   tagName: string;
@@ -39,6 +59,24 @@ interface ProgressDefinitionForm {
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css'],
+  standalone: true,
+  imports: [
+    TopHeaderComponent,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    NgFor,
+    MatOptionModule,
+    MatSliderModule,
+    NgIf,
+    MatButtonModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    TextFieldModule,
+    MatProgressSpinnerModule,
+  ],
 })
 export class SettingsComponent implements OnInit {
   meta!: MetaStore;

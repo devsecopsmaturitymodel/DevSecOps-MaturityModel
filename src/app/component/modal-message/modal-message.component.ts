@@ -4,15 +4,20 @@ import {
   MatDialogRef,
   MatDialog,
   MatDialogConfig,
+  MatDialogModule,
 } from '@angular/material/dialog';
 import * as md from 'markdown-it';
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { NotificationService } from 'src/app/service/notification.service';
+import { MatButtonModule } from '@angular/material/button';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-modal-message',
   templateUrl: './modal-message.component.html',
   styleUrls: ['./modal-message.component.css'],
+  standalone: true,
+  imports: [MatDialogModule, NgFor, MatButtonModule],
 })
 export class ModalMessageComponent implements OnInit {
   data: DialogInfo;

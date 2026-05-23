@@ -12,6 +12,10 @@ import { TitleService } from './service/title.service';
 
 class MockThemeService {
   initTheme() {}
+  getTheme() {
+    return 'light';
+  }
+  setTheme(theme: string) {}
 }
 
 class MockTitleService {
@@ -27,13 +31,13 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
       imports: [
         RouterTestingModule,
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,
         BrowserAnimationsModule,
+        AppComponent,
       ],
       providers: [
         { provide: ThemeService, useClass: MockThemeService },

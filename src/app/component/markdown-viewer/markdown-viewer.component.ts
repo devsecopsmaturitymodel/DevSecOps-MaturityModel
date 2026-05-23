@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-markdown-viewer',
   templateUrl: './markdown-viewer.component.html',
   styleUrls: ['./markdown-viewer.component.css'],
+  standalone: true,
 })
 export class MarkdownViewerComponent implements OnInit {
   @Input() MDFile: string = '';

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import {
   ReportConfig,
   ActivityAttributes,
@@ -8,6 +8,18 @@ import {
 } from '../../model/report-config';
 import { Activity } from '../../model/activity-store';
 import { ProgressTitle, TeamGroups } from '../../model/types';
+import { MatButtonModule } from '@angular/material/button';
+import { TeamSelectorComponent } from '../team-selector/team-selector.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { NgIf, NgFor } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 export interface ReportConfigModalData {
   config: ReportConfig;
@@ -23,6 +35,23 @@ export interface ReportConfigModalData {
   selector: 'app-report-config-modal',
   templateUrl: './report-config-modal.component.html',
   styleUrls: ['./report-config-modal.component.css'],
+  standalone: true,
+  imports: [
+    MatDialogModule,
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatCheckboxModule,
+    NgIf,
+    MatIconModule,
+    MatTooltipModule,
+    MatSliderModule,
+    NgFor,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    TeamSelectorComponent,
+    MatButtonModule,
+  ],
 })
 export class ReportConfigModalComponent {
   config: ReportConfig;

@@ -37,6 +37,7 @@ interface ThemeColors {
   selector: 'app-dependency-graph',
   templateUrl: './dependency-graph.component.html',
   styleUrls: ['./dependency-graph.component.css'],
+  standalone: true,
 })
 export class DependencyGraphComponent implements OnInit, OnChanges {
   css: CSSStyleDeclaration = getComputedStyle(document.body);

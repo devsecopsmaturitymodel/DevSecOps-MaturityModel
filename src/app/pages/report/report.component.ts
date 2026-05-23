@@ -18,11 +18,18 @@ import {
 } from '../../component/report-config-modal/report-config-modal.component';
 import { ProgressTitle, TeamGroups } from '../../model/types';
 import { EvidenceEntry } from '../../model/evidence-store';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf, NgFor } from '@angular/common';
 import {
   ViewEvidenceModalComponent,
   ViewEvidenceModalData,
 } from '../../component/view-evidence-modal/view-evidence-modal.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ColResizeDirective } from '../../directive/col-resize.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TeamSelectorComponent } from '../../component/team-selector/team-selector.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
 
 export interface ReportSubDimension {
   name: string;
@@ -46,6 +53,18 @@ export interface LevelOverview {
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css'],
   providers: [DatePipe],
+  standalone: true,
+  imports: [
+    TopHeaderComponent,
+    MatButtonModule,
+    MatIconModule,
+    NgIf,
+    TeamSelectorComponent,
+    MatProgressSpinnerModule,
+    NgFor,
+    ColResizeDirective,
+    MatTooltipModule,
+  ],
 })
 export class ReportComponent implements OnInit {
   reportConfig: ReportConfig;

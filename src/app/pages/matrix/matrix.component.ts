@@ -1,16 +1,20 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router, NavigationExtras } from '@angular/router';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { Activity, ActivityStore, Data } from 'src/app/model/activity-store';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { MatChipListbox, MatChipSelectionChange } from '@angular/material/chips';
+import { MatChipListbox, MatChipSelectionChange, MatChipsModule } from '@angular/material/chips';
 import { deepCopy } from 'src/app/util/util';
 import { DataStore } from 'src/app/model/data-store';
 import { perfNow } from 'src/app/util/util';
 import { SettingsService } from 'src/app/service/settings/settings.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { NgFor, NgIf, KeyValuePipe } from '@angular/common';
+import { TopHeaderComponent } from '../../component/top-header/top-header.component';
 
 export interface MatrixRow {
   Category: string;
@@ -30,6 +34,17 @@ type LevelKey = keyof Pick<MatrixRow, 'level1' | 'level2' | 'level3' | 'level4' 
   selector: 'app-matrix',
   templateUrl: './matrix.component.html',
   styleUrls: ['./matrix.component.css'],
+  standalone: true,
+  imports: [
+    TopHeaderComponent,
+    MatChipsModule,
+    NgFor,
+    MatDividerModule,
+    MatTableModule,
+    MatIconModule,
+    NgIf,
+    KeyValuePipe,
+  ],
 })
 export class MatrixComponent implements OnInit {
   Routing: string = '/activity-description';

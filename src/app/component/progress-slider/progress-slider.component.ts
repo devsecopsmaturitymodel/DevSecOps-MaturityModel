@@ -1,9 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-progress-slider',
   templateUrl: './progress-slider.component.html',
   styleUrls: ['./progress-slider.component.css'],
+  standalone: true,
+  imports: [MatSliderModule, NgIf],
 })
 export class ProgressSliderComponent implements OnInit {
   @Input() DBG_name: string = '';
