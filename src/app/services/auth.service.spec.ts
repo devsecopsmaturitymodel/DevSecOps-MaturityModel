@@ -3,15 +3,16 @@ import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
   let service: AuthService;
+  const sessionUserKey = 'dsomm.auth.currentUser';
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
-    sessionStorage.clear();
+    sessionStorage.removeItem(sessionUserKey);
   });
 
   afterEach(() => {
-    sessionStorage.clear();
+    sessionStorage.removeItem(sessionUserKey);
   });
 
   it('logs in a static user with valid credentials', () => {

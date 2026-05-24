@@ -8,6 +8,7 @@ describe('AuthGuard', () => {
   let guard: AuthGuard;
   let authService: AuthService;
   let router: Router;
+  const sessionUserKey = 'dsomm.auth.currentUser';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,11 +18,11 @@ describe('AuthGuard', () => {
     guard = TestBed.inject(AuthGuard);
     authService = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
-    sessionStorage.clear();
+    sessionStorage.removeItem(sessionUserKey);
   });
 
   afterEach(() => {
-    sessionStorage.clear();
+    sessionStorage.removeItem(sessionUserKey);
   });
 
   it('allows authenticated access to protected routes', () => {
