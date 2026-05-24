@@ -1,0 +1,31 @@
+.login-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.login-panel {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.login-error {
+  color: #b00020;
+  min-height: 20px;
+  font-size: 14px;
+}
+
+button[type='submit'] {
+  align-self: stretch;
+}

@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-elevation-z2 navbar">
-  <button mat-icon-button (click)="toggleMenu()" class="menu-btn">
+  <button mat-icon-button (click)="toggleMenu()" class="menu-btn" *ngIf="!isLoginPage">
     <mat-icon>menu</mat-icon>
   </button>
   <a routerLink="/" class="logo">
@@ -16,12 +16,26 @@
     </div>
     <div class="dummy"></div>
   </div>
+  <span class="toolbar-spacer"></span>
+  <div class="auth-actions" *ngIf="isAuthenticated">
+    <span class="current-user">{{ currentUser }}</span>
+    <button mat-icon-button (click)="logout()" title="Logout" aria-label="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" opened class="sidenav" [style.width]="sidenavWidth">
-    <app-sidenav-buttons></app-sidenav-buttons>
-  </mat-sidenav>
-  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth">
+<ng-container *ngIf="isLoginPage; else dsommLayout">
+  <main class="login-content">
     <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </main>
+</ng-container>
+<ng-template #dsommLayout>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened class="sidenav" [style.width]="sidenavWidth">
+      <app-sidenav-buttons></app-sidenav-buttons>
+    </mat-sidenav>
+    <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-template>

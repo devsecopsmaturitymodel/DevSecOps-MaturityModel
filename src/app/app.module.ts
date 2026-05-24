@@ -40,6 +40,7 @@ import { ColResizeDirective } from './directive/col-resize.directive';
 import { AddEvidenceModalComponent } from './component/add-evidence-modal/add-evidence-modal.component';
 import { EvidencePanelComponent } from './component/evidence-panel/evidence-panel.component';
 import { ViewEvidenceModalComponent } from './component/view-evidence-modal/view-evidence-modal.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ViewEvidenceModalComponent } from './component/view-evidence-modal/view
     AddEvidenceModalComponent,
     EvidencePanelComponent,
     ViewEvidenceModalComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
