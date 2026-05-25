@@ -1,27 +1,38 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from '../services/auth.service';
 
+const authUsers = [
+  { username: 'auditor', password: 'dsomm-audit' },
+  { username: 'developer', password: 'dsomm-dev' },
+];
+
 describe('AuthGuard', () => {
   let guard: AuthGuard;
   let authService: AuthService;
   let router: Router;
+  let httpMock: HttpTestingController;
   const sessionUserKey = 'dsomm.auth.currentUser';
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes([])],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
     });
 
     guard = TestBed.inject(AuthGuard);
     authService = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
+    httpMock = TestBed.inject(HttpTestingController);
     sessionStorage.removeItem(sessionUserKey);
+
+    await loadAuthConfig();
   });
 
   afterEach(() => {
+    httpMock.verify();
     sessionStorage.removeItem(sessionUserKey);
   });
 
@@ -66,4 +77,13 @@ function routeSnapshot(): ActivatedRouteSnapshot {
 
 function routerState(url: string): RouterStateSnapshot {
   return { url } as RouterStateSnapshot;
+}
+
+async function loadAuthConfig(): Promise<void> {
+  const authService = TestBed.inject(AuthService);
+  const httpMock = TestBed.inject(HttpTestingController);
+  const configLoaded = authService.loadConfig();
+  const request = httpMock.expectOne('assets/auth-config.json');
+  request.flush({ users: authUsers });
+  await configLoaded;
 }

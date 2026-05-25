@@ -1,4 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
@@ -11,8 +12,14 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let authService: AuthService;
   let router: Router;
+  let httpMock: HttpTestingController;
   let routeStub: { snapshot: { queryParamMap: ReturnType<typeof convertToParamMap> } };
   const sessionUserKey = 'dsomm.auth.currentUser';
+  const authUsers = [
+    { username: 'admin', password: 'dsomm-admin' },
+    { username: 'auditor', password: 'dsomm-audit' },
+    { username: 'viewer', password: 'dsomm-view' },
+  ];
 
   beforeEach(async () => {
     routeStub = {
@@ -23,17 +30,21 @@ describe('LoginComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [ReactiveFormsModule, RouterTestingModule.withRoutes([])],
+      imports: [HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule.withRoutes([])],
       providers: [{ provide: ActivatedRoute, useValue: routeStub }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     authService = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
+    httpMock = TestBed.inject(HttpTestingController);
     sessionStorage.removeItem(sessionUserKey);
+
+    await loadAuthConfig();
   });
 
   afterEach(() => {
+    httpMock.verify();
     sessionStorage.removeItem(sessionUserKey);
   });
 
@@ -96,4 +107,11 @@ describe('LoginComponent', () => {
 
     expect(navigateSpy).toHaveBeenCalledOnceWith('/');
   });
+
+  async function loadAuthConfig(): Promise<void> {
+    const configLoaded = authService.loadConfig();
+    const request = httpMock.expectOne('assets/auth-config.json');
+    request.flush({ users: authUsers });
+    await configLoaded;
+  }
 });

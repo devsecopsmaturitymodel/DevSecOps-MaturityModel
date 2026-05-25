@@ -25,5 +25,11 @@ FROM caddy:2.10.2
 ENV PORT=8080
 
 COPY Caddyfile /etc/caddy/Caddyfile
+COPY docker/docker-entrypoint.sh /usr/local/bin/dsomm-entrypoint
 COPY --from=build ["/usr/src/app/dist/dsomm/", "/srv"]
 COPY --from=yaml ["/var/www/html/generated/model.yaml", "/srv/assets/YAML/default/model.yaml"]
+
+RUN chmod +x /usr/local/bin/dsomm-entrypoint && chown -R caddy:caddy /srv/assets
+
+ENTRYPOINT ["/usr/local/bin/dsomm-entrypoint"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

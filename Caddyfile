@@ -17,4 +17,8 @@
 		X-Permitted-Cross-Domain-Policies "none"
 		Referrer-Policy "no-referrer"
 	}
+
+	header /assets/auth-config.json {
+		Cache-Control "no-store"
+	}
 }
