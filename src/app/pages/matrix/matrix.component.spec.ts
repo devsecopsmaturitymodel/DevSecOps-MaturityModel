@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { MatrixComponent, MatrixRow } from './matrix.component';
 import { MatChipSelectionChange } from '@angular/material/chips';
 import { ModalMessageComponent } from '../../component/modal-message/modal-message.component';
@@ -40,8 +40,9 @@ describe('MatrixComponent', () => {
   beforeEach(async () => {
     mockLoaderService = new MockLoaderService(MOCK_DATA);
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule, MatDialogModule, MatrixComponent],
+      imports: [HttpClientModule, MatDialogModule, MatrixComponent],
       providers: [
+        provideRouter([]),
         HttpClientTestingModule,
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: MatDialogRef, useValue: {} },

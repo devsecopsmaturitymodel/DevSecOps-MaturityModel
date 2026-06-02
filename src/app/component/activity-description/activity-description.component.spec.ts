@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
@@ -49,7 +49,6 @@ let mockData = {
   selector: 'app-dependency-graph',
   template: '',
   standalone: true,
-  imports: [RouterTestingModule],
 })
 class DependencyGraphStubComponent {
   @Input() activityName: string = '';
@@ -66,14 +65,13 @@ describe('ActivityDescriptionComponent', () => {
     dataStore = (await mockLoaderService.load()) as DataStore;
     await TestBed.configureTestingModule({
       providers: [
+        provideRouter([]),
         HttpClient,
         HttpHandler,
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: LoaderService, useValue: mockLoaderService },
       ],
       imports: [
-        RouterTestingModule,
-
         NoopAnimationsModule,
         ActivityDescriptionComponent,
         DependencyGraphStubComponent,
