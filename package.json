@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "heroku-postbuild": "ng build --aot --prod"
+    "heroku-postbuild": "ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
