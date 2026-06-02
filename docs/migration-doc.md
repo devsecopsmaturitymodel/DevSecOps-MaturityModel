@@ -311,6 +311,56 @@ The upgrade from Angular 14 to 15 involved multiple phases: a TypeScript prerequ
 
 </details>
 
+  
+
+<details>
+
+<summary><strong>Angular 15 → 16</strong></summary>
+
+  
+
+### Summary
+
+A straightforward upgrade. No breaking changes affected this codebase. The migration was limited to dependency bumps, a sidenav icon color fix, and cleaning up a deprecated CLI flag.
+
+  
+
+### Commit History
+
+  
+
+#### 1. Chore: Upgrade TypeScript to 4.9 ([f18ec072](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/f18ec072))
+
+-  Bumped `typescript` from `^4.8.0` to `^4.9.3` (minimum required by Angular 16).
+
+  
+
+#### 2. Chore: Upgrade Angular Core & CLI to v16 ([82b79fc3](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/82b79fc3))
+
+-  Executed `ng update @angular/core@16 @angular/cli@16 @angular-eslint/schematics@16`. Zone.js bumped to `~0.13.3`.
+
+  
+
+#### 3. Chore: Upgrade Angular Material & CDK to v16 ([a6bac0aa](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/a6bac0aa))
+
+-  Executed `ng update @angular/material@16 @angular/cdk@16`.
+
+  
+
+#### 4. Fix: Apply Primary Color to All Sidenav Icons ([afb3d58f](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/afb3d58f))
+
+-  Ensured all navigation icons use the theme's primary color consistently.
+
+  
+
+#### 5. Fix: Replace Deprecated `--prod` Flag ([fe8893be](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/fe8893be))
+
+-  Replaced `ng build --aot --prod` with `ng build --configuration=production` in the `heroku-postbuild` script. The `--prod` flag was removed in Angular CLI v12+.
+
+  
+
+</details>
+
 
   
 
