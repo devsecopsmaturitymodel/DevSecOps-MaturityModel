@@ -14,17 +14,20 @@
 }
 
 .info-button {
-  width: 20px !important;
-  height: 20px !important;
+  width: 24px !important;
+  height: 24px !important;
+  padding: 0 !important;
+  overflow: visible;
   opacity: 0.6;
-  padding: 0px !important;
+  line-height: 24px;
 }
-.compact-tooltip {
-  transform: translateY(-20px) !important;
-}
-
 .info-icon {
   font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  display: block;
+  margin: auto;
 }
 
 .info-button:hover {

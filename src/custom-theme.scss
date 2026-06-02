@@ -450,6 +450,9 @@ mat-expansion-panel-header {
   min-height: 56px;
 }
 
-.mat-mdc-button, .mdc-button{
-  letter-spacing: 0.1px;
+:root {
+  --mdc-text-button-label-text-tracking: normal;
+  --mdc-filled-button-label-text-tracking: normal;
+  --mdc-protected-button-label-text-tracking: normal;
+  --mdc-outlined-button-label-text-tracking: normal;
 }
