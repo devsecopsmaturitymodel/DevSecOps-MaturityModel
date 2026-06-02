@@ -27,25 +27,6 @@ $custom-typography: mat.define-typography-config(
 // Core styles (ripple, overlay, etc.)
 @include mat.core();
 
-// The following mixins include base theme styles that are only needed once per application. These
-// theme styles do not depend on the color, typography, or density settings in your theme. However,
-// these styles may differ depending on the theme's design system. Currently all themes use the
-// Material 2 design system, but in the future it may be possible to create theme based on other
-// design systems, such as Material 3.
-//
-// Please note: you do not need to include the 'base' mixins, if you include the corresponding
-// 'theme' mixin elsewhere in your Sass. The full 'theme' mixins already include the base styles.
-//
-// To learn more about "base" theme styles visit our theming guide:
-// https://material.angular.io/guide/theming#theming-dimensions
-//
-// TODO(v17): Please move these @include statements to the preferred place in your Sass, and pass
-// your theme to them. This will ensure the correct values for your app are included.
-@include mat.all-component-bases(/* TODO(v17): pass $your-theme here */);
-
-// Apply typography styles to all components + hierarchy classes (.mat-headline-1, etc.)
-@include mat.all-component-typographies($custom-typography);
-
 // ----------------------------------------------
 // Angular Material Palettes
 // ----------------------------------------------
@@ -77,6 +58,8 @@ $DSOMM-dark-theme: mat.define-dark-theme((
   typography: $custom-typography,
   density: 0
 ));
+
+@include mat.all-component-themes($DSOMM-light-theme);
 
 // ----------------------------------------------
 // Base Theme Mixin
