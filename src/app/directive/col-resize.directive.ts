@@ -12,7 +12,10 @@ export class ColResizeDirective implements OnInit {
   private mouseMoveListener: (() => void) | null = null;
   private mouseUpListener: (() => void) | null = null;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     this.th = this.el.nativeElement;

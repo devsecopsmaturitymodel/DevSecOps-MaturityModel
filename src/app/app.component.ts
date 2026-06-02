@@ -37,7 +37,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private themeService: ThemeService, private titleService: TitleService) {
+  constructor(
+    private themeService: ThemeService,
+    private titleService: TitleService
+  ) {
     this.themeService.initTheme();
   }
 

@@ -24,7 +24,7 @@
         <div class="evidence-entry-header">
           <h4 class="tool-name">{{ entry.title }}</h4>
           <span class="evidence-date" *ngIf="entry.evidenceRecorded">{{
-            entry.evidenceRecorded | date : 'mediumDate'
+            entry.evidenceRecorded | date: 'mediumDate'
           }}</span>
         </div>
         <p *ngIf="entry.description" class="evidence-description">{{ entry.description }}</p>

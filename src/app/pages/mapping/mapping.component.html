@@ -116,87 +116,87 @@
       <!-- checking if item is defined and set & truncating at 32767 characters per cell to fit to excel limitations-->
       <td>
         <ng-container *ngIf="item.dimension && item.dimension.length > 0">
-          {{ item.dimension | slice : 0 : 32767 }}
+          {{ item.dimension | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.subDimension && item.subDimension.length > 0">
-          {{ item.subDimension | slice : 0 : 32767 }}
+          {{ item.subDimension | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.activityName && item.activityName.length > 0">
-          {{ item.activityName | slice : 0 : 32767 }}
+          {{ item.activityName | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.level">
-          {{ '' + item.level | slice : 0 : 32767 }}
+          {{ '' + item.level | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.description && item.description.length > 0">
-          {{ item.description | slice : 0 : 32767 }}
+          {{ item.description | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.risk && item.risk.length > 0">
-          {{ item.risk | slice : 0 : 32767 }}
+          {{ item.risk | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.measure && item.measure.length > 0">
-          {{ item.measure | slice : 0 : 32767 }}
+          {{ item.measure | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.knowledge && item.knowledge.length > 0">
-          {{ item.knowledge | slice : 0 : 32767 }}
+          {{ item.knowledge | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.resources && item.resources.length > 0">
-          {{ item.resources | slice : 0 : 32767 }}
+          {{ item.resources | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.time && item.time.length > 0">
-          {{ item.time | slice : 0 : 32767 }}
+          {{ item.time | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.usefulness && item.usefulness.length > 0">
-          {{ item.usefulness | slice : 0 : 32767 }}
+          {{ item.usefulness | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.assessment && item.assessment.length > 0">
-          {{ item.assessment | slice : 0 : 32767 }}
+          {{ item.assessment | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.comments && item.comments.length > 0">
-          {{ item.comments | slice : 0 : 32767 }}
+          {{ item.comments | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.dependsOn && item.dependsOn.length > 0">
-          {{ item.dependsOn | slice : 0 : 32767 }}
+          {{ item.dependsOn | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.samm2 && item.samm2.length > 0">
-          {{ item.samm2 | slice : 0 : 32767 }}
+          {{ item.samm2 | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.ISO17 && item.ISO17.length > 0">
-          {{ '\t' + item.ISO17 | slice : 0 : 32767 }}
+          {{ '\t' + item.ISO17 | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td>
         <ng-container *ngIf="item.ISO22 && item.ISO22.length > 0">
-          {{ item.ISO22 | slice : 0 : 32767 }}
+          {{ item.ISO22 | slice: 0 : 32767 }}
         </ng-container>
       </td>
       <td *ngFor="let team of allTeams">

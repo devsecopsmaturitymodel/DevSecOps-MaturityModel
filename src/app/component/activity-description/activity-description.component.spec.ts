@@ -71,11 +71,7 @@ describe('ActivityDescriptionComponent', () => {
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: LoaderService, useValue: mockLoaderService },
       ],
-      imports: [
-        NoopAnimationsModule,
-        ActivityDescriptionComponent,
-        DependencyGraphStubComponent,
-      ],
+      imports: [NoopAnimationsModule, ActivityDescriptionComponent, DependencyGraphStubComponent],
     }).compileComponents();
   });
 
