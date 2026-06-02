@@ -13,8 +13,7 @@ describe('CircularHeatmapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MatChip],
-      imports: [RouterTestingModule, MatDialogModule, CircularHeatmapComponent],
+      imports: [MatDialogModule, CircularHeatmapComponent, MatChip],
       providers: [
         provideRouter([]),
         LoaderService,
