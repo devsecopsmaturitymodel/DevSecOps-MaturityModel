@@ -20,11 +20,11 @@
   <mat-list-item (click)="toggleTheme()" style="cursor: pointer">
     <span matListItemIcon>
       <mat-icon color="primary">
-        {{ isNightMode ? 'light_mode' : 'dark_mode' }}
+        {{ isNightMode() ? 'light_mode' : 'dark_mode' }}
       </mat-icon>
     </span>
     <h3 matListItemTitle>
-      {{ isNightMode ? 'Switch to Light Mode' : 'Switch to Dark Mode' }}
+      {{ isNightMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode' }}
     </h3>
   </mat-list-item>
 </mat-list>

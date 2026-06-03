@@ -8,10 +8,10 @@
   <div class="title-container">
     <div class="tag-line">
       <div class="tag-title">
-        {{ title || defaultTitle }}
+        {{ title() || defaultTitle }}
       </div>
-      <div class="tag-subtitle" *ngIf="subtitle">
-        {{ subtitle }}
+      <div class="tag-subtitle" *ngIf="subtitle()">
+        {{ subtitle() }}
       </div>
     </div>
     <div class="dummy"></div>

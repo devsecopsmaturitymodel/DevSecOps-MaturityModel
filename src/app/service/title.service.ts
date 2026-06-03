@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 export interface TitleInfo {
   level?: number;
@@ -9,17 +9,17 @@ export interface TitleInfo {
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {
-  private titleSubject = new BehaviorSubject<TitleInfo | null>(null);
-  public readonly titleInfo$ = this.titleSubject.asObservable();
+  readonly titleInfo = signal<TitleInfo | null>(null);
+  readonly titleInfo$ = toObservable(this.titleInfo);
 
   constructor() {}
 
   setTitle(titleInfo: TitleInfo | null): void {
-    this.titleSubject.next(titleInfo);
+    this.titleInfo.set(titleInfo);
   }
 
   clearTitle(): void {
-    this.titleSubject.next(null);
+    this.titleInfo.set(null);
   }
 
   formatTitle(titleInfo: TitleInfo | null, defaultTitle: string): string {

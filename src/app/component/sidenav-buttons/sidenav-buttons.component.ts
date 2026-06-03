@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GITHUB_SVG } from '../../../assets/svg_icons';
@@ -15,7 +15,7 @@ import { MatListModule } from '@angular/material/list';
   standalone: true,
   imports: [MatListModule, NgFor, RouterLink, MatIconModule, MatDividerModule],
 })
-export class SidenavButtonsComponent implements OnInit {
+export class SidenavButtonsComponent {
   Options: string[] = [
     'Overview',
     'Matrix',
@@ -53,7 +53,7 @@ export class SidenavButtonsComponent implements OnInit {
     '/about',
   ];
 
-  isNightMode = false;
+  isNightMode = computed(() => this.themeService.theme() === 'dark');
 
   constructor(
     private themeService: ThemeService,
@@ -66,14 +66,7 @@ export class SidenavButtonsComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    const currentTheme = this.themeService.getTheme();
-    this.isNightMode = currentTheme === 'dark';
-  }
-
   toggleTheme(): void {
-    this.isNightMode = !this.isNightMode;
-    const newTheme = this.isNightMode ? 'dark' : 'light';
-    this.themeService.setTheme(newTheme);
+    this.themeService.toggleTheme();
   }
 }

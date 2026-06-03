@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -7,11 +7,17 @@ import { SidenavButtonsComponent } from './sidenav-buttons.component';
 import { ThemeService } from '../../service/theme.service';
 
 class MockThemeService {
+  theme = signal<string>('light');
   initTheme() {}
   getTheme() {
-    return 'light';
+    return this.theme();
   }
-  setTheme(theme: string) {}
+  setTheme(theme: string) {
+    this.theme.set(theme);
+  }
+  toggleTheme() {
+    this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
+  }
 }
 
 describe('SidenavButtonsComponent', () => {
