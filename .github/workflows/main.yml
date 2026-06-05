@@ -21,18 +21,19 @@ jobs:
         with:
           persist-credentials: false # This is important if you have branch protection rules!
       - name: Semantic Release
+        id: semantic
         uses: cycjimmy/semantic-release-action@v4
         with:
           branch: 'master'
+          extra_plugins: |
+            @semantic-release/changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get Semantic Release Version
-        id: get-version
-        run: echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
 
       - name: show version
         run: |
-          echo "Semantic Release Version: ${{ steps.get-version.outputs.version }}"
+          echo "New release published: ${{ steps.semantic.outputs.new_release_published }}"
+          echo "Semantic Release Version: ${{ steps.semantic.outputs.new_release_version }}"
 
       - name: setup qemu for multi-arch build
         uses: docker/setup-qemu-action@v2
@@ -47,11 +48,12 @@ jobs:
           username: wurstbrot
           password: ${{ secrets.HUB_TOKEN }}
       - name: create and push dsomm image
+        if: steps.semantic.outputs.new_release_published == 'true'
         uses: docker/build-push-action@v3
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: wurstbrot/dsomm:${{ steps.get-version.outputs.version }},wurstbrot/dsomm:latest
+          tags: wurstbrot/dsomm:${{ steps.semantic.outputs.new_release_version }},wurstbrot/dsomm:latest
       # Commit all changed files back to the repository
       - uses: planetscale/ghcommit-action@v0.1.6
         with:
