@@ -61,22 +61,67 @@ In case you would like to perform a DevSecOps assessment, the following tools ar
 ## Container
 
 1. Install [Docker](https://www.docker.com)
-2. Run `docker pull wurstbrot/dsomm:latest && docker run --rm -p 8080:8080 wurstbrot/dsomm:latest`
+2. Run
+   ```bash
+   docker pull wurstbrot/dsomm:latest && docker run --rm -p 8080:8080 wurstbrot/dsomm:latest
+   ```
 3. Browse to <http://localhost:8080> (on macOS and Windows browse to <http://192.168.99.100:8080> if you are using docker-machine instead
    of the native docker installation)
 
-For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom. 
+For customized DSOMM, take a look at https://github.com/wurstbrot/DevSecOps-MaturityModel-custom.
 
-You can download your current state from the circular heatmap and mount it again via 
+### Use the latest model data
 
 ```bash
-wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/main/src/assets/YAML/generated/generated.yaml # or go to /circular-heatmap and download edited yaml (bottom right)
-docker run -p 8080:8080 -v /tmp/generated.yaml:/srv/assets/YAML/generated/generated.yaml wurstbrot/dsomm:latest
+wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/refs/heads/main/generated/model.yaml
+docker run -p 8080:8080 -v "$PWD/model.yaml:/srv/assets/YAML/default/model.yaml" wurstbrot/dsomm:latest
 ```
 
-.
+If the old model version is still referenced, clear your browser cache!
 
-This approach also allows teams to perform self assessment with changes tracked in a repository.
+### Download and upload the current state
+
+1. Go to `/circular-heatmap`.
+2. Download team progress and team evidence via buttons in the bottom-right.
+3. Mount the downloaded YAML-files in the container:
+   ```bash
+   docker run -p 8080:8080 \
+     -v "$PWD/team-evidence.yaml:/srv/assets/YAML/team-evidence.yaml" \
+     -v "$PWD/team-progress.yaml:/srv/assets/YAML/team-progress.yaml" \
+     wurstbrot/dsomm:latest
+   ```
+This approach also allows teams to perform self-assessment with changes tracked in a repository.
+
+### Docker Compose
+
+You can also track everything in a repository with a `docker compose` setup.
+
+1. Ensure all files you want to track are present (`model.yaml`, `meta.yaml`, etc.).
+2. Create the compose.yaml. For example:
+   ```yaml
+   # compose.yaml
+   services:
+     dsomm:
+       image: wurstbrot/dsomm:latest
+       container_name: dsomm
+       ports:
+         - "8080:8080"
+       volumes:
+         # uncomment the following line to add a modified meta.yaml (see: https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel#teams-and-groups)
+         # - ./meta.yaml:/srv/assets/YAML/meta.yaml
+         - ./model.yaml:/srv/assets/YAML/default/model.yaml
+         - ./team-evidence.yaml:/srv/assets/YAML/team-evidence.yaml
+         - ./team-progress.yaml:/srv/assets/YAML/team-progress.yaml
+         # add other files if needed
+   ```
+3. Start the service:
+   ```bash
+   docker compose up -d
+   ```
+4. Stop the service and delete the container:
+   ```bash
+   docker compose down
+   ```
 
 ## Amazon EC2 Instance
 
@@ -96,26 +141,23 @@ service docker start
 docker run -d -p 80:8080 wurstbrot/dsomm:latest
 ```
 
-## Generating the `generated.yaml` File
+## Generating the `model.yaml` file
 
-The `generated.yaml` file is dynamically created during the build process. If you don’t see this file after setup, follow these steps to generate it:
+The `model.yaml` file is dynamically created during the build process. If you don’t see this file after setup, follow these steps to generate it:
 
-**1. Clone the Required Repository:**
-The `generated.yaml` file is built via the DevSecOps-MaturityModel-data repository. Make sure you have cloned and set it up correctly.
+1. **Clone the Required Repository:**
+   The `model.yaml` file is built via the [DevSecOps-MaturityModel-data repository](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data). Make sure you have cloned and set it up correctly.
 
-**2. Run the Build Command:**
-Navigate to the project directory and run the following command:
-- *Using npm:*
-
-```sh
-npm run build
-````
-
-- *Using yarn:*
-
-```sh
-yarn build
-```
+2. **Run the Build Command:**
+   Navigate to the project directory and run the following command:
+   - Using `npm`:
+      ```bash
+      npm run build
+      ```
+   - Using `yarn`:
+      ```bash
+      yarn build
+      ```
 
 *If the file is missing, ensure all dependencies are installed and that you have the correct access to the `DevSecOps-MaturityModel-data` repository.*
 
@@ -123,7 +165,8 @@ yarn build
 The definition of the activities are in the [data-repository](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data). 
 
 ## Teams and Groups
-To customize these teams, you can create your own [meta.yaml](src/assets/YAML/meta.yaml)  file with your unique team definitions.
+
+To customize these teams, you can create your own [meta.yaml](src/assets/YAML/meta.yaml) file with your unique team definitions.
 
 Assessments within the framework can be based on either a team or a specific application, which can be referred to as the context. Depending on how you define the context or teams, you may want to group them together.
 
@@ -132,21 +175,27 @@ Here are a couple of examples to illustrate this, in breakers the DSOMM word:
 - Multiple teams (teams) can belong to a larger department (group).
 
 Feel free to create your own [meta.yaml](src/assets/YAML/meta.yaml) file to tailor the framework to your specific needs and mount it in your environment (e.g. kubernetes or docker).
+
 Here is an example to start docker with customized meta.yaml:
-```
+
+```bash
 # Customized meta.yaml
 cp src/assets/YAML/meta.yaml .
-docker run -v $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -p 8080:8080 wurstbrot/dsomm
+docker run -v "$PWD/meta.yaml:/srv/assets/YAML/meta.yaml" -p 8080:8080 wurstbrot/dsomm
 
-# Customized meta.yaml and generated.yaml
+# Customized meta.yaml and model.yaml
 cp src/assets/YAML/meta.yaml .
-cp $(pwd)/src/assets/YAML/generated/generated.yaml .
-docker run -v  $(pwd)/meta.yaml:/srv/assets/YAML/meta.yaml -v $(pwd)/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
+cp "$PWD/src/assets/YAML/generated/model.yaml" .
+docker run \
+  -v "$PWD/meta.yaml:/srv/assets/YAML/meta.yaml" \
+  -v "$PWD/model.yaml:/srv/assets/YAML/default/model.yaml" \
+  -p 8080:8080 wurstbrot/dsomm
 ```
 
 In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/tree/main/src/assets/YAML/default), use:
-```
-[...]
+
+```yaml
+#[...]
       teamsImplemented:
         Default: false
         B: true
@@ -159,7 +208,8 @@ In the corresponding [dimension YAMLs](https://github.com/devsecopsmaturitymodel
           
           _2025-04-01:_ All fixes of **critical** findings are deployed to production.
 ```
-The `|` is yaml syntax to indicate that the evidence spans multiple lines. Markdown 
+
+The `|` is YAML syntax to indicate that the evidence spans multiple lines. Markdown 
 syntax can be used. The evidence is currently visible on the activity from the Matrix page.
 
 # Back link
