@@ -20,15 +20,23 @@ jobs:
         with:
           persist-credentials: false # This is important if you have branch protection rules!
       - name: Semantic Release
+        id: semantic
         uses: cycjimmy/semantic-release-action@v4
         with:
           branch: 'main'
+          extra_plugins: |
+            @semantic-release/changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
         id: get-version
         run: |
-          echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
+          version="${{ steps.semantic.outputs.new_release_version }}"
+          if [ -z "$version" ]; then
+            # No new release in this run (e.g. scheduled build) -> fall back to latest tag
+            version="$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//')"
+          fi
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
 
       - name: show version
         run: |
