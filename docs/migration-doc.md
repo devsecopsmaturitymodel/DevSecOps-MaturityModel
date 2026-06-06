@@ -341,15 +341,77 @@ A relatively smooth upgrade. Core, CLI, Material, CDK, and ESLint were bumped to
 
   
 
+---
 
+## Signal Migration
+
+Each component toggle below documents a single commit.
 
   
+
+<details>
+
+<summary><strong>MatrixComponent</strong> (<a href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/2f020c46">2f020c46</a>)</summary>
+
+  
+
+- Converted `levels`, `filtersTag`, `filtersDim`, `columnNames`, and `MATRIX_DATA` from plain properties to `signal()`.
+- Replaced the imperative `updateActivitiesBeingDisplayed()` method with a single `dataSource = computed()` that derives filtered rows automatically whenever `MATRIX_DATA`, `filtersTag`, or `filtersDim` change.
+- Removed `MatTableDataSource` wrapper and `deepCopy()` call — `computed()` already produces a fresh derivation on every dependency change.
+- Filter chip handlers (`toggleTagFilters` / `toggleDimensionFilters`) now call `signal.update()` instead of mutating a plain object, and no longer need to manually trigger a re-filter.
+- `buildMatrixData()` takes `allDimensionNames` as a parameter instead of reading a class property, since it was previously only used once during init.
+- **Files:** `matrix.component.ts`, `matrix.component.html`, `matrix.component.spec.ts`
+
+</details>
+
+  
+
+<details>
+
+<summary><strong>ThemeService & TitleService</strong> (<a href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/408342c3">408342c3</a>)</summary>
+
+  
+
+**Services**
+
+- `ThemeService.theme` changed from `BehaviorSubject<AppTheme>` → `signal<AppTheme>`. A `toObservable()` bridge (`theme$`) is kept for any remaining subscribers.
+- `TitleService.titleInfo` changed from `BehaviorSubject<TitleInfo | null>` → `signal<TitleInfo | null>`, with the same `toObservable()` bridge.
+
+**Consumers**
+
+- `AppComponent`: Replaced manual `subscribe()` + instance properties for `title` / `subtitle` with `computed()` values that read directly from `TitleService.titleInfo()`.
+- `SidenavButtonsComponent`: Replaced `subscribe()` on `ThemeService.theme$` with `isNightMode = computed(() => themeService.theme() === 'dark')`.
+- Both consumers no longer need `OnDestroy` / manual unsubscribe logic.
+- **Files:** `theme.service.ts`, `title.service.ts`, `app.component.ts`, `app.component.html`, `app.component.spec.ts`, `sidenav-buttons.component.ts`, `sidenav-buttons.component.html`, `sidenav-buttons.component.spec.ts` (8 files, −56 / +50)
+
+</details>
+
+  
+
+<details>
+
+<summary><strong>ReportComponent & ReportConfigModalComponent</strong> (<a href="https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/44480759">44480759</a>)</summary>
+
+  
+
+**ReportComponent**
+
+- `reportConfig` and `allActivities` converted to `signal()`.
+- `filteredDimensions`, `levelByLevelOverviewFromActivties`, and `totalFilteredActivities` are now `computed()` values that automatically re-derive when `reportConfig` or `allActivities` change — no manual refresh calls needed.
+- Config changes from the modal or team selector write back via `signal.set()`.
+
+**ReportConfigModalComponent**
+
+- `config` converted to `signal<ReportConfig>`, deep-copied from dialog input on construction.
+- `filteredActivities` and `hasAnyMarkdownAttribute` are `computed()` values.
+- `activitySearchQuery` is a `signal('')` driving the `filteredActivities` computation.
+- **Files:** `report.component.ts`, `report.component.html`, `report-config-modal.component.ts`, `report-config-modal.component.html` (4 files)
+
+</details>
 
   
 
 ---
-
-  
 
 ## Backlog
 
