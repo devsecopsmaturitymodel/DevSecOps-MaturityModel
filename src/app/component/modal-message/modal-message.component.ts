@@ -6,7 +6,7 @@ import {
   MatDialogConfig,
   MatDialogModule,
 } from '@angular/material/dialog';
-import * as md from 'markdown-it';
+import md from 'markdown-it';
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { NotificationService } from 'src/app/service/notification.service';
 import { MatButtonModule } from '@angular/material/button';
