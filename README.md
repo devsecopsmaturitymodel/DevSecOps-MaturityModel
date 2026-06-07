@@ -97,28 +97,16 @@ This approach also allows teams to perform self-assessment with changes tracked 
 You can also track everything in a repository with a `docker compose` setup.
 
 1. Ensure all files you want to track are present (`model.yaml`, `meta.yaml`, etc.).
-2. Create the compose.yaml. For example:
-   ```yaml
-   # compose.yaml
-   services:
-     dsomm:
-       image: wurstbrot/dsomm:latest
-       container_name: dsomm
-       ports:
-         - "8080:8080"
-       volumes:
-         # uncomment the following line to add a modified meta.yaml (see: https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel#teams-and-groups)
-         # - ./meta.yaml:/srv/assets/YAML/meta.yaml
-         - ./model.yaml:/srv/assets/YAML/default/model.yaml
-         - ./team-evidence.yaml:/srv/assets/YAML/team-evidence.yaml
-         - ./team-progress.yaml:/srv/assets/YAML/team-progress.yaml
-         # add other files if needed
+2. Copy the upstream compose.yaml:
+   ```bash
+   wget https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/refs/heads/main/compose.yaml
    ```
-3. Start the service:
+3. Edit the file if necessary.
+4. Start the service:
    ```bash
    docker compose up -d
    ```
-4. Stop the service and delete the container:
+5. Stop the service and delete the container:
    ```bash
    docker compose down
    ```

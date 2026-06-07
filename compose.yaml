@@ -1,0 +1,14 @@
+services:
+  dsomm:
+    image: wurstbrot/dsomm:latest
+    container_name: dsomm
+    ports:
+      - "8080:8080"
+    volumes:
+      ## uncomment the following line to add a modified meta.yaml
+      ## (see: https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel#teams-and-groups)
+      # - ./meta.yaml:/srv/assets/YAML/meta.yaml
+      - ./model.yaml:/srv/assets/YAML/default/model.yaml
+      - ./team-evidence.yaml:/srv/assets/YAML/team-evidence.yaml
+      - ./team-progress.yaml:/srv/assets/YAML/team-progress.yaml
+      ## add other files if needed
