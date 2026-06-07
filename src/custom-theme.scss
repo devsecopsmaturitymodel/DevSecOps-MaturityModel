@@ -116,7 +116,7 @@ body {
   --dependency-predecessor-fill: #deeedeff;
   --dependency-successor-fill: #fdfdfdff;
 
-  @include mat.all-component-colors($DSOMM-light-theme);
+  // @include mat.all-component-colors($DSOMM-light-theme);
 }
 
 // ----------------------------------------------
