@@ -309,9 +309,9 @@ body.dark-theme {
     }
   }
 
-  .mat-mdc-chip.mat-mdc-standard-chip.mat-mdc-chip-selected,
+
   .mat-mdc-chip.mat-mdc-standard-chip.mdc-evolution-chip--selected {
-    background-color: var(--primary-color) !important;
+    background-color: var(--primary-color);
   }
   
   // Form fields and inputs
@@ -437,11 +437,6 @@ svg .cursors #hover {
 svg .cursors #selected {
   stroke: var(--heatmap-cursor-selected, black);
   stroke-width: 4px;
-}
-
-mat-expansion-panel-header {
-  height: 48px !important;
-  padding: 0 16px;
 }
 
 .mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix {
