@@ -314,7 +314,7 @@
     .evidence-view-btn,
     app-top-header,
     .report-toolbar {
-        display: none !important;
+        display: none;
     }
 
     .report-container {

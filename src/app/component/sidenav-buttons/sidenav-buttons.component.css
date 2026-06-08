@@ -1,4 +1,4 @@
-[matListItemIcon] {
-  margin-right: 18px !important;
-  margin-left: 22px !important;
+[matListItemIcon].sidenav-button-icons {
+  margin-right: 18px;
+  margin-left: 22px;
 }
