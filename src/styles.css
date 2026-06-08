@@ -25,17 +25,8 @@ h1, h2, h3 {
 }
 
 /* Slider styling (MDC) */
-.mat-mdc-slider .mdc-slider__track--inactive {
-  background-color: var(--slider-track) !important;
-}
-
-.mat-mdc-slider .mdc-slider__track--active_fill {
-  border-color: var(--slider-primary) !important;
-}
-
-.mat-mdc-slider .mdc-slider__thumb-knob {
-  background-color: var(--slider-thumb) !important;
-  border-color: var(--slider-thumb) !important;
+.mat-mdc-slider.mat-primary {
+  --mdc-slider-inactive-track-color: var(--slider-track);
 }
 
 .userday table :is(td, th) {
@@ -64,9 +55,6 @@ h1, h2, h3 {
     max-width: 40rem;
 }
 
-.compact-tooltip {
-  transform: translateY(-10px) !important;
-}
 * {
   scrollbar-color: #9F9F9F #2C2C2C;
 }
