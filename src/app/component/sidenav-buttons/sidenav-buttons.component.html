@@ -1,12 +1,12 @@
 <mat-nav-list>
   <a mat-list-item *ngFor="let option of Options; index as i" routerLink="{{ Routing[i] }}">
-    <span matListItemIcon>
+    <span matListItemIcon class="sidenav-button-icons">
       <mat-icon color="primary">{{ Icons[i] }}</mat-icon>
     </span>
     <h3 matListItemTitle>{{ Options[i] }}</h3>
   </a>
   <a mat-list-item href="https://github.com/wurstbrot/DevSecOps-MaturityModel/" target="_blank">
-    <span matListItemIcon>
+    <span matListItemIcon class="sidenav-button-icons">
       <mat-icon color="primary" svgIcon="github"></mat-icon>
     </span>
     <h3 matListItemTitle>GitHub</h3>
@@ -18,7 +18,7 @@
 
 <mat-list>
   <mat-list-item (click)="toggleTheme()" style="cursor: pointer">
-    <span matListItemIcon>
+    <span matListItemIcon class="sidenav-button-icons">
       <mat-icon color="primary">
         {{ isNightMode() ? 'light_mode' : 'dark_mode' }}
       </mat-icon>

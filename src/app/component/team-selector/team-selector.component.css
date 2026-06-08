@@ -36,8 +36,8 @@
     white-space: nowrap;
 }
 
-:host ::ng-deep .checkbox-grid {
+.checkbox-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 10px)) !important;
-    gap: 2px !important;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 10px));
+    gap: 2px;
 }
