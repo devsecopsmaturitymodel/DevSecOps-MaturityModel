@@ -1,7 +1,7 @@
 import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TeamsComponent } from './teams.component';
@@ -22,11 +22,12 @@ describe('TeamsComponent', () => {
     // await mockLoaderService.load();
     await TestBed.configureTestingModule({
     providers: [
+        provideRouter([]),
         HttpClientTestingModule,
         { provide: ModalMessageComponent, useValue: {} },
         { provide: LoaderService, useValue: mockLoaderService },
     ],
-    imports: [RouterTestingModule, HttpClientModule, NoopAnimationsModule, TeamsComponent],
+    imports: [HttpClientModule, NoopAnimationsModule, TeamsComponent],
 }).compileComponents();
     /* eslint-enable */
   });

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,7 +32,6 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,
@@ -40,6 +39,7 @@ describe('AppComponent', () => {
         AppComponent,
       ],
       providers: [
+        provideRouter([]),
         { provide: ThemeService, useClass: MockThemeService },
         { provide: TitleService, useClass: MockTitleService },
       ],

@@ -60,12 +60,21 @@
     gap: 4px;
 }
 
-.config-row-label mat-icon {
-    font-size: 16px;
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    color: var(--text-secondary);
+.info-button {
+  width: 24px !important;
+  height: 24px !important;
+  padding: 0 !important;
+  overflow: visible;
+  line-height: 24px;
+}
+
+.info-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  display: block;
+  margin: auto;
 }
 
 :host {

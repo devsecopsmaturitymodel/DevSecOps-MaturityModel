@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SidenavButtonsComponent } from './sidenav-buttons.component';
@@ -20,8 +20,8 @@ describe('SidenavButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidenavButtonsComponent, RouterTestingModule, HttpClientTestingModule],
-      providers: [{ provide: ThemeService, useClass: MockThemeService }],
+      imports: [SidenavButtonsComponent, HttpClientTestingModule],
+      providers: [provideRouter([]), { provide: ThemeService, useClass: MockThemeService }],
     }).compileComponents();
   });
 

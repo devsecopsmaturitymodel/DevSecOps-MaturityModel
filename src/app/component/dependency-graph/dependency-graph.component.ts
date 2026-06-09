@@ -52,7 +52,10 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
 
   @Output() activityClicked = new EventEmitter<string>();
 
-  constructor(private loader: LoaderService, private themeService: ThemeService) {
+  constructor(
+    private loader: LoaderService,
+    private themeService: ThemeService
+  ) {
     this.theme = this.themeService.getTheme();
     this.setThemeColors(this.theme);
   }

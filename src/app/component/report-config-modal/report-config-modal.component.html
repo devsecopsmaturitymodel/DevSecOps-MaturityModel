@@ -152,11 +152,12 @@
     <div class="config-row slider-row" *ngIf="hasAnyMarkdownAttribute">
       <span class="config-row-label">
         Word Cap
-        <mat-icon
-          matTooltip="Limits the number of words shown for description, risk, measure, and evidence fields. Set to a high value to show full text."
-          matTooltipClass="compact-tooltip info-icon"
-          >info</mat-icon
-        >
+        <button
+          mat-icon-button
+          class="info-button"
+          matTooltip="Limits the number of words shown for description, risk, measure, and evidence fields. Set to a high value to show full text.">
+          <mat-icon class="info-icon">info</mat-icon>
+        </button>
         :
         <strong>{{ config.descriptionWordCap }}</strong>
       </span>

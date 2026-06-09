@@ -37,7 +37,7 @@
             <label class="filter-label">Team Group Filter</label>
             <mat-chip-listbox selectable>
               <mat-chip-option
-                *ngFor="let group of filtersTeamGroups | keyvalue : unsorted"
+                *ngFor="let group of filtersTeamGroups | keyvalue: unsorted"
                 (selectionChange)="toggleTeamGroupFilter($event)"
                 [selected]="filtersTeamGroups[group.key]">
                 {{ group.key }}
@@ -76,7 +76,6 @@
                     mat-icon-button
                     class="info-button"
                     matTooltip="Open activity description"
-                    matTooltipClass="compact-tooltip"
                     (click)="openActivityDetails(activity['uuid']); $event.stopPropagation()">
                     <mat-icon class="info-icon">info</mat-icon>
                   </button>

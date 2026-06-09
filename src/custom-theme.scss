@@ -26,8 +26,6 @@ $custom-typography: mat.define-typography-config(
 
 // Core styles (ripple, overlay, etc.)
 @include mat.core();
-// Apply typography styles to all components + hierarchy classes (.mat-headline-1, etc.)
-@include mat.all-component-typographies($custom-typography);
 
 // ----------------------------------------------
 // Angular Material Palettes
@@ -60,6 +58,8 @@ $DSOMM-dark-theme: mat.define-dark-theme((
   typography: $custom-typography,
   density: 0
 ));
+
+@include mat.all-component-themes($DSOMM-light-theme);
 
 // ----------------------------------------------
 // Base Theme Mixin
@@ -450,6 +450,9 @@ mat-expansion-panel-header {
   min-height: 56px;
 }
 
-.mat-mdc-button, .mdc-button{
-  letter-spacing: 0.1px;
+:root {
+  --mdc-text-button-label-text-tracking: normal;
+  --mdc-filled-button-label-text-tracking: normal;
+  --mdc-protected-button-label-text-tracking: normal;
+  --mdc-outlined-button-label-text-tracking: normal;
 }
