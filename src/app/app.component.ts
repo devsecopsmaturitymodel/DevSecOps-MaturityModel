@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, OnInit, computed } from '@angular/core';
 import { ThemeService } from './service/theme.service';
 import { TitleService } from './service/title.service';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
@@ -28,14 +27,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     RouterOutlet,
   ],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = '';
+export class AppComponent implements OnInit {
   defaultTitle = '';
-  subtitle = '';
   menuIsOpen: boolean = true;
   sidenavWidth: string = '250px';
 
-  private destroy$ = new Subject<void>();
+  readonly title = computed(() => this.titleService.titleInfo()?.dimension || '');
+  readonly subtitle = computed(() => {
+    const info = this.titleService.titleInfo();
+    return info?.level ? 'Level ' + info.level : '';
+  });
 
   constructor(
     private themeService: ThemeService,
@@ -54,17 +55,6 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this.sidenavWidth = '250px';
     }
-
-    // Subscribe to title changes
-    this.titleService.titleInfo$.pipe(takeUntil(this.destroy$)).subscribe(titleInfo => {
-      this.title = titleInfo?.dimension || '';
-      this.subtitle = titleInfo?.level ? 'Level ' + titleInfo?.level : '';
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   toggleMenu(): void {

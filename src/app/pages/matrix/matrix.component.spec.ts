@@ -65,35 +65,35 @@ describe('MatrixComponent', () => {
 
   it('should build matrix data', () => {
     // Verify the data was loaded
-    expect(component.MATRIX_DATA).toBeTruthy();
-    expect(component.MATRIX_DATA.length).toBeGreaterThan(0);
-    expect(component.MATRIX_DATA[0].Category).toBe('Test Category');
-    expect(component.MATRIX_DATA[0].Dimension).toBe('Test Dimension');
-    expect(component.MATRIX_DATA[0].level1.length).toBe(2);
+    expect(component.MATRIX_DATA()).toBeTruthy();
+    expect(component.MATRIX_DATA().length).toBeGreaterThan(0);
+    expect(component.MATRIX_DATA()[0].Category).toBe('Test Category');
+    expect(component.MATRIX_DATA()[0].Dimension).toBe('Test Dimension');
+    expect(component.MATRIX_DATA()[0].level1.length).toBe(2);
 
     // Verify filters were initialized
-    expect(Object.keys(component.filtersTag)).toContain('tag1');
-    expect(Object.keys(component.filtersDim)).toContain('Test Dimension');
+    expect(Object.keys(component.filtersTag())).toContain('tag1');
+    expect(Object.keys(component.filtersDim())).toContain('Test Dimension');
   });
 
   it('should filter data when tag filter is selected', fakeAsync(() => {
-    expect(component.dataSource.data.length).toBe(2);
-    expect(component.dataSource.data[0].level1.length).toBe(2);
+    expect(component.dataSource().length).toBe(2);
+    expect(component.dataSource()[0].level1.length).toBe(2);
 
     // Toggle tag filter on
     console.log('Turn chip filter on');
     component.toggleTagFilters(createChipSelectionEvent('tag1', true));
     tick(); // flush the setTimeout inside toggleTagFilters
-    expect(component.filtersTag['tag1']).toBeTrue();
-    expect(component.dataSource.data.length).toBe(1);
-    expect(component.dataSource.data[0].level1.length).toBe(1);
+    expect(component.filtersTag()['tag1']).toBeTrue();
+    expect(component.dataSource().length).toBe(1);
+    expect(component.dataSource()[0].level1.length).toBe(1);
 
     // Toggle tag filter off again
     console.log('Turn chip filter off');
     component.toggleTagFilters(createChipSelectionEvent('tag1', false));
     tick(); // flush the setTimeout inside toggleTagFilters
-    expect(component.filtersTag['tag1']).toBeFalse();
-    expect(component.dataSource.data.length).toBe(2);
-    expect(component.dataSource.data[0].level1.length).toBe(2);
+    expect(component.filtersTag()['tag1']).toBeFalse();
+    expect(component.dataSource().length).toBe(2);
+    expect(component.dataSource()[0].level1.length).toBe(2);
   }));
 });
