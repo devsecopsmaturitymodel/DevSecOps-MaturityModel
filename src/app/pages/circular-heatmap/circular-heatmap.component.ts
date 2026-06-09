@@ -7,7 +7,7 @@ import { Location, NgIf, NgFor, KeyValuePipe } from '@angular/common';
 import { MatChipOption, MatChipSelectionChange, MatChipsModule } from '@angular/material/chips';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
-import * as md from 'markdown-it';
+import md from 'markdown-it';
 import {
   ModalMessageComponent,
   DialogInfo,
