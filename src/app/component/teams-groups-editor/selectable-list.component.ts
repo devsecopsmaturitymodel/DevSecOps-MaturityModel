@@ -24,7 +24,7 @@ export class SelectableListComponent {
   @Input() relationshipEditMode = false;
   @Output() itemSelected = new EventEmitter<string>();
   @Output() addItem = new EventEmitter<void>();
-  @Output() cancel = new EventEmitter<void>();
+  @Output() cancelEdit = new EventEmitter<void>();
   @Output() save = new EventEmitter<void>();
   @Output() renameItem = new EventEmitter<{ oldName: string; newName: string }>();
   @Output() deleteItem = new EventEmitter<string>();
