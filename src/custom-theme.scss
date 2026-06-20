@@ -6,6 +6,17 @@
   transition: background 300ms cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@mixin sidenav-structure {
+  .mat-drawer,
+  .mat-sidenav {
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .mat-mdc-list-item {
+    border-radius: 10px;
+  }
+}
+
 // ----------------------------------------------
 // Theme Colors and Typography
 // ----------------------------------------------
@@ -67,7 +78,8 @@ body {
   --text-tertiary: #bbbbbb;
   --background-primary: #f5f5f5;
   --background-secondary: #fefefe;
-  --background-tertiary: #f8f9fa;
+  --background-tertiary: #e0e0e0;
+  --border-subtle: rgb(0, 0, 0, 0.15);
 
   --primary-color: #4CAF50;
 
@@ -85,6 +97,15 @@ body {
   --dependency-successor-fill: #fdfdfdff;
 
   // Light theme already applied globally above
+  
+
+  .mat-sidenav-content, .mat-toolbar   {
+    background-color: whitesmoke;
+  }
+}
+
+body.light-theme{
+  @include sidenav-structure;
 }
 
 // ----------------------------------------------
@@ -93,6 +114,7 @@ body {
 body.dark-theme {
   @include apply-theme($custom-dark-theme);
   @include mat.all-component-colors(m3.$dark-theme);
+  @include sidenav-structure;
 
   --background-base: #323436;
   /* page background */
@@ -101,8 +123,6 @@ body.dark-theme {
   --background-secondary: #3E4042;
   /* elevated cards */
   --background-tertiary: #444648;
-  /* dialogs, dropdowns */
-  --background-hover: #2C2E30;
   /* hover states */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.12);
@@ -180,21 +200,20 @@ body.dark-theme {
   .mat-drawer,
   .mat-sidenav {
     background-color: var(--background-primary);
-    border-right: 1px solid var(--border-subtle);
   }
 
   .mat-drawer-container {
     background-color: var(--background-base);
   }
-  
+
   //navbar
-   .mat-toolbar {
+  .mat-toolbar {
     background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   }
 
-   // ----------------------------------------------
+  // ----------------------------------------------
   // Toolbar / Navbar
   // ----------------------------------------------
   .mat-toolbar {
@@ -226,10 +245,6 @@ body.dark-theme {
     background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     transition: background-color 0.15s ease;
-
-    &:hover {
-      background-color: var(--background-hover);
-    }
   }
 
   .mat-mdc-cell {
@@ -251,7 +266,7 @@ body.dark-theme {
     background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
-    border-radius: 8px ;
+    border-radius: 8px;
 
     .mat-expansion-panel-header {
       background-color: var(--background-secondary);
@@ -281,7 +296,7 @@ body.dark-theme {
   .mat-mdc-chip.mat-mdc-standard-chip.mdc-evolution-chip--selected {
     background-color: var(--primary-color);
   }
-  
+
   // Form fields and inputs
   .mat-mdc-form-field .mdc-notched-outline__leading,
   .mat-mdc-form-field .mdc-notched-outline__notch,
@@ -322,7 +337,7 @@ body.dark-theme {
   .overlay-modal {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
-    border: 1px solid var(--border-medium); 
+    border: 1px solid var(--border-medium);
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     mat-card {
@@ -347,13 +362,11 @@ body.dark-theme {
   .circular-heat path {
     stroke: var(--heatmap-stroke);
   }
-   
+
   // List items and nav
   .mat-mdc-list-item,
   .mat-nav-list .mat-list-item {
     color: var(--text-secondary);
-    border-radius: 8px;
-    transition: background-color 0.15s ease, color 0.15s ease;
 
     &:hover {
       background-color: var(--background-hover);
