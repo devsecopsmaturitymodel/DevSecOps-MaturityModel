@@ -6,163 +6,22 @@
   transition: background 300ms cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@mixin sidenav-structure {
-  .mat-drawer,
-  .mat-sidenav {
-    border-right: 1px solid var(--border-subtle);
-  }
-
-  .mat-mdc-list-item {
-    border-radius: 10px;
-  }
-}
-
-// ----------------------------------------------
-// Theme Colors and Typography
-// ----------------------------------------------
-$light-theme: (
-  background: white,
-  text: black,
-  link: blue,
-);
-
-$custom-dark-theme: (
-  background: #323436,
-  text: #e8e8e8,
-  link: #66bb6a,
-);
-
-// Core styles (ripple, overlay, etc.)
 @include mat.core();
 
-// Apply M3 light theme as default
 html {
   @include mat.all-component-themes(m3.$light-theme);
 }
 
-// ----------------------------------------------
-// Base Theme Mixin
-// ----------------------------------------------
-@mixin apply-theme($theme) {
-  background-color: map-get($theme, background);
-  color: map-get($theme, text);
-
-  a {
-    color: map-get($theme, link);
-  }
-
-  a:visited {
-    color: map-get($theme, visited-link);
-  }
-}
-
-// ----------------------------------------------
-// Light Mode Styles
-// ----------------------------------------------
-body {
-
-  .title-button,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: map-get($light-theme, text);
-  }
-}
-
-.light-theme {
-  --text-primary: #000000;
-  --text-secondary: #666666;
-  --text-tertiary: #bbbbbb;
-  --background-primary: #f5f5f5;
-  --background-secondary: #fefefe;
-  --background-tertiary: #e0e0e0;
-  --border-subtle: rgb(0, 0, 0, 0.15);
-
-  --primary-color: #4CAF50;
-
-  --heatmap-filled: #4caf50;
-  --heatmap-disabled: #dddddd;
-  --heatmap-background: white;
-  --heatmap-stroke: black;
-  --heatmap-cursor-hover: #1c8b1c;
-  --heatmap-cursor-selected: #3d3d3d;
-
-  --dependency-link: #707070;
-  --dependency-border: #222222;
-  --dependency-mainnode-fill: #4caf50;
-  --dependency-predecessor-fill: #deeedeff;
-  --dependency-successor-fill: #fdfdfdff;
-
-  // Light theme already applied globally above
-  
-
-  .mat-sidenav-content, .mat-toolbar   {
-    background-color: whitesmoke;
-  }
-}
-
-body.light-theme{
-  @include sidenav-structure;
-}
-
-// ----------------------------------------------
-// Dark Mode Styles
-// ----------------------------------------------
-body.dark-theme {
-  @include apply-theme($custom-dark-theme);
-  @include mat.all-component-colors(m3.$dark-theme);
-  @include sidenav-structure;
-
-  --background-base: #323436;
-  /* page background */
-  --background-primary: #383A3C;
-  /* cards, panels */
-  --background-secondary: #3E4042;
-  /* elevated cards */
-  --background-tertiary: #444648;
-  /* hover states */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.12);
-
-  --text-primary: #e8e8e8;
-  --text-secondary: #a0a0a0;
-  --text-tertiary: #616161;
-
-  --primary-color: #4CAF50;
-
-  --heatmap-filled: #007700;
-  --heatmap-disabled: #555555;
-  --heatmap-background: #bbbbbb;
-  --heatmap-stroke: #000000;
-  --heatmap-cursor-hover: #145e14;
-  --heatmap-cursor-selected: #232323;
-
-  --dependency-link: #8a8a8a;
-  --dependency-border: #1a2e1a;
-  --dependency-mainnode-fill: rgb(107, 190, 107);
-  --dependency-predecessor-fill: rgb(160, 200, 160);
-  --dependency-successor-fill: rgb(185, 185, 185);
-
+@mixin component-overrides {
   background-color: var(--background-base);
   color: var(--text-primary);
 
   .title-button,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: map-get($custom-dark-theme, text);
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
   }
 
-  // General properties
-  p,
-  li,
-  tr {
+  p, li, tr {
     color: var(--text-primary);
   }
 
@@ -171,32 +30,29 @@ body.dark-theme {
   }
 
   a {
-    color: #66bb6a;
+    color: var(--link-color);
   }
 
-  a:visited {
-    color: #66bb6a;
+  .mat-drawer,
+  .mat-sidenav {
+    border-right: 1px solid var(--border-subtle);
   }
 
-  //cards and panels
-  mat-card,
-  .mat-mdc-card {
+  .mat-mdc-list-item {
+    border-radius: 10px;
+  }
+
+  // Toolbar / Navbar
+  .mat-toolbar {
     background-color: var(--background-primary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4),
-      0 1px 3px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-
-    &:hover {
-      border-color: var(--border-medium);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5),
-        0 2px 6px rgba(0, 0, 0, 0.4);
-    }
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  //sidenav
+  .mat-sidenav-content {
+    background-color: var(--background-base);
+  }
+
+  // Sidenav
   .mat-drawer,
   .mat-sidenav {
     background-color: var(--background-primary);
@@ -206,23 +62,21 @@ body.dark-theme {
     background-color: var(--background-base);
   }
 
-  //navbar
-  .mat-toolbar {
+  // Cards and panels
+  mat-card,
+  .mat-mdc-card {
     background-color: var(--background-primary);
-    border-bottom: 1px solid var(--border-subtle);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--border-medium);
+    }
   }
 
-  // ----------------------------------------------
-  // Toolbar / Navbar
-  // ----------------------------------------------
-  .mat-toolbar {
-    background-color: var(--background-primary);
-    border-bottom: 1px solid var(--border-subtle);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-  }
-
-  //Tables
+  // Tables
   .mat-mdc-table,
   table[mat-table] {
     background-color: var(--background-primary);
@@ -251,16 +105,15 @@ body.dark-theme {
     color: var(--text-primary);
   }
 
-  // Dialog styling
+  // Dialog
   .mat-mdc-dialog-container {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
     border: 1px solid var(--border-medium);
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   }
 
-  // Expansion panels and accordion
+  // Expansion panels
   .mat-expansion-panel,
   .mat-accordion {
     background-color: var(--background-primary);
@@ -278,13 +131,22 @@ body.dark-theme {
     }
   }
 
-  //chips
+  // Chips — hide checkmark, black/white text only
   .mat-mdc-chip.mat-mdc-standard-chip {
     background-color: var(--background-tertiary);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     border: 1px solid var(--border-subtle);
-    border-radius: 16px;
+    border-radius: 16px !important;
     transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    // Hide the selection checkmark
+    .mdc-evolution-chip__graphic {
+      display: none !important;
+    }
+
+    .mdc-evolution-chip__text-label {
+      color: var(--text-primary);
+    }
 
     &:hover {
       background-color: var(--background-hover);
@@ -292,27 +154,32 @@ body.dark-theme {
     }
   }
 
-
   .mat-mdc-chip.mat-mdc-standard-chip.mdc-evolution-chip--selected {
     background-color: var(--primary-color);
+
+    .mdc-evolution-chip__text-label {
+      color: var(--chip-selected-text);
+    }
   }
 
-  // Form fields and inputs
+  // Form fields
   .mat-mdc-form-field .mdc-notched-outline__leading,
   .mat-mdc-form-field .mdc-notched-outline__notch,
   .mat-mdc-form-field .mdc-notched-outline__trailing {
     border-color: var(--border-medium);
   }
+
   .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
   .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
   .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
-    border-color: #66bb6a;
+    border-color: var(--primary-color);
   }
 
   .mat-mdc-input-element {
     color: var(--text-primary);
-    caret-color: #66bb6a;
+    caret-color: var(--primary-color);
   }
+
   .mat-mdc-floating-label {
     color: var(--text-secondary);
   }
@@ -332,14 +199,14 @@ body.dark-theme {
     }
   }
 
-  // Modal override
+  // Modal overlay
   .overlay-wrapper,
   .overlay-modal {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
     border: 1px solid var(--border-medium);
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+
     mat-card {
       background-color: transparent;
       border: none;
@@ -351,11 +218,10 @@ body.dark-theme {
     }
   }
 
-
-  // Circular heatmap (radar chart)
+  // Circular heatmap
   .circular-heat text,
   .labels.segment text {
-    fill: #ffffff;
+    fill: var(--text-primary);
   }
 
   .circular-heat line,
@@ -374,18 +240,17 @@ body.dark-theme {
     }
 
     &.active {
-      background-color: rgba(102, 187, 106, 0.15);
-      color: #66bb6a;
+      background-color: rgba(76, 175, 80, 0.15);
+      color: var(--primary-color);
     }
   }
 
-  //select and menu
+  // Select and menu
   .mat-mdc-select-panel,
   .mat-mdc-menu-panel {
     background-color: var(--background-tertiary);
     border: 1px solid var(--border-medium);
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
   .mat-mdc-option {
@@ -398,11 +263,82 @@ body.dark-theme {
   }
 }
 
+// ----------------------------------------------
+// Light Theme
+// ----------------------------------------------
+body.light-theme {
+  @include component-overrides;
 
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --text-tertiary: #bbbbbb;
+  --background-base: whitesmoke;
+  --background-primary: #f5f5f5;
+  --background-secondary: #fefefe;
+  --background-tertiary: #e0e0e0;
+  --background-hover: rgba(0, 0, 0, 0.04);
+  --border-subtle: rgba(0, 0, 0, 0.15);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --primary-color: #4CAF50;
+  --link-color: blue;
+  --chip-selected-text: #ffffff;
+
+  --heatmap-filled: #4caf50;
+  --heatmap-disabled: #dddddd;
+  --heatmap-background: white;
+  --heatmap-stroke: black;
+  --heatmap-cursor-hover: #1c8b1c;
+  --heatmap-cursor-selected: #3d3d3d;
+
+  --dependency-link: #707070;
+  --dependency-border: #222222;
+  --dependency-mainnode-fill: #4caf50;
+  --dependency-predecessor-fill: #deeedeff;
+  --dependency-successor-fill: #fdfdfdff;
+}
+
+// ----------------------------------------------
+// Dark Theme
+// ----------------------------------------------
+body.dark-theme {
+  @include mat.all-component-colors(m3.$dark-theme);
+  @include component-overrides;
+
+  --text-primary: #e8e8e8;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #616161;
+  --background-base: #323436;
+  --background-primary: #383A3C;
+  --background-secondary: #3E4042;
+  --background-tertiary: #444648;
+  --background-hover: #2C2E30;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --primary-color: #4CAF50;
+  --link-color: #66bb6a;
+  --chip-selected-text: #000000;
+
+  --heatmap-filled: #007700;
+  --heatmap-disabled: #555555;
+  --heatmap-background: #bbbbbb;
+  --heatmap-stroke: #000000;
+  --heatmap-cursor-hover: #145e14;
+  --heatmap-cursor-selected: #232323;
+
+  --dependency-link: #8a8a8a;
+  --dependency-border: #1a2e1a;
+  --dependency-mainnode-fill: rgb(107, 190, 107);
+  --dependency-predecessor-fill: rgb(160, 200, 160);
+  --dependency-successor-fill: rgb(185, 185, 185);
+}
+
+// ----------------------------------------------
+// Global (theme-independent) Styles
+// ----------------------------------------------
 .button-container {
   display: flex;
-  flex-direction: column; // Vertical alignment
-  gap: 10px; // Space between buttons
+  flex-direction: column;
+  gap: 100px;
 }
 
 svg .cursors path {
