@@ -42,7 +42,6 @@ html {
     border-radius: 10px;
   }
 
-  // Toolbar / Navbar
   .mat-toolbar {
     background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
@@ -52,7 +51,6 @@ html {
     background-color: var(--background-base);
   }
 
-  // Sidenav
   .mat-drawer,
   .mat-sidenav {
     background-color: var(--background-primary);
@@ -62,7 +60,6 @@ html {
     background-color: var(--background-base);
   }
 
-  // Cards and panels
   mat-card,
   .mat-mdc-card {
     background-color: var(--background-primary);
@@ -76,7 +73,6 @@ html {
     }
   }
 
-  // Tables
   .mat-mdc-table,
   table[mat-table] {
     background-color: var(--background-primary);
@@ -105,7 +101,6 @@ html {
     color: var(--text-primary);
   }
 
-  // Dialog
   .mat-mdc-dialog-container {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
@@ -113,7 +108,6 @@ html {
     border-radius: 12px;
   }
 
-  // Expansion panels
   .mat-expansion-panel,
   .mat-accordion {
     background-color: var(--background-primary);
@@ -135,31 +129,25 @@ html {
   .mat-mdc-chip.mat-mdc-standard-chip {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px !important;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
 
-    // Hide the selection checkmark
     .mdc-evolution-chip__graphic {
-      display: none !important;
+      display: none;
     }
 
     .mdc-evolution-chip__text-label {
       color: var(--text-primary);
+      padding: 0 12px;
     }
 
-    &:hover {
-      background-color: var(--background-hover);
-      border-color: var(--border-medium);
+    .mdc-evolution-chip__action--primary {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
     }
   }
 
   .mat-mdc-chip.mat-mdc-standard-chip.mdc-evolution-chip--selected {
     background-color: var(--primary-color);
-
-    .mdc-evolution-chip__text-label {
-      color: var(--chip-selected-text);
-    }
   }
 
   // Form fields
@@ -281,7 +269,6 @@ body.light-theme {
   --border-medium: rgba(0, 0, 0, 0.12);
   --primary-color: #4CAF50;
   --link-color: blue;
-  --chip-selected-text: #ffffff;
 
   --heatmap-filled: #4caf50;
   --heatmap-disabled: #dddddd;
@@ -316,7 +303,6 @@ body.dark-theme {
   --border-medium: rgba(255, 255, 255, 0.12);
   --primary-color: #4CAF50;
   --link-color: #66bb6a;
-  --chip-selected-text: #000000;
 
   --heatmap-filled: #007700;
   --heatmap-disabled: #555555;
