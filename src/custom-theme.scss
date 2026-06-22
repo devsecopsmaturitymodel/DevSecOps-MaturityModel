@@ -190,6 +190,7 @@ html {
   }
 
   .mat-mdc-raised-button {
+    padding: 0px 20px;
     background-color: var(--background-secondary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
@@ -198,6 +199,15 @@ html {
       background-color: var(--background-hover);
     }
   }
+  .mat-mdc-outlined-button{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
 
   // Modal overlay
   .overlay-wrapper,
@@ -336,7 +346,7 @@ body.dark-theme {
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 0px;
 }
 
 svg .cursors path {
