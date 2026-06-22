@@ -101,12 +101,26 @@ html {
     color: var(--text-primary);
   }
 
-  .mat-mdc-dialog-container {
-    background-color: var(--background-tertiary);
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 90vw !important;
+}
+
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: var(--background-primary);
+  --mdc-dialog-subhead-color: var(--text-primary);
+  --mdc-dialog-supporting-text-color: var(--text-primary);
+  --mdc-dialog-container-shape: 24px;
+    background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-medium);
     border-radius: 12px;
   }
+
+  .mat-mdc-dialog-content {
+    background-color: var(--background-tertiary);
+  }
+
+  
 
   .mat-expansion-panel,
   .mat-accordion {

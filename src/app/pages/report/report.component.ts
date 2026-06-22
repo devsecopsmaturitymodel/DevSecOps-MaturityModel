@@ -502,7 +502,8 @@ export class ReportComponent implements OnInit {
     };
 
     this.dialog.open(ViewEvidenceModalComponent, {
-      width: '700px',
+      width: '100000px',
+      maxWidth: 'none',
       maxHeight: '90vh',
       data: dialogData,
     });

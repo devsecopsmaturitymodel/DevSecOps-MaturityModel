@@ -821,7 +821,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     };
 
     const dialogRef = this.dialog.open(AddEvidenceModalComponent, {
-      width: '700px',
+      width: '600px',
       maxHeight: '90vh',
       data: dialogData,
     });
@@ -841,7 +841,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     };
 
     this.dialog.open(ViewEvidenceModalComponent, {
-      width: '700px',
+      width: '500px',
       maxHeight: '90vh',
       data: dialogData,
     });
