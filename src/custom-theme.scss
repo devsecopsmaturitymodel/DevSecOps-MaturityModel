@@ -115,13 +115,25 @@ html {
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
 
+    --mat-expansion-header-text-size: 14px;
+    --mat-expansion-header-text-weight: 500;
+    --mat-expansion-container-text-size: 14px;
+    --mat-expansion-container-text-line-height: 1.4;
+    --mat-expansion-header-text-line-height: 1.4;
+
+
     .mat-expansion-panel-header {
       background-color: var(--background-secondary);
       border-radius: 8px;
+      padding: 0 16px;
 
       &:hover {
         background-color: var(--background-hover);
       }
+    }
+
+    .mat-expansion-panel-body {
+      padding: 5px 16px;
     }
   }
 
