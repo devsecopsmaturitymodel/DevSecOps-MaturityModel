@@ -102,31 +102,26 @@ html {
   }
 
 
-.mat-mdc-dialog-container {
-  --mdc-dialog-container-color: var(--background-primary);
-  --mdc-dialog-subhead-color: var(--text-primary);
-  --mdc-dialog-supporting-text-color: var(--text-primary);
-  --mdc-dialog-container-shape: 24px;
-    background-color: var(--background-primary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-medium);
-    border-radius: 12px;
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: var(--background-primary);
+    --mdc-dialog-subhead-color: var(--text-primary);
+    --mdc-dialog-supporting-text-color: var(--text-primary);
+    --mdc-dialog-container-shape: 24px;
+      background-color: var(--background-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-medium);
+      border-radius: 12px;
+    }
+
+    .mat-mdc-dialog-content {
+      background-color: var(--background-tertiary);
+    }
+
+    
+  .mat-mdc-slider {
+    --mat-slider-hover-state-layer-color: transparent;
+    --mat-slider-focus-state-layer-color: transparent;
   }
-
-  .mat-mdc-dialog-content {
-    background-color: var(--background-tertiary);
-  }
-
-  
-.mat-mdc-slider {
-  --mat-slider-hover-state-layer-color: transparent;
-  --mat-slider-focus-state-layer-color: transparent;
-}
-
-.mat-mdc-select-panel{
-  --mat-select-panel-background-color: #000;
-}
-
 
   .mat-expansion-panel,
   .mat-accordion {
