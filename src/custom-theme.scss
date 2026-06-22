@@ -137,6 +137,10 @@ html {
     }
   }
 
+  .mat-accordion{
+    border: none;
+  }
+
   // Chips — hide checkmark, black/white text only
   .mat-mdc-chip.mat-mdc-standard-chip {
     background-color: var(--background-tertiary);
