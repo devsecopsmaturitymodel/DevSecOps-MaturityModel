@@ -21,9 +21,9 @@
     <mat-card-content>
       <div class="max-level-row">
         <label class="nowrap">Max level</label>
-        <!-- TODO: The 'tickInterval' property no longer exists -->
         <mat-slider
           id="maxLevelSlider"
+          showTickMarks
           min="1"
           [max]="dataStoreMaxLevel || 5"
           step="1"

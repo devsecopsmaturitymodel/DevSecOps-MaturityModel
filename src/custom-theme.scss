@@ -121,6 +121,15 @@ html {
   }
 
   
+.mat-mdc-slider {
+  --mat-slider-hover-state-layer-color: transparent;
+  --mat-slider-focus-state-layer-color: transparent;
+}
+
+.mat-mdc-select-panel{
+  --mat-select-panel-background-color: #000;
+}
+
 
   .mat-expansion-panel,
   .mat-accordion {
@@ -201,6 +210,10 @@ html {
   .mat-mdc-floating-label {
     color: var(--text-secondary);
   }
+
+  .mat-mdc-form-field {
+  --mdc-filled-text-field-container-color: var(--background-secondary);
+}
 
   // Buttons
   .mat-mdc-icon-button:hover {

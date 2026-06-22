@@ -1,6 +1,5 @@
 <div class="progress-container">
-  <!-- TODO: The 'tickInterval' property no longer exists -->
-  <mat-slider [min]="0" [max]="steps.length - 1" [step]="1" #ngSlider
+  <mat-slider [min]="0" [max]="steps.length - 1" [step]="1" showTickMarks #ngSlider
     ><input
       matSliderThumb
       [value]="currentValue"
