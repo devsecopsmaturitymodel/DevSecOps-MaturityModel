@@ -164,7 +164,6 @@ html {
     border: none;
   }
 
-  // Chips — hide checkmark, black/white text only
   .mat-mdc-chip.mat-mdc-standard-chip {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
@@ -189,7 +188,6 @@ html {
     background-color: var(--primary-color);
   }
 
-  // Form fields
   .mat-mdc-form-field .mdc-notched-outline__leading,
   .mat-mdc-form-field .mdc-notched-outline__notch,
   .mat-mdc-form-field .mdc-notched-outline__trailing {
@@ -215,7 +213,6 @@ html {
   --mdc-filled-text-field-container-color: var(--background-secondary);
 }
 
-  // Buttons
   .mat-mdc-icon-button:hover {
     background-color: var(--background-hover);
   }
@@ -240,7 +237,6 @@ html {
   }
 
 
-  // Modal overlay
   .overlay-wrapper,
   .overlay-modal {
     background-color: var(--background-tertiary);
@@ -259,7 +255,6 @@ html {
     }
   }
 
-  // Circular heatmap
   .circular-heat text,
   .labels.segment text {
     fill: var(--text-primary);
@@ -270,7 +265,6 @@ html {
     stroke: var(--heatmap-stroke);
   }
 
-  // List items and nav
   .mat-mdc-list-item,
   .mat-nav-list .mat-list-item {
     color: var(--text-secondary);
@@ -286,7 +280,6 @@ html {
     }
   }
 
-  // Select and menu
   .mat-mdc-select-panel,
   .mat-mdc-menu-panel {
     background-color: var(--background-tertiary);
@@ -304,9 +297,6 @@ html {
   }
 }
 
-// ----------------------------------------------
-// Light Theme
-// ----------------------------------------------
 body.light-theme {
   @include component-overrides;
 
@@ -337,9 +327,6 @@ body.light-theme {
   --dependency-successor-fill: #fdfdfdff;
 }
 
-// ----------------------------------------------
-// Dark Theme
-// ----------------------------------------------
 body.dark-theme {
   @include mat.all-component-colors(m3.$dark-theme);
   @include component-overrides;
