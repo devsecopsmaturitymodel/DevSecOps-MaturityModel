@@ -9,6 +9,7 @@ import {
 import md from 'markdown-it';
 import { MarkdownText } from 'src/app/model/markdown-text';
 import { NotificationService } from 'src/app/service/notification.service';
+import { dialogSizeConfig } from 'src/app/util/dialog-sizes';
 import { MatButtonModule } from '@angular/material/button';
 import { NgFor } from '@angular/common';
 
@@ -62,6 +63,7 @@ export class ModalMessageComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.data = dialogInfo;
     dialogConfig.autoFocus = false;
+    Object.assign(dialogConfig, dialogSizeConfig('md'));
     this.dialogRef = this.dialog.open(ModalMessageComponent, dialogConfig);
     return this.dialogRef;
   }

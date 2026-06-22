@@ -101,9 +101,6 @@ html {
     color: var(--text-primary);
   }
 
-.cdk-overlay-pane.mat-mdc-dialog-panel {
-  max-width: 90vw !important;
-}
 
 .mat-mdc-dialog-container {
   --mdc-dialog-container-color: var(--background-primary);

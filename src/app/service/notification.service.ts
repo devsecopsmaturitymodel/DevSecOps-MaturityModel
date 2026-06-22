@@ -5,6 +5,7 @@ import {
   ModalMessageComponent,
   DialogInfo,
 } from '../component/modal-message/modal-message.component';
+import { dialogSizeConfig } from '../util/dialog-sizes';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
@@ -21,6 +22,7 @@ export class NotificationService {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;
     dialogConfig.data = new DialogInfo(message, title);
+    Object.assign(dialogConfig, dialogSizeConfig('md'));
 
     this.dialog.open(ModalMessageComponent, dialogConfig);
   }

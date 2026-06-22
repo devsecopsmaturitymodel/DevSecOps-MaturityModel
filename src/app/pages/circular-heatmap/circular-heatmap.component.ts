@@ -37,6 +37,7 @@ import {
   ViewEvidenceModalComponent,
   ViewEvidenceModalData,
 } from '../../component/view-evidence-modal/view-evidence-modal.component';
+import { dialogSizeConfig } from '../../util/dialog-sizes';
 import { ProgressSliderComponent } from '../../component/progress-slider/progress-slider.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -821,8 +822,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     };
 
     const dialogRef = this.dialog.open(AddEvidenceModalComponent, {
-      width: '600px',
-      maxHeight: '90vh',
+      ...dialogSizeConfig('md'),
       data: dialogData,
     });
 
@@ -841,8 +841,7 @@ export class CircularHeatmapComponent implements OnInit, OnDestroy {
     };
 
     this.dialog.open(ViewEvidenceModalComponent, {
-      width: '500px',
-      maxHeight: '90vh',
+      ...dialogSizeConfig('md'),
       data: dialogData,
     });
   }

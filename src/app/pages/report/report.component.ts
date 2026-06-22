@@ -23,6 +23,7 @@ import {
   ViewEvidenceModalComponent,
   ViewEvidenceModalData,
 } from '../../component/view-evidence-modal/view-evidence-modal.component';
+import { dialogSizeConfig } from '../../util/dialog-sizes';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ColResizeDirective } from '../../directive/col-resize.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -334,8 +335,7 @@ export class ReportComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(ReportConfigModalComponent, {
-      width: '700px',
-      maxHeight: '90vh',
+      ...dialogSizeConfig('lg'),
       data: modalData,
     });
 
@@ -502,9 +502,7 @@ export class ReportComponent implements OnInit {
     };
 
     this.dialog.open(ViewEvidenceModalComponent, {
-      width: '100000px',
-      maxWidth: 'none',
-      maxHeight: '90vh',
+      ...dialogSizeConfig('md'),
       data: dialogData,
     });
   }
