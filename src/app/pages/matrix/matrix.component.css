@@ -152,3 +152,8 @@ mat-divider {
   color: rgba(0, 0, 0, 0.54);
   padding: 24px;
 }
+
+.mat-mdc-cell mat-icon[mat-list-icon].matrix-icons {
+  width: 55px;
+  color: var(--primary-color)
+}

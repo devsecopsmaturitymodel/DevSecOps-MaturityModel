@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SidenavButtonsComponent } from './sidenav-buttons.component';
 import { ThemeService } from '../../service/theme.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockThemeService {
   theme = signal<string>('light');
@@ -26,8 +27,13 @@ describe('SidenavButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidenavButtonsComponent, HttpClientTestingModule],
-      providers: [provideRouter([]), { provide: ThemeService, useClass: MockThemeService }],
+      imports: [SidenavButtonsComponent],
+      providers: [
+        provideRouter([]),
+        { provide: ThemeService, useClass: MockThemeService },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
   });
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { get } from 'http';
 
 export interface GithubReleaseInfo {
   tagName: string;

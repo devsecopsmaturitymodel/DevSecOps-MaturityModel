@@ -1,4 +1,14 @@
 [matListItemIcon].sidenav-button-icons {
   margin-right: 18px;
   margin-left: 22px;
+  color: var(--primary-color);
+}
+
+a:hover [matListItemIcon].sidenav-button-icons,
+mat-list-item:hover [matListItemIcon].sidenav-button-icons {
+  color: var(--primary-color);
+}
+
+mat-list:hover .theme-button {
+  background-color: var(--background-tertiary);
 }

@@ -1,180 +1,27 @@
 @use '@angular/material' as mat;
+@use './m3-theme' as m3;
 
 .mat-drawer,
 .mat-drawer-container {
   transition: background 300ms cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// ----------------------------------------------
-// Theme Colors and Typography
-// ----------------------------------------------
-$light-theme: (
-  background: white,
-  text: black,
-  link: blue,
-);
-
-$custom-dark-theme: (
-  background: #323436,
-  text: #e8e8e8,
-  link: #66bb6a,
-);
-
-$custom-typography: mat.define-typography-config(
-   $font-family:  'Roboto, Helvetica Neue, sans-serif'
-);
-
-// Core styles (ripple, overlay, etc.)
 @include mat.core();
 
-// ----------------------------------------------
-// Angular Material Palettes
-// ----------------------------------------------
-$DSOMM-primary: mat.define-palette(mat.$green-palette, 500);
-$DSOMM-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$DSOMM-warn: mat.define-palette(mat.$red-palette);
-
-$DSOMM-dark-primary: mat.define-palette(mat.$green-palette, 500);
-
-// ----------------------------------------------
-// Angular Material Themes
-// ----------------------------------------------
-$DSOMM-light-theme: mat.define-light-theme((
-  color: (
-    primary: $DSOMM-primary,
-    accent: $DSOMM-accent,
-    warn: $DSOMM-warn
-  ),
-  typography: $custom-typography,
-  density: 0
-));
-
-$DSOMM-dark-theme: mat.define-dark-theme((
-  color: (
-    primary: $DSOMM-dark-primary,
-    accent: $DSOMM-accent,
-    warn: $DSOMM-warn
-  ),
-  typography: $custom-typography,
-  density: 0
-));
-
-@include mat.all-component-themes($DSOMM-light-theme);
-
-// ----------------------------------------------
-// Base Theme Mixin
-// ----------------------------------------------
-@mixin apply-theme($theme) {
-  background-color: map-get($theme, background);
-  color: map-get($theme, text);
-
-  a {
-    color: map-get($theme, link);
-  }
-
-  a:visited {
-    color: map-get($theme, visited-link);
-  }
+html {
+  @include mat.all-component-themes(m3.$light-theme);
 }
 
-// ----------------------------------------------
-// Light Mode Styles
-// ----------------------------------------------
-body {
-
-  .title-button,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: map-get($light-theme, text);
-  }
-}
-
-.light-theme {
-  --text-primary: #000000;
-  --text-secondary: #666666;
-  --text-tertiary: #bbbbbb;
-  --background-primary: #f5f5f5;
-  --background-secondary: #fefefe;
-  --background-tertiary: #f8f9fa;
-
-  --primary-color: #{mat.get-color-from-palette($DSOMM-primary)};
-
-  --heatmap-filled: #4caf50;
-  --heatmap-disabled: #dddddd;
-  --heatmap-background: white;
-  --heatmap-stroke: black;
-  --heatmap-cursor-hover: #1c8b1c;
-  --heatmap-cursor-selected: #3d3d3d;
-
-  --dependency-link: #707070;
-  --dependency-border: #222222;
-  --dependency-mainnode-fill: #4caf50;
-  --dependency-predecessor-fill: #deeedeff;
-  --dependency-successor-fill: #fdfdfdff;
-
-  // @include mat.all-component-colors($DSOMM-light-theme);
-}
-
-// ----------------------------------------------
-// Dark Mode Styles
-// ----------------------------------------------
-body.dark-theme {
-  @include apply-theme($custom-dark-theme);
-  @include mat.all-component-colors($DSOMM-dark-theme);
-
-  --background-base: #323436;
-  /* page background */
-  --background-primary: #383A3C;
-  /* cards, panels */
-  --background-secondary: #3E4042;
-  /* elevated cards */
-  --background-tertiary: #444648;
-  /* dialogs, dropdowns */
-  --background-hover: #2C2E30;
-  /* hover states */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.12);
-
-  --text-primary: #e8e8e8;
-  --text-secondary: #a0a0a0;
-  --text-tertiary: #616161;
-
-  --primary-color: #{mat.get-color-from-palette($DSOMM-dark-primary)};
-
-  --heatmap-filled: #007700;
-  --heatmap-disabled: #555555;
-  --heatmap-background: #bbbbbb;
-  --heatmap-stroke: #000000;
-  --heatmap-cursor-hover: #145e14;
-  --heatmap-cursor-selected: #232323;
-
-  --dependency-link: #8a8a8a;
-  --dependency-border: #1a2e1a;
-  --dependency-mainnode-fill: rgb(107, 190, 107);
-  --dependency-predecessor-fill: rgb(160, 200, 160);
-  --dependency-successor-fill: rgb(185, 185, 185);
-
+@mixin component-overrides {
   background-color: var(--background-base);
   color: var(--text-primary);
 
   .title-button,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: map-get($custom-dark-theme, text);
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
   }
 
-  // General properties
-  p,
-  li,
-  tr {
+  p, li, tr {
     color: var(--text-primary);
   }
 
@@ -183,59 +30,49 @@ body.dark-theme {
   }
 
   a {
-    color: #66bb6a;
+    color: var(--link-color);
   }
 
-  a:visited {
-    color: #66bb6a;
+  .mat-drawer,
+  .mat-sidenav {
+    border-right: 1px solid var(--border-subtle);
   }
 
-  //cards and panels
+  .mat-mdc-list-item {
+    border-radius: 10px;
+  }
+
+  .mat-toolbar {
+    background-color: var(--background-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mat-sidenav-content {
+    background-color: var(--background-base);
+  }
+
+  .mat-drawer,
+  .mat-sidenav {
+    background-color: var(--background-primary);
+  }
+
+  .mat-drawer-container {
+    background-color: var(--background-base);
+  }
+
   mat-card,
   .mat-mdc-card {
     background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4),
-      0 1px 3px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
     &:hover {
       border-color: var(--border-medium);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5),
-        0 2px 6px rgba(0, 0, 0, 0.4);
     }
   }
 
-  //sidenav
-  .mat-drawer,
-  .mat-sidenav {
-    background-color: var(--background-primary);
-    border-right: 1px solid var(--border-subtle);
-  }
-
-  .mat-drawer-container {
-    background-color: var(--background-base);
-  }
-  
-  //navbar
-   .mat-toolbar {
-    background-color: var(--background-primary);
-    border-bottom: 1px solid var(--border-subtle);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-  }
-
-   // ----------------------------------------------
-  // Toolbar / Navbar
-  // ----------------------------------------------
-  .mat-toolbar {
-    background-color: var(--background-primary);
-    border-bottom: 1px solid var(--border-subtle);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-  }
-
-  //Tables
   .mat-mdc-table,
   table[mat-table] {
     background-color: var(--background-primary);
@@ -258,88 +95,122 @@ body.dark-theme {
     background-color: var(--background-primary);
     border-bottom: 1px solid var(--border-subtle);
     transition: background-color 0.15s ease;
-
-    &:hover {
-      background-color: var(--background-hover);
-    }
   }
 
   .mat-mdc-cell {
     color: var(--text-primary);
   }
 
-  // Dialog styling
+
   .mat-mdc-dialog-container {
-    background-color: var(--background-tertiary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-medium);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    --mdc-dialog-container-color: var(--background-primary);
+    --mdc-dialog-subhead-color: var(--text-primary);
+    --mdc-dialog-supporting-text-color: var(--text-primary);
+    --mdc-dialog-container-shape: 24px;
+      background-color: var(--background-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-medium);
+      border-radius: 12px;
+    }
+
+    .mat-mdc-dialog-content {
+      background-color: var(--background-tertiary);
+    }
+
+    
+  .mat-mdc-slider {
+    --mat-slider-hover-state-layer-color: transparent;
+    --mat-slider-focus-state-layer-color: transparent;
   }
 
-  // Expansion panels and accordion
   .mat-expansion-panel,
   .mat-accordion {
     background-color: var(--background-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
-    border-radius: 8px ;
+    border-radius: 8px;
+
+    --mat-expansion-header-text-size: 14px;
+    --mat-expansion-header-text-weight: 500;
+    --mat-expansion-container-text-size: 14px;
+    --mat-expansion-container-text-line-height: 1.4;
+    --mat-expansion-header-text-line-height: 1.4;
+
 
     .mat-expansion-panel-header {
       background-color: var(--background-secondary);
       border-radius: 8px;
+      padding: 0 16px;
 
       &:hover {
         background-color: var(--background-hover);
       }
     }
-  }
 
-  //chips
-  .mat-mdc-chip.mat-mdc-standard-chip {
-    background-color: var(--background-tertiary);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-
-    &:hover {
-      background-color: var(--background-hover);
-      border-color: var(--border-medium);
+    .mat-expansion-panel-body {
+      padding: 5px 16px;
     }
   }
 
+  .mat-accordion{
+    border: none;
+  }
+
+  .mat-mdc-chip.mat-mdc-standard-chip {
+    background-color: var(--background-tertiary);
+    color: var(--text-primary);
+
+    .mdc-evolution-chip__graphic {
+      display: none;
+    }
+
+    .mdc-evolution-chip__text-label {
+      color: var(--text-primary);
+      padding: 0 12px;
+    }
+
+    .mdc-evolution-chip__action--primary {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+  }
 
   .mat-mdc-chip.mat-mdc-standard-chip.mdc-evolution-chip--selected {
     background-color: var(--primary-color);
   }
-  
-  // Form fields and inputs
+
   .mat-mdc-form-field .mdc-notched-outline__leading,
   .mat-mdc-form-field .mdc-notched-outline__notch,
   .mat-mdc-form-field .mdc-notched-outline__trailing {
     border-color: var(--border-medium);
   }
+
   .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
   .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
   .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
-    border-color: #66bb6a;
+    border-color: var(--primary-color);
   }
 
   .mat-mdc-input-element {
     color: var(--text-primary);
-    caret-color: #66bb6a;
+    caret-color: var(--primary-color);
   }
+
   .mat-mdc-floating-label {
     color: var(--text-secondary);
   }
 
-  // Buttons
+  .mat-mdc-form-field {
+  --mdc-filled-text-field-container-color: var(--background-secondary);
+}
+
   .mat-mdc-icon-button:hover {
     background-color: var(--background-hover);
   }
 
   .mat-mdc-raised-button {
+    padding: 0px 20px;
     background-color: var(--background-secondary);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
@@ -348,15 +219,23 @@ body.dark-theme {
       background-color: var(--background-hover);
     }
   }
+  .mat-mdc-outlined-button{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
 
-  // Modal override
+
   .overlay-wrapper,
   .overlay-modal {
     background-color: var(--background-tertiary);
     color: var(--text-primary);
-    border: 1px solid var(--border-medium); 
+    border: 1px solid var(--border-medium);
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+
     mat-card {
       background-color: transparent;
       border: none;
@@ -368,24 +247,19 @@ body.dark-theme {
     }
   }
 
-
-  // Circular heatmap (radar chart)
   .circular-heat text,
   .labels.segment text {
-    fill: #ffffff;
+    fill: var(--text-primary);
   }
 
   .circular-heat line,
   .circular-heat path {
     stroke: var(--heatmap-stroke);
   }
-   
-  // List items and nav
+
   .mat-mdc-list-item,
   .mat-nav-list .mat-list-item {
     color: var(--text-secondary);
-    border-radius: 8px;
-    transition: background-color 0.15s ease, color 0.15s ease;
 
     &:hover {
       background-color: var(--background-hover);
@@ -393,18 +267,16 @@ body.dark-theme {
     }
 
     &.active {
-      background-color: rgba(102, 187, 106, 0.15);
-      color: #66bb6a;
+      background-color: rgba(76, 175, 80, 0.15);
+      color: var(--primary-color);
     }
   }
 
-  //select and menu
   .mat-mdc-select-panel,
   .mat-mdc-menu-panel {
     background-color: var(--background-tertiary);
     border: 1px solid var(--border-medium);
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
   .mat-mdc-option {
@@ -417,11 +289,74 @@ body.dark-theme {
   }
 }
 
+body.light-theme {
+  @include component-overrides;
 
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --text-tertiary: #bbbbbb;
+  --background-base: whitesmoke;
+  --background-primary: #f5f5f5;
+  --background-secondary: #fefefe;
+  --background-tertiary: #e0e0e0;
+  --background-hover: rgba(0, 0, 0, 0.04);
+  --border-subtle: rgba(0, 0, 0, 0.15);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --primary-color: #4CAF50;
+  --link-color: blue;
+
+  --heatmap-filled: #4caf50;
+  --heatmap-disabled: #dddddd;
+  --heatmap-background: white;
+  --heatmap-stroke: black;
+  --heatmap-cursor-hover: #1c8b1c;
+  --heatmap-cursor-selected: #3d3d3d;
+
+  --dependency-link: #707070;
+  --dependency-border: #222222;
+  --dependency-mainnode-fill: #4caf50;
+  --dependency-predecessor-fill: #deeedeff;
+  --dependency-successor-fill: #fdfdfdff;
+}
+
+body.dark-theme {
+  @include mat.all-component-colors(m3.$dark-theme);
+  @include component-overrides;
+
+  --text-primary: #e8e8e8;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #616161;
+  --background-base: #323436;
+  --background-primary: #383A3C;
+  --background-secondary: #3E4042;
+  --background-tertiary: #444648;
+  --background-hover: #2C2E30;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --primary-color: #4CAF50;
+  --link-color: #66bb6a;
+
+  --heatmap-filled: #007700;
+  --heatmap-disabled: #555555;
+  --heatmap-background: #bbbbbb;
+  --heatmap-stroke: #000000;
+  --heatmap-cursor-hover: #145e14;
+  --heatmap-cursor-selected: #232323;
+
+  --dependency-link: #8a8a8a;
+  --dependency-border: #1a2e1a;
+  --dependency-mainnode-fill: rgb(107, 190, 107);
+  --dependency-predecessor-fill: rgb(160, 200, 160);
+  --dependency-successor-fill: rgb(185, 185, 185);
+}
+
+// ----------------------------------------------
+// Global (theme-independent) Styles
+// ----------------------------------------------
 .button-container {
   display: flex;
-  flex-direction: column; // Vertical alignment
-  gap: 10px; // Space between buttons
+  flex-direction: column;
+  gap: 0px;
 }
 
 svg .cursors path {
