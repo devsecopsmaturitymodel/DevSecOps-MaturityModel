@@ -24,6 +24,54 @@ You can switch on to show open TODO's for evidence by changing IS_SHOW_EVIDENCE_
 
 This page uses the Browser's localStorage to store the state of the circular headmap.
 
+# Static Demo Authentication
+
+This Angular frontend includes simple runtime-configured authentication for demo and internal
+deployments. All users have the same permissions.
+
+For local development, default demo credentials are defined in `src/assets/auth-config.json`:
+
+| Username | Password |
+| --- | --- |
+| `admin` | `dsomm-admin` |
+| `auditor` | `dsomm-audit` |
+| `developer` | `dsomm-dev` |
+| `viewer` | `dsomm-view` |
+
+For Docker deployments, define users at container startup instead of rebuilding the image:
+
+```yaml
+services:
+  dsomm:
+    image: wurstbrot/dsomm:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DSOMM_AUTH_USERS: >-
+        [
+          {"username":"admin","password":"change-me"},
+          {"username":"auditor","password":"audit-me"}
+        ]
+```
+
+The container entrypoint writes `DSOMM_AUTH_USERS` to `/srv/assets/auth-config.json`. You can also
+mount your own config file at `/srv/assets/auth-config.json` with this shape:
+
+```json
+{
+  "users": [
+    { "username": "admin", "password": "change-me" }
+  ]
+}
+```
+
+Sign in at `/login`. The app stores the current user in the browser's `sessionStorage`, so the
+login lasts only for the current browser session.
+
+Security warning: this is frontend-only authentication. It is not secure for production because
+the browser must receive the auth config and credentials can be inspected by users. Use a backend
+identity provider or server-side access control for production deployments.
+
 # Changes
 Changes to the application are displayed at the release page of [DevSecOps-MaturityModel](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/releases).
 

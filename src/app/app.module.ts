@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -40,6 +40,12 @@ import { ColResizeDirective } from './directive/col-resize.directive';
 import { AddEvidenceModalComponent } from './component/add-evidence-modal/add-evidence-modal.component';
 import { EvidencePanelComponent } from './component/evidence-panel/evidence-panel.component';
 import { ViewEvidenceModalComponent } from './component/view-evidence-modal/view-evidence-modal.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthService } from './services/auth.service';
+
+export function initializeAuth(authService: AuthService): () => Promise<void> {
+  return () => authService.loadConfig();
+}
 
 @NgModule({
   declarations: [
@@ -71,6 +77,7 @@ import { ViewEvidenceModalComponent } from './component/view-evidence-modal/view
     AddEvidenceModalComponent,
     EvidencePanelComponent,
     ViewEvidenceModalComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +96,7 @@ import { ViewEvidenceModalComponent } from './component/view-evidence-modal/view
   providers: [
     LoaderService,
     ModalMessageComponent,
+    { provide: APP_INITIALIZER, useFactory: initializeAuth, deps: [AuthService], multi: true },
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: { close: (dialogResult: any) => {} } },
   ],

@@ -1,0 +1,12 @@
+services:
+  dsomm:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DSOMM_AUTH_USERS: >-
+        [
+          {"username":"admin","password":"change-me"},
+          {"username":"auditor","password":"audit-me"},
+          {"username":"developer","password":"dev-me"}
+        ]

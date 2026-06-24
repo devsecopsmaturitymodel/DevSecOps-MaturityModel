@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "dsomm-admin"
+    },
+    {
+      "username": "auditor",
+      "password": "dsomm-audit"
+    },
+    {
+      "username": "developer",
+      "password": "dsomm-dev"
+    },
+    {
+      "username": "viewer",
+      "password": "dsomm-view"
+    }
+  ]
+}

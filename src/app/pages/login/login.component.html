@@ -1,0 +1,35 @@
+<div class="login-page">
+  <mat-card class="login-panel">
+    <mat-card-header>
+      <mat-card-title>Sign in to DSOMM</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" autocomplete="username" />
+          <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            autocomplete="current-password" />
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="login-error" *ngIf="loginFailed">Invalid credentials</div>
+
+        <button mat-raised-button color="primary" type="submit">Sign in</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

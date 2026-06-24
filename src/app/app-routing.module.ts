@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { UserdayComponent } from './pages/userday/userday.component';
@@ -11,21 +11,30 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { RoadmapComponent } from './pages/roadmap/roadmap.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ReportComponent } from './pages/report/report.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: CircularHeatmapComponent },
-  { path: 'circular-heatmap', component: CircularHeatmapComponent },
-  { path: 'matrix', component: MatrixComponent },
-  { path: 'activity-description', component: ActivityDescriptionPageComponent },
-  { path: 'mapping', component: MappingComponent },
-  { path: 'usage', redirectTo: 'usage/' },
-  { path: 'usage/:page', component: UsageComponent },
-  { path: 'teams', component: TeamsComponent },
-  { path: 'about', component: AboutUsComponent },
-  { path: 'userday', component: UserdayComponent },
-  { path: 'roadmap', component: RoadmapComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'report', component: ReportComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    canActivateChild: [AuthGuard],
+    children: [
+      { path: '', component: CircularHeatmapComponent },
+      { path: 'circular-heatmap', component: CircularHeatmapComponent },
+      { path: 'matrix', component: MatrixComponent },
+      { path: 'activity-description', component: ActivityDescriptionPageComponent },
+      { path: 'mapping', component: MappingComponent },
+      { path: 'usage', redirectTo: 'usage/' },
+      { path: 'usage/:page', component: UsageComponent },
+      { path: 'teams', component: TeamsComponent },
+      { path: 'about', component: AboutUsComponent },
+      { path: 'userday', component: UserdayComponent },
+      { path: 'roadmap', component: RoadmapComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'report', component: ReportComponent },
+    ],
+  },
 ];
 
 @NgModule({
