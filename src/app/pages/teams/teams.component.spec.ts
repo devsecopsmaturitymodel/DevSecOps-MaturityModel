@@ -1,5 +1,5 @@
-import { HttpClientModule, HttpHandler } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpHandler, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,13 +21,14 @@ describe('TeamsComponent', () => {
     /* eslint-disable */
     // await mockLoaderService.load();
     await TestBed.configureTestingModule({
+    imports: [NoopAnimationsModule, TeamsComponent],
     providers: [
         provideRouter([]),
-        HttpClientTestingModule,
+        provideHttpClientTesting(),
         { provide: ModalMessageComponent, useValue: {} },
         { provide: LoaderService, useValue: mockLoaderService },
-    ],
-    imports: [HttpClientModule, NoopAnimationsModule, TeamsComponent],
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
 }).compileComponents();
     /* eslint-enable */
   });

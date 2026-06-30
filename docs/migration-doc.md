@@ -341,6 +341,141 @@ A relatively smooth upgrade. Core, CLI, Material, CDK, and ESLint were bumped to
 
   
 
+<details>
+<summary><strong>Angular 17 → 18 + Complete UI Revamp</strong></summary>
+
+  
+
+### Summary
+
+Upgraded Angular Core, CLI, Material, and CDK to v18. TypeScript version pinning was tightened (`^` → `~`). An ESLint 18 warning required renaming the `cancel` output binding to `cancelEdit` across 3 files. Material 18 introduced the M3 theming system. The custom theme was regenerated via the CLI (`ng generate @angular/material:m3-theme`) and the `custom-theme.scss` file was refactored to unify dark/light mode overrides. Multiple UI component fixes followed to align with M3's updated DOM structure and default styles.
+
+  
+
+### Commit History
+
+  
+
+#### 1. Chore: Pin TypeScript Ranges in `package-lock.json` ([959bb88f](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/959bb88f))
+
+- Converted `^` (caret) ranges to `~` (tilde) in `package-lock.json` for tighter version pinning.
+
+  
+
+#### 2. Chore: Upgrade Angular Core & CLI to v18 ([18fafd7f](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/18fafd7f))
+
+- Executed `ng update @angular/core@18 @angular/cli@18`.
+
+  
+
+#### 3. Fix: Rename `cancel` Output to `cancelEdit` ([8859ce34](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/8859ce34))
+
+- Renamed `cancel` → `cancelEdit` across 3 files.
+- **Reason:** ESLint 18 warning — output bindings (including aliases) should not be named as standard DOM events.
+
+  
+
+#### 4. Chore: Upgrade Angular Material & CDK to v18 ([1575ec8c](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/1575ec8c))
+
+- Executed `ng update @angular/material@18 @angular/cdk@18`.
+
+  
+
+#### 5. Chore: Generate M3 Theme via CLI ([58b77590](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/58b77590))
+
+- Ran `ng generate @angular/material:m3-theme` to scaffold the new M3 theme configuration.
+
+  
+
+#### 6. Fix(UI): Sidenav Component ([d9b526e4](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/d9b526e4))
+
+- Fixed sidenav styling for M3 compatibility.
+
+  
+
+#### 7. Fix(UI): Matrix Page Icons ([b7eb30be](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/b7eb30be))
+
+- Fixed icon rendering on the Matrix page.
+
+  
+
+#### 8. Refactor: Unify Dark/Light Theme Overrides ([2514ae93](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/2514ae93))
+
+- Cleaned up `custom-theme.scss` — consolidated duplicate styles that were identical across dark and light themes into shared rules.
+
+  
+
+#### 9. Fix(UI): Mat-Chips ([ae994674](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/ae994674))
+
+- Fixed chip styling for M3.
+
+  
+
+#### 10. Fix(UI): Mat-Expansion-Panel ([8ddcc878](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/8ddcc878))
+
+- Fixed expansion panel styling for M3.
+
+  
+
+#### 11. Fix(UI): Mat-Button ([7e7a4411](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/7e7a4411))
+
+- Fixed button styling for M3.
+
+  
+
+#### 12. Fix(UI): Mat-Accordion Trailing Line ([dae53b67](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/dae53b67))
+
+- Removed trailing line artifact from accordion panels.
+
+  
+
+#### 13. Fix(UI): MatDialog Pop-Up Modal ([fdaa7db8](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/fdaa7db8))
+
+- Fixed dialog/modal styling for M3.
+
+  
+
+#### 14. Fix(UI): Mat-Slider ([6185748f](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/6185748f))
+
+- Fixed slider styling for M3.
+
+  
+
+#### 15. Chore: Remove Unnecessary Comments ([6f10efda](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/6f10efda))
+
+- Removed obvious/redundant comments from the codebase.
+
+  
+
+#### 16. Chore: Pin All Dependency Versions ([f1ec329](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/f1ec329))
+
+- Removed `~` and `^` ranges from every dependency for strict version pinning + regression fix.
+
+  
+
+#### 17. Refactor: Standardize MatDialog Sizing ([b95e65c2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/b95e65c2))
+
+- Introduced semantic size tiers for `MatDialog` width/height, replacing scattered hard-coded pixel values with a centralized sizing utility.
+
+  
+
+#### 18. Fix: Remove Redundant Mat-Select Global Styles ([b2361d88](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/b2361d88))
+
+- Removed unused `mat-select` CSS overrides from global styles: the rules were not being applied and the default M3 background color is already appropriate.
+
+  
+
+#### 19. Chore: Bump markdown-it Dependencies ([ff70f84d](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/ff70f84d))
+
+- Bumped `markdown-it` and `@types/markdown-it` to their latest versions.
+
+
+---
+
+</details>
+
+  
+
 ---
 
 ## Signal Migration
@@ -421,7 +556,6 @@ Known issues deferred from the Angular 14 → 15 migration. These should be addr
 
 | # | Component | Issue | Priority | Notes |
 |---|-----------|-------|----------|-------|
-| 1 | `ProgressSliderComponent` | Slider styling doesn't fully match the pre-migration look. The main issue is in the progress slider's background color in light mode: contrast is lesser. Also the discrete tick marks for completion levels were removed during the MDC migration. The legacy slider supported `[tickInterval]="1"` to render visible notch lines at each step, helping users distinguish between progress levels.. | Medium | The MDC `<mat-slider>` uses a nested `<input matSliderThumb>` pattern with different internal CSS classes (`.mdc-slider__track--active_fill`, `.mdc-slider__thumb-knob`). Current overrides work functionally but the visual fidelity can be improved. |  
 
 
 
