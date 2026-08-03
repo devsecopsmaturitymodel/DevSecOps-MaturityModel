@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,19 +33,28 @@ const MOCK_DATA = {
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
   let fixture: ComponentFixture<SettingsComponent>;
-  let settingsService: jasmine.SpyObj<SettingsService>;
-  let modalComponent: jasmine.SpyObj<ModalMessageComponent>;
+  let settingsService: {
+    getMaxLevel: ReturnType<typeof vi.fn>;
+    setMaxLevel: ReturnType<typeof vi.fn>;
+    getDateFormat: ReturnType<typeof vi.fn>;
+    setDateFormat: ReturnType<typeof vi.fn>;
+  };
+  let modalComponent: {
+    openDialog: ReturnType<typeof vi.fn>;
+  };
   mockLoaderService = new MockLoaderService(MOCK_DATA as unknown as Data);
 
   beforeEach(async () => {
     await mockLoaderService.load();
-    settingsService = jasmine.createSpyObj('SettingsService', [
-      'getMaxLevel',
-      'setMaxLevel',
-      'getDateFormat',
-      'setDateFormat',
-    ]);
-    modalComponent = jasmine.createSpyObj('ModalMessageComponent', ['openDialog']);
+    settingsService = {
+      getMaxLevel: vi.fn(),
+      setMaxLevel: vi.fn(),
+      getDateFormat: vi.fn(),
+      setDateFormat: vi.fn(),
+    };
+    modalComponent = {
+      openDialog: vi.fn(),
+    };
 
     await TestBed.configureTestingModule({
       imports: [
@@ -67,7 +77,7 @@ describe('SettingsComponent', () => {
         { provide: ModalMessageComponent, useValue: modalComponent },
         {
           provide: GithubService,
-          useValue: jasmine.createSpyObj('GithubService', ['getLatestRelease']),
+          useValue: { getLatestRelease: vi.fn() },
         },
       ],
     }).compileComponents();
@@ -80,7 +90,7 @@ describe('SettingsComponent', () => {
       activityMeta: null,
       activityFiles: [],
       progressDefinition: {},
-      saveProgressDefinition: jasmine.createSpy('saveProgressDefinition'),
+      saveProgressDefinition: vi.fn(),
     } as any);
 
     fixture.detectChanges();

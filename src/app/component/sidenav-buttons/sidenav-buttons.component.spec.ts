@@ -5,7 +5,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SidenavButtonsComponent } from './sidenav-buttons.component';
 import { ThemeService } from '../../service/theme.service';
-import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockThemeService {
   theme = signal<string>('light');
@@ -31,7 +31,7 @@ describe('SidenavButtonsComponent', () => {
       providers: [
         provideRouter([]),
         { provide: ThemeService, useClass: MockThemeService },
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     }).compileComponents();

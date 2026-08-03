@@ -94,7 +94,6 @@
             "tsConfig": "tsconfig.spec.json",
             "reporters": ["default"],
             "coverageReporters": ["html", "text-summary"],
-            "setupFiles": ["src/test.ts"],
             "buildTarget": ":build:testing",
             "runner": "vitest"
           }

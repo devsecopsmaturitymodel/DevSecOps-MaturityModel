@@ -2,7 +2,6 @@ import {
   HttpHandler,
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -34,7 +33,7 @@ describe('TeamsComponent', () => {
         provideHttpClientTesting(),
         { provide: ModalMessageComponent, useValue: {} },
         { provide: LoaderService, useValue: mockLoaderService },
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withInterceptorsFromDi()),
       ],
     }).compileComponents();
   });

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { SettingsService } from './settings.service';
 
@@ -10,7 +11,7 @@ describe('SettingsService', () => {
     localStorage.clear();
     TestBed.configureTestingModule({});
     service = TestBed.inject(SettingsService);
-    localStorageSpy = spyOn(localStorage, 'setItem').and.callThrough();
+    localStorageSpy = vi.spyOn(localStorage, 'setItem');
   });
 
   afterEach(() => {

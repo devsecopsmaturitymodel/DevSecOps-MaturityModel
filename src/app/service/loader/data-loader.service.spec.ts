@@ -3,7 +3,7 @@ import { LoaderService } from './data-loader.service';
 import { YamlService } from '../yaml-loader/yaml-loader.service';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialogModule } from '@angular/material/dialog';
-import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DataLoaderService', () => {
   let service: LoaderService;
@@ -14,7 +14,7 @@ describe('DataLoaderService', () => {
       providers: [
         LoaderService,
         YamlService,
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });

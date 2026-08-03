@@ -29,15 +29,15 @@ describe('ActivityStore', () => {
   it('load base yaml', () => {
     store.addActivityFile(baseYaml, errors);
 
-    expect(errors).toHaveSize(0);
-    expect(store.getAllDimensionNames()).toHaveSize(3);
+    expect(errors).toHaveLength(0);
+    expect(store.getAllDimensionNames()).toHaveLength(3);
     expect(store.getActivityByUuid('00000000-1111-1111-1111-000000000000')).toBeTruthy();
     expect(store.getActivityByUuid('00000000-1111-1111-1111-000000000000')?.name).toBe('Activity 111');
     expect(store.getActivityByName('Activity 111')?.level).toBe(1);
     expect(store.getActivityByName('Activity 121')?.uuid).toBe('00000000-1111-2222-1111-000000000000');
     expect(store.getActivityByName('Activity 112')?.dependsOn).toContain('Activity 111');
     expect(store.getActivityByName('Activity 112')?.dependsOn).toContain('Activity 121'); // Substituted uuid
-    expect(store.getActivities('Dimension 11', 1)).toHaveSize(2);
+    expect(store.getActivities('Dimension 11', 1)).toHaveLength(2);
     expect(store.getActivities('Dimension 11', 1)?.map(a => a.name)).toContain('Activity 112');
   });
 
@@ -48,8 +48,8 @@ describe('ActivityStore', () => {
     store.addActivityFile(yamlCopy, errors);
     store.addActivityFile(extraYaml, errors);
     
-    expect(errors).toHaveSize(0);
-    expect(store.getAllDimensionNames()).toHaveSize(3);
+    expect(errors).toHaveLength(0);
+    expect(store.getAllDimensionNames()).toHaveLength(3);
     expect(store.getActivityByName('Activity 111')).toBeUndefined(); // Changed name, to:
     expect(store.getActivityByName('OVERRIDE 111')?.uuid).toBe('00000000-1111-1111-1111-000000000000');
     expect(store.getActivityByName('OVERRIDE 111')?.description.toString()).toBe('OVERRIDE DESC AND LEVEL');
@@ -86,7 +86,7 @@ describe('ActivityStore', () => {
     expectArrayContainSubstring(errors, 'Duplicate activity name');
     
     // If all errors have been handled, expect the remaining errors to be empty
-    expect(errors).toHaveSize(0);
+    expect(errors).toHaveLength(0);
   });
 
   // prettier-ignore
@@ -102,13 +102,13 @@ describe('ActivityStore', () => {
     extraCopy['Category 2']['Dimension 21']['Activity 121'].uuid = 'fake-uuid';
 
     store.addActivityFile(yamlCopy, errors);
-    expect(errors).toHaveSize(0);
+    expect(errors).toHaveLength(0);
     store.addActivityFile(extraCopy, errors);
 
     expectArrayContainSubstring(errors, 'exists with different uuids');
 
     // If all errors have been handled, expect the remaining errors to be empty
-    expect(errors).toHaveSize(0);
+    expect(errors).toHaveLength(0);
   });
 });
 

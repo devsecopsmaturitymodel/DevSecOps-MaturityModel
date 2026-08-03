@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
@@ -46,7 +46,7 @@ describe('MatrixComponent', () => {
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: MatDialogRef, useValue: {} },
         { provide: ModalMessageComponent, useValue: {} },
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withInterceptorsFromDi()),
       ],
     }).compileComponents();
   });
@@ -83,14 +83,14 @@ describe('MatrixComponent', () => {
     // Toggle tag filter on
     console.log('Turn chip filter on');
     component.toggleTagFilters(createChipListboxChangeEvent(['tag1']));
-    expect(component.filtersTag()['tag1']).toBeTrue();
+    expect(component.filtersTag()['tag1']).toBe(true);
     expect(component.dataSource().length).toBe(1);
     expect(component.dataSource()[0].level1.length).toBe(1);
 
     // Toggle tag filter off again
     console.log('Turn chip filter off');
     component.toggleTagFilters(createChipListboxChangeEvent([]));
-    expect(component.filtersTag()['tag1']).toBeFalse();
+    expect(component.filtersTag()['tag1']).toBe(false);
     expect(component.dataSource().length).toBe(2);
     expect(component.dataSource()[0].level1.length).toBe(2);
   });

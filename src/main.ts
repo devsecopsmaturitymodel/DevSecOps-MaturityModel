@@ -8,7 +8,7 @@ import { enableProdMode, importProvidersFrom, provideZonelessChangeDetection } f
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { withInterceptorsFromDi, provideHttpClient, withXhr } from '@angular/common/http';
+import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -43,6 +43,6 @@ bootstrapApplication(AppComponent, {
     ModalMessageComponent,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: { close: (dialogResult: any) => {} } },
-    provideHttpClient(withXhr(), withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi()),
   ],
 }).catch(err => console.error(err));

@@ -4,7 +4,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { UsageComponent } from './usage.component';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
-import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('UsageComponent', () => {
   let component: UsageComponent;
@@ -14,7 +14,7 @@ describe('UsageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [UsageComponent],
       providers: [
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     }).compileComponents();

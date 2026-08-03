@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
@@ -32,7 +33,7 @@ describe('ProgressSliderComponent', () => {
 
   it('should emit step changes', () => {
     fixture.detectChanges();
-    spyOn(component.progressChange, 'emit');
+    vi.spyOn(component.progressChange, 'emit');
     component.onStepChange(2);
     expect(component.progressChange.emit).toHaveBeenCalledWith('Step 3');
   });
