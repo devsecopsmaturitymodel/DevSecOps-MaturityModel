@@ -39,7 +39,7 @@ export interface MatrixRow {
 type LevelKey = keyof Pick<
   MatrixRow,
   'level1' | 'level2' | 'level3' | 'level4' | 'level5' | 'level6' | 'level7'
->; // eslint-disable-line
+>;
 
 @UntilDestroy()
 @Component({
@@ -111,7 +111,6 @@ export class MatrixComponent implements OnInit {
     }
     return itemsStage2;
   });
-  /* eslint-enable */
 
   reset() {
     this.filtersDim.set(Object.fromEntries(Object.keys(this.filtersDim()).map(k => [k, false])));
@@ -143,9 +142,9 @@ export class MatrixComponent implements OnInit {
     const allDimensionNames = dataStore?.activityStore?.getAllDimensionNames() || [];
 
     this.MATRIX_DATA.set(this.buildMatrixData(dataStore.activityStore, allDimensionNames));
-    const levelsObj = this.buildLevels(dataStore.getLevelTitles(this.settings.getMaxLevel())); // eslint-disable-line
+    const levelsObj = this.buildLevels(dataStore.getLevelTitles(this.settings.getMaxLevel()));
     this.levels.set(levelsObj);
-    this.filtersTag.set(this.buildFiltersForTag(dataStore.activityStore.getAllActivities())); // eslint-disable-line
+    this.filtersTag.set(this.buildFiltersForTag(dataStore.activityStore.getAllActivities()));
     this.filtersDim.set(this.buildFiltersForDim(this.MATRIX_DATA()));
     this.columnNames.set(['Category', 'Dimension', ...Object.keys(levelsObj)]);
   }
@@ -259,7 +258,7 @@ export class MatrixComponent implements OnInit {
     };
     console.log(
       `${perfNow()}: Matrix: Open Details: '${this.dataStore?.activityStore?.getActivityByUuid(uuid).name}'`
-    ); // eslint-disable-line
+    );
     this.router.navigate([this.Routing], navigationExtras);
   }
 }

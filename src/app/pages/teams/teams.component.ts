@@ -69,7 +69,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
   info = signal<Partial<Record<string, TeamSummary>>>({});
 
   dataSource: MatTableDataSource<TeamSummaryActivityProgress> =
-    new MatTableDataSource<TeamSummaryActivityProgress>([]); // eslint-disable-line
+    new MatTableDataSource<TeamSummaryActivityProgress>([]);
   allColumnNames = signal<string[]>([]);
   progressColumnNames = signal<string[]>([]);
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
@@ -236,7 +236,6 @@ export class TeamsComponent implements OnInit, AfterViewInit {
   }
 
   makeTeamSummary(name: string, teams: TeamNames): TeamSummary {
-    /* eslint-disable */
     let activitiesStarted: progressStoreMapping[] =
       this.dataStore()?.progressStore?.getActivitiesStartedForTeams(teams) || [];
     let activitiesInProgress: progressStoreMapping[] =
@@ -273,7 +272,6 @@ export class TeamsComponent implements OnInit, AfterViewInit {
         // .map(activityProgress => activityProgress.lastUpdated)
         .reduce((max, current) => (current > max ? current : max));
     }
-    /* eslint-enable */
 
     return summary;
   }

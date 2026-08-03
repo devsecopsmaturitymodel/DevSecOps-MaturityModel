@@ -37,7 +37,6 @@ export class ModalMessageComponent implements OnInit {
     this.data = data;
   }
 
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
     this.notificationService.message$.subscribe(({ title, message }) => {
       this.openDialog(new DialogInfo(message, title));

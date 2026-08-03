@@ -134,7 +134,7 @@ describe('ActivityDescriptionComponent', () => {
     expect(HTMLElement.querySelector('#assessment')?.textContent).toContain(testAssessment);
     expect(HTMLElement.querySelector('#implementationGuide')?.textContent).toContain(
       testImplementationGuide
-    ); // eslint-disable-line
+    );
   });
 
   /*

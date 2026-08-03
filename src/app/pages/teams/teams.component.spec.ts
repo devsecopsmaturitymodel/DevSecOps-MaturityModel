@@ -27,7 +27,6 @@ describe('TeamsComponent', () => {
     // Pre-load data BEFORE component creation to avoid async NG0100
     mockDataStore = (await mockLoaderService.load()) as DataStore;
 
-    /* eslint-disable */
     await TestBed.configureTestingModule({
       imports: [TeamsComponent],
       providers: [
@@ -38,7 +37,6 @@ describe('TeamsComponent', () => {
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
       ],
     }).compileComponents();
-    /* eslint-enable */
   });
 
   beforeEach(() => {

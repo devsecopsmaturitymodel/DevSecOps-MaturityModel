@@ -94,7 +94,6 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
   }
 
   setThemeColors(theme: string) {
-    /* eslint-disable */
     this.themeColors.mainNodeFill = this.css.getPropertyValue('--heatmap-filled').trim();
     this.themeColors.mainNodeColor = this.css.getPropertyValue('--text-primary').trim();
     this.themeColors.linkColor = this.css.getPropertyValue('--dependency-link').trim();
@@ -105,7 +104,6 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     this.themeColors.successorFill = this.css
       .getPropertyValue('--dependency-successor-fill')
       .trim();
-    /*eslint-enable */
 
     this.generateGraph();
   }
@@ -193,7 +191,7 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
     svg.selectAll('*').remove();
 
     // Now that rectWidth is set on each node, set up the simulation
-    /* eslint-disable */
+
     this.simulation = d3
       .forceSimulation()
       // .alphaMin(0.11)
@@ -220,7 +218,6 @@ export class DependencyGraphComponent implements OnInit, OnChanges {
         d3.forceCollide((d: any) => 30)
       )
       .force('center', d3.forceCenter(0, 0));
-    /* eslint-enable */
 
     svg
       .append('defs')

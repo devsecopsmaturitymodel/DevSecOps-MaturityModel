@@ -87,7 +87,6 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
     // Get datastore for labels
     const dataStore = this.loader.datastore;
     if (dataStore) {
-      /* eslint-disable */
       this.KnowledgeLabel = dataStore.getMetaString(
         'knowledgeLabels',
         activity.difficultyOfImplementation.knowledge - 1
@@ -101,7 +100,6 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
         activity.difficultyOfImplementation.resources - 1
       );
       this.UsefulnessLabel = dataStore.getMetaString('labels', activity.usefulness - 1);
-      /* eslint-enable */
 
       // Get teams that have implemented this activity
       this.updateTeamsImplemented();

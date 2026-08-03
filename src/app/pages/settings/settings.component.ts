@@ -183,7 +183,7 @@ export class SettingsComponent implements OnInit {
         if (!localTag) tmp.push('local model version');
         if (!remoteDate) tmp.push('DSOMM model date');
         if (!localDate) tmp.push('local model date');
-        checkError = `Could not determine ${tmp.join(', ')}`; // eslint-disable-line
+        checkError = `Could not determine ${tmp.join(', ')}`;
         console.warn('ERROR: ' + checkError);
       }
       this.remoteReleaseCheck.set({

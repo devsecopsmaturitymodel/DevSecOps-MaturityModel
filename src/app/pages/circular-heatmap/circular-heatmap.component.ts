@@ -375,7 +375,7 @@ export class CircularHeatmapComponent {
       if (!isNaN(progressValue) && progressValue !== 0)
         console.debug(
           `${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`
-        ); // eslint-disable-line
+        );
       return progressValue;
     });
 
@@ -408,13 +408,13 @@ export class CircularHeatmapComponent {
           _self.showActivityCard.set(sector);
           console.log(
             `${perfNow()}: Heat: Clicked sector: '${sector.dimension}' Level: ${sector.level}`
-          ); // eslint-disable-line
+          );
         } else {
           _self.showActivityCard.set(null);
           _self.setSectorCursor(svg, '#selected', '');
           console.log(
             `${perfNow()}: Heat: Clicked disabled sector: '${sector?.dimension}' Level: ${sector?.level}`
-          ); // eslint-disable-line
+          );
         }
       })
       .on('mouseover', function () {
@@ -680,7 +680,7 @@ export class CircularHeatmapComponent {
     }
 
     // Prepare navigationExtras and details
-    /* eslint-disable */
+
     console.log(`${perfNow()}: Heat: Open Overlay: '${activity.name}'`);
     this.showActivityDetails.set(activity);
     this.showOverlay.set(true);
@@ -693,7 +693,6 @@ export class CircularHeatmapComponent {
         queryParamsHandling: 'preserve',
       });
     }
-    /* eslint-enable */
   }
 
   navigateToActivityByUuid(uuid: string) {
@@ -748,7 +747,7 @@ export class CircularHeatmapComponent {
     if (progressValue)
       console.debug(
         `${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors['filled']})`
-      ); // eslint-disable-line
+      );
 
     d3.select('#index-' + index).attr(
       'fill',

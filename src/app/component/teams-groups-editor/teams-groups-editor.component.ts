@@ -146,7 +146,7 @@ export class TeamsGroupsEditorComponent implements OnChanges {
     } else {
       console.warn(
         `${perfNow()}: onTeamGroupToggle called in unexpected edit mode: ${this.editMode}`
-      ); // eslint-disable-line
+      );
     }
   }
 
@@ -186,14 +186,13 @@ export class TeamsGroupsEditorComponent implements OnChanges {
     } else if (this.teams.includes(event.newName)) {
       alert(
         'Cannot have old names either. Please accept the changes one by one\n\n(todo: make this alert pretty)'
-      ); // eslint-disable-line
+      );
       this.onTeamSelected(event.oldName);
       return;
     }
 
     this.localCopyTeams = renameArrayElement(this.localCopyTeams, event.oldName, event.newName);
     for (let group in this.localCopyTeamGroups) {
-      // eslint-disable-next-line
       this.localCopyTeamGroups[group] = renameArrayElement(
         this.localCopyTeamGroups[group],
         event.oldName,
