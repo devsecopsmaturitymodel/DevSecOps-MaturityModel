@@ -8,11 +8,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js 20.19.6
+    - name: Use Node.js 24
       uses: actions/setup-node@v4
       with:
-        node-version: 20.19.6
+        node-version: 24.19.0
     - name: Install dependencies
       run: npm install --legacy-peer-deps
     - name: Test
-      run: npm test -- --watch=false --browsers=ChromeHeadless
+      run: npm test -- --watch=false

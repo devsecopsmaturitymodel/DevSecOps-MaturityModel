@@ -43,7 +43,7 @@
     "@types/markdown-it": "14.1.2",
     "@types/yamljs": "0.2.31",
     "@typescript-eslint/parser": "8.65.0",
-    "@typescript-eslint/utils": "^8.65.0",
+    "@typescript-eslint/utils": "8.65.0",
     "angular-eslint": "22.1.0",
     "eslint": "9.28.0",
     "eslint-config-prettier": "9.1.0",
@@ -52,7 +52,7 @@
     "prettier": "3.9.5",
     "typescript": "6.0.3",
     "typescript-eslint": "8.65.0",
-    "vitest": "^4.0.8"
+    "vitest": "4.0.8"
   },
   "browser": {
     "fs": false,
