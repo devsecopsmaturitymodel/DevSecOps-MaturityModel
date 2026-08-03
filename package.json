@@ -59,9 +59,6 @@
     "path": false,
     "os": false
   },
-  "overrides": {
-    "uuid": "11.1.1"
-  },
   "allowScripts": {
     "@parcel/watcher@2.6.0": true,
     "esbuild@0.28.1": true,
