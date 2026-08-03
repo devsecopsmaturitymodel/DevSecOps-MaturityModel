@@ -569,6 +569,211 @@ Two straightforward `ng update` passes (Core/CLI, then Material/CDK) to reach An
 
 </details>
 
+<details>
+<summary><strong>Angular 21 → 22 + Karma → Vitest Migration</strong></summary>
+
+### Summary
+
+Upgraded Core, CLI, Material, and CDK to v22 via `ng update`, which auto-applied several breaking-change migrations in one pass, most notably the Karma → Vitest test-runner migration. The Karma→Vitest switch itself was schematic-driven and happened as part of this single `ng update` commit; the follow-up commit afterward was purely manual cleanup to make the auto-migrated Vitest setup actually pass -- converting remaining Jasmine-specific APIs, removing a legacy `test.ts` double-init crash, and dropping now-dead Karma devDependencies. Also migrated ESLint config to the new flat-config format, and did a full pnpm-workspace round trip (removed, then restored) to work through lockfile regeneration under the new toolchain.
+
+### Commit History
+
+#### 1. Chore: Remove `pnpm-workspace.yaml` and `package-lock.json` ([94dd8ab](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/94dd8ab6485fa987c4ab7dee0de44707d03e98a3))
+- Cleared out the pnpm workspace config and lockfile ahead of the Angular 22 upgrade, to avoid stale resolution conflicts during `ng update`.
+
+#### 2. Feat: Upgrade Angular 21 → 22 via `ng update` ([38eac6bc](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/38eac6bc45c5304885d1fe057b8a06789cf06b5f))
+- Ran `ng update @angular/core@22 @angular/cli@22`.
+- **Auto-applied migrations:**
+  - Core packages `21.x` → `22.1.0`, TypeScript `5.9` → `6.0`.
+  - **Karma → Vitest test runner** (schematic-migrated `angular.json` and `tsconfig.spec.json`; see nested log below for the full interactive migration summary).
+<details>
+<summary>Full <code>ng update</code> Migration Log</summary>
+
+```bash
+npx ng update @angular/core@22 @angular/cli@22 
+The installed Angular CLI version is outdated.
+Installing a temporary Angular CLI versioned 22 to perform the update.
+Using package manager: npm
+	Collecting installed dependencies...
+	Found 42 dependencies.
+	Fetching dependency metadata from registry...
+	    Package "@angular-eslint/builder" has an incompatible peer dependency to "@angular/cli" (requires ">= 21.0.0 < 22.0.0", would install "22.1.2").
+	Updating package.json with dependency @angular/cli to version 22.1.2...
+	Updating package.json with dependency @angular/common to version 22.1.0...
+	Updating package.json with dependency @angular/compiler to version 22.1.0...
+	Updating package.json with dependency @angular/core to version 22.1.0...
+	Updating package.json with dependency @angular/forms to version 22.1.0...
+	Updating package.json with dependency @angular/localize to version 22.1.0...
+	Updating package.json with dependency @angular/platform-browser to version 22.1.0...
+	Updating package.json with dependency @angular/router to version 22.1.0...
+	Updating package.json with dependency @angular-devkit/build-angular to version 22.1.2...
+	Updating package.json with dependency @angular/build to version 22.1.2...
+	Updating package.json with dependency @angular/compiler-cli to version 22.1.0...
+	Updating package.json with dependency typescript to version 6.0.3...
+	✔ Cleaning node modules directory
+✔ Installing packages
+** Executing migrations of package '@angular/cli' **
+
+❯ Add 'istanbul-lib-instrument' to 'devDependencies' if Karma unit testing is used.
+UPDATE package.json (2151 bytes)
+✔ Packages installed successfully.
+  Migration completed (1 file modified).
+
+❯ Add 'trustProxyHeaders' configuration to 'AngularNodeAppEngine' or 'AngularAppEngine'.
+  For more information see: https://angular.dev/best-practices/security#configuring-trusted-proxy-headers
+  Migration completed (No changes made).
+
+❯ Update the angular workspace configuration.
+  Migration completed (No changes made).
+
+** Optional migrations of package '@angular/cli' **
+
+This package has 2 optional migrations that can be executed.
+Optional migrations may be skipped and executed after the update process, if preferred.
+
+Select the migrations that you'd like to run [migrate-karma-to-vitest] Migrate projects using legacy Karma unit-test builder to the new unit-test builder with Vitest., [use-application-builder] Migrate application projects to the new build system. (https://angular.dev/tools/cli/build-system-migration)
+
+❯ Migrate projects using legacy Karma unit-test builder to the new unit-test builder with Vitest.
+    Project "DSOMM" uses the "kjhtml" reporter. This has not been automatically mapped. For an interactive test UI in Vitest, consider setting the "ui" option to true in your test target options and installing "@vitest/ui".
+    Project "DSOMM" uses a custom Karma configuration file "karma.conf.js". Tests have been migrated to use Vitest, but you may need to manually migrate custom settings from this Karma config to a Vitest config (e.g. "vitest-base.config.ts") and set the "runnerConfig" option to true.
+    Project "DSOMM" uses a "main" entry file for tests: "src/test.ts". This has been mapped to the unit-test builder "setupFiles" array. Please ensure you remove any TestBed.initTestEnvironment calls from this file as the builder now handles test environment initialization automatically.
+
+    --- Karma to Vitest Migration Summary ---
+    Projects migrated: 1
+      - DSOMM
+    Projects skipped (non-applications): 0
+    Projects skipped (missing application builder): 0
+
+    The following Karma configuration files require manual migration:
+      - karma.conf.js
+
+    Note: To refactor your test files from Jasmine to Vitest, consider running the following command:
+      ng g @schematics/angular:refactor-jasmine-vitest <project_name>
+    -----------------------------------------
+
+UPDATE tsconfig.spec.json (316 bytes)
+UPDATE angular.json (4503 bytes)
+UPDATE package.json (2175 bytes)
+✔ Packages installed successfully.
+  Migration completed (3 files modified).
+
+❯ Migrate application projects to the new build system.
+  Application projects that are using the '@angular-devkit/build-angular' package's 'browser' and/or 'browser-esbuild' builders will be migrated to use the new 'application' builder.
+  You can read more about this, including known issues and limitations, here: https://angular.dev/tools/cli/build-system-migration
+    Package dependency "@angular/build" already exists with a different specifier. "22.1.2" will be replaced with "^22.1.2".
+UPDATE package.json (2129 bytes)
+UPDATE tsconfig.json (853 bytes)
+✔ Packages installed successfully.
+  Migration completed (2 files modified).
+
+** Executing migrations of package '@angular/core' **
+
+❯ Adds the required third argument to canMatch callsites.
+  Migration completed (No changes made).
+
+❯ Adds `ChangeDetectionStrategy.Eager` to all components.
+UPDATE src/app/component/sidenav-buttons/sidenav-buttons.component.ts (1797 bytes)
+UPDATE src/app/component/logo/logo.component.ts (308 bytes)
+UPDATE src/app/app.component.ts (2036 bytes)
+UPDATE src/app/component/markdown-viewer/markdown-viewer.component.ts (1051 bytes)
+UPDATE src/app/component/top-header/top-header.component.ts (379 bytes)
+UPDATE src/app/pages/about-us/about-us.component.ts (548 bytes)
+UPDATE src/app/pages/userday/userday.component.ts (691 bytes)
+UPDATE src/app/component/modal-message/modal-message.component.ts (3007 bytes)
+UPDATE src/app/component/team-selector/team-selector.component.ts (1986 bytes)
+UPDATE src/app/component/add-evidence-modal/add-evidence-modal.component.ts (3449 bytes)
+UPDATE src/app/component/evidence-panel/evidence-panel.component.ts (1987 bytes)
+UPDATE src/app/component/view-evidence-modal/view-evidence-modal.component.ts (1123 bytes)
+UPDATE src/app/component/progress-slider/progress-slider.component.ts (1429 bytes)
+UPDATE src/app/component/dependency-graph/dependency-graph.component.ts (14543 bytes)
+UPDATE src/app/component/activity-description/activity-description.component.ts (5712 bytes)
+UPDATE src/app/pages/circular-heatmap/circular-heatmap.component.ts (28914 bytes)
+UPDATE src/app/pages/mapping/mapping.component.ts (7833 bytes)
+UPDATE src/app/pages/matrix/matrix.component.ts (8724 bytes)
+UPDATE src/app/pages/activity-description/activity-description-page.component.ts (3058 bytes)
+UPDATE src/app/pages/usage/usage.component.ts (1069 bytes)
+UPDATE src/app/component/teams-groups-editor/selectable-list.component.ts (3225 bytes)
+UPDATE src/app/component/teams-groups-editor/teams-groups-editor.component.ts (9079 bytes)
+UPDATE src/app/component/kpi/kpi.component.ts (441 bytes)
+UPDATE src/app/pages/teams/teams.component.ts (10601 bytes)
+UPDATE src/app/pages/roadmap/roadmap.component.ts (691 bytes)
+UPDATE src/app/pages/settings/settings.component.ts (13650 bytes)
+UPDATE src/app/component/report-config-modal/report-config-modal.component.ts (5647 bytes)
+UPDATE src/app/pages/report/report.component.ts (17284 bytes)
+UPDATE src/app/component/activity-description/activity-description.component.spec.ts (6418 bytes)
+  Migration completed (29 files modified).
+
+❯ Adds 'withXhr' to 'provideHttpClient' function calls when the 'HttpXhrBackend' is used.
+  For more information see: https://angular.dev/api/common/http/withXhr
+UPDATE src/main.ts (1949 bytes)
+UPDATE src/app/component/markdown-viewer/markdown-viewer.component.spec.ts (938 bytes)
+UPDATE src/app/component/sidenav-buttons/sidenav-buttons.component.spec.ts (2493 bytes)
+UPDATE src/app/pages/about-us/about-us.component.spec.ts (890 bytes)
+UPDATE src/app/pages/matrix/matrix.component.spec.ts (3621 bytes)
+UPDATE src/app/pages/roadmap/roadmap.component.spec.ts (889 bytes)
+UPDATE src/app/pages/teams/teams.component.spec.ts (2085 bytes)
+UPDATE src/app/pages/usage/usage.component.spec.ts (1388 bytes)
+UPDATE src/app/pages/userday/userday.component.spec.ts (889 bytes)
+UPDATE src/app/service/loader/data-loader.service.spec.ts (866 bytes)
+  Migration completed (10 files modified).
+
+❯ Adds withNoIncrementalHydration() opt out to provideClientHydration() when incremental hydration is not enabled to retain pre-v22 behavior.
+  Migration completed (No changes made).
+
+❯ Migrate broken duplicate outputs.
+  Migration completed (No changes made).
+
+❯ Wraps optional chaining expressions in $safeNavigationMigration().
+UPDATE src/app/component/activity-description/activity-description.component.html (15152 bytes)
+UPDATE src/app/pages/teams/teams.component.html (4143 bytes)
+UPDATE src/app/pages/settings/settings.component.html (11256 bytes)
+  Migration completed (3 files modified).
+
+❯ Disables the 'nullishCoalescingNotNullable' & 'optionalChainNotNullable' extended diagnostics.
+UPDATE tsconfig.app.json (518 bytes)
+UPDATE tsconfig.spec.json (491 bytes)
+  Migration completed (2 files modified).
+
+❯ Adds 'strictTemplates: false' in tsconfig.json when not set.
+  Migration completed (No changes made).
+```
+
+</details>
+
+#### 3. Refactor: Migrate ESLint to Flat Config ([1bd805a](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/1bd805addef8a9753b8172b4d198a13bc737184c))
+- Replaced `.eslintrc.json` with `eslint.config.js`.
+- Added `angular-eslint` and `typescript-eslint` packages required by the flat-config format.
+- Removed now-unnecessary `eslint-disable` comments that were previously masking rule mismatches under the legacy config.
+
+#### 4. Fix: Complete Angular 22 Migration Follow-Up ([aba84690](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/aba8469083f2e1ae6c53b86271a55d7da5aeae7e))
+- **Action:** Finished what `ng update`'s auto-migration left incomplete after the Karma→Vitest schematic ran.
+- **Key Changes:**
+  - Migrated remaining Jasmine APIs to their Vitest equivalents: `spyOn` → `vi.spyOn`, `toHaveSize` → `toHaveLength`, `toBeTrue` → `toBe(true)`, `jasmine.createSpyObj` → `vi.fn()`-based mock objects.
+  - Removed the lingering `setupFiles` reference to the legacy `src/test.ts`, which was causing a double test-environment-init crash under Vitest.
+  - Removed `withXhr()` calls from `main.ts` and all spec files. (added by the auto-migration but not actually needed once the HTTP backend config was reviewed)
+  - Dropped now-dead devDependencies: `@types/jasmine`, `jasmine-core`, `karma`, `karma-*`, `istanbul-lib-instrument`.
+  - Added `jsdom` as the Vitest DOM environment.
+- **Reason:** The `ng update` schematic migrates the *build config* (`angular.json`, `tsconfig.spec.json`) from Karma to Vitest automatically, but it doesn't rewrite test *code*.
+
+#### 5. Chore: Restore pnpm Workspace Config and Update Lockfile ([6d73c45a](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/6d73c45a2d3dda1b2d084989ea2826009132f5e4))
+- Restored `pnpm-workspace.yaml` with `allowBuilds` configuration.
+- Removed the now-unneeded `uuid` override from `package.json`.
+- Regenerated `package-lock.json` following the Angular 22 upgrade.
+
+#### 6. Chore: Lint Fix ([fdff1564](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/fdff15647df63f82c47bdb6d5210af741080e356))
+- Final lint cleanup pass after the flat-config and Vitest migrations settled.
+
+#### 7. Chore: Upgrade CI to Node.js 24 and Pin Vitest/ESLint-Utils Versions ([0a22f7e0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/commit/0a22f7e0eafb2a18f739b62ef03e45e6319e35e5))
+- Bumped CI Node.js version from `20.19.6` to `24.19.0` (latest).
+- Dropped `--browsers=ChromeHeadless` from the CI test command. No longer needed now that tests run under Vitest instead of Karma.
+- Pinned `@typescript-eslint/utils` and `vitest` to exact versions (`8.65.0`, `4.0.8`) 
+- **Files:** `.github/workflows/tests.yml`, `package.json`
+
+---
+
+</details>
+
+
 ---
 
 ## Signal Migration
@@ -708,7 +913,6 @@ Each component toggle below documents a single commit.
 | 1 | `xlsx` (SheetJS) dependency | Prototype pollution + ReDoS vulnerability, no upstream fix available (maintainers stopped publishing security patches) | Medium | Requires code changes wherever `xlsx` is imported for spreadsheet export. Options: replace with `exceljs` or `xlsx-js-style` (community fork), or accept risk if only used for non-sensitive data export. <b>Needs a dedicated PR.</b> |
 | 2 | `CircularHeatmapComponent` | • **Layout shift on scroll:** Heatmap shifts vertically at certain viewport widths. | Low | Remaining issue after signal migration. The three chip/filter bugs (order-sensitive group highlight, group selection wipe, stale group deselection) were resolved in the `CircularHeatmapComponent` signal migration. |
 | 3 | Logging | Replace `console.log()` and boolean `environment.production` checks with a proper logging library using log-level feature toggles. Preferred Library: [Winston](https://github.com/winstonjs/winston). | Low | Discussed in team meeting. |
-| 4 | Test Runner | • **Deprecated subdependencies:** Karma pulls in `glob@7.2.3`, `inflight@1.0.6`, and `rimraf@3.0.2` — all deprecated, cluttering `pnpm install` with warnings. <br>• **pnpm incompatibility:** Karma's Webpack-based builder (`@angular-devkit/build-angular:karma`) cannot resolve transitive dependencies (e.g. `@babel/runtime`) under pnpm's strict symlinked `node_modules`. Currently requires `node-linker=hoisted` in `.npmrc` as a workaround, defeating pnpm's strictness benefits. <br>• **Modern tooling alignment:** Build/serve already use esbuild/Vite via `@angular/build`. Tests are the last piece still on the legacy Webpack pipeline. Migrating would allow dropping `@angular-devkit/build-angular` entirely. | High | Karma is deprecated. Migrate to a Vite-based test runner (e.g. Vitest or `@angular/build` native test support). |
 
 > [!NOTE]
 > Add new backlog items here as they are discovered during future upgrades. Remove items once resolved.
