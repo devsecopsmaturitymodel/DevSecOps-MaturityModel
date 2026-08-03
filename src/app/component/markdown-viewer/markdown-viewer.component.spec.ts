@@ -10,10 +10,7 @@ describe('MarkdownViewerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MarkdownViewerComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
   });
 

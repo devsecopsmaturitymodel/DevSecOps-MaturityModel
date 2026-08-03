@@ -11,10 +11,7 @@ describe('UserdayComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UserdayComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
   });
 

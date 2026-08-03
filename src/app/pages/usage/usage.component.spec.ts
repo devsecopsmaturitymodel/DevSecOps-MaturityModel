@@ -13,10 +13,7 @@ describe('UsageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UsageComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
   });
 

@@ -11,10 +11,7 @@ describe('RoadmapComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RoadmapComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
   });
 
