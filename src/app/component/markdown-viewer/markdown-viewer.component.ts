@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject, signal } from '@angular/core';
+import { Component, Input, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import md from 'markdown-it';
 import { HttpClient } from '@angular/common/http';
 
@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-markdown-viewer',
   templateUrl: './markdown-viewer.component.html',
   styleUrls: ['./markdown-viewer.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class MarkdownViewerComponent implements OnInit {

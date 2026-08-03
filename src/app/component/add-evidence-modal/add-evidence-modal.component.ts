@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { EvidenceEntry, EvidenceStore } from '../../model/evidence-store';
 import { TeamGroups } from '../../model/types';
@@ -24,6 +24,7 @@ export interface AddEvidenceModalData {
   selector: 'app-add-evidence-modal',
   templateUrl: './add-evidence-modal.component.html',
   styleUrls: ['./add-evidence-modal.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogModule,
     TeamSelectorComponent,

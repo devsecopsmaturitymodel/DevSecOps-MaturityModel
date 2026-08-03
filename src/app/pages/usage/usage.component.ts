@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { perfNow } from 'src/app/util/util';
 import { MarkdownViewerComponent } from '../../component/markdown-viewer/markdown-viewer.component';
@@ -8,6 +8,7 @@ import { TopHeaderComponent } from '../../component/top-header/top-header.compon
   selector: 'app-usage',
   templateUrl: './usage.component.html',
   styleUrls: ['./usage.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TopHeaderComponent, MarkdownViewerComponent],
 })
 export class UsageComponent implements OnInit {

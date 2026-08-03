@@ -26,15 +26,15 @@
         <div class="info-kpis">
           <app-kpi
             [title]="progressTitleImplemented()"
-            [value]="info()[infoTitle()]?.uniqueActivitiesCompletedCount"
+            [value]="$safeNavigationMigration(info()[infoTitle()]?.uniqueActivitiesCompletedCount)"
             [suffix]="'activities'"></app-kpi>
           <app-kpi
             [title]="'In progress'"
-            [value]="info()[infoTitle()]?.uniqueActivitiesInProgressCount"
+            [value]="$safeNavigationMigration(info()[infoTitle()]?.uniqueActivitiesInProgressCount)"
             [suffix]="'activities'"></app-kpi>
           <app-kpi
             [title]="'Last updated:'"
-            [value]="dateFormat(info()[infoTitle()]?.lastUpdated)"
+            [value]="dateFormat($safeNavigationMigration(info()[infoTitle()]?.lastUpdated))"
             [suffix]="info()[infoTitle()]?.lastUpdated ? '' : 'No activity registered'"></app-kpi>
         </div>
       </div>
@@ -82,7 +82,7 @@
           <td mat-cell *matCellDef="let element" class="progress-col">
             @if (element?.progress?.[progressColumn]) {
               <span>
-                {{ dateFormat(element?.progress?.[progressColumn]) }}
+                {{ dateFormat($safeNavigationMigration(element?.progress?.[progressColumn])) }}
               </span>
             }
           </td>

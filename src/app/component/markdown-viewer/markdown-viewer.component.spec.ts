@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MarkdownViewerComponent } from './markdown-viewer.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('MarkdownViewerComponent', () => {
   let component: MarkdownViewerComponent;
@@ -10,7 +10,10 @@ describe('MarkdownViewerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MarkdownViewerComponent],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+      providers: [
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
   });
 

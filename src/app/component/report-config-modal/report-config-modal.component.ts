@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import {
   ReportConfig,
@@ -35,6 +35,7 @@ export interface ReportConfigModalData {
   selector: 'app-report-config-modal',
   templateUrl: './report-config-modal.component.html',
   styleUrls: ['./report-config-modal.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogModule,
     MatButtonToggleModule,

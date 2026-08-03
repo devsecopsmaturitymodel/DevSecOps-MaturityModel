@@ -10,6 +10,7 @@ import {
   OnInit,
   HostListener,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { Activity } from '../../model/activity-store';
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-activity-description',
   templateUrl: './activity-description.component.html',
   styleUrls: ['./activity-description.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatIconModule,
     MatButtonModule,
@@ -86,9 +88,18 @@ export class ActivityDescriptionComponent implements OnInit, OnChanges {
     const dataStore = this.loader.datastore;
     if (dataStore) {
       /* eslint-disable */
-      this.KnowledgeLabel = dataStore.getMetaString('knowledgeLabels', activity.difficultyOfImplementation.knowledge - 1);
-      this.TimeLabel = dataStore.getMetaString('labels', activity.difficultyOfImplementation.time - 1);
-      this.ResourceLabel = dataStore.getMetaString('labels', activity.difficultyOfImplementation.resources - 1);
+      this.KnowledgeLabel = dataStore.getMetaString(
+        'knowledgeLabels',
+        activity.difficultyOfImplementation.knowledge - 1
+      );
+      this.TimeLabel = dataStore.getMetaString(
+        'labels',
+        activity.difficultyOfImplementation.time - 1
+      );
+      this.ResourceLabel = dataStore.getMetaString(
+        'labels',
+        activity.difficultyOfImplementation.resources - 1
+      );
       this.UsefulnessLabel = dataStore.getMetaString('labels', activity.usefulness - 1);
       /* eslint-enable */
 

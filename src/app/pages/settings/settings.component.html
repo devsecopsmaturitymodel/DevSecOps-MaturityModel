@@ -198,7 +198,9 @@
               {{ meta()?.activityMeta?.getDsommVersion() || '' }}
             </div>
             <div class="grid-col-2 grid-row-2">
-              {{ dateFormat(meta()?.activityMeta?.getDsommReleaseDate()) }}
+              {{
+                dateFormat($safeNavigationMigration(meta()?.activityMeta?.getDsommReleaseDate()))
+              }}
             </div>
             @if (remoteReleaseCheck().isNewerAvailable === false) {
               <div class="grid-col-3 grid-row-1">Up to date</div>
@@ -208,11 +210,15 @@
                 {{ remoteReleaseCheck().latestRelease?.tagName }}
               </div>
               <div class="grid-col-3 grid-row-2">
-                {{ dateFormat(remoteReleaseCheck().latestRelease?.publishedAt) }}
+                {{
+                  dateFormat(
+                    $safeNavigationMigration(remoteReleaseCheck().latestRelease?.publishedAt)
+                  )
+                }}
               </div>
               <div class="grid-col-4 grid-row-1">
                 <a
-                  [href]="remoteReleaseCheck().latestRelease?.downloadUrl"
+                  [href]="$safeNavigationMigration(remoteReleaseCheck().latestRelease?.downloadUrl)"
                   target="_blank"
                   class="action-link"
                   >Download</a
@@ -220,7 +226,9 @@
               </div>
               <div class="grid-col-4 grid-row-2">
                 <a
-                  [href]="remoteReleaseCheck().latestRelease?.changelogUrl"
+                  [href]="
+                    $safeNavigationMigration(remoteReleaseCheck().latestRelease?.changelogUrl)
+                  "
                   target="_blank"
                   class="action-link"
                   >Changelog</a

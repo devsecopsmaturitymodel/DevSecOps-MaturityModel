@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -59,6 +59,7 @@ interface ProgressDefinitionForm {
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TopHeaderComponent,
     MatCardModule,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MarkdownViewerComponent } from '../../component/markdown-viewer/markdown-viewer.component';
 import { TopHeaderComponent } from '../../component/top-header/top-header.component';
 
@@ -6,6 +6,7 @@ import { TopHeaderComponent } from '../../component/top-header/top-header.compon
   selector: 'app-about-us',
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TopHeaderComponent, MarkdownViewerComponent],
 })
 export class AboutUsComponent {

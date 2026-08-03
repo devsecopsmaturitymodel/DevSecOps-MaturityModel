@@ -6,6 +6,7 @@ import {
   effect,
   DestroyRef,
   afterNextRender,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
@@ -62,6 +63,7 @@ import { ActivityDescriptionComponent } from '../../component/activity-descripti
   selector: 'app-circular-heatmap',
   templateUrl: './circular-heatmap.component.html',
   styleUrls: ['./circular-heatmap.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ActivityDescriptionComponent,
     MatIconModule,
@@ -370,7 +372,10 @@ export class CircularHeatmapComponent {
 
     chart.accessor(function (sector: Sector) {
       let progressValue: number = _self.getSectorProgress(sector);
-      if (!isNaN(progressValue) && progressValue !== 0) console.debug(`${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`);  // eslint-disable-line
+      if (!isNaN(progressValue) && progressValue !== 0)
+        console.debug(
+          `${perfNow()}s: Initial sector value  ${progressValue.toFixed(2)} - '${sector.dimension}' Level ${sector.level}`
+        ); // eslint-disable-line
       return progressValue;
     });
 
@@ -401,11 +406,15 @@ export class CircularHeatmapComponent {
         if (sector?.activities?.length) {
           _self.setSectorCursor(svg, '#selected', clickedId);
           _self.showActivityCard.set(sector);
-          console.log(`${perfNow()}: Heat: Clicked sector: '${sector.dimension}' Level: ${sector.level}`); // eslint-disable-line
+          console.log(
+            `${perfNow()}: Heat: Clicked sector: '${sector.dimension}' Level: ${sector.level}`
+          ); // eslint-disable-line
         } else {
           _self.showActivityCard.set(null);
           _self.setSectorCursor(svg, '#selected', '');
-          console.log(`${perfNow()}: Heat: Clicked disabled sector: '${sector?.dimension}' Level: ${sector?.level}`); // eslint-disable-line
+          console.log(
+            `${perfNow()}: Heat: Clicked disabled sector: '${sector?.dimension}' Level: ${sector?.level}`
+          ); // eslint-disable-line
         }
       })
       .on('mouseover', function () {
@@ -681,7 +690,7 @@ export class CircularHeatmapComponent {
       this.router.navigate([], {
         relativeTo: this.route,
         fragment: activity.uuid,
-        queryParamsHandling: 'preserve'
+        queryParamsHandling: 'preserve',
       });
     }
     /* eslint-enable */
@@ -736,7 +745,10 @@ export class CircularHeatmapComponent {
       .range([this.theme_colors['background'], this.theme_colors['filled']]);
 
     let progressValue: number = this.getSectorProgress(this.allSectors()[index]);
-    if (progressValue) console.debug(`${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors['filled']})`); // eslint-disable-line
+    if (progressValue)
+      console.debug(
+        `${perfNow()}s: recolorSector #${index} sector: ${progressValue.toFixed(2)} (${this.theme_colors['filled']})`
+      ); // eslint-disable-line
 
     d3.select('#index-' + index).attr(
       'fill',

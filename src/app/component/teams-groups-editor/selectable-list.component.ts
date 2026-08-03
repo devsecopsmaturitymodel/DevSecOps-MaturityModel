@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { perfNow } from 'src/app/util/util';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-selectable-list',
   templateUrl: './selectable-list.component.html',
   styleUrls: ['./selectable-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatButtonModule, MatIconModule, FormsModule],
 })
 export class SelectableListComponent {

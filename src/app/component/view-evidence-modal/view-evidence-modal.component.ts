@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { EvidencePanelComponent } from '../evidence-panel/evidence-panel.component';
@@ -12,6 +12,7 @@ export interface ViewEvidenceModalData {
   selector: 'app-view-evidence-modal',
   templateUrl: './view-evidence-modal.component.html',
   styleUrls: ['./view-evidence-modal.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatDialogModule, EvidencePanelComponent, MatButtonModule],
 })
 export class ViewEvidenceModalComponent {

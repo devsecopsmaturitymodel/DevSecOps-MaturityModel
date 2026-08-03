@@ -1,6 +1,6 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
@@ -47,6 +47,7 @@ let mockData = {
 @Component({
   selector: 'app-dependency-graph',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class DependencyGraphStubComponent {
@@ -131,7 +132,9 @@ describe('ActivityDescriptionComponent', () => {
     expect(HTMLElement.querySelector('#risk')?.textContent).toContain(testRisk);
     expect(HTMLElement.querySelector('#measure')?.textContent).toContain(testMeasure);
     expect(HTMLElement.querySelector('#assessment')?.textContent).toContain(testAssessment);
-    expect(HTMLElement.querySelector('#implementationGuide')?.textContent).toContain(testImplementationGuide); // eslint-disable-line
+    expect(HTMLElement.querySelector('#implementationGuide')?.textContent).toContain(
+      testImplementationGuide
+    ); // eslint-disable-line
   });
 
   /*

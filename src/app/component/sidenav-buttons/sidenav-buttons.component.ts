@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GITHUB_SVG } from '../../../assets/svg_icons';
@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
   selector: 'app-sidenav-buttons',
   templateUrl: './sidenav-buttons.component.html',
   styleUrls: ['./sidenav-buttons.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatListModule, RouterLink, MatIconModule, MatDividerModule],
 })
 export class SidenavButtonsComponent {

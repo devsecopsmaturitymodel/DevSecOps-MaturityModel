@@ -32,7 +32,9 @@
             <b>Description</b>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p id="description" [innerHTML]="currentActivity.description?.render()"></p>
+        <p
+          id="description"
+          [innerHTML]="$safeNavigationMigration(currentActivity.description?.render())"></p>
       </mat-expansion-panel>
     }
 
@@ -43,7 +45,7 @@
             <b>Risk</b>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p id="risk" [innerHTML]="currentActivity.risk?.render()"></p>
+        <p id="risk" [innerHTML]="$safeNavigationMigration(currentActivity.risk?.render())"></p>
       </mat-expansion-panel>
     }
 
@@ -54,7 +56,9 @@
             <b>Measure</b>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p id="measure" [innerHTML]="currentActivity.measure?.render()"></p>
+        <p
+          id="measure"
+          [innerHTML]="$safeNavigationMigration(currentActivity.measure?.render())"></p>
       </mat-expansion-panel>
     }
 
@@ -65,7 +69,9 @@
             <b>Assessment</b>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p id="assessment" [innerHTML]="currentActivity.assessment?.render()"></p>
+        <p
+          id="assessment"
+          [innerHTML]="$safeNavigationMigration(currentActivity.assessment?.render())"></p>
       </mat-expansion-panel>
     }
 
@@ -92,7 +98,9 @@
             <b>Implementation Guide</b>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p id="implementationGuide" [innerHTML]="currentActivity.implementationGuide?.render()"></p>
+        <p
+          id="implementationGuide"
+          [innerHTML]="$safeNavigationMigration(currentActivity.implementationGuide?.render())"></p>
       </mat-expansion-panel>
     }
 

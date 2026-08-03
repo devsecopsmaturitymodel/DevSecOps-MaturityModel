@@ -1,4 +1,11 @@
-import { Component, OnInit, signal, computed, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  signal,
+  computed,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { SettingsService } from '../../service/settings/settings.service';
@@ -54,6 +61,7 @@ export interface LevelOverview {
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css'],
   providers: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TopHeaderComponent,
     MatButtonModule,

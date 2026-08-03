@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { EvidenceEntry } from '../../model/evidence-store';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +16,7 @@ import { DatePipe } from '@angular/common';
   selector: 'app-evidence-panel',
   templateUrl: './evidence-panel.component.html',
   styleUrls: ['./evidence-panel.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatExpansionModule, MatIconModule, DatePipe],
 })
 export class EvidencePanelComponent implements OnChanges {

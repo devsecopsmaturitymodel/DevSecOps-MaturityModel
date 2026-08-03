@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild, inject, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { sum } from 'd3';
@@ -32,6 +40,7 @@ import { TopHeaderComponent } from '../../component/top-header/top-header.compon
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TopHeaderComponent,
     TeamsGroupsEditorComponent,
@@ -59,7 +68,8 @@ export class TeamsComponent implements OnInit, AfterViewInit {
   infoTeams = signal<TeamNames>([]);
   info = signal<Partial<Record<string, TeamSummary>>>({});
 
-  dataSource: MatTableDataSource<TeamSummaryActivityProgress> = new MatTableDataSource<TeamSummaryActivityProgress>([]); // eslint-disable-line
+  dataSource: MatTableDataSource<TeamSummaryActivityProgress> =
+    new MatTableDataSource<TeamSummaryActivityProgress>([]); // eslint-disable-line
   allColumnNames = signal<string[]>([]);
   progressColumnNames = signal<string[]>([]);
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
@@ -227,9 +237,12 @@ export class TeamsComponent implements OnInit, AfterViewInit {
 
   makeTeamSummary(name: string, teams: TeamNames): TeamSummary {
     /* eslint-disable */
-    let activitiesStarted: progressStoreMapping[] = this.dataStore()?.progressStore?.getActivitiesStartedForTeams(teams) || [];
-    let activitiesInProgress: progressStoreMapping[] = this.dataStore()?.progressStore?.getActivitiesInProgressForTeams(teams) || [];
-    let activitiesCompleted: progressStoreMapping[] = this.dataStore()?.progressStore?.getActivitiesCompletedForTeams(teams) || [];
+    let activitiesStarted: progressStoreMapping[] =
+      this.dataStore()?.progressStore?.getActivitiesStartedForTeams(teams) || [];
+    let activitiesInProgress: progressStoreMapping[] =
+      this.dataStore()?.progressStore?.getActivitiesInProgressForTeams(teams) || [];
+    let activitiesCompleted: progressStoreMapping[] =
+      this.dataStore()?.progressStore?.getActivitiesCompletedForTeams(teams) || [];
 
     let summary: TeamSummary = {
       teams,
@@ -240,14 +253,23 @@ export class TeamsComponent implements OnInit, AfterViewInit {
       uniqueActivitiesInProgressCount: 0,
     };
     var _self = this;
-    summary.activitiesCompleted = activitiesCompleted.map(activityProgress => _self.mapIncludeActivity(activityProgress));
-    summary.activitiesInProgress = activitiesInProgress.map(activityProgress => _self.mapIncludeActivity(activityProgress));
-    summary.uniqueActivitiesCompletedCount = uniqueCount(summary.activitiesCompleted.map(item => item.activity.uuid));
-    summary.uniqueActivitiesInProgressCount = uniqueCount(summary.activitiesInProgress.map(item => item.activity.uuid));
+    summary.activitiesCompleted = activitiesCompleted.map(activityProgress =>
+      _self.mapIncludeActivity(activityProgress)
+    );
+    summary.activitiesInProgress = activitiesInProgress.map(activityProgress =>
+      _self.mapIncludeActivity(activityProgress)
+    );
+    summary.uniqueActivitiesCompletedCount = uniqueCount(
+      summary.activitiesCompleted.map(item => item.activity.uuid)
+    );
+    summary.uniqueActivitiesInProgressCount = uniqueCount(
+      summary.activitiesInProgress.map(item => item.activity.uuid)
+    );
     if (activitiesStarted.length == 0) {
       summary.lastUpdated = null;
     } else {
-      summary.lastUpdated = activitiesStarted.map(activityProgress => _self.mapIncludeActivity(activityProgress).lastUpdated)
+      summary.lastUpdated = activitiesStarted
+        .map(activityProgress => _self.mapIncludeActivity(activityProgress).lastUpdated)
         // .map(activityProgress => activityProgress.lastUpdated)
         .reduce((max, current) => (current > max ? current : max));
     }

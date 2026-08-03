@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { Activity, ActivityStore } from '../../model/activity-store';
@@ -14,6 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   selector: 'app-activity-description-page',
   templateUrl: './activity-description-page.component.html',
   styleUrls: ['./activity-description-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatProgressSpinnerModule, ActivityDescriptionComponent],
 })
 export class ActivityDescriptionPageComponent implements OnInit {

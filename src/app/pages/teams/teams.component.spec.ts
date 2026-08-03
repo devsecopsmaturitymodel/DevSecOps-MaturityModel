@@ -1,4 +1,9 @@
-import { HttpHandler, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HttpHandler,
+  provideHttpClient,
+  withInterceptorsFromDi,
+  withXhr,
+} from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
@@ -24,15 +29,15 @@ describe('TeamsComponent', () => {
 
     /* eslint-disable */
     await TestBed.configureTestingModule({
-    imports: [TeamsComponent],
-    providers: [
+      imports: [TeamsComponent],
+      providers: [
         provideRouter([]),
         provideHttpClientTesting(),
         { provide: ModalMessageComponent, useValue: {} },
         { provide: LoaderService, useValue: mockLoaderService },
-        provideHttpClient(withInterceptorsFromDi()),
-    ]
-}).compileComponents();
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+      ],
+    }).compileComponents();
     /* eslint-enable */
   });
 

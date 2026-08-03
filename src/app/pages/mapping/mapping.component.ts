@@ -6,6 +6,7 @@ import {
   ElementRef,
   inject,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -65,6 +66,7 @@ enum SortMode {
   selector: 'app-mapping',
   templateUrl: './mapping.component.html',
   styleUrls: ['./mapping.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TopHeaderComponent,
     MatFormFieldModule,

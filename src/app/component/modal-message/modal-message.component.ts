@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-modal-message',
   templateUrl: './modal-message.component.html',
   styleUrls: ['./modal-message.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatDialogModule, MatButtonModule],
 })
 export class ModalMessageComponent implements OnInit {

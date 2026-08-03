@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ThemeService } from './service/theme.service';
 import { TitleService } from './service/title.service';
 import { SidenavButtonsComponent } from './component/sidenav-buttons/sidenav-buttons.component';
@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatToolbarModule,
     MatButtonModule,
