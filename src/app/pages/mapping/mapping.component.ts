@@ -12,7 +12,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import * as XLSX from 'xlsx';
+
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import {
   DialogInfo,
@@ -188,11 +188,42 @@ export class MappingComponent implements OnInit, AfterViewInit {
   }
 
   exportToExcel() {
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element, { raw: true });
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'DSOMM - Activities.xlsx');
+    const table = document.getElementById('excel-table');
+    if (!table) {
+      return;
+    }
+
+    const excelXml = `
+      <html xmlns:o="urn:schemas-microsoft-com:office:office"
+            xmlns:x="urn:schemas-microsoft-com:office:excel"
+            xmlns="http://www.w3.org/TR/REC-html40">
+      <head>
+        <meta charset="utf-8" />
+        <!--[if gte mso 9]>
+        <xml>
+          <x:ExcelWorkbook>
+            <x:ExcelWorksheets>
+              <x:ExcelWorksheet>
+                <x:Name>DSOMM Activities</x:Name>
+                <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+              </x:ExcelWorksheet>
+            </x:ExcelWorksheets>
+          </x:ExcelWorkbook>
+        </xml>
+        <![endif]-->
+      </head>
+      <body>${table.outerHTML}</body>
+      </html>
+    `;
+
+    const blob = new Blob([excelXml], { type: 'application/vnd.ms-excel' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'DSOMM - Activities.xls';
+    link.click();
+    URL.revokeObjectURL(url);
+
     console.log(`${perfNow()}: Mapping: Exported to Excel`);
   }
 
