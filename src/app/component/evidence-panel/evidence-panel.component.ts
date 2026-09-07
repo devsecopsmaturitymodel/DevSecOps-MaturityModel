@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { EvidenceEntry } from '../../model/evidence-store';
 import { LoaderService } from '../../service/loader/data-loader.service';
+import { TeamSelectionService } from '../../service/team-selection.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DatePipe } from '@angular/common';
@@ -21,6 +22,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EvidencePanelComponent implements OnChanges {
   private loader = inject(LoaderService);
+  private teamSelection = inject(TeamSelectionService);
 
   @Input() activityUuid: string = '';
   @Input() expanded: boolean = false;
@@ -53,9 +55,12 @@ export class EvidencePanelComponent implements OnChanges {
 
     this.evidenceEntries = evidenceStore.getEvidence(this.activityUuid);
 
+    const effectiveTeams = new Set(this.teamSelection.effectiveTeams());
+
     // Group evidence entries by team name
     for (const entry of this.evidenceEntries) {
       for (const teamName of entry.teams) {
+        if (!effectiveTeams.has(teamName)) continue;
         if (!this.evidenceByTeam.has(teamName)) {
           this.evidenceByTeam.set(teamName, []);
         }
