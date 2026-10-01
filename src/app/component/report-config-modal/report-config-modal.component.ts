@@ -23,12 +23,18 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 export interface ReportConfigModalData {
   config: ReportConfig;
+  selectedTeams: string[];
   allActivities: Activity[];
   allTeams: string[];
   allDimensions: string[];
   allSubdimensions: string[];
   allProgressTitles: ProgressTitle[];
   teamGroups: TeamGroups;
+}
+
+export interface ReportConfigModalResult {
+  config: ReportConfig;
+  selectedTeams: string[];
 }
 
 @Component({
@@ -57,11 +63,12 @@ export class ReportConfigModalComponent {
 
   config = signal<ReportConfig>(JSON.parse(JSON.stringify({})));
   allActivities: Activity[];
-  allTeams: string[];
+  allTeams: string[] = [];
   allDimensions: string[];
   allSubdimensions: string[];
   allProgressTitles: ProgressTitle[];
-  teamGroups: TeamGroups;
+  teamGroups: TeamGroups = {};
+  selectedTeams: string[] = [];
   activitySearchQuery = signal('');
   maxWordCap: number = MAX_DESCRIPTION_WORD_CAP;
 
@@ -86,11 +93,12 @@ export class ReportConfigModalComponent {
     // Deep copy config to avoid mutating the original until save
     this.config.set(JSON.parse(JSON.stringify(data.config)));
     this.allActivities = data.allActivities;
-    this.allTeams = data.allTeams;
+    this.allTeams = [...data.allTeams];
     this.allDimensions = data.allDimensions;
     this.allSubdimensions = data.allSubdimensions;
     this.allProgressTitles = data.allProgressTitles || [];
-    this.teamGroups = data.teamGroups || {};
+    this.teamGroups = { ...data.teamGroups };
+    this.selectedTeams = [...data.selectedTeams];
   }
 
   setColumnGrouping(grouping: ColumnGrouping): void {
@@ -172,13 +180,13 @@ export class ReportConfigModalComponent {
     });
   }
 
-  onTeamsChanged(teams: string[]): void {
-    this.config.update(c => ({ ...c, selectedTeams: teams }));
+  onSelectedTeamsChange(teams: string[]): void {
+    this.selectedTeams = teams;
   }
 
   // --- Actions ---
   onSave(): void {
-    this.dialogRef.close(this.config());
+    this.dialogRef.close({ config: this.config(), selectedTeams: this.selectedTeams });
   }
 
   onCancel(): void {
