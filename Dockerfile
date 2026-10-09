@@ -21,7 +21,7 @@ RUN mkdir -p /usr/src/app/dist/dsomm/assets && \
 
 FROM wurstbrot/dsomm-yaml-generation:5.1.0 AS yaml
 
-FROM caddy:2.10.2
+FROM caddy:2.11.7
 ENV PORT=8080
 
 COPY Caddyfile /etc/caddy/Caddyfile
