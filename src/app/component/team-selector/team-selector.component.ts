@@ -21,42 +21,45 @@ export class TeamSelectorComponent {
 
   @Output() selectedTeamsChange = new EventEmitter<string[]>();
 
-  selectedGroupName: string = '';
-
   isTeamSelected(team: string): boolean {
     return this.selectedTeams.includes(team);
   }
 
   toggleTeam(team: string): void {
-    const idx = this.selectedTeams.indexOf(team);
-    if (idx >= 0) {
-      this.selectedTeams.splice(idx, 1);
+    const teams = [...this.selectedTeams];
+    const index = teams.indexOf(team);
+    if (index >= 0) {
+      teams.splice(index, 1);
     } else {
-      this.selectedTeams.push(team);
+      teams.push(team);
     }
-    this.selectedGroupName = '';
-    this.selectedTeamsChange.emit([...this.selectedTeams]);
+    this.selectedTeamsChange.emit(teams);
   }
 
   selectAllTeams(): void {
-    this.selectedTeams = [...this.allTeams];
-    this.selectedGroupName = '';
-    this.selectedTeamsChange.emit([...this.selectedTeams]);
+    this.selectedTeamsChange.emit([...this.allTeams]);
   }
 
   deselectAllTeams(): void {
-    this.selectedTeams = [];
-    this.selectedGroupName = '';
-    this.selectedTeamsChange.emit([...this.selectedTeams]);
+    this.selectedTeamsChange.emit([]);
   }
 
   get groupNames(): string[] {
-    return Object.keys(this.teamGroups);
+    return Object.keys(this.teamGroups).filter(group => this.teamGroups[group].length > 0);
   }
 
   selectGroup(group: string): void {
-    this.selectedTeams = [...(this.teamGroups[group] || [])];
-    this.selectedGroupName = group;
-    this.selectedTeamsChange.emit([...this.selectedTeams]);
+    this.selectedTeamsChange.emit([...(this.teamGroups[group] || [])]);
+  }
+
+  get selectedGroupName(): string {
+    const selected = new Set(this.selectedTeams);
+    for (const group of this.groupNames) {
+      const teams = this.teamGroups[group];
+      if (teams.length === selected.size && teams.every(team => selected.has(team))) {
+        return group;
+      }
+    }
+    return '';
   }
 }

@@ -9,6 +9,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { LoaderService } from '../../service/loader/data-loader.service';
 import { SettingsService } from '../../service/settings/settings.service';
+import { TeamSelectionService } from '../../service/team-selection.service';
 import {
   Activity,
   DifficultyOfImplementation,
@@ -22,6 +23,7 @@ import { ReportConfig, getReportConfig, saveReportConfig } from '../../model/rep
 import {
   ReportConfigModalComponent,
   ReportConfigModalData,
+  ReportConfigModalResult,
 } from '../../component/report-config-modal/report-config-modal.component';
 import { ProgressTitle, TeamGroups } from '../../model/types';
 import { EvidenceEntry } from '../../model/evidence-store';
@@ -77,6 +79,7 @@ export class ReportComponent implements OnInit {
   private settings = inject(SettingsService);
   private dialog = inject(MatDialog);
   private datePipe = inject(DatePipe);
+  readonly teamSelection = inject(TeamSelectionService);
 
   reportConfig = signal<ReportConfig>(getReportConfig());
   allActivities = signal<Activity[]>([]);
@@ -141,7 +144,7 @@ export class ReportComponent implements OnInit {
   });
 
   levelByLevelOverviewFromActivties = computed<LevelOverview[]>(() => {
-    const config = this.reportConfig();
+    const selectedTeams = this.teamSelection.effectiveTeams();
     const dims = this.filteredDimensions();
 
     const activities: Activity[] = [];
@@ -160,8 +163,8 @@ export class ReportComponent implements OnInit {
       const entry = levelMap.get(activity.level)!;
       entry.total++;
 
-      if (config.selectedTeams.length > 0) {
-        const allCompleted = config.selectedTeams.every(team =>
+      if (selectedTeams.length > 0) {
+        const allCompleted = selectedTeams.every(team =>
           this.isActivityCompletedByTeam(activity, team)
         );
         if (allCompleted) {
@@ -226,16 +229,12 @@ export class ReportComponent implements OnInit {
         this.allSubdimensionNames = Array.from(subdimensionSet).sort();
         this.allTeams = dataStore?.meta?.teams || [];
         this.teamGroups = dataStore?.meta?.teamGroups || {};
+        this.teamSelection.init(this.allTeams, this.teamGroups);
 
         if (dataStore.progressStore) {
           const inProgress = dataStore.progressStore.getInProgressTitles();
           const completed = dataStore.progressStore.getCompletedProgressTitle();
           this.allProgressTitles = [...inProgress, completed].filter(t => !!t);
-        }
-
-        const currentConfig = this.reportConfig();
-        if (currentConfig.selectedTeams.length === 0 && this.allTeams.length > 0) {
-          this.reportConfig.set({ ...currentConfig, selectedTeams: [...this.allTeams] });
         }
 
         this.allActivities.set(activities);
@@ -266,7 +265,7 @@ export class ReportComponent implements OnInit {
   getTeamsForProgress(activity: Activity, progressTitle: ProgressTitle): string {
     if (!this.progressStore || !activity.uuid) return '';
     const teams: string[] = [];
-    for (const team of this.reportConfig().selectedTeams) {
+    for (const team of this.teamSelection.effectiveTeams()) {
       const teamTitle = this.progressStore.getTeamProgressTitle(activity.uuid, team);
       if (teamTitle === progressTitle) {
         teams.push(team);
@@ -329,12 +328,13 @@ export class ReportComponent implements OnInit {
   openConfigModal(): void {
     const modalData: ReportConfigModalData = {
       config: this.reportConfig(),
+      allTeams: this.teamSelection.allTeams(),
+      teamGroups: this.teamSelection.teamGroups(),
+      selectedTeams: this.teamSelection.effectiveTeams(),
       allActivities: this.allActivities(),
-      allTeams: this.allTeams,
       allDimensions: this.allDimensionNames,
       allSubdimensions: this.allSubdimensionNames,
       allProgressTitles: this.allProgressTitles,
-      teamGroups: this.loader.datastore?.meta?.teamGroups || {},
     };
 
     const dialogRef = this.dialog.open(ReportConfigModalComponent, {
@@ -342,18 +342,17 @@ export class ReportComponent implements OnInit {
       data: modalData,
     });
 
-    dialogRef.afterClosed().subscribe((result: ReportConfig | null) => {
+    dialogRef.afterClosed().subscribe((result: ReportConfigModalResult | null) => {
       if (result) {
-        this.reportConfig.set(result);
-        saveReportConfig(result);
+        this.teamSelection.setTeams(result.selectedTeams);
+        this.reportConfig.set(result.config);
+        saveReportConfig(result.config);
       }
     });
   }
 
   onTeamsChanged(teams: string[]): void {
-    const updated = { ...this.reportConfig(), selectedTeams: teams };
-    this.reportConfig.set(updated);
-    saveReportConfig(updated);
+    this.teamSelection.setTeams(teams);
   }
 
   printReport(): void {
@@ -449,7 +448,7 @@ export class ReportComponent implements OnInit {
 
     const allEntries: EvidenceEntry[] = evidenceStore.getEvidence(activity.uuid);
     const attrs = this.reportConfig().activityAttributes;
-    const selectedTeams = this.reportConfig().selectedTeams;
+    const selectedTeams = this.teamSelection.effectiveTeams();
 
     const entries = allEntries.filter(entry => entry.teams.some(t => selectedTeams.includes(t)));
 

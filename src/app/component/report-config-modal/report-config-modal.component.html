@@ -256,9 +256,10 @@
   <!-- Teams -->
   <app-team-selector
     [allTeams]="allTeams"
-    [selectedTeams]="config().selectedTeams"
-    (selectedTeamsChange)="onTeamsChanged($event)"
-    [teamGroups]="teamGroups"></app-team-selector>
+    [selectedTeams]="selectedTeams"
+    (selectedTeamsChange)="onSelectedTeamsChange($event)"
+    [teamGroups]="teamGroups">
+  </app-team-selector>
 
   <mat-divider></mat-divider>
 </mat-dialog-content>
