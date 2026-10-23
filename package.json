@@ -15,7 +15,7 @@
   "dependencies": {
     "@angular/cdk": "22.1.0",
     "@angular/cli": "22.1.2",
-    "@angular/common": "22.1.0",
+    "@angular/common": "22.2.3",
     "@angular/compiler": "22.1.0",
     "@angular/core": "22.1.0",
     "@angular/forms": "22.1.0",
