@@ -44,7 +44,7 @@
     "@types/yamljs": "0.2.31",
     "@typescript-eslint/parser": "8.65.0",
     "@typescript-eslint/utils": "8.65.0",
-    "angular-eslint": "22.1.0",
+    "angular-eslint": "22.6.0",
     "eslint": "9.28.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.5.6",
