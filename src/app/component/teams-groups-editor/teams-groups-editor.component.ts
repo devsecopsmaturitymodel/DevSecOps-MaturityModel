@@ -232,9 +232,11 @@ export class TeamsGroupsEditorComponent implements OnChanges {
 
     // Identify the teams that have changed names
     let teamsRenamed: Record<TeamName, TeamName> = {};
-    for (let i = 0; i < this.teams.length; i++) {
-      if (this.teams[i] !== this.localCopyTeams[i]) {
-        teamsRenamed[this.teams[i]] = this.localCopyTeams[i];
+    if (this.teams.length === this.localCopyTeams.length) {
+      for (let i = 0; i < this.teams.length; i++) {
+        if (this.teams[i] !== this.localCopyTeams[i]) {
+          teamsRenamed[this.teams[i]] = this.localCopyTeams[i];
+        }
       }
     }
 
