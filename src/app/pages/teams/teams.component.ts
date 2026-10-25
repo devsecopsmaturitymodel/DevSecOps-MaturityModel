@@ -175,6 +175,7 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     if (!isEmptyObj(event.teamsRenamed)) {
       for (let oldName in event.teamsRenamed) {
         ds?.progressStore?.renameTeam(oldName, event.teamsRenamed[oldName]);
+        ds?.evidenceStore?.renameTeam(oldName, event.teamsRenamed[oldName]);
       }
       ds?.progressStore?.saveToLocalStorage();
     }
