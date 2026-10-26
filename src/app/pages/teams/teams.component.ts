@@ -27,6 +27,7 @@ import {
 import { TeamGroups, TeamName, TeamNames, TeamProgress, Uuid } from 'src/app/model/types';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import { SettingsService } from 'src/app/service/settings/settings.service';
+import { TeamSelectionService } from 'src/app/service/team-selection.service';
 import { downloadYamlFile } from 'src/app/util/download';
 import { isEmptyObj, perfNow, dateStr, uniqueCount } from 'src/app/util/util';
 import { MatIconModule } from '@angular/material/icon';
@@ -53,6 +54,7 @@ import { TopHeaderComponent } from '../../component/top-header/top-header.compon
 })
 export class TeamsComponent implements OnInit, AfterViewInit {
   private loader = inject(LoaderService);
+  private teamSelection = inject(TeamSelectionService);
   settings = inject(SettingsService);
   modal = inject(ModalMessageComponent);
 
@@ -172,6 +174,13 @@ export class TeamsComponent implements OnInit, AfterViewInit {
     console.log(`${perfNow()}: Saving groups: ${JSON.stringify(event.teamGroups)}`);
     const ds = this.dataStore();
     ds?.meta?.updateTeamsAndGroups(event.teams, event.teamGroups);
+    if (ds) {
+      const allTeamsGroupName = ds.getMetaString('allTeamsGroupName') || 'All';
+      this.teamSelection.init(event.teams, {
+        [allTeamsGroupName]: [],
+        ...event.teamGroups,
+      });
+    }
     if (!isEmptyObj(event.teamsRenamed)) {
       for (let oldName in event.teamsRenamed) {
         ds?.progressStore?.renameTeam(oldName, event.teamsRenamed[oldName]);
