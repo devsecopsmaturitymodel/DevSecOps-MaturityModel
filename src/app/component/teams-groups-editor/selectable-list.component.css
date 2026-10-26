@@ -40,6 +40,10 @@
   margin-left: 0.5rem;
 }
 
+.selectable-list .item-actions button {
+  margin-left: 0.25rem;
+}
+
 .selectable-list .edit-hint {
   font-weight: normal;
   font-size: 0.8em;

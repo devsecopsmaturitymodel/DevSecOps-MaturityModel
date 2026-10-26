@@ -7,6 +7,7 @@ import {
   DestroyRef,
   afterNextRender,
   ChangeDetectionStrategy,
+  untracked,
 } from '@angular/core';
 import { LoaderService } from 'src/app/service/loader/data-loader.service';
 import * as d3 from 'd3';
@@ -33,6 +34,7 @@ import {
   TeamGroups,
 } from 'src/app/model/types';
 import { SectorService } from '../../service/sector-service';
+import { TeamSelectionService } from '../../service/team-selection.service';
 import { DataStore } from 'src/app/model/data-store';
 import { Sector } from 'src/app/model/sector';
 import { perfNow } from 'src/app/util/util';
@@ -80,6 +82,7 @@ import { ActivityDescriptionComponent } from '../../component/activity-descripti
 export class CircularHeatmapComponent {
   private loader = inject(LoaderService);
   private sectorService = inject(SectorService);
+  readonly teamSelection = inject(TeamSelectionService);
   private settings = inject(SettingsService);
   private themeService = inject(ThemeService);
   private titleService = inject(TitleService);
@@ -103,14 +106,33 @@ export class CircularHeatmapComponent {
   readonly showActivityCard = signal<Sector | null>(null);
   readonly showActivityDetails = signal<Activity | null>(null);
   readonly dataStore = signal<DataStore | null>(null);
-  readonly filtersTeams = signal<Record<string, boolean>>({});
-  readonly filtersTeamGroups = signal<Record<string, boolean>>({});
-  readonly teamGroups = signal<TeamGroups>({});
   readonly allSectors = signal<Sector[]>([]);
   readonly selectedSector = signal<Sector | null>(null);
 
-  // ── Computed ──
-  readonly hasTeamsFilter = computed(() => Object.values(this.filtersTeams()).some(v => v));
+  readonly filtersTeams = computed<Record<string, boolean>>(() => {
+    const all = this.teamSelection.allTeams();
+    const selected = new Set(this.teamSelection.selectedTeams());
+    const result: Record<string, boolean> = {};
+    for (const team of all) {
+      result[team] = selected.has(team);
+    }
+    return result;
+  });
+
+  readonly filtersTeamGroups = computed<Record<string, boolean>>(() => {
+    const groups = this.teamSelection.teamGroups();
+    const selectedGroup = this.teamSelection.selectedGroupName();
+    const isAll = this.teamSelection.isAllSelected();
+    const result: Record<string, boolean> = {};
+    for (const key of Object.keys(groups)) {
+      result[key] = isAll ? key === Object.keys(groups)[0] : key === selectedGroup;
+    }
+    return result;
+  });
+
+  readonly teamGroups = computed<TeamGroups>(() => this.teamSelection.teamGroups());
+
+  readonly hasTeamsFilter = computed(() => this.teamSelection.selectedTeams().length > 0);
 
   constructor() {
     this.destroyRef.onDestroy(() => this.titleService.clearTitle());
@@ -130,13 +152,12 @@ export class CircularHeatmapComponent {
             throw Error('No progressStore available');
           }
 
-          this.filtersTeams.set(this.buildFilters(dataStore.meta?.teams as string[]));
-          // Insert key: 'All' with value: [], in the first position of the meta.teamGroups Record
           const allTeamsGroupName: string = dataStore.getMetaString('allTeamsGroupName') || 'All';
-          this.teamGroups.set({ [allTeamsGroupName]: [], ...(dataStore.meta?.teamGroups || {}) });
-          const groupFilters = this.buildFilters(Object.keys(this.teamGroups()));
-          groupFilters[allTeamsGroupName] = true;
-          this.filtersTeamGroups.set(groupFilters);
+          const groups: TeamGroups = {
+            [allTeamsGroupName]: [],
+            ...(dataStore.meta?.teamGroups || {}),
+          };
+          this.teamSelection.init(dataStore.meta?.teams || [], groups);
 
           let progressDefinition: ProgressDefinitions = dataStore.meta?.progressDefinition || {};
           this.sectorService.init(
@@ -177,6 +198,17 @@ export class CircularHeatmapComponent {
       if (this.allSectors().length > 0) {
         this.reColorHeatmap();
       }
+    });
+
+    // Reactively sync SectorService when global team selection changes
+    effect(() => {
+      const selected = this.teamSelection.selectedTeams();
+      untracked(() => {
+        this.sectorService.setVisibleTeams(selected);
+        if (this.allSectors().length > 0) {
+          this.reColorHeatmap();
+        }
+      });
     });
   }
 
@@ -229,16 +261,6 @@ export class CircularHeatmapComponent {
     this.allSectors.set(sectors);
   }
 
-  buildFilters(names: string[]): Record<string, boolean> {
-    let filters: Record<string, boolean> = {};
-    if (names) {
-      for (let name of names) {
-        filters[name] = false;
-      }
-    }
-    return filters;
-  }
-
   onGroupChipChange(event: MatChipSelectionChange, groupKey: string) {
     if (!event.selected && event.isUserInput) {
       event.source.select();
@@ -249,50 +271,19 @@ export class CircularHeatmapComponent {
 
     console.log(`${perfNow()}: Heat: Chip flip Group '${groupKey}'`);
 
-    const newGroupFilters: Record<string, boolean> = {};
-    Object.keys(this.filtersTeamGroups()).forEach(key => {
-      newGroupFilters[key] = key === groupKey;
-    });
-    this.filtersTeamGroups.set(newGroupFilters);
-
     const groups = this.teamGroups();
-    const selectedTeams: TeamName[] = [];
-    const newTeamFilters: Record<string, boolean> = {};
-    Object.keys(this.filtersTeams()).forEach(key => {
-      newTeamFilters[key] = groups[groupKey]?.includes(key) || false;
-      if (newTeamFilters[key]) selectedTeams.push(key);
-    });
-    this.filtersTeams.set(newTeamFilters);
-    this.sectorService.setVisibleTeams(selectedTeams);
-    this.reColorHeatmap();
+    const groupTeams = groups[groupKey];
+    if (groupTeams && groupTeams.length > 0) {
+      this.teamSelection.selectGroup(groupKey);
+    } else {
+      this.teamSelection.selectAll();
+    }
   }
 
   toggleTeamFilter(event: MatChipListboxChange) {
     const selectedTeams: string[] = event.value || [];
     console.log(`${perfNow()}: Heat: Team filter changed: [${selectedTeams.join(', ')}]`);
-
-    const newTeamFilters: Record<string, boolean> = {};
-    Object.keys(this.filtersTeams()).forEach(key => {
-      newTeamFilters[key] = selectedTeams.includes(key);
-    });
-    this.filtersTeams.set(newTeamFilters);
-
-    this.sectorService.setVisibleTeams(selectedTeams);
-
-    // Set-based comparison for group highlight (fixes order-sensitive bug)
-    const selectedSet = new Set(selectedTeams);
-    const groups = this.teamGroups();
-    const newGroupFilters: Record<string, boolean> = {};
-    Object.keys(groups).forEach(group => {
-      const groupTeams = groups[group];
-      newGroupFilters[group] =
-        groupTeams.length > 0 &&
-        groupTeams.length === selectedSet.size &&
-        groupTeams.every(t => selectedSet.has(t));
-    });
-    this.filtersTeamGroups.set(newGroupFilters);
-
-    this.reColorHeatmap();
+    this.teamSelection.setTeams(selectedTeams);
   }
 
   getTeamProgressState(activityUuid: string, teamName: string): string {
@@ -874,12 +865,9 @@ export class CircularHeatmapComponent {
 
   openAddEvidenceModal(activityUuid: string): void {
     const ds = this.dataStore();
-    const teams = ds?.meta?.teams || [];
 
     const dialogData: AddEvidenceModalData = {
       activityUuid,
-      allTeams: teams,
-      teamGroups: this.teamGroups(),
     };
 
     const dialogRef = this.dialog.open(AddEvidenceModalComponent, {

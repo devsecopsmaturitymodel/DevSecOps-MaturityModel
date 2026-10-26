@@ -12,6 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
+export type MoveDirection = 'up' | 'down';
+
+export interface MoveItemEvent {
+  name: string;
+  direction: MoveDirection;
+}
+
 @Component({
   selector: 'app-selectable-list',
   templateUrl: './selectable-list.component.html',
@@ -35,6 +42,7 @@ export class SelectableListComponent {
   @Output() save = new EventEmitter<void>();
   @Output() renameItem = new EventEmitter<{ oldName: string; newName: string }>();
   @Output() deleteItem = new EventEmitter<string>();
+  @Output() moveItem = new EventEmitter<MoveItemEvent>();
   @Output() relationshipToggle = new EventEmitter<string>();
   @Output() editModeChange = new EventEmitter<boolean>();
 
@@ -101,5 +109,13 @@ export class SelectableListComponent {
     } else if (index > 0) {
       this.onItemClicked(this.items[index - 1]);
     }
+  }
+
+  moveItemUp(name: string): void {
+    this.moveItem.emit({ name, direction: 'up' });
+  }
+
+  moveItemDown(name: string): void {
+    this.moveItem.emit({ name, direction: 'down' });
   }
 }
