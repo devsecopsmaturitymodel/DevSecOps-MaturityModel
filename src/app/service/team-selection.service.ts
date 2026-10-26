@@ -38,7 +38,10 @@ export class TeamSelectionService {
 
   readonly effectiveTeams = computed<string[]>(() => {
     const selected = this.selectedTeams();
-    return selected.length === 0 ? this.allTeams() : selected;
+    const allTeams = this.allTeams();
+    if (selected.length === 0) return allTeams;
+    const selectedSet = new Set(selected);
+    return allTeams.filter(team => selectedSet.has(team));
   });
 
   init(teams: TeamNames, groups: TeamGroups): void {
