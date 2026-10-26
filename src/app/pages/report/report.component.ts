@@ -485,7 +485,7 @@ export class ReportComponent implements OnInit {
       }
 
       // Show only the selected teams for this entry
-      const matchingTeams = entry.teams.filter(t => selectedTeams.includes(t));
+      const matchingTeams = selectedTeams.filter(team => entry.teams.includes(team));
       const teamsLabel =
         matchingTeams.length > 0
           ? `<span class="evidence-teams">[${matchingTeams.join(', ')}]</span> `

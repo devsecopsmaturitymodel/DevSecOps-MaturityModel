@@ -68,6 +68,10 @@ export class EvidencePanelComponent implements OnChanges {
       }
     }
 
-    this.teamsWithEvidence = Array.from(this.evidenceByTeam.keys());
+    // Evidence entries can be entered in any order. Display the teams using the
+    // configured order, while omitting teams without evidence for this activity.
+    this.teamsWithEvidence = this.teamSelection
+      .effectiveTeams()
+      .filter(teamName => this.evidenceByTeam.has(teamName));
   }
 }
