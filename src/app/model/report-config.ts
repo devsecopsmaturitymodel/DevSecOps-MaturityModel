@@ -26,7 +26,6 @@ export interface ActivityAttributes {
 export interface ReportConfig {
   columnGrouping: ColumnGrouping;
   descriptionWordCap: number;
-  selectedTeams: string[];
   excludedDimensions: string[];
   excludedSubdimensions: string[];
   excludedActivities: string[];
@@ -66,7 +65,6 @@ export function getDefaultReportConfig(): ReportConfig {
   return {
     columnGrouping: 'byProgress',
     descriptionWordCap: DEFAULT_DESCRIPTION_WORD_CAP,
-    selectedTeams: [],
     excludedDimensions: [],
     excludedSubdimensions: [],
     excludedActivities: [],
@@ -118,15 +116,21 @@ export function getReportConfig(): ReportConfig {
         showTags: parsedAttrs.showTags ?? defaultAttrs.showTags,
       };
 
-      return {
+      const config: ReportConfig = {
         columnGrouping: parsed.columnGrouping ?? defaults.columnGrouping,
         descriptionWordCap: parsed.descriptionWordCap ?? defaults.descriptionWordCap,
-        selectedTeams: parsed.selectedTeams ?? defaults.selectedTeams,
         excludedDimensions: parsed.excludedDimensions ?? defaults.excludedDimensions,
         excludedSubdimensions: parsed.excludedSubdimensions ?? defaults.excludedSubdimensions,
         excludedActivities: parsed.excludedActivities ?? defaults.excludedActivities,
         activityAttributes,
       };
+
+      // Remove the legacy team selection from saved report settings.
+      if ('selectedTeams' in parsed) {
+        saveReportConfig(config);
+      }
+
+      return config;
     }
   } catch (e) {
     console.error('Error reading ReportConfig from localStorage:', e);

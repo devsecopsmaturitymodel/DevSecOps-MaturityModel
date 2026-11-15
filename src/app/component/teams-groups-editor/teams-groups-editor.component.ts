@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { GroupName, TeamGroups, TeamName, TeamNames } from 'src/app/model/types';
 import { perfNow, renameArrayElement } from 'src/app/util/util';
-import { SelectableListComponent } from './selectable-list.component';
+import { MoveItemEvent, SelectableListComponent } from './selectable-list.component';
 
 enum EditMode {
   NONE,
@@ -73,6 +73,7 @@ export class TeamsGroupsEditorComponent implements OnChanges {
   makeLocalCopy() {
     this.localCopyTeams = this.teams.slice();
     this.localCopyTeamGroups = this.cloneTeamGroups(this.teamGroups);
+    this.localCopyTeamsRenamed = {};
   }
 
   saveLocalCopy() {
@@ -199,6 +200,7 @@ export class TeamsGroupsEditorComponent implements OnChanges {
         event.newName
       );
     }
+    this.recordTeamRename(event.oldName, event.newName);
     this.onTeamSelected(event.newName);
   }
 
@@ -218,8 +220,12 @@ export class TeamsGroupsEditorComponent implements OnChanges {
 
   onRenameGroup(event: { oldName: string; newName: string }) {
     console.log(`${perfNow()}: Rename team: ${event.oldName} to ${event.newName}`);
-    this.localCopyTeamGroups[event.newName] = this.localCopyTeamGroups[event.oldName] || [];
-    delete this.localCopyTeamGroups[event.oldName];
+    const renamedGroups: TeamGroups = {};
+    for (const group of Object.keys(this.localCopyTeamGroups)) {
+      renamedGroups[group === event.oldName ? event.newName : group] =
+        this.localCopyTeamGroups[group];
+    }
+    this.localCopyTeamGroups = renamedGroups;
     this.onGroupSelected(event.newName);
   }
 
@@ -227,16 +233,21 @@ export class TeamsGroupsEditorComponent implements OnChanges {
     delete this.localCopyTeamGroups[group];
   }
 
+  onMoveTeam(event: MoveItemEvent): void {
+    this.localCopyTeams = this.moveArrayItem(this.localCopyTeams, event);
+  }
+
+  onMoveGroup(event: MoveItemEvent): void {
+    const groupNames = this.moveArrayItem(Object.keys(this.localCopyTeamGroups), event);
+    const reorderedGroups: TeamGroups = {};
+    for (const group of groupNames) {
+      reorderedGroups[group] = this.localCopyTeamGroups[group];
+    }
+    this.localCopyTeamGroups = reorderedGroups;
+  }
+
   onSave() {
     console.log(`${perfNow()}: Saving teams and groups`);
-
-    // Identify the teams that have changed names
-    let teamsRenamed: Record<TeamName, TeamName> = {};
-    for (let i = 0; i < this.teams.length; i++) {
-      if (this.teams[i] !== this.localCopyTeams[i]) {
-        teamsRenamed[this.teams[i]] = this.localCopyTeams[i];
-      }
-    }
 
     this.editMode = EditMode.NONE;
 
@@ -246,8 +257,9 @@ export class TeamsGroupsEditorComponent implements OnChanges {
     this.namesChanged.emit({
       teams: this.teams,
       teamGroups: this.teamGroups,
-      teamsRenamed: teamsRenamed,
+      teamsRenamed: { ...this.localCopyTeamsRenamed },
     });
+    this.localCopyTeamsRenamed = {};
   }
 
   onCancelEdit() {
@@ -285,5 +297,32 @@ export class TeamsGroupsEditorComponent implements OnChanges {
 
   keys(obj: any): string[] {
     return Object.keys(obj);
+  }
+
+  private moveArrayItem(items: string[], event: MoveItemEvent): string[] {
+    const currentIndex = items.indexOf(event.name);
+    const destinationIndex = event.direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+
+    if (currentIndex === -1 || destinationIndex < 0 || destinationIndex >= items.length) {
+      return items;
+    }
+
+    const reordered = items.slice();
+    [reordered[currentIndex], reordered[destinationIndex]] = [
+      reordered[destinationIndex],
+      reordered[currentIndex],
+    ];
+    return reordered;
+  }
+
+  private recordTeamRename(oldName: TeamName, newName: TeamName): void {
+    const originalName =
+      Object.keys(this.localCopyTeamsRenamed).find(
+        name => this.localCopyTeamsRenamed[name] === oldName
+      ) || oldName;
+
+    if (this.teams.includes(originalName)) {
+      this.localCopyTeamsRenamed[originalName] = newName;
+    }
   }
 }

@@ -45,7 +45,21 @@
           <span>{{ name }}</span>
         }
         @if (editMode) {
-          <span>
+          <span class="item-actions">
+            <button
+              mat-icon-button
+              [disabled]="items.indexOf(name) === 0"
+              (click)="moveItemUp(name); $event.stopPropagation()"
+              title="Move {{ name }} up">
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              [disabled]="items.indexOf(name) === items.length - 1"
+              (click)="moveItemDown(name); $event.stopPropagation()"
+              title="Move {{ name }} down">
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
             <button mat-icon-button (click)="startEditItem(name)" title="Rename {{ name }}">
               <mat-icon class="material-icons-outlined">edit</mat-icon>
             </button>

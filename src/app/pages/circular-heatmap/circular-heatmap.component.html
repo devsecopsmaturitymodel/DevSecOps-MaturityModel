@@ -46,7 +46,7 @@
             <mat-divider></mat-divider>
             <label class="filter-label">Team Filter</label>
             <mat-chip-listbox selectable multiple (change)="toggleTeamFilter($event)">
-              @for (team of filtersTeams() | keyvalue; track team.key) {
+              @for (team of filtersTeams() | keyvalue: unsorted; track team.key) {
                 <mat-chip-option [value]="team.key" [selected]="team.value">
                   {{ team.key }}
                 </mat-chip-option>
@@ -86,7 +86,7 @@
                   </mat-expansion-panel-header>
                   <ng-template matExpansionPanelContent>
                     <ul class="team-list">
-                      @for (team of filtersTeams() | keyvalue; track team) {
+                      @for (team of filtersTeams() | keyvalue: unsorted; track team.key) {
                         @if (team.value || !hasTeamsFilter()) {
                           <li>
                             <label class="team-label"> {{ team.key }}: </label>

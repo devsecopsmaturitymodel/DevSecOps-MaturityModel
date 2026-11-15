@@ -2,9 +2,9 @@
 
 <mat-dialog-content class="config-content">
   <app-team-selector
-    [allTeams]="allTeams"
-    [(selectedTeams)]="selectedTeams"
-    [teamGroups]="teamGroups"
+    [allTeams]="teamSelection.allTeams()"
+    [selectedTeams]="selectedTeams"
+    [teamGroups]="teamSelection.teamGroups()"
     (selectedTeamsChange)="onSelectedTeamsChange($event)"
     [type]="'add-evidence-config'">
   </app-team-selector>

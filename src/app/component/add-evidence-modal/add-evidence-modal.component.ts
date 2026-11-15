@@ -1,7 +1,7 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { EvidenceEntry, EvidenceStore } from '../../model/evidence-store';
-import { TeamGroups } from '../../model/types';
+import { TeamSelectionService } from '../../service/team-selection.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,8 +16,6 @@ import { TeamSelectorComponent } from '../team-selector/team-selector.component'
 
 export interface AddEvidenceModalData {
   activityUuid: string;
-  allTeams: string[];
-  teamGroups: TeamGroups;
 }
 
 @Component({
@@ -42,10 +40,9 @@ export interface AddEvidenceModalData {
 export class AddEvidenceModalComponent {
   dialogRef = inject<MatDialogRef<AddEvidenceModalComponent>>(MatDialogRef);
   data = inject<AddEvidenceModalData>(MAT_DIALOG_DATA);
+  readonly teamSelection = inject(TeamSelectionService);
 
   activityUuid: string;
-  allTeams: string[];
-  teamGroups: TeamGroups;
 
   // Form fields
   selectedTeams: string[] = [];
@@ -66,8 +63,7 @@ export class AddEvidenceModalComponent {
     const data = this.data;
 
     this.activityUuid = data.activityUuid;
-    this.allTeams = data.allTeams;
-    this.teamGroups = data.teamGroups || {};
+    this.selectedTeams = [...this.teamSelection.effectiveTeams()];
   }
 
   onSelectedTeamsChange(teams: string[]): void {

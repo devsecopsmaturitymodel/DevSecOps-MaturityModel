@@ -13,8 +13,8 @@
     @if (!isLoading()) {
       <span class="activity-count">
         {{ totalFilteredActivities() }} activities
-        @if (reportConfig().selectedTeams.length > 0) {
-          <span> · {{ reportConfig().selectedTeams.length }} teams </span>
+        @if (teamSelection.effectiveTeams().length > 0) {
+          <span> · {{ teamSelection.effectiveTeams().length }} teams </span>
         }
       </span>
     }
@@ -22,9 +22,9 @@
 
   <div class="team-selector-section no-print">
     <app-team-selector
-      [allTeams]="allTeams"
-      [selectedTeams]="reportConfig().selectedTeams"
-      [teamGroups]="teamGroups"
+      [allTeams]="teamSelection.allTeams()"
+      [selectedTeams]="teamSelection.effectiveTeams()"
+      [teamGroups]="teamSelection.teamGroups()"
       (selectedTeamsChange)="onTeamsChanged($event)">
     </app-team-selector>
   </div>
@@ -101,7 +101,7 @@
                     }
                     <!-- Column Grouping by Team -->
                     @if (reportConfig().columnGrouping === 'byTeam') {
-                      @for (team of reportConfig().selectedTeams; track team) {
+                      @for (team of teamSelection.effectiveTeams(); track team) {
                         <th appColResize class="col-team">
                           {{ team }}
                         </th>
@@ -175,7 +175,7 @@
                       }
                       <!-- Team cells -->
                       @if (reportConfig().columnGrouping === 'byTeam') {
-                        @for (team of reportConfig().selectedTeams; track team) {
+                        @for (team of teamSelection.effectiveTeams(); track team) {
                           <td class="cell-team">
                             {{ getTeamProgressName(activity, team) }}
                           </td>
