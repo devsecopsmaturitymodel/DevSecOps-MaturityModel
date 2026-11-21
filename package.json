@@ -20,7 +20,7 @@
     "@angular/core": "22.1.0",
     "@angular/forms": "22.1.0",
     "@angular/localize": "22.1.0",
-    "@angular/material": "22.1.0",
+    "@angular/material": "22.2.4",
     "@angular/platform-browser": "22.1.0",
     "@angular/router": "22.1.0",
     "@ngneat/until-destroy": "10.0.0",
