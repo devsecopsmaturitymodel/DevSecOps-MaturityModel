@@ -42,11 +42,26 @@
   grid-template-rows: auto 1fr auto;
 }
 
+:host {
+  display: block;
+  height: 100%;
+  min-height: 0;
+}
+
+#cont {
+  height: 100%;
+}
+
+#cont > .row {
+  height: 100%;
+}
+
 .heatmapClass {
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 6fr 4fr;
   height: 100%;
+  min-height: 0;
   width: 100%;
 }
 
@@ -58,7 +73,8 @@
 }
 #chart {
   width: 100%;
-  max-width: min(100vh - 60px, 100vw - 60px);
+  max-width: min(calc(100vh - 112px), calc(100vw - 60px));
+  aspect-ratio: 1 / 1;
 }
 
 .overlay-details {
@@ -192,7 +208,6 @@ button.filter-toggle {
   grid-column: 2/3;
   place-self: flex-end;
   margin: 0 1rem;
-  padding-top: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -260,7 +275,8 @@ mat-card-title-group {
   }
 
   #chart {
-      max-width: max(60vh, 60vw);
+      width: 100%;
+      max-width: min(calc(100vh - 88px), 100%);
   }
   
   .overlay-details {
