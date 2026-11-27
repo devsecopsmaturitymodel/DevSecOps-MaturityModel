@@ -22,7 +22,7 @@
     "@angular/localize": "22.1.0",
     "@angular/material": "22.1.0",
     "@angular/platform-browser": "22.1.0",
-    "@angular/router": "22.1.0",
+    "@angular/router": "22.3.0",
     "@ngneat/until-destroy": "10.0.0",
     "d3": "7.9.0",
     "markdown-it": "14.3.0",
